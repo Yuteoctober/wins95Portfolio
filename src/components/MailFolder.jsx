@@ -9,6 +9,9 @@ import '../css/MailFolder.css'
 
 function MailFolder() {
 
+  const focusName = useRef();
+  const focusEmail = useRef();
+
   const { 
     MailExpand, setMailExpand,
     setMybioExpand,
@@ -23,7 +26,8 @@ function MailFolder() {
     StyleHide,
     isTouchDevice,
     setIconState,
-
+    clippyThanksYouFunction,
+    clippySendemailfunction,
    } = useContext(UseContext);
 
 // ---------------------- EMAIL JS ---------------------------------------
@@ -215,16 +219,22 @@ const form = useRef();
                   <input className="myemail_container" placeholder='yudthsoponvit@gmail.com' disabled />
                 </div>
                 <div className="to_container">
-                  <div className="to_icon">
+                  <div className="to_icon" 
+                    onClick={() => focusName.current.focus()}
+                  
+                  >
                     <p style={{fontSize: '12px'}}>Name</p>
                   </div>
-                  <input className="myemail_container" type="text" name="from_name" required />
+                  <input className="myemail_container" type="text" name="from_name" required ref={focusName} />
                 </div>
-                <div className="to_container">
+                <div className="to_container" 
+                  onClick={() => focusEmail.current.focus()} 
+                  
+                >
                   <div className="to_icon" >
                     <p style={{fontSize: '12px'}}>Email</p>
                   </div>
-                  <input className="myemail_container" type="email" name="from_email"  />
+                  <input className="myemail_container" type="email" name="from_email" ref={focusEmail}  />
                 </div>
               </div>
               <textarea name="message" required placeholder='Write here.....'

@@ -21,6 +21,8 @@ import clippyNo from '../assets/clippyNo.gif';
 
 export default function Footer() {
 
+    
+
 
     const clippyPhrase = {
         inspiration: [
@@ -43,8 +45,13 @@ export default function Footer() {
         ],
         interruption: [{ phrase: "Please, do not interrupt me!", animation: clippyNo }]
     };
-    
 
+    const clippySuggest = 
+    [
+        'Click => Send when you finished writing the email.',
+        'Thank you for your interest.'
+    ]
+    
 
 
     const wheelTapContainer = useRef(null)
@@ -70,6 +77,11 @@ export default function Footer() {
         randomClippyPopup, setRandomClippyPopup,
         clippyTouched, setClippyTouched,
         clippyThanks, setClippyThanks,
+        clippySendemail, setClippySendemail,
+        firstTimoutShowclippy,
+        RandomTimeoutShowClippy,
+        SecondRandomTimeoutShowClippy,
+
      } = useContext(UseContext);
     
      const handleWheelScroll = (e) => { // wheel from x to Y on tap
@@ -234,26 +246,31 @@ export default function Footer() {
 
     useEffect(() => { // display clippy when windows start
         setShowClippy(true)
-        setTimeout(() => {
+        firstTimoutShowclippy.current = setTimeout(() => {
             setShowClippy(false) 
         }, 10000);
+        
+        return () => {
+            clearTimeout(firstTimoutShowclippy.current);
+        };
     },[])
 
     useEffect(() => {
         const randomTime = Math.floor(Math.random() * (50000 - 30000 + 1)) + 30000;
 
-        const showAndHideTimeout = setTimeout(() => {
+        RandomTimeoutShowClippy.current = setTimeout(() => {
         const randomIndex = Math.floor(Math.random() * clippyPhrase.inspiration.length);
                 setClippyIndex(randomIndex);
-            setShowClippy(true);
-            setTimeout(() => {
+                setShowClippy(true);
+        SecondRandomTimeoutShowClippy.current = setTimeout(() => {
                 setShowClippy(false);
                 setRandomClippyPopup(prev => !prev);
             }, 10000); 
         }, randomTime); 
     
         return () => {
-            clearTimeout(showAndHideTimeout);
+            clearTimeout(RandomTimeoutShowClippy.current);
+            clearTimeout(SecondRandomTimeoutShowClippy.current);
         };
     }, [randomClippyPopup]);
 
@@ -265,6 +282,18 @@ export default function Footer() {
         }, 3500);
 
     }
+
+    function handleClipperTalk() {
+
+        if(clippyTouched) return clippyPhrase.interruption[0].phrase;
+        if(clippySendemail) return clippySuggest[0]
+        if(clippyThanks) return clippySuggest[1];
+        
+        return clippyPhrase.inspiration[clippyIndex].phrase
+        // clippyTouched ? clippyPhrase.interruption[0].phrase : 
+        // (clippyThanks ? 'Thank you for your interest.' : clippyPhrase.inspiration[clippyIndex].phrase)
+    }
+    
 
 
     return (
@@ -357,12 +386,7 @@ export default function Footer() {
                         transition={{ ease: "easeIn", duration: .8, delay: 1.5 }}
                         exit={{ opacity: 0, transition: { ease: 'easeOut', duration: 0.1 } }}
                     >
-                <p>
-                {
-                    clippyTouched ? clippyPhrase.interruption[0].phrase : 
-                    (clippyThanks ? 'Thank you for your interest.' : clippyPhrase.inspiration[clippyIndex].phrase)
-                }       
-                </p>
+                <p>{handleClipperTalk()}</p>
                 </motion.div>
             </motion.div>
             )}

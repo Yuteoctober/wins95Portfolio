@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import UserContext from './Context'
 import Footer from './components/Footer';
 import Dragdrop from './components/Dragdrop';
@@ -18,6 +18,10 @@ import Winamp from './assets/winampIcon.png'
 
 function App() {
 
+  const firstTimoutShowclippy = useRef(null);
+  const RandomTimeoutShowClippy = useRef(null);
+  const SecondRandomTimeoutShowClippy = useRef(null);
+  const [clippySendemail, setClippySendemail] = useState(false)
   const [clippyThanks, setClippyThanks] = useState(false)
   const [clippyTouched, setClippyTouched] = useState(false)
   const [randomClippyPopup, setRandomClippyPopup] = useState(false)
@@ -134,6 +138,7 @@ function handleShow(name) {
           setNoteExpand(prev => ({...prev, focusItem: false}));
           setTypeExpand(prev => ({...prev, focusItem: false}));
           setWinampExpand(prev => ({...prev, focusItem: false}));
+          clippySendemailfunction()
           if(tap.includes('Mail')) return;
           setTap(prevTap => [...prevTap, 'Mail'])
           setIconState(prevIcons => prevIcons.map(icon => ({
@@ -286,6 +291,7 @@ if (now - lastTapTime < 300) {
         setNoteExpand(prev => ({...prev, focusItem: false}));
         setTypeExpand(prev => ({...prev, focusItem: false}));
         setWinampExpand(prev => ({...prev, focusItem: false}));
+        clippySendemailfunction()
     if(tap.includes('Mail')) return;
         setTap(prevTap => [...prevTap, 'Mail'])
         setIconState(prevIcons => prevIcons.map(icon => ({
@@ -514,12 +520,27 @@ function handleDoubleTapEnterMobile(name) {
   
 
   function clippyThanksYouFunction() {
-    setClippyThanks(true)
-    setRandomClippyPopup(true)
+    if (RandomTimeoutShowClippy) clearTimeout(RandomTimeoutShowClippy.current);
+    if (firstTimoutShowclippy) clearTimeout(firstTimoutShowclippy.current);
+    if (SecondRandomTimeoutShowClippy) clearTimeout(SecondRandomTimeoutShowClippy.current);
+    setClippyThanks(true);
+    setShowClippy(true);
     setTimeout(() => {
-      setClippyThanks(false)
-      setRandomClippyPopup(false)
-    }, 5000);
+      setClippyThanks(false);
+      setShowClippy(false);
+    }, 8000);
+  }
+
+  function clippySendemailfunction() {
+    if (RandomTimeoutShowClippy) clearTimeout(RandomTimeoutShowClippy.current);
+    if (firstTimoutShowclippy) clearTimeout(firstTimoutShowclippy.current);
+    if (SecondRandomTimeoutShowClippy) clearTimeout(SecondRandomTimeoutShowClippy.current);
+    setClippySendemail(true);
+    setShowClippy(true);
+    setTimeout(() => {
+      setClippySendemail(false);
+      setShowClippy(false);
+    }, 8000);
   }
 
 
@@ -559,7 +580,12 @@ const imageMapping = { // map json with import images
     randomClippyPopup, setRandomClippyPopup,
     clippyTouched, setClippyTouched,
     clippyThanks, setClippyThanks,
+    clippySendemail, setClippySendemail,
     clippyThanksYouFunction,
+    clippySendemailfunction,
+    RandomTimeoutShowClippy, 
+    firstTimoutShowclippy,
+    SecondRandomTimeoutShowClippy,
   }
 
   return (
