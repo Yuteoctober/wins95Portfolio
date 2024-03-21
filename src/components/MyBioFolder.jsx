@@ -190,8 +190,7 @@ function MyBioFolder() {
               <br />
               <p>
                 Hi! My name is Yute, I'm a Software Engineer based in New York City. Focusing on Front-end
-                I'm passionate in design, building something pixel perfect! along with functionality that works perfectly
-                with the pixel.
+                I'm passionate in design, building something pixel perfect! along with functionality that works perfectly.
               </p>
               <br />
               <p>

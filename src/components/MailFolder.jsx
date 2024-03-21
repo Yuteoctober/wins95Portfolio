@@ -218,13 +218,13 @@ const form = useRef();
                   <div className="to_icon">
                     <p style={{fontSize: '12px'}}>Name</p>
                   </div>
-                  <input className="myemail_container" type="text" name="from_name" required placeholder='your name' />
+                  <input className="myemail_container" type="text" name="from_name" required />
                 </div>
                 <div className="to_container">
                   <div className="to_icon" >
                     <p style={{fontSize: '12px'}}>Email</p>
                   </div>
-                  <input className="myemail_container" type="email" name="from_email" required placeholder='your email' />
+                  <input className="myemail_container" type="email" name="from_email"  />
                 </div>
               </div>
               <textarea name="message" required placeholder='Write here.....'
@@ -245,13 +245,10 @@ const form = useRef();
                 }}
               />
               <div className="sendmail_icon">
+                <input className="sendmail_img_container" type="submit" value="Send" style={{textAlign: 'center'}} />
               </div>
             </form>
           </div>
-          
-                <input className="sendmail_img_container" type="submit" value="Send" style={{textAlign: 'center'}} />
-
-          
         </div>
       </Draggable>
     </>

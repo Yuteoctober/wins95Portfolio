@@ -295,7 +295,7 @@
     align-items: center;
     position: fixed;
     height: 34px;
-    width: calc(100% - 7.5px);
+    width: calc(100% - 8px);
     margin: 0 auto;
     bottom: 1px;
     border: 1px solid black;
