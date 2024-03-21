@@ -211,7 +211,7 @@ function MyBioFolder() {
                 try new resturants and adventure like hiking, I used to play basketball in highschool and wanting to find time for that again.
               </p>
               <br />
-              <a href="https://drive.google.com/file/d/1XNn23UA2L82P2__Ccuccl3WMdR2rHG57/view" target="_blank" rel="noreferrer" >You can find my Resume here</a>
+              <a href="https://drive.google.com/file/d/1XNn23UA2L82P2__Ccuccl3WMdR2rHG57/view" target="_blank" rel="noreferrer" >You can find my Resume here.</a>
               <br />
               <a href="onClick={() => window.open('https://drive.usercontent.google.com/u/0/uc?id=1XNn23UA2L82P2__Ccuccl3WMdR2rHG57&export=download', '_blank')}" target="_blank" rel="noreferrer" >Download</a>
             </div>
