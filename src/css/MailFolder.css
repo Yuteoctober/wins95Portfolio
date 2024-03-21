@@ -205,28 +205,25 @@
 .folder_content-mail {
     position: relative;
     width: calc(100% - 6px);
-    height: calc(100% - 52px);
-    border: 1px solid black;
+    height: calc(100% - 55px);
     border-right-color: white;
     border-bottom-color: white;
     margin: 0 auto;
     margin-top: 2px;
-    background: rgb(255, 255, 255);
+    background: #c5c4c4;
     overflow: hidden;
 }
 
 .form_container {
     display: grid;
     position: relative;
-    margin-top: -1px;
     gap: 8px;
-    width: calc(100%);
-    top: 1px;
-    border: 1.5px solid rgb(75, 73, 73);
-    border-bottom-color: #323232;
+    width: calc(100% + 1px);
+    margin: 0 auto;
     background: #c5c4c4;
     padding: 5px 4px;
     padding-bottom: 8px;
+    border: none;
     overflow: hidden;
     cursor: default;
 }
@@ -239,7 +236,7 @@
     top: 1px;
     border: 2px solid black;
     border-right-color: white;
-    border-bottom-color: rgb(255, 252, 252);
+    border-bottom-color: rgb(255, 255, 255);
     padding-right: 20px;
     background: #ececec;
     border-radius: 0px;
@@ -257,7 +254,7 @@
 .to_container {
     display: flex;
     width: calc(100% - 2px);
-    gap: 15px;   
+    gap: 10px;   
 }
 
 .to_container .to_icon {
@@ -291,32 +288,32 @@
 }
 
 .sendmail_icon {
-    display: flex;
-    align-items: center;
-    position: fixed;
-    height: 34px;
-    width: calc(100% - 8px);
-    margin: 0 auto;
+    position: relative;
     bottom: 1px;
-    border: 1px solid black;
-    border-top: 1px solid rgb(68, 68, 68);
-    border-right-color: black;
-    background: #c5c4c4;
 }
 
 .sendmail_icon .sendmail_img_container {
     position: relative;
     border: none;
-    height: 23px;
     width: 60px;
-    bottom: 1px;
-    margin-left: 4px;
+    height: 24px;
+    padding-left: 12px;
+    padding-top: 6px;
+    padding-bottom: 10px;
+    background: red;
     font-size: 13px;
     box-shadow: inset 1.5px 1.5px #e7e7e7dd, 1.5px 1.5px #000;
     background: #c5c4c4;
     border-radius: 0px;
     color: black;
     font-weight: bold;
+}
+
+@supports (-webkit-touch-callout: none) {
+    .sendmail_icon .sendmail_img_container {
+     padding-top: 3px;
+        
+    }
 }
 
 .sendmail_icon input::placeholder {

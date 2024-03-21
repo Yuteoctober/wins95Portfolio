@@ -120,7 +120,7 @@ const form = useRef();
             {
                 display: MailExpand.show ? 'block' : '',
                 maxWidth: 'none',
-                width: '100%',
+                width: MailExpand.expand ? '100%' : 'calc(100% - 55px)',
                 height: 'calc(100% - 37px)',
                 left: `${MailExpand.x <= 0 ? Math.abs(MailExpand.x)*2 + MailExpand.x : -MailExpand.x}px`,
                 top: `${MailExpand.y <= 0 ? Math.abs(MailExpand.y)*2 + MailExpand.y : -MailExpand.y}px`,
@@ -198,7 +198,7 @@ const form = useRef();
           <div className="folder_content-mail"
             onClick={() => setMailExpand(prev => ({...prev, item_1Focus: false}))}
             style={MailExpand.expand ? 
-              { height: 'calc(100svh - 122px)'} 
+              { height: 'calc(100svh - 100px)'} 
               : 
               {}
             }>
@@ -209,9 +209,9 @@ const form = useRef();
 
               <div className="form_container">
                 <div className="to_container">
-                  <div className="to_icon">
-                    <p>To...</p>
-                  </div>
+                <div className="sendmail_icon">
+                  <input className="sendmail_img_container" type="submit" value="Send"></input>
+                </div>
                   <input className="myemail_container" placeholder='yudthsoponvit@gmail.com' disabled />
                 </div>
                 <div className="to_container">
@@ -231,22 +231,24 @@ const form = useRef();
                 style=
                 {{
                   position: 'absolute',
-                  width: '100%',
-                  height: 'calc(100% - 90px )',
+                  width: 'calc(100% - 9px)',
+                  height: MailExpand.expand ? 'calc(100% - 102px)' : 'calc(100% - 106px)',
+                  left: '50%',
+                  transform: 'translate(-50%)',
                   padding: '1rem 1rem',
                   fontSize: '14px',
-                  border: '1px solid black',
-                  borderBottomColor:'rgb(178, 177, 177)',
-                  borderTopColor: 'rgb(178, 177, 177)',
+                  border: '2px solid black',
+                  borderBottomColor:'white',
+                  borderTopColor: 'black',
+                  borderLeftColor: 'black',
+                  borderRightColor: 'white',
                   resize: 'none',
                   borderRadius: '0px',
                   letterSpacing: '.5px',
                   background: '#ececec'
+                  
                 }}
               />
-              <div className="sendmail_icon">
-                <input className="sendmail_img_container" type="submit" value="Send" style={{textAlign: 'center'}} />
-              </div>
             </form>
           </div>
         </div>
