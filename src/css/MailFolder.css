@@ -1,0 +1,332 @@
+/* ------------ Folders ---------------- */
+
+.folder_folder-mail {
+    display: none;
+    position: fixed;
+    min-width: 340px;
+    min-height: 300px;
+    height: 55%;
+    background: #c5c4c4;
+    border: 2px solid white;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    outline: 1px solid white;
+    overflow: hidden;
+    resize: both;
+}
+
+@media screen and (width <= 500px) {
+    .folder_folder-mail  {
+        width: 80%;
+    }
+}
+
+@media screen and (width >= 500px) {
+    .folder_folder-mail  {
+        width: 450px;
+    }
+}
+@media screen and (width >= 1000px) {
+    .folder_folder-mail  {
+        width: 550px;
+    }
+}
+
+
+.folder_folder-mail .folder_dragbar-mail {
+   display: flex;
+   position: relative;
+   height: 24px;
+   width: 100%;
+   margin-bottom: 1px;
+   align-items: center;
+   justify-content: space-between;
+   -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.folder_barname-mail img {
+    position: relative;
+    width: 16px;
+    top: 3px;
+    margin-left: 5px;
+}
+
+.folder_barname-mail span {
+    position: relative;
+    font-size: 15px;
+    color: white;
+    margin-left: 5px;
+}
+
+.folder_folder-mail .folder_barbtn-mail {
+    display: flex;
+    position: relative;
+    margin-right: 4px;
+    gap: 2px;
+}
+
+.folder_barbtn-mail div {
+    width: 17px;
+    height: 17px;
+    background: #c9c9c9;
+    font-weight: bold;
+    border: 1px solid black;
+    border-top-color: rgb(198, 198, 198);border-left-color: rgb(198, 198, 198);
+    box-shadow: inset 1px 1px #ffffff, 1px 1px #000000dd;
+    cursor: default;
+}
+
+.folder_barbtn-mail div:not(.expand-mail):active {
+    border-top-color: black;border-left-color: black;
+    border-bottom-color: white;border-right-color: white;
+}
+
+.folder_barbtn-mail .x-mail {
+    position: relative;
+    text-align: center;
+    font-size: 18px;
+    bottom: 6px;
+}
+
+/* support only safari */
+@supports (-webkit-touch-callout: none) {
+    .folder_barbtn-mail .x-mail {
+        bottom: 8px; 
+        left: 1px;
+    }
+}
+
+.folder_barbtn-mail .dash-mail {
+    position: relative;
+    width: 8px;
+    top: 11px;
+    margin: 0 auto;
+    border-bottom: 2px solid black;
+}
+.folder_barbtn-mail .expand-mail {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid black;
+    border-left-color: black;
+    box-shadow: none;
+    margin: 0 auto;
+    top: 3px;
+    z-index: 2;
+}
+
+.folder_barbtn-mail .expand-mail.full {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid black;
+    border-left-color: black;
+    box-shadow: none;
+    margin: 0 auto;
+    top: 5px;
+    right: 2px;
+    z-index: 1;
+}
+
+.folder_barbtn-mail .expand_2-mail {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid black;
+    border-left-color: black;
+    box-shadow: none;
+    margin: 0 auto;
+    bottom: 6px;
+    left: 1.5px;
+
+}
+.folder_folder-mail .file_edit_container-mail {
+    display: flex;
+    gap: 5px;
+    font-size: 15px;
+    padding-left: 10px;
+    cursor: default;
+}
+
+.file_edit_container-mail span {
+    position: relative;
+}
+
+.folder_folder-mail .folder_conten-mail {
+    position: relative;
+    width: calc(100% - 6px);
+    height: 235px;
+    border: 1px solid black;
+    border-right-color: white;
+    border-bottom-color: white;
+    margin: 0 auto;
+    margin-top: 2px;
+    background: rgb(255, 255, 255);
+    overflow: hidden;
+    padding-left: .4rem;
+    padding-top: .2rem;
+}
+
+
+
+.folder_folder-mail .btm_bar_container-mail {
+    display: flex;
+    gap: 5px;
+    width: calc(100% - 6px);
+    justify-content: space-between;
+    margin: 0 auto;
+    margin-top: 4px;
+    cursor: default;
+} 
+
+.btm_bar_container-mail .object_bar-mail {
+    width: 80%;
+    border: 1px solid black;
+    border-right-color: white;
+    border-bottom-color: white;
+}
+.btm_bar_container-mail .size_bar-mail {
+    width: 55%;
+    border: 1px solid black;
+    border-right-color: white;
+    border-bottom-color: white;
+}
+
+.btm_bar_container-mail p {
+    position: relative;
+    font-size: 14px;
+    padding-top: 2px;
+    margin-left: 2px;
+}
+
+.folder_content-mail {
+    position: relative;
+    width: calc(100% - 6px);
+    height: calc(100% - 52px);
+    border: 1px solid black;
+    border-right-color: white;
+    border-bottom-color: white;
+    margin: 0 auto;
+    margin-top: 2px;
+    background: rgb(255, 255, 255);
+    overflow: hidden;
+}
+
+.form_container {
+    display: grid;
+    position: relative;
+    margin-top: -1px;
+    gap: 8px;
+    width: calc(100%);
+    top: 1px;
+    border: 1px solid black;
+    background: #c5c4c4;
+    padding: 5px 4px;
+    padding-bottom: 8px;
+    overflow: hidden;
+    cursor: default;
+}
+
+.form_container input {
+    display: grid;
+    position: relative;
+    width: 100%;
+    height: 24px;
+    top: 1px;
+    border: 2px solid black;
+    border-right-color: white;
+    border-bottom-color: rgb(255, 252, 252);
+    padding-right: 20px;
+    background: #ececec;
+    border-radius: 0px;
+    padding-left: 6px;
+}
+
+.form_container input::placeholder {
+    font-weight: 500;
+    font-size: 14px;
+    color: black;
+  }
+
+
+
+.to_container {
+    display: flex;
+    width: calc(100% - 2px);
+    gap: 15px;   
+}
+
+.to_container .to_icon {
+    display: grid;
+    position: relative;
+    place-items: center;
+    width: fit-content;
+    height: 24px;
+    padding-left: 5px;
+    box-shadow: inset 1.5px 1.5px #ffffffdd, 1.5px 1.5px #000;
+    background: #c5c4c4;
+}
+
+.to_container .to_icon p {
+    position: relative;
+    width: 55px;
+    font-size: 13px;
+    font-weight: bold;
+    top: 2px;
+    left: 8px;
+    letter-spacing: 1px;
+}
+
+.myemail_container p {
+    position: relative;
+    font-size: 14px;
+    width: 55px;
+    top: 3px;
+    left: 6px;
+    letter-spacing: .7px;
+}
+
+.sendmail_icon {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    height: 34px;
+    width: calc(100% - 8px);
+    margin: 0 auto;
+    bottom: 1px;
+    border: 1px solid black;
+    border-top: 1.5px solid rgb(154, 154, 154);
+    border-right-color: transparent;
+    background: #c5c4c4;
+    color: black;
+}
+
+.sendmail_icon .sendmail_img_container {
+    position: relative;
+    border: none;
+    height: 23px;
+    width: 60px;
+    bottom: 1px;
+    margin-left: 4px;
+    font-size: 13px;
+    box-shadow: inset 1.5px 1.5px #e7e7e7dd, 1.5px 1.5px #000;
+    background: #c5c4c4;
+    border-radius: 0px;
+    color: black;
+    font-weight: bold;
+}
+
+.sendmail_icon input::placeholder {
+    color: black;
+}
+
+.sendmail_icon .sendmail_img_container:active {
+    box-shadow: inset 1.5px 1.5px #000, 1px 1px #ffffffdd;
+}
+
+
+
+

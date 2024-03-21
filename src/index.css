@@ -1,0 +1,495 @@
+@font-face {
+    font-family: 'win95';
+    src: url('../src/assets/win95.ttf') format('truetype');
+}
+
+/* Reset.css */
+*,
+*::before,
+*::after {
+    font-family: 'win95', sans-serif;
+    box-sizing: border-box;
+}
+
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+figure,
+blockquote,
+dl,
+dd {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+body {
+    width: 100%;
+    min-height: 100svh;
+    scroll-behavior: smooth;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+    touch-action: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+a,
+button,
+input,
+textarea,
+select {
+    &:focus,
+    &:active {
+        outline: 0;
+    }
+}
+
+body {
+    font-family: 'win95', sans-serif;
+  background: #098684;
+  height: 100svh;
+  overflow: hidden;
+}
+
+/* --------------- scroll bar ----------------- */
+/* WebKit (Chrome, Safari) */
+*::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #bdbdbd;
+    box-shadow: inset 1px 1px #fff, 1px 1px #000;
+}
+
+*::-webkit-scrollbar-track {
+    background-color: #e0e0e0;
+    box-shadow: inset 0px 0px #fff, 1px 1px #000;
+}
+
+/* Gecko (Firefox) */
+*{
+    
+    scrollbar-width: 14px;
+}
+
+*::-moz-scrollbar-thumb {
+    background-color: #bdbdbd;
+    box-shadow: inset 1px 1px #fff, 1px 1px #000;
+}
+
+*::-moz-scrollbar-track {
+    background-color: #e0e0e0;
+    box-shadow: inset 0px 0px #fff, 1px 1px #000;
+}
+
+
+/* ------------------ Footer ----------------- */
+
+.footer {
+    display: flex;
+    position: fixed;
+    height: 37px;
+    width: 100%;
+    bottom: 0;
+    background: #b3b2b2;
+    box-shadow: inset 0px 1.2px #ffffffdd, 0px 1px #000;
+    align-items: center;
+    z-index: 999999999;
+}
+
+.footer .btn_start{
+    display: flex;
+    position: relative;
+    height: 73%;
+    width: 66px;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    margin-left: 4px;
+    margin-right: 2px;
+    border-radius: 0px;
+    background: #b3b2b2;
+    box-shadow: inset 1px 1px #ffffffdd, 2.1px 2.1px #000;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.footer .btn_start.active {
+    box-shadow: inset 1px 1px #000, 1px 1px #ffffffdd;
+    outline: 1px dotted black;
+    outline-offset: -6px;
+    background: rgba(255, 255, 255, 0.493);
+}
+
+.footer .btn_start:active {
+    box-shadow: inset 1px 1px #000, 1px 1px #ffffffdd;
+}
+
+
+.footer .btn_start img {
+    width: 18px;
+}
+
+.footer .btn_start h4 {
+    position: relative;
+    font-size: 14px;
+    top: 1px;
+}
+
+.footer .time {
+    display: flex;
+    position: absolute;
+    height: 73%;
+    width: 74px;
+    justify-content: center;
+    align-items: center;
+    right: 4px;
+    gap: 2px;
+    box-shadow: inset 1px 1px #000, 1px 1px #ffffffdd;
+}
+
+.footer .time img {
+    width: 15px;
+}
+
+.footer .time p {
+    position: relative;
+    font-size: 10px;
+    letter-spacing: .7px;
+    top: 1px;
+}
+
+.footer .start_popup {
+    display: grid;
+    grid-template-columns: .3fr 1.9fr;
+    position: absolute;
+    width: 170px;
+    bottom: 2.4rem;
+    left: 1px;
+    background: #c5c2c2;
+    border: 1px solid white;
+    border-bottom-color: black;
+    border-right-color: black;
+    outline: 1px solid rgb(251, 251, 251);
+    grid-template-areas:
+        'sidebar winamp'
+        'sidebar linked'
+        'sidebar ghithub'
+        'sidebar facebook'
+        'sidebar ig'
+        'sidebar project'
+        'sidebar resume';
+}
+
+.start_popup div {
+    display: flex;
+    width: 100%;
+    height: 40px;
+    align-items: center;
+    gap: .7rem;
+    padding-left: .6rem;
+    cursor: default;
+    z-index: 999;
+}
+
+.start_popup div:not(.sidebar_popup):hover {
+    background: #040d91;
+    color: white;
+}
+
+.start_popup img {
+    width: 30px;
+    height: 30px;
+}
+.start_popup span {
+    font-size: 12px;
+}
+
+.start_popup .sidebar_popup {
+    grid-area: sidebar;
+    background: #7b7d7b;
+    height: 100%;
+    width: 25px;
+    cursor: default;
+}
+
+.sidebar_popup img {
+    position: relative;
+    height: 140px;
+    align-self: end;
+    right: 9px;
+}
+
+.start_popup .ig {
+    border-bottom: 1px solid rgb(115, 114, 114);
+    box-shadow: 0px 1.5px 1px rgb(223, 221, 221);
+
+}
+.start_popup .project {
+    border-top: 1px solid rgb(179, 176, 176);
+    box-shadow: 0px -1px -1px rgb(224, 221, 221);
+}
+
+.tap_container {
+    display: flex;
+    max-width: calc(100svw - 157px);
+    padding-right: 2px;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    margin-left: 4px;
+    gap: 4px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+}
+
+.tap_container::-webkit-scrollbar {
+    display: none;
+}
+
+.start_tap {
+    display: flex;
+    position: relative;
+    align-items: center;
+    gap: 4px;
+    height: 27px;
+    width: fit-content;
+    padding: 0px 8px;
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@media screen and (width >= 500px){
+    .start_tap {
+        padding-right: 8px;
+    }  
+}
+
+@media screen and (width >= 800px){
+    .start_tap {
+        padding-right: 40px;
+    }  
+}
+@media screen and (width >= 1000px){
+    .start_tap {
+        padding-right: 80px;
+    }  
+}
+
+.start_tap img {
+    position: relative;
+    width: 15px;
+}
+
+.start_tap p {
+    position: relative;
+    top: 1px;
+    font-size: 13px;
+}
+
+.start_popup .winamp img {
+    transform: scale(1.65);
+}
+
+/* --------------- DragDrop ----------------- */
+
+.bound {
+    width: 100%;
+    height: 96svh;
+    padding-top: .5rem;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    overflow: hidden;
+}
+
+.drag_drop {
+    display: flex;
+    position: relative;
+    height: 90%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 1px;
+    column-gap: 1.5rem;
+    padding-top: 1rem;
+    padding-left: .5rem;
+}
+
+
+
+.icon {
+    display: grid;
+    position: relative;
+    place-items: center;
+    height: 63px;
+    width: 50px;
+    gap: 4px;
+    margin-bottom: 1.5rem;
+    cursor: default;
+    z-index: 2;
+}
+
+.icon img {
+    width: 35px;
+    pointer-events: none;
+}
+
+.icon .img_focus {
+    filter: brightness(8%) sepia(10) saturate(50) hue-rotate(200deg);
+}
+
+.icon p {
+    font-size: 12px;
+    color: white;
+    padding: 0px 2px;
+}
+
+.icon .p_focus {
+    background: #091558;
+    border: 1px dotted white;
+
+}
+
+
+/* ------------- WIMAMP ---------------- */
+
+.winampRef {
+    position: absolute;
+    margin-left: 12rem;
+    z-index: -1;
+}
+
+#winamp-container {
+    display: grid;
+    position: relative;
+    place-items: center;
+    width: 51px;
+    height: 60px;
+    top: 7px;
+}
+
+#winamp-container img {
+    position: relative;
+    width: 33px;
+    bottom: 7px;
+    pointer-events: none;
+}
+
+.wimamp-focus_img {
+    filter: brightness(8%) sepia(10) saturate(50) hue-rotate(200deg);
+}
+
+.winamp_p_focus {
+    background: #091558;
+    border: 1px dotted white;
+}
+
+#winamp-container p {
+    position: relative;
+    width: fit-content;
+    font-size: 11px;
+    color: white;
+    bottom: 4px;
+}
+
+#webamp {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.winamp_container_draggable {
+    position: absolute;
+    width: 275px;
+    height: 360px;
+    top: 2rem;
+    left: 5rem;
+}
+
+
+/* -------------- clippy ---------------- */
+
+.clippy_container {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    right: 12px;
+    bottom: 2rem;
+    z-index: 1000;
+}
+
+/* --- disable hover touch ---- */
+
+.clippy_container { 
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+}
+  
+
+.clippy_container img{
+    width: 100px;
+    z-index: 1004;
+}
+
+.clippy_container .bubble_chat {
+    position: absolute;
+    width: 190px;
+    top: -4rem;
+    left: -5.8rem;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 10px;
+    padding-right: 2px;
+    border-radius: 5px;
+    border: 1px solid black;
+    background: rgb(216, 218, 165);
+    z-index: 1002;
+    
+}
+
+.clippy_container .bubble_chat p {
+    font-size: 12px; 
+    word-break: break-word;
+ }
+
+.clippy_container .bubble_chat::before {
+    content: '';
+    position: absolute;
+    width: 0px;
+    bottom: -1rem;
+    left: 7.4rem;
+    border-left: 10px;
+    border-top: 14px;
+    border-style: solid;
+    border-color: rgb(216, 218, 165)  transparent transparent transparent;
+    transform: scaleY(1.5);
+    z-index: 1003;
+}
+
+
+

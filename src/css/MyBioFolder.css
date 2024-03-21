@@ -1,0 +1,199 @@
+/* ------------ Folders ---------------- */
+
+.bio_folder {
+    display: none;
+    position: fixed;
+    min-width: 300px;
+    height: 70%;
+    background: #c5c4c4;
+    border: 2px solid white;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    outline: 1px solid white;
+    overflow: hidden;
+    resize: both;
+}
+
+
+.bio_folder .folder_dragbar {
+   display: flex;
+   position: relative;
+   height: 24px;
+   width: 100%;
+   margin-bottom: 1px;
+   align-items: center;
+   justify-content: space-between;
+   -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.bio_barname img {
+    position: relative;
+    width: 16px;
+    top: 3px;
+    margin-left: 5px;
+}
+
+.bio_barname span {
+    position: relative;
+    font-size: 15px;
+    color: white;
+    margin-left: 5px;
+}
+
+.bio_folder .bio_barbtn {
+    display: flex;
+    position: relative;
+    margin-right: 4px;
+    gap: 2px;
+}
+
+.bio_barbtn div {
+    width: 17px;
+    height: 17px;
+    background: #c9c9c9;
+    font-weight: bold;
+    border: 1px solid black;
+    border-top-color: rgb(198, 198, 198);border-left-color: rgb(198, 198, 198);
+    box-shadow: inset 1px 1px #ffffff, 1px 1px #000000dd;
+    cursor: default;
+}
+
+.bio_barbtn div:not(.expand):active {
+    border-top-color: black;border-left-color: black;
+    border-bottom-color: white;border-right-color: white;
+}
+
+.bio_barbtn .x {
+    position: relative;
+    text-align: center;
+    font-size: 18px;
+    bottom: 6px;
+}
+
+/* support only safari */
+@supports (-webkit-touch-callout: none) {
+    .bio_barbtn .x {
+        bottom: 8px; 
+        left: 1px;
+    }
+}
+
+.bio_barbtn .dash {
+    position: relative;
+    width: 8px;
+    top: 11px;
+    margin: 0 auto;
+    border-bottom: 2px solid black;
+}
+.bio_barbtn .expand {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid black;
+    border-left-color: black;
+    box-shadow: none;
+    margin: 0 auto;
+    top: 3px;
+    z-index: 1;
+}
+.bio_barbtn .expand.full {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid black;
+    border-left-color: black;
+    box-shadow: none;
+    margin: 0 auto;
+    top: 5px;
+    right: 2px;
+    z-index: 1;
+}
+
+.bio_barbtn .expand_2 {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid black;
+    border-left-color: black;
+    box-shadow: none;
+    margin: 0 auto;
+    bottom: 6px;
+    left: 1.5px;
+}
+
+.file_edit_container-bio {
+    display: flex;
+    gap: 5px;
+    font-size: 15px;
+    padding-left: 10px;
+    cursor: default;
+}
+
+.file_edit_container-bio span {
+    position: relative;
+}
+
+.bio_folder .folder_content {
+    position: relative;
+    margin: 0 auto;
+    width: calc(100% - 8px);
+    height: calc(100% - 8px);
+    overflow-y: auto;
+}
+
+.folder_content .folder_content-bio {
+    position: relative;
+    width: calc(100% - 6px);
+    height: calc(100% - 52px);
+    padding: 2.5rem 8%;
+    border: 2px solid rgb(43, 43, 43);
+    border-right-color: rgb(234, 233, 233);
+    border-bottom-color: rgb(234, 233, 233);
+    margin: 0 auto;
+    margin-top: 2px;
+    background: rgb(236, 236, 236);
+    overflow: scroll;
+    word-break: break-word;
+}
+
+.folder_content-bio h1 {
+    text-decoration: underline;
+}
+
+.folder_content-bio p {
+    font-size: 14px;
+}
+
+.folder_content-bio span {
+    font-weight: bold;
+}
+
+.folder_content-bio a {
+    text-decoration: underline;
+    color: blue;
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+@media screen and (width <= 500px) {
+    .bio_folder {
+        width: 85%;
+    }
+    .folder_content .folder_content-bio {
+        padding: 2.5rem 2rem;
+    }
+}
+
+@media screen and (width >= 500px) {
+    .bio_folder {
+        width: 450px;
+    }
+}
+@media screen and (width >= 1000px) {
+    .bio_folder {
+        width: 580px;
+    }
+}
