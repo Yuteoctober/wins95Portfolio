@@ -19,6 +19,7 @@ import Winamp from './assets/winampIcon.png'
 import resumefile from './assets/resume.png'
 
 function App() {
+  const ClearTOdonttouch = useRef(null);
   const ClearTOSongfunction = useRef(null);
   const ClearTOclippySendemailfunction = useRef(null);
   const ClearTOclippyThanksYouFunction = useRef(null);
@@ -687,6 +688,7 @@ const imageMapping = { // map json with import images
     clippySong, setClippySong,
     clippySongFunction,
     ClearTOSongfunction,
+    ClearTOdonttouch,
   }
 
   return (

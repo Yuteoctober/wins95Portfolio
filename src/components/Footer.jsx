@@ -88,6 +88,7 @@ export default function Footer() {
         ClearTOclippyThanksYouFunction,
         ClearTOSongfunction,
         clippySong,
+        ClearTOdonttouch,
      } = useContext(UseContext);
     
      const handleWheelScroll = (e) => { // wheel from x to Y on tap
@@ -274,6 +275,7 @@ export default function Footer() {
     
 
     useEffect(() => { // display clippy when windows start
+        clearTimeout(firstTimoutShowclippy.current)
         clearTimeout(ClearTOclippySendemailfunction.current)
         clearTimeout(ClearTOclippyThanksYouFunction.curremt)
         clearTimeout(ClearTOSongfunction.current)
@@ -289,6 +291,7 @@ export default function Footer() {
     },[])
 
     useEffect(() => {
+        clearTimeout(SecondRandomTimeoutShowClippy.current)
         const randomTime = Math.floor(Math.random() * (50000 - 30000 + 1)) + 30000;
 
         clearTimeout(ClearTOclippySendemailfunction.current)
@@ -313,13 +316,14 @@ export default function Footer() {
 
 
     function dontTouch() {
-        const clearTO = setClippyTouched(true)
+        clearTimeout(ClearTOdonttouch.current)
+        ClearTOdonttouch.current = setClippyTouched(true)
         setTimeout(() => {
             setClippyTouched(false)   
         }, 3500);
 
         return () => {
-            clearTimeout(clearTO)
+            clearTimeout(ClearTOdonttouch.current)
         }
     }
 
