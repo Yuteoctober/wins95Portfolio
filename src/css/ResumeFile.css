@@ -147,7 +147,7 @@
 
 .folder_folder-resumefile .folder_content-resumefile {
     position: relative;
-    width: calc(100% - 14px);
+    width: calc(100% - 8px);
     height: calc(100% - 70px);
     border: 2px solid black;
     border-right-color: white;
@@ -155,6 +155,7 @@
     margin: 0 auto;
     background: rgb(255, 255, 255);
     overflow: hidden;
+    touch-action: none;
 }
 
 .btn_option_btm_container {
@@ -163,7 +164,7 @@
     align-items: center;
     height: 35px;
     gap: 5px;
-    padding-left: 7px;
+    padding-left: 4px;
     bottom: 1px;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -257,7 +258,8 @@
 .iframe_resume {
     width: 100%;
     height: 100%;
- 
+    touch-action: none;
+    z-index: -5;
 }
 
 

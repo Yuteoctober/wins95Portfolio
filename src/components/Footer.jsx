@@ -49,7 +49,9 @@ export default function Footer() {
     const clippySuggest = 
     [
         'Click => Send when you finished writing the email.',
-        'Thank you for your interest.'
+        'Thank you for your interest.',
+        "Let's play my favorite song",
+
     ]
     
 
@@ -77,14 +79,15 @@ export default function Footer() {
         clippyIndex, setClippyIndex,
         randomClippyPopup, setRandomClippyPopup,
         clippyTouched, setClippyTouched,
-        clippyThanks, setClippyThanks,
-        clippySendemail, setClippySendemail,
+        clippyThanks,
+        clippySendemail, 
         firstTimoutShowclippy,
         RandomTimeoutShowClippy,
         SecondRandomTimeoutShowClippy,
         ClearTOclippySendemailfunction,
         ClearTOclippyThanksYouFunction,
-
+        ClearTOSongfunction,
+        clippySong,
      } = useContext(UseContext);
     
      const handleWheelScroll = (e) => { // wheel from x to Y on tap
@@ -273,6 +276,8 @@ export default function Footer() {
     useEffect(() => { // display clippy when windows start
         clearTimeout(ClearTOclippySendemailfunction.current)
         clearTimeout(ClearTOclippyThanksYouFunction.curremt)
+        clearTimeout(ClearTOSongfunction.current)
+
         setShowClippy(true)
         firstTimoutShowclippy.current = setTimeout(() => {
             setShowClippy(false) 
@@ -288,9 +293,10 @@ export default function Footer() {
 
         clearTimeout(ClearTOclippySendemailfunction.current)
         clearTimeout(ClearTOclippyThanksYouFunction.curremt)
+        clearTimeout(ClearTOSongfunction.current)
         
         RandomTimeoutShowClippy.current = setTimeout(() => {
-        const randomIndex = Math.floor(Math.random() * clippyPhrase.inspiration.length);
+        const randomIndex = Math.floor(Math.random() * clippyPhrase.inspiration.length)
                 setClippyIndex(randomIndex);
                 setShowClippy(true);
         SecondRandomTimeoutShowClippy.current = setTimeout(() => {
@@ -318,16 +324,24 @@ export default function Footer() {
     }
 
     function handleClipperTalk() {
-
+        if(clippyThanks) return clippySuggest[1];
         if(clippyTouched) return clippyPhrase.interruption[0].phrase;
         if(clippySendemail) return clippySuggest[0]
-        if(clippyThanks) return clippySuggest[1];
+        if(clippySong) return clippySuggest[2]
         
         return clippyPhrase.inspiration[clippyIndex].phrase
-        // clippyTouched ? clippyPhrase.interruption[0].phrase : 
-        // (clippyThanks ? 'Thank you for your interest.' : clippyPhrase.inspiration[clippyIndex].phrase)
     }
     
+    useEffect(() => { /// need useeffect to update state before it returns on handleClipperTalk()
+        if (clippySendemail) {
+            setClippyIndex(1);
+            return;
+        }
+        if (clippySong) {
+            setClippyIndex(7); 
+            return;
+        }
+    }, [clippySendemail, clippySong]);
 
 
     return (

@@ -19,12 +19,13 @@ import Winamp from './assets/winampIcon.png'
 import resumefile from './assets/resume.png'
 
 function App() {
-
+  const ClearTOSongfunction = useRef(null);
   const ClearTOclippySendemailfunction = useRef(null);
   const ClearTOclippyThanksYouFunction = useRef(null);
   const firstTimoutShowclippy = useRef(null);
   const RandomTimeoutShowClippy = useRef(null);
   const SecondRandomTimeoutShowClippy = useRef(null);
+  const [clippySong, setClippySong] = useState(false)
   const [clippySendemail, setClippySendemail] = useState(false)
   const [clippyThanks, setClippyThanks] = useState(false)
   const [clippyTouched, setClippyTouched] = useState(false)
@@ -221,7 +222,7 @@ function handleShow(name) {
             webampElement.style.touchAction = 'auto'
             setWinampExpand(prev => ({...prev, hide: false}));
         }
-    } 
+    }     clippySongFunction() // call clippy function to show
           setWinampExpand(prev => ({...prev, show: true, focusItem: true, focus: false}));
           setResumeExpand(prev => ({...prev, focusItem: false}));
           setMybioExpand(prev => ({...prev, focusItem: false}));
@@ -400,7 +401,8 @@ if (now - lastTapTime < 300) {
           webampElement.style.touchAction = 'auto'
           setWinampExpand(prev => ({...prev, hide: false}));
       }
-  } 
+  }     
+        clippySongFunction() // call clippy function to show
         setWinampExpand(prev => ({...prev, show: true, focusItem: true, focus: false}));
         setResumeExpand(prev => ({...prev, focusItem: false}));
         setMybioExpand(prev => ({...prev, focusItem: false}));
@@ -599,6 +601,7 @@ function handleDoubleTapEnterMobile(name) {
     ClearTOclippyThanksYouFunction.current = setTimeout(() => {
       setClippyThanks(false);
       setShowClippy(false);
+      setRandomClippyPopup(prev => !prev)
     }, 8000);
 
     return () => {
@@ -612,13 +615,31 @@ function handleDoubleTapEnterMobile(name) {
     if (SecondRandomTimeoutShowClippy) clearTimeout(SecondRandomTimeoutShowClippy.current);
     setClippySendemail(true);
     setShowClippy(true);
-    ClearTOclippySendemailfunction.current = setTimeout(() => {
+    ClearTOSongfunction.current = setTimeout(() => {
       setClippySendemail(false);
       setShowClippy(false);
+      setRandomClippyPopup(prev => !prev)
     }, 8000);
 
     return () => {
-      clearTimeout(ClearTOclippySendemailfunction.current)
+      clearTimeout(ClearTOSongfunction.current)
+    }
+  }
+
+  function clippySongFunction() {
+    if (RandomTimeoutShowClippy) clearTimeout(RandomTimeoutShowClippy.current);
+    if (firstTimoutShowclippy) clearTimeout(firstTimoutShowclippy.current);
+    if (SecondRandomTimeoutShowClippy) clearTimeout(SecondRandomTimeoutShowClippy.current);
+    setClippySong(true);
+    setShowClippy(true);
+    ClearTOclippyThanksYouFunction.current = setTimeout(() => {
+      setClippySong(false);
+      setShowClippy(false);
+      setRandomClippyPopup(prev => !prev)
+    }, 8000);
+
+    return () => {
+      clearTimeout(ClearTOclippyThanksYouFunction.current)
     }
   }
 
@@ -669,6 +690,9 @@ const imageMapping = { // map json with import images
     ClearTOclippySendemailfunction,
     ClearTOclippyThanksYouFunction,
     ResumeFileExpand, setResumeFileExpand,
+    clippySong, setClippySong,
+    clippySongFunction,
+    ClearTOSongfunction,
   }
 
   return (
