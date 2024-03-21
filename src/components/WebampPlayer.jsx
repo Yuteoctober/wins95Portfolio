@@ -17,6 +17,7 @@ const WebampPlayer = () => {
         setNoteExpand,
         setTypeExpand,
         setResumeExpand,
+        setResumeFileExpand,
         tap, setTap,
         setIconState, 
       } = useContext(UseContext);
@@ -120,6 +121,7 @@ const WebampPlayer = () => {
                 setNftExpand(prev => ({...prev, focusItem: false}));
                 setTypeExpand(prev => ({...prev, focusItem: false}));
                 setResumeExpand(prev => ({...prev, focusItem: false}));
+                setResumeFileExpand(prev => ({...prev, focusItem: false}));
             }
         };
     

@@ -178,6 +178,11 @@
     font-size: 18px;
 }
 
+.folder_content-bio a:hover {
+    color: rgb(73, 73, 237);
+    text-decoration-color: rgb(73, 73, 237);
+}
+
 @media screen and (width <= 500px) {
     .bio_folder {
         width: 85%;

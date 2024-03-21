@@ -20,6 +20,7 @@ function MailFolder() {
     setNftExpand,
     setNoteExpand,
     setTypeExpand,
+    setResumeFileExpand,
     setWinampExpand,
     tap, setTap,
     lastTapTime, setLastTapTime,
@@ -96,6 +97,7 @@ const form = useRef();
         setNftExpand(prev => ({...prev, focusItem: false}))
         setTypeExpand(prev => ({...prev, focusItem: false}))
         setWinampExpand(prev => ({...prev, focus: false, focusItem: false}))
+        setResumeFileExpand(prev => ({...prev, focusItem: false}))
     }
 
 

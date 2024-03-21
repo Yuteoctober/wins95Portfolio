@@ -250,7 +250,6 @@
   }
 
 
-
 .to_container {
     display: flex;
     width: calc(100% - 2px);
@@ -270,6 +269,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    cursor: pointer;
 }
 
 .to_container .to_icon:active {
@@ -317,6 +317,7 @@
     border-radius: 0px;
     color: black;
     font-weight: bold;
+    cursor: pointer;
 }
 
 @supports (-webkit-touch-callout: none) {
@@ -335,5 +336,9 @@
 }
 
 
-
+.iframe_resume {
+    width: 100%;
+    height: 100%;
+    transform: scale(1.04);
+}
 

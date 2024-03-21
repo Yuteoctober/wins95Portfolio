@@ -2,7 +2,7 @@ import UseContext from '../Context'
 import { useContext, useState, useEffect, useRef } from "react";
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
-import resumefile from '../assets/resume.png'
+import resumefile from '../assets/resumeOri.png'
 import Resume from '../assets/folder.png'
 import '../css/ResumeFolder.css'
 
@@ -18,11 +18,14 @@ function ResumeFolder() {
     setNoteExpand,
     setTypeExpand,
     setWinampExpand,
+    setResumeFileExpand,
     tap, setTap,
     lastTapTime, setLastTapTime,
     StyleHide,
     isTouchDevice,
     iconState, setIconState,
+    handleShowMobile,
+    handleShow,
 
    } = useContext(UseContext);
 
@@ -68,6 +71,7 @@ function ResumeFolder() {
         setNftExpand(prev => ({...prev, focusItem: false}))
         setTypeExpand(prev => ({...prev, focusItem: false}))
         setWinampExpand(prev => ({...prev, focusItem: false, focus: false}))
+        setResumeFileExpand(prev => ({...prev, focusItem: false}))
     }
 
 
@@ -180,6 +184,8 @@ function ResumeFolder() {
           >
             <div className="item_container">
               <div className='item_1'
+                onDoubleClick={() => handleShow('ResumeFile')}
+                onTouchStart={() => handleShowMobile('ResumeFile')}
                 onClick={(e) => {
                   e.stopPropagation();
                   setResumeExpand(prev => ({...prev, item_1Focus: true}));

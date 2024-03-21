@@ -18,6 +18,7 @@ function NftFolder() {
     setProjectExpand,
     setMailExpand,
     setWinampExpand,
+    setResumeFileExpand,
     tap, setTap,
     lastTapTime, setLastTapTime,
     StyleHide,
@@ -69,6 +70,7 @@ function NftFolder() {
         setNoteExpand(prev => ({...prev, focusItem: false}))
         setTypeExpand(prev => ({...prev, focusItem: false}))
         setWinampExpand(prev => ({...prev, focusItem: false, focus: false}))
+        setResumeFileExpand(prev => ({...prev, focusItem: false}))
     }
 
 

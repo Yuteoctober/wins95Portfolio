@@ -69,6 +69,7 @@ export default function Footer() {
         NoteExpand, setNoteExpand,
         TypeExpand, setTypeExpand,
         MailExpand, setMailExpand,
+        ResumeFileExpand, setResumeFileExpand,
         handleShow,
         StyleHide,
         WinampExpand, setWinampExpand,
@@ -135,6 +136,7 @@ export default function Footer() {
                 setNoteExpand(prev => ({...prev, focusItem: false}));
                 setTypeExpand(prev => ({...prev, focusItem: false}));
                 setWinampExpand(prev => ({...prev, focusItem: false}));
+                setResumeFileExpand(prev => ({...prev, focusItem: false}));
                 break;
                 
             case 'Resume':
@@ -149,6 +151,7 @@ export default function Footer() {
                 setNoteExpand(prev => ({...prev, focusItem: false}));
                 setTypeExpand(prev => ({...prev, focusItem: false}));
                 setWinampExpand(prev => ({...prev, focusItem: false}));
+                setResumeFileExpand(prev => ({...prev, focusItem: false}));
                 break;
     
             case 'Project':
@@ -163,6 +166,7 @@ export default function Footer() {
                 setNoteExpand(prev => ({...prev, focusItem: false}));
                 setTypeExpand(prev => ({...prev, focusItem: false}));
                 setWinampExpand(prev => ({...prev, focusItem: false}));
+                setResumeFileExpand(prev => ({...prev, focusItem: false}));
                 break;
     
             case 'Mail':
@@ -177,6 +181,7 @@ export default function Footer() {
                 setNoteExpand(prev => ({...prev, focusItem: false}));
                 setTypeExpand(prev => ({...prev, focusItem: false}));
                 setWinampExpand(prev => ({...prev, focusItem: false}));
+                setResumeFileExpand(prev => ({...prev, focusItem: false}));
                 break;
 
             case 'Nft':
@@ -191,6 +196,7 @@ export default function Footer() {
                 setNoteExpand(prev => ({...prev, focusItem: false}));
                 setTypeExpand(prev => ({...prev, focusItem: false}));
                 setWinampExpand(prev => ({...prev, focusItem: false}));
+                setResumeFileExpand(prev => ({...prev, focusItem: false}));
                 break;
 
             case 'Note':
@@ -205,6 +211,7 @@ export default function Footer() {
                 setNftExpand(prev => ({...prev, focusItem: false}));
                 setTypeExpand(prev => ({...prev, focusItem: false}));
                 setWinampExpand(prev => ({...prev, focusItem: false}));
+                setResumeFileExpand(prev => ({...prev, focusItem: false}));
                 break;
 
             case 'Type':
@@ -219,6 +226,7 @@ export default function Footer() {
                 setNoteExpand(prev => ({...prev, focusItem: false}));
                 setNftExpand(prev => ({...prev, focusItem: false}));
                 setWinampExpand(prev => ({...prev, focusItem: false}));
+                setResumeFileExpand(prev => ({...prev, focusItem: false}));
                 break;
 
             case 'Winamp':
@@ -238,6 +246,22 @@ export default function Footer() {
                 setMailExpand(prev => ({...prev, focusItem: false}));
                 setNoteExpand(prev => ({...prev, focusItem: false}));
                 setNftExpand(prev => ({...prev, focusItem: false}));
+                setTypeExpand(prev => ({...prev, focusItem: false}));
+                setResumeFileExpand(prev => ({...prev, focusItem: false}));
+                break;
+
+                case 'ResumeFile':
+                if(ResumeFileExpand.hide) {
+                    setResumeFileExpand(prev => ({...prev, hide: false}));
+                }
+                setResumeFileExpand(prev => ({...prev, focusItem: true}));
+                setMybioExpand(prev => ({...prev, focusItem: false}));
+                setResumeExpand(prev => ({...prev, focusItem: false}));
+                setProjectExpand(prev => ({...prev, focusItem: false}));
+                setMailExpand(prev => ({...prev, focusItem: false}));
+                setNoteExpand(prev => ({...prev, focusItem: false}));
+                setNftExpand(prev => ({...prev, focusItem: false}));
+                setWinampExpand(prev => ({...prev, focusItem: false}));
                 setTypeExpand(prev => ({...prev, focusItem: false}));
                 break;
 

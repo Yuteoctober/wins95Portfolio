@@ -1,0 +1,258 @@
+/* ------------ Folders ---------------- */
+
+.folder_folder-resumefile {
+    display: none;
+    position: fixed;
+    width: 400px;
+    min-width: 300px;
+    min-height: 250px;
+    height: 80%;
+    background: #c5c4c4;
+    border: 2px solid white;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    outline: 1px solid white;
+    overflow: hidden;
+    resize: both;
+}
+   
+
+@media screen and (max-width: 450px) {
+    .folder_folder-resumefile {
+        width: 80%;
+        min-width: 300px;
+    }
+}
+
+.folder_folder-resumefile .folder_dragbar-resumefile {
+   display: flex;
+   position: relative;
+   height: 24px;
+   width: 100%;
+   margin-bottom: 1px;
+   align-items: center;
+   justify-content: space-between;
+   -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.folder_barname-resumefile img {
+    position: relative;
+    width: 16px;
+    top: 2px;
+    margin-left: 5px;
+}
+
+.folder_barname-resumefile span {
+    position: relative;
+    font-size: 15px;
+    color: white;
+    margin-left: 5px;
+    top: 1px;
+    right: 2px;
+}
+
+.folder_folder-resumefile .folder_barbtn-resumefile {
+    display: flex;
+    position: relative;
+    margin-right: 4px;
+    gap: 2px;
+}
+
+.folder_barbtn-resumefile div {
+    width: 17px;
+    height: 17px;
+    background: #c9c9c9;
+    font-weight: bold;
+    border: 1px solid black;
+    border-top-color: rgb(198, 198, 198);border-left-color: rgb(198, 198, 198);
+    box-shadow: inset 1px 1px #ffffff, 1px 1px #000000dd;
+    cursor: default;
+}
+
+.folder_barbtn-resumefile div:not(.expand-resumefile):active {
+    border-top-color: black;border-left-color: black;
+    border-bottom-color: white;border-right-color: white;
+}
+
+.folder_barbtn-resumefile .x-resumefile {
+    position: relative;
+    text-align: center;
+    font-size: 18px;
+    bottom: 6px;
+}
+
+/* support only safari */
+@supports (-webkit-touch-callout: none) {
+    .folder_barbtn-resumefile .x-resumefile {
+        bottom: 8px; 
+        left: 1px;
+    }
+}
+
+.folder_barbtn-resumefile .dash-resumefile {
+    position: relative;
+    width: 8px;
+    top: 11px;
+    margin: 0 auto;
+    border-bottom: 2px solid black;
+}
+.folder_barbtn-resumefile .expand-resumefile {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid black;
+    border-left-color: black;
+    box-shadow: none;
+    margin: 0 auto;
+    top: 3px;
+}
+
+.folder_barbtn-resumefile .expand-resumefile.full {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid black;
+    border-left-color: black;
+    box-shadow: none;
+    margin: 0 auto;
+    top: 5px;
+    right: 2px;
+    z-index: 1;
+}
+
+.folder_barbtn-resumefile .expand_2-resumefile {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid black;
+    border-left-color: black;
+    box-shadow: none;
+    margin: 0 auto;
+    bottom: 6px;
+    left: 1.5px;
+}
+
+.folder_folder-resumefile .file_edit_container-resumefile {
+    display: flex;
+    gap: 5px;
+    font-size: 15px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    cursor: default;
+}
+
+
+.folder_folder-resumefile .folder_content-resumefile {
+    position: relative;
+    width: calc(100% - 14px);
+    height: calc(100% - 70px);
+    border: 2px solid black;
+    border-right-color: white;
+    border-bottom-color: white;
+    margin: 0 auto;
+    background: rgb(255, 255, 255);
+    overflow: hidden;
+}
+
+.btn_option_btm_container {
+    display: flex;
+    position: relative;
+    align-items: center;
+    height: 35px;
+    gap: 5px;
+    padding-left: 7px;
+    bottom: 1px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.btn_option_btm_container .btn_download_conainer {
+    display: flex;
+    position: relative;
+    width: fit-content;
+    padding: 3px 9px;
+    background: #c5c4c4;
+    box-shadow: inset 1.5px 1.5px #ebeaeadd, 2.1px 2.1px #000;
+    cursor: pointer;
+}
+
+.btn_option_btm_container .btn_download_conainer img {
+    position: relative;
+    width: 20px;
+    right: 5px;
+}
+
+.btn_option_btm_container .btn_download_conainer p {
+    position: relative;
+    font-size: 12px;
+    top: 1px;
+    color: rgb(49, 49, 157);
+    text-decoration: underline;
+    text-decoration-color: rgb(49, 49, 157);
+}
+
+.btn_option_btm_container .btn_download_conainer p:hover {
+    color: rgb(85, 125, 255);
+    text-decoration-color: rgb(85, 125, 255);
+}
+
+
+.btn_option_btm_container .btn_Open_conainer {
+    display: flex;
+    position: relative;
+    width: fit-content;
+    padding: 3px 9px;
+    background: #c5c4c4;
+    box-shadow: inset 1.5px 1.5px #ebeaeadd, 2.1px 2.1px #000;
+    cursor: pointer;
+}
+
+.btn_option_btm_container .btn_Open_conainer img {
+    position: relative;
+    width: 20px;
+    right: 4.5px;
+}
+
+.btn_option_btm_container .btn_Open_conainer p {
+    position: relative;
+    font-size: 12px;
+    top: 1px;
+    color: rgb(49, 49, 157);
+    text-decoration: underline;
+    text-decoration-color: rgb(49, 49, 157);
+}
+
+.btn_option_btm_container .btn_Open_conainer p:hover {
+    color: rgb(85, 125, 255);
+    text-decoration-color: rgb(85, 125, 255);
+}
+
+.btn_download_conainer:active,
+.btn_Open_conainer:active {
+    box-shadow: inset 1.5px 1.5px #000, 2px 2px #ebeaeadd;
+}
+
+@media screen and (width <= 500px) {
+    .folder_folder-resumefile {
+        width: 85%;
+    }
+}
+
+@media screen and (width >= 500px) {
+    .folder_folder-resumefile {
+        width: 500px;
+    }
+}
+@media screen and (width >= 1000px) {
+    .folder_folder-resumefile {
+        width: 650px;
+    }
+}
+
+
+

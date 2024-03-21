@@ -19,6 +19,7 @@ function Dragdrop() {
     setNoteExpand,
     setTypeExpand,
     setWinampExpand,
+    setResumeFileExpand,
   } = useContext(UseContext);
 
 
@@ -34,6 +35,7 @@ function Dragdrop() {
     setNoteExpand(prev => ({...prev, item_1Focus: false}));
     setTypeExpand(prev => ({...prev, item_1Focus: false}));
     setWinampExpand(prev => ({...prev, focus: false}));
+    // setResumeFileExpand(prev => ({...prev, item_1Focus: false}));
   };
 
   const handleBodyClick = (event) => {
@@ -49,6 +51,7 @@ function Dragdrop() {
       setNoteExpand(prev => ({...prev, item_1Focus: false}));
       setTypeExpand(prev => ({...prev, item_1Focus: false}));
       setWinampExpand(prev => ({...prev, focus: false}));
+      // setResumeFileExpand(prev => ({...prev, item_1Focus: false}));
     }
   };
   

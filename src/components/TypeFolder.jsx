@@ -18,6 +18,7 @@ function TypeFolder() {
     setProjectExpand,
     setMailExpand,
     setWinampExpand,
+    setResumeFileExpand,
     tap, setTap,
     lastTapTime, setLastTapTime,
     StyleHide,
@@ -69,6 +70,7 @@ function TypeFolder() {
         setNoteExpand(prev => ({...prev, focusItem: false}))
         setNftExpand(prev => ({...prev, focusItem: false}))
         setWinampExpand(prev => ({...prev, focusItem: false, focus: false}))
+        setResumeFileExpand(prev => ({...prev, focusItem: false}))
     }
 
 

@@ -18,6 +18,7 @@ function NoteFolder() {
     setProjectExpand,
     setMailExpand,
     setWinampExpand,
+    setResumeFileExpand,
     tap, setTap,
     lastTapTime, setLastTapTime,
     StyleHide,
@@ -69,6 +70,7 @@ function NoteFolder() {
         setNftExpand(prev => ({...prev, focusItem: false}))
         setTypeExpand(prev => ({...prev, focusItem: false}))
         setWinampExpand(prev => ({...prev, focusItem: false, focus: false}))
+        setResumeFileExpand(prev => ({...prev, focusItem: false}))
     }
 
 
