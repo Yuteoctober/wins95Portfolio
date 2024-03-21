@@ -27,7 +27,6 @@ function MailFolder() {
     isTouchDevice,
     setIconState,
     clippyThanksYouFunction,
-    clippySendemailfunction,
    } = useContext(UseContext);
 
 // ---------------------- EMAIL JS ---------------------------------------
@@ -43,6 +42,7 @@ const form = useRef();
       })
       .then(
         () => {
+          clippyThanksYouFunction()
           alert('Thank you for your interest, will contact you back shortly!')
           form.current.reset();
         },

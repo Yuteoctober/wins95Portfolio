@@ -18,6 +18,8 @@ import Winamp from './assets/winampIcon.png'
 
 function App() {
 
+  const ClearTOclippySendemailfunction = useRef(null);
+  const ClearTOclippyThanksYouFunction = useRef(null);
   const firstTimoutShowclippy = useRef(null);
   const RandomTimeoutShowClippy = useRef(null);
   const SecondRandomTimeoutShowClippy = useRef(null);
@@ -525,10 +527,14 @@ function handleDoubleTapEnterMobile(name) {
     if (SecondRandomTimeoutShowClippy) clearTimeout(SecondRandomTimeoutShowClippy.current);
     setClippyThanks(true);
     setShowClippy(true);
-    setTimeout(() => {
+    ClearTOclippyThanksYouFunction.current = setTimeout(() => {
       setClippyThanks(false);
       setShowClippy(false);
     }, 8000);
+
+    return () => {
+      clearTimeout(ClearTOclippyThanksYouFunction.current)
+    }
   }
 
   function clippySendemailfunction() {
@@ -537,10 +543,14 @@ function handleDoubleTapEnterMobile(name) {
     if (SecondRandomTimeoutShowClippy) clearTimeout(SecondRandomTimeoutShowClippy.current);
     setClippySendemail(true);
     setShowClippy(true);
-    setTimeout(() => {
+    ClearTOclippySendemailfunction.current = setTimeout(() => {
       setClippySendemail(false);
       setShowClippy(false);
     }, 8000);
+
+    return () => {
+      clearTimeout(ClearTOclippySendemailfunction.current)
+    }
   }
 
 
@@ -586,6 +596,9 @@ const imageMapping = { // map json with import images
     RandomTimeoutShowClippy, 
     firstTimoutShowclippy,
     SecondRandomTimeoutShowClippy,
+    ClearTOclippySendemailfunction,
+    ClearTOclippyThanksYouFunction,
+
   }
 
   return (

@@ -81,6 +81,8 @@ export default function Footer() {
         firstTimoutShowclippy,
         RandomTimeoutShowClippy,
         SecondRandomTimeoutShowClippy,
+        ClearTOclippySendemailfunction,
+        ClearTOclippyThanksYouFunction,
 
      } = useContext(UseContext);
     
@@ -245,6 +247,8 @@ export default function Footer() {
     
 
     useEffect(() => { // display clippy when windows start
+        clearTimeout(ClearTOclippySendemailfunction.current)
+        clearTimeout(ClearTOclippyThanksYouFunction.curremt)
         setShowClippy(true)
         firstTimoutShowclippy.current = setTimeout(() => {
             setShowClippy(false) 
@@ -258,6 +262,9 @@ export default function Footer() {
     useEffect(() => {
         const randomTime = Math.floor(Math.random() * (50000 - 30000 + 1)) + 30000;
 
+        clearTimeout(ClearTOclippySendemailfunction.current)
+        clearTimeout(ClearTOclippyThanksYouFunction.curremt)
+        
         RandomTimeoutShowClippy.current = setTimeout(() => {
         const randomIndex = Math.floor(Math.random() * clippyPhrase.inspiration.length);
                 setClippyIndex(randomIndex);
@@ -276,11 +283,14 @@ export default function Footer() {
 
 
     function dontTouch() {
-        setClippyTouched(true)
+        const clearTO = setClippyTouched(true)
         setTimeout(() => {
             setClippyTouched(false)   
         }, 3500);
 
+        return () => {
+            clearTimeout(clearTO)
+        }
     }
 
     function handleClipperTalk() {
