@@ -593,6 +593,7 @@ function handleDoubleTapEnterMobile(name) {
   
 
   function clippyThanksYouFunction() {
+    clearTimeout(ClearTOclippyThanksYouFunction.current)
     if (RandomTimeoutShowClippy) clearTimeout(RandomTimeoutShowClippy.current);
     if (firstTimoutShowclippy) clearTimeout(firstTimoutShowclippy.current);
     if (SecondRandomTimeoutShowClippy) clearTimeout(SecondRandomTimeoutShowClippy.current);
@@ -604,43 +605,36 @@ function handleDoubleTapEnterMobile(name) {
       setRandomClippyPopup(prev => !prev)
     }, 8000);
 
-    return () => {
-      clearTimeout(ClearTOclippyThanksYouFunction.current)
-    }
   }
 
   function clippySendemailfunction() {
+    clearTimeout(ClearTOclippySendemailfunction.current)
     if (RandomTimeoutShowClippy) clearTimeout(RandomTimeoutShowClippy.current);
     if (firstTimoutShowclippy) clearTimeout(firstTimoutShowclippy.current);
     if (SecondRandomTimeoutShowClippy) clearTimeout(SecondRandomTimeoutShowClippy.current);
     setClippySendemail(true);
     setShowClippy(true);
-    ClearTOSongfunction.current = setTimeout(() => {
+    ClearTOclippySendemailfunction.current = setTimeout(() => {
       setClippySendemail(false);
       setShowClippy(false);
       setRandomClippyPopup(prev => !prev)
-    }, 8000);
 
-    return () => {
-      clearTimeout(ClearTOSongfunction.current)
-    }
+    }, 8000);
   }
 
   function clippySongFunction() {
+    clearTimeout(ClearTOSongfunction.current)
     if (RandomTimeoutShowClippy) clearTimeout(RandomTimeoutShowClippy.current);
     if (firstTimoutShowclippy) clearTimeout(firstTimoutShowclippy.current);
     if (SecondRandomTimeoutShowClippy) clearTimeout(SecondRandomTimeoutShowClippy.current);
     setClippySong(true);
     setShowClippy(true);
-    ClearTOclippyThanksYouFunction.current = setTimeout(() => {
+    ClearTOSongfunction.current = setTimeout(() => {
       setClippySong(false);
       setShowClippy(false);
       setRandomClippyPopup(prev => !prev)
-    }, 8000);
 
-    return () => {
-      clearTimeout(ClearTOclippyThanksYouFunction.current)
-    }
+    }, 8000);
   }
 
 
