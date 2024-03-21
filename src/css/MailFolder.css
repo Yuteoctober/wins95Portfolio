@@ -222,7 +222,8 @@
     gap: 8px;
     width: calc(100%);
     top: 1px;
-    border: 1px solid black;
+    border: 1.5px solid rgb(75, 73, 73);
+    border-bottom-color: #323232;
     background: #c5c4c4;
     padding: 5px 4px;
     padding-bottom: 8px;
@@ -294,14 +295,13 @@
     align-items: center;
     position: fixed;
     height: 34px;
-    width: calc(100% - 8px);
+    width: calc(100% - 7.5px);
     margin: 0 auto;
     bottom: 1px;
     border: 1px solid black;
-    border-top: 1.5px solid rgb(154, 154, 154);
-    border-right-color: transparent;
+    border-top: 1px solid rgb(68, 68, 68);
+    border-right-color: black;
     background: #c5c4c4;
-    color: black;
 }
 
 .sendmail_icon .sendmail_img_container {
