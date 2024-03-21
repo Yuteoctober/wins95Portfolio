@@ -214,7 +214,7 @@ function MyBioFolder() {
               <a href="https://drive.google.com/file/d/1XNn23UA2L82P2__Ccuccl3WMdR2rHG57/view" target="_blank" rel="noreferrer" >You can find my Resume here.</a>
               <br />
               <br />
-              <a href="onClick={() => window.open('https://drive.usercontent.google.com/u/0/uc?id=1XNn23UA2L82P2__Ccuccl3WMdR2rHG57&export=download', '_blank')}" target="_blank" rel="noreferrer" >Download</a>
+              <a href="https://drive.usercontent.google.com/u/0/uc?id=1XNn23UA2L82P2__Ccuccl3WMdR2rHG57&export=download" target="_blank" rel="noreferrer" >Download</a>
             </div>
           </div>
         </motion.div>
