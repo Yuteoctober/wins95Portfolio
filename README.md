@@ -24,7 +24,7 @@ Mobile function NOT supported!
 
 Library:
   - React Draggable => drag and drop functionality
-  - Framer-motion => for some style
+  - Framer-motion => for some animation
   - Webamp => Winamp music player
 
 All the windows 95 icons and others can be found here
