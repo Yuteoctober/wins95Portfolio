@@ -470,6 +470,7 @@ body {
     border: 1px solid black;
     background: rgb(216, 218, 165);
     z-index: 1002;
+    cursor: default;
     
 }
 
