@@ -89,6 +89,9 @@ export default function Footer() {
         ClearTOSongfunction,
         clippySong,
         ClearTOdonttouch,
+        isTouchDevice,
+        handleDoubleClickEnterLink,
+        handleDoubleTapEnterMobile,
      } = useContext(UseContext);
     
      const handleWheelScroll = (e) => { // wheel from x to Y on tap
@@ -395,9 +398,11 @@ export default function Footer() {
                         <img src={linked} alt="linked" style={{ borderRadius: '5px' }} />
                         <span>Linked</span>
                     </div>
-                    <div className="ghithub">
+                    <div className="ghithub"
+                        onClick={() => handleDoubleClickEnterLink('Github')}
+                    >
                         <img src={github} alt="github" style={{ borderRadius: '5px' }} />
-                        <span>Github</span>
+                        <span>Repo</span>
                     </div>
                     <div className="facebook">
                         <img src={facebook} alt="facebook" style={{ borderRadius: '5px' }} />

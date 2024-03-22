@@ -557,6 +557,17 @@ function StyleHide(index) {
   }
 }
 
+function handleDoubleClickEnterLink(name) {
+
+    switch(name) {
+      case 'Nft': window.open('https://opennft.netlify.app/', '_blank'); break;
+      case 'Note': window.open('https://fullstack-stickynotes.netlify.app/', '_blank'); break;
+      case 'Type': window.open('https://yuteoctober.github.io/typingGame/', '_blank'); break;
+      case 'Github': window.open('https://github.com/Yuteoctober/wins95Portfolio/', '_blank'); break;
+      default: break; 
+    }
+}
+
 
 function handleDoubleTapEnterMobile(name) {
   const now = Date.now();
@@ -565,6 +576,7 @@ function handleDoubleTapEnterMobile(name) {
       case 'Nft': window.open('https://opennft.netlify.app/', '_blank'); break;
       case 'Note': window.open('https://fullstack-stickynotes.netlify.app/', '_blank'); break;
       case 'Type': window.open('https://yuteoctober.github.io/typingGame/', '_blank'); break;
+      case 'Github': window.open('https://github.com/Yuteoctober/wins95Portfolio/', '_blank'); break;
       default: break; 
     }
   }
@@ -632,55 +644,6 @@ function handleDoubleTapEnterMobile(name) {
     handleClippyFunction(setClippySong, ClearTOSongfunction, allSetters);
   }
   
-  
-  
-
-  // function clippyThanksYouFunction() {
-  //   clearTimeout(ClearTOclippyThanksYouFunction.current)
-  //   if (RandomTimeoutShowClippy) clearTimeout(RandomTimeoutShowClippy.current);
-  //   if (firstTimoutShowclippy) clearTimeout(firstTimoutShowclippy.current);
-  //   if (SecondRandomTimeoutShowClippy) clearTimeout(SecondRandomTimeoutShowClippy.current);
-  //   setClippyThanks(true);
-  //   setShowClippy(true);
-  //   ClearTOclippyThanksYouFunction.current = setTimeout(() => {
-  //     setClippyThanks(false);
-  //     setShowClippy(false);
-  //     setRandomClippyPopup(prev => !prev)
-  //   }, 8000);
-
-  // }
-
-  // function clippySendemailfunction() {
-  //   clearTimeout(ClearTOclippySendemailfunction.current)
-  //   if (RandomTimeoutShowClippy) clearTimeout(RandomTimeoutShowClippy.current);
-  //   if (firstTimoutShowclippy) clearTimeout(firstTimoutShowclippy.current);
-  //   if (SecondRandomTimeoutShowClippy) clearTimeout(SecondRandomTimeoutShowClippy.current);
-  //   setClippySendemail(true);
-  //   console.log('hello')
-  //   setShowClippy(true);
-  //   ClearTOclippySendemailfunction.current = setTimeout(() => {
-  //     setClippySendemail(false);
-  //     setShowClippy(false);
-  //     setRandomClippyPopup(prev => !prev)
-
-  //   }, 8000);
-  // }
-
-  // function clippySongFunction() {
-  //   clearTimeout(ClearTOSongfunction.current)
-  //   if (RandomTimeoutShowClippy) clearTimeout(RandomTimeoutShowClippy.current);
-  //   if (firstTimoutShowclippy) clearTimeout(firstTimoutShowclippy.current);
-  //   if (SecondRandomTimeoutShowClippy) clearTimeout(SecondRandomTimeoutShowClippy.current);
-  //   setClippySong(true);
-  //   console.log('hello')
-  //   setShowClippy(true);
-  //   ClearTOSongfunction.current = setTimeout(() => {
-  //     setClippySong(false);
-  //     setShowClippy(false);
-  //     setRandomClippyPopup(prev => !prev)
-
-  //   }, 8000);
-  // }
 
 
 
@@ -714,6 +677,7 @@ const imageMapping = { // map json with import images
     NoteExpand, setNoteExpand,
     TypeExpand, setTypeExpand,
     handleDoubleTapEnterMobile,
+    handleDoubleClickEnterLink,
     WinampExpand, setWinampExpand,
     showClippy, setShowClippy,
     clippyIndex, setClippyIndex,

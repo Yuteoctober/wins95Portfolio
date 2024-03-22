@@ -25,6 +25,7 @@ function TypeFolder() {
     isTouchDevice,
     iconState, setIconState,
     handleDoubleTapEnterMobile,
+    handleDoubleClickEnterLink,
 
    } = useContext(UseContext);
 
@@ -184,7 +185,7 @@ function TypeFolder() {
           >
             <div className="item_container">
               <div className='item_1'
-                onDoubleClick={ !isTouchDevice ? () => window.open('https://yuteoctober.github.io/typingGame/', '_blank'): undefined}
+                onDoubleClick={ !isTouchDevice ? () => handleDoubleClickEnterLink('Type'): undefined}
                 onTouchEnd={() => handleDoubleTapEnterMobile('Type')}
                 onClick={(e) => {
                   e.stopPropagation();

@@ -1,4 +1,4 @@
-Windows 95 Portfolio (Still working in progress)
+Windows 95 Portfolio (Mostly dont! but still need to refactor the code and clean up)
 
 Live Demo: https://yuteoctober.github.io/wins95Portfolio/
 
@@ -6,7 +6,7 @@ Live Demo: https://yuteoctober.github.io/wins95Portfolio/
 
 React Project:
   - inspred by other web windows 95 portfolio including actual windows 95
-  - everything built by me from scratch (using CSS)
+  - everything built by me from scratch (No style component!)
 
 Functionality (imitaing windows 95 functionality)
   - Drag and Drop

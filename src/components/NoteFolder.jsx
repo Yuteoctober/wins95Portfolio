@@ -25,6 +25,7 @@ function NoteFolder() {
     isTouchDevice,
     iconState, setIconState,
     handleDoubleTapEnterMobile,
+    handleDoubleClickEnterLink,
 
    } = useContext(UseContext);
 
@@ -184,7 +185,7 @@ function NoteFolder() {
           >
             <div className="item_container">
               <div className='item_1'
-                onDoubleClick={ !isTouchDevice? () => window.open('https://fullstack-stickynotes.netlify.app/', '_blank') : undefined}
+                onDoubleClick={ !isTouchDevice? () => handleDoubleClickEnterLink('Note') : undefined} 
                 onTouchEnd={() => handleDoubleTapEnterMobile('Note')}
                 onClick={(e) => {
                   e.stopPropagation();

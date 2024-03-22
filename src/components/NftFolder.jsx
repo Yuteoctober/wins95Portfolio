@@ -25,6 +25,7 @@ function NftFolder() {
     isTouchDevice,
     iconState, setIconState,
     handleDoubleTapEnterMobile,
+    handleDoubleClickEnterLink,
 
    } = useContext(UseContext);
 
@@ -184,7 +185,7 @@ function NftFolder() {
           >
             <div className="item_container">
               <div className='item_1'
-                onDoubleClick={ !isTouchDevice ?() => window.open('https://opennft.netlify.app/', '_blank'): undefined} 
+                onDoubleClick={ !isTouchDevice ?() => handleDoubleClickEnterLink('Nft'): undefined} 
                 onTouchEnd={() => handleDoubleTapEnterMobile('Nft')}
                 onClick={(e) => {
                   e.stopPropagation();
