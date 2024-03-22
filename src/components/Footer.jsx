@@ -391,7 +391,7 @@ export default function Footer() {
             </div>
             {startActive && (
                 <div className="start_popup"
-                    style={{display: startActive? 'flex' : 'none'}}
+                    style={{display: startActive? '' : 'none'}}
                 >
                     <div className="sidebar_popup">
                         <img src={sidebar} alt="sidebar" />
