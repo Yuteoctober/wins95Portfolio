@@ -591,52 +591,96 @@ function handleDoubleTapEnterMobile(name) {
           document.removeEventListener('keydown', handleKeyPress);
       };
   }, []);
+
+
+  function handleClippyFunction(setterFunction, clearFunction, allSetters) {
+    // Clear all existing timeouts
+    allSetters.forEach((setter, index) => {
+      if (setter !== setterFunction) {
+        setter(false);
+        clearTimeout(allClears[index].current);
+      }
+    });
+    setterFunction(true);
+    setShowClippy(true);
+    
+    clearTimeout(clearFunction.current);
+    if (RandomTimeoutShowClippy.current) clearTimeout(RandomTimeoutShowClippy.current);
+    if (firstTimoutShowclippy.current) clearTimeout(firstTimoutShowclippy.current);
+    if (SecondRandomTimeoutShowClippy.current) clearTimeout(SecondRandomTimeoutShowClippy.current);
+    
+    clearFunction.current = setTimeout(() => {
+      setterFunction(false);
+      setShowClippy(false);
+      setRandomClippyPopup(prev => !prev);
+    }, 8000);
+  }
+  
+  // Define all state setter functions and corresponding clear functions in an array
+  const allSetters = [setClippyThanks, setClippySendemail, setClippySong];
+  const allClears = [ClearTOclippyThanksYouFunction, ClearTOclippySendemailfunction, ClearTOSongfunction];
+  
+  function clippyThanksYouFunction() {
+    handleClippyFunction(setClippyThanks, ClearTOclippyThanksYouFunction, allSetters);
+  }
+  
+  function clippySendemailfunction() {
+    handleClippyFunction(setClippySendemail, ClearTOclippySendemailfunction, allSetters);
+  }
+  
+  function clippySongFunction() {
+    handleClippyFunction(setClippySong, ClearTOSongfunction, allSetters);
+  }
+  
+  
   
 
-  function clippyThanksYouFunction() {
-    clearTimeout(ClearTOclippyThanksYouFunction.current)
-    if (RandomTimeoutShowClippy) clearTimeout(RandomTimeoutShowClippy.current);
-    if (firstTimoutShowclippy) clearTimeout(firstTimoutShowclippy.current);
-    if (SecondRandomTimeoutShowClippy) clearTimeout(SecondRandomTimeoutShowClippy.current);
-    setClippyThanks(true);
-    setShowClippy(true);
-    ClearTOclippyThanksYouFunction.current = setTimeout(() => {
-      setClippyThanks(false);
-      setShowClippy(false);
-      setRandomClippyPopup(prev => !prev)
-    }, 8000);
+  // function clippyThanksYouFunction() {
+  //   clearTimeout(ClearTOclippyThanksYouFunction.current)
+  //   if (RandomTimeoutShowClippy) clearTimeout(RandomTimeoutShowClippy.current);
+  //   if (firstTimoutShowclippy) clearTimeout(firstTimoutShowclippy.current);
+  //   if (SecondRandomTimeoutShowClippy) clearTimeout(SecondRandomTimeoutShowClippy.current);
+  //   setClippyThanks(true);
+  //   setShowClippy(true);
+  //   ClearTOclippyThanksYouFunction.current = setTimeout(() => {
+  //     setClippyThanks(false);
+  //     setShowClippy(false);
+  //     setRandomClippyPopup(prev => !prev)
+  //   }, 8000);
 
-  }
+  // }
 
-  function clippySendemailfunction() {
-    clearTimeout(ClearTOclippySendemailfunction.current)
-    if (RandomTimeoutShowClippy) clearTimeout(RandomTimeoutShowClippy.current);
-    if (firstTimoutShowclippy) clearTimeout(firstTimoutShowclippy.current);
-    if (SecondRandomTimeoutShowClippy) clearTimeout(SecondRandomTimeoutShowClippy.current);
-    setClippySendemail(true);
-    setShowClippy(true);
-    ClearTOclippySendemailfunction.current = setTimeout(() => {
-      setClippySendemail(false);
-      setShowClippy(false);
-      setRandomClippyPopup(prev => !prev)
+  // function clippySendemailfunction() {
+  //   clearTimeout(ClearTOclippySendemailfunction.current)
+  //   if (RandomTimeoutShowClippy) clearTimeout(RandomTimeoutShowClippy.current);
+  //   if (firstTimoutShowclippy) clearTimeout(firstTimoutShowclippy.current);
+  //   if (SecondRandomTimeoutShowClippy) clearTimeout(SecondRandomTimeoutShowClippy.current);
+  //   setClippySendemail(true);
+  //   console.log('hello')
+  //   setShowClippy(true);
+  //   ClearTOclippySendemailfunction.current = setTimeout(() => {
+  //     setClippySendemail(false);
+  //     setShowClippy(false);
+  //     setRandomClippyPopup(prev => !prev)
 
-    }, 8000);
-  }
+  //   }, 8000);
+  // }
 
-  function clippySongFunction() {
-    clearTimeout(ClearTOSongfunction.current)
-    if (RandomTimeoutShowClippy) clearTimeout(RandomTimeoutShowClippy.current);
-    if (firstTimoutShowclippy) clearTimeout(firstTimoutShowclippy.current);
-    if (SecondRandomTimeoutShowClippy) clearTimeout(SecondRandomTimeoutShowClippy.current);
-    setClippySong(true);
-    setShowClippy(true);
-    ClearTOSongfunction.current = setTimeout(() => {
-      setClippySong(false);
-      setShowClippy(false);
-      setRandomClippyPopup(prev => !prev)
+  // function clippySongFunction() {
+  //   clearTimeout(ClearTOSongfunction.current)
+  //   if (RandomTimeoutShowClippy) clearTimeout(RandomTimeoutShowClippy.current);
+  //   if (firstTimoutShowclippy) clearTimeout(firstTimoutShowclippy.current);
+  //   if (SecondRandomTimeoutShowClippy) clearTimeout(SecondRandomTimeoutShowClippy.current);
+  //   setClippySong(true);
+  //   console.log('hello')
+  //   setShowClippy(true);
+  //   ClearTOSongfunction.current = setTimeout(() => {
+  //     setClippySong(false);
+  //     setShowClippy(false);
+  //     setRandomClippyPopup(prev => !prev)
 
-    }, 8000);
-  }
+  //   }, 8000);
+  // }
 
 
 

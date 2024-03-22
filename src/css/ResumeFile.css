@@ -154,7 +154,7 @@
     border-bottom-color: white;
     margin: 0 auto;
     background: rgb(255, 255, 255);
-    overflow: hidden;
+    overflow-y: scroll;
     touch-action: none;
 }
 
@@ -260,7 +260,9 @@
     height: 100%;
     touch-action: none;
     z-index: -5;
+    touch-action: manipulation;
 }
+
 
 
 
