@@ -375,7 +375,10 @@ export default function Footer() {
                             handleHideFolder(index);
                             e.stopPropagation()
                         }}
-                        style={StyleHide(index)}>
+                        style={StyleHide(index, tap, MybioExpand, ResumeExpand, 
+                            ProjectExpand, MailExpand, NftExpand, NoteExpand, 
+                            TypeExpand, WinampExpand, ResumeFileExpand)}
+                        >
                         {
                         imageMapping[item] && 
                         <img src={imageMapping[item]} alt={item} />

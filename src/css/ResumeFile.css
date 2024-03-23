@@ -255,13 +255,14 @@
     }
 }
 
-.iframe_resume {
+iframe {
+    position: absolute;
+    margin: 0 auto;
     width: 100%;
     height: 100%;
-    touch-action: none;
-    z-index: -5;
     touch-action: manipulation;
-    
+    pointer-events: none;
+    touch-action: none;
 }
 
 

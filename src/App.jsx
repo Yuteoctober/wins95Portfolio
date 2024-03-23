@@ -17,6 +17,7 @@ import Mail from './assets/mail.png'
 import Project from './assets/regFolder.png'
 import Winamp from './assets/winampIcon.png'
 import resumefile from './assets/resume.png'
+import { StyleHide } from './components/function/AppFunctions';
 
 function App() {
   const ClearTOdonttouch = useRef(null);
@@ -444,118 +445,7 @@ if (now - lastTapTime < 300) {
 setLastTapTime(now)
 }
 
-function StyleHide(index) {
-  switch(tap[index]) {
-      case 'MyBio':
-          return MybioExpand.focusItem ?
-              {
-                  boxShadow: 'inset 1px 1px #000, 1px 1px #ffffffdd',
-                  background: 'rgb(221, 220, 220)'
-              }
-              :
-              {
-                  boxShadow: 'inset 1px 1px #ffffffdd, 1.5px 1.5px #000',
-                  background: '#b3b2b2'
-              };
 
-      case 'Resume':
-          return ResumeExpand.focusItem ?
-              {
-                  boxShadow: 'inset 1px 1px #000, 1px 1px #ffffffdd',
-                  background: 'rgb(221, 220, 220)'
-              }
-              :
-              {
-                  boxShadow: 'inset 1px 1px #ffffffdd, 1.5px 1.5px #000',
-                  background: '#b3b2b2'
-              };
-
-      case 'Project':
-          return ProjectExpand.focusItem ?
-              {
-                  boxShadow: 'inset 1px 1px #000, 1px 1px #ffffffdd',
-                  background: 'rgb(221, 220, 220)'
-              }
-              :
-              {
-                  boxShadow: 'inset 1px 1px #ffffffdd, 1.5px 1.5px #000',
-                  background: '#b3b2b2'
-              };
-
-      case 'Mail':
-          return MailExpand.focusItem ?
-              {
-                  boxShadow: 'inset 1px 1px #000, 1px 1px #ffffffdd',
-                  background: 'rgb(221, 220, 220)'
-              }
-              :
-              {
-                  boxShadow: 'inset 1px 1px #ffffffdd, 1.5px 1.5px #000',
-                  background: '#b3b2b2'
-              };
-
-      case 'Nft':
-          return NftExpand.focusItem ?
-              {
-                  boxShadow: 'inset 1px 1px #000, 1px 1px #ffffffdd',
-                  background: 'rgb(221, 220, 220)'
-              }
-              :
-              {
-                  boxShadow: 'inset 1px 1px #ffffffdd, 1.5px 1.5px #000',
-                  background: '#b3b2b2'
-              };
-
-      case 'Note':
-          return NoteExpand.focusItem ?
-              {
-                  boxShadow: 'inset 1px 1px #000, 1px 1px #ffffffdd',
-                  background: 'rgb(221, 220, 220)'
-              }
-              :
-              {
-                  boxShadow: 'inset 1px 1px #ffffffdd, 1.5px 1.5px #000',
-                  background: '#b3b2b2'
-              };
-
-      case 'Type':
-          return TypeExpand.focusItem ?
-              {
-                  boxShadow: 'inset 1px 1px #000, 1px 1px #ffffffdd',
-                  background: 'rgb(221, 220, 220)'
-              }
-              :
-              {
-                  boxShadow: 'inset 1px 1px #ffffffdd, 1.5px 1.5px #000',
-                  background: '#b3b2b2'
-              };
-              
-      case 'Winamp':
-          return WinampExpand.focusItem ?
-              {
-                  boxShadow: 'inset 1px 1px #000, 1px 1px #ffffffdd',
-                  background: 'rgb(221, 220, 220)'
-              }
-              :
-              {
-                  boxShadow: 'inset 1px 1px #ffffffdd, 1.5px 1.5px #000',
-                  background: '#b3b2b2'
-              };
-
-              case 'ResumeFile':
-          return ResumeFileExpand.focusItem ?
-              {
-                  boxShadow: 'inset 1px 1px #000, 1px 1px #ffffffdd',
-                  background: 'rgb(221, 220, 220)'
-              }
-              :
-              {
-                  boxShadow: 'inset 1px 1px #ffffffdd, 1.5px 1.5px #000',
-                  background: '#b3b2b2'
-              };
-              
-  }
-}
 
 function handleDoubleClickEnterLink(name) {
 
@@ -644,8 +534,6 @@ function handleDoubleTapEnterMobile(name) {
     handleClippyFunction(setClippySong, ClearTOSongfunction, allSetters);
   }
   
-
-
 
 const imageMapping = { // map json with import images
   MyBio: MyBio,
