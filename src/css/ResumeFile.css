@@ -156,6 +156,7 @@
     background: rgb(255, 255, 255);
     overflow-y: scroll;
     touch-action: none;
+    scrollbar-width: none;
 }
 
 .btn_option_btm_container {

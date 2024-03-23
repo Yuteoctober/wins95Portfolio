@@ -73,6 +73,7 @@ function ResumeFile() {
         setWinampExpand(prev => ({...prev, focusItem: false, focus: false}))
         setNftExpand(prev => ({...prev, focusItem: false}))
     }
+    
 
 
   return (
