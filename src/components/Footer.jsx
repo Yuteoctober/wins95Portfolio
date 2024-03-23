@@ -131,7 +131,7 @@ export default function Footer() {
 
     function handleHideFolder(index) {
         switch(tap[index]) {
-            case 'MyBio':
+            case 'My Bio':
                 if(MybioExpand.hide) {
                     setMybioExpand(prev => ({...prev, hide: false}));
                 }

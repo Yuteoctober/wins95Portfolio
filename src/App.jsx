@@ -85,7 +85,7 @@ function App() {
 function handleShow(name) {
       
   switch (name) {
-      case 'MyBio': 
+      case 'My Bio': 
           setMybioExpand(prev => ({...prev, show: true, focusItem: true, hide: false}));
           setResumeExpand(prev => ({...prev, focusItem: false}));
           setProjectExpand(prev => ({...prev, focusItem: false}));
@@ -95,11 +95,11 @@ function handleShow(name) {
           setTypeExpand(prev => ({...prev, focusItem: false}));
           setWinampExpand(prev => ({...prev, focusItem: false}));
           setResumeFileExpand(prev => ({...prev, focusItem: false}));
-          if (tap.includes('MyBio')) {
+          if (tap.includes('My Bio')) {
             setMybioExpand(prev => ({...prev, hide: false}))
             return;
           }
-          setTap(prevTap => [...prevTap, 'MyBio']); // put bio in []
+          setTap(prevTap => [...prevTap, 'My Bio']); // put bio in []
           setIconState(prevIcons => prevIcons.map(icon => ({ // unhighlight icon
               ...icon,
               focus: false
@@ -267,7 +267,7 @@ function handleShowMobile(name) {
 const now = Date.now()
 if (now - lastTapTime < 300) {
   switch (name) {
-    case 'MyBio': 
+    case 'My Bio': 
       setMybioExpand(prev => ({...prev, show: true, focusItem: true, hide: false})); 
       setResumeExpand(prev => ({...prev, focusItem: false})); 
       setProjectExpand(prev => ({...prev, focusItem: false}));
@@ -277,8 +277,8 @@ if (now - lastTapTime < 300) {
       setTypeExpand(prev => ({...prev, focusItem: false}));
       setWinampExpand(prev => ({...prev, focusItem: false}));
       setResumeFileExpand(prev => ({...prev, focusItem: false}));
-    if(tap.includes('MyBio')) return;
-      setTap(prevTap => [...prevTap, 'MyBio'])
+    if(tap.includes('My Bio')) return;
+      setTap(prevTap => [...prevTap, 'My Bio'])
       setIconState(prevIcons => prevIcons.map(icon => ({
         ...icon,
         focus: false
@@ -474,7 +474,7 @@ function handleDoubleTapEnterMobile(name) {
 }
 
     useEffect(() => { // open Bio Folder when app starts
-      handleShow('MyBio')
+      handleShow('My Bio')
     },[])
 
     useEffect(() => { // touch support device === true

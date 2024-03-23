@@ -8,7 +8,7 @@ export function StyleHide(index, tap,  MybioExpand, ResumeExpand, ProjectExpand,
   const bgStyleFalse = '#b3b2b2';
 
   switch (tap[index]) {
-    case 'MyBio':
+    case 'My Bio':
       return MybioExpand.focusItem
         ? { boxShadow: boxshadowstyleTrue, background: bgStyleTrue }
         : { boxShadow: boxshadowstyleFalse, background: bgStyleFalse };

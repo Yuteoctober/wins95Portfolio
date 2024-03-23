@@ -132,14 +132,14 @@ function MyBioFolder() {
               <div onClick={ !isTouchDevice ? (e) => {
                 e.stopPropagation()
                 setMybioExpand(prev => ({...prev, hide: true, focusItem: false}))
-                StyleHide('MyBio')
+                StyleHide('My Bio')
               } : undefined
             }
                 
                    onTouchEnd={(e) => {
                     e.stopPropagation()
                     setMybioExpand(prev => ({...prev, hide: true, focusItem: false}))
-                    StyleHide('MyBio')
+                    StyleHide('My Bio')
                   }}
 
               >
@@ -166,12 +166,12 @@ function MyBioFolder() {
                   className='x'
                   onClick={!isTouchDevice ? () => {
                     setMybioExpand(prev => ({...prev, show: false, expand: false}));
-                    const newTap = tap.filter(a => a !== 'MyBio')
+                    const newTap = tap.filter(a => a !== 'My Bio')
                     setTap(newTap)
                   } : undefined}
                   onTouchEnd={() => {
                     setMybioExpand(prev => ({...prev, show: false, expand: false}));
-                    const newTap = tap.filter(a => a !== 'MyBio')
+                    const newTap = tap.filter(a => a !== 'My Bio')
                     setTap(newTap)
                   }}
                 >
