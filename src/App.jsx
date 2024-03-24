@@ -502,6 +502,12 @@ setLastTapTime(now)
   function clippySongFunction() {
     handleClippyFunction(setClippySong, ClearTOSongfunction, allSetters);
   }
+
+  useEffect(() => { // prevent zooming on mobile
+    document.addEventListener('gesturestart', function (e) {
+      e.preventDefault();
+  });
+  },[])
   
 
   
