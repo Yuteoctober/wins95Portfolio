@@ -51,7 +51,7 @@ function Dragdrop() {
       setNoteExpand(prev => ({...prev, item_1Focus: false}));
       setTypeExpand(prev => ({...prev, item_1Focus: false}));
       setWinampExpand(prev => ({...prev, focus: false}));
-      // setResumeFileExpand(prev => ({...prev, item_1Focus: false}));
+      setResumeFileExpand(prev => ({...prev, itemFocus: false}));
     }
   };
   

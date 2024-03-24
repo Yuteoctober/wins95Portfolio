@@ -226,6 +226,26 @@ function handleShowMobile(name) {
       e.preventDefault();
   });
   },[])
+
+  function handleSetFocusItemTrue(name) { //click on one, other goes false
+
+    const LowerCaseName = name.toLowerCase().split(' ').join('');
+    const setState = ObjectState();
+
+    setState.forEach((item) => {
+      if(item.name.toLowerCase() === LowerCaseName) {
+        item.setter(prev => ({...prev, focusItem: true}));
+      } else {
+        item.setter(prev => ({...prev, focusItem: false}));
+      }
+    });
+
+    setIconState(prevIcons => prevIcons.map(icon => ({
+      ...icon,
+      focus: false
+    })));
+  }
+
   
 
   
@@ -270,6 +290,7 @@ function handleShowMobile(name) {
     ClearTOSongfunction,
     ClearTOdonttouch,
     ObjectState,
+    handleSetFocusItemTrue,
   }
 
   return (

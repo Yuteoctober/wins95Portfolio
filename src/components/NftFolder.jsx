@@ -26,7 +26,7 @@ function NftFolder() {
     iconState, setIconState,
     handleDoubleTapEnterMobile,
     handleDoubleClickEnterLink,
-
+    handleSetFocusItemTrue,
    } = useContext(UseContext);
 
       function handleDragStop(event, data) {
@@ -58,22 +58,6 @@ function NftFolder() {
     setLastTapTime(now);
 }
 
-    function handleSetFocusItemTrue() { //click on one, other goes false
-        setIconState(prevIcons => prevIcons.map(icon => ({
-          ...icon,
-          focus: false
-        })));
-        setNftExpand(prev => ({...prev, focusItem: true}))
-        setMybioExpand(prev => ({...prev, focusItem: false}))
-        setProjectExpand(prev => ({...prev, focusItem: false}))
-        setMailExpand(prev => ({...prev, focusItem: false}))
-        setResumeExpand(prev => ({...prev, focusItem: false}))
-        setNoteExpand(prev => ({...prev, focusItem: false}))
-        setTypeExpand(prev => ({...prev, focusItem: false}))
-        setWinampExpand(prev => ({...prev, focusItem: false, focus: false}))
-        setResumeFileExpand(prev => ({...prev, focusItem: false}))
-    }
-
 
   return (
     <>
@@ -89,12 +73,12 @@ function NftFolder() {
           y: window.innerWidth <= 500 ? 100 : 90,
         }}
         onStop={(event, data) => handleDragStop(event, data)}
-        onStart={handleSetFocusItemTrue}
+        onStart={() => handleSetFocusItemTrue('Nft')}
       >
         <div className='folder_folder' 
             onClick={(e) => {
               e.stopPropagation();
-              handleSetFocusItemTrue();
+              handleSetFocusItemTrue('Nft');
             }}
             style={ NftExpand.expand ? 
             {

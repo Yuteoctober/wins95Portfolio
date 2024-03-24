@@ -25,7 +25,7 @@ function MyBioFolder() {
     StyleHide,
     isTouchDevice,
     setIconState,
-    
+    handleSetFocusItemTrue,
     
 
    } = useContext(UseContext);
@@ -61,22 +61,6 @@ function MyBioFolder() {
     setLastTapTime(now);
 }
 
-    function handleSetFocusItemTrue() {
-      setIconState(prevIcons => prevIcons.map(icon => ({
-        ...icon,
-        focus: false
-      })));
-      setMybioExpand(prev => ({...prev, focusItem: true}))
-      setResumeExpand(prev => ({...prev, focusItem: false}))
-      setProjectExpand(prev => ({...prev, focusItem: false}))
-      setMailExpand(prev => ({...prev, focusItem: false}))
-      setNoteExpand(prev => ({...prev, focusItem: false}))
-      setNftExpand(prev => ({...prev, focusItem: false}))
-      setTypeExpand(prev => ({...prev, focusItem: false}))
-      setWinampExpand(prev => ({...prev, focusItem: false, focus: false}))
-      setResumeFileExpand(prev => ({...prev, focusItem: false}))
-    }
-
 
   return (
     <>
@@ -92,12 +76,12 @@ function MyBioFolder() {
           y: window.innerWidth <= 500 ? 35 : 40,
         }}
         onStop={(event, data) => handleDragStop(event, data)}
-        onStart={handleSetFocusItemTrue}
+        onStart={() => handleSetFocusItemTrue('My Bio')}
       >
         <motion.div className='bio_folder' 
             onClick={(e) => {
               e.stopPropagation();
-              handleSetFocusItemTrue();
+              handleSetFocusItemTrue('My Bio');
             }}
             style={ MybioExpand.expand ? 
             {

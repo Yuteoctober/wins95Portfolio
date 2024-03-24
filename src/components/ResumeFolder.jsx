@@ -26,7 +26,7 @@ function ResumeFolder() {
     iconState, setIconState,
     handleShowMobile,
     handleShow,
-
+    handleSetFocusItemTrue,
    } = useContext(UseContext);
 
       function handleDragStop(event, data) {
@@ -58,22 +58,6 @@ function ResumeFolder() {
     setLastTapTime(now);
 }
 
-    function handleSetFocusItemTrue() { //click on one, other goes false
-        setIconState(prevIcons => prevIcons.map(icon => ({
-          ...icon,
-          focus: false
-        })));
-        setResumeExpand(prev => ({...prev, focusItem: true}))
-        setMybioExpand(prev => ({...prev, focusItem: false}))
-        setProjectExpand(prev => ({...prev, focusItem: false}))
-        setMailExpand(prev => ({...prev, focusItem: false}))
-        setNoteExpand(prev => ({...prev, focusItem: false}))
-        setNftExpand(prev => ({...prev, focusItem: false}))
-        setTypeExpand(prev => ({...prev, focusItem: false}))
-        setWinampExpand(prev => ({...prev, focusItem: false, focus: false}))
-        setResumeFileExpand(prev => ({...prev, focusItem: false}))
-    }
-
 
   return (
     <>
@@ -89,12 +73,12 @@ function ResumeFolder() {
           y: window.innerWidth <= 500 ? 30 : 80,
         }}
         onStop={(event, data) => handleDragStop(event, data)}
-        onStart={handleSetFocusItemTrue}
+        onStart={() => handleSetFocusItemTrue('Resume')}
       >
         <div className='folder_folder' 
             onClick={(e) => {
               e.stopPropagation();
-              handleSetFocusItemTrue();
+              handleSetFocusItemTrue('Resume');
             }}
             style={ ResumeExpand.expand ? 
             {

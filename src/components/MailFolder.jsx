@@ -28,6 +28,7 @@ function MailFolder() {
     isTouchDevice,
     setIconState,
     clippyThanksYouFunction,
+    handleSetFocusItemTrue,
    } = useContext(UseContext);
 
 // ---------------------- EMAIL JS ---------------------------------------
@@ -84,21 +85,7 @@ const form = useRef();
     setLastTapTime(now);
 }
 
-    function handleSetFocusItemTrue() { //click on one, other goes false
-          setIconState(prevIcons => prevIcons.map(icon => ({
-            ...icon,
-            focus: false
-        })));
-        setMailExpand(prev => ({...prev, focusItem: true}))
-        setMybioExpand(prev => ({...prev, focusItem: false}))
-        setResumeExpand(prev => ({...prev, focusItem: false}))
-        setProjectExpand(prev => ({...prev, focusItem: false}))
-        setNoteExpand(prev => ({...prev, focusItem: false}))
-        setNftExpand(prev => ({...prev, focusItem: false}))
-        setTypeExpand(prev => ({...prev, focusItem: false}))
-        setWinampExpand(prev => ({...prev, focus: false, focusItem: false}))
-        setResumeFileExpand(prev => ({...prev, focusItem: false}))
-    }
+
 
 
   return (
@@ -115,12 +102,12 @@ const form = useRef();
           y: window.innerWidth <= 500 ? 40 : 120,
         }}
         onStop={(event, data) => handleDragStop(event, data)}
-        onStart={handleSetFocusItemTrue}
+        onStart={() => handleSetFocusItemTrue('Mail')}
       >
         <div className='folder_folder-mail' 
             onClick={(e) => {
               e.stopPropagation();
-              handleSetFocusItemTrue();
+              handleSetFocusItemTrue('Mail');
             }}
             style={ MailExpand.expand ? 
             {

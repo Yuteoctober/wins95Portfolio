@@ -26,6 +26,7 @@ function ProjectFolder() {
     iconState, setIconState,
     handleShow,
     handleShowMobile,
+    handleSetFocusItemTrue,
 
    } = useContext(UseContext);
 
@@ -58,22 +59,6 @@ function ProjectFolder() {
     setLastTapTime(now);
 }
 
-    function handleSetFocusItemTrue() { //click on one, other goes false
-        setIconState(prevIcons => prevIcons.map(icon => ({
-          ...icon,
-          focus: false
-        })));
-        setProjectExpand(prev => ({...prev, focusItem: true}))
-        setMybioExpand(prev => ({...prev, focusItem: false}))
-        setResumeExpand(prev => ({...prev, focusItem: false}))
-        setMailExpand(prev => ({...prev, focusItem: false}))
-        setNoteExpand(prev => ({...prev, focusItem: false}))
-        setNftExpand(prev => ({...prev, focusItem: false}))
-        setTypeExpand(prev => ({...prev, focusItem: false}))
-        setWinampExpand(prev => ({...prev, focusItem: false, focus: false}))
-        setResumeFileExpand(prev => ({...prev, focusItem: false}))
-    }
-
 
   return (
     <>
@@ -89,12 +74,12 @@ function ProjectFolder() {
           y: window.innerWidth <= 500 ? 40 : 160,
         }}
         onStop={(event, data) => handleDragStop(event, data)}
-        onStart={handleSetFocusItemTrue}
+        onStart={() => handleSetFocusItemTrue('Project')}
       >
         <div className='folder_folder-project' 
             onClick={(e) => {
               e.stopPropagation();
-              handleSetFocusItemTrue();
+              handleSetFocusItemTrue('Project');
             }}
             style={ ProjectExpand.expand ? 
             {
