@@ -185,14 +185,14 @@ function ResumeFile() {
             </div>
           </div>
           <div className="folder_content-resumefile"
-            onClick={() => setResumeFileExpand(prev => ({...prev, item_1Focus: false}))}
             style={ResumeFileExpand.expand ? 
               { height: 'calc(100svh - 110px)'} /// fullscreen btm nav
               : 
               {}
             }
           >
-            <iframe src="https://drive.google.com/file/d/1XNn23UA2L82P2__Ccuccl3WMdR2rHG57/preview" 
+            <iframe 
+              src="https://drive.google.com/file/d/1XNn23UA2L82P2__Ccuccl3WMdR2rHG57/preview" 
               allowFullScreen="true"
               frameBorder='0'
             >

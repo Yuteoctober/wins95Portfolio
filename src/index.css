@@ -310,6 +310,7 @@ body {
     position: relative;
     top: 1px;
     font-size: 13px;
+    white-space: nowrap;
 }
 
 .start_popup .winamp img {

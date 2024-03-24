@@ -40,7 +40,7 @@ function App() {
     expand: false, // fullscreen
     show: false, // show folder when double clicked
     hide: false, // hide folder to the tap
-    focusItem: true, // devide if item is being clicked on or not
+    focusItem: true, // decide if item is being clicked on or not
     x: 0, y: 0, // position before fullscreen
   });
   const [ResumeExpand, setResumeExpand] = useState(
@@ -79,366 +79,92 @@ function App() {
 );
 
 function handleShow(name) {
-      
-  switch (name) {
-      case 'My Bio': 
-          setMybioExpand(prev => ({...prev, show: true, focusItem: true, hide: false}));
-          setResumeExpand(prev => ({...prev, focusItem: false}));
-          setProjectExpand(prev => ({...prev, focusItem: false}));
-          setMailExpand(prev => ({...prev, focusItem: false}));
-          setNftExpand(prev => ({...prev, focusItem: false}));
-          setNoteExpand(prev => ({...prev, focusItem: false}));
-          setTypeExpand(prev => ({...prev, focusItem: false}));
-          setWinampExpand(prev => ({...prev, focusItem: false}));
-          setResumeFileExpand(prev => ({...prev, focusItem: false}));
-          if (tap.includes('My Bio')) {
-            setMybioExpand(prev => ({...prev, hide: false}))
-            return;
-          }
-          setTap(prevTap => [...prevTap, 'My Bio']); // put bio in []
-          setIconState(prevIcons => prevIcons.map(icon => ({ // unhighlight icon
-              ...icon,
-              focus: false
-          })));
-          break;
 
-      case 'Resume': 
-          setResumeExpand(prev => ({...prev, show: true, focusItem: true, hide: false}));
-          setMybioExpand(prev => ({...prev, focusItem: false}));
-          setProjectExpand(prev => ({...prev, focusItem: false}));
-          setMailExpand(prev => ({...prev, focusItem: false}));
-          setNftExpand(prev => ({...prev, focusItem: false}));
-          setNoteExpand(prev => ({...prev, focusItem: false}));
-          setTypeExpand(prev => ({...prev, focusItem: false}));
-          setWinampExpand(prev => ({...prev, focusItem: false}));
-          setResumeFileExpand(prev => ({...prev, focusItem: false}));
-          if(tap.includes('Resume')) return;
-          setTap(prevTap => [...prevTap, 'Resume']);
-          setIconState(prevIcons => prevIcons.map(icon => ({
-              ...icon,
-              focus: false
-          })));
-          break;
+  const lowerCaseName = name.toLowerCase().split(' ').join('');
 
-      case 'Project': 
-          setProjectExpand(prev => ({...prev, show: true, focusItem: true, hide: false}));
-          setResumeExpand(prev => ({...prev, focusItem: false}));
-          setMybioExpand(prev => ({...prev, focusItem: false}));
-          setMailExpand(prev => ({...prev, focusItem: false}));
-          setNftExpand(prev => ({...prev, focusItem: false}));
-          setNoteExpand(prev => ({...prev, focusItem: false}));
-          setTypeExpand(prev => ({...prev, focusItem: false}));
-          setWinampExpand(prev => ({...prev, focusItem: false}));
-          setResumeFileExpand(prev => ({...prev, focusItem: false}));
-          if(tap.includes('Project')) return;
-          setTap(prevTap => [...prevTap, 'Project'])
-          setIconState(prevIcons => prevIcons.map(icon => ({
-            ...icon,
-            focus: false
-        })));
-        break;
+  const allSetItems = // all the usestate name to toggle
+  [
+    { name: 'Mybio', setter: setMybioExpand }, 
+    { name: 'Resume', setter: setResumeExpand },
+    { name: 'Project', setter: setProjectExpand },
+    { name: 'Mail', setter: setMailExpand },
+    { name: 'Nft', setter: setNftExpand },
+    { name: 'Note', setter: setNoteExpand },
+    { name: 'Type', setter: setTypeExpand },
+    { name: 'Winamp', setter: setWinampExpand },
+    { name: 'ResumeFile', setter: setResumeFileExpand }
+  ];
 
-      case 'Mail': 
-          setMailExpand(prev => ({...prev, show: true, focusItem: true, hide: false}));
-          setResumeExpand(prev => ({...prev, focusItem: false}));
-          setMybioExpand(prev => ({...prev, focusItem: false}));
-          setProjectExpand(prev => ({...prev, focusItem: false}));
-          setNftExpand(prev => ({...prev, focusItem: false}));
-          setNoteExpand(prev => ({...prev, focusItem: false}));
-          setTypeExpand(prev => ({...prev, focusItem: false}));
-          setWinampExpand(prev => ({...prev, focusItem: false}));
-          setResumeFileExpand(prev => ({...prev, focusItem: false}));
-          clippySendemailfunction()
-          if(tap.includes('Mail')) return;
-          setTap(prevTap => [...prevTap, 'Mail'])
-          setIconState(prevIcons => prevIcons.map(icon => ({
-            ...icon,
-            focus: false
-        })));
-        break;
+  allSetItems.forEach((item) => {
 
-      case 'Nft': 
-          setNftExpand(prev => ({...prev, show: true, focusItem: true, hide: false}));
-          setResumeExpand(prev => ({...prev, focusItem: false}));
-          setMybioExpand(prev => ({...prev, focusItem: false}));
-          setProjectExpand(prev => ({...prev, focusItem: false}));
-          setMailExpand(prev => ({...prev, focusItem: false}));
-          setNoteExpand(prev => ({...prev, focusItem: false}));
-          setTypeExpand(prev => ({...prev, focusItem: false}));
-          setWinampExpand(prev => ({...prev, focusItem: false}));
-          setResumeFileExpand(prev => ({...prev, focusItem: false}));
-      if(tap.includes('Nft')) return;
-          setTap(prevTap => [...prevTap, 'Nft'])
-          setIconState(prevIcons => prevIcons.map(icon => ({
-            ...icon,
-            focus: false
-        })));
-        break;
+    const itemName = item.name.toLowerCase().trim();
+    
+    if(itemName === lowerCaseName) {
+      item.setter(prev => ({...prev, show: true, focusItem: true, hide: false}));
+    }
+    if(itemName !== lowerCaseName) {
+      item.setter(prev => ({...prev, focusItem: false}));
+    }
+    if(itemName === lowerCaseName) {
+      item.setter(prev => ({...prev, hide: false}));
+      return;
+    }
+  });
+  if(tap.includes(name)) return;
 
-      case 'Note': 
-          setNoteExpand(prev => ({...prev, show: true, focusItem: true, hide: false}));
-          setResumeExpand(prev => ({...prev, focusItem: false}));
-          setMybioExpand(prev => ({...prev, focusItem: false}));
-          setProjectExpand(prev => ({...prev, focusItem: false}));
-          setNftExpand(prev => ({...prev, focusItem: false}));
-          setMailExpand(prev => ({...prev, focusItem: false}));
-          setTypeExpand(prev => ({...prev, focusItem: false}));
-          setWinampExpand(prev => ({...prev, focusItem: false}));
-          setResumeFileExpand(prev => ({...prev, focusItem: false}));
-      if(tap.includes('Note')) return;
-          setTap(prevTap => [...prevTap, 'Note'])
-          setIconState(prevIcons => prevIcons.map(icon => ({
-            ...icon,
-            focus: false
-      })));
-      break;
+  setTap(prevTap => [...prevTap, name]);
+  setIconState(prevIcons => prevIcons.map(icon => ({...icon, focus: false})));
 
-      case 'Type': 
-          setTypeExpand(prev => ({...prev, show: true, focusItem: true, hide: false}));
-          setResumeExpand(prev => ({...prev, focusItem: false}));
-          setMybioExpand(prev => ({...prev, focusItem: false}));
-          setProjectExpand(prev => ({...prev, focusItem: false}));
-          setNftExpand(prev => ({...prev, focusItem: false}));
-          setNoteExpand(prev => ({...prev, focusItem: false}));
-          setMailExpand(prev => ({...prev, focusItem: false}));
-          setWinampExpand(prev => ({...prev, focusItem: false}));
-          setResumeFileExpand(prev => ({...prev, focusItem: false}));
-      if(tap.includes('Type')) return;
-          setTap(prevTap => [...prevTap, 'Type'])
-          setIconState(prevIcons => prevIcons.map(icon => ({
-            ...icon,
-            focus: false
-      })));
-      break;
-
-      case 'Winamp': 
-      if (WinampExpand.hide) {
-        const webampElement = document.querySelector('#webamp');
-        if (webampElement) {
-            webampElement.style.opacity = 1;
-            webampElement.style.pointerEvents = 'auto';
-            webampElement.style.touchAction = 'auto'
-            setWinampExpand(prev => ({...prev, hide: false}));
-        }
-    }     clippySongFunction() // call clippy function to show
-          setWinampExpand(prev => ({...prev, show: true, focusItem: true, focus: false}));
-          setResumeExpand(prev => ({...prev, focusItem: false}));
-          setMybioExpand(prev => ({...prev, focusItem: false}));
-          setProjectExpand(prev => ({...prev, focusItem: false}));
-          setNftExpand(prev => ({...prev, focusItem: false}));
-          setNoteExpand(prev => ({...prev, focusItem: false}));
-          setMailExpand(prev => ({...prev, focusItem: false}));
-          setTypeExpand(prev => ({...prev, focusItem: false}));
-          setResumeFileExpand(prev => ({...prev, focusItem: false}));
-      if(tap.includes('Winamp')) return;
-          setTap(prevTap => [...prevTap, 'Winamp'])
-          setIconState(prevIcons => prevIcons.map(icon => ({
-          ...icon,
-          focus: false
-    })));
-    break;
-
-    case 'ResumeFile': 
-        setResumeFileExpand(prev => ({...prev, show: true, focusItem: true, hide: false}));
-        setResumeExpand(prev => ({...prev, focusItem: false}));
-        setMybioExpand(prev => ({...prev, focusItem: false}));
-        setProjectExpand(prev => ({...prev, focusItem: false}));
-        setNftExpand(prev => ({...prev, focusItem: false}));
-        setNoteExpand(prev => ({...prev, focusItem: false}));
-        setMailExpand(prev => ({...prev, focusItem: false}));
-        setWinampExpand(prev => ({...prev, focusItem: false}));
-        setTypeExpand(prev => ({...prev, focusItem: false}));
-    if(tap.includes('ResumeFile')) return;
-        setTap(prevTap => [...prevTap, 'ResumeFile'])
-        setIconState(prevIcons => prevIcons.map(icon => ({
-          ...icon,
-          focus: false
-    })));
-    break;
-
-  }
 }
 
+
 function handleShowMobile(name) {
-const now = Date.now()
-if (now - lastTapTime < 300) {
-  switch (name) {
-    case 'My Bio': 
-      setMybioExpand(prev => ({...prev, show: true, focusItem: true, hide: false})); 
-      setResumeExpand(prev => ({...prev, focusItem: false})); 
-      setProjectExpand(prev => ({...prev, focusItem: false}));
-      setMailExpand(prev => ({...prev, focusItem: false}));
-      setNftExpand(prev => ({...prev, focusItem: false}));
-      setNoteExpand(prev => ({...prev, focusItem: false}));
-      setTypeExpand(prev => ({...prev, focusItem: false}));
-      setWinampExpand(prev => ({...prev, focusItem: false}));
-      setResumeFileExpand(prev => ({...prev, focusItem: false}));
-    if(tap.includes('My Bio')) return;
-      setTap(prevTap => [...prevTap, 'My Bio'])
-      setIconState(prevIcons => prevIcons.map(icon => ({
-        ...icon,
-        focus: false
-    })));
-    break;
 
-    case 'Resume': 
-      setResumeExpand(prev => ({...prev, show: true, focusItem: true, hide: false}));
-      setMybioExpand(prev => ({...prev, focusItem: false}));
-      setProjectExpand(prev => ({...prev, focusItem: false}));
-      setMailExpand(prev => ({...prev, focusItem: false}));
-      setNftExpand(prev => ({...prev, focusItem: false}));
-      setNoteExpand(prev => ({...prev, focusItem: false}));
-      setTypeExpand(prev => ({...prev, focusItem: false}));
-      setWinampExpand(prev => ({...prev, focusItem: false}));
-      setResumeFileExpand(prev => ({...prev, focusItem: false}));
-    if(tap.includes('Resume')) return;
-      setTap(prevTap => [...prevTap, 'Resume'])
-      setIconState(prevIcons => prevIcons.map(icon => ({
-        ...icon,
-        focus: false
-    })));
-    break;
+  const now = Date.now()
+  if (now - lastTapTime < 300) {
 
-    case 'Project': 
-      setProjectExpand(prev => ({...prev, show: true, focusItem: true, hide: false}));
-      setResumeExpand(prev => ({...prev, focusItem: false}));
-      setMybioExpand(prev => ({...prev, focusItem: false}));
-      setMailExpand(prev => ({...prev, focusItem: false}));
-      setNftExpand(prev => ({...prev, focusItem: false}));
-      setNoteExpand(prev => ({...prev, focusItem: false}));
-      setTypeExpand(prev => ({...prev, focusItem: false}));
-      setWinampExpand(prev => ({...prev, focusItem: false}));
-      setResumeFileExpand(prev => ({...prev, focusItem: false}));
-    if(tap.includes('Project')) return;
-      setTap(prevTap => [...prevTap, 'Project'])
-      setIconState(prevIcons => prevIcons.map(icon => ({
-        ...icon,
-        focus: false
-    })));
-    break;
+  
 
-    case 'Mail': 
-        setMailExpand(prev => ({...prev, show: true, focusItem: true, hide: false}));
-        setResumeExpand(prev => ({...prev, focusItem: false}));
-        setMybioExpand(prev => ({...prev, focusItem: false}));
-        setProjectExpand(prev => ({...prev, focusItem: false}));
-        setNftExpand(prev => ({...prev, focusItem: false}));
-        setNoteExpand(prev => ({...prev, focusItem: false}));
-        setTypeExpand(prev => ({...prev, focusItem: false}));
-        setWinampExpand(prev => ({...prev, focusItem: false}));
-        setResumeFileExpand(prev => ({...prev, focusItem: false}));
-        clippySendemailfunction()
-    if(tap.includes('Mail')) return;
-        setTap(prevTap => [...prevTap, 'Mail'])
-        setIconState(prevIcons => prevIcons.map(icon => ({
-          ...icon,
-          focus: false
-    })));
-    break;
+  const lowerCaseName = name.toLowerCase().split(' ').join('');
 
-    case 'Nft': 
-        setNftExpand(prev => ({...prev, show: true, focusItem: true, hide: false}));
-        setResumeExpand(prev => ({...prev, focusItem: false}));
-        setMybioExpand(prev => ({...prev, focusItem: false}));
-        setProjectExpand(prev => ({...prev, focusItem: false}));
-        setMailExpand(prev => ({...prev, focusItem: false}));
-        setNoteExpand(prev => ({...prev, focusItem: false}));
-        setTypeExpand(prev => ({...prev, focusItem: false}));
-        setWinampExpand(prev => ({...prev, focusItem: false}));
-        setResumeFileExpand(prev => ({...prev, focusItem: false}));
-    if(tap.includes('Nft')) return;
-        setTap(prevTap => [...prevTap, 'Nft'])
-        setIconState(prevIcons => prevIcons.map(icon => ({
-          ...icon,
-          focus: false
-    })));
-    break;
+  const allSetItems = 
+  [
+    { name: 'Mybio', setter: setMybioExpand }, // all the usestate name to toggle
+    { name: 'Resume', setter: setResumeExpand },
+    { name: 'Project', setter: setProjectExpand },
+    { name: 'Mail', setter: setMailExpand },
+    { name: 'Nft', setter: setNftExpand },
+    { name: 'Note', setter: setNoteExpand },
+    { name: 'Type', setter: setTypeExpand },
+    { name: 'Winamp', setter: setWinampExpand },
+    { name: 'ResumeFile', setter: setResumeFileExpand }
+  ];
 
-    case 'Note': 
-        setNoteExpand(prev => ({...prev, show: true, focusItem: true, hide: false}));
-        setResumeExpand(prev => ({...prev, focusItem: false}));
-        setMybioExpand(prev => ({...prev, focusItem: false}));
-        setProjectExpand(prev => ({...prev, focusItem: false}));
-        setNftExpand(prev => ({...prev, focusItem: false}));
-        setMailExpand(prev => ({...prev, focusItem: false}));
-        setTypeExpand(prev => ({...prev, focusItem: false}));
-        setWinampExpand(prev => ({...prev, focusItem: false}));
-        setResumeFileExpand(prev => ({...prev, focusItem: false}));
-    if(tap.includes('Note')) return;
-        setTap(prevTap => [...prevTap, 'Note'])
-        setIconState(prevIcons => prevIcons.map(icon => ({
-          ...icon,
-          focus: false
-    })));
-    break;
+  allSetItems.forEach((item) => {
 
-    case 'Type': 
-        setTypeExpand(prev => ({...prev, show: true, focusItem: true, hide: false}));
-        setResumeExpand(prev => ({...prev, focusItem: false}));
-        setMybioExpand(prev => ({...prev, focusItem: false}));
-        setProjectExpand(prev => ({...prev, focusItem: false}));
-        setNftExpand(prev => ({...prev, focusItem: false}));
-        setNoteExpand(prev => ({...prev, focusItem: false}));
-        setMailExpand(prev => ({...prev, focusItem: false}));
-        setWinampExpand(prev => ({...prev, focusItem: false}));
-        setResumeFileExpand(prev => ({...prev, focusItem: false}));
-    if(tap.includes('Type')) return;
-        setTap(prevTap => [...prevTap, 'Type'])
-        setIconState(prevIcons => prevIcons.map(icon => ({
-          ...icon,
-          focus: false
-    })));
-    break;
-
-    case 'Winamp': 
-    if (WinampExpand.hide) {
-      const webampElement = document.querySelector('#webamp');
-      if (webampElement) {
-          webampElement.style.opacity = 1;
-          webampElement.style.pointerEvents = 'auto';
-          webampElement.style.touchAction = 'auto'
-          setWinampExpand(prev => ({...prev, hide: false}));
-      }
-  }     
-        clippySongFunction() // call clippy function to show
-        setWinampExpand(prev => ({...prev, show: true, focusItem: true, focus: false}));
-        setResumeExpand(prev => ({...prev, focusItem: false}));
-        setMybioExpand(prev => ({...prev, focusItem: false}));
-        setProjectExpand(prev => ({...prev, focusItem: false}));
-        setNftExpand(prev => ({...prev, focusItem: false}));
-        setNoteExpand(prev => ({...prev, focusItem: false}));
-        setMailExpand(prev => ({...prev, focusItem: false}));
-        setTypeExpand(prev => ({...prev, focusItem: false}));
-        setResumeFileExpand(prev => ({...prev, focusItem: false}));
-    if(tap.includes('Winamp')) return;
-        setTap(prevTap => [...prevTap, 'Winamp'])
-        setIconState(prevIcons => prevIcons.map(icon => ({
-          ...icon,
-          focus: false
-    })));
-    break;
-
-    case 'ResumeFile': 
-        setResumeFileExpand(prev => ({...prev, show: true, focusItem: true, hide: false}));
-        setResumeExpand(prev => ({...prev, focusItem: false}));
-        setMybioExpand(prev => ({...prev, focusItem: false}));
-        setProjectExpand(prev => ({...prev, focusItem: false}));
-        setNftExpand(prev => ({...prev, focusItem: false}));
-        setNoteExpand(prev => ({...prev, focusItem: false}));
-        setMailExpand(prev => ({...prev, focusItem: false}));
-        setWinampExpand(prev => ({...prev, focusItem: false}));
-        setTypeExpand(prev => ({...prev, focusItem: false}));
-    if(tap.includes('ResumeFile')) return;
-        setTap(prevTap => [...prevTap, 'ResumeFile'])
-        setIconState(prevIcons => prevIcons.map(icon => ({
-          ...icon,
-          focus: false
-    })));
-    break;
-
+    const itemName = item.name.toLowerCase().trim();
+    
+    
+    if(itemName === lowerCaseName) {
+      item.setter(prev => ({...prev, show: true, focusItem: true, hide: false}));
     }
-}  
-setLastTapTime(now)
+    if(itemName !== lowerCaseName) {
+      item.setter(prev => ({...prev, focusItem: false}));
+    }
+    
+    if(itemName === lowerCaseName) {
+      item.setter(prev => ({...prev, hide: false}));
+      return;
+    }
+  });
+
+  if(tap.includes(name)) return;
+
+  setTap(prevTap => [...prevTap, name]);
+  setIconState(prevIcons => prevIcons.map(icon => ({...icon, focus: false})));
+
+  }
+  setLastTapTime(now)
 }
 
 

@@ -130,114 +130,31 @@ export default function Footer() {
     };
 
     function handleHideFolder(index) {
-        switch(tap[index]) {
-            case 'My Bio':
-                if(MybioExpand.hide) {
-                    setMybioExpand(prev => ({...prev, hide: false}));
-                }
-                setMybioExpand(prev => ({...prev, focusItem: true}));
-                setResumeExpand(prev => ({...prev, focusItem: false}));
-                setProjectExpand(prev => ({...prev, focusItem: false}));
-                setMailExpand(prev => ({...prev, focusItem: false}));
-                setNftExpand(prev => ({...prev, focusItem: false}));
-                setNoteExpand(prev => ({...prev, focusItem: false}));
-                setTypeExpand(prev => ({...prev, focusItem: false}));
-                setWinampExpand(prev => ({...prev, focusItem: false}));
-                setResumeFileExpand(prev => ({...prev, focusItem: false}));
-                break;
-                
-            case 'Resume':
-                if(ResumeExpand.hide) {
-                    setResumeExpand(prev => ({...prev, hide: false}));
-                }
-                setResumeExpand(prev => ({...prev, focusItem: true}));
-                setMybioExpand(prev => ({...prev, focusItem: false}));
-                setProjectExpand(prev => ({...prev, focusItem: false}));
-                setMailExpand(prev => ({...prev, focusItem: false}));
-                setNftExpand(prev => ({...prev, focusItem: false}));
-                setNoteExpand(prev => ({...prev, focusItem: false}));
-                setTypeExpand(prev => ({...prev, focusItem: false}));
-                setWinampExpand(prev => ({...prev, focusItem: false}));
-                setResumeFileExpand(prev => ({...prev, focusItem: false}));
-                break;
-    
-            case 'Project':
-                if(ProjectExpand.hide) {
-                    setProjectExpand(prev => ({...prev, hide: false}));
-                }
-                setProjectExpand(prev => ({...prev, focusItem: true}));
-                setMybioExpand(prev => ({...prev, focusItem: false}));
-                setResumeExpand(prev => ({...prev, focusItem: false}));
-                setMailExpand(prev => ({...prev, focusItem: false}));
-                setNftExpand(prev => ({...prev, focusItem: false}));
-                setNoteExpand(prev => ({...prev, focusItem: false}));
-                setTypeExpand(prev => ({...prev, focusItem: false}));
-                setWinampExpand(prev => ({...prev, focusItem: false}));
-                setResumeFileExpand(prev => ({...prev, focusItem: false}));
-                break;
-    
-            case 'Mail':
-                if(MailExpand.hide) {
-                    setMailExpand(prev => ({...prev, hide: false}));
-                }
-                setMailExpand(prev => ({...prev, focusItem: true}));
-                setMybioExpand(prev => ({...prev, focusItem: false}));
-                setResumeExpand(prev => ({...prev, focusItem: false}));
-                setProjectExpand(prev => ({...prev, focusItem: false}));
-                setNftExpand(prev => ({...prev, focusItem: false}));
-                setNoteExpand(prev => ({...prev, focusItem: false}));
-                setTypeExpand(prev => ({...prev, focusItem: false}));
-                setWinampExpand(prev => ({...prev, focusItem: false}));
-                setResumeFileExpand(prev => ({...prev, focusItem: false}));
-                break;
 
-            case 'Nft':
-                if(NftExpand.hide) {
-                    setNftExpand(prev => ({...prev, hide: false}));
-                }
-                setNftExpand(prev => ({...prev, focusItem: true}));
-                setMybioExpand(prev => ({...prev, focusItem: false}));
-                setResumeExpand(prev => ({...prev, focusItem: false}));
-                setProjectExpand(prev => ({...prev, focusItem: false}));
-                setMailExpand(prev => ({...prev, focusItem: false}));
-                setNoteExpand(prev => ({...prev, focusItem: false}));
-                setTypeExpand(prev => ({...prev, focusItem: false}));
-                setWinampExpand(prev => ({...prev, focusItem: false}));
-                setResumeFileExpand(prev => ({...prev, focusItem: false}));
-                break;
-
-            case 'Note':
-                if(NoteExpand.hide) {
-                    setNoteExpand(prev => ({...prev, hide: false}));
-                }
-                setNoteExpand(prev => ({...prev, focusItem: true}));
-                setMybioExpand(prev => ({...prev, focusItem: false}));
-                setResumeExpand(prev => ({...prev, focusItem: false}));
-                setProjectExpand(prev => ({...prev, focusItem: false}));
-                setMailExpand(prev => ({...prev, focusItem: false}));
-                setNftExpand(prev => ({...prev, focusItem: false}));
-                setTypeExpand(prev => ({...prev, focusItem: false}));
-                setWinampExpand(prev => ({...prev, focusItem: false}));
-                setResumeFileExpand(prev => ({...prev, focusItem: false}));
-                break;
-
-            case 'Type':
-                if(TypeExpand.hide) {
-                    setTypeExpand(prev => ({...prev, hide: false}));
-                }
-                setTypeExpand(prev => ({...prev, focusItem: true}));
-                setMybioExpand(prev => ({...prev, focusItem: false}));
-                setResumeExpand(prev => ({...prev, focusItem: false}));
-                setProjectExpand(prev => ({...prev, focusItem: false}));
-                setMailExpand(prev => ({...prev, focusItem: false}));
-                setNoteExpand(prev => ({...prev, focusItem: false}));
-                setNftExpand(prev => ({...prev, focusItem: false}));
-                setWinampExpand(prev => ({...prev, focusItem: false}));
-                setResumeFileExpand(prev => ({...prev, focusItem: false}));
-                break;
-
-            case 'Winamp':
-                if (WinampExpand.hide) {
+        const lowerCaseName = tap[index].toLowerCase().split(' ').join('');
+      
+        const allSetItems = 
+        [
+          { name: 'Mybio', setter: setMybioExpand, usestate: MybioExpand}, // all the usestate name to toggle
+          { name: 'Resume', setter: setResumeExpand, usestate: ResumeExpand },
+          { name: 'Project', setter: setProjectExpand, usestate: ProjectExpand },
+          { name: 'Mail', setter: setMailExpand, usestate: MailExpand },
+          { name: 'Nft', setter: setNftExpand, usestate: NftExpand},
+          { name: 'Note', setter: setNoteExpand, usestate: NoteExpand },
+          { name: 'Type', setter: setTypeExpand, usestate: TypeExpand },
+          { name: 'Winamp', setter: setWinampExpand, usestate: WinampExpand },
+          { name: 'ResumeFile', setter: setResumeFileExpand, usestate: ResumeFileExpand }
+        ];
+      
+        allSetItems.forEach((item) => {
+      
+          const itemName = item.name.toLowerCase().trim();
+          
+          if(itemName === lowerCaseName) {
+            item.setter(prev => ({...prev, focusItem: true}));
+            if(item.usestate.hide) {
+                item.setter(prev => ({...prev, hide: false}));  
+                if(item.name === 'winamp') {
                     const webampElement = document.querySelector('#webamp');
                     if (webampElement) {
                         webampElement.style.opacity = 1;
@@ -245,37 +162,15 @@ export default function Footer() {
                         webampElement.style.touchAction = 'auto'
                         setWinampExpand(prev => ({...prev, hide: false}));
                     }
-                } 
-                setWinampExpand(prev => ({...prev, focusItem: true}));
-                setMybioExpand(prev => ({...prev, focusItem: false}));
-                setResumeExpand(prev => ({...prev, focusItem: false}));
-                setProjectExpand(prev => ({...prev, focusItem: false}));
-                setMailExpand(prev => ({...prev, focusItem: false}));
-                setNoteExpand(prev => ({...prev, focusItem: false}));
-                setNftExpand(prev => ({...prev, focusItem: false}));
-                setTypeExpand(prev => ({...prev, focusItem: false}));
-                setResumeFileExpand(prev => ({...prev, focusItem: false}));
-                break;
-
-                case 'ResumeFile':
-                if(ResumeFileExpand.hide) {
-                    setResumeFileExpand(prev => ({...prev, hide: false}));
                 }
-                setResumeFileExpand(prev => ({...prev, focusItem: true}));
-                setMybioExpand(prev => ({...prev, focusItem: false}));
-                setResumeExpand(prev => ({...prev, focusItem: false}));
-                setProjectExpand(prev => ({...prev, focusItem: false}));
-                setMailExpand(prev => ({...prev, focusItem: false}));
-                setNoteExpand(prev => ({...prev, focusItem: false}));
-                setNftExpand(prev => ({...prev, focusItem: false}));
-                setWinampExpand(prev => ({...prev, focusItem: false}));
-                setTypeExpand(prev => ({...prev, focusItem: false}));
-                break;
+            }
+          }
 
-
-        }
-    }
-    
+          if(itemName !== lowerCaseName) {
+            item.setter(prev => ({...prev, focusItem: false}));
+          }
+        });
+      }
 
     useEffect(() => { // display clippy when windows start
         clearTimeout(firstTimoutShowclippy.current)
