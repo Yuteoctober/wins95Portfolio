@@ -104,6 +104,8 @@ function handleShow(name) {
     
     if(itemName === lowerCaseName) {
       item.setter(prev => ({...prev, show: true, focusItem: true, hide: false}));
+      if(lowerCaseName === 'mail') clippySendemailfunction();
+      if(lowerCaseName === 'winamp') clippySongFunction();
     }
     if(itemName !== lowerCaseName) {
       item.setter(prev => ({...prev, focusItem: false}));
@@ -139,6 +141,8 @@ function handleShowMobile(name) {
     
     if(itemName === lowerCaseName) {
       item.setter(prev => ({...prev, show: true, focusItem: true, hide: false}));
+      if(lowerCaseName === 'mail') clippySendemailfunction();
+      if(lowerCaseName === 'winamp') clippySongFunction();
     }
     if(itemName !== lowerCaseName) {
       item.setter(prev => ({...prev, focusItem: false}));
@@ -293,8 +297,7 @@ function handleShowMobile(name) {
     return {};
   };
   
-  
- 
+
 
   const contextValue = {
     startActive, setStartActive,
@@ -339,6 +342,8 @@ function handleShowMobile(name) {
     inlineStyleExpand,
     inlineStyle,
   }
+
+ 
 
   return (
     <>
