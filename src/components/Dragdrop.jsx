@@ -93,7 +93,7 @@ function Dragdrop() {
                         handleFocusIcon(icon.name);
                       }}
                     >
-                    <img src={imageMapping[icon.pic]} alt='#' className={icon.focus? 'img_focus' : ''}/>
+                    <img src={imageMapping(icon.pic)} alt='#' className={icon.focus? 'img_focus' : ''}/>
                         <p className={icon.focus? 'p_focus' : ''} >
                           {icon.name}
                         </p>

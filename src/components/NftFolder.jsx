@@ -186,7 +186,7 @@ function NftFolder() {
             <div className="item_container">
               <div className='item_1'
                 onDoubleClick={ !isTouchDevice ?() => handleDoubleClickEnterLink('Nft'): undefined} 
-                onTouchEnd={() => handleDoubleTapEnterMobile('Nft')}
+                onTouchEnd={() => handleDoubleTapEnterMobile('Nft', lastTapTime, setLastTapTime)}
                 onClick={(e) => {
                   e.stopPropagation();
                   setNftExpand(prev => ({...prev, item_1Focus: true}));

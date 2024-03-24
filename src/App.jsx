@@ -11,13 +11,9 @@ import NoteFolder from './components/NoteFolder';
 import TypeFolder from './components/TypeFolder';
 import ResumeFile from './components/ResumeFile';
 import iconInfo from './icon.json'
-import MyBio from './assets/pc.png'
-import Resume from './assets/folder.png'
-import Mail from './assets/mail.png'
-import Project from './assets/regFolder.png'
-import Winamp from './assets/winampIcon.png'
-import resumefile from './assets/resume.png'
-import { StyleHide } from './components/function/AppFunctions';
+import { StyleHide, imageMapping, 
+  handleDoubleClickEnterLink,
+  handleDoubleTapEnterMobile } from './components/function/AppFunctions';
 
 function App() {
   const ClearTOdonttouch = useRef(null);
@@ -446,33 +442,6 @@ setLastTapTime(now)
 }
 
 
-
-function handleDoubleClickEnterLink(name) {
-
-    switch(name) {
-      case 'Nft': window.open('https://opennft.netlify.app/', '_blank'); break;
-      case 'Note': window.open('https://fullstack-stickynotes.netlify.app/', '_blank'); break;
-      case 'Type': window.open('https://yuteoctober.github.io/typingGame/', '_blank'); break;
-      case 'Github': window.open('https://github.com/Yuteoctober/wins95Portfolio/', '_blank'); break;
-      default: break; 
-    }
-}
-
-
-function handleDoubleTapEnterMobile(name) {
-  const now = Date.now();
-  if (now - lastTapTime < 300) {
-    switch(name) {
-      case 'Nft': window.open('https://opennft.netlify.app/', '_blank'); break;
-      case 'Note': window.open('https://fullstack-stickynotes.netlify.app/', '_blank'); break;
-      case 'Type': window.open('https://yuteoctober.github.io/typingGame/', '_blank'); break;
-      case 'Github': window.open('https://github.com/Yuteoctober/wins95Portfolio/', '_blank'); break;
-      default: break; 
-    }
-  }
-  setLastTapTime(now);
-}
-
     useEffect(() => { // open Bio Folder when app starts
       handleShow('My Bio')
     },[])
@@ -535,17 +504,8 @@ function handleDoubleTapEnterMobile(name) {
   }
   
 
-const imageMapping = { // map json with import images
-  MyBio: MyBio,
-  Resume: Resume,
-  Mail: Mail,
-  Project: Project,
-  Nft: Project,
-  Note: Project,
-  Type: Project,
-  Winamp: Winamp,
-  ResumeFile: resumefile,
-};
+  
+ 
 
   const contextValue = {
     startActive, setStartActive,

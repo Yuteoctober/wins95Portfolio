@@ -186,7 +186,7 @@ function NoteFolder() {
             <div className="item_container">
               <div className='item_1'
                 onDoubleClick={ !isTouchDevice? () => handleDoubleClickEnterLink('Note') : undefined} 
-                onTouchEnd={() => handleDoubleTapEnterMobile('Note')}
+                onTouchEnd={() => handleDoubleTapEnterMobile('Note', lastTapTime, setLastTapTime)}
                 onClick={(e) => {
                   e.stopPropagation();
                   setNoteExpand(prev => ({...prev, item_1Focus: true}));

@@ -380,8 +380,7 @@ export default function Footer() {
                             TypeExpand, WinampExpand, ResumeFileExpand)}
                         >
                         {
-                        imageMapping[item] && 
-                        <img src={imageMapping[item]} alt={item} />
+                        <img src={imageMapping(item)} alt={item} />
                         }
                         <p>{item}</p>
                     </div>  

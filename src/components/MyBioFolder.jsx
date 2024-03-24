@@ -126,7 +126,7 @@ function MyBioFolder() {
           >
             <div className="bio_barname">
               <img src={MyBio} alt="MyBio" />
-              <span>MyBio</span>
+              <span>My Bio</span>
             </div>
             <div className="bio_barbtn">
               <div onClick={ !isTouchDevice ? (e) => {

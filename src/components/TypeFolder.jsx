@@ -186,7 +186,7 @@ function TypeFolder() {
             <div className="item_container">
               <div className='item_1'
                 onDoubleClick={ !isTouchDevice ? () => handleDoubleClickEnterLink('Type'): undefined}
-                onTouchEnd={() => handleDoubleTapEnterMobile('Type')}
+                onTouchEnd={() => handleDoubleTapEnterMobile('Type', lastTapTime, setLastTapTime)}
                 onClick={(e) => {
                   e.stopPropagation();
                   setTypeExpand(prev => ({...prev, item_1Focus: true}));
