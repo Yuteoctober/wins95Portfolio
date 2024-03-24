@@ -524,3 +524,22 @@
     //     setWinampExpand(prev => ({...prev, focusItem: false, focus: false}))
     //     setResumeFileExpand(prev => ({...prev, focusItem: false}))
     // }
+
+    // {
+    //     display: NoteExpand.show ? 'block' : '',
+    //     maxWidth: 'none',
+    //     width: '100%',
+    //     height: 'calc(100% - 37px)',
+    //     left: `${NoteExpand.x <= 0 ? Math.abs(NoteExpand.x)*2 + NoteExpand.x : -NoteExpand.x}px`,
+    //     top: `${NoteExpand.y <= 0 ? Math.abs(NoteExpand.y)*2 + NoteExpand.y : -NoteExpand.y}px`,
+    //     opacity: NoteExpand.hide ? '0' : '1',
+    //     zIndex: NoteExpand.hide ? '-1' : (NoteExpand.focusItem ? '999' : '3'),
+    //     pointerEvents: NoteExpand.hide ? 'none' : 'auto',
+    //     resize: NoteExpand.expand ? 'none' : '',
+    // } : { 
+    //     display: NoteExpand.show ? 'block' : '',
+    //     opacity: NoteExpand.hide ? '0' : '1',
+    //     zIndex: NoteExpand.hide ? '-1' : (NoteExpand.focusItem ? '999' : '3'),
+    //     pointerEvents: NoteExpand.hide ? 'none' : 'auto'
+        
+    // }

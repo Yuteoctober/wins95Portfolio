@@ -1,5 +1,5 @@
 import UseContext from '../Context'
-import { useContext, useState, useEffect, useRef } from "react";
+import { useContext } from "react";
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
 import file4 from '../assets/file4.png'
@@ -13,12 +13,7 @@ function NftFolder() {
     NftExpand, setNftExpand,
     setNoteExpand,
     setTypeExpand,
-    setResumeExpand,
-    setMybioExpand,
     setProjectExpand,
-    setMailExpand,
-    setWinampExpand,
-    setResumeFileExpand,
     tap, setTap,
     lastTapTime, setLastTapTime,
     StyleHide,

@@ -1,5 +1,5 @@
 import UseContext from '../Context'
-import { useContext, useState, useEffect, useRef } from "react";
+import { useContext } from "react";
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
 import MyBio from '../assets/pc.png'
@@ -12,21 +12,13 @@ function MyBioFolder() {
 
   const { 
     MybioExpand, setMybioExpand,
-    setResumeExpand,
-    setProjectExpand,
-    setMailExpand,
-    setNftExpand,
-    setNoteExpand,
-    setTypeExpand,
-    setWinampExpand,
-    setResumeFileExpand,
     tap, setTap,
     lastTapTime, setLastTapTime,
     StyleHide,
     isTouchDevice,
-    setIconState,
     handleSetFocusItemTrue,
-    
+    inlineStyleExpand,
+    inlineStyle,
 
    } = useContext(UseContext);
 
@@ -83,26 +75,7 @@ function MyBioFolder() {
               e.stopPropagation();
               handleSetFocusItemTrue('My Bio');
             }}
-            style={ MybioExpand.expand ? 
-            {
-                display: MybioExpand.show ? 'block' : '',
-                maxWidth: 'none',
-                width: '100%',
-                height: 'calc(100% - 37px)',
-                left: `${MybioExpand.x <= 0 ? Math.abs(MybioExpand.x)*2 + MybioExpand.x : -MybioExpand.x}px`,
-                top: `${MybioExpand.y <= 0 ? Math.abs(MybioExpand.y)*2 + MybioExpand.y : -MybioExpand.y}px`,
-                opacity: MybioExpand.hide ? '0' : '1',
-                zIndex: MybioExpand.hide ? '-1' : (MybioExpand.focusItem ? '999' : '3'),
-                pointerEvents: MybioExpand.hide ? 'none' : 'auto',
-                resize: MybioExpand.show ? 'none' : '',
-            } : { 
-                display: MybioExpand.show ? 'block' : '',
-                // width: window.innerWidth <= 500? '85%' : '50%',
-                opacity: MybioExpand.hide ? '0' : '1',
-                zIndex: MybioExpand.hide ? '-1' : (MybioExpand.focusItem ? '999' : '3'),
-                pointerEvents: MybioExpand.expand ? 'none' : 'auto'
-            }
-        }>
+            style={ MybioExpand.expand ? inlineStyleExpand('My Bio') : inlineStyle('My Bio')}>
           <div className="folder_dragbar"
               onDoubleClick={(e) => {handleExpandStateToggle(); e.stopPropagation()}}
               onTouchStart={(e) => {handleExpandStateToggleMobile(); e.stopPropagation()}}

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useContext, useState } from 'react';
+import { useEffect, useRef, useContext } from 'react';
 import UseContext from '../Context'
 import { motion, AnimatePresence  } from 'framer-motion';
 import startIcon from '../assets/95icon.png';
@@ -64,14 +64,14 @@ export default function Footer() {
         time, setTime,
         tap,
         imageMapping,
-        MybioExpand, setMybioExpand,
-        ResumeExpand, setResumeExpand,
-        ProjectExpand, setProjectExpand,
-        NftExpand, setNftExpand,
-        NoteExpand, setNoteExpand,
-        TypeExpand, setTypeExpand,
-        MailExpand, setMailExpand,
-        ResumeFileExpand, setResumeFileExpand,
+        MybioExpand,
+        ResumeExpand,
+        ProjectExpand,
+        NftExpand,
+        NoteExpand,
+        TypeExpand, 
+        MailExpand, 
+        ResumeFileExpand,
         handleShow,
         StyleHide,
         WinampExpand, setWinampExpand,

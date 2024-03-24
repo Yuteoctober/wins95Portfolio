@@ -1,6 +1,6 @@
 import UseContext from '../Context'
 import emailjs from '@emailjs/browser';
-import { useContext, useState, useEffect, useRef } from "react";
+import { useContext, useRef } from "react";
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
 import Mail from '../assets/mail.png'
@@ -14,21 +14,14 @@ function MailFolder() {
 
   const { 
     MailExpand, setMailExpand,
-    setMybioExpand,
-    setResumeExpand,
-    setProjectExpand,
-    setNftExpand,
-    setNoteExpand,
-    setTypeExpand,
-    setResumeFileExpand,
-    setWinampExpand,
     tap, setTap,
     lastTapTime, setLastTapTime,
     StyleHide,
     isTouchDevice,
-    setIconState,
     clippyThanksYouFunction,
     handleSetFocusItemTrue,
+    inlineStyleExpand,
+    inlineStyle,
    } = useContext(UseContext);
 
 // ---------------------- EMAIL JS ---------------------------------------
@@ -109,26 +102,7 @@ const form = useRef();
               e.stopPropagation();
               handleSetFocusItemTrue('Mail');
             }}
-            style={ MailExpand.expand ? 
-            {
-                display: MailExpand.show ? 'block' : '',
-                maxWidth: 'none',
-                width: MailExpand.expand ? '100%' : 'calc(100% - 55px)',
-                height: 'calc(100% - 37px)',
-                left: `${MailExpand.x <= 0 ? Math.abs(MailExpand.x)*2 + MailExpand.x : -MailExpand.x}px`,
-                top: `${MailExpand.y <= 0 ? Math.abs(MailExpand.y)*2 + MailExpand.y : -MailExpand.y}px`,
-                opacity: MailExpand.hide ? '0' : '1',
-                zIndex: MailExpand.hide ? '-1' : (MailExpand.focusItem ? '999' : '3'),
-                pointerEvents: MailExpand.hide ? 'none' : 'auto',
-                resize: MailExpand.expand ? 'none' : '',
-            } : { 
-                display: MailExpand.show ? 'block' : '',
-                opacity: MailExpand.hide ? '0' : '1',
-                zIndex: MailExpand.hide ? '-1' : (MailExpand.focusItem ? '999' : '3'),
-                pointerEvents: MailExpand.hide ? 'none' : 'auto'
-                
-            }
-        }>
+            style={ MailExpand.expand ? inlineStyleExpand('Mail') : inlineStyle('Mail')}>
           <div className="folder_dragbar-mail"
               onDoubleClick={handleExpandStateToggle}
               onTouchStart={handleExpandStateToggleMobile}

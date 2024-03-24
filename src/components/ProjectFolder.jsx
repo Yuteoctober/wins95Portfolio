@@ -1,5 +1,5 @@
 import UseContext from '../Context'
-import { useContext, useState, useEffect, useRef } from "react";
+import { useContext } from "react";
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
 import Project from '../assets/regFolder.png'
@@ -11,14 +11,9 @@ function ProjectFolder() {
 
   const { 
     ProjectExpand, setProjectExpand,
-    setMybioExpand,
-    setResumeExpand,
-    setMailExpand,
     setNftExpand,
     setNoteExpand,
     setTypeExpand,
-    setWinampExpand,
-    setResumeFileExpand,
     tap, setTap,
     lastTapTime, setLastTapTime,
     StyleHide,
@@ -27,7 +22,8 @@ function ProjectFolder() {
     handleShow,
     handleShowMobile,
     handleSetFocusItemTrue,
-
+    inlineStyleExpand,
+    inlineStyle,
    } = useContext(UseContext);
 
       function handleDragStop(event, data) {
@@ -81,26 +77,7 @@ function ProjectFolder() {
               e.stopPropagation();
               handleSetFocusItemTrue('Project');
             }}
-            style={ ProjectExpand.expand ? 
-            {
-                display: ProjectExpand.show ? 'block' : '',
-                maxWidth: 'none',
-                width: '100%',
-                height: 'calc(100% - 37px)',
-                left: `${ProjectExpand.x <= 0 ? Math.abs(ProjectExpand.x)*2 + ProjectExpand.x : -ProjectExpand.x}px`,
-                top: `${ProjectExpand.y <= 0 ? Math.abs(ProjectExpand.y)*2 + ProjectExpand.y : -ProjectExpand.y}px`,
-                opacity: ProjectExpand.hide ? '0' : '1',
-                zIndex: ProjectExpand.hide ? '-1' : (ProjectExpand.focusItem ? '999' : '3'),
-                pointerEvents: ProjectExpand.hide ? 'none' : 'auto',
-                resize: ProjectExpand.expand ? 'none' : '',
-            } : { 
-                display: ProjectExpand.show ? 'block' : '',
-                opacity: ProjectExpand.hide ? '0' : '1',
-                zIndex: ProjectExpand.hide ? '-1' : (ProjectExpand.focusItem ? '999' : '3'),
-                pointerEvents: ProjectExpand.hide ? 'none' : 'auto'
-                
-            }
-        }>
+            style={ ProjectExpand.expand ? inlineStyleExpand('Project') : inlineStyle('Project')}>
           <div className="folder_dragbar-project"
               onDoubleClick={handleExpandStateToggle}
               onTouchStart={handleExpandStateToggleMobile}

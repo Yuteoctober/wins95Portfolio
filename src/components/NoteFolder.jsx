@@ -1,5 +1,5 @@
 import UseContext from '../Context'
-import { useContext, useState, useEffect, useRef, Children } from "react";
+import { useContext } from "react";
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
 import file4 from '../assets/file4.png'
@@ -13,12 +13,7 @@ function NoteFolder() {
     NoteExpand, setNoteExpand,
     setNftExpand,
     setTypeExpand,
-    setResumeExpand,
-    setMybioExpand,
     setProjectExpand,
-    setMailExpand,
-    setWinampExpand,
-    setResumeFileExpand,
     tap, setTap,
     lastTapTime, setLastTapTime,
     StyleHide,
@@ -27,6 +22,8 @@ function NoteFolder() {
     handleDoubleTapEnterMobile,
     handleDoubleClickEnterLink,
     handleSetFocusItemTrue,
+    inlineStyleExpand,
+    inlineStyle,
 
    } = useContext(UseContext);
 
@@ -82,26 +79,7 @@ function NoteFolder() {
               e.stopPropagation();
               handleSetFocusItemTrue('Note');
             }}
-            style={ NoteExpand.expand ? 
-            {
-                display: NoteExpand.show ? 'block' : '',
-                maxWidth: 'none',
-                width: '100%',
-                height: 'calc(100% - 37px)',
-                left: `${NoteExpand.x <= 0 ? Math.abs(NoteExpand.x)*2 + NoteExpand.x : -NoteExpand.x}px`,
-                top: `${NoteExpand.y <= 0 ? Math.abs(NoteExpand.y)*2 + NoteExpand.y : -NoteExpand.y}px`,
-                opacity: NoteExpand.hide ? '0' : '1',
-                zIndex: NoteExpand.hide ? '-1' : (NoteExpand.focusItem ? '999' : '3'),
-                pointerEvents: NoteExpand.hide ? 'none' : 'auto',
-                resize: NoteExpand.expand ? 'none' : '',
-            } : { 
-                display: NoteExpand.show ? 'block' : '',
-                opacity: NoteExpand.hide ? '0' : '1',
-                zIndex: NoteExpand.hide ? '-1' : (NoteExpand.focusItem ? '999' : '3'),
-                pointerEvents: NoteExpand.hide ? 'none' : 'auto'
-                
-            }
-        }>
+            style={ NoteExpand.expand ? inlineStyleExpand('Note') : inlineStyle('Note')}>
           <div className="folder_dragbar"
               onDoubleClick={handleExpandStateToggle}
               onTouchStart={handleExpandStateToggleMobile}

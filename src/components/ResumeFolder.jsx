@@ -1,5 +1,5 @@
 import UseContext from '../Context'
-import { useContext, useState, useEffect, useRef } from "react";
+import { useContext } from "react";
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
 import resumefile from '../assets/resumeOri.png'
@@ -11,14 +11,6 @@ function ResumeFolder() {
 
   const { 
     ResumeExpand, setResumeExpand,
-    setMybioExpand,
-    setProjectExpand,
-    setMailExpand,
-    setNftExpand,
-    setNoteExpand,
-    setTypeExpand,
-    setWinampExpand,
-    setResumeFileExpand,
     tap, setTap,
     lastTapTime, setLastTapTime,
     StyleHide,
@@ -27,6 +19,8 @@ function ResumeFolder() {
     handleShowMobile,
     handleShow,
     handleSetFocusItemTrue,
+    inlineStyleExpand,
+    inlineStyle,
    } = useContext(UseContext);
 
       function handleDragStop(event, data) {
@@ -80,25 +74,7 @@ function ResumeFolder() {
               e.stopPropagation();
               handleSetFocusItemTrue('Resume');
             }}
-            style={ ResumeExpand.expand ? 
-            {
-                display: ResumeExpand.show ? 'block' : '',
-                maxWidth: 'none',
-                width: '100%',
-                height: 'calc(100% - 37px)',
-                left: `${ResumeExpand.x <= 0 ? Math.abs(ResumeExpand.x)*2 + ResumeExpand.x : -ResumeExpand.x}px`,
-                top: `${ResumeExpand.y <= 0 ? Math.abs(ResumeExpand.y)*2 + ResumeExpand.y : -ResumeExpand.y}px`,
-                opacity: ResumeExpand.hide ? '0' : '1',
-                zIndex: ResumeExpand.hide ? '-1' : (ResumeExpand.focusItem ? '999' : '3'),
-                pointerEvents: ResumeExpand.hide ? 'none' : 'auto',
-                resize: ResumeExpand.expand ? 'none' : '',
-            } : { 
-                display: ResumeExpand.show ? 'block' : '',
-                opacity: ResumeExpand.hide ? '0' : '1',
-                zIndex: ResumeExpand.hide ? '-1' : (ResumeExpand.focusItem ? '999' : '3'),
-                pointerEvents: ResumeExpand.hide ? 'none' : 'auto',
-            }
-        }>
+            style={ ResumeExpand.expand ? inlineStyleExpand('Resume') : inlineStyle('Resume')}>
           <div className="folder_dragbar"
               onDoubleClick={handleExpandStateToggle}
               onTouchStart={handleExpandStateToggleMobile}

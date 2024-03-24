@@ -1,5 +1,5 @@
 import UseContext from '../Context'
-import { useContext, useState, useEffect, useRef } from "react";
+import { useContext } from "react";
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
 import file4 from '../assets/file4.png'
@@ -13,12 +13,7 @@ function TypeFolder() {
     TypeExpand, setTypeExpand,
     setNoteExpand,
     setNftExpand,
-    setResumeExpand,
-    setMybioExpand,
     setProjectExpand,
-    setMailExpand,
-    setWinampExpand,
-    setResumeFileExpand,
     tap, setTap,
     lastTapTime, setLastTapTime,
     StyleHide,
@@ -27,7 +22,8 @@ function TypeFolder() {
     handleDoubleTapEnterMobile,
     handleDoubleClickEnterLink,
     handleSetFocusItemTrue,
-
+    inlineStyleExpand,
+    inlineStyle,
    } = useContext(UseContext);
 
       function handleDragStop(event, data) {
@@ -81,26 +77,7 @@ function TypeFolder() {
               e.stopPropagation();
               handleSetFocusItemTrue('Type');
             }}
-            style={ TypeExpand.expand ? 
-            {
-                display: TypeExpand.show ? 'block' : '',
-                maxWidth: 'none',
-                width: '100%',
-                height: 'calc(100% - 37px)',
-                left: `${TypeExpand.x <= 0 ? Math.abs(TypeExpand.x)*2 + TypeExpand.x : -TypeExpand.x}px`,
-                top: `${TypeExpand.y <= 0 ? Math.abs(TypeExpand.y)*2 + TypeExpand.y : -TypeExpand.y}px`,
-                opacity: TypeExpand.hide ? '0' : '1',
-                zIndex: TypeExpand.hide ? '-1' : (TypeExpand.focusItem ? '999' : '3'),
-                pointerEvents: TypeExpand.hide ? 'none' : 'auto',
-                resize: TypeExpand.expand ? 'none' : '',
-            } : { 
-                display: TypeExpand.show ? 'block' : '',
-                opacity: TypeExpand.hide ? '0' : '1',
-                zIndex: TypeExpand.hide ? '-1' : (TypeExpand.focusItem ? '999' : '3'),
-                pointerEvents: TypeExpand.hide ? 'none' : 'auto'
-                
-            }
-        }>
+            style={ TypeExpand.expand ? inlineStyleExpand('Type') : inlineStyle('Type')}>
           <div className="folder_dragbar"
               onDoubleClick={handleExpandStateToggle}
               onTouchStart={handleExpandStateToggleMobile}
