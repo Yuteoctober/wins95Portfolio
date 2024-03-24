@@ -89,9 +89,8 @@ export default function Footer() {
         ClearTOSongfunction,
         clippySong,
         ClearTOdonttouch,
-        isTouchDevice,
         handleDoubleClickEnterLink,
-        handleDoubleTapEnterMobile,
+        ObjectState,
      } = useContext(UseContext);
     
      const handleWheelScroll = (e) => { // wheel from x to Y on tap
@@ -133,18 +132,8 @@ export default function Footer() {
 
         const lowerCaseName = tap[index].toLowerCase().split(' ').join('');
       
-        const allSetItems = 
-        [
-          { name: 'Mybio', setter: setMybioExpand, usestate: MybioExpand}, // all the usestate name to toggle
-          { name: 'Resume', setter: setResumeExpand, usestate: ResumeExpand },
-          { name: 'Project', setter: setProjectExpand, usestate: ProjectExpand },
-          { name: 'Mail', setter: setMailExpand, usestate: MailExpand },
-          { name: 'Nft', setter: setNftExpand, usestate: NftExpand},
-          { name: 'Note', setter: setNoteExpand, usestate: NoteExpand },
-          { name: 'Type', setter: setTypeExpand, usestate: TypeExpand },
-          { name: 'Winamp', setter: setWinampExpand, usestate: WinampExpand },
-          { name: 'ResumeFile', setter: setResumeFileExpand, usestate: ResumeFileExpand }
-        ];
+        const allSetItems =  ObjectState() // all the usestate name to toggle
+        
       
         allSetItems.forEach((item) => {
       
@@ -154,7 +143,7 @@ export default function Footer() {
             item.setter(prev => ({...prev, focusItem: true}));
             if(item.usestate.hide) {
                 item.setter(prev => ({...prev, hide: false}));  
-                if(item.name === 'winamp') {
+                if(lowerCaseName === 'winamp') {
                     const webampElement = document.querySelector('#webamp');
                     if (webampElement) {
                         webampElement.style.opacity = 1;

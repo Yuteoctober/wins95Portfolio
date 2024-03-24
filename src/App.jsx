@@ -78,22 +78,25 @@ function App() {
   }))
 );
 
+function ObjectState() {
+  return [
+          { name: 'Mybio', setter: setMybioExpand, usestate: MybioExpand},
+          { name: 'Resume', setter: setResumeExpand, usestate: ResumeExpand },
+          { name: 'Project', setter: setProjectExpand, usestate: ProjectExpand },
+          { name: 'Mail', setter: setMailExpand, usestate: MailExpand },
+          { name: 'Nft', setter: setNftExpand, usestate: NftExpand},
+          { name: 'Note', setter: setNoteExpand, usestate: NoteExpand },
+          { name: 'Type', setter: setTypeExpand, usestate: TypeExpand },
+          { name: 'Winamp', setter: setWinampExpand, usestate: WinampExpand },
+          { name: 'ResumeFile', setter: setResumeFileExpand, usestate: ResumeFileExpand }
+        ];
+}
+
 function handleShow(name) {
 
   const lowerCaseName = name.toLowerCase().split(' ').join('');
 
-  const allSetItems = // all the usestate name to toggle
-  [
-    { name: 'Mybio', setter: setMybioExpand }, 
-    { name: 'Resume', setter: setResumeExpand },
-    { name: 'Project', setter: setProjectExpand },
-    { name: 'Mail', setter: setMailExpand },
-    { name: 'Nft', setter: setNftExpand },
-    { name: 'Note', setter: setNoteExpand },
-    { name: 'Type', setter: setTypeExpand },
-    { name: 'Winamp', setter: setWinampExpand },
-    { name: 'ResumeFile', setter: setResumeFileExpand }
-  ];
+  const allSetItems = ObjectState() // call all the usestate name to toggle
 
   allSetItems.forEach((item) => {
 
@@ -127,18 +130,7 @@ function handleShowMobile(name) {
 
   const lowerCaseName = name.toLowerCase().split(' ').join('');
 
-  const allSetItems = 
-  [
-    { name: 'Mybio', setter: setMybioExpand }, // all the usestate name to toggle
-    { name: 'Resume', setter: setResumeExpand },
-    { name: 'Project', setter: setProjectExpand },
-    { name: 'Mail', setter: setMailExpand },
-    { name: 'Nft', setter: setNftExpand },
-    { name: 'Note', setter: setNoteExpand },
-    { name: 'Type', setter: setTypeExpand },
-    { name: 'Winamp', setter: setWinampExpand },
-    { name: 'ResumeFile', setter: setResumeFileExpand }
-  ];
+  const allSetItems = ObjectState();
 
   allSetItems.forEach((item) => {
 
@@ -277,6 +269,7 @@ function handleShowMobile(name) {
     clippySongFunction,
     ClearTOSongfunction,
     ClearTOdonttouch,
+    ObjectState,
   }
 
   return (
