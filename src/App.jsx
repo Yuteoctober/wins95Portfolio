@@ -96,7 +96,7 @@ function handleShow(name) {
 
   const lowerCaseName = name.toLowerCase().split(' ').join('');
 
-  const allSetItems = ObjectState() // call all the usestate name to toggle
+  const allSetItems = ObjectState() // call all usestate object
 
   allSetItems.forEach((item) => {
 

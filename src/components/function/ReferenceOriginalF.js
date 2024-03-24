@@ -508,3 +508,19 @@
 
     //     }
     // }
+
+
+     //     setIconState(prevIcons => prevIcons.map(icon => ({
+    //       ...icon,
+    //       focus: false
+    //     })));
+    //     setNoteExpand(prev => ({...prev, focusItem: true}))
+    //     setMybioExpand(prev => ({...prev, focusItem: false}))
+    //     setProjectExpand(prev => ({...prev, focusItem: false}))
+    //     setMailExpand(prev => ({...prev, focusItem: false}))
+    //     setResumeExpand(prev => ({...prev, focusItem: false}))
+    //     setNftExpand(prev => ({...prev, focusItem: false}))
+    //     setTypeExpand(prev => ({...prev, focusItem: false}))
+    //     setWinampExpand(prev => ({...prev, focusItem: false, focus: false}))
+    //     setResumeFileExpand(prev => ({...prev, focusItem: false}))
+    // }
