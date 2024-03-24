@@ -91,6 +91,7 @@ export default function Footer() {
         ClearTOdonttouch,
         handleDoubleClickEnterLink,
         ObjectState,
+        setFocus,
      } = useContext(UseContext);
     
      const handleWheelScroll = (e) => { // wheel from x to Y on tap
@@ -128,6 +129,8 @@ export default function Footer() {
         setTime(currentTime12Hour);
     };
 
+    
+
     function handleHideFolder(index) {
 
         const lowerCaseName = tap[index].toLowerCase().split(' ').join('');
@@ -139,20 +142,34 @@ export default function Footer() {
       
           const itemName = item.name.toLowerCase().trim();
           
-          if(itemName === lowerCaseName) {
+          if(itemName === lowerCaseName && !item.usestate.focusItem && !item.usestate.hide) {
             item.setter(prev => ({...prev, focusItem: true}));
-            if(item.usestate.hide) {
-                item.setter(prev => ({...prev, hide: false}));  
+          }
+            if(itemName === lowerCaseName && item.usestate.focusItem && !item.usestate.hide) {
+                item.setter(prev => ({...prev, hide: true, focusItem: false}))
+                if(lowerCaseName === 'winamp') {
+                    const webampElement = document.querySelector('#webamp');
+                    if (webampElement) {
+                        webampElement.style.opacity = 0;
+                        webampElement.style.pointerEvent = 'none'
+                        webampElement.style.touchAction = 'none'
+                        webampElement.style.zIndex = -1
+                        setWinampExpand(prev => ({...prev, hide: true, focusItem: false}));
+                        setFocus(false)
+                    }
+                }
+            }
+            if(itemName === lowerCaseName && item.usestate.hide) {
+                item.setter(prev => ({...prev, hide: false, focusItem: true}));  
                 if(lowerCaseName === 'winamp') {
                     const webampElement = document.querySelector('#webamp');
                     if (webampElement) {
                         webampElement.style.opacity = 1;
                         webampElement.style.pointerEvents = 'auto';
                         webampElement.style.touchAction = 'auto'
-                        setWinampExpand(prev => ({...prev, hide: false}));
+                        setWinampExpand(prev => ({...prev, hide: false, focusItem: true}));
                     }
                 }
-            }
           }
 
           if(itemName !== lowerCaseName) {
