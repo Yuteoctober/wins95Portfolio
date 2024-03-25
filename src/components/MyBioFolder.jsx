@@ -89,6 +89,39 @@ function MyBioFolder() {
     setHobbTap(name === 'hobby');
   }
 
+  const activeBtnStyle = {
+    bottom: '2px',
+    outline: '1px dotted black',
+    outlineOffset: '-5px',
+    borderBottomColor: '#c5c4c4',
+    zIndex: '3'
+  };
+
+  function closeFolder() {
+    setMybioExpand(prev => ({...prev, show: false, expand: false}));
+    const newTap = tap.filter(a => a !== 'My Bio')
+    setTap(newTap)
+  }
+
+  function textShow(head, text1, text2) {
+    if (head) {
+      return generalTap ? bioText.General[0].head :
+        (technologyTap ? bioText.General[1].head : bioText.General[2].head);
+    }
+  
+    if (text1) {
+      return generalTap ? bioText.General[0].text1 :
+        (technologyTap ? bioText.General[1].text1 : bioText.General[2].text1);
+    }
+  
+    if (text2) {
+      return generalTap ? bioText.General[0].text2 :
+        (technologyTap ? bioText.General[1].text2 : bioText.General[2].text2);
+    }
+  }
+  
+  
+
   return (
     <>
       <Draggable
@@ -126,12 +159,12 @@ function MyBioFolder() {
                 setMybioExpand(prev => ({...prev, hide: true, focusItem: false}))
                 StyleHide('My Bio')
               } : undefined
-            }
-                   onTouchEnd={(e) => {
-                    e.stopPropagation()
-                    setMybioExpand(prev => ({...prev, hide: true, focusItem: false}))
-                    StyleHide('My Bio')
-                  }}
+              }   
+                onTouchEnd={(e) => {
+                e.stopPropagation()
+                setMybioExpand(prev => ({...prev, hide: true, focusItem: false}))
+                StyleHide('My Bio')
+              }}
 
               >
                 <p className='dash'></p>
@@ -155,89 +188,36 @@ function MyBioFolder() {
                 <div>
                 <p
                   className='x'
-                  onClick={!isTouchDevice ? () => {
-                    setMybioExpand(prev => ({...prev, show: false, expand: false}));
-                    const newTap = tap.filter(a => a !== 'My Bio')
-                    setTap(newTap)
-                  } : undefined}
-                  onTouchEnd={() => {
-                    setMybioExpand(prev => ({...prev, show: false, expand: false}));
-                    const newTap = tap.filter(a => a !== 'My Bio')
-                    setTap(newTap)
-                  }}
-                >
+                  onClick={!isTouchDevice ? () => closeFolder()
+                   : undefined}
+                  onTouchEnd={() => closeFolder()}
+                  >
                   x
                 </p>
               </div>
             </div>
           </div>
           <div className="file_tap_container-bio">
-          <p
-              onClick={() => handleBiotap('general')}
-              style={generalTap ? {
-                bottom: '2px',
-                outline: '1px dotted black',
-                outlineOffset: '-5px',
-                borderBottomColor: '#c5c4c4',
-                zIndex: '3'
-            } : {}
-              }>
-              General
+          <p  onClick={() => handleBiotap('general')}
+              style={generalTap ? activeBtnStyle : {}}
+          >General
           </p>
           <p onClick={() => handleBiotap('technology')}
-              style={technologyTap ? {
-                bottom: '2px',
-                outline: '1px dotted black',
-                outlineOffset: '-5px',
-                borderBottomColor: '#c5c4c4',
-                zIndex: '3'
-            } : {}
-            }>
-              Technology
+              style={technologyTap ? activeBtnStyle : {}}
+          >Technology
           </p>
           <p onClick={() => handleBiotap('hobby')}
-                  style={hobbTap ? {
-                    bottom: '2px',
-                    outline: '1px dotted black',
-                    outlineOffset: '-5px',
-                    borderBottomColor: '#c5c4c4',
-                    zIndex: '3'
-            } : {}
-            }>
-              Hobby
+                  style={hobbTap ? activeBtnStyle : {}}
+          >Hobby
           </p>
           </div>
           <div className="folder_content">
             <div className="folder_content-bio">
-              <h1>
-                  {
-                  generalTap ? bioText.General[0].head 
-                  :
-                  (technologyTap ? bioText.General[1].head 
-                  : 
-                  bioText.General[2].head
-                  )}
-              </h1>
-              <br />
-              <p>
-                {
-                generalTap ? bioText.General[0].text1 
-                :
-                (technologyTap ? bioText.General[1].text1 
-                : 
-                bioText.General[2].text1
-                )}
-              </p>
-              <br />
-              <p>
-                {
-                generalTap ? bioText.General[0].text2 
-                :
-                (technologyTap ? bioText.General[1].text2
-                : 
-                bioText.General[2].text2
-                )}
-              </p>
+            <h1>{textShow(true)}</h1>
+            <br />
+            <p>{textShow(false, true)}</p>
+            <br />
+            <p>{textShow(false, false, true)}</p>
               <br />
               {generalTap && (
                 <>
@@ -255,28 +235,16 @@ function MyBioFolder() {
             </div>
             <div className="bio_btn_container">
               <div className="bio_btn_ok"
-              onClick={!isTouchDevice ? () => {
-                setMybioExpand(prev => ({...prev, show: false, expand: false}));
-                const newTap = tap.filter(a => a !== 'My Bio')
-                setTap(newTap)
-              } : undefined}
-              onTouchEnd={() => {
-                setMybioExpand(prev => ({...prev, show: false, expand: false}));
-                const newTap = tap.filter(a => a !== 'My Bio')
-                setTap(newTap)
-              }}
-              ><span>OK</span></div>
+              onClick={!isTouchDevice ? () => closeFolder() : undefined}
+              onTouchEnd={() => closeFolder()}
+              >
+                <span>
+                  OK
+                </span>
+              </div>
               <div className="bio_btn_cancel"
-              onClick={!isTouchDevice ? () => {
-                setMybioExpand(prev => ({...prev, show: false, expand: false}));
-                const newTap = tap.filter(a => a !== 'My Bio')
-                setTap(newTap)
-              } : undefined}
-              onTouchEnd={() => {
-                setMybioExpand(prev => ({...prev, show: false, expand: false}));
-                const newTap = tap.filter(a => a !== 'My Bio')
-                setTap(newTap)
-              }}
+              onClick={!isTouchDevice ? () => closeFolder() : undefined}
+              onTouchEnd={() => closeFolder()}
               ><span>Cancel</span></div>
             </div>
           </div>

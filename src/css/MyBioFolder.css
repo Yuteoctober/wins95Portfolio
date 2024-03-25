@@ -169,7 +169,7 @@
     position: relative;
     width: calc(100% - 10px);
     height: calc(100% - 95px);
-    padding: 1.5rem 2rem;
+    padding: 1.5rem 1.5rem;
     border: 2px solid rgb(53, 52, 52);
     border-top-color: #f0efef;
     border-left-color: #f0efef;
@@ -187,7 +187,7 @@
 }
 
 .folder_content-bio p {
-    font-size: 14px;
+    font-size: 13.5px;
 }
 
 .folder_content-bio span {
@@ -198,7 +198,7 @@
     text-decoration: underline;
     color: blue;
     font-weight: bolder;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .folder_content-bio a:hover {
