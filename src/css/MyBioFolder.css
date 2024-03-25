@@ -5,6 +5,7 @@
     position: fixed;
     min-width: 300px;
     height: 60%;
+    min-height: 320px;
     background: #c5c4c4;
     border: 2px solid white;
     border-right: 1px solid black;
@@ -167,7 +168,7 @@
     position: relative;
     width: calc(100% - 10px);
     height: calc(100% - 98px);
-    padding: 1.5rem 8%;
+    padding: 1.5rem 2rem;
     border: 2px solid rgb(53, 52, 52);
     border-top-color: #f0efef;
     border-left-color: #f0efef;
@@ -249,7 +250,7 @@
         width: 85%;
     }
     .folder_content .folder_content-bio {
-        padding: 1rem 2rem;
+        padding: 1rem 1.5rem;
     }
 }
 
