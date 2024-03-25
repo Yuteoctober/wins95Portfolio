@@ -87,7 +87,7 @@ export function handleDoubleTapEnterMobile(name, lastTapTime, setLastTapTime) {
 const now = Date.now();
 if (now - lastTapTime < 300) {
   switch(name) {
-    case 'Nft': window.open('https://opennft.netlify.app/', '_blank'); break;
+    case 'OpenNft': window.open('https://opennft.netlify.app/', '_blank'); break;
     case 'Note': window.open('https://fullstack-stickynotes.netlify.app/', '_blank'); break;
     case 'Type': window.open('https://yuteoctober.github.io/typingGame/', '_blank'); break;
     case 'Github': window.open('https://github.com/Yuteoctober/wins95Portfolio/', '_blank'); break;

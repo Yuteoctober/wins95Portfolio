@@ -1,5 +1,5 @@
 import UseContext from '../Context'
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
 import MyBio from '../assets/pc.png'
@@ -7,8 +7,10 @@ import '../css/MyBioFolder.css'
 
 
 function MyBioFolder() {
-  
-  
+
+  const [generalTap, setGenerapTap] = useState(true)
+  const [technologyTap, setTechnologyTap] = useState(false)
+  const [hobbTap, setHobbTap] = useState(false)
 
   const { 
     MybioExpand, setMybioExpand,
@@ -19,8 +21,36 @@ function MyBioFolder() {
     handleSetFocusItemTrue,
     inlineStyleExpand,
     inlineStyle,
-
    } = useContext(UseContext);
+
+   const technologyText = ( // don't have to use DangerousHTML
+    <>
+        The main technology that I have been using is
+        <span> Javascript</span> and library like
+        <span> React.js</span>.
+        I have also built full-stack projects using
+        <span> Node.js</span>, <span> mongoDB</span>, and
+        <span> mySQL</span> as back-end and database.
+    </>
+  );
+
+   const bioText = {
+    General: [
+        {
+            head: 'General', 
+            text1: "Hi! My name is Yute, I'm a Software Engineer based in New York City. Focusing on Front-end. I'm passionate about design, building something pixel perfect, along with functionality that works perfectly.",
+            text2: "Working in this field requires a lot of attention to detail, as well as communication skills. Work and compassion go along the way."
+        },
+        {
+            head: 'Technology',
+            text1: technologyText
+      },
+        {
+            head: 'Hobby',
+            text1: "In my free time, I enjoy playing video games with friends. If I'm not in front of a computer, I will try to drag myself to the gym, try new restaurants, and embark on adventures like hiking. I used to play basketball in high school and want to find time for that again."
+        }
+    ]
+};
 
       function handleDragStop(event, data) {
         const positionX = data.x 
@@ -53,6 +83,11 @@ function MyBioFolder() {
     setLastTapTime(now);
 }
 
+  function handleBiotap(name) {
+    setGenerapTap(name === 'general');
+    setTechnologyTap(name === 'technology');
+    setHobbTap(name === 'hobby');
+  }
 
   return (
     <>
@@ -136,38 +171,74 @@ function MyBioFolder() {
               </div>
             </div>
           </div>
-          <div className="file_edit_container-bio">
-              <p>File<span style={{left: '-23px'}}>_</span></p>
-              <p>Edit<span style={{left: '-24px'}}>_</span></p>
-              <p>View<span style={{left: '-32px'}}>_</span></p>
-              <p>Help<span style={{left: '-30px'}}>_</span></p>
+          <div className="file_tap_container-bio">
+          <p
+              onClick={() => handleBiotap('general')}
+              style={generalTap ? {
+                outline: '1px dotted black',
+                outlineOffset: '-5px',
+                borderBottomColor: '#c5c4c4',
+                zIndex: '3'
+            } : {}
+              }>
+              General
+          </p>
+          <p onClick={() => handleBiotap('technology')}
+              style={technologyTap ? {
+                outline: '1px dotted black',
+                outlineOffset: '-5px',
+                borderBottomColor: '#c5c4c4',
+                zIndex: '3'
+            } : {}
+            }>
+              Technology
+          </p>
+          <p onClick={() => handleBiotap('hobby')}
+                  style={hobbTap ? {
+                    outline: '1px dotted black',
+                    outlineOffset: '-5px',
+                    borderBottomColor: '#c5c4c4',
+                    zIndex: '3'
+            } : {}
+            }>
+              Hobby
+          </p>
           </div>
           <div className="folder_content">
             <div className="folder_content-bio">
-              <h1>About</h1>
+              <h1>
+                  {
+                  generalTap ? bioText.General[0].head 
+                  :
+                  (technologyTap ? bioText.General[1].head 
+                  : 
+                  bioText.General[2].head
+                  )}
+              </h1>
               <br />
               <p>
-                Hi! My name is Yute, I'm a Software Engineer based in New York City. Focusing on Front-end
-                I'm passionate in design, building something pixel perfect! along with functionality that works perfectly.
+                {
+                generalTap ? bioText.General[0].text1 
+                :
+                (technologyTap ? bioText.General[1].text1 
+                : 
+                bioText.General[2].text1
+                )}
               </p>
               <br />
               <p>
-                Working in this field requires alot of attention to detail, as much as communication skill. Work and compassion go along
-                the way.
+                {
+                generalTap ? bioText.General[0].text2 
+                :
+                (technologyTap ? bioText.General[1].text2
+                : 
+                bioText.General[2].text2
+                )}
               </p>
               <br />
-              <p>
-                The main technology that I have been using is <span>Javascript</span> and library like <span>React.js</span>.
-                I have also built full-stack projects using <span>Node.js</span>, <span>mongoDB</span> and <span>mySQL</span> as back-end
-                and database.
-              </p>
-              <br />
-              <p>
-                In Free time, I enjoy playing video games with freinds, if I'm not in front of computer, I will try to drag myself to the gym,
-                try new resturants and adventure like hiking, I used to play basketball in highschool and wanting to find time for that again.
-              </p>
-              <br />
-              <a href="https://drive.google.com/file/d/1XNn23UA2L82P2__Ccuccl3WMdR2rHG57/view" target="_blank" rel="noreferrer" >
+              {generalTap && (
+                <>
+                  <a href="https://drive.google.com/file/d/1XNn23UA2L82P2__Ccuccl3WMdR2rHG57/view" target="_blank" rel="noreferrer" >
                 Click to view my CV.
               </a>
               <br />
@@ -175,6 +246,35 @@ function MyBioFolder() {
               <a href="https://drive.usercontent.google.com/u/0/uc?id=1XNn23UA2L82P2__Ccuccl3WMdR2rHG57&export=download" target="_blank" rel="noreferrer" >
                 Download
               </a>
+                </>
+              )}
+              
+            </div>
+            <div className="bio_btn_container">
+              <div className="bio_btn_ok"
+              onClick={!isTouchDevice ? () => {
+                setMybioExpand(prev => ({...prev, show: false, expand: false}));
+                const newTap = tap.filter(a => a !== 'My Bio')
+                setTap(newTap)
+              } : undefined}
+              onTouchEnd={() => {
+                setMybioExpand(prev => ({...prev, show: false, expand: false}));
+                const newTap = tap.filter(a => a !== 'My Bio')
+                setTap(newTap)
+              }}
+              ><span>OK</span></div>
+              <div className="bio_btn_cancel"
+              onClick={!isTouchDevice ? () => {
+                setMybioExpand(prev => ({...prev, show: false, expand: false}));
+                const newTap = tap.filter(a => a !== 'My Bio')
+                setTap(newTap)
+              } : undefined}
+              onTouchEnd={() => {
+                setMybioExpand(prev => ({...prev, show: false, expand: false}));
+                const newTap = tap.filter(a => a !== 'My Bio')
+                setTap(newTap)
+              }}
+              ><span>Cancel</span></div>
             </div>
           </div>
         </motion.div>

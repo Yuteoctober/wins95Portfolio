@@ -4,7 +4,7 @@
     display: none;
     position: fixed;
     min-width: 300px;
-    height: 70%;
+    height: 60%;
     background: #c5c4c4;
     border: 2px solid white;
     border-right: 1px solid black;
@@ -124,46 +124,63 @@
     left: 1.5px;
 }
 
-.file_edit_container-bio {
+.file_tap_container-bio {
     display: flex;
-    gap: 5px;
+    position: relative;
+    margin-top: 12px;
     font-size: 15px;
-    padding-left: 10px;
+    margin-left: 9px;
     cursor: default;
 }
 
-.file_edit_container-bio span {
+.file_tap_container-bio p {
     position: relative;
+    padding: 0px 8px;
+    padding-top: 1px;
+    font-size: 14px;
+    border: 2px solid black;
+    border-top-color: #f0efef;
+    border-left-color: #f0efef;
+    border-right-color: rgb(53, 52, 52);
+    z-index: 1;
 }
 
 .bio_folder .folder_content {
     position: relative;
+    top: -1.5px;
     margin: 0 auto;
     width: calc(100% - 8px);
-    height: calc(100% - 8px);
+    height: calc(100% - 4px);
     overflow-y: auto;
     overflow-x: hidden;
     touch-action: none;
-    
+    z-index: 2;
+}
+
+@supports (-webkit-touch-callout: none) {
+    .bio_folder .folder_content {
+        top: -2px
+    }
 }
 
 .folder_content .folder_content-bio {
     position: relative;
-    width: calc(100% - 6px);
-    height: calc(100% - 52px);
-    padding: 2.5rem 8%;
-    border: 2px solid rgb(43, 43, 43);
-    border-right-color: rgb(234, 233, 233);
-    border-bottom-color: rgb(234, 233, 233);
+    width: calc(100% - 10px);
+    height: calc(100% - 98px);
+    padding: 1.5rem 8%;
+    border: 2px solid rgb(53, 52, 52);
+    border-top-color: #f0efef;
+    border-left-color: #f0efef;
     margin: 0 auto;
-    margin-top: 2px;
-    background: rgb(236, 236, 236);
-    overflow: scroll;
-    word-break: break-word;
-    
+    margin-top: 0;
+    background: #c5c4c4;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    word-break: break-word
 }
 
 .folder_content-bio h1 {
+    font-size: 23px;
     text-decoration: underline;
 }
 
@@ -187,22 +204,62 @@
     text-decoration-color: rgb(73, 73, 237);
 }
 
+.bio_btn_container {
+    display: flex;
+    position: absolute;
+    gap: 6px;
+    right: 5px;
+    margin-top: 6px;
+}
+.bio_btn_container div {
+    width: 70px;
+    text-align: center;
+    border: 2px solid black;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.bio_btn_container span {
+    font-size: 14px;
+}
+.bio_btn_container .bio_btn_ok {
+    border-top-color: #f0efef;
+    border-left-color: #f0efef;
+    cursor: pointer;
+}
+.bio_btn_container .bio_btn_cancel {
+    border-top-color: #f0efef;
+    border-left-color: #f0efef;
+    cursor: pointer;
+}
+
+.bio_btn_container .bio_btn_cancel:active,
+.bio_btn_container .bio_btn_ok:active {
+    border-top-color: black;
+    border-left-color: black;
+    border-bottom-color: #f0efef;
+    border-right-color: #f0efef;
+}
+
+
 @media screen and (width <= 500px) {
     .bio_folder {
         width: 85%;
     }
     .folder_content .folder_content-bio {
-        padding: 2.5rem 2rem;
+        padding: 1rem 2rem;
     }
 }
 
 @media screen and (width >= 500px) {
     .bio_folder {
-        width: 450px;
+        width: 400px;
     }
 }
 @media screen and (width >= 1000px) {
     .bio_folder {
-        width: 580px;
+        width: 450px;
     }
 }

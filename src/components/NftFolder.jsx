@@ -22,6 +22,9 @@ function NftFolder() {
     handleDoubleTapEnterMobile,
     handleDoubleClickEnterLink,
     handleSetFocusItemTrue,
+    inlineStyleExpand,
+    inlineStyle,
+
    } = useContext(UseContext);
 
       function handleDragStop(event, data) {
@@ -75,26 +78,7 @@ function NftFolder() {
               e.stopPropagation();
               handleSetFocusItemTrue('Nft');
             }}
-            style={ NftExpand.expand ? 
-            {
-                display: NftExpand.show ? 'block' : '',
-                maxWidth: 'none',
-                width: '100%',
-                height: 'calc(100% - 37px)',
-                left: `${NftExpand.x <= 0 ? Math.abs(NftExpand.x)*2 + NftExpand.x : -NftExpand.x}px`,
-                top: `${NftExpand.y <= 0 ? Math.abs(NftExpand.y)*2 + NftExpand.y : -NftExpand.y}px`,
-                opacity: NftExpand.hide ? '0' : '1',
-                zIndex: NftExpand.hide ? '-1' : (NftExpand.focusItem ? '999' : '3'),
-                pointerEvents: NftExpand.hide ? 'none' : 'auto',
-                resize: NftExpand.expand ? 'none' : '',
-            } : { 
-                display: NftExpand.show ? 'block' : '',
-                opacity: NftExpand.hide ? '0' : '1',
-                zIndex: NftExpand.hide ? '-1' : (NftExpand.focusItem ? '999' : '3'),
-                pointerEvents: NftExpand.hide ? 'none' : 'auto'
-                
-            }
-        }>
+            style={ NftExpand.expand ? inlineStyleExpand('Nft') : inlineStyle('Nft')}>
           <div className="folder_dragbar"
               onDoubleClick={handleExpandStateToggle}
               onTouchStart={handleExpandStateToggleMobile}
