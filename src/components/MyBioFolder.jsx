@@ -92,7 +92,6 @@ function MyBioFolder() {
                 StyleHide('My Bio')
               } : undefined
             }
-                
                    onTouchEnd={(e) => {
                     e.stopPropagation()
                     setMybioExpand(prev => ({...prev, hide: true, focusItem: false}))

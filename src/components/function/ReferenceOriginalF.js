@@ -543,3 +543,55 @@
     //     pointerEvents: NoteExpand.hide ? 'none' : 'auto'
         
     // }
+
+    //   switch (tap[index]) {
+
+//     case 'My Bio':
+//       return MybioExpand.focusItem
+//         ? { boxShadow: boxshadowstyleTrue, background: bgStyleTrue }
+//         : { boxShadow: boxshadowstyleFalse, background: bgStyleFalse };
+
+//     case 'Resume':
+//       return ResumeExpand.focusItem
+//         ? { boxShadow: boxshadowstyleTrue, background: bgStyleTrue }
+//         : { boxShadow: boxshadowstyleFalse, background: bgStyleFalse };
+
+//     case 'Project':
+//       return ProjectExpand.focusItem
+//         ? { boxShadow: boxshadowstyleTrue, background: bgStyleTrue }
+//         : { boxShadow: boxshadowstyleFalse, background: bgStyleFalse };
+
+//     case 'Mail':
+//       return MailExpand.focusItem
+//         ? { boxShadow: boxshadowstyleTrue, background: bgStyleTrue }
+//         : { boxShadow: boxshadowstyleFalse, background: bgStyleFalse };
+
+//     case 'Nft':
+//       return NftExpand.focusItem
+//         ? { boxShadow: boxshadowstyleTrue, background: bgStyleTrue }
+//         : { boxShadow: boxshadowstyleFalse, background: bgStyleFalse };
+
+//     case 'Note':
+//       return NoteExpand.focusItem
+//         ? { boxShadow: boxshadowstyleTrue, background: bgStyleTrue }
+//         : { boxShadow: boxshadowstyleFalse, background: bgStyleFalse };
+
+//     case 'Type':
+//       return TypeExpand.focusItem
+//         ? { boxShadow: boxshadowstyleTrue, background: bgStyleTrue }
+//         : { boxShadow: boxshadowstyleFalse, background: bgStyleFalse };
+
+//     case 'Winamp':
+//       return WinampExpand.focusItem
+//         ? { boxShadow: boxshadowstyleTrue, background: bgStyleTrue }
+//         : { boxShadow: boxshadowstyleFalse, background: bgStyleFalse };
+
+//     case 'ResumeFile':
+//       return ResumeFileExpand.focusItem
+//         ? { boxShadow: boxshadowstyleTrue, background: bgStyleTrue }
+//         : { boxShadow: boxshadowstyleFalse, background: bgStyleFalse };
+
+//     default:
+//       return {};
+//   }
+// }
