@@ -21,17 +21,9 @@ export default function Footer() {
         time, setTime,
         tap,
         imageMapping,
-        MybioExpand,
-        ResumeExpand,
-        ProjectExpand,
-        NftExpand,
-        NoteExpand,
-        TypeExpand, 
-        MailExpand, 
-        ResumeFileExpand,
         handleShow,
         StyleHide,
-        WinampExpand, setWinampExpand,
+        setWinampExpand,
         showClippy, setShowClippy,
         clippyIndex, setClippyIndex,
         randomClippyPopup, setRandomClippyPopup,
@@ -84,8 +76,6 @@ export default function Footer() {
         let currentTime12Hour = hours + ':' + minutes + ' ' + meridiem;
         setTime(currentTime12Hour);
     };
-
-    
 
     function handleHideFolder(index) {
 
