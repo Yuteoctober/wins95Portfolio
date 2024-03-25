@@ -241,7 +241,7 @@ body {
 }
 
 .start_popup .ig {
-    border-bottom: 2px groove rgb(253, 253, 253);
+    border-bottom: 1px groove rgb(253, 253, 253);
 }
 .start_popup .project {
     border-top: 1px groove rgb(179, 176, 176);
