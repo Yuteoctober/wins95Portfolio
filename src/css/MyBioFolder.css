@@ -167,7 +167,7 @@
 .folder_content .folder_content-bio {
     position: relative;
     width: calc(100% - 10px);
-    height: calc(100% - 98px);
+    height: calc(100% - 95px);
     padding: 1.5rem 2rem;
     border: 2px solid rgb(53, 52, 52);
     border-top-color: #f0efef;
