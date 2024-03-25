@@ -146,9 +146,10 @@
     z-index: 1;
 }
 
+
 .bio_folder .folder_content {
     position: relative;
-    top: -1.5px;
+    top: -3.5px;
     margin: 0 auto;
     width: calc(100% - 8px);
     height: calc(100% - 4px);
@@ -160,7 +161,7 @@
 
 @supports (-webkit-touch-callout: none) {
     .bio_folder .folder_content {
-        top: -2px
+        top: -4px
     }
 }
 
@@ -213,6 +214,7 @@
     margin-top: 6px;
 }
 .bio_btn_container div {
+    position: relative;
     width: 70px;
     text-align: center;
     border: 2px solid black;
@@ -221,6 +223,7 @@
     -ms-user-select: none;
     user-select: none;
 }
+
 
 .bio_btn_container span {
     font-size: 14px;

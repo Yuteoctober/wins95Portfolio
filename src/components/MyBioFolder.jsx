@@ -175,6 +175,7 @@ function MyBioFolder() {
           <p
               onClick={() => handleBiotap('general')}
               style={generalTap ? {
+                bottom: '2px',
                 outline: '1px dotted black',
                 outlineOffset: '-5px',
                 borderBottomColor: '#c5c4c4',
@@ -185,6 +186,7 @@ function MyBioFolder() {
           </p>
           <p onClick={() => handleBiotap('technology')}
               style={technologyTap ? {
+                bottom: '2px',
                 outline: '1px dotted black',
                 outlineOffset: '-5px',
                 borderBottomColor: '#c5c4c4',
@@ -195,6 +197,7 @@ function MyBioFolder() {
           </p>
           <p onClick={() => handleBiotap('hobby')}
                   style={hobbTap ? {
+                    bottom: '2px',
                     outline: '1px dotted black',
                     outlineOffset: '-5px',
                     borderBottomColor: '#c5c4c4',
