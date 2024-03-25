@@ -4,7 +4,7 @@
     display: none;
     position: fixed;
     min-width: 300px;
-    height: 480px;
+    height: 475px;
     min-height: 320px;
     background: #c5c4c4;
     border: 2px solid white;
@@ -251,7 +251,7 @@
 @media screen and (width <= 500px) {
     .bio_folder {
         width: 85%;
-        height: 60%;
+        height: 58%;
     }
     .folder_content .folder_content-bio {
         padding: 1rem 1.5rem;
