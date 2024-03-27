@@ -179,8 +179,7 @@
     margin: 0 auto;
     margin-top: 0;
     background: #c5c4c4;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    overflow: hidden;
     word-break: break-word;
     grid-template-areas: 
     'bio_h1 bio_h1'
