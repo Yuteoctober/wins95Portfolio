@@ -240,18 +240,19 @@ body {
     right: 9px;
 }
 
+
 .start_popup .ig {
-    border-bottom: 1px groove rgb(253, 253, 253);
+    border-bottom: 1px groove rgb(120, 119, 119);
 }
 
 @supports (-webkit-touch-callout: none) {
     .start_popup .ig {
-        border-bottom: 2px groove rgb(253, 253, 253);
+        border-bottom: .5px groove rgb(120, 119, 119);
     }
 }
 
 .start_popup .project {
-    border-top: 1px groove rgb(179, 176, 176);
+    border-top: 1px groove rgb(221, 220, 220);
 }
 
 .tap_container {
