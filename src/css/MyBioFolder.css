@@ -144,6 +144,7 @@
     border-left-color: #f0efef;
     border-right-color: rgb(53, 52, 52);
     z-index: 1;
+    cursor: pointer;
 }
 
 
