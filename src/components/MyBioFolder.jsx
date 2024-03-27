@@ -3,6 +3,9 @@ import { useContext, useState } from "react";
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
 import MyBio from '../assets/pc.png'
+import bioPC from '../assets/bio_pc.png'
+import tech from '../assets/tech.png'
+import hobby from '../assets/hobby.png'
 import '../css/MyBioFolder.css'
 
 
@@ -39,15 +42,18 @@ function MyBioFolder() {
         {
             head: 'General', 
             text1: "Hi! My name is Yute, I'm a Software Engineer based in New York City. Focusing on Front-end. I'm passionate about design, building something pixel perfect, along with functionality that works perfectly.",
-            text2: "Working in this field requires a lot of attention to detail, as well as communication skills. Work and compassion go along the way."
+            text2: "Working in this field requires a lot of attention to detail, as well as communication skills. Work and compassion go along the way.",
+         
         },
         {
             head: 'Technology',
-            text1: technologyText
+            text1: technologyText,
+         
       },
         {
             head: 'Hobby',
-            text1: "In my free time, I enjoy playing video games with friends. If I'm not in front of a computer, I will try to drag myself to the gym, try new restaurants, and embark on adventures like hiking. I used to play basketball in high school and want to find time for that again."
+            text1: "In my free time, I enjoy playing video games with friends. If I'm not in front of a computer, I will try to drag myself to the gym, try new restaurants, and embark on adventures like hiking. I used to play basketball in high school and want to find time for that again.",
+           
         }
     ]
 };
@@ -67,7 +73,6 @@ function MyBioFolder() {
         setMybioExpand(prevState => ({
           ...prevState,
           expand: !prevState.expand,
-          // focusItem: prevState.expand === false ? true : false
         }));
       }
 
@@ -77,7 +82,6 @@ function MyBioFolder() {
         setMybioExpand(prevState => ({
           ...prevState,
           expand: !prevState.expand,
-          // focusItem: prevState.expand === false ? true : false
         }));
     }
     setLastTapTime(now);
@@ -139,8 +143,6 @@ function MyBioFolder() {
             }}
             style={ MybioExpand.expand ? inlineStyleExpand('My Bio') : inlineStyle('My Bio')}>
           <div className="folder_dragbar"
-              onDoubleClick={(e) => {handleExpandStateToggle(); e.stopPropagation()}}
-              onTouchStart={(e) => {handleExpandStateToggleMobile(); e.stopPropagation()}}
              style={{ background: MybioExpand.focusItem? '#14045c' : '#757579'}}
           >
             <div className="bio_barname">
@@ -164,29 +166,12 @@ function MyBioFolder() {
                 <p className='dash'></p>
               </div>
 
-              <div 
-                  onClick={ !isTouchDevice ? () => handleExpandStateToggle() : undefined}
-                  onTouchEnd={handleExpandStateToggle}
-              >
-                <motion.div className={`expand ${MybioExpand.expand ? 'full' : ''}`}
-                >
-                </motion.div>
-                {MybioExpand.expand ? 
-                (
-                <div className="expand_2"></div>
-                )
-                :
-                (null)}
-              </div>
-
                 <div>
-                <p
-                  className='x'
+                <p className='x'
                   onClick={!isTouchDevice ? () => deleteTap('My Bio')
-                   : undefined}
+                  : undefined}
                   onTouchEnd={() => deleteTap('My Bio')}
-                  >
-                  x
+                >x
                 </p>
               </div>
             </div>
@@ -207,23 +192,25 @@ function MyBioFolder() {
           </div>
           <div className="folder_content">
             <div className="folder_content-bio">
-            <h1>{textShow(true)}</h1>
-            <br />
-            <p>{textShow(false, true)}</p>
-            <br />
-            <p>{textShow(false, false, true)}</p>
-              <br />
+              
+            <h1 className='bio_h1'>{textShow(true)}</h1>
+            <img
+              alt="bioPC"
+              className="bio_img"
+              src={generalTap? bioPC : (technologyTap ? tech : hobby)}
+            />
+            <p className='bio_text_1'>{textShow(false, true)}</p>
+            <p className='bio_text_2'>{textShow(false, false, true)}</p>
+           
               {generalTap && (
-                <>
-                  <a href="https://drive.google.com/file/d/1XNn23UA2L82P2__Ccuccl3WMdR2rHG57/view" target="_blank" rel="noreferrer" >
+                <div className='cv_container'>
+                  <a className='bio_cv' href="https://drive.google.com/file/d/1XNn23UA2L82P2__Ccuccl3WMdR2rHG57/view" target="_blank" rel="noreferrer" >
                 Click to view my CV.
               </a>
-              <br />
-              <br />
-              <a href="https://drive.usercontent.google.com/u/0/uc?id=1XNn23UA2L82P2__Ccuccl3WMdR2rHG57&export=download" target="_blank" rel="noreferrer" >
+              <a className='bio_download' href="https://drive.usercontent.google.com/u/0/uc?id=1XNn23UA2L82P2__Ccuccl3WMdR2rHG57&export=download" target="_blank" rel="noreferrer" >
                 Download
               </a>
-                </>
+                </div>
               )}
               
             </div>

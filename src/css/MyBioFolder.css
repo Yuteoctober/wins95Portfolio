@@ -12,7 +12,7 @@
     border-bottom: 1px solid black;
     outline: 1px solid white;
     overflow: hidden;
-    resize: both;
+    resize: none;
 }
 
 
@@ -154,8 +154,7 @@
     margin: 0 auto;
     width: calc(100% - 8px);
     height: calc(100% - 4px);
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
     touch-action: none;
     z-index: 2;
 }
@@ -167,10 +166,13 @@
 }
 
 .folder_content .folder_content-bio {
+    display: grid;
     position: relative;
     width: calc(100% - 10px);
     height: calc(100% - 95px);
-    padding: 1.5rem 1.5rem;
+    grid-template-columns: .8fr 1.2fr;
+    grid-template-rows: .4fr 1.5fr .5fr 1fr;
+    padding: 1rem 1.5rem;
     border: 2px solid rgb(53, 52, 52);
     border-top-color: #f0efef;
     border-left-color: #f0efef;
@@ -179,20 +181,59 @@
     background: #c5c4c4;
     overflow-y: scroll;
     overflow-x: hidden;
-    word-break: break-word
+    word-break: break-word;
+    grid-template-areas: 
+    'bio_h1 bio_h1'
+    'bio_img bio_text_1'
+    'bio_text_2 bio_text_2'
+    'cv_container cv_container';
+}
+
+.folder_content-bio img {
+    position: relative;
+    grid-area: bio_img; 
+    width: 180px;
+    margin-left: -1.5rem;
 }
 
 .folder_content-bio h1 {
+    grid-area: bio_h1;
+    position: relative;
     font-size: 23px;
     text-decoration: underline;
+    left: .5rem;
 }
 
-.folder_content-bio p {
+.folder_content-bio .bio_text_1 {
+    grid-area: bio_text_1;
+    position: relative;
     font-size: 13.5px;
+    padding-top: 1rem;
+    padding-left: 1rem;
+
+}
+
+.folder_content-bio .bio_text_2 {
+    grid-area: bio_text_2;
+    height: fit-content;
+    font-size: 13.5px;
+    margin-top: 0rem;
+    padding-left: .5rem;
+
 }
 
 .folder_content-bio span {
     font-weight: bold;
+}
+
+.cv_container {
+    grid-area: cv_container;
+    display: grid;
+    height: fit-content;
+    position: relative;
+    gap: .6rem;
+    left: .5rem;
+    top: 1rem;
 }
 
 .folder_content-bio a {
@@ -250,9 +291,48 @@
 
 
 @media screen and (width <= 500px) {
+    .folder_content-bio img {
+        width: 150px;
+    }
+    .folder_content .folder_content-bio {
+        display: block;
+        place-items: center;
+        text-align: center;
+    }
+    .folder_content-bio img {
+        margin: auto;
+        margin-top: -.5rem;
+        padding-bottom: 1rem;
+    }
+
+    .folder_content-bio h1 {
+        left: 0rem;
+        height: fit-content;
+        margin-bottom: .5rem;
+    }
+
+    .folder_content-bio .bio_text_1 {
+        padding: 0;
+        padding-left: .5rem;
+        text-align: left;
+        margin-top: -1rem;
+    }
+
+    .folder_content-bio .bio_text_2 {
+        display: none;
+    }
+
+    .cv_container {
+        position: relative;
+        margin-top: 1rem;
+        bottom: 0;
+        left: 0;
+        top: 0;
+    }
+
     .bio_folder {
         width: 85%;
-        height: 58%;
+        height: 490px;
     }
     .folder_content .folder_content-bio {
         padding: 1rem 1.5rem;
@@ -261,11 +341,6 @@
 
 @media screen and (width >= 500px) {
     .bio_folder {
-        width: 400px;
-    }
-}
-@media screen and (width >= 1000px) {
-    .bio_folder {
-        width: 450px;
+        width: 460px;
     }
 }
