@@ -192,25 +192,25 @@ function ProjectFolder() {
           <div className="btm_bar_container-project">
             <div className="object_bar-project">
               <p>
-                {ProjectExpand.item_1Focus? '1 object(s) selected': ''}
-                {ProjectExpand.item_2Focus? '1 object(s) selected': ''}
-                {ProjectExpand.item_3Focus? '1 object(s) selected': ''}
+                {ProjectExpand.item_1iconFocus? '1 object(s) selected': ''}
+                {ProjectExpand.item_2iconFocus? '1 object(s) selected': ''}
+                {ProjectExpand.item_3iconFocus? '1 object(s) selected': ''}
                 {
-                !ProjectExpand.item_1Focus && 
-                !ProjectExpand.item_2Focus && 
-                !ProjectExpand.item_3Focus ? '3 object(s)':''
+                !ProjectExpand.item_1iconFocus && 
+                !ProjectExpand.item_2iconFocus && 
+                !ProjectExpand.item_3iconFocus ? '3 object(s)':''
                 }
               </p>
             </div>
             <div className="size_bar-project">
               <p>
-              {ProjectExpand.item_1Focus? '50.98 MB': ''}
-              {ProjectExpand.item_2Focus? '29.07 MB': ''}
-              {ProjectExpand.item_3Focus? '7.28 MB': ''}
+              {ProjectExpand.item_1iconFocus? '50.98 MB': ''}
+              {ProjectExpand.item_2iconFocus? '29.07 MB': ''}
+              {ProjectExpand.item_3iconFocus? '7.28 MB': ''}
               {
-                !ProjectExpand.item_1Focus && 
-                !ProjectExpand.item_2Focus && 
-                !ProjectExpand.item_3Focus ? '87.33 MB':''
+                !ProjectExpand.item_1iconFocus && 
+                !ProjectExpand.item_2iconFocus && 
+                !ProjectExpand.item_3iconFocus ? '87.33 MB':''
               }
               </p>
             </div>
