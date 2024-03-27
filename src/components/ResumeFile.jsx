@@ -13,13 +13,13 @@ function ResumeFile() {
 
   const { 
     ResumeFileExpand, setResumeFileExpand,
-    tap, setTap,
     lastTapTime, setLastTapTime,
     StyleHide,
     isTouchDevice,
     handleSetFocusItemTrue,
     inlineStyleExpand,
     inlineStyle,
+    deleteTap,
 
    } = useContext(UseContext);
 
@@ -115,15 +115,11 @@ function ResumeFile() {
               </div>
               <div><p className='x-resumefile'
                  onClick={!isTouchDevice ? () => {
-                  setResumeFileExpand(prev => ({...prev, show: false, expand: false}));
-                  const newTap = tap.filter(a => a !== 'ResumeFile')
-                  setTap(newTap)
+                  deleteTap('ResumeFile')
                  }: undefined
                 }
                 onTouchEnd={() => {
-                  setResumeFileExpand(prev => ({...prev, show: false, expand: false}));
-                  const newTap = tap.filter(a => a !== 'ResumeFile')
-                  setTap(newTap)
+                  deleteTap('ResumeFile')
               }}
               >x</p></div>
             </div>

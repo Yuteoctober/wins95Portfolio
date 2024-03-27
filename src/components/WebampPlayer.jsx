@@ -18,8 +18,8 @@ const WebampPlayer = () => {
         setTypeExpand,
         setResumeExpand,
         setResumeFileExpand,
-        tap, setTap,
         setIconState, 
+        deleteTap,
       } = useContext(UseContext);
 
     const appRef = useRef(null);
@@ -48,9 +48,7 @@ const WebampPlayer = () => {
                     if (!disposed) {
                         disposed = true; 
                         webamp.dispose();
-                        setWinampExpand(prev => ({ ...prev, show: false}));
-                        const newTap = tap.filter(a => a !== 'Winamp');
-                        setTap(newTap);
+                        deleteTap('Winamp')
                     }
                 };
     

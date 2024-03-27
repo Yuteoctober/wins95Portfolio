@@ -11,20 +11,16 @@ function TypeFolder() {
 
   const { 
     TypeExpand, setTypeExpand,
-    setNoteExpand,
-    setNftExpand,
-    setProjectExpand,
-    tap, setTap,
     lastTapTime, setLastTapTime,
     StyleHide,
     isTouchDevice,
-    iconState, setIconState,
     handleDoubleTapEnterMobile,
     handleDoubleClickEnterLink,
     handleSetFocusItemTrue,
     inlineStyleExpand,
     inlineStyle,
     iconFocusIcon,
+    deleteTap,
    } = useContext(UseContext);
 
       function handleDragStop(event, data) {
@@ -118,15 +114,11 @@ function TypeFolder() {
               </div>
               <div><p className='x'
                  onClick={!isTouchDevice ? () => {
-                  setTypeExpand(prev => ({...prev, show: false, expand: false}));
-                  const newTap = tap.filter(a => a !== 'Type')
-                  setTap(newTap)
+                  deleteTap('Type')
                  }: undefined
                 }
                 onTouchEnd={() => {
-                  setTypeExpand(prev => ({...prev, show: false, expand: false}));
-                  const newTap = tap.filter(a => a !== 'Type')
-                  setTap(newTap)
+                  deleteTap('Type')
               }}
               >x</p></div>
             </div>

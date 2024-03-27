@@ -11,7 +11,6 @@ function ResumeFolder() {
 
   const { 
     ResumeExpand, setResumeExpand,
-    tap, setTap,
     lastTapTime, setLastTapTime,
     StyleHide,
     isTouchDevice,
@@ -21,6 +20,7 @@ function ResumeFolder() {
     inlineStyleExpand,
     inlineStyle,
     iconFocusIcon,
+    deleteTap,
    } = useContext(UseContext);
 
       function handleDragStop(event, data) {
@@ -114,15 +114,11 @@ function ResumeFolder() {
               </div>
               <div><p className='x'
                  onClick={!isTouchDevice ? () => {
-                  setResumeExpand(prev => ({...prev, show: false, expand: false}));
-                  const newTap = tap.filter(a => a !== 'Resume')
-                  setTap(newTap)
+                  deleteTap('Resume')
                  }: undefined
                 }
                 onTouchEnd={() => {
-                  setResumeExpand(prev => ({...prev, show: false, expand: false}));
-                  const newTap = tap.filter(a => a !== 'Resume')
-                  setTap(newTap)
+                  deleteTap('Resume')
               }}
               >x</p></div>
             </div>
@@ -149,8 +145,6 @@ function ResumeFolder() {
                 onClick={(e) => {
                   e.stopPropagation();
                   iconFocusIcon('Resumefolder')
-                  // setResumeExpand(prev => ({...prev, item_1Focus: true}));
-                  // setIconState(iconState.map(icon => ({...icon, focus: false})))
                 }}
               >
                 <img src={resumefile} alt="resumeFile" 

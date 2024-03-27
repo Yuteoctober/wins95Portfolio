@@ -11,7 +11,6 @@ function NoteFolder() {
 
   const { 
     NoteExpand, setNoteExpand,
-    tap, setTap,
     lastTapTime, setLastTapTime,
     StyleHide,
     isTouchDevice,
@@ -21,6 +20,7 @@ function NoteFolder() {
     inlineStyleExpand,
     inlineStyle,
     iconFocusIcon,
+    deleteTap,
 
    } = useContext(UseContext);
 
@@ -116,15 +116,11 @@ function NoteFolder() {
               </div>
               <div><p className='x'
                  onClick={!isTouchDevice ? () => {
-                  setNoteExpand(prev => ({...prev, show: false, expand: false}));
-                  const newTap = tap.filter(a => a !== 'Note')
-                  setTap(newTap)
+                  deleteTap('Note')
                  }: undefined
                 }
                 onTouchEnd={() => {
-                  setNoteExpand(prev => ({...prev, show: false, expand: false}));
-                  const newTap = tap.filter(a => a !== 'Note')
-                  setTap(newTap)
+                  deleteTap('Note')
               }}
               >x</p></div>
             </div>

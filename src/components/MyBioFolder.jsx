@@ -14,13 +14,13 @@ function MyBioFolder() {
 
   const { 
     MybioExpand, setMybioExpand,
-    tap, setTap,
     lastTapTime, setLastTapTime,
     StyleHide,
     isTouchDevice,
     handleSetFocusItemTrue,
     inlineStyleExpand,
     inlineStyle,
+    deleteTap,
    } = useContext(UseContext);
 
    const technologyText = ( // don't have to use DangerousHTML
@@ -96,12 +96,6 @@ function MyBioFolder() {
     borderBottomColor: '#c5c4c4',
     zIndex: '3'
   };
-
-  function closeFolder() {
-    setMybioExpand(prev => ({...prev, show: false, expand: false}));
-    const newTap = tap.filter(a => a !== 'My Bio')
-    setTap(newTap)
-  }
 
   function textShow(head, text1, text2) {
     if (head) {
@@ -188,9 +182,9 @@ function MyBioFolder() {
                 <div>
                 <p
                   className='x'
-                  onClick={!isTouchDevice ? () => closeFolder()
+                  onClick={!isTouchDevice ? () => deleteTap('My Bio')
                    : undefined}
-                  onTouchEnd={() => closeFolder()}
+                  onTouchEnd={() => deleteTap('My Bio')}
                   >
                   x
                 </p>
@@ -235,16 +229,16 @@ function MyBioFolder() {
             </div>
             <div className="bio_btn_container">
               <div className="bio_btn_ok"
-              onClick={!isTouchDevice ? () => closeFolder() : undefined}
-              onTouchEnd={() => closeFolder()}
+              onClick={!isTouchDevice ? () => deleteTap('My Bio') : undefined}
+              onTouchEnd={() => deleteTap('My Bio')}
               >
                 <span>
                   OK
                 </span>
               </div>
               <div className="bio_btn_cancel"
-              onClick={!isTouchDevice ? () => closeFolder() : undefined}
-              onTouchEnd={() => closeFolder()}
+              onClick={!isTouchDevice ? () => deleteTap('My Bio') : undefined}
+              onTouchEnd={() => deleteTap('My Bio')}
               ><span>Cancel</span></div>
             </div>
           </div>

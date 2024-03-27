@@ -348,6 +348,30 @@ function handleShowMobile(name) {
   };
   
 
+  function deleteTap(name) {
+    const setState = ObjectState();
+    const passedName = name.toLowerCase().split(' ').join('');
+    console.log(passedName);
+  
+    setState.forEach(item => {
+      const itemName = item.name.toLowerCase().split(' ').join('');
+  
+      if (itemName === passedName) {
+        item.setter(prev => ({
+          ...prev,
+          show: false,
+          expand: false
+        }));
+  
+        setTap(prevTap => prevTap.filter(tapItem => { // get prevTap to prevent error
+          const tapItemName = tapItem.toLowerCase().split(' ').join('');
+          return tapItemName !== passedName;
+        }));
+      }
+    });
+  }
+  
+  
 
   const contextValue = {
     startActive, setStartActive,
@@ -392,6 +416,7 @@ function handleShowMobile(name) {
     inlineStyleExpand,
     inlineStyle,
     iconFocusIcon,
+    deleteTap,
   }
 
  

@@ -11,7 +11,6 @@ function NftFolder() {
 
   const { 
     NftExpand, setNftExpand,
-    tap, setTap,
     lastTapTime, setLastTapTime,
     StyleHide,
     isTouchDevice,
@@ -21,6 +20,7 @@ function NftFolder() {
     inlineStyleExpand,
     inlineStyle,
     iconFocusIcon,
+    deleteTap,
 
    } = useContext(UseContext);
 
@@ -115,15 +115,11 @@ function NftFolder() {
               </div>
               <div><p className='x'
                  onClick={!isTouchDevice ? () => {
-                  setNftExpand(prev => ({...prev, show: false, expand: false}));
-                  const newTap = tap.filter(a => a !== 'Nft')
-                  setTap(newTap)
+                  deleteTap('Nft')
                  }: undefined
                 }
                 onTouchEnd={() => {
-                  setNftExpand(prev => ({...prev, show: false, expand: false}));
-                  const newTap = tap.filter(a => a !== 'Nft')
-                  setTap(newTap)
+                  deleteTap('Nft')
               }}
               >x</p></div>
             </div>

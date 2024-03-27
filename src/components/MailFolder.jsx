@@ -14,7 +14,6 @@ function MailFolder() {
 
   const { 
     MailExpand, setMailExpand,
-    tap, setTap,
     lastTapTime, setLastTapTime,
     StyleHide,
     isTouchDevice,
@@ -22,6 +21,8 @@ function MailFolder() {
     handleSetFocusItemTrue,
     inlineStyleExpand,
     inlineStyle,
+    deleteTap,
+    iconFocusIcon,
    } = useContext(UseContext);
 
 // ---------------------- EMAIL JS ---------------------------------------
@@ -77,9 +78,6 @@ const form = useRef();
     }
     setLastTapTime(now);
 }
-
-
-
 
   return (
     <>
@@ -142,16 +140,10 @@ const form = useRef();
               </div>
               <div><p className='x-mail'
                  onClick={!isTouchDevice ? () => {
-                  setMailExpand(prev => ({...prev, show: false, expand: false}));
-                  const newTap = tap.filter(a => a !== 'Mail')
-                  setTap(newTap)
-                 }: undefined
+                  deleteTap('Mail')}
+                  : undefined
                 }
-                onTouchEnd={() => {
-                  setMailExpand(prev => ({...prev, show: false, expand: false}));
-                  const newTap = tap.filter(a => a !== 'Mail')
-                  setTap(newTap)
-              }}
+                onTouchEnd={() => deleteTap('Mail')}
               >x</p></div>
             </div>
           </div>
@@ -163,7 +155,7 @@ const form = useRef();
               <p>Help<span style={{left: '-30px'}}>_</span></p>
           </div>
           <div className="folder_content-mail"
-            onClick={() => setMailExpand(prev => ({...prev, item_1Focus: false}))}
+            onClick={() => iconFocusIcon('')}
             style={MailExpand.expand ? 
               { height: 'calc(100svh - 100px)'} 
               : 

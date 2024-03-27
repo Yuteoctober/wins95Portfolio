@@ -11,7 +11,6 @@ function ProjectFolder() {
 
   const { 
     ProjectExpand, setProjectExpand,
-    tap, setTap,
     lastTapTime, setLastTapTime,
     StyleHide,
     isTouchDevice,
@@ -21,6 +20,7 @@ function ProjectFolder() {
     inlineStyleExpand,
     inlineStyle,
     iconFocusIcon,
+    deleteTap,
    } = useContext(UseContext);
 
       function handleDragStop(event, data) {
@@ -114,15 +114,11 @@ function ProjectFolder() {
               </div>
               <div><p className='x-project'
                  onClick={!isTouchDevice ? () => {
-                  setProjectExpand(prev => ({...prev, show: false, expand: false}));
-                  const newTap = tap.filter(a => a !== 'Project')
-                  setTap(newTap)
+                  deleteTap('Project')
                  }: undefined
                 }
                 onTouchEnd={() => {
-                  setProjectExpand(prev => ({...prev, show: false, expand: false}));
-                  const newTap = tap.filter(a => a !== 'Project')
-                  setTap(newTap)
+                  deleteTap('Project')
               }}
               >x</p></div>
             </div>
