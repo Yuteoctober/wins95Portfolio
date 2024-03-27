@@ -10,18 +10,10 @@ function WinampPlayer() {
   const { 
     handleShow, handleShowMobile,
     isTouchDevice,
-    WinampExpand, setWinampExpand,
-    iconState, setIconState,
+    WinampExpand,
+    iconFocusIcon,
   } = useContext(UseContext);
 
-  function handleWinampFocus() {
-    setWinampExpand(prev => ({...prev, focus: true}))
-    const updatedFocus = iconState.map(icon => ({
-      ...icon,
-      focus: false
-    }));
-    setIconState(updatedFocus);
-  }
 
   
 
@@ -37,9 +29,14 @@ function WinampPlayer() {
       >
         <motion.div
           id="winamp-container"
-          onClick={(e) => { handleWinampFocus(); e.stopPropagation()}}
+          onClick={(e) => { 
+            iconFocusIcon('Winampfolder'); 
+            e.stopPropagation()}}
           onDoubleClick={ !isTouchDevice ? () => handleShow('Winamp'): undefined}
-          onTouchStart={() => { handleShowMobile('Winamp'); handleWinampFocus()}}
+          onTouchStart={() => { 
+            handleShowMobile('Winamp'); 
+            iconFocusIcon('Winampfolder')
+            }}
           initial={{ opacity: 1 }}
           whileTap={{ opacity: 0.5 }}
           transition={{ opacity: { duration: 0.2 } }}

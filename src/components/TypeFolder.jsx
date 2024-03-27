@@ -24,6 +24,7 @@ function TypeFolder() {
     handleSetFocusItemTrue,
     inlineStyleExpand,
     inlineStyle,
+    iconFocusIcon,
    } = useContext(UseContext);
 
       function handleDragStop(event, data) {
@@ -138,7 +139,7 @@ function TypeFolder() {
               <p>Help<span style={{left: '-30px'}}>_</span></p>
           </div>
           <div className="folder_content"
-            onClick={() => setTypeExpand(prev => ({...prev, item_1Focus: false}))}
+            onClick={() => iconFocusIcon('')}
             style={TypeExpand.expand ? 
               { height: 'calc(100svh - 122px)'} 
               : 
@@ -151,13 +152,7 @@ function TypeFolder() {
                 onTouchEnd={() => handleDoubleTapEnterMobile('Type', lastTapTime, setLastTapTime)}
                 onClick={(e) => {
                   e.stopPropagation();
-                  setTypeExpand(prev => ({...prev, item_1Focus: true}));
-                  setIconState(iconState.map(icon => ({...icon, focus: false})))
-                  setNoteExpand(prev => ({...prev, item_1Focus: false}))
-                  setNftExpand(prev => ({...prev, item_1Focus: false}))
-                  setProjectExpand(prev => ({
-                    ...prev, item_1Focus: false, item_2Focus: false, item_3Focus: false
-                  }))
+                  iconFocusIcon('Typefolder')
                 }}
               >
                 <img src={file4} alt="file4" 

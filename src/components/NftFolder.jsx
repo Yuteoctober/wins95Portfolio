@@ -11,19 +11,16 @@ function NftFolder() {
 
   const { 
     NftExpand, setNftExpand,
-    setNoteExpand,
-    setTypeExpand,
-    setProjectExpand,
     tap, setTap,
     lastTapTime, setLastTapTime,
     StyleHide,
     isTouchDevice,
-    iconState, setIconState,
     handleDoubleTapEnterMobile,
     handleDoubleClickEnterLink,
     handleSetFocusItemTrue,
     inlineStyleExpand,
     inlineStyle,
+    iconFocusIcon,
 
    } = useContext(UseContext);
 
@@ -152,13 +149,7 @@ function NftFolder() {
                 onTouchEnd={() => handleDoubleTapEnterMobile('Nft', lastTapTime, setLastTapTime)}
                 onClick={(e) => {
                   e.stopPropagation();
-                  setNftExpand(prev => ({...prev, item_1Focus: true}));
-                  setIconState(iconState.map(icon => ({...icon, focus: false})))
-                  setNoteExpand(prev => ({...prev, item_1Focus: false}))
-                  setTypeExpand(prev => ({...prev, item_1Focus: false}))
-                  setProjectExpand(prev => ({
-                    ...prev, item_1Focus: false, item_2Focus: false, item_3Focus: false
-                  }))
+                  iconFocusIcon('Nftfolder')
                 }}
               >
                 <img src={file4} alt="file4" 

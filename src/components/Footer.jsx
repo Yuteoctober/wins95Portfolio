@@ -47,13 +47,13 @@ export default function Footer() {
         container.scrollLeft += e.deltaY;
       };
     
-    useEffect(() => {
+    useEffect(() => { // set local time
         getCurrentLocalTime12Hour();
-        const intervalId = setInterval(getCurrentLocalTime12Hour, 1000);
+        const intervalId = setInterval(getCurrentLocalTime12Hour, 1000); // update every 1 second
         return () => clearInterval(intervalId);
     }, []);
 
-    useEffect(() => {
+    useEffect(() => { // click outside start btn, hide start
         const handleClickOutside = (event) => {
             if (startRef.current && !startRef.current.contains(event.target)) {
                 setStartActive(false);
@@ -77,7 +77,7 @@ export default function Footer() {
         setTime(currentTime12Hour);
     };
 
-    function handleHideFolder(index) {
+    function handleHideFolder(index) { // unhide icon from tap
 
         const lowerCaseName = tap[index].toLowerCase().split(' ').join('');
       
@@ -127,15 +127,16 @@ export default function Footer() {
         };
     },[])
 
-    useEffect(() => {
+
+    useEffect(() => { //random clippy time
         clearTimeout(SecondRandomTimeoutShowClippy.current)
-        const randomTime = Math.floor(Math.random() * (50000 - 30000 + 1)) + 30000;
+        const randomTime = Math.floor(Math.random() * (5000 - 3000 + 1)) + 3000;
 
         clearTimeout(ClearTOclippySendemailfunction.current)
         clearTimeout(ClearTOclippyThanksYouFunction.curremt)
         clearTimeout(ClearTOSongfunction.current)
         
-        RandomTimeoutShowClippy.current = setTimeout(() => {
+        RandomTimeoutShowClippy.current = setTimeout(() => { // random clippy index from length
         const randomIndex = Math.floor(Math.random() * clippyPhrase.inspiration.length)
                 setClippyIndex(randomIndex);
                 setShowClippy(true);
@@ -152,7 +153,7 @@ export default function Footer() {
     }, [randomClippyPopup]);
 
 
-    function dontTouch() {
+    function dontTouch() { // click on clippy while speaking, will active angry clippy
         clearTimeout(ClearTOdonttouch.current)
         ClearTOdonttouch.current = setClippyTouched(true)
         setTimeout(() => {
@@ -170,7 +171,7 @@ export default function Footer() {
         if(clippySendemail) return clippySuggest[0]
         if(clippySong) return clippySuggest[2]
         
-        return clippyPhrase.inspiration[clippyIndex].phrase
+        return clippyPhrase.inspiration[clippyIndex].phrase // return default from phrase 
     }
     
     useEffect(() => { /// need useeffect to update state before it returns on handleClipperTalk()

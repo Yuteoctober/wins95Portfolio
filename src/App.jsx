@@ -48,22 +48,22 @@ function App() {
 
   const [ProjectExpand, setProjectExpand] = useState(
   {
-    expand: false, show: false, hide: false, focusItem: true, 
-    x: 0, y: 0, item_1Focus: false, item_2Focus: false, 
-    item_3Focus: false, 
+    expand: false, show: false, hide: false, focusItem: true,  // focusItem is window, item_1focus - 5 is the icon
+    x: 0, y: 0, item_1iconFocus: false, item_2iconFocus: false, 
+    item_3iconFocus: false, 
   });
   
   const [MailExpand, setMailExpand] = useState(
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
 
   const [NftExpand, setNftExpand] = useState(
-  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
+  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, item_1Focus: false});
 
   const [NoteExpand, setNoteExpand] = useState(
-  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
+  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, item_1Focus: false});
 
   const [TypeExpand, setTypeExpand] = useState(
-  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
+  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, item_1Focus: false});
 
   const [WinampExpand, setWinampExpand] = useState(
   {focus: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
@@ -78,6 +78,7 @@ function App() {
   }))
 );
 
+
 function ObjectState() {
   return [
           { name: 'Mybio', setter: setMybioExpand, usestate: MybioExpand},
@@ -91,6 +92,49 @@ function ObjectState() {
           { name: 'ResumeFile', setter: setResumeFileExpand, usestate: ResumeFileExpand }
         ];
 }
+
+function iconFocusIcon(name) { //if focus on one, the rest goes unfocus
+
+  const allSetItems = ObjectState();
+  const passedName = name.toLowerCase().split(' ').join('');
+
+  const updatedIconState = iconState.map(icon => {
+    const iconName = icon.name.toLowerCase().split(' ').join('');
+    if ('focus' in icon) { // check if focus is in the object
+      return { ...icon, focus: iconName === passedName }; //return new focus if matched
+    }
+    return icon; // return original if none found
+  });
+
+  setIconState(updatedIconState);
+
+  allSetItems.forEach(item => { // set same to folder to distinct from iconName
+    const itemName = item.name.toLowerCase().split(' ').join('') + 'folder'
+
+    if ('focus' in item.usestate) {
+      item.setter(prev => ({ ...prev, focus: passedName === itemName }));
+    }
+
+    if ('item_1Focus' in item.usestate) {
+      item.setter(prev => ({ ...prev, item_1Focus: passedName === itemName}));
+    }
+
+
+    if ('item_1iconFocus' in item.usestate) {
+      item.setter(prev => ({ ...prev, item_1iconFocus: passedName === 'projectnftfolder' ? true : false }));
+    }
+
+    if ('item_2iconFocus' in item.usestate) {
+      item.setter(prev => ({ ...prev, item_2iconFocus: passedName === 'projectnotefolder' ? true : false }));
+    }
+
+    // Update item_3Focus properties for item.usestate
+    if ('item_3iconFocus' in item.usestate) {
+      item.setter(prev => ({ ...prev, item_3iconFocus: passedName === 'projecttypefolder' ? true : false }));
+    }
+  });
+}
+
 
 function handleShow(name) {
 
@@ -125,10 +169,9 @@ function handleShow(name) {
 
 function handleShowMobile(name) {
 
+
   const now = Date.now()
   if (now - lastTapTime < 300) {
-
-  
 
   const lowerCaseName = name.toLowerCase().split(' ').join('');
 
@@ -158,7 +201,6 @@ function handleShowMobile(name) {
 
   setTap(prevTap => [...prevTap, name]);
   setIconState(prevIcons => prevIcons.map(icon => ({...icon, focus: false})));
-
   }
   setLastTapTime(now)
 }
@@ -185,33 +227,12 @@ function handleShowMobile(name) {
       };
   }, []);
 
-
-  function handleClippyFunction(setterFunction, clearFunction, allSetters) {
-    // Clear all existing timeouts
-    allSetters.forEach((setter, index) => {
-      if (setter !== setterFunction) {
-        setter(false);
-        clearTimeout(allClears[index].current);
-      }
-    });
-    setterFunction(true);
-    setShowClippy(true);
-    
-    clearTimeout(clearFunction.current);
-    if (RandomTimeoutShowClippy.current) clearTimeout(RandomTimeoutShowClippy.current);
-    if (firstTimoutShowclippy.current) clearTimeout(firstTimoutShowclippy.current);
-    if (SecondRandomTimeoutShowClippy.current) clearTimeout(SecondRandomTimeoutShowClippy.current);
-    
-    clearFunction.current = setTimeout(() => {
-      setterFunction(false);
-      setShowClippy(false);
-      setRandomClippyPopup(prev => !prev);
-    }, 8000);
-  }
-  
   // Define all state setter functions and corresponding clear functions in an array
-  const allSetters = [setClippyThanks, setClippySendemail, setClippySong];
-  const allClears = [ClearTOclippyThanksYouFunction, ClearTOclippySendemailfunction, ClearTOSongfunction];
+  const allSetters = [
+    { clippystate: setClippyThanks, clear: ClearTOclippyThanksYouFunction },
+    { clippystate: setClippySendemail, clear: ClearTOclippySendemailfunction },
+    { clippystate: setClippySong, clear: ClearTOSongfunction }
+];
   
   function clippyThanksYouFunction() {
     handleClippyFunction(setClippyThanks, ClearTOclippyThanksYouFunction, allSetters);
@@ -231,13 +252,42 @@ function handleShowMobile(name) {
   });
   },[])
 
+
+  function handleClippyFunction(setterFunction, clearFunction, allSetters) {
+    // Clear all existing timeouts for other setters
+    allSetters.forEach((setter) => {
+        if (setter.clippystate !== setterFunction) {
+            setter.clippystate(false);
+            clearTimeout(setter.clear.current);
+        }
+    });
+
+    // Set the current setter to true
+    setterFunction(true);
+    setShowClippy(true);
+
+    // Clear the current timeout
+    clearTimeout(clearFunction);
+
+    // Set a new timeout
+    clearFunction = setTimeout(() => {
+        setterFunction(false);
+        setShowClippy(false);
+        setRandomClippyPopup(prev => !prev);
+    }, 8000);
+}
+
+  
+  
+
   function handleSetFocusItemTrue(name) { //click on one, other goes false
 
     const LowerCaseName = name.toLowerCase().split(' ').join('');
     const setState = ObjectState();
 
     setState.forEach((item) => {
-      if(item.name.toLowerCase() === LowerCaseName) {
+      const itemName = item.name.toLowerCase()
+      if(itemName === LowerCaseName) {
         item.setter(prev => ({...prev, focusItem: true}));
       } else {
         item.setter(prev => ({...prev, focusItem: false}));
@@ -341,6 +391,7 @@ function handleShowMobile(name) {
     handleSetFocusItemTrue,
     inlineStyleExpand,
     inlineStyle,
+    iconFocusIcon,
   }
 
  

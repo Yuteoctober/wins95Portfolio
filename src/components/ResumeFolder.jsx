@@ -15,12 +15,12 @@ function ResumeFolder() {
     lastTapTime, setLastTapTime,
     StyleHide,
     isTouchDevice,
-    iconState, setIconState,
     handleShowMobile,
     handleShow,
     handleSetFocusItemTrue,
     inlineStyleExpand,
     inlineStyle,
+    iconFocusIcon,
    } = useContext(UseContext);
 
       function handleDragStop(event, data) {
@@ -135,7 +135,7 @@ function ResumeFolder() {
               <p>Help<span style={{left: '-30px'}}>_</span></p>
           </div>
           <div className="folder_content"
-            onClick={() => setResumeExpand(prev => ({...prev, item_1Focus: false}))}
+            onClick={() => iconFocusIcon('')}
             style={ResumeExpand.expand ? 
               { height: 'calc(100svh - 122px)'} 
               : 
@@ -148,8 +148,9 @@ function ResumeFolder() {
                 onTouchStart={() => handleShowMobile('ResumeFile')}
                 onClick={(e) => {
                   e.stopPropagation();
-                  setResumeExpand(prev => ({...prev, item_1Focus: true}));
-                  setIconState(iconState.map(icon => ({...icon, focus: false})))
+                  iconFocusIcon('Resumefolder')
+                  // setResumeExpand(prev => ({...prev, item_1Focus: true}));
+                  // setIconState(iconState.map(icon => ({...icon, focus: false})))
                 }}
               >
                 <img src={resumefile} alt="resumeFile" 

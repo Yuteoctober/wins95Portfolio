@@ -11,19 +11,16 @@ function ProjectFolder() {
 
   const { 
     ProjectExpand, setProjectExpand,
-    setNftExpand,
-    setNoteExpand,
-    setTypeExpand,
     tap, setTap,
     lastTapTime, setLastTapTime,
     StyleHide,
     isTouchDevice,
-    iconState, setIconState,
     handleShow,
     handleShowMobile,
     handleSetFocusItemTrue,
     inlineStyleExpand,
     inlineStyle,
+    iconFocusIcon,
    } = useContext(UseContext);
 
       function handleDragStop(event, data) {
@@ -138,9 +135,7 @@ function ProjectFolder() {
               <p>Help<span style={{left: '-30px'}}>_</span></p>
           </div>
           <div className="folder_content-project"
-            onClick={() => setProjectExpand(prev => ({
-              ...prev, item_1Focus: false, item_2Focus: false, item_3Focus: false,
-            }))}
+            onClick={() => iconFocusIcon('')}
             style={ProjectExpand.expand ? 
               { height: 'calc(100svh - 122px)'} 
               : 
@@ -154,19 +149,13 @@ function ProjectFolder() {
                 onTouchStart={() => handleShowMobile('Nft')}
                 onClick={(e) => {
                   e.stopPropagation();
-                  setNftExpand(prev => ({...prev, item_1Focus: false}))
-                  setNoteExpand(prev => ({...prev, item_1Focus: false}))
-                  setTypeExpand(prev => ({...prev, item_1Focus: false}))
-                  setProjectExpand(prev => ({
-                    ...prev, item_1Focus: true, item_2Focus: false, item_3Focus: false
-                  }))
-                  setIconState(iconState.map(icon => ({...icon, focus: false})))
+                  iconFocusIcon('ProjectNftfolder')
                 }}
               >
                 <img src={regFolder} alt="regFolder-project" 
-                  className={ProjectExpand.item_1Focus? 'item_1_img_focus-project' : ''}
+                  className={ProjectExpand.item_1iconFocus? 'item_1_img_focus-project' : ''}
                 />
-                <p className={ProjectExpand.item_1Focus? 'item_1_p_focus-project' : ''}>
+                <p className={ProjectExpand.item_1iconFocus? 'item_1_p_focus-project' : ''}>
                   OpenNFT
                 </p>
               </div>
@@ -176,19 +165,13 @@ function ProjectFolder() {
                 onTouchStart={() => handleShowMobile('Note')}
                 onClick={(e) => {
                   e.stopPropagation();
-                  setNftExpand(prev => ({...prev, item_1Focus: false}))
-                  setNoteExpand(prev => ({...prev, item_1Focus: false}))
-                  setTypeExpand(prev => ({...prev, item_1Focus: false}))
-                  setProjectExpand(prev => ({
-                    ...prev, item_2Focus: true, item_1Focus: false, item_3Focus: false
-                  }))
-                  setIconState(iconState.map(icon => ({...icon, focus: false})))
+                  iconFocusIcon('ProjectNotefolder')
                 }}
               >
                 <img src={regFolder} alt="regFolder-project" 
-                  className={ProjectExpand.item_2Focus? 'item_1_img_focus-project' : ''}
+                  className={ProjectExpand.item_2iconFocus? 'item_1_img_focus-project' : ''}
                 />
-                <p className={ProjectExpand.item_2Focus? 'item_1_p_focus-project' : ''}>
+                <p className={ProjectExpand.item_2iconFocus? 'item_1_p_focus-project' : ''}>
                   Note
                 </p>
               </div>
@@ -198,19 +181,13 @@ function ProjectFolder() {
                 onTouchStart={() => handleShowMobile('Type')}
                 onClick={(e) => {
                   e.stopPropagation();
-                  setNftExpand(prev => ({...prev, item_1Focus: false}))
-                  setNoteExpand(prev => ({...prev, item_1Focus: false}))
-                  setTypeExpand(prev => ({...prev, item_1Focus: false}))
-                  setProjectExpand(prev => ({
-                    ...prev, item_3Focus: true, item_1Focus: false, item_2Focus: false
-                  }))
-                  setIconState(iconState.map(icon => ({...icon, focus: false})))
+                  iconFocusIcon('ProjectTypefolder')
                 }}
               >
                 <img src={regFolder} alt="regFolder-project" 
-                  className={ProjectExpand.item_3Focus? 'item_1_img_focus-project' : ''}
+                  className={ProjectExpand.item_3iconFocus? 'item_1_img_focus-project' : ''}
                 />
-                <p className={ProjectExpand.item_3Focus? 'item_1_p_focus-project' : ''}>
+                <p className={ProjectExpand.item_3iconFocus? 'item_1_p_focus-project' : ''}>
                   Typing
                 </p>
               </div>

@@ -11,19 +11,16 @@ function NoteFolder() {
 
   const { 
     NoteExpand, setNoteExpand,
-    setNftExpand,
-    setTypeExpand,
-    setProjectExpand,
     tap, setTap,
     lastTapTime, setLastTapTime,
     StyleHide,
     isTouchDevice,
-    iconState, setIconState,
     handleDoubleTapEnterMobile,
     handleDoubleClickEnterLink,
     handleSetFocusItemTrue,
     inlineStyleExpand,
     inlineStyle,
+    iconFocusIcon,
 
    } = useContext(UseContext);
 
@@ -140,7 +137,7 @@ function NoteFolder() {
               <p>Help<span style={{left: '-30px'}}>_</span></p>
           </div>
           <div className="folder_content"
-            onClick={() => setNoteExpand(prev => ({...prev, item_1Focus: false}))}
+            onClick={() => iconFocusIcon('')}
             style={NoteExpand.expand ? 
               { height: 'calc(100svh - 122px)'} 
               : 
@@ -153,13 +150,7 @@ function NoteFolder() {
                 onTouchEnd={() => handleDoubleTapEnterMobile('Note', lastTapTime, setLastTapTime)}
                 onClick={(e) => {
                   e.stopPropagation();
-                  setNoteExpand(prev => ({...prev, item_1Focus: true}));
-                  setIconState(iconState.map(icon => ({...icon, focus: false})))
-                  setNftExpand(prev => ({...prev, item_1Focus: false}))
-                  setTypeExpand(prev => ({...prev, item_1Focus: false}))
-                  setProjectExpand(prev => ({
-                    ...prev, item_1Focus: false, item_2Focus: false, item_3Focus: false
-                  }))
+                  iconFocusIcon('Notefolder')
                 }}
               >
                 <img src={file4} alt="file4" 

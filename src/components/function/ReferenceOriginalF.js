@@ -595,3 +595,56 @@
 //       return {};
 //   }
 // }
+
+
+
+
+// function iconFocusToFalse(name) { //set all icon to false when other is clicked
+
+//     const allSetItems = ObjectState();
+//     const passedName = name.toLowerCase().split(' ').join('')
+  
+//     allSetItems.forEach(item => {
+//       const itemName = item.name.toLowerCase().split(' ').join('')
+  
+//       iconState.forEach(icon => {
+//         const iconName = icon.name.split(' ').join('').toLowerCase()
+    
+//       if(passedName === itemName || passedName === iconName) {
+  
+//         const updatedIcons = iconState.map(icon => ({
+//           ...icon,
+//           focus: passedName === itemName || passedName === iconName
+//         }));
+//         setIconState(updatedIcons)
+  
+//         if(passedName === 'nft' || passedName === 'note' || passedName === 'type') {
+//           setProjectExpand(prev => ({...prev, item_1Focus: passedName === 'nft', 
+//           item_2Focus: passedName === 'note', item_Focus: passedName === 'type'}))
+//         }
+//         if(passedName === 'resume') {
+//           item.setter(prev => ({...prev, item_1Focus: passedName === 'resume'}))
+//         }
+//         if(passedName === 'winmap') {
+//           item.setter(prev => ({...prev, focus: passedName === 'resume'}))
+//         }
+//       }
+//       })
+//     })
+//   }
+  
+
+// const handleFocusIcon = (name) => { 
+//     const updatedFocus = iconState.map(icon => ({
+//       ...icon,
+//       focus: icon.name === name
+//     }));
+//     setIconState(updatedFocus);
+//     setProjectExpand(prev => ({...prev, item_1Focus: false, item_2Focus: false, item_3Focus: false}));
+//     setResumeExpand(prev => ({...prev, item_1Focus: false}));
+//     setNftExpand(prev => ({...prev, item_1Focus: false}));
+//     setNoteExpand(prev => ({...prev, item_1Focus: false}));
+//     setTypeExpand(prev => ({...prev, item_1Focus: false}));
+//     setWinampExpand(prev => ({...prev, focus: false}));
+//     // setResumeFileExpand(prev => ({...prev, item_1Focus: false}));
+//   };
