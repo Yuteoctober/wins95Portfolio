@@ -171,7 +171,7 @@
     width: calc(100% - 10px);
     height: calc(100% - 95px);
     grid-template-columns: .8fr 1.2fr;
-    grid-template-rows: .4fr 1.5fr .5fr 1fr;
+    grid-template-rows: .4fr 1.5fr .4fr 1fr;
     padding: 1rem 1.5rem;
     border: 2px solid rgb(53, 52, 52);
     border-top-color: #f0efef;
