@@ -6,7 +6,7 @@
     width: 400px;
     min-width: 300px;
     min-height: 250px;
-    height: 70%;
+    height: 600px;
     background: #c5c4c4;
     border: 2px solid white;
     border-right: 1px solid black;
@@ -21,6 +21,7 @@
     .folder_folder-resumefile {
         width: 80%;
         min-width: 300px;
+        height: 70%;
     }
 }
 

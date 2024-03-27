@@ -308,13 +308,14 @@
         left: 0rem;
         height: fit-content;
         margin-bottom: .5rem;
+
     }
 
     .folder_content-bio .bio_text_1 {
         padding: 0;
         padding-left: .5rem;
         text-align: left;
-        margin-top: -1rem;
+        margin-top: -1.5rem;
     }
 
     .folder_content-bio .bio_text_2 {
