@@ -41,7 +41,7 @@ function MyBioFolder() {
     General: [
         {
             head: 'General', 
-            text1: "Hi! My name is Yute, I'm a Software Engineer based in New York City. Focusing on Front-end. I'm passionate about design, building something pixel perfect, along with functionality that works perfectly.",
+            text1: "Hi, my name is Yute, I'm a Software Engineer based in New York City. Focusing on Front-end. I'm passionate about design, building something pixel perfect, along with functionality that works perfectly.",
             text2: "Working in this field requires a lot of attention to detail, as well as communication skills. Work and compassion go along the way.",
          
         },
