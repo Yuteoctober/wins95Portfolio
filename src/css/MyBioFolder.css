@@ -171,7 +171,7 @@
     width: calc(100% - 10px);
     height: calc(100% - 95px);
     grid-template-columns: .8fr 1.2fr;
-    grid-template-rows: .4fr 1.5fr .6fr 1fr;
+    grid-template-rows: .4fr 1.5fr 40px 1fr;
     padding: 1rem 1.5rem;
     border: 2px solid rgb(53, 52, 52);
     border-top-color: #f0efef;
@@ -218,7 +218,6 @@
     font-size: 13.5px;
     margin-top: 0rem;
     padding-left: .5rem;
-
 }
 
 .folder_content-bio span {
@@ -239,7 +238,7 @@
     text-decoration: underline;
     color: blue;
     font-weight: bolder;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .folder_content-bio a:hover {
@@ -315,7 +314,7 @@
         padding: 0;
         padding-left: .5rem;
         text-align: left;
-        margin-top: -1.5rem;
+        margin-top: -2.1rem;
     }
 
     .folder_content-bio .bio_text_2 {
@@ -324,15 +323,14 @@
 
     .cv_container {
         position: relative;
-        margin-top: 1rem;
+        margin-top: .5rem;
         bottom: 0;
         left: 0;
         top: 0;
     }
 
     .bio_folder {
-        width: 85%;
-        height: 490px;
+        width: 80%;
     }
     .folder_content .folder_content-bio {
         padding: 1rem 1.5rem;
