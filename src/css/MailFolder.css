@@ -288,7 +288,7 @@
     font-weight: bold;
     top: 2px;
     left: 8px;
-    letter-spacing: 1px;
+    letter-spacing: .5px;
 }
 
 .myemail_container p {
