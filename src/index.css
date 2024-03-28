@@ -217,12 +217,24 @@ body {
     color: white;
 }
 
+.start_popup div:not(.sidebar_popup):hover > span::before {
+    border-color: white;
+}
+
 .start_popup img {
     width: 30px;
     height: 30px;
 }
 .start_popup span {
     font-size: 12px;
+}
+
+.start_popup span::before {
+    content: 'a';
+    position: absolute;
+    color: transparent;
+    border-bottom: 1px solid black;
+    margin-top: -3.5px;
 }
 
 .start_popup .sidebar_popup {
