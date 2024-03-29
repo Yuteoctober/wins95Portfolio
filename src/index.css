@@ -234,7 +234,13 @@ body {
     position: absolute;
     color: transparent;
     border-bottom: 1px solid black;
-    margin-top: -3.5px;
+    margin-top: -4.5px;
+}
+
+@supports (-webkit-touch-callout: none) {
+    .start_popup span::before {
+        margin-top: -4px;
+    }
 }
 
 .start_popup .sidebar_popup {
