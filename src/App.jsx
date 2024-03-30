@@ -227,12 +227,40 @@ function handleShowMobile(name) {
       };
   }, []);
 
+
+  useEffect(() => { // prevent zooming on mobile
+    document.addEventListener('gesturestart', function (e) {
+      e.preventDefault();
+  });
+  },[])
+
+
+  function handleClippyFunction(setterFunction, clearFunction, allSetters) {
+    // Clear all existing timeouts
+    allSetters.forEach((setter, index) => {
+      if (setter !== setterFunction) {
+        setter(false);
+        clearTimeout(allClears[index].current);
+      }
+    });
+    setterFunction(true);
+    setShowClippy(true);
+    
+    clearTimeout(clearFunction.current);
+    if (RandomTimeoutShowClippy.current) clearTimeout(RandomTimeoutShowClippy.current);
+    if (firstTimoutShowclippy.current) clearTimeout(firstTimoutShowclippy.current);
+    if (SecondRandomTimeoutShowClippy.current) clearTimeout(SecondRandomTimeoutShowClippy.current);
+    
+    clearFunction.current = setTimeout(() => {
+      setterFunction(false);
+      setShowClippy(false);
+      setRandomClippyPopup(prev => !prev);
+    }, 8000);
+  }
+  
   // Define all state setter functions and corresponding clear functions in an array
-  const allSetters = [
-    { clippystate: setClippyThanks, clear: ClearTOclippyThanksYouFunction },
-    { clippystate: setClippySendemail, clear: ClearTOclippySendemailfunction },
-    { clippystate: setClippySong, clear: ClearTOSongfunction }
-];
+  const allSetters = [setClippyThanks, setClippySendemail, setClippySong];
+  const allClears = [ClearTOclippyThanksYouFunction, ClearTOclippySendemailfunction, ClearTOSongfunction];
   
   function clippyThanksYouFunction() {
     handleClippyFunction(setClippyThanks, ClearTOclippyThanksYouFunction, allSetters);
@@ -245,38 +273,6 @@ function handleShowMobile(name) {
   function clippySongFunction() {
     handleClippyFunction(setClippySong, ClearTOSongfunction, allSetters);
   }
-
-  useEffect(() => { // prevent zooming on mobile
-    document.addEventListener('gesturestart', function (e) {
-      e.preventDefault();
-  });
-  },[])
-
-
-  function handleClippyFunction(setterFunction, clearFunction, allSetters) {
-    // Clear all existing timeouts for other setters
-    allSetters.forEach((setter) => {
-        if (setter.clippystate !== setterFunction) {
-            setter.clippystate(false);
-            clearTimeout(setter.clear.current);
-        }
-    });
-
-    // Set the current setter to true
-    setterFunction(true);
-    setShowClippy(true);
-
-    // Clear the current timeout
-    clearTimeout(clearFunction);
-
-    // Set a new timeout
-    clearFunction = setTimeout(() => {
-        setterFunction(false);
-        setShowClippy(false);
-        setRandomClippyPopup(prev => !prev);
-    }, 8000);
-}
-
   
   
 
@@ -376,6 +372,7 @@ function handleShowMobile(name) {
   const contextValue = {
     startActive, setStartActive,
     time, setTime,
+    
     iconState, setIconState,
     MybioExpand, setMybioExpand,
     tap, setTap,
