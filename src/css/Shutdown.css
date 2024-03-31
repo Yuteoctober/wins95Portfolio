@@ -163,7 +163,7 @@ input[type='radio'] {
     position: relative;
     width: 80px;
     text-align: center;
-    font-size: 14px;
+    font-size: 13px;
     padding: 2px 4px;
     border: 2px solid black;
     border-top-color: #edebeb;
@@ -175,6 +175,7 @@ input[type='radio'] {
     border-bottom-color: #edebeb;
     border-right-color: #edebeb;
 }
+
 
 @media screen and (width < 500px) {
     .shutdown_container {
