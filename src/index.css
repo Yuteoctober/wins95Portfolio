@@ -274,7 +274,7 @@ body {
 .start_popup .groove {
     margin: 0 auto;
     height: 1px;
-    border-top: 2px groove rgb(239, 239, 239);
+    border-top: 2.5px groove rgb(239, 239, 239);
 }
 
 
