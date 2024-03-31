@@ -41,6 +41,7 @@ export default function Footer() {
         ClearTOdonttouch,
         handleDoubleClickEnterLink,
         ObjectState,
+        setShutdownWindow,
      } = useContext(UseContext);
     
      const handleWheelScroll = (e) => { // wheel from x to Y on tap
@@ -232,18 +233,6 @@ export default function Footer() {
                     <div className="sidebar_popup">
                         <img src={sidebar} alt="sidebar" />
                     </div>
-                    <div className="resume"
-                        onClick={() => handleShow('Resume')}
-                    >
-                        <img src={resume} alt="resume" />
-                        <span>Resume</span>
-                    </div>
-                    <div className="project"
-                        onClick={() => handleShow('Project')}
-                    >
-                        <img src={project} alt="project" />
-                        <span>Project</span>
-                    </div>
                     <div className="linked">
                         <img src={linked} alt="linked" style={{ borderRadius: '5px' }} />
                         <span>Linked</span>
@@ -262,9 +251,23 @@ export default function Footer() {
                         <img src={facebook} alt="facebook" style={{ borderRadius: '5px' }} />
                         <span>Facebook</span>
                     </div>
+                    <div className="project"
+                        onClick={() => handleShow('Project')}
+                    >
+                        <img src={project} alt="project" />
+                        <span>Project</span>
+                    </div>
+                    <div className="resume"
+                        onClick={() => handleShow('Resume')}
+                    >
+                        <img src={resume} alt="resume" />
+                        <span>Resume</span>
+                    </div>
                     <div className="groove">
                     </div>
-                    <div className="shutdownicon">
+                    <div className="shutdownicon"
+                        onClick={() => setShutdownWindow(true)}
+                    >
                         <img src={shutdownicon} alt="shutdownicon" />
                         <span>Shut down...</span>
                     </div>

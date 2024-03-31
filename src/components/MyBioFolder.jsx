@@ -17,7 +17,6 @@ function MyBioFolder() {
 
   const { 
     MybioExpand, setMybioExpand,
-    lastTapTime, setLastTapTime,
     StyleHide,
     isTouchDevice,
     handleSetFocusItemTrue,
@@ -69,23 +68,6 @@ function MyBioFolder() {
 
       }
 
-      function handleExpandStateToggle() {
-        setMybioExpand(prevState => ({
-          ...prevState,
-          expand: !prevState.expand,
-        }));
-      }
-
-  function handleExpandStateToggleMobile() {
-    const now = Date.now();
-    if (now - lastTapTime < 300) {
-        setMybioExpand(prevState => ({
-          ...prevState,
-          expand: !prevState.expand,
-        }));
-    }
-    setLastTapTime(now);
-}
 
   function handleBiotap(name) {
     setGenerapTap(name === 'general');

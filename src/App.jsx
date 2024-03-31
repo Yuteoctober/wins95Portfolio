@@ -10,12 +10,14 @@ import NftFolder from './components/NftFolder';
 import NoteFolder from './components/NoteFolder';
 import TypeFolder from './components/TypeFolder';
 import ResumeFile from './components/ResumeFile';
+import Shutdown from './components/Shutdown';
 import iconInfo from './icon.json'
 import { StyleHide, imageMapping, 
   handleDoubleClickEnterLink,
   handleDoubleTapEnterMobile } from './components/function/AppFunctions';
 
 function App() {
+  const [shutdownWindow, setShutdownWindow] = useState(false)
   const ClearTOdonttouch = useRef(null);
   const ClearTOSongfunction = useRef(null);
   const ClearTOclippySendemailfunction = useRef(null);
@@ -414,6 +416,7 @@ function handleShowMobile(name) {
     inlineStyle,
     iconFocusIcon,
     deleteTap,
+    shutdownWindow, setShutdownWindow,
   }
 
  
@@ -421,6 +424,7 @@ function handleShowMobile(name) {
   return (
     <>
       <UserContext.Provider value={contextValue}>
+        <Shutdown/>
         <MyBioFolder/>
         <ResumeFolder/>
         <ProjectFolder/>
