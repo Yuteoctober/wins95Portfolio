@@ -135,7 +135,7 @@ input[type='radio'] {
 
 @supports (-webkit-touch-callout: none) {
     .shutdown_main_container span::before {
-        bottom: 2px; 
+        bottom: 3px; 
         margin-left: 0px;
     }
     .shutdown_main_container input {
