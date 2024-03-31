@@ -170,7 +170,7 @@
     position: relative;
     width: calc(100% - 10px);
     height: calc(100% - 95px);
-    grid-template-columns: .8fr 1.2fr;
+    grid-template-columns: 145px 1fr;
     grid-template-rows: .4fr 1.5fr 40px 1fr;
     padding: 1rem 1.5rem;
     border: 2px solid rgb(53, 52, 52);
@@ -216,7 +216,7 @@
     grid-area: bio_text_2;
     height: fit-content;
     font-size: 13.5px;
-    margin-top: 0rem;
+    margin-top: -.3rem;
     padding-left: .5rem;
 }
 
@@ -252,6 +252,7 @@
     gap: 6px;
     right: 5px;
     margin-top: 6px;
+
 }
 .bio_btn_container div {
     position: relative;
@@ -266,7 +267,7 @@
 
 
 .bio_btn_container span {
-    font-size: 14px;
+    font-size: 13px;
 }
 .bio_btn_container .bio_btn_ok {
     border-top-color: #f0efef;

@@ -9,8 +9,8 @@
 }
 .shutdown_container {
     position: relative;
-    height: 210px;
-    width: 390px;
+    height: 200px;
+    width: 365px;
     min-width: 282px;
     background: #c5c4c4;
     border: 2px solid white;
@@ -79,7 +79,6 @@
 .shutdown_main_container {
     display: grid;
     width: 100%;
-    height: calc(100% - 20px);
     grid-template-columns: .2fr 2fr;
     grid-template-areas: 
     'img shutdown_text_container';
@@ -93,14 +92,14 @@
 .shutdown_text_container {
     grid-area: shutdown_text_container;
     height: fit-content;
-    padding-top: 21px;
+    margin-top: 21px;
 }
 .shutdown_text_container p {
     font-size: 14px;
 }
 
 .shutdown_main_container input {
-    margin-left: -1px;
+    margin-left: -1px
 }
 
 input[type='radio'] {
@@ -110,7 +109,7 @@ input[type='radio'] {
 .shutdown_main_container label {
     position: relative;
     font-size: 13px;
-    bottom: 5px;
+    bottom: 14px;
 }
 
 .shutdown_main_container span {
@@ -154,7 +153,7 @@ input[type='radio'] {
     height: 30px;
     gap: 6px;
     align-items: center;
-    right: 2rem;
+    right: 1.4rem;
     bottom: 1rem;
     cursor: pointer;
     -webkit-user-select: none;
@@ -183,9 +182,9 @@ input[type='radio'] {
 
 @media screen and (width < 500px) {
     .shutdown_container {
-        width: 80%;
+        width: 75%;
     }
     .shutdown_btn_container {
-        right: 1rem;
+        right: .9rem;
     }
 }
