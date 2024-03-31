@@ -141,6 +141,10 @@ input[type='radio'] {
     .shutdown_main_container input {
         width: 12px;
     }
+    .shutdown_main_container span {
+        position: relative;
+        bottom: 1px;
+    }
 }
 
 .shutdown_btn_container {
