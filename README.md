@@ -18,6 +18,9 @@ Functionality (imitaing windows 95 functionality)
   - Double Click to open (also works on mobile using usestate to capture the first touch and counting time within 3ms)
   - Introduce Clippy assistant, who always gives you inspirations
   - now Clippy has function to show up and give you advices, when you click on certain thing
+  - Added Shutdown Button
+    - Shutdown
+    - Restart
 
 Mobile function NOT supported!
   - Resize window (not necessary to add on mobile)

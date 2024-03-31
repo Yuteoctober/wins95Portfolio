@@ -33,6 +33,7 @@ function Shutdown() {
 
     function handleNoShutdown() {
         setShutdownWindow(false)
+        setSelectedOption(null)
     }
 
     return (
@@ -42,7 +43,7 @@ function Shutdown() {
                     <div className="nav_shutdown">
                         <p>Shut Down Windows</p>
                         <div className='x_shutdown_container'
-                            onClick={() => setShutdownWindow(false)}
+                            onClick={handleNoShutdown}
                         >
                             <p>x</p>
                         </div>
