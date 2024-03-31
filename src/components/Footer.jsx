@@ -10,6 +10,7 @@ import facebook from '../assets/facebook.png';
 import speaker from '../assets/speaker.png';
 import project from '../assets/regFolder.png';
 import resume from '../assets/folder.png';
+import shutdownicon from '../assets/shutdownicon.png';
 import { clippyPhrase, clippySuggest } from './function/ClippyFunction';
 export default function Footer() {
     
@@ -231,6 +232,18 @@ export default function Footer() {
                     <div className="sidebar_popup">
                         <img src={sidebar} alt="sidebar" />
                     </div>
+                    <div className="resume"
+                        onClick={() => handleShow('Resume')}
+                    >
+                        <img src={resume} alt="resume" />
+                        <span>Resume</span>
+                    </div>
+                    <div className="project"
+                        onClick={() => handleShow('Project')}
+                    >
+                        <img src={project} alt="project" />
+                        <span>Project</span>
+                    </div>
                     <div className="linked">
                         <img src={linked} alt="linked" style={{ borderRadius: '5px' }} />
                         <span>Linked</span>
@@ -241,25 +254,19 @@ export default function Footer() {
                         <img src={github} alt="github" style={{ borderRadius: '5px' }} />
                         <span>Repo</span>
                     </div>
-                    <div className="facebook">
-                        <img src={facebook} alt="facebook" style={{ borderRadius: '5px' }} />
-                        <span>Facebook</span>
-                    </div>
                     <div className="ig">
                         <img src={ig} alt="ig" />
                         <span>Instagram</span>
                     </div>
-                    <div className="project"
-                        onClick={() => handleShow('Project')}
-                    >
-                        <img src={project} alt="project" />
-                        <span>Project</span>
+                    <div className="facebook">
+                        <img src={facebook} alt="facebook" style={{ borderRadius: '5px' }} />
+                        <span>Facebook</span>
                     </div>
-                    <div className="resume"
-                        onClick={() => handleShow('Resume')}
-                    >
-                        <img src={resume} alt="resume" />
-                        <span>Resume</span>
+                    <div className="groove">
+                    </div>
+                    <div className="shutdownicon">
+                        <img src={shutdownicon} alt="shutdownicon" />
+                        <span>Shut down...</span>
                     </div>
                 </div>
             )}

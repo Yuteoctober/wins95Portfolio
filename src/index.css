@@ -198,7 +198,9 @@ body {
         'sidebar facebook'
         'sidebar ig'
         'sidebar project'
-        'sidebar resume';
+        'sidebar resume'
+        'sidebar groove'
+        'sidebar shutdown';
 }
 
 .start_popup div {
@@ -259,19 +261,23 @@ body {
 }
 
 
-.start_popup .ig {
+/* .start_popup .resume {
     border-bottom: 1px groove rgb(120, 119, 119);
 }
 
 @supports (-webkit-touch-callout: none) {
-    .start_popup .ig {
+    .start_popup .resume {
         border-bottom: .5px groove rgb(120, 119, 119);
     }
+} */
+
+.start_popup .groove {
+    margin: 0 auto;
+    height: 1px;
+    border-top: 2px groove rgb(239, 239, 239);
 }
 
-.start_popup .project {
-    border-top: 1px groove rgb(221, 220, 220);
-}
+
 
 .tap_container {
     display: flex;
