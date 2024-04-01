@@ -40,7 +40,7 @@ function Shutdown() {
         const bodyElement = document.body;
     
         if (shutdownWindow) {
-            bodyElement.style.background = '#065b59';
+            bodyElement.style.background = '#09807e';
         } else {
             bodyElement.style.background = '';
         }
