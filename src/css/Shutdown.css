@@ -4,7 +4,8 @@
     position: absolute;
     width: 100svw;
     height: 100svh;
-    background: rgba(0, 0, 0, 0.559);
+    background: rgba(0, 0, 0, 0.299);
+    backdrop-filter: blur(1px);
     z-index: 999999999999;
 }
 .shutdown_container {
