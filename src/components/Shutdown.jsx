@@ -23,7 +23,7 @@ function Shutdown() {
     function handleYesShutdown() {
         if (selectedOption === "option1") {
             window.history.back()
-            document.getElementsByTagName ('html') [0].remove ();
+            document.getElementsByTagName('html') [0].remove ();
         }
 
         if (selectedOption === "option2") {
@@ -36,7 +36,7 @@ function Shutdown() {
         setSelectedOption(null)
     }
 
-    useEffect(() => {
+    useEffect(() => { // change body bg darker tone, when shutdown is toggled
         const bodyElement = document.body;
     
         if (shutdownWindow) {

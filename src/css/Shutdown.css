@@ -125,7 +125,7 @@ input[type='radio'] {
     position: absolute;
     color: transparent;
     border-bottom: 1px solid black;
-    bottom: 0px;
+    bottom: 1px;
 }
 
 @-moz-document url-prefix() {
