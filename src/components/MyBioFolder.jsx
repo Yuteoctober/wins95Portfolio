@@ -194,8 +194,6 @@ function MyBioFolder() {
               <p className='bio_text_2'>{textShow(9)}</p>   
               <p className='bio_text_2'>{textShow(10)}</p>   
             </div>
-
-            
            
               {/* {generalTap && (
                 <div className='cv_container'>

@@ -142,14 +142,17 @@ function ReadMeFolder() {
               </p>
               <p style={{position: 'relative', marginBottom: '.5rem'}}>
               --------------------------------------------------------------------------------------
-                </p>
+              </p>
               <p style={{paddingLeft: '.2rem', fontSize: '13px'}}>
               - Everything built by me from scratch (No style component!)
               <br />
               - All the functionalities are also works smoothly in mobile as well :)
               <br />
               - Shoot me an Email if you like my work, it can be found in Resume's folder
-            </p>
+              </p>
+              <p style={{position: 'relative', marginTop: '.5rem'}}>
+              --------------------------------------------------------------------------------------
+              </p>
           </div>
         </div>
       </Draggable>
