@@ -208,9 +208,9 @@ function handleShowMobile(name) {
 }
 
 
-    useEffect(() => { // open Bio Folder when app starts
-      handleShow('My Bio')
-    },[])
+    // useEffect(() => { // open Bio Folder when app starts
+    //   handleShow('My Bio')
+    // },[])
 
     useEffect(() => { // touch support device === true
       const onTouchStartSupported = 'ontouchstart' in document.documentElement;
