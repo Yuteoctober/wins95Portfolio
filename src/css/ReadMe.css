@@ -1,0 +1,346 @@
+/* ------------ Folders ---------------- */
+
+.folder_folder-ReadMe {
+    display: none;
+    position: fixed;
+    min-width: 340px;
+    min-height: 300px;
+    height: 400px;
+    background: #c5c4c4;
+    border: 2px solid white;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    outline: 1px solid white;
+    overflow: hidden;
+    resize: both;
+}
+
+@media screen and (width <= 500px) {
+    .folder_folder-ReadMe  {
+        width: 80%;
+        height: 350px;
+    }
+}
+
+@media screen and (width >= 500px) {
+    .folder_folder-ReadMe  {
+        width: 450px;
+        height: 400px;
+    }
+}
+@media screen and (width >= 1000px) {
+    .folder_folder-ReadMe  {
+        width: 500px;
+        height: 450px;
+    }
+}
+
+
+.folder_folder-ReadMe .folder_dragbar-ReadMe {
+   display: flex;
+   position: relative;
+   height: 24px;
+   width: 100%;
+   margin-bottom: 1px;
+   align-items: center;
+   justify-content: space-between;
+   -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.folder_barname-ReadMe img {
+    position: relative;
+    width: 16px;
+    top: 3px;
+    margin-left: 5px;
+}
+
+.folder_barname-ReadMe span {
+    position: relative;
+    font-size: 15px;
+    color: white;
+    margin-left: 5px;
+}
+
+.folder_folder-ReadMe .folder_barbtn-ReadMe {
+    display: flex;
+    position: relative;
+    margin-right: 4px;
+    gap: 2px;
+}
+
+.folder_barbtn-ReadMe div {
+    width: 17px;
+    height: 17px;
+    background: #c9c9c9;
+    font-weight: bold;
+    border: 1px solid black;
+    border-top-color: rgb(198, 198, 198);border-left-color: rgb(198, 198, 198);
+    box-shadow: inset 1px 1px #ffffff, 1px 1px #000000dd;
+    cursor: default;
+}
+
+.folder_barbtn-ReadMe div:not(.expand-ReadMe):active {
+    border-top-color: black;border-left-color: black;
+    border-bottom-color: white;border-right-color: white;
+}
+
+.folder_barbtn-ReadMe .x-ReadMe {
+    position: relative;
+    text-align: center;
+    font-size: 18px;
+    bottom: 6px;
+}
+
+/* support only safari */
+@supports (-webkit-touch-callout: none) {
+    .folder_barbtn-ReadMe .x-ReadMe {
+        bottom: 8px; 
+        left: 1px;
+    }
+}
+
+.folder_barbtn-ReadMe .dash-ReadMe {
+    position: relative;
+    width: 8px;
+    top: 11px;
+    margin: 0 auto;
+    border-bottom: 2px solid black;
+}
+.folder_barbtn-ReadMe .expand-ReadMe {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid black;
+    border-left-color: black;
+    box-shadow: none;
+    margin: 0 auto;
+    top: 3px;
+    z-index: 2;
+}
+
+.folder_barbtn-ReadMe .expand-ReadMe.full {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid black;
+    border-left-color: black;
+    box-shadow: none;
+    margin: 0 auto;
+    top: 5px;
+    right: 2px;
+    z-index: 1;
+}
+
+.folder_barbtn-ReadMe .expand_2-ReadMe {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid black;
+    border-left-color: black;
+    box-shadow: none;
+    margin: 0 auto;
+    bottom: 6px;
+    left: 1.5px;
+
+}
+.folder_folder-ReadMe .file_edit_container-ReadMe {
+    display: flex;
+    gap: 5px;
+    font-size: 15px;
+    padding-left: 10px;
+    cursor: default;
+}
+
+.file_edit_container-ReadMe span {
+    position: relative;
+}
+
+.folder_folder-ReadMe .folder_conten-ReadMe {
+    position: relative;
+    width: calc(100% - 6px);
+    height: 235px;
+    border: 1px solid black;
+    border-right-color: white;
+    border-bottom-color: white;
+    margin: 0 auto;
+    margin-top: 2px;
+    background: rgb(255, 255, 255);
+    overflow: hidden;
+    padding-left: .4rem;
+    padding-top: .2rem;
+}
+
+
+
+.folder_folder-ReadMe .btm_bar_container-ReadMe {
+    display: flex;
+    gap: 5px;
+    width: calc(100% - 6px);
+    justify-content: space-between;
+    margin: 0 auto;
+    margin-top: 4px;
+    cursor: default;
+} 
+
+.btm_bar_container-ReadMe .object_bar-ReadMe {
+    width: 80%;
+    border: 1px solid black;
+    border-right-color: white;
+    border-bottom-color: white;
+}
+.btm_bar_container-ReadMe .size_bar-ReadMe {
+    width: 55%;
+    border: 1px solid black;
+    border-right-color: white;
+    border-bottom-color: white;
+}
+
+.btm_bar_container-ReadMe p {
+    position: relative;
+    font-size: 14px;
+    padding-top: 2px;
+    margin-left: 2px;
+}
+
+.folder_content-ReadMe {
+    position: relative;
+    text-align: center;
+    width: calc(100% - 6px);
+    height: calc(100% - 55px);
+    border: 2px solid black;
+    border-right-color: white;
+    border-bottom-color: white;
+    margin: 0 auto;
+    margin-top: 2px;
+    padding: 2px 4px;
+    background: #ffffff;
+    overflow: scroll;
+    white-space: nowrap;
+}
+
+.form_container {
+    display: grid;
+    position: relative;
+    gap: 8px;
+    width: calc(100% + 1px);
+    margin: 0 auto;
+    background: #c5c4c4;
+    padding: 5px 4px;
+    padding-bottom: 8px;
+    border: none;
+    overflow: hidden;
+    cursor: default;
+}
+
+.form_container input {
+    display: grid;
+    position: relative;
+    width: 100%;
+    height: 24px;
+    top: 1px;
+    border: 2px solid black;
+    border-right-color: white;
+    border-bottom-color: rgb(255, 255, 255);
+    padding-right: 20px;
+    background: #ececec;
+    border-radius: 0px;
+    padding-left: 6px;
+}
+
+.form_container input::placeholder {
+    font-weight: 500;
+    font-size: 14px;
+    color: black;
+  }
+
+
+.to_container {
+    display: flex;
+    width: calc(100% - 2px);
+    gap: 10px;   
+}
+
+.to_container .to_icon {
+    display: grid;
+    position: relative;
+    place-items: center;
+    width: fit-content;
+    height: 24px;
+    padding-left: 5px;
+    box-shadow: inset 1.5px 1.5px #ffffffdd, 1.5px 1.5px #000;
+    background: #c5c4c4;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+}
+
+.to_container .to_icon:active {
+    box-shadow: inset 1.5px 1.5px #000, 1px 1px #ffffffdd;
+}
+
+
+
+.to_container .to_icon p {
+    position: relative;
+    width: 55px;
+    font-size: 13px;
+    font-weight: bold;
+    top: 2px;
+    left: 8px;
+    letter-spacing: .5px;
+}
+
+.myemail_container p {
+    position: relative;
+    font-size: 14px;
+    width: 55px;
+    top: 3px;
+    left: 6px;
+    letter-spacing: .7px;
+}
+
+.sendmail_icon {
+    position: relative;
+    bottom: 1px;
+}
+
+.sendmail_icon .sendmail_img_container {
+    position: relative;
+    border: none;
+    width: 60px;
+    height: 24px;
+    padding-left: 12px;
+    padding-top: 6px;
+    padding-bottom: 10px;
+    background: red;
+    font-size: 13px;
+    box-shadow: inset 1.5px 1.5px #f5f5f5dd, 1.5px 1.5px #000;
+    background: #c5c4c4;
+    border-radius: 0px;
+    color: black;
+    font-weight: bold;
+    letter-spacing: .5px;
+    cursor: pointer;
+}
+
+@supports (-webkit-touch-callout: none) {
+    .sendmail_icon .sendmail_img_container {
+     padding-top: 3px;
+        
+    }
+}
+
+.sendmail_icon input::placeholder {
+    color: black;
+}
+
+.sendmail_icon .sendmail_img_container:active {
+    box-shadow: inset 1.5px 1.5px #000, 1px 1px #ffffffdd;
+}
+
+

@@ -11,6 +11,7 @@ import NoteFolder from './components/NoteFolder';
 import TypeFolder from './components/TypeFolder';
 import ResumeFile from './components/ResumeFile';
 import Shutdown from './components/Shutdown';
+import ReadMe from './components/ReadMeFolder'
 import iconInfo from './icon.json'
 import { StyleHide, imageMapping, 
   handleDoubleClickEnterLink,
@@ -80,6 +81,9 @@ function App() {
   }))
 );
 
+  const [ReadMeExpand, setReadMeExpand] = useState(
+  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
+
 
 function ObjectState() {
   return [
@@ -91,7 +95,8 @@ function ObjectState() {
           { name: 'Note', setter: setNoteExpand, usestate: NoteExpand },
           { name: 'Type', setter: setTypeExpand, usestate: TypeExpand },
           { name: 'Winamp', setter: setWinampExpand, usestate: WinampExpand },
-          { name: 'ResumeFile', setter: setResumeFileExpand, usestate: ResumeFileExpand }
+          { name: 'ResumeFile', setter: setResumeFileExpand, usestate: ResumeFileExpand },
+          { name: 'ReadMe', setter: setReadMeExpand, usestate: ReadMeExpand }
         ];
 }
 
@@ -417,6 +422,7 @@ function handleShowMobile(name) {
     iconFocusIcon,
     deleteTap,
     shutdownWindow, setShutdownWindow,
+    ReadMeExpand, setReadMeExpand,
   }
 
  
@@ -433,6 +439,7 @@ function handleShowMobile(name) {
         <NoteFolder/>
         <TypeFolder/>
         <ResumeFile/>
+        <ReadMe/>
         <Dragdrop/>
         <Footer/>
       </UserContext.Provider>

@@ -15,5 +15,9 @@
     {
         "name": "Project",
         "pic": "Project"
+    },
+    {
+        "name": "Read Me",
+        "pic": "ReadMe"
     }
 ]
