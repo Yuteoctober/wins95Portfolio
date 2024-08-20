@@ -359,6 +359,10 @@
 
 @media screen and (width <= 500px) {
     .bio_folder {
-        width: 400px;
+        width: 380px;
+    }
+    .folder_content-bio .bio_img {
+        width: 160px;
+
     }
 }
