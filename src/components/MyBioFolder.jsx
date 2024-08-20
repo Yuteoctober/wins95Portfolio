@@ -39,18 +39,23 @@ function MyBioFolder() {
    const bioText = {
     General: [
         {
-            head: 'General', 
-            text1: "Hi, my name is Yute. I'm a Software Engineer based in New York City, specializing in Front-end development. I am passionate about design, aiming for pixel-perfect interfaces and flawless functionality.",
-            text2: "This field requires great attention to detail and communication skills. Dedication and empathy are key to succession",
+            text1: "System:",
+            text2: "Windows 95 Portfolio",
+            text3: "4.00.490",
+            text4: "Register to:",
+            text5: "Yute S. Lilitprapun",
+            text6: "Microsoft",
+            text7: "37495-XXX-XXX-28329",
+            text8: "Computer:",
+            text9: "80486",
+            text10: "16.0MB RAM",
          
         },
         {
-            head: 'Technology',
             text1: technologyText,
          
       },
         {
-            head: 'Hobby',
             text1: "In my free time, I enjoy playing video games with friends. If I'm not in front of a computer, I will try to drag myself to the gym, try new restaurants, and embark on adventures like hiking. I used to play basketball in high school and want to find time for that again.",
            
         }
@@ -83,22 +88,12 @@ function MyBioFolder() {
     zIndex: '3'
   };
 
-  function textShow(head, text1, text2) {
-    if (head) {
-      return generalTap ? bioText.General[0].head :
-        (technologyTap ? bioText.General[1].head : bioText.General[2].head);
-    }
+  function textShow(index) {
+  const selectedText = bioText.General[generalTap ? 0 : technologyTap ? 1 : 2];
+  return selectedText[`text${index}`];
+}
   
-    if (text1) {
-      return generalTap ? bioText.General[0].text1 :
-        (technologyTap ? bioText.General[1].text1 : bioText.General[2].text1);
-    }
   
-    if (text2) {
-      return generalTap ? bioText.General[0].text2 :
-        (technologyTap ? bioText.General[1].text2 : bioText.General[2].text2);
-    }
-  }
   
   
 
@@ -173,18 +168,36 @@ function MyBioFolder() {
           </p>
           </div>
           <div className="folder_content">
-            <div className="folder_content-bio">
+            <div className="folder_content-bio"
+              style={{ display: generalTap ? 'grid' : 'block' }}
+            >
               
-            <h1 className='bio_h1'>{textShow(true)}</h1>
+            {/* <h1 className='bio_h1'>{textShow(true)}</h1> */}
             <img
               alt="bioPC"
-              className="bio_img"
+              className={generalTap ? 'bio_img' : 'bio_img_other'}
               src={generalTap? bioPC : (technologyTap ? tech : hobby)}
             />
-            <p className='bio_text_1'>{textShow(false, true)}</p>
-            <p className='bio_text_2'>{textShow(false, false, true)}</p>
+            <div
+              className="biotext_container">
+
+              <p className={generalTap? 'bio_text_1' : 'bio_text_1_other'}>
+                {textShow(1)}
+              </p> 
+              <p className='bio_text_2'>{textShow(2)}</p>   
+              <p className='bio_text_2'>{textShow(3)}</p>   
+              <p className='bio_text_1'>{textShow(4)}</p>  
+              <p className='bio_text_2'>{textShow(5)}</p>   
+              <p className='bio_text_2'>{textShow(6)}</p>   
+              <p className='bio_text_2'>{textShow(7)}</p>   
+              <p className='bio_text_1'>{textShow(8)}</p>   
+              <p className='bio_text_2'>{textShow(9)}</p>   
+              <p className='bio_text_2'>{textShow(10)}</p>   
+            </div>
+
+            
            
-              {generalTap && (
+              {/* {generalTap && (
                 <div className='cv_container'>
                   <a className='bio_cv' href="https://drive.google.com/file/d/1XNn23UA2L82P2__Ccuccl3WMdR2rHG57/view" target="_blank" rel="noreferrer" >
                 Click to view my CV.
@@ -193,7 +206,7 @@ function MyBioFolder() {
                 Download
               </a>
                 </div>
-              )}
+              )} */}
               
             </div>
             <div className="bio_btn_container">

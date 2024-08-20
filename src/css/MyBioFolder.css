@@ -3,7 +3,7 @@
 .bio_folder {
     display: none;
     position: fixed;
-    min-width: 300px;
+    width: 420px;
     height: 475px;
     min-height: 320px;
     background: #c5c4c4;
@@ -170,8 +170,7 @@
     position: relative;
     width: calc(100% - 10px);
     height: calc(100% - 95px);
-    grid-template-columns: 145px 1fr;
-    grid-template-rows: .4fr 1.5fr 40px 1fr;
+    grid-template-columns: 1/2;
     padding: 1rem 1.5rem;
     border: 2px solid rgb(53, 52, 52);
     border-top-color: #f0efef;
@@ -182,32 +181,50 @@
     overflow: hidden;
     word-break: break-word;
     grid-template-areas: 
-    'bio_h1 bio_h1'
-    'bio_img bio_text_1'
-    'bio_text_2 bio_text_2'
-    'cv_container cv_container';
+    /* 'bio_h1 bio_h1' */
+    'bio_img biotext_container'
+    /* 'cv_container cv_container'; */
 }
 
-.folder_content-bio img {
+.folder_content .biotext_container {
     position: relative;
-    grid-area: bio_img; 
+    display: flex;
+    flex-direction: column;
+    row-gap: 3px;
+}
+
+.folder_content-bio .bio_img {
+    position: relative;
     width: 180px;
     margin-left: -1.5rem;
+    top: 1.2rem;
+}
+.folder_content-bio .bio_img_other {
+    position: relative;
+    width: 150px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-.folder_content-bio h1 {
+/* .folder_content-bio h1 {
     grid-area: bio_h1;
     position: relative;
     font-size: 23px;
     text-decoration: underline;
     left: .5rem;
-}
+} */
 
 .folder_content-bio .bio_text_1 {
-    grid-area: bio_text_1;
     position: relative;
-    font-size: 13.5px;
+    font-size: 12px;
     padding-top: 1rem;
+    padding-left: 1rem;
+
+}
+
+.folder_content-bio .bio_text_1_other {
+    position: relative;
+    font-size: 12px;
     padding-left: 1rem;
 
 }
@@ -215,10 +232,12 @@
 .folder_content-bio .bio_text_2 {
     grid-area: bio_text_2;
     height: fit-content;
-    font-size: 13.5px;
+    font-size: 12px;
     margin-top: -.3rem;
-    padding-left: .5rem;
+    padding-left: 2.5rem;
+    white-space: nowrap;
 }
+
 
 .folder_content-bio span {
     font-weight: bold;
@@ -289,7 +308,7 @@
 }
 
 
-@media screen and (width <= 500px) {
+/* @media screen and (width <= 500px) {
     .folder_content-bio img {
         width: 150px;
     }
@@ -336,10 +355,10 @@
     .folder_content .folder_content-bio {
         padding: 1rem 1.5rem;
     }
-}
+} */
 
-@media screen and (width >= 500px) {
+@media screen and (width <= 500px) {
     .bio_folder {
-        width: 455px;
+        width: 400px;
     }
 }
