@@ -97,6 +97,7 @@ function MsnFolder() {
               <div className="form_banner"
                 style={{ background: MSNExpand.focusItem ? '#14045c' : '#757579' }}
               >
+                <img src={chat} alt="chat" />
                 <p className='username_text_banner'>
                   Username
                 </p>
@@ -120,7 +121,7 @@ function MsnFolder() {
                   <button
                     onClick={() => {
                       setUserName(false);
-                      setNameValue('');
+                      setUserNameValue('');
                     }}
                   >
                     Cancel
@@ -205,6 +206,11 @@ function MsnFolder() {
             </p>
           </div>
           <div className="folder_content-MSN">
+            {chatData.length === 0 && (
+                <span style={{position: 'relative', fontSize: '13px'}}>
+                  LOADING.......
+                </span>
+            )}
             {chatData.map((chat, index) => (
               <div key={chat.id}>
                 <p>
@@ -218,6 +224,7 @@ function MsnFolder() {
               </div>
             ))}
           </div>
+
           <div className="enter_text_div">
             <textarea
               value={chatValue}

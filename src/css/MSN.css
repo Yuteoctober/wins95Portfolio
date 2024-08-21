@@ -381,11 +381,16 @@
     height: 22px!important;
     width: 100%!important;
 }
+
+.form_banner img {
+    width: 21px;
+}
+
 .form_banner .username_text_banner {
     position: relative;
     color: white;
     font-size: 13px;
-    padding-left: 6px;
+    padding-left: 2px;
 }
 
 .form_banner .close_form_banner {
