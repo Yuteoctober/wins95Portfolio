@@ -421,15 +421,27 @@
     bottom: 7px;
     font-size: 16px;
 }
+@supports (-webkit-touch-callout: none) {
+    .form_banner .close_form_banner p {
+        bottom: 8px;
+        left: .5px;
+    }
+}
 
 .Username_input_div_active form {
     display: grid;
     position: relative;
-    place-items: center;
     width: 85%;
-    top: 2.5rem;
-    gap: 1rem;
+    top: 1.8rem;
     margin: 0 auto;
+}
+
+.Username_input_div_active form p {
+    position: relative;
+    font-size: 12px;
+    text-align: start;
+    padding-bottom: 2px;
+    left: 1px;
 }
 
 .Username_input_div_active input {
@@ -445,9 +457,11 @@
 
 .Username_input_div_active .ok_cancel_username {
     display: flex;
+    position: relative;
     width: 100%;
     justify-content: flex-end;
     gap: 4px;
+    top: 10px;
 }
 
 .Username_input_div_active .ok_cancel_username button {
