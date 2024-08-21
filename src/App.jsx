@@ -20,6 +20,7 @@ import { StyleHide, imageMapping,
   handleDoubleTapEnterMobile } from './components/function/AppFunctions';
 
 function App() {
+  const [updateChat, setUpdateChat] = useState([])
   const [userNameValue, setUserNameValue] = useState('')
   const [chatValue, setChatValue] = useState('')
   const [chatData, setChatData] = useState([])
@@ -92,6 +93,17 @@ function App() {
   const [MSNExpand, setMSNExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
 
+console.log(chatData.length !== updateChat.length)
+useEffect(() => {
+  getChat();
+
+  // Set up periodic fetching of chat data
+  const intervalId = setInterval(() => {
+    getChat();
+  }, 5000);
+
+  return () => clearInterval(intervalId); 
+}, []);
 
 useEffect(() => { /// Fetch chat data
   getChat()
