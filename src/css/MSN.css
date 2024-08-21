@@ -1,0 +1,456 @@
+/* ------------ Folders ---------------- */
+
+.folder_folder-MSN {
+    display: none;
+    position: fixed;
+    min-width: 340px;
+    min-height: 400px;
+    background: #c5c4c4;
+    border: 2px solid white;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    outline: 1px solid white;
+    overflow: hidden;
+    resize: both;
+}
+
+@media screen and (width <= 500px) {
+    .folder_folder-MSN  {
+        width: 70%;
+        height: 400px;
+    }
+}
+
+@media screen and (width >= 500px) {
+    .folder_folder-MSN  {
+        width: 400px;
+        height: 400px;
+    }
+}
+@media screen and (width >= 1000px) {
+    .folder_folder-MSN  {
+        width: 450px;
+        height: 400px;
+    }
+}
+
+
+.folder_folder-MSN .folder_dragbar-MSN {
+   display: flex;
+   position: relative;
+   height: 24px;
+   width: 100%;
+   margin-bottom: 1px;
+   align-items: center;
+   justify-content: space-between;
+   -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.folder_barname-MSN img {
+    position: relative;
+    width: 16px;
+    top: 3px;
+    margin-left: 5px;
+}
+
+.folder_barname-MSN span {
+    position: relative;
+    font-size: 15px;
+    color: white;
+    margin-left: 5px;
+}
+
+.folder_folder-MSN .folder_barbtn-MSN {
+    display: flex;
+    position: relative;
+    margin-right: 4px;
+    gap: 2px;
+}
+
+.folder_barbtn-MSN div {
+    width: 17px;
+    height: 17px;
+    background: #c9c9c9;
+    font-weight: bold;
+    border: 1px solid black;
+    border-top-color: rgb(198, 198, 198);border-left-color: rgb(198, 198, 198);
+    box-shadow: inset 1px 1px #ffffff, 1px 1px #000000dd;
+    cursor: default;
+}
+
+.folder_barbtn-MSN div:not(.expand-MSN):active {
+    border-top-color: black;border-left-color: black;
+    border-bottom-color: white;border-right-color: white;
+}
+
+.folder_barbtn-MSN .x-MSN {
+    position: relative;
+    text-align: center;
+    font-size: 18px;
+    bottom: 6px;
+}
+
+/* support only safari */
+@supports (-webkit-touch-callout: none) {
+    .folder_barbtn-MSN .x-MSN {
+        bottom: 8px; 
+        left: 1px;
+    }
+}
+
+.folder_barbtn-MSN .dash-MSN {
+    position: relative;
+    width: 8px;
+    top: 11px;
+    margin: 0 auto;
+    border-bottom: 2px solid black;
+}
+.folder_barbtn-MSN .expand-MSN {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid black;
+    border-left-color: black;
+    box-shadow: none;
+    margin: 0 auto;
+    top: 3px;
+    z-index: 2;
+}
+
+.folder_barbtn-MSN .expand-MSN.full {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid black;
+    border-left-color: black;
+    box-shadow: none;
+    margin: 0 auto;
+    top: 5px;
+    right: 2px;
+    z-index: 1;
+}
+
+.folder_barbtn-MSN .expand_2-MSN {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid black;
+    border-left-color: black;
+    box-shadow: none;
+    margin: 0 auto;
+    bottom: 6px;
+    left: 1.5px;
+
+}
+.folder_folder-MSN .file_edit_container-MSN {
+    display: flex;
+    position: relative;
+    top: 2px;
+    left: 2px;
+    gap: 5px;
+    font-size: 15px;
+    padding-left: 10px;
+    cursor: default;
+}
+
+.file_edit_container-MSN span {
+    position: relative;
+}
+
+.folder_folder-MSN .folder_conten-MSN {
+    position: relative;
+    width: calc(100% - 6px);
+    height: 235px;
+    border: 1px solid black;
+    border-right-color: white;
+    border-bottom-color: white;
+    margin: 0 auto;
+    margin-top: 2px;
+    background: rgb(255, 255, 255);
+    overflow: hidden;
+    padding-left: .4rem;
+    padding-top: .2rem;
+}
+
+
+
+.folder_folder-MSN .btm_bar_container-MSN {
+    display: flex;
+    gap: 5px;
+    width: calc(100% - 6px);
+    justify-content: space-between;
+    margin: 0 auto;
+    margin-top: 4px;
+    cursor: default;
+} 
+
+.btm_bar_container-MSN .object_bar-MSN {
+    width: 80%;
+    border: 1px solid black;
+    border-right-color: white;
+    border-bottom-color: white;
+}
+.btm_bar_container-MSN .size_bar-MSN {
+    width: 55%;
+    border: 1px solid black;
+    border-right-color: white;
+    border-bottom-color: white;
+}
+
+.btm_bar_container-MSN p {
+    position: relative;
+    font-size: 14px;
+    padding-top: 2px;
+    margin-left: 2px;
+}
+
+.folder_content-MSN {
+    position: relative;
+    text-align: center;
+    width: calc(100% - 20px);
+    height: calc(100% - 225px);
+    border: 2px solid black;
+    border-right-color: white;
+    border-bottom-color: white;
+    background: #ffffff;
+    margin: 0 auto;
+    margin-top: 2px;
+    padding: 2px 4px;
+    overflow: scroll;
+    white-space: nowrap;
+}
+
+.groove_div {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: calc(100% - 20px);
+    height: 40px;
+    margin: 0 auto;
+    border: 3px groove rgb(236, 234, 234);
+    border-left: none;
+    border-right: none;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.groove_div .chat_name_msn_div {
+    display: flex;
+    position: relative;
+    width: 120px;
+    height: calc(100% - 4px);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.groove_div .chat_name_msn_div:active {
+    background: #d1d0d0;
+}
+
+.groove_div .chat_name_msn_div img {
+    position: relative;
+    width: 35px;
+    left: -4px;
+}
+
+.groove_div .chat_name_msn_div span {
+    position: relative;
+    font-size: 13px;
+    top: 7px;
+    right: 2px;
+}
+
+.chat_to_div {
+    display: flex;
+    width: calc(100% - 20px);
+    height: 25px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.chat_to_div p {
+    font-size: 13px;
+
+}
+
+.enter_text_div {
+    display: flex;
+    position: relative;
+    width: calc(100% - 20px);
+    height: 60px;
+    margin: 0 auto;
+    margin-top: .7rem;
+    gap: 4px;
+    
+}
+
+.enter_text_div textarea {
+    position: relative;
+    height: 100%;
+    width: 80%;
+    border: 2px solid black;
+    border-right-color: white;
+    border-bottom-color: white;
+    background: #ffffff;
+    resize: none;
+    font-size: 13px;
+}
+
+.enter_text_div button {
+    position: relative;
+    height: 100%;
+    width: 20%;
+    border: 2px solid white;
+    border-right-color: black;
+    border-bottom-color: black;
+    background: #c5c4c4;
+    top: 1px;
+    color: black;
+}
+
+.enter_text_div button:active {
+    border: 2px solid black;
+    border-right-color: white;
+    border-bottom-color: white;
+}
+
+.status_div {
+    position: relative;
+    height: 22px;
+    width: calc(100% - 19px);
+    border: 2px solid rgb(125, 116, 116);
+    border-right-color: #ebe9e9;
+    border-bottom-color: #ebe9e9;
+    margin: 0 auto;
+    top: 8px;
+}
+
+.status_div p {
+    font-size: 13px;
+    padding-left: 2px;
+    color: rgb(50, 49, 49);
+}
+
+.Username_input_div_active {
+    display: grid;
+    place-items: center;
+    position: absolute;
+    top: 1.53rem;
+    width: 100%;
+    height: 100%;
+    background: #09090970;
+    z-index: 98;
+}
+
+.Username_input_div_disabled {
+    display: none;
+}
+
+.Username_input_div_active .container_username {
+    position: relative;
+    width: 280px;
+    height: 160px;
+    background: #c5c4c4;
+    border: 1px solid white;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    outline: 1px solid white;
+    overflow: hidden;
+}
+
+.Username_input_div_active .form_banner {
+   width: calc(100% - 20px);
+   height: 25px;
+}
+
+.form_banner {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 22px!important;
+    width: 100%!important;
+}
+.form_banner .username_text_banner {
+    position: relative;
+    color: white;
+    font-size: 13px;
+    padding-left: 6px;
+}
+
+.form_banner .close_form_banner {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border: 2px solid white;
+    border-right-color: black;
+    border-bottom-color: black;
+    background: #c5c4c4;
+    text-align: center;
+    right: 4px;
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.form_banner .close_form_banner:active {
+    border: 1px solid black;
+    border-right-color: white;
+    border-bottom-color: white;
+}
+
+.form_banner .close_form_banner p {
+    position: relative;
+    bottom: 7px;
+    font-size: 16px;
+}
+
+.Username_input_div_active form {
+    display: grid;
+    position: relative;
+    place-items: center;
+    width: 85%;
+    top: 2.5rem;
+    gap: 1rem;
+    margin: 0 auto;
+}
+
+.Username_input_div_active input {
+    width: 100%;
+    height: 25px;
+    font-size: 13px;
+    padding-left: 4px;
+    border: 2px solid black;
+    border-right-color: white;
+    border-bottom-color: white;
+}
+
+.Username_input_div_active .ok_cancel_username {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    gap: 4px;
+}
+
+.Username_input_div_active .ok_cancel_username button {
+    position: relative;
+    top: 10px;
+    padding: 3px 9px;
+    font-size: 12px;
+    border: 2px solid white;
+    border-right-color: black;
+    border-bottom-color: black;
+    color: black;
+}
+
+.Username_input_div_active .ok_cancel_username button:active {
+    border: 2px solid black;
+    border-right-color: white;
+    border-bottom-color: white;
+}

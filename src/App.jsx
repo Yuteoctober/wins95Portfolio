@@ -12,6 +12,7 @@ import TypeFolder from './components/TypeFolder';
 import ResumeFile from './components/ResumeFile';
 import Shutdown from './components/Shutdown';
 import ReadMe from './components/ReadMeFolder'
+import MsnFolder from './components/MsnFolder';
 import iconInfo from './icon.json'
 import { StyleHide, imageMapping, 
   handleDoubleClickEnterLink,
@@ -84,6 +85,9 @@ function App() {
   const [ReadMeExpand, setReadMeExpand] = useState(
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
 
+  const [MSNExpand, setMSNExpand] = useState(
+    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
+
 
 function ObjectState() {
   return [
@@ -96,7 +100,8 @@ function ObjectState() {
           { name: 'Type', setter: setTypeExpand, usestate: TypeExpand },
           { name: 'Winamp', setter: setWinampExpand, usestate: WinampExpand },
           { name: 'ResumeFile', setter: setResumeFileExpand, usestate: ResumeFileExpand },
-          { name: 'ReadMe', setter: setReadMeExpand, usestate: ReadMeExpand }
+          { name: 'ReadMe', setter: setReadMeExpand, usestate: ReadMeExpand },
+          { name: 'MSN', setter: setMSNExpand, usestate: MSNExpand }
         ];
 }
 
@@ -365,7 +370,7 @@ function handleShowMobile(name) {
           show: false,
           expand: false
         }));
-  
+
         setTap(prevTap => prevTap.filter(tapItem => { // get prevTap to prevent error
           const tapItemName = tapItem.toLowerCase().split(' ').join('');
           return tapItemName !== passedName;
@@ -423,6 +428,7 @@ function handleShowMobile(name) {
     deleteTap,
     shutdownWindow, setShutdownWindow,
     ReadMeExpand, setReadMeExpand,
+    MSNExpand, setMSNExpand,
   }
 
  
@@ -440,6 +446,7 @@ function handleShowMobile(name) {
         <TypeFolder/>
         <ResumeFile/>
         <ReadMe/>
+        <MsnFolder/>
         <Dragdrop/>
         <Footer/>
       </UserContext.Provider>

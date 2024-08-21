@@ -5,6 +5,7 @@ import Project from '../../assets/regFolder.png'
 import Winamp from '../../assets/winampIcon.png'
 import resumefile from '../../assets/resume.png'
 import ReadMe from '../../assets/notepad.png'
+import MSN from '../../assets/msn.png'
 
 
 
@@ -68,6 +69,9 @@ export function imageMapping (name) {
     case 'ReadMe':
     case 'Read Me':
       return ReadMe;
+
+    case 'MSN':
+      return MSN;
 
     default:
       return null;
