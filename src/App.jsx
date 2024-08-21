@@ -93,17 +93,31 @@ function App() {
   const [MSNExpand, setMSNExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
 
-console.log(chatData.length !== updateChat.length)
-useEffect(() => {
-  getChat();
+console.log(chatData.length === updateChat.length)
 
-  // Set up periodic fetching of chat data
-  const intervalId = setInterval(() => {
-    getChat();
+useEffect(() => { // update chat every 5 second
+
+  const intervalId  = setInterval(() => {
+
+    axios.get(`https://notebackend-qr35.onrender.com/chat/getchat/`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      }
+    })
+      .then(response => {
+        const updatedChat = response.data
+        if(updatedChat.length !== chatData.length) {
+          getChat()
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching Chat:', error);
+      });
   }, 5000);
 
   return () => clearInterval(intervalId); 
-}, []);
+  },[])
 
 useEffect(() => { /// Fetch chat data
   getChat()
@@ -149,6 +163,7 @@ function getChat() {
   })
     .then(response => {
       setChatData(response.data)
+      setUpdateChat(response.data)
       console.log(response.data);
     })
     .catch(error => {
