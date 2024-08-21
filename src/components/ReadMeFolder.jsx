@@ -146,7 +146,7 @@ function ReadMeFolder() {
               <p style={{paddingLeft: '.2rem', fontSize: '13px'}}>
               - Everything built by me from scratch (No style component!)
               <br />
-              - All the functionalities are also works smoothly in mobile as well :)
+              - All the functionalities also work smoothly in mobile as well :)
               <br />
               - Shoot me an Email if you like my work, it can be found in Resume's folder
               </p>
