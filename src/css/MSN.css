@@ -218,7 +218,8 @@
     margin: 0 auto;
     margin-top: 2px;
     padding: 2px 4px;
-    overflow: scroll;
+    overflow-y: auto;
+    overflow-x: none;
     white-space: nowrap;
 }
 
