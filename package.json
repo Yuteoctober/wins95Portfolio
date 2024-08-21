@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.3.3",
-    "axios": "^1.6.7",
+    "axios": "^1.7.4",
     "framer-motion": "^11.0.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

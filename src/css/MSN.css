@@ -209,7 +209,6 @@
 
 .folder_content-MSN {
     position: relative;
-    text-align: center;
     width: calc(100% - 20px);
     height: calc(100% - 225px);
     border: 2px solid black;
@@ -221,6 +220,11 @@
     padding: 2px 4px;
     overflow: scroll;
     white-space: nowrap;
+}
+
+.folder_content-MSN p {
+    font-size: 14px;
+    letter-spacing: .5px;
 }
 
 .groove_div {

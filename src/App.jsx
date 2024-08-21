@@ -14,11 +14,15 @@ import Shutdown from './components/Shutdown';
 import ReadMe from './components/ReadMeFolder'
 import MsnFolder from './components/MsnFolder';
 import iconInfo from './icon.json'
+import axios from 'axios';
 import { StyleHide, imageMapping, 
   handleDoubleClickEnterLink,
   handleDoubleTapEnterMobile } from './components/function/AppFunctions';
 
 function App() {
+  const [userNameValue, setUserNameValue] = useState('Anonymous')
+  const [chatValue, setChatValue] = useState('')
+  const [chatData, setChatData] = useState([])
   const [shutdownWindow, setShutdownWindow] = useState(false)
   const ClearTOdonttouch = useRef(null);
   const ClearTOSongfunction = useRef(null);
@@ -87,6 +91,58 @@ function App() {
 
   const [MSNExpand, setMSNExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
+
+
+useEffect(() => { /// Fetch chat data
+  getChat()
+},[])
+
+console.log(chatData)
+
+function createChat() {
+  
+  // Check if chatValue is not empty
+  if (chatValue.trim().length === 0) {
+    return;
+  }
+
+  // Prepare the payload
+  const payload = { chat: chatValue };
+
+  // Conditionally add the name to the payload if it's not empty
+  if (userNameValue.trim().length > 0) {
+    payload.name = userNameValue;
+  }
+
+  axios.post('https://notebackend-qr35.onrender.com/chat/createChat/', payload)
+    .then(response => {
+      setChatValue('')
+      console.log('Chat created successfully:', response.data);
+      getChat(); 
+    })
+    .catch(error => {
+      console.error('Error creating chat:', error.response ? error.response.data : error.message);
+    });
+}
+
+
+
+
+function getChat() {
+  axios.get(`https://notebackend-qr35.onrender.com/chat/getchat/`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    }
+  })
+    .then(response => {
+      setChatData(response.data)
+      console.log(response.data);
+    })
+    .catch(error => {
+      console.error('Error fetching Chat:', error);
+    });
+}
 
 
 function ObjectState() {
@@ -429,6 +485,10 @@ function handleShowMobile(name) {
     shutdownWindow, setShutdownWindow,
     ReadMeExpand, setReadMeExpand,
     MSNExpand, setMSNExpand,
+    chatData, setChatData,
+    chatValue, setChatValue,
+    createChat,
+    userNameValue, setUserNameValue,
   }
 
  

@@ -1,17 +1,19 @@
-import UseContext from '../Context'
-import { useContext, useState} from "react";
-import Draggable from 'react-draggable'
+import UseContext from '../Context';
+import { useContext, useState, useRef, useEffect } from "react";
+import Draggable from 'react-draggable';
 import { motion } from 'framer-motion';
-import msnPic from '../assets/msn.png'
-import chat from '../assets/chat.png'
-import '../css/MSN.css'
-
+import msnPic from '../assets/msn.png';
+import chat from '../assets/chat.png';
+import '../css/MSN.css';
 
 function MsnFolder() {
-
-
+  const endOfMessagesRef = useRef(null);
 
   const { 
+    createChat,
+    userNameValue, setUserNameValue,
+    chatValue, setChatValue,
+    chatData, setChatData,
     MSNExpand, setMSNExpand,
     lastTapTime, setLastTapTime,
     StyleHide,
@@ -21,23 +23,29 @@ function MsnFolder() {
     inlineStyle,
     deleteTap,
     iconFocusIcon,
-   } = useContext(UseContext);
+  } = useContext(UseContext);
 
-   const [userName, setUserName] = useState(false)
+  const [userName, setUserName] = useState(false);
 
+  const lastMessage = chatData.length > 0 
+    ? chatData[chatData.length - 1].date.split('').slice(0, 10).join('') 
+    : 'No messages yet';
 
-      function handleDragStop(event, data) {
-        const positionX = data.x 
-        const positionY = data.y
-        setMSNExpand(prev => ({
-          ...prev,
-          x: positionX,
-          y: positionY
-        }))
+  useEffect(() => {
+    endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chatData]); // Run this effect when chatData changes
 
-      }
+  function handleDragStop(event, data) {
+    const positionX = data.x;
+    const positionY = data.y;
+    setMSNExpand(prev => ({
+      ...prev,
+      x: positionX,
+      y: positionY
+    }));
+  }
 
-   function handleExpandStateToggle() {
+  function handleExpandStateToggle() {
     setMSNExpand(prevState => ({
       ...prevState,
       expand: !prevState.expand
@@ -47,159 +55,191 @@ function MsnFolder() {
   function handleExpandStateToggleMobile() {
     const now = Date.now();
     if (now - lastTapTime < 300) {
-        setMSNExpand(prevState => ({
-            ...prevState,
-            expand: !prevState.expand
-        }));
+      setMSNExpand(prevState => ({
+        ...prevState,
+        expand: !prevState.expand
+      }));
     }
     setLastTapTime(now);
-}
+  }
+
 
   return (
     <>
       <Draggable
-        axis="both" 
+        axis="both"
         handle={'.folder_dragbar-MSN'}
         grid={[1, 1]}
         scale={1}
         disabled={MSNExpand.expand}
-        bounds={{top: 0}}
-        defaultPosition={{ 
+        bounds={{ top: 0 }}
+        defaultPosition={{
           x: window.innerWidth <= 500 ? 20 : 50,
           y: window.innerWidth <= 500 ? 40 : 120,
         }}
         onStop={(event, data) => handleDragStop(event, data)}
         onStart={() => handleSetFocusItemTrue('MSN')}
       >
-        <div className='folder_folder-MSN' 
-            onClick={(e) => {
-              e.stopPropagation();
-              handleSetFocusItemTrue('MSN');
-            }}
-            style={ 
-                MSNExpand.expand ? inlineStyleExpand('MSN') : inlineStyle('MSN')
-            }>
+        <div className='folder_folder-MSN'
+          onClick={(e) => {
+            e.stopPropagation();
+            handleSetFocusItemTrue('MSN');
+          }}
+          style={
+            MSNExpand.expand ? inlineStyleExpand('MSN') : inlineStyle('MSN')
+          }
+        >
 
-            {/* -------------------------- Add username --------------------------------- */}
-            <div className={userName? 'Username_input_div_active' : 'Username_input_div_disabled'}>            
-                    <div className="container_username">
-                        <div className="form_banner"
-                            style={{ background: MSNExpand.focusItem? '#14045c' : '#757579'}}
-                            >
-                            <p className='username_text_banner'>
-                                Username
-                            </p>
-                            <div className="close_form_banner"
-                                onClick={() => setUserName(false)}
-                            >
-                                <p>x</p>
-                            </div>
-                        </div>
-                        <form 
-                        onSubmit={(e) => {e.preventDefault()}}
-                        >
-                            <input type="text" maxLength={20} placeholder='Enter your user-name here...'  />
-                            <div className="ok_cancel_username">
-                                <button>Ok</button>
-                                <button
-                                    onClick={() => setUserName(false)}
-                                >
-                                    Cancel
-                                </button>
-                            </div>
-                            
-                        </form>
+          {/* -------------------------- Add username --------------------------------- */}
+          <div className={userName ? 'Username_input_div_active' : 'Username_input_div_disabled'}>
+            <div className="container_username">
+              <div className="form_banner"
+                style={{ background: MSNExpand.focusItem ? '#14045c' : '#757579' }}
+              >
+                <p className='username_text_banner'>
+                  Username
+                </p>
+                <div className="close_form_banner"
+                  onClick={() => setUserName(false)}
+                >
+                  <p>x</p>
                 </div>
+              </div>
+              <form onSubmit={(e) => { e.preventDefault() }}>
+                <input type="text" maxLength={20} placeholder='Enter your user-name here...'
+                    value={userNameValue}
+                    onChange={(e) => setUserNameValue(e.target.value)}
+                />
+                <div className="ok_cancel_username">
+                  <button
+                    onClick={() => setUserName(false)}
+                  >
+                    Ok
+                  </button>
+                  <button
+                    onClick={() => {
+                      setUserName(false);
+                      setNameValue('');
+                    }}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
             </div>
-            {/* ------------------------------------------------------------------------------ */}
+          </div>
+          {/* ------------------------------------------------------------------------------ */}
           <div className="folder_dragbar-MSN"
-              onDoubleClick={handleExpandStateToggle}
-              onTouchStart={handleExpandStateToggleMobile}
-             style={{ background: MSNExpand.focusItem? '#14045c' : '#757579'}}
+            onDoubleClick={handleExpandStateToggle}
+            onTouchStart={handleExpandStateToggleMobile}
+            style={{ background: MSNExpand.focusItem ? '#14045c' : '#757579' }}
           >
             <div className="folder_barname-MSN">
               <img src={msnPic} alt="msnPic" />
               <span>MSN</span>
             </div>
             <div className="folder_barbtn-MSN">
-              <div onClick={ !isTouchDevice? (e) => {
-                e.stopPropagation()
-                setMSNExpand(prev => ({...prev, hide: true, focusItem: false}))
-                StyleHide('MSN') 
-              } : undefined
-            }
-                   onTouchEnd={(e) => {
-                    e.stopPropagation()
-                    setMSNExpand(prev => ({...prev, hide: true, focusItem: false}))
-                    StyleHide('MSN')
-                  }}
+              <div onClick={!isTouchDevice ? (e) => {
+                e.stopPropagation();
+                setMSNExpand(prev => ({ ...prev, hide: true, focusItem: false }));
+                StyleHide('MSN');
+              } : undefined}
+                onTouchEnd={(e) => {
+                  e.stopPropagation();
+                  setMSNExpand(prev => ({ ...prev, hide: true, focusItem: false }));
+                  StyleHide('MSN');
+                }}
               >
                 <p className='dash-MSN'></p>
               </div>
               <div
-                onClick={ !isTouchDevice ? () => handleExpandStateToggle() : undefined}
+                onClick={!isTouchDevice ? () => handleExpandStateToggle() : undefined}
                 onTouchEnd={handleExpandStateToggle}
               >
                 <motion.div className={`expand-MSN ${MSNExpand.expand ? 'full' : ''}`}>
                 </motion.div>
-                {MSNExpand.expand ? 
-                (
-                <div className="expand_2-MSN"></div>
-                )
-                :
-                (null)}
+                {MSNExpand.expand ?
+                  (
+                    <div className="expand_2-MSN"></div>
+                  )
+                  :
+                  (null)}
               </div>
-              <div><p className='x-MSN'
-                 onClick={!isTouchDevice ? () => {
-                    deleteTap('MSN')
-                    setUserName(false)
-                }
-                  : undefined
-                }
-                onTouchEnd={() => {
-                    deleteTap('MSN')
-                    setUserName(false)
-                }}
-              >x</p></div>
+              <div>
+                <p className='x-MSN'
+                  onClick={!isTouchDevice ? () => {
+                    deleteTap('MSN');
+                    setUserName(false);
+                    setChatValue('')
+                  } : undefined}
+                  onTouchEnd={() => {
+                    deleteTap('MSN');
+                    setUserName(false);
+                    setChatValue('')
+                  }}
+                >
+                  x
+                </p>
+              </div>
             </div>
           </div>
 
           <div className="file_edit_container-MSN">
-              <p>File<span style={{left: '-23px'}}>_</span></p>
-              <p>Edit<span style={{left: '-24px'}}>_</span></p>
-              <p>View<span style={{left: '-32px'}}>_</span></p>
-              <p>Help<span style={{left: '-30px'}}>_</span></p>
+            <p>File<span style={{ left: '-23px' }}>_</span></p>
+            <p>Edit<span style={{ left: '-24px' }}>_</span></p>
+            <p>View<span style={{ left: '-32px' }}>_</span></p>
+            <p>Help<span style={{ left: '-30px' }}>_</span></p>
           </div>
           <div className='groove_div'>
             <div className="chat_name_msn_div"
-                onClick={() => setUserName(true)}
+              onClick={() => setUserName(true)}
             >
-                <img src={chat} alt="chat" />
-                <span>Set User-name</span>
+              <img src={chat} alt="chat" />
+              <span>Set User-name</span>
             </div>
           </div>
           <div className="chat_to_div">
             <p>
-                To: everyone
+              To: everyone
             </p>
           </div>
           <div className="folder_content-MSN">
-            
+            {chatData.map((chat, index) => (
+              <div key={chat.id}>
+                <p>
+                  <span style={{ color: 'blue' }}>&lt;{chat.name}&gt;: </span>
+                  <span style={{ color: '#171616' }}>{chat.chat}</span>
+                </p>
+                {/* Attach ref to the last chat item */}
+                {index === chatData.length - 1 && (
+                  <div ref={endOfMessagesRef} />
+                )}
+              </div>
+            ))}
           </div>
           <div className="enter_text_div">
-            <textarea></textarea>
-            <button>Send</button>
+            <textarea
+              value={chatValue}
+              onChange={(e) => setChatValue(e.target.value)}
+            />
+            <button
+              onClick={() => createChat()}
+            >
+              Send
+            </button>
           </div>
           <div className="status_div">
             <p>
-                username is typing......
+            {chatValue.trim().length > 0 
+                ? `${userNameValue} is typing...` 
+                : `Last message received on ${lastMessage}`}
             </p>
-          </div>
 
+          </div>
         </div>
       </Draggable>
     </>
-  )
-}          
+  );
+}
 
 export default MsnFolder;
