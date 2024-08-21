@@ -7,13 +7,14 @@ import chat from '../assets/chat.png';
 import '../css/MSN.css';
 
 function MsnFolder() {
-  const endOfMessagesRef = useRef(null);
 
-  const { 
+  const {   
+    scrollBottom,
+    endOfMessagesRef,
     createChat,
     userNameValue, setUserNameValue,
     chatValue, setChatValue,
-    chatData, setChatData,
+    chatData,
     MSNExpand, setMSNExpand,
     lastTapTime, setLastTapTime,
     StyleHide,
@@ -33,7 +34,7 @@ function MsnFolder() {
 
   useEffect(() => {
     endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [chatData]); // Run this effect when chatData changes
+  }, [scrollBottom]); // Run this effect when chatData changes
 
   function handleDragStop(event, data) {
     const positionX = data.x;

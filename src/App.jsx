@@ -20,7 +20,8 @@ import { StyleHide, imageMapping,
   handleDoubleTapEnterMobile } from './components/function/AppFunctions';
 
 function App() {
-  const [updateChat, setUpdateChat] = useState([])
+  const [scrollBottom, setScrollBottom] = useState(false)
+  const endOfMessagesRef = useRef(null);
   const [userNameValue, setUserNameValue] = useState('')
   const [chatValue, setChatValue] = useState('')
   const [chatData, setChatData] = useState([])
@@ -93,8 +94,6 @@ function App() {
   const [MSNExpand, setMSNExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
 
-console.log(chatData.length === updateChat.length)
-
 useEffect(() => { // update chat every 5 second
 
   const intervalId  = setInterval(() => {
@@ -121,9 +120,8 @@ useEffect(() => { // update chat every 5 second
 
 useEffect(() => { /// Fetch chat data
   getChat()
+  setScrollBottom(!scrollBottom)
 },[])
-
-console.log(chatData)
 
 function createChat() {
   
@@ -163,8 +161,7 @@ function getChat() {
   })
     .then(response => {
       setChatData(response.data)
-      setUpdateChat(response.data)
-      console.log(response.data);
+      setScrollBottom(!scrollBottom)
     })
     .catch(error => {
       console.error('Error fetching Chat:', error);
@@ -442,7 +439,6 @@ function handleShowMobile(name) {
   function deleteTap(name) {
     const setState = ObjectState();
     const passedName = name.toLowerCase().split(' ').join('');
-    console.log(passedName);
   
     setState.forEach(item => {
       const itemName = item.name.toLowerCase().split(' ').join('');
@@ -516,6 +512,8 @@ function handleShowMobile(name) {
     chatValue, setChatValue,
     createChat,
     userNameValue, setUserNameValue,
+    endOfMessagesRef,
+    scrollBottom,
   }
 
  
