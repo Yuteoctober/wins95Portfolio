@@ -20,7 +20,7 @@ import { StyleHide, imageMapping,
   handleDoubleTapEnterMobile } from './components/function/AppFunctions';
 
 function App() {
-  const [userNameValue, setUserNameValue] = useState('Anonymous')
+  const [userNameValue, setUserNameValue] = useState('')
   const [chatValue, setChatValue] = useState('')
   const [chatData, setChatData] = useState([])
   const [shutdownWindow, setShutdownWindow] = useState(false)
