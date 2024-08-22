@@ -94,86 +94,70 @@ function App() {
   const [MSNExpand, setMSNExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
 
-    useEffect(() => {
-      const intervalId = setInterval(async () => {
-        try {
-          const response = await axios.get(`https://notebackend-qr35.onrender.com/chat/getchat/`, {
-            headers: {
-              'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': '*'
-            }
-          });
-          const updatedChat = response.data;
-    
-          // Only fetch new chat data if the chat length has changed
-          if (updatedChat.length !== chatData.length) {
-            await getChat(); // Wait until getChat is done
-    
-            // Delay scrolling to ensure the DOM has updated
-            setTimeout(() => {
-              endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
-            }, 1000); // Adjust the delay as needed
-          }
-        } catch (error) {
-          console.error('Error fetching Chat:', error);
+    // Main useEffect to fetch chat data every 5 seconds
+useEffect(() => {
+  console.log('Starting fetch process...');
+
+  const fetchChatData = async () => {
+    try {
+      const response = await axios.get(`https://notebackend-qr35.onrender.com/chat/getchat/`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
         }
-      }, 5000);
-    
-      return () => clearInterval(intervalId);
-    }, [chatData.length]);
-    
-    
-    
-    useEffect(() => {
-      const fetchChatData = () => {
-          getChat().then((response) => {
-              if (response && response.data) { 
-                  clearInterval(intervalId); 
-              }
-          }).catch((error) => {
-              console.error("Failed to get chat data:", error); 
-          });
-      };
-  
-      const intervalId = setInterval(fetchChatData, 2000); 
-  
-      fetchChatData();
-  
-      return () => clearInterval(intervalId); 
-  }, []);
-  
+      });
+      const updatedChat = response.data;
+      console.log('Fetched data:', updatedChat);
 
-    const createChat = async () => {
-      if (chatValue.trim().length === 0) {
-        return;
-      }
-      const payload = { chat: chatValue };
+      // Only update chatData if the chat length has changed
+      if (updatedChat.length !== chatData.length) {
+        setChatData(updatedChat); // Directly update chatData here
 
-      if (userNameValue.trim().length > 0) {
-        payload.name = userNameValue;
-      }
-    
-      try {
-        const response = await axios.post('https://notebackend-qr35.onrender.com/chat/createChat/', payload);
-        setChatValue('');
-        console.log('Chat created successfully:', response.data);
-        await getChat();
-
-        const intervalId = setTimeout(() => {
+        setTimeout(() => {
           endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
         }, 1000);
-    
-        return () => clearInterval(intervalId);
-    
-      } catch (error) {
-        console.error('Error creating chat:', error.response ? error.response.data : error.message);
       }
-    };
-    
+    } catch (error) {
+      console.error('Error fetching chat:', error);
+    }
+  };
 
+  // Initial fetch and set up interval to fetch every 5 seconds
+  fetchChatData();
+  const intervalId = setInterval(fetchChatData, 5000);
 
+  return () => clearInterval(intervalId); // Clear interval on component unmount
+}, [chatData]); // Depend on chatData
 
+// Function to create a new chat message
+const createChat = async () => {
+  if (chatValue.trim().length === 0) {
+    return;
+  }
 
+  const payload = { chat: chatValue };
+  if (userNameValue.trim().length > 0) {
+    payload.name = userNameValue;
+  }
+
+  try {
+    const response = await axios.post('https://notebackend-qr35.onrender.com/chat/createChat/', payload);
+    setChatValue('');
+    console.log('Chat created successfully:', response.data);
+
+    // Fetch the chat data after creating a new chat
+    await getChat();
+
+    // Scroll to the end of messages
+    setTimeout(() => {
+      endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 1000);
+  } catch (error) {
+    console.error('Error creating chat:', error.response ? error.response.data : error.message);
+  }
+};
+
+// Function to fetch chat data
 async function getChat() {
   try {
     const response = await axios.get(`https://notebackend-qr35.onrender.com/chat/getchat/`, {
@@ -187,6 +171,7 @@ async function getChat() {
     console.error('Error fetching Chat:', error);
   }
 }
+
 
 
 
