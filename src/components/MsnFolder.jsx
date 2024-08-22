@@ -33,7 +33,7 @@ function MsnFolder() {
 
   useEffect(() => {
   endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [MSNExpand.show]); // Run this effect when chatData changes
+  }, [MSNExpand.show]); // Run this effect when open/close 
 
   function handleDragStop(event, data) {
     const positionX = data.x;

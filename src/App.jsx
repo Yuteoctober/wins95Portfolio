@@ -125,10 +125,22 @@ function App() {
     
     
     useEffect(() => {
-      async () => {
-        await getChat();
+      const fetchChatData = () => {
+          getChat().then((response) => {
+              if (response && response.data) { // Check if you got a valid response
+                  clearInterval(intervalId); // Clear the interval once a valid response is received
+              }
+          }).catch((error) => {
+              console.error("Failed to get chat data:", error); // Handle errors as needed
+          });
       };
-    }, []);
+  
+      const intervalId = setInterval(fetchChatData, 2000); // Retry every second
+  
+      fetchChatData(); // Initial attempt to get chat data
+  
+      return () => clearInterval(intervalId); // Cleanup interval on unmount
+  }, []);
 
     const createChat = async () => {
       if (chatValue.trim().length === 0) {
