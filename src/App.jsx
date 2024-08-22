@@ -112,7 +112,7 @@ function App() {
             // Delay scrolling to ensure the DOM has updated
             setTimeout(() => {
               endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
-            }, 100); // Adjust the delay as needed
+            }, 1000); // Adjust the delay as needed
           }
         } catch (error) {
           console.error('Error fetching Chat:', error);
@@ -127,20 +127,21 @@ function App() {
     useEffect(() => {
       const fetchChatData = () => {
           getChat().then((response) => {
-              if (response && response.data) { // Check if you got a valid response
-                  clearInterval(intervalId); // Clear the interval once a valid response is received
+              if (response && response.data) { 
+                  clearInterval(intervalId); 
               }
           }).catch((error) => {
-              console.error("Failed to get chat data:", error); // Handle errors as needed
+              console.error("Failed to get chat data:", error); 
           });
       };
   
-      const intervalId = setInterval(fetchChatData, 2000); // Retry every second
+      const intervalId = setInterval(fetchChatData, 2000); 
   
-      fetchChatData(); // Initial attempt to get chat data
+      fetchChatData();
   
-      return () => clearInterval(intervalId); // Cleanup interval on unmount
+      return () => clearInterval(intervalId); 
   }, []);
+  
 
     const createChat = async () => {
       if (chatValue.trim().length === 0) {
@@ -157,7 +158,8 @@ function App() {
         setChatValue('');
         console.log('Chat created successfully:', response.data);
         await getChat();
-        const intervalId = setInterval(() => {
+
+        const intervalId = setTimeout(() => {
           endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
         }, 1000);
     
