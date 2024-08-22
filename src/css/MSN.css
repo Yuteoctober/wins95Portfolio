@@ -245,8 +245,10 @@
 .groove_div .chat_name_msn_div {
     display: flex;
     position: relative;
-    width: 120px;
     height: calc(100% - 4px);
+    border: 2px solid white;
+    border-right-color: black;
+    border-bottom-color: black;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -254,20 +256,21 @@
 }
 
 .groove_div .chat_name_msn_div:active {
-    background: #d1d0d0;
+    border: 2px solid black;
+    border-right-color: white;
+    border-bottom-color: white;
 }
 
 .groove_div .chat_name_msn_div img {
     position: relative;
-    width: 35px;
-    left: -4px;
+    width: 34px;
 }
 
-.groove_div .chat_name_msn_div span {
+.groove_div span {
     position: relative;
     font-size: 13px;
-    top: 7px;
-    right: 2px;
+    padding-left: 8px;
+    top: 1px;
 }
 
 .chat_to_div {

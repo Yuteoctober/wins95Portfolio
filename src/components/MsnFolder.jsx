@@ -108,9 +108,9 @@ function MsnFolder() {
               </div>
               <form onSubmit={(e) => { e.preventDefault() }}>
                 <p>
-                  User-Name:
+                  UserName:
                 </p>
-                <input type="text" maxLength={20} placeholder='Enter your user-name here...'
+                <input type="text" maxLength={20} placeholder='Enter your username here...'
                     value={userNameValue}
                     onChange={(e) => setUserNameValue(e.target.value)}
                 />
@@ -199,8 +199,10 @@ function MsnFolder() {
               onClick={() => setUserName(true)}
             >
               <img src={chat} alt="chat" />
-              <span>Set User-name</span>
+
             </div>
+              <span>Username: {userNameValue? userNameValue: 'Anonymous'}</span>
+            
           </div>
           <div className="chat_to_div">
             <p>
