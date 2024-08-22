@@ -31,9 +31,9 @@ function MsnFolder() {
     ? chatData[chatData.length - 1].date.split('').slice(0, 10).join('')
     : 'No messages yet';
 
-  // useEffect(() => {
-  // endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
-  // }, []); // Run this effect when chatData changes
+  useEffect(() => {
+  endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [MSNExpand.show]); // Run this effect when chatData changes
 
   function handleDragStop(event, data) {
     const positionX = data.x;

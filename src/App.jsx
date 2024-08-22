@@ -125,26 +125,8 @@ function App() {
     
     
     useEffect(() => {
-      // Function to fetch chat data
-      let wait = true
-
       async () => {
         await getChat();
-      };
-    
-  
-    
-      // Start interval to scroll into view
-      const intervalId = setInterval(() => {
-        if(wait) {
-          endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
-        }
-        wait = false
-      }, 1000);
-    
-      // Cleanup function to clear interval
-      return () => {
-        clearInterval(intervalId);
       };
     }, []);
 
@@ -153,7 +135,7 @@ function App() {
         return;
       }
       const payload = { chat: chatValue };
-      
+
       if (userNameValue.trim().length > 0) {
         payload.name = userNameValue;
       }
