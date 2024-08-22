@@ -108,7 +108,7 @@ function MsnFolder() {
               </div>
               <form onSubmit={(e) => { e.preventDefault() }}>
                 <p>
-                  UserName:
+                  Username:
                 </p>
                 <input type="text" maxLength={20} placeholder='Enter your username here...'
                     value={userNameValue}

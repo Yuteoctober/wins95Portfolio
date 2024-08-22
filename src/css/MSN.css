@@ -308,7 +308,8 @@
     resize: none;
     font-size: 13px;
     border-radius: 0;
-    padding-left: 2px;
+    padding-left: 4px;
+    padding-top: 2px;
 }
 
 .enter_text_div button {
