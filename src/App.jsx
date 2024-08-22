@@ -123,37 +123,57 @@ function App() {
     }, [chatData.length]);
     
     
+    
+    useEffect(() => {
+      // Function to fetch chat data
+      let wait = true
 
-useEffect(() => { /// Fetch chat data
-  getChat()
-  endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
-},[])
-
-function createChat() {
+      async () => {
+        await getChat();
+      };
+    
   
-  // Check if chatValue is not empty
-  if (chatValue.trim().length === 0) {
-    return;
-  }
+    
+      // Start interval to scroll into view
+      const intervalId = setInterval(() => {
+        if(wait) {
+          endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
+        }
+        wait = false
+      }, 1000);
+    
+      // Cleanup function to clear interval
+      return () => {
+        clearInterval(intervalId);
+      };
+    }, []);
 
-  // Prepare the payload
-  const payload = { chat: chatValue };
-
-  // Conditionally add the name to the payload if it's not empty
-  if (userNameValue.trim().length > 0) {
-    payload.name = userNameValue;
-  }
-
-  axios.post('https://notebackend-qr35.onrender.com/chat/createChat/', payload)
-    .then(response => {
-      setChatValue('')
-      console.log('Chat created successfully:', response.data);
-      getChat(); 
-    })
-    .catch(error => {
-      console.error('Error creating chat:', error.response ? error.response.data : error.message);
-    });
-}
+    const createChat = async () => {
+      if (chatValue.trim().length === 0) {
+        return;
+      }
+      const payload = { chat: chatValue };
+      
+      if (userNameValue.trim().length > 0) {
+        payload.name = userNameValue;
+      }
+    
+      try {
+        const response = await axios.post('https://notebackend-qr35.onrender.com/chat/createChat/', payload);
+        setChatValue('');
+        console.log('Chat created successfully:', response.data);
+        await getChat();
+        const intervalId = setInterval(() => {
+          endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
+        }, 1000);
+    
+        return () => clearInterval(intervalId);
+    
+      } catch (error) {
+        console.error('Error creating chat:', error.response ? error.response.data : error.message);
+      }
+    };
+    
 
 
 

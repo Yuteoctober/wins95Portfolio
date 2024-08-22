@@ -8,7 +8,7 @@ import '../css/MSN.css';
 
 function MsnFolder() {
 
-  const {   
+  const {
     endOfMessagesRef,
     createChat,
     userNameValue, setUserNameValue,
@@ -27,13 +27,13 @@ function MsnFolder() {
 
   const [userName, setUserName] = useState(false);
 
-  const lastMessage = chatData.length > 0 
-    ? chatData[chatData.length - 1].date.split('').slice(0, 10).join('') 
+  const lastMessage = chatData.length > 0
+    ? chatData[chatData.length - 1].date.split('').slice(0, 10).join('')
     : 'No messages yet';
 
   // useEffect(() => {
-  //   endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
-  // }, [scrollBottom]); // Run this effect when chatData changes
+  // endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
+  // }, []); // Run this effect when chatData changes
 
   function handleDragStop(event, data) {
     const positionX = data.x;
@@ -240,8 +240,8 @@ function MsnFolder() {
           </div>
           <div className="status_div">
             <p>
-            {chatValue.trim().length > 0 
-                ? `${userNameValue} is typing...` 
+            {chatValue.trim().length > 0
+                ? `${userNameValue} is typing...`
                 : `Last message received on ${lastMessage}`}
             </p>
 
