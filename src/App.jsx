@@ -94,33 +94,39 @@ function App() {
   const [MSNExpand, setMSNExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
 
-useEffect(() => { // update chat every 5 second
-
-  const intervalId  = setInterval(() => {
-
-    axios.get(`https://notebackend-qr35.onrender.com/chat/getchat/`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      }
-    })
-      .then(response => {
-        const updatedChat = response.data
-        if(updatedChat.length !== chatData.length) {
-          getChat()
+    useEffect(() => {
+      const intervalId = setInterval(async () => {
+        try {
+          const response = await axios.get(`https://notebackend-qr35.onrender.com/chat/getchat/`, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*'
+            }
+          });
+          const updatedChat = response.data;
+    
+          // Only fetch new chat data if the chat length has changed
+          if (updatedChat.length !== chatData.length) {
+            await getChat(); // Wait until getChat is done
+    
+            // Delay scrolling to ensure the DOM has updated
+            setTimeout(() => {
+              endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
+            }, 100); // Adjust the delay as needed
+          }
+        } catch (error) {
+          console.error('Error fetching Chat:', error);
         }
-      })
-      .catch(error => {
-        console.error('Error fetching Chat:', error);
-      });
-  }, 5000);
-
-  return () => clearInterval(intervalId); 
-  },[])
+      }, 5000);
+    
+      return () => clearInterval(intervalId);
+    }, [chatData.length]);
+    
+    
 
 useEffect(() => { /// Fetch chat data
   getChat()
-  setScrollBottom(!scrollBottom)
+  endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
 },[])
 
 function createChat() {
@@ -152,21 +158,20 @@ function createChat() {
 
 
 
-function getChat() {
-  axios.get(`https://notebackend-qr35.onrender.com/chat/getchat/`, {
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*'
-    }
-  })
-    .then(response => {
-      setChatData(response.data)
-      setScrollBottom(!scrollBottom)
-    })
-    .catch(error => {
-      console.error('Error fetching Chat:', error);
+async function getChat() {
+  try {
+    const response = await axios.get(`https://notebackend-qr35.onrender.com/chat/getchat/`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      }
     });
+    setChatData(response.data);
+  } catch (error) {
+    console.error('Error fetching Chat:', error);
+  }
 }
+
 
 
 function ObjectState() {
