@@ -96,7 +96,6 @@ function App() {
 
     // Main useEffect to fetch chat data every 5 seconds
 useEffect(() => {
-  console.log('Starting fetch process...');
 
   const fetchChatData = async () => {
     try {
@@ -107,11 +106,10 @@ useEffect(() => {
         }
       });
       const updatedChat = response.data;
-      console.log('Fetched data:', updatedChat);
 
       // Only update chatData if the chat length has changed
       if (updatedChat.length !== chatData.length) {
-        setChatData(updatedChat); // Directly update chatData here
+        setChatData(updatedChat);
 
         setTimeout(() => {
           endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
