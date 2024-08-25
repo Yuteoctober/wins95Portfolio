@@ -485,3 +485,9 @@
     border-right-color: white;
     border-bottom-color: white;
 }
+
+@media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) and (min-width: 0px) {
+    .folder_barbtn-MSN .x-MSN {      
+        left: 1px;
+    }
+}

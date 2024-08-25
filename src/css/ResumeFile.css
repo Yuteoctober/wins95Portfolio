@@ -263,6 +263,11 @@ iframe {
     height: 100%;
 }
 
+@media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) and (min-width: 0px) {
+    .folder_barbtn-resumefile .x-resumefile {      
+        left: 1px;
+    }
+}
 
 
 

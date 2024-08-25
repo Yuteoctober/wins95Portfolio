@@ -72,7 +72,7 @@
 
 @supports (-webkit-touch-callout: none) {
     .nav_shutdown .x_shutdown_container p {
-        bottom: 8px;
+        bottom: 8px
     }
 }
 
@@ -192,5 +192,11 @@ input[type='radio'] {
     }
     .shutdown_btn_container {
         right: .9rem;
+    }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) and (min-width: 0px) {
+    .x_shutdown_container p {      
+        left: -.5px;
     }
 }

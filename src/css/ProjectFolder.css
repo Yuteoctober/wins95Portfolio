@@ -234,6 +234,12 @@
     margin-left: 2px;
 }
 
+@media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) and (min-width: 0px) {
+    .folder_barbtn-project .x-project {      
+        left: 1px;
+    }
+}
+
 
 
 
