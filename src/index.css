@@ -84,7 +84,7 @@ body {
 }
 *::-webkit-scrollbar-thumb:horizontal {
     background-color: #bdbdbd;
-    border: px solid white;
+    border: 2px solid white;
     border-right-color: #676363;
     border-bottom-color: #676363;
 }
@@ -107,30 +107,11 @@ body {
     outline-offset: -1px;
 }
 
-*::-webkit-scrollbar-button:horizontal:decrement {
-    background: url('./assets/arrow-left.png') no-repeat center;
-    background-size: 10px 8px; 
-    width: 18px;
-    height: 18px;
-    background-color: #c0c0c0;
-    border: 2px solid #ffffff;
-    border-right-color: #676363;
-    border-bottom-color: #676363;
-    outline: 1px solid #9f9d9d;
-    outline-offset: -1px;
+*::-webkit-scrollbar-button:vertical:increment:active {
+    border-left-color: #676363;
+    border-top-color: #676363;
 }
-*::-webkit-scrollbar-button:horizontal:increment {
-    background: url('./assets/arrow-right.png') no-repeat center;
-    background-size: 10px 8px; 
-    width: 18px;
-    height: 18px;
-    background-color: #c0c0c0;
-    border: 2px solid #ffffff;
-    border-right-color: #676363;
-    border-bottom-color: #676363;
-    outline: 1px solid #9f9d9d;
-    outline-offset: -1px;
-}
+
 *::-webkit-scrollbar-button:vertical:decrement {
     background: url('./assets/arrow-up.png') no-repeat center;
     background-size: 10px 8px; 
@@ -143,6 +124,49 @@ body {
     outline: 1px solid #9f9d9d;
     outline-offset: -1px;
 }
+
+*::-webkit-scrollbar-button:vertical:decrement:active {
+    border-left-color: #676363;
+    border-top-color: #676363;
+}
+
+*::-webkit-scrollbar-button:horizontal:decrement {
+    background: url('./assets/arrow-left.png') no-repeat center;
+    background-size: 10px 8px; 
+    width: 18px;
+    height: 18px;
+    background-color: #c0c0c0;
+    border: 2px solid #ffffff;
+    border-right-color: #676363;
+    border-bottom-color: #676363;
+    outline: 1px solid #9f9d9d;
+    outline-offset: -1px;
+}
+
+*::-webkit-scrollbar-button:horizontal:decrement:active {
+    border-left-color: #676363;
+    border-top-color: #676363;
+}
+
+*::-webkit-scrollbar-button:horizontal:increment {
+    background: url('./assets/arrow-right.png') no-repeat center;
+    background-size: 10px 8px; 
+    width: 18px;
+    height: 18px;
+    background-color: #c0c0c0;
+    border: 2px solid #ffffff;
+    border-right-color: #676363;
+    border-bottom-color: #676363;
+    outline: 1px solid #9f9d9d;
+    outline-offset: -1px;
+}
+
+*::-webkit-scrollbar-button:horizontal:increment:active {
+    border-left-color: #676363;
+    border-top-color: #676363;
+}
+
+
 
 
 /* Gecko (Firefox) */
