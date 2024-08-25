@@ -216,7 +216,7 @@
     margin-top: 2px;
     padding: 2px 4px;
     background: #ffffff;
-    overflow: scroll;
+    overflow: auto;
     white-space: nowrap;
 }
 

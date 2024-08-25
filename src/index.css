@@ -67,38 +67,107 @@ body {
   overflow: hidden;
 }
 
+
 /* --------------- scroll bar ----------------- */
 /* WebKit (Chrome, Safari) */
 *::-webkit-scrollbar {
-    width: 14px;
-    height: 14px;
+    width: 19px;
+    height: 19px;
 }
+
 
 *::-webkit-scrollbar-thumb {
     background-color: #bdbdbd;
-    box-shadow: inset 1px 1px #fff, 1px 1px #000;
+    border: 2px solid white;
+    border-right-color: #676363;
+    border-bottom-color: #676363;
+}
+*::-webkit-scrollbar-thumb:horizontal {
+    background-color: #bdbdbd;
+    border: px solid white;
+    border-right-color: #676363;
+    border-bottom-color: #676363;
 }
 
 *::-webkit-scrollbar-track {
     background-color: #e0e0e0;
-    box-shadow: inset 0px 0px #fff, 1px 1px #000;
 }
+
+
+*::-webkit-scrollbar-button:vertical:increment {
+    background: url('./assets/arrow-down.png') no-repeat center;
+    background-size: 10px 8px; 
+    width: 18px;
+    height: 18px;
+    background-color: #c0c0c0;
+    border: 2px solid #ffffff;
+    border-right-color: #676363;
+    border-bottom-color: #676363;
+    outline: 1px solid #9f9d9d;
+    outline-offset: -1px;
+}
+
+*::-webkit-scrollbar-button:horizontal:decrement {
+    background: url('./assets/arrow-left.png') no-repeat center;
+    background-size: 10px 8px; 
+    width: 18px;
+    height: 18px;
+    background-color: #c0c0c0;
+    border: 2px solid #ffffff;
+    border-right-color: #676363;
+    border-bottom-color: #676363;
+    outline: 1px solid #9f9d9d;
+    outline-offset: -1px;
+}
+*::-webkit-scrollbar-button:horizontal:increment {
+    background: url('./assets/arrow-right.png') no-repeat center;
+    background-size: 10px 8px; 
+    width: 18px;
+    height: 18px;
+    background-color: #c0c0c0;
+    border: 2px solid #ffffff;
+    border-right-color: #676363;
+    border-bottom-color: #676363;
+    outline: 1px solid #9f9d9d;
+    outline-offset: -1px;
+}
+*::-webkit-scrollbar-button:vertical:decrement {
+    background: url('./assets/arrow-up.png') no-repeat center;
+    background-size: 10px 8px; 
+    width: 18px;
+    height: 18px;
+    background-color: #c0c0c0;
+    border: 2px solid #ffffff;
+    border-right-color: #676363;
+    border-bottom-color: #676363;
+    outline: 1px solid #9f9d9d;
+    outline-offset: -1px;
+}
+
 
 /* Gecko (Firefox) */
 *{
-    
     scrollbar-width: 14px;
 }
 
 *::-moz-scrollbar-thumb {
     background-color: #bdbdbd;
-    box-shadow: inset 1px 1px #fff, 1px 1px #000;
+    box-shadow: inset 1px 1px #fff, 1px 1px #272727;
 }
 
 *::-moz-scrollbar-track {
     background-color: #e0e0e0;
-    box-shadow: inset 0px 0px #fff, 1px 1px #000;
+    box-shadow: inset 0px 0px #fff, 1px 1px #272727;
 }
+
+*::-moz-scrollbar-button {
+    width: 14px;
+    height: 14px;
+    background-color: #c0c0c0;
+    border: 1px solid #808080;
+    box-shadow: inset 1px 1px #fff, inset -1px -1px #272727;
+}
+
 
 
 /* ------------------ Footer ----------------- */

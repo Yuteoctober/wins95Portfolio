@@ -96,8 +96,10 @@ function App() {
 
     // Main useEffect to fetch chat data every 5 seconds
 useEffect(() => {
+ 
 
   const fetchChatData = async () => {
+  
     try {
       const response = await axios.get(`https://notebackend-qr35.onrender.com/chat/getchat/`, {
         headers: {
