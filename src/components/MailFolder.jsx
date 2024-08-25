@@ -180,7 +180,7 @@ const form = useRef();
                   >
                     <p style={{fontSize: '12px'}}>Name</p>
                   </div>
-                  <input className="myemail_container" type="text" name="from_name" required ref={focusName} />
+                  <input className="myemail_container" type="text" name="from_name" required ref={focusName} style={{background: 'white'}} />
                 </div>
                 <div className="to_container" 
                   onClick={() => focusEmail.current.focus()} 
@@ -189,7 +189,7 @@ const form = useRef();
                   <div className="to_icon" >
                     <p style={{fontSize: '12px'}}>Email</p>
                   </div>
-                  <input className="myemail_container" type="email" name="from_email" ref={focusEmail}  />
+                  <input className="myemail_container" type="email" name="from_email" ref={focusEmail} style={{background: 'white'}}  />
                 </div>
               </div>
               <textarea name="message" required placeholder='Enter your message here...'
@@ -210,7 +210,7 @@ const form = useRef();
                   resize: 'none',
                   borderRadius: '0px',
                   letterSpacing: '.5px',
-                  background: '#ececec'
+                  background: 'white'
                   
                 }}
               />
