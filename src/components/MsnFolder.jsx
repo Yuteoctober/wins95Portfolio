@@ -216,7 +216,7 @@ function MsnFolder() {
                 </span>
             )}
             {chatData.map((chat, index) => (
-              <div key={chat.id}>
+              <div className='text_container' key={chat.id}>
                 <p>
                   <span style={{ color: 'blue' }}>&lt;{chat.name}&gt;: </span>
                   <span style={{ color: '#171616' }}>{chat.chat}</span>
