@@ -287,7 +287,7 @@ function handleShowMobile(name) {
       item.setter(prev => ({...prev, show: true, focusItem: true, hide: false}));
       if(lowerCaseName === 'mail') clippySendemailfunction();
       if(lowerCaseName === 'winamp') clippySongFunction();
-      if(lowerCaseName === 'MSN') clippyUsernameFunction();
+      if(lowerCaseName === 'msn') clippyUsernameFunction();
     }
     if(itemName !== lowerCaseName) {
       item.setter(prev => ({...prev, focusItem: false}));
