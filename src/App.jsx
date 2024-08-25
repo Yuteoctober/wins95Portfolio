@@ -30,9 +30,11 @@ function App() {
   const ClearTOSongfunction = useRef(null);
   const ClearTOclippySendemailfunction = useRef(null);
   const ClearTOclippyThanksYouFunction = useRef(null);
+  const ClearTOclippyUsernameFunction = useRef(null);
   const firstTimoutShowclippy = useRef(null);
   const RandomTimeoutShowClippy = useRef(null);
   const SecondRandomTimeoutShowClippy = useRef(null);
+  const [clippyUsername, setClippyUsername] = useState(false)
   const [clippySong, setClippySong] = useState(false)
   const [clippySendemail, setClippySendemail] = useState(false)
   const [clippyThanks, setClippyThanks] = useState(false)
@@ -248,6 +250,7 @@ function handleShow(name) {
       item.setter(prev => ({...prev, show: true, focusItem: true, hide: false}));
       if(lowerCaseName === 'mail') clippySendemailfunction();
       if(lowerCaseName === 'winamp') clippySongFunction();
+      if(lowerCaseName === 'msn') clippyUsernameFunction();
     }
     if(itemName !== lowerCaseName) {
       item.setter(prev => ({...prev, focusItem: false}));
@@ -284,6 +287,7 @@ function handleShowMobile(name) {
       item.setter(prev => ({...prev, show: true, focusItem: true, hide: false}));
       if(lowerCaseName === 'mail') clippySendemailfunction();
       if(lowerCaseName === 'winamp') clippySongFunction();
+      if(lowerCaseName === 'MSN') clippyUsernameFunction();
     }
     if(itemName !== lowerCaseName) {
       item.setter(prev => ({...prev, focusItem: false}));
@@ -357,8 +361,8 @@ function handleShowMobile(name) {
   }
   
   // Define all state setter functions and corresponding clear functions in an array
-  const allSetters = [setClippyThanks, setClippySendemail, setClippySong];
-  const allClears = [ClearTOclippyThanksYouFunction, ClearTOclippySendemailfunction, ClearTOSongfunction];
+  const allSetters = [setClippyThanks, setClippySendemail, setClippySong, setClippyUsername];
+  const allClears = [ClearTOclippyThanksYouFunction, ClearTOclippySendemailfunction, ClearTOSongfunction, ClearTOclippyUsernameFunction];
   
   function clippyThanksYouFunction() {
     handleClippyFunction(setClippyThanks, ClearTOclippyThanksYouFunction, allSetters);
@@ -370,6 +374,10 @@ function handleShowMobile(name) {
   
   function clippySongFunction() {
     handleClippyFunction(setClippySong, ClearTOSongfunction, allSetters);
+  }
+
+  function clippyUsernameFunction() {
+    handleClippyFunction(setClippyUsername, ClearTOclippyUsernameFunction, allSetters);
   }
   
   
@@ -469,7 +477,6 @@ function handleShowMobile(name) {
   const contextValue = {
     startActive, setStartActive,
     time, setTime,
-    
     iconState, setIconState,
     MybioExpand, setMybioExpand,
     tap, setTap,
@@ -520,6 +527,8 @@ function handleShowMobile(name) {
     userNameValue, setUserNameValue,
     endOfMessagesRef,
     scrollBottom,
+    clippyUsername, setClippyUsername,
+    ClearTOclippyUsernameFunction
   }
 
  

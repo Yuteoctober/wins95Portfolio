@@ -42,6 +42,8 @@ export default function Footer() {
         handleDoubleClickEnterLink,
         ObjectState,
         setShutdownWindow,
+        ClearTOclippyUsernameFunction,
+        clippyUsername,
      } = useContext(UseContext);
     
      const handleWheelScroll = (e) => { // wheel from x to Y on tap
@@ -118,6 +120,7 @@ export default function Footer() {
         clearTimeout(ClearTOclippySendemailfunction.current)
         clearTimeout(ClearTOclippyThanksYouFunction.curremt)
         clearTimeout(ClearTOSongfunction.current)
+        clearTimeout(ClearTOclippyUsernameFunction.current)
 
         setShowClippy(true)
         firstTimoutShowclippy.current = setTimeout(() => {
@@ -172,6 +175,7 @@ export default function Footer() {
         if(clippyTouched) return clippyPhrase.interruption[0].phrase;
         if(clippySendemail) return clippySuggest[0]
         if(clippySong) return clippySuggest[2]
+        if(clippyUsername) return clippySuggest[3]
         
         return clippyPhrase.inspiration[clippyIndex].phrase // return default from phrase 
     }
@@ -185,7 +189,11 @@ export default function Footer() {
             setClippyIndex(7); 
             return;
         }
-    }, [clippySendemail, clippySong]);
+        if (clippyUsername) {
+            setClippyIndex(2); 
+            return;
+        }
+    }, [clippySendemail, clippySong, clippyUsername]);
 
 
     return (
