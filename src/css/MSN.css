@@ -16,21 +16,21 @@
 
 @media screen and (width <= 500px) {
     .folder_folder-MSN  {
-        width: 70%;
-        height: 400px;
+        width: 80%;
+        height: 440px;
     }
 }
 
 @media screen and (width >= 500px) {
     .folder_folder-MSN  {
         width: 400px;
-        height: 400px;
+        height: 440px;
     }
 }
 @media screen and (width >= 1000px) {
     .folder_folder-MSN  {
         width: 450px;
-        height: 400px;
+        height: 440px;
     }
 }
 
@@ -221,14 +221,17 @@
     margin-top: 2px;
     padding: 2px 4px;
     overflow-y: auto;
-    overflow-x: none;
-    white-space: nowrap;
+    overflow-x: hidden;
+    text-wrap: wrap;
 }
 
 .folder_content-MSN p {
     font-size: 14px;
     letter-spacing: .5px;
-    text-wrap: wrap;
+}
+
+.folder_content-MSN span {
+    word-break: break-word;
 }
 
 .groove_div {

@@ -22,7 +22,6 @@ function MsnFolder() {
     inlineStyleExpand,
     inlineStyle,
     deleteTap,
-    iconFocusIcon,
   } = useContext(UseContext);
 
   const [userName, setUserName] = useState(false);
