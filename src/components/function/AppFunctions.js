@@ -6,6 +6,7 @@ import Winamp from '../../assets/winampIcon.png'
 import resumefile from '../../assets/resume.png'
 import ReadMe from '../../assets/notepad.png'
 import MSN from '../../assets/msn.png'
+import Internet from '../../assets/ie.png'
 
 
 

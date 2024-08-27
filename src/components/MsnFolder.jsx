@@ -9,6 +9,7 @@ import '../css/MSN.css';
 function MsnFolder() {
 
   const {
+    sendDisable, setSendDisable,
     endOfMessagesRef,
     createChat,
     userNameValue, setUserNameValue,
@@ -236,7 +237,11 @@ function MsnFolder() {
               onChange={(e) => setChatValue(e.target.value)}
             />
             <button
-              onClick={() => createChat()}
+              style={{color: sendDisable? 'grey': null}}
+              disabled={sendDisable}
+              onClick={() => { 
+                createChat()   
+              }}
             >
               Send
             </button>

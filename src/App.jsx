@@ -21,6 +21,8 @@ import { StyleHide, imageMapping,
 
 function App() {
   const endOfMessagesRef = useRef(null);
+  const [KeyChatSession, setKeyChatSession] = useState('')
+  const [sendDisable, setSendDisable] = useState(false)
   const [userNameValue, setUserNameValue] = useState('')
   const [chatValue, setChatValue] = useState('')
   const [chatData, setChatData] = useState([])
@@ -98,22 +100,26 @@ function App() {
   // Define all state setter functions and corresponding clear functions in an array
   const allSetters = [setClippyThanks, setClippySendemail, setClippySong, setClippyUsername];
   const allClears = [ClearTOclippyThanksYouFunction, ClearTOclippySendemailfunction, ClearTOSongfunction, ClearTOclippyUsernameFunction];
-
+    
   // Main useEffect to fetch chat data every 5 seconds
+  
   useEffect(() => {
+  
   async function fetchChatData() {
     try {
-      const response = await axios.get(`https://notebackend-qr35.onrender.com/chat/getchat/`, {
+      const response = await axios.get(`http://localhost:8080/chat/getchat/`, {
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*'
         }
       });
-      const updatedChat = response.data;
+      const updatedChat = response.data.chat;
+      const sessionKey = response.data.key
 
       // Only update chatData if the chat length has changed
       if (updatedChat.length !== chatData.length) {
         setChatData(updatedChat);
+        setKeyChatSession(sessionKey);
 
         setTimeout(() => {
           endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -204,7 +210,8 @@ useEffect(() => { // touch support device === true
     userNameValue, setUserNameValue,
     endOfMessagesRef,
     clippyUsername, setClippyUsername,
-    ClearTOclippyUsernameFunction
+    ClearTOclippyUsernameFunction,
+    sendDisable, setSendDisable
   }
 
   return (
@@ -234,19 +241,24 @@ useEffect(() => { // touch support device === true
 
   // Function to create a new chat message
   async function createChat() {
+
+    setSendDisable(true)
   if (chatValue.trim().length === 0) {
+    setSendDisable(false)
     return;
   }
 
-  const payload = { chat: chatValue };
+  const payload = { chat: chatValue, key: KeyChatSession };
+
   if (userNameValue.trim().length > 0) {
     payload.name = userNameValue;
   }
 
   try {
-    const response = await axios.post('https://notebackend-qr35.onrender.com/chat/createChat/', payload);
+    const response = await axios.post('http://localhost:8080/chat/createChat/', payload);
     setChatValue('');
-    console.log('Chat created successfully:', response.data);
+    setSendDisable(false)
+    console.log('Chat created successfully:', response.data.chat);
 
     // Fetch the chat data after creating a new chat
     await getChat();
@@ -263,13 +275,14 @@ useEffect(() => { // touch support device === true
 // Function to fetch chat data
 async function getChat() {
   try {
-    const response = await axios.get(`https://notebackend-qr35.onrender.com/chat/getchat/`, {
+    const response = await axios.get(`http://localhost:8080/chat/getchat/`, {
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*'
       }
     });
-    setChatData(response.data);
+    setChatData(response.data.chat);
+    setKeyChatSession(response.data.key)
   } catch (error) {
     console.error('Error fetching Chat:', error);
   }
