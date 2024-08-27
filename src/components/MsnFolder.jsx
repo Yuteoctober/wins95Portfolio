@@ -230,6 +230,7 @@ function MsnFolder() {
 
           <div className="enter_text_div">
             <textarea
+              maxLength={100}
               placeholder='Enter your message here...'
               value={chatValue}
               onChange={(e) => setChatValue(e.target.value)}

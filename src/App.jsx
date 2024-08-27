@@ -227,6 +227,11 @@ useEffect(() => { // touch support device === true
     </>
   )
 
+    /* <iframe
+      style={{ width: '50%', height: '60%' }}
+      src="https://www.google.com/webhp?igu=1"
+    ></iframe> */
+
   // Function to create a new chat message
   async function createChat() {
   if (chatValue.trim().length === 0) {
