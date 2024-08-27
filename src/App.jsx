@@ -107,7 +107,7 @@ function App() {
   
   async function fetchChatData() {
     try {
-      const response = await axios.get(`http://localhost:8080/chat/getchat/`, {
+      const response = await axios.get(`http://notebackend-qr35.onrender.com/chat/getchat/`, {
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*'
@@ -255,7 +255,7 @@ useEffect(() => { // touch support device === true
   }
 
   try {
-    const response = await axios.post('http://localhost:8080/chat/createChat/', payload);
+    const response = await axios.post('http://notebackend-qr35.onrender.com/chat/createChat/', payload);
     setChatValue('');
     setSendDisable(false)
     console.log('Chat created successfully:', response.data.chat);
@@ -275,7 +275,7 @@ useEffect(() => { // touch support device === true
 // Function to fetch chat data
 async function getChat() {
   try {
-    const response = await axios.get(`http://localhost:8080/chat/getchat/`, {
+    const response = await axios.get(`http://notebackend-qr35.onrender.com/chat/getchat/`, {
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*'
