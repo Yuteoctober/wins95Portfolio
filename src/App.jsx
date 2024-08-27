@@ -117,7 +117,7 @@ function App() {
       const sessionKey = response.data.key
 
       // Only update chatData if the chat length has changed
-      if (updatedChat.length !== chatData.length) {
+      if (updatedChat.length !== chatData.length || KeyChatSession !== sessionKey) {
         setChatData(updatedChat);
         setKeyChatSession(sessionKey);
 
@@ -134,7 +134,7 @@ function App() {
   const intervalId = setInterval(fetchChatData, 5000);
 
   return () => clearInterval(intervalId); // Clear interval on component unmount
-}, [chatData]); // run useeffect when chatData change
+}, [chatData, KeyChatSession]); // run useeffect when chatData change
 
 
 useEffect(() => { // touch support device === true
@@ -243,6 +243,9 @@ useEffect(() => { // touch support device === true
   async function createChat() {
 
     setSendDisable(true)
+    setTimeout(() => {
+      setSendDisable(false)
+    }, 3000);
   if (chatValue.trim().length === 0) {
     setSendDisable(false)
     return;
@@ -257,7 +260,7 @@ useEffect(() => { // touch support device === true
   try {
     const response = await axios.post('https://notebackend2.onrender.com/chat/createChat/', payload);
     setChatValue('');
-    setSendDisable(false)
+  
     console.log('Chat created successfully:', response.data.chat);
 
     // Fetch the chat data after creating a new chat
