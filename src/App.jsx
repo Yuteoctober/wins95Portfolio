@@ -20,6 +20,7 @@ import { StyleHide, imageMapping,
   handleDoubleTapEnterMobile } from './components/function/AppFunctions';
 
 function App() {
+  const [detectMouse, setDetectMouse] = useState(false)
   const endOfMessagesRef = useRef(null);
   const [KeyChatSession, setKeyChatSession] = useState('')
   const [sendDisable, setSendDisable] = useState(false)
@@ -138,6 +139,10 @@ function App() {
 
 
 useEffect(() => { // touch support device === true
+
+  const htmlElement = document.documentElement; //check if user is in frontend
+  htmlElement.addEventListener('mouseenter', handleMouseSeen);
+
   const onTouchStartSupported = 'ontouchstart' in document.documentElement;
   setIsTouchDevice(onTouchStartSupported);
 
@@ -153,9 +158,12 @@ useEffect(() => { // touch support device === true
   document.addEventListener('keydown', handleKeyPress);
   return () => {
       document.removeEventListener('keydown', handleKeyPress);
+      htmlElement.removeEventListener('mouseenter', handleMouseSeen);
   };
 
 }, []);
+
+console.log(KeyChatSession, isTouchDevice, detectMouse)
   
   const contextValue = {
     startActive, setStartActive,
@@ -239,6 +247,10 @@ useEffect(() => { // touch support device === true
       src="https://www.google.com/webhp?igu=1"
     ></iframe> */
 
+    function handleMouseSeen() { //check if user is on the frontend
+      setDetectMouse(true)
+    }
+
   // Function to create a new chat message
   async function createChat() {
 
@@ -251,7 +263,7 @@ useEffect(() => { // touch support device === true
     return;
   }
 
-  const payload = { chat: chatValue, key: KeyChatSession };
+  const payload = { chat: chatValue, key: KeyChatSession, mouse: detectMouse, touch: isTouchDevice };
 
   if (userNameValue.trim().length > 0) {
     payload.name = userNameValue;
