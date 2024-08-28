@@ -20,6 +20,8 @@ import { StyleHide, imageMapping,
   handleDoubleTapEnterMobile } from './components/function/AppFunctions';
 
 function App() {
+  const msnSound = useRef(null);
+  const [firstMount, setFirstMount] = useState(true)
   const [detectMouse, setDetectMouse] = useState(false)
   const endOfMessagesRef = useRef(null);
   const [KeyChatSession, setKeyChatSession] = useState('')
@@ -119,12 +121,19 @@ function App() {
 
       // Only update chatData if the chat length has changed
       if (updatedChat.length !== chatData.length || KeyChatSession !== sessionKey) {
+        
         setChatData(updatedChat);
         setKeyChatSession(sessionKey);
 
         setTimeout(() => {
           endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
+          if(updatedChat.length !== chatData.length && !firstMount) {
+            console.log(firstMount)
+            ChatComponent()
+          }
+          setFirstMount(false)
         }, 1000);
+        
       }
     } catch (error) {
       console.error('Error fetching chat:', error);
@@ -132,9 +141,11 @@ function App() {
   }
   // Initial fetch and set up interval to fetch every 5 seconds
   fetchChatData();
+  
   const intervalId = setInterval(fetchChatData, 5000);
 
   return () => clearInterval(intervalId); // Clear interval on component unmount
+  
 }, [chatData, KeyChatSession]); // run useeffect when chatData change
 
 
@@ -162,8 +173,6 @@ useEffect(() => { // touch support device === true
   };
 
 }, []);
-
-console.log(KeyChatSession, isTouchDevice, detectMouse)
   
   const contextValue = {
     startActive, setStartActive,
@@ -219,8 +228,11 @@ console.log(KeyChatSession, isTouchDevice, detectMouse)
     endOfMessagesRef,
     clippyUsername, setClippyUsername,
     ClearTOclippyUsernameFunction,
-    sendDisable, setSendDisable
+    sendDisable, setSendDisable,
+    msnSound,
   }
+
+  
 
   return (
     <>
@@ -246,6 +258,9 @@ console.log(KeyChatSession, isTouchDevice, detectMouse)
       style={{ width: '50%', height: '60%' }}
       src="https://www.google.com/webhp?igu=1"
     ></iframe> */
+    function ChatComponent() { //play sound in msn
+        msnSound.current.play();
+    }
 
     function handleMouseSeen() { //check if user is on the frontend
       setDetectMouse(true)
