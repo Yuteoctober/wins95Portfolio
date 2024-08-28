@@ -20,8 +20,6 @@ import { StyleHide, imageMapping,
   handleDoubleTapEnterMobile } from './components/function/AppFunctions';
 
 function App() {
-  const msnSound = useRef(null);
-  const [firstMount, setFirstMount] = useState(true)
   const [detectMouse, setDetectMouse] = useState(false)
   const endOfMessagesRef = useRef(null);
   const [KeyChatSession, setKeyChatSession] = useState('')
@@ -127,11 +125,6 @@ function App() {
 
         setTimeout(() => {
           endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
-          if(updatedChat.length !== chatData.length && !firstMount) {
-            console.log(firstMount)
-            ChatComponent()
-          }
-          setFirstMount(false)
         }, 1000);
         
       }
@@ -229,7 +222,6 @@ useEffect(() => { // touch support device === true
     clippyUsername, setClippyUsername,
     ClearTOclippyUsernameFunction,
     sendDisable, setSendDisable,
-    msnSound,
   }
 
   
@@ -566,7 +558,8 @@ function handleShowMobile(name) {
         item.setter(prev => ({
           ...prev,
           show: false,
-          expand: false
+          expand: false,
+          hide: false
         }));
 
         setTap(prevTap => prevTap.filter(tapItem => { // get prevTap to prevent error

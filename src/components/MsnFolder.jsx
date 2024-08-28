@@ -4,14 +4,12 @@ import Draggable from 'react-draggable';
 import { motion } from 'framer-motion';
 import msnPic from '../assets/msn.png';
 import chat from '../assets/chat.png';
-import chatSound from '../assets/msn_sound.mp3'
 import '../css/MSN.css';
 
 function MsnFolder() {
 
   const {
-    msnSound,
-    sendDisable, setSendDisable,
+    sendDisable,
     endOfMessagesRef,
     createChat,
     userNameValue, setUserNameValue,
@@ -247,7 +245,6 @@ function MsnFolder() {
             >
               Send
             </button>
-            <audio ref={msnSound} src={chatSound}></audio>
           </div>
           <div className="status_div">
             <p>
