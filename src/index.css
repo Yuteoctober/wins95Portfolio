@@ -491,6 +491,7 @@ body {
     color: white;
     padding: 0px 2px;
     border: 1px dotted rgba(255, 255, 255, 0);
+    text-align: center;
     white-space: nowrap;
 }
 
