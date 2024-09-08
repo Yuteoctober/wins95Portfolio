@@ -1,6 +1,5 @@
 import { useEffect, useRef, useContext, useState } from 'react';
 import UseContext from '../Context'
-import Draggable from 'react-draggable'
 import Webamp from 'webamp';
 import mp3 from '../assets/never-gonna-give-you-up.mp3';
 
@@ -9,6 +8,8 @@ const WebampPlayer = () => {
     const [focus, setFocus] = useState(false)
 
     const { 
+        setMineSweeperExpand,
+        setMSNExpand,
         WinampExpand, setWinampExpand,
         setMybioExpand,
         setProjectExpand,
@@ -120,6 +121,8 @@ const WebampPlayer = () => {
                 setTypeExpand(prev => ({...prev, focusItem: false}));
                 setResumeExpand(prev => ({...prev, focusItem: false}));
                 setResumeFileExpand(prev => ({...prev, focusItem: false}));
+                setMSNExpand(prev => ({...prev, focusItem: false}));
+                setMineSweeperExpand(prev => ({...prev, focusItem: false}));
             }
         };
     
