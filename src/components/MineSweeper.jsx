@@ -218,19 +218,17 @@ function MineSweeper() {
               >
                 <p className='dash-MineSweeper'></p>
               </div>
-              {/* <div
-                onClick={ !isTouchDevice ? handleExpandStateToggle : undefined}
-                onTouchEnd={handleExpandStateToggle}
+              <div
               >
-                <motion.div className={`expand-MineSweeper ${MineSweeperExpand.expand ? 'full' : ''}`}>
-                </motion.div>
+                <div className={`expand-MineSweeper ${MineSweeperExpand.expand ? 'full' : ''}`}>
+                </div>
                 {MineSweeperExpand.expand ? 
                 (
                 <div className="expand_2-MineSweeper"></div>
                 )
                 :
                 (null)}
-              </div> */}
+              </div>
               <div><p className='x-MineSweeper'
                  onClick={!isTouchDevice ? () => {
                   deleteTap('MineSweeper')

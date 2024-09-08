@@ -94,8 +94,10 @@
     position: relative;
     width: 10px;
     height: 10px;
-    border-top: 2px solid black;
-    border-left-color: black;
+    border-top: 2px solid #7b7b7b;
+    border-left-color: #7b7b7b;
+    border-right-color: #7b7b7b;
+    border-bottom-color: #7b7b7b;
     box-shadow: none;
     margin: 0 auto;
     top: 3px;
@@ -209,21 +211,6 @@
     user-select: none;
 }
 
-
-@supports (-webkit-touch-callout: none) {
-    .sendmail_icon .sendmail_img_container {
-     padding-top: 3px;
-        
-    }
-}
-
-.sendmail_icon input::placeholder {
-    color: black;
-}
-
-.sendmail_icon .sendmail_img_container:active {
-    box-shadow: inset 1.5px 1.5px #000, 1px 1px #ffffffdd;
-}
 
 @media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) and (min-width: 0px) {
     .folder_barbtn-MineSweeper .x-MineSweeper {      
