@@ -3,7 +3,7 @@ import { useContext, useRef, useState, useEffect } from "react";
 import Draggable from 'react-draggable'
 import smile from '../assets/smiley-face.png'
 import dead from '../assets/dead-face.png'
-import MineSweeperPic from '../assets/notepad.png'
+import MineSweeperPic from '../assets/minesweepericon.png'
 import mine from '../assets/minesweeper.png'
 import flag from '../assets/flag.png'
 import '../css/MineSweeper.css'
