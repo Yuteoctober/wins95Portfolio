@@ -60,11 +60,11 @@ function Dragdrop() {
                       }}
                     >
                     <img 
-                      style=
-                      {{
-                        position: icon.name === 'Read Me' ? 'relative' : undefined,
-                        right: icon.name === 'Read Me' ? '3px' : undefined
-                      }} 
+                      // style=
+                      // {{
+                      //   position: icon.name === 'Read Me' ? 'relative' : undefined,
+                      //   right: icon.name === 'Read Me' ? '3px' : undefined
+                      // }} 
                       src={imageMapping(icon.pic)} alt='#' className={icon.focus? 'img_focus' : ''}/>
                         <p className={icon.focus? 'p_focus' : ''} >
                           {icon.name}

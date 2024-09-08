@@ -85,6 +85,8 @@
 .folder_barbtn-mail div:not(.expand-mail):active {
     border-top-color: black;border-left-color: black;
     border-bottom-color: white;border-right-color: white;
+    
+
 }
 
 .folder_barbtn-mail .x-mail {
@@ -344,5 +346,4 @@
         left: 1px;
     }
 }
-
 

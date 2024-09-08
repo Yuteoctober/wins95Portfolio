@@ -4,9 +4,8 @@ import Mail from '../../assets/mail.png'
 import Project from '../../assets/regFolder.png'
 import Winamp from '../../assets/winampIcon.png'
 import resumefile from '../../assets/resume.png'
-import ReadMe from '../../assets/notepad.png'
+import MineSweeper from '../../assets/minesweepericon.png'
 import MSN from '../../assets/msn.png'
-import Internet from '../../assets/ie.png'
 
 
 
@@ -67,9 +66,9 @@ export function imageMapping (name) {
     case 'ResumeFile':
       return resumefile;
 
-    case 'ReadMe':
-    case 'Read Me':
-      return ReadMe;
+    case 'MineSweeper':
+    case 'Mine Sweeper':
+      return MineSweeper;
 
     case 'MSN':
       return MSN;

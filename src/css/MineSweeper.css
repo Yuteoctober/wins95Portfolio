@@ -1,0 +1,353 @@
+/* ------------ Folders ---------------- */
+
+@import url('https://fonts.cdnfonts.com/css/digital-dismay');
+
+
+.folder_folder-MineSweeper {
+    display: none;
+    position: fixed;
+    width: 340px;
+    background: #c5c4c4;
+    border: 2px solid white;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    outline: 1px solid white;
+    overflow: hidden;
+    resize: none;
+}
+
+
+.folder_folder-MineSweeper .folder_dragbar-MineSweeper {
+   display: flex;
+   position: relative;
+   height: 24px;
+   width: 100%;
+   margin-bottom: 1px;
+   align-items: center;
+   justify-content: space-between;
+   -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.folder_barname-MineSweeper img {
+    position: relative;
+    width: 16px;
+    top: 3px;
+    margin-left: 5px;
+}
+
+.folder_barname-MineSweeper span {
+    position: relative;
+    font-size: 15px;
+    color: white;
+    margin-left: 5px;
+}
+
+.folder_folder-MineSweeper .folder_barbtn-MineSweeper {
+    display: flex;
+    position: relative;
+    margin-right: 4px;
+    gap: 2px;
+}
+
+.folder_barbtn-MineSweeper div {
+    width: 17px;
+    height: 17px;
+    background: #c9c9c9;
+    font-weight: bold;
+    border: 1px solid black;
+    border-top-color: rgb(198, 198, 198);border-left-color: rgb(198, 198, 198);
+    box-shadow: inset 1px 1px #ffffff, 1px 1px #000000dd;
+    cursor: default;
+}
+
+.folder_barbtn-MineSweeper div:not(.expand-MineSweeper):active {
+    border-top-color: black;border-left-color: black;
+    border-bottom-color: white;border-right-color: white;
+}
+
+.folder_barbtn-MineSweeper .x-MineSweeper {
+    position: relative;
+    text-align: center;
+    font-size: 18px;
+    bottom: 6px;
+}
+
+/* support only safari */
+@supports (-webkit-touch-callout: none) {
+    .folder_barbtn-MineSweeper .x-MineSweeper {
+        bottom: 8px; 
+        left: 1px;
+    }
+}
+
+.folder_barbtn-MineSweeper .dash-MineSweeper {
+    position: relative;
+    width: 8px;
+    top: 11px;
+    margin: 0 auto;
+    border-bottom: 2px solid black;
+}
+.folder_barbtn-MineSweeper .expand-MineSweeper {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid black;
+    border-left-color: black;
+    box-shadow: none;
+    margin: 0 auto;
+    top: 3px;
+    z-index: 2;
+}
+
+.folder_barbtn-MineSweeper .expand-MineSweeper.full {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid black;
+    border-left-color: black;
+    box-shadow: none;
+    margin: 0 auto;
+    top: 5px;
+    right: 2px;
+    z-index: 1;
+}
+
+.folder_barbtn-MineSweeper .expand_2-MineSweeper {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid black;
+    border-left-color: black;
+    box-shadow: none;
+    margin: 0 auto;
+    bottom: 6px;
+    left: 1.5px;
+
+}
+.folder_folder-MineSweeper .file_edit_container-MineSweeper {
+    display: flex;
+    gap: 5px;
+    font-size: 15px;
+    padding-left: 10px;
+    cursor: default;
+}
+
+.file_edit_container-MineSweeper span {
+    position: relative;
+}
+
+.folder_folder-MineSweeper .folder_conten-MineSweeper {
+    position: relative;
+    width: calc(100% - 6px);
+    height: 235px;
+    border: 1px solid black;
+    border-right-color: white;
+    border-bottom-color: white;
+    margin: 0 auto;
+    margin-top: 2px;
+    background: rgb(255, 255, 255);
+    overflow: hidden;
+    padding-left: .4rem;
+    padding-top: .2rem;
+}
+
+
+
+.folder_folder-MineSweeper .btm_bar_container-MineSweeper {
+    display: flex;
+    gap: 5px;
+    width: calc(100% - 6px);
+    justify-content: space-between;
+    margin: 0 auto;
+    margin-top: 4px;
+    cursor: default;
+} 
+
+.btm_bar_container-MineSweeper .object_bar-MineSweeper {
+    width: 80%;
+    border: 1px solid black;
+    border-right-color: white;
+    border-bottom-color: white;
+}
+.btm_bar_container-MineSweeper .size_bar-MineSweeper {
+    width: 55%;
+    border: 1px solid black;
+    border-right-color: white;
+    border-bottom-color: white;
+}
+
+.btm_bar_container-MineSweeper p {
+    position: relative;
+    font-size: 14px;
+    padding-top: 2px;
+    margin-left: 2px;
+}
+
+.folder_content-MineSweeper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: calc(100% - 6px);
+    height: calc(100% - 55px);
+    border: 2px solid black;
+    border-right-color: white;
+    border-bottom-color: white;
+    margin: 0 auto;
+    margin-top: 2px;
+    padding: 2px 4px;
+    background: #c5c4c4;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+
+@supports (-webkit-touch-callout: none) {
+    .sendmail_icon .sendmail_img_container {
+     padding-top: 3px;
+        
+    }
+}
+
+.sendmail_icon input::placeholder {
+    color: black;
+}
+
+.sendmail_icon .sendmail_img_container:active {
+    box-shadow: inset 1.5px 1.5px #000, 1px 1px #ffffffdd;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) and (min-width: 0px) {
+    .folder_barbtn-MineSweeper .x-MineSweeper {      
+        left: 1px;
+    }
+}
+
+.row {
+    display: flex;
+    position: relative;
+    justify-content: center;
+  }
+  .square {
+    width: 30px;
+    height: 30px;
+    box-sizing: border-box;
+    border-top: 3px solid #fff;
+    border-left: 3px solid #fff;
+    border-bottom: 3px solid #777;
+    border-right: 3px solid #777;
+    background-color: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: default;
+  }
+  .square--revealed {
+    border: 1px solid #777;
+  }
+  .square--revealed[data-value="1"] {
+    color: #0000ff;
+  }
+  .square--revealed[data-value="2"] {
+    color: #027b00;
+  }
+  .square--revealed[data-value="3"] {
+    color: #ff0000;
+  }
+  .square--revealed[data-value="4"] {
+    color: #00007b;
+  }
+  .square--revealed[data-value="5"] {
+    color: #00007b;
+  }
+  .square--revealed[data-value="6"] {
+    color: #00007b;
+  }
+  .square--revealed[data-value="7"] {
+    color: #000000;
+  }
+  .square--revealed[data-value="8"] {
+    color: #7b7b7b;
+  }
+
+  
+.mine_reveal {
+    position: absolute;
+    width: 14%;
+}
+
+.timer_mine_container {
+    display: flex;
+    position: relative;
+    width: 304px;
+    height: 50px;
+    justify-content: space-between;
+    align-items: center;
+    border: 3px solid #3c3b3b;
+    border-bottom-color: white;
+    border-right-color: white;
+    margin-bottom: .6rem;
+    margin-top: .5rem;
+}
+
+.border_row {
+    position: relative;
+    border: 3px solid #777;
+    border-bottom-color: white;
+    border-right-color: white;
+    margin-bottom: .5rem;
+}
+
+.face_container {
+    display: grid;
+    position: relative;
+    background: red;
+
+}
+
+.face_container img {
+    width: 32px;
+    border: 3px solid white;
+    border-bottom-color: #777;
+    border-right-color: #777;
+}
+
+.face_container img:active {
+    border: 3px solid #777;
+    border-bottom-color: white;
+    border-right-color: white;
+}
+
+.count {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 30px;
+    width: fit-content;
+    background: rgb(12, 11, 11);
+    font-size: 30px;    
+    margin: 0px .6rem;                                   
+}
+
+.count p {
+    position: relative;
+    color: red;  
+    top: 1px;
+    left: 1px;
+    font-size: 36px;
+    padding: 0px 2px;
+    font-family: 'Digital Dismay', sans-serif;
+}
+.count p::before {
+    content: "000";
+    position: absolute;
+    opacity: 0.6;
+    color: rgba(255, 0, 0, 0.361);
+    font-family: 'Digital Dismay', sans-serif;
+
+}

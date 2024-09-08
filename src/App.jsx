@@ -11,7 +11,7 @@ import NoteFolder from './components/NoteFolder';
 import TypeFolder from './components/TypeFolder';
 import ResumeFile from './components/ResumeFile';
 import Shutdown from './components/Shutdown';
-import ReadMe from './components/ReadMeFolder'
+import MineSweeper from './components/MineSweeper'
 import MsnFolder from './components/MsnFolder';
 import iconInfo from './icon.json'
 import axios from 'axios';
@@ -92,7 +92,7 @@ function App() {
   }))
 );
 
-  const [ReadMeExpand, setReadMeExpand] = useState(
+  const [MineSweeperExpand, setMineSweeperExpand] = useState(
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
 
   const [MSNExpand, setMSNExpand] = useState(
@@ -212,7 +212,7 @@ useEffect(() => { // touch support device === true
     iconFocusIcon,
     deleteTap,
     shutdownWindow, setShutdownWindow,
-    ReadMeExpand, setReadMeExpand,
+    MineSweeperExpand, setMineSweeperExpand,
     MSNExpand, setMSNExpand,
     chatData, setChatData,
     chatValue, setChatValue,
@@ -238,7 +238,7 @@ useEffect(() => { // touch support device === true
         <NoteFolder/>
         <TypeFolder/>
         <ResumeFile/>
-        <ReadMe/>
+        <MineSweeper/>
         <MsnFolder/>
         <Dragdrop/>
         <Footer/>
@@ -250,9 +250,9 @@ useEffect(() => { // touch support device === true
       style={{ width: '50%', height: '60%' }}
       src="https://www.google.com/webhp?igu=1"
     ></iframe> */
-    function ChatComponent() { //play sound in msn
-        msnSound.current.play();
-    }
+    // function ChatComponent() { //play sound in msn
+    //     msnSound.current.play();
+    // }
 
     function handleMouseSeen() { //check if user is on the frontend
       setDetectMouse(true)
@@ -321,7 +321,7 @@ function ObjectState() {
           { name: 'Type', setter: setTypeExpand, usestate: TypeExpand },
           { name: 'Winamp', setter: setWinampExpand, usestate: WinampExpand },
           { name: 'ResumeFile', setter: setResumeFileExpand, usestate: ResumeFileExpand },
-          { name: 'ReadMe', setter: setReadMeExpand, usestate: ReadMeExpand },
+          { name: 'MineSweeper', setter: setMineSweeperExpand, usestate: MineSweeperExpand },
           { name: 'MSN', setter: setMSNExpand, usestate: MSNExpand }
         ];
 }
