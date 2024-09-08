@@ -44,7 +44,7 @@ function MineSweeper() {
 
   const ROWS = 10;
   const COLS = 10;
-  const MINES = 20;
+  const MINES = 12;
 
   useEffect(() => {
     clearInterval(clearTimer)
