@@ -201,7 +201,7 @@ function MineSweeper() {
           >
             <div className="folder_barname-MineSweeper">
               <img src={MineSweeperPic} alt="MineSweeper" />
-              <span>MineSweeper</span>
+              <span>Mine Sweeper</span>
             </div>
             <div className="folder_barbtn-MineSweeper">
               <div onClick={ !isTouchDevice? (e) => {
