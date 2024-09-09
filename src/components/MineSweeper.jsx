@@ -17,6 +17,19 @@ function MineSweeper() {
   const [timerMine, setTimerMine] = useState(0)
   const [gameDisable, setGameDisable] = useState(false)
   const [clearTimer, setClearTimer] = useState(null)
+  const [ROWS, setROWS] = useState(10);
+  const [COLS, setCOLS] = useState(10);
+  const [MINES, setMINES] = useState(() => {
+    const storedLevel = localStorage.getItem('level');
+    if(Number(storedLevel) >= 20) {
+      return 60
+    }
+    if (storedLevel) {
+      return Number(storedLevel) * 3; 
+    }
+    return 3; 
+  });
+    
 
 
 
@@ -42,9 +55,7 @@ function MineSweeper() {
     }))
   }
 
-  const ROWS = 10;
-  const COLS = 10;
-  const MINES = 12;
+  
 
   useEffect(() => {
     clearInterval(clearTimer)
@@ -146,6 +157,20 @@ function MineSweeper() {
       setGameDisable(true)
       setGameOver(true)
       setShowFlag(true)
+      //update level
+      let storeLevel = localStorage.getItem('level');
+      if(Number(storeLevel) >= 20) {
+        return;
+      }
+      if (storeLevel) {
+        storeLevel = Number(storeLevel) + 1;  
+        localStorage.setItem('level', storeLevel); 
+        setMINES(storeLevel * 3); 
+      } else {
+        localStorage.setItem('level', 2);
+        setMINES(2 * 3) 
+      }
+
       return;
     }
   }, [squares]);
