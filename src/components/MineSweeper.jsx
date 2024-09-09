@@ -22,12 +22,12 @@ function MineSweeper() {
   const [MINES, setMINES] = useState(() => {
     const storedLevel = localStorage.getItem('level');
     if(Number(storedLevel) >= 20) {
-      return 60
+      return 40
     }
     if (storedLevel) {
-      return Number(storedLevel) * 3; 
+      return Number(storedLevel) * 2; 
     }
-    return 3; 
+    return 2; 
   });
     
 
@@ -165,10 +165,10 @@ function MineSweeper() {
       if (storeLevel) {
         storeLevel = Number(storeLevel) + 1;  
         localStorage.setItem('level', storeLevel); 
-        setMINES(storeLevel * 3); 
+        setMINES(storeLevel * 2); 
       } else {
         localStorage.setItem('level', 2);
-        setMINES(2 * 3) 
+        setMINES(2 * 2) 
       }
 
       return;
