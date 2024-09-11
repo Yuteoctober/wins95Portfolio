@@ -9,6 +9,7 @@ import '../css/MSN.css';
 function MsnFolder() {
 
   const {
+    isDev,
     sendDisable,
     endOfMessagesRef,
     createChat,
@@ -218,8 +219,8 @@ function MsnFolder() {
             {chatData.map((chat, index) => (
               <div className='text_container' key={chat.id}>
                 <p>
-                  <span style={{ color: 'blue' }}>&lt;{chat.name}&gt;: </span>
-                  <span style={{ color: '#171616' }}>{chat.chat}</span>
+                  <span style={{ color: isDev? 'red' : 'blue' }}>&lt;{chat.name}&gt;: </span>
+                  <span style={{ color: isDev? 'red' : '#171616' }}>{chat.chat}</span>
                 </p>
                 {/* Attach ref to the last chat item */}
                 {index === chatData.length - 1 && (

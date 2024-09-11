@@ -20,6 +20,7 @@ import { StyleHide, imageMapping,
   handleDoubleTapEnterMobile } from './components/function/AppFunctions';
 
 function App() {
+  const [isDev, setIsDev] = useState(false)
   const [detectMouse, setDetectMouse] = useState(false)
   const endOfMessagesRef = useRef(null);
   const [KeyChatSession, setKeyChatSession] = useState('')
@@ -116,6 +117,8 @@ function App() {
       });
       const updatedChat = response.data.chat;
       const sessionKey = response.data.key
+      
+      response.data.dev === true ? setIsDev(true) : null //check if it is dev
 
       // Only update chatData if the chat length has changed
       if (updatedChat.length !== chatData.length || KeyChatSession !== sessionKey) {
@@ -222,6 +225,7 @@ useEffect(() => { // touch support device === true
     clippyUsername, setClippyUsername,
     ClearTOclippyUsernameFunction,
     sendDisable, setSendDisable,
+    isDev, setIsDev,
   }
 
   
@@ -303,6 +307,7 @@ async function getChat() {
         'Access-Control-Allow-Origin': '*'
       }
     });
+    response.data.dev? setIsDev(true) : null //check if it is dev
     setChatData(response.data.chat);
     setKeyChatSession(response.data.key)
   } catch (error) {
