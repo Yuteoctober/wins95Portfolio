@@ -20,7 +20,6 @@ import { StyleHide, imageMapping,
   handleDoubleTapEnterMobile } from './components/function/AppFunctions';
 
 function App() {
-  const [isDev, setIsDev] = useState(false)
   const [detectMouse, setDetectMouse] = useState(false)
   const endOfMessagesRef = useRef(null);
   const [KeyChatSession, setKeyChatSession] = useState('')
@@ -117,15 +116,14 @@ function App() {
       });
       const updatedChat = response.data.chat;
       const sessionKey = response.data.key
-      
-      response.data.dev === true ? setIsDev(true) : null //check if it is dev
+
 
       // Only update chatData if the chat length has changed
       if (updatedChat.length !== chatData.length || KeyChatSession !== sessionKey) {
         
         setChatData(updatedChat);
         setKeyChatSession(sessionKey);
-
+        
         setTimeout(() => {
           endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
         }, 1000);
@@ -225,7 +223,6 @@ useEffect(() => { // touch support device === true
     clippyUsername, setClippyUsername,
     ClearTOclippyUsernameFunction,
     sendDisable, setSendDisable,
-    isDev, setIsDev,
   }
 
   
@@ -264,7 +261,6 @@ useEffect(() => { // touch support device === true
 
   // Function to create a new chat message
   async function createChat() {
-
     setSendDisable(true)
     setTimeout(() => {
       setSendDisable(false)
@@ -279,6 +275,7 @@ useEffect(() => { // touch support device === true
   if (userNameValue.trim().length > 0) {
     payload.name = userNameValue;
   }
+  console.log(payload.name)
 
   try {
     const response = await axios.post('https://notebackend2.onrender.com/chat/createChat/', payload);
@@ -307,7 +304,6 @@ async function getChat() {
         'Access-Control-Allow-Origin': '*'
       }
     });
-    response.data.dev? setIsDev(true) : null //check if it is dev
     setChatData(response.data.chat);
     setKeyChatSession(response.data.key)
   } catch (error) {
