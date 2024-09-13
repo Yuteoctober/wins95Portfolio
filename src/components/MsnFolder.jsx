@@ -216,17 +216,18 @@ function MsnFolder() {
                 </span>
             )}
             {chatData.map((chat, index) => (
-              <div className='text_container' key={chat.id}>
+              <div className='text_container' key={chat.id || index}>
                 <p>
                   <span style={{ color: chat?.dev? 'red' : 'blue' }}>&lt;{chat?.dev? 'Dev' : chat.name}&gt;: </span>
                   <span style={{ color: chat?.dev? 'red' : '#171616' }}>{chat.chat}</span>
                 </p>
                 {/* Attach ref to the last chat item */}
-                {index === chatData.length - 1 && (
-                  <div ref={endOfMessagesRef} />
-                )}
+                {/* {index === chatData.length - 1 && (
+                  
+                )} */}
               </div>
             ))}
+            <div ref={endOfMessagesRef}/>
           </div>
 
           <div className="enter_text_div">
