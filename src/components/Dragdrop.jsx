@@ -44,10 +44,8 @@ function Dragdrop() {
                     bounds='.bound'
                 >
                     <motion.div className='icon' key={icon.name}
-                      initial={{ opacity: 1 }}
                       whileTap={{ opacity: 0.5 }}
-                      transition={{ opacity: { duration: 0.2 } }}
-                      exit={{ opacity: 1}}
+                      transition={{ duration: 0.2 }}
                       onDoubleClick={() => handleShow(icon.name)}                      
                       onClick={ !isTouchDevice ? (e) => {
                         iconFocusIcon(icon.name);
