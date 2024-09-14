@@ -498,9 +498,13 @@ body {
 .icon .p_focus {
     background: #091558;
     border: 1px dotted white;
-    
-
 }
+
+.icon:active {
+    opacity: 0.5;
+}
+
+
 
 
 /* ------------- WIMAMP ---------------- */

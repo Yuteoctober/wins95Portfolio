@@ -1,7 +1,6 @@
 import { useEffect, useContext } from 'react'
 import UseContext from '../Context'
 import Draggable from 'react-draggable'
-import { motion } from 'framer-motion';
 import WinampPlayer from './WinampPlayer';
 
 function Dragdrop() {
@@ -43,9 +42,7 @@ function Dragdrop() {
                     scale={1}
                     bounds='.bound'
                 >
-                    <motion.div className='icon' key={icon.name}
-                      whileTap={{ opacity: 0.5 }}
-                      transition={{ duration: 0.2 }}
+                    <div className='icon' key={icon.name}
                       onDoubleClick={() => handleShow(icon.name)}                      
                       onClick={ !isTouchDevice ? (e) => {
                         iconFocusIcon(icon.name);
@@ -67,7 +64,7 @@ function Dragdrop() {
                         <p className={icon.focus? 'p_focus' : ''} >
                           {icon.name}
                         </p>
-                    </motion.div>
+                    </div>
                 </Draggable> 
             )))} 
         <WinampPlayer/>
