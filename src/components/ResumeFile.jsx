@@ -51,7 +51,7 @@ function ResumeFile() {
     }
     setLastTapTime(now);
 }
-    
+    console.log(ResumeFileExpand.show)
 
 
   return (
@@ -147,17 +147,20 @@ function ResumeFile() {
             }
 
           >
-            <iframe 
+            {ResumeFileExpand.show ? (
+              <iframe 
               src="https://drive.google.com/file/d/1XNn23UA2L82P2__Ccuccl3WMdR2rHG57/preview" 
               frameBorder='0'
             >
-          
             </iframe>
+            ):(null)}
+            
           </div>
         </div>
       </Draggable>
     </>
   )
 }          
+
 
 export default ResumeFile
