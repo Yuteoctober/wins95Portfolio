@@ -51,8 +51,6 @@ function ResumeFile() {
     }
     setLastTapTime(now);
 }
-    console.log(ResumeFileExpand.show)
-
 
   return (
     <>
