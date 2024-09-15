@@ -212,3 +212,63 @@
         margin-bottom: .8rem;
     }
 }
+
+.mario_div {
+    position: relative;
+    width: 450px;
+    height: 10px;
+    margin: 0 auto;
+    top: 5.2rem;
+}
+
+@media screen and (width <= 500px) {
+    .mario_div {
+        width: 85%;
+        
+    }
+}
+
+.mario {
+    position: absolute;
+    width: 40px;
+    z-index: 9999;
+    left: -5%;
+    animation: fall 1s ease forwards, run 5s ease infinite forwards;
+    animation-delay: 1s, 1.8s;
+    opacity: 0; 
+}
+
+@keyframes fall {
+    0% {
+        left: -15%;
+        top: -10rem;
+        opacity: 1;
+    }
+    100% {
+        top: 0rem;
+        left: -4%;
+        opacity: 1;
+    }
+    
+}
+
+@keyframes run {
+    0% {
+        left: -4%;
+        transform: rotateY(0deg);
+    }
+    25% {
+        transform: rotateY(0deg);
+    }
+    50% {
+        left: 94%;
+        transform: rotateY(180deg);
+    }
+    75%{
+        transform: rotateY(180deg); 
+    }
+    100% {
+        left: -4%;
+        transform: rotateY(360deg);
+    }
+}
