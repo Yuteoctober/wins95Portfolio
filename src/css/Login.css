@@ -233,8 +233,8 @@
     width: 40px;
     z-index: 9999;
     left: -5%;
-    animation: tunnel 1s ease, run 5s ease infinite forwards;
-    animation-delay: 2.8s, 3.7s;
+    animation: tunnel 2s ease, run 5s ease infinite forwards;
+    animation-delay: 2.8s, 4.7s;
     opacity: 0; 
     z-index: -2;
 }
@@ -286,7 +286,7 @@
     }
     100% {
         left: -3%;
-        top: -1.7rem;
+        top: -1.9rem;
         opacity: 1;
 
     }
