@@ -118,7 +118,6 @@ input[type='radio'] {
     position: relative;
     border: 1px dotted transparent;
     padding: 1px;
-    margin-left: 2px;
     bottom: 2px;
 }
 
@@ -132,7 +131,7 @@ input[type='radio'] {
 
 @-moz-document url-prefix() {
     .shutdown_main_container span::before {
-        margin-left: 2px;
+        margin-left: 0px;
     }
     .shutdown_main_container span {
         position: relative;
