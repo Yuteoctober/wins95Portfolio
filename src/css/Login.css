@@ -233,29 +233,71 @@
     width: 40px;
     z-index: 9999;
     left: -5%;
-    animation: fall 1s ease forwards, run 5s ease infinite forwards;
-    animation-delay: 1s, 1.8s;
+    animation: tunnel 1s ease, run 5s ease infinite forwards;
+    animation-delay: 2.8s, 3.7s;
     opacity: 0; 
+    z-index: -2;
 }
 
-@keyframes fall {
+.tunnel {
+    position: absolute;
+    top: 55px;
+    left: -1%;
+    width: 38px;
+    z-index: -1;
+    animation: tunnel_disappear 10s ease-out forwards;
+
+}
+
+@keyframes tunnel_disappear {
+    0%{
+        top: 55px;
+        opacity: 1;
+    }
+    30%{
+        top: 25px;
+    }
+
+    60%{
+        top: 25px;
+    }
+
+    90%{
+        opacity: 1;
+    }
+
+    100%{
+        opacity: 0;
+        top: 100px;
+    }
+}
+
+
+@keyframes tunnel {
     0% {
-        left: -15%;
-        top: -10rem;
+        top: 0;
+        left: -3%;
+    }
+    30%{
+        opacity: 0;
+    }
+    40%{
         opacity: 1;
     }
     100% {
-        top: 0rem;
-        left: -4%;
+        left: -3%;
+        top: -1.7rem;
         opacity: 1;
+
     }
     
 }
 
 @keyframes run {
     0% {
-        left: -4%;
+        left: -3%;
         transform: rotateY(0deg);
+        opacity: 1;
     }
     25% {
         transform: rotateY(0deg);
@@ -268,7 +310,8 @@
         transform: rotateY(180deg); 
     }
     100% {
-        left: -4%;
+        left: -3%;
         transform: rotateY(360deg);
+        opacity: 1;
     }
 }

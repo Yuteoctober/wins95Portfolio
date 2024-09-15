@@ -2,6 +2,7 @@ import UseContext from '../Context'
 import { useContext, useState } from "react";
 import login_icon from '../assets/login.png'
 import mario from '../assets/mario.gif'
+import tunnel from '../assets/tunnel.png'
 import '../css/Login.css'
 
 function Login() {
@@ -23,7 +24,8 @@ function Login() {
   return (
     <>
         <div className="mario_div">
-          <img src={mario} alt="mario" className='mario' />  
+          <img src={mario} alt="mario" className='mario' />
+          <img src={tunnel} alt="tunnel" className='tunnel' />
         </div>
         
         <div className='login_container'>
