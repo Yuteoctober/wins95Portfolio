@@ -234,9 +234,10 @@
     z-index: 9999;
     left: -5%;
     animation: tunnel 2s ease, run 5s ease infinite forwards;
-    animation-delay: 2.8s, 4.7s;
+    animation-delay: 2.8s, 4.6s;
     opacity: 0; 
     z-index: -2;
+    transition: ease-in-out;
 }
 
 .tunnel {
@@ -245,8 +246,8 @@
     left: -1%;
     width: 38px;
     z-index: -1;
-    animation: tunnel_disappear 10s ease-out forwards;
-
+    animation: tunnel_disappear 10s ease-in-out forwards;
+    transition: ease-in-out;
 }
 
 @keyframes tunnel_disappear {
