@@ -3,7 +3,7 @@
     position: relative;
     width: 450px;
     min-width: 300px;
-    height: 170px;
+    height: 175px;
     margin: 0 auto;
     top: 8rem;
     background: #c5c4c4;
@@ -12,7 +12,7 @@
     border-bottom: 1px solid black;
     outline: 1px solid white;
     overflow: hidden;
-    grid-template-rows: 25% auto;
+    grid-template-rows: 22% auto;
     grid-template-columns: 20% 60% 20%;
     grid-template-areas: 
     'tap_login tap_login tap_login'
