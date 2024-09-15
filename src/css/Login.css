@@ -12,7 +12,7 @@
     border-bottom: 1px solid black;
     outline: 1px solid white;
     overflow: hidden;
-    grid-template-rows: 25% 75%;
+    grid-template-rows: 25% auto;
     grid-template-columns: 20% 60% 20%;
     grid-template-areas: 
     'tap_login tap_login tap_login'
@@ -22,15 +22,19 @@
 @media screen and (width <= 500px) {
     .login_container {
         width: 85%;
-        
+        height: 180px;
+    }
+}
+
+@media screen and (width <= 400px) {
+    .login_container {
+        height: 185px;
     }
 }
 
 @media screen and (width <= 500px) {
     .login_container {
-        min-height: 180px;
-        height: auto;
-        grid-template-rows: 25% auto auto;;
+        grid-template-rows: 22% auto auto;;
         grid-template-columns: 20% 80%;
         grid-template-areas: 
         'tap_login tap_login tap_login'
@@ -57,6 +61,7 @@
     font-size: 13px;
     font-weight: bold;
     padding-left: 4px;
+   
 }
 
 .tap_login .tap_button {
@@ -131,6 +136,7 @@
 .login_input .login_des {
     font-size: 11px;
     margin-bottom: 1rem;
+    padding-right: 12px;
 }
 
 @media screen and (width <= 500px) {
@@ -143,6 +149,7 @@
     position: relative;
     font-size: 12px;
     margin-right: .8rem;
+    bottom: ;
 }
 
 .login_input label::before {
@@ -215,9 +222,6 @@
         height: 25px;
     }
 
-    .tap_login {
-        margin-bottom: .8rem;
-    }
 }
 
 @media screen and (width <= 400px) {
