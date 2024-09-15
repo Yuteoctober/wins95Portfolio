@@ -1,5 +1,5 @@
 import UseContext from '../Context'
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import login_icon from '../assets/login.png'
 import mario from '../assets/mario.gif'
 import tunnel from '../assets/tunnel.png'
@@ -7,8 +7,9 @@ import '../css/Login.css'
 
 function Login() {
 
-    const [username, setUsername] = useState('admin')
-    const [password, setPassword] = useState('1234')
+    const [ username, setUsername ] = useState('admin')
+    const [ password, setPassword ] = useState('1234')
+    const [ sizeUp, setSizeUp ] = useState(1)
 
     const { setLogin } = useContext(UseContext);
 
@@ -21,10 +22,76 @@ function Login() {
         return;
     }
 
+    function handleMarioSizeUp() {
+        if(sizeUp >= 3) {
+            return
+        }
+        setSizeUp(prev => prev + 0.1)
+    }
+
+    useEffect(() => {
+        // Create a <style> element
+            const style = document.createElement('style');
+            style.innerHTML = `
+              @keyframes run {
+                0% {
+                  left: -3%;
+                  transform: scale(${sizeUp}) rotateY(0deg);
+                  opacity: 1;
+                }
+                25% {
+                  transform: scale(${sizeUp}) rotateY(0deg);
+                }
+                50% {
+                  left: 94%;
+                  transform: scale(${sizeUp}) rotateY(180deg);
+                }
+                75% {
+                  transform: scale(${sizeUp}) rotateY(180deg); 
+                }
+                100% {
+                  left: -3%;
+                  transform: scale(${sizeUp}) rotateY(360deg);
+                  opacity: 1;
+                }
+              }
+        
+              @keyframes tunnel {
+                0% {
+                  top: 0;
+                  left: -3%;
+                }
+                30% {
+                  opacity: 0;
+                }
+                40% {
+                  opacity: 1;
+                }
+                100% {
+                  left: -3%;
+                  top: -1.9rem;
+                  opacity: 1;
+                }
+              }
+            `;
+            
+            // Append the <style> element to the document head
+            document.head.appendChild(style);
+            
+            return () => {
+              document.head.removeChild(style);
+            };
+          }, [sizeUp]);
   return (
     <>
         <div className="mario_div">
-          <img src={mario} alt="mario" className='mario' />
+          <img src={mario} alt="mario" className='mario' 
+          style={{
+            animation: 'tunnel 2s ease, run 5s ease infinite forwards',
+            animationDelay: '2.8s, 4.6s',
+            transform: `scale(${sizeUp})`
+          }} 
+          />
           <img src={tunnel} alt="tunnel" className='tunnel' />
         </div>
         
@@ -33,7 +100,9 @@ function Login() {
             <div className="tap_login">
                 <p>Welcome to Windows</p>
                 <div className="tap_button">
-                    <div className="login_question">
+                    <div className="login_question"
+                        onClick={handleMarioSizeUp}
+                    >
                         <p>?</p>
                     </div>
                 </div>

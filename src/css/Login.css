@@ -227,12 +227,14 @@
 }
 
 .mario_div {
-    position: relative;
+    position: absolute;
     width: 450px;
+    height: 50px;
     min-width: 300px;
-    height: 10px;
-    margin: 0 auto;
-    top: 5.2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 4.6rem;
+
 }
 
 @media screen and (width <= 500px) {
@@ -242,16 +244,18 @@
 }
 
 .mario {
-    position: absolute;
+    position: relative;
     width: 40px;
     z-index: 9999;
     left: -5%;
-    animation: tunnel 2s ease, run 5s ease infinite forwards;
-    animation-delay: 2.8s, 4.6s;
+    /* animation: tunnel 2s ease, run 5s ease infinite forwards;
+    animation-delay: 2.8s, 4.6s; */
     opacity: 0; 
     z-index: -2;
-    transition: ease-in-out;
+    transform-origin: bottom;
 }
+
+
 
 .tunnel {
     position: absolute;
@@ -287,7 +291,7 @@
 }
 
 
-@keyframes tunnel {
+/* @keyframes tunnel {
     0% {
         top: 0;
         left: -3%;
@@ -304,28 +308,5 @@
         opacity: 1;
 
     }
-    
-}
+} */
 
-@keyframes run {
-    0% {
-        left: -3%;
-        transform: rotateY(0deg);
-        opacity: 1;
-    }
-    25% {
-        transform: rotateY(0deg);
-    }
-    50% {
-        left: 94%;
-        transform: rotateY(180deg);
-    }
-    75%{
-        transform: rotateY(180deg); 
-    }
-    100% {
-        left: -3%;
-        transform: rotateY(360deg);
-        opacity: 1;
-    }
-}
