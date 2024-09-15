@@ -14,12 +14,14 @@ import Shutdown from './components/Shutdown';
 import MineSweeper from './components/MineSweeper'
 import MsnFolder from './components/MsnFolder';
 import iconInfo from './icon.json'
+import Login from './components/Login';
 import axios from 'axios';
 import { StyleHide, imageMapping, 
   handleDoubleClickEnterLink,
   handleDoubleTapEnterMobile } from './components/function/AppFunctions';
 
 function App() {
+  const [login, setLogin] = useState(true)
   const [detectMouse, setDetectMouse] = useState(false)
   const endOfMessagesRef = useRef(null);
   const [KeyChatSession, setKeyChatSession] = useState('')
@@ -223,9 +225,17 @@ useEffect(() => { // touch support device === true
     clippyUsername, setClippyUsername,
     ClearTOclippyUsernameFunction,
     sendDisable, setSendDisable,
+    login, setLogin,
   }
 
-  
+  // show login page
+  if(login) {
+    return(
+      <UserContext.Provider value={contextValue}>
+        <Login/>
+      </UserContext.Provider>
+    )
+  }
 
   return (
     <>

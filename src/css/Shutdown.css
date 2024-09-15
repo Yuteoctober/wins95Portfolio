@@ -5,11 +5,13 @@
     width: 100svw;
     height: 100svh;
     backdrop-filter: blur(.8px);
+    -webkit-backdrop-filter: blur(.8px);
     z-index: 999999999999;
 }
+
 .shutdown_container {
     position: relative;
-    height: 200px;
+    height: 190px;
     width: 365px;
     min-width: 282px;
     background: #c5c4c4;

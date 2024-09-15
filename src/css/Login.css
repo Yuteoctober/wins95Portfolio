@@ -1,0 +1,214 @@
+.login_container {
+    display: grid;
+    position: relative;
+    width: 450px;
+    min-width: 350px;
+    height: 170px;
+    margin: 0 auto;
+    top: 8rem;
+    background: #c5c4c4;
+    border: 2px solid white;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    outline: 1px solid white;
+    overflow: hidden;
+    grid-template-rows: 25% 75%;
+    grid-template-columns: 20% 60% 20%;
+    grid-template-areas: 
+    'tap_login tap_login tap_login'
+    'logo_icon login_input login_button';
+}
+
+@media screen and (width <= 500px) {
+    .login_container {
+        width: 85%;
+        
+    }
+}
+
+@media screen and (width <= 500px) {
+    .login_container {
+        min-height: 180px;
+        height: auto;
+        grid-template-rows: 25% auto auto;;
+        grid-template-columns: 20% 80%;
+        grid-template-areas: 
+        'tap_login tap_login tap_login'
+        'logo_icon login_input login_input'
+        'login_button login_button login_button';
+        
+    }
+}
+
+.tap_login {
+    grid-area: tap_login;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    width: calc(100% - 4px);
+    height: 20px;
+    top: 2px;
+    margin: 0 auto;
+    background: #091558;
+}
+
+.tap_login p {
+    color: rgb(255, 255, 255);
+    font-size: 13px;
+    font-weight: bold;
+    padding-left: 4px;
+}
+
+.tap_login .tap_button {
+    display: flex;
+    align-items: center;
+    padding-right: 2px;
+    cursor: default;
+}
+
+.tap_login .tap_button .login_question{
+    position: relative;
+    width: 16px;
+    height: 16px;
+    font-weight: bold;
+    background: #c5c4c4;
+    border: 1px solid white;
+    border-right-color: black;
+    border-bottom-color: black;
+    text-align: center;
+}
+
+.tap_login .tap_button .login_question:active {
+    border: 1px solid black;
+    border-right-color: white;
+    border-bottom-color: white;
+}
+
+    
+.login_question p {
+    position: relative;
+    font-size: 12px;
+    color: black;
+    right: 2px;
+    bottom: 1px;
+}
+
+
+.login_x p {
+    position: relative;
+    font-size: 17px;
+    color: black;
+    bottom: 7px;
+    right: 2px;
+
+}
+
+
+.logo_icon {
+    grid-area: logo_icon;
+    position: relative;
+}
+
+.logo_icon img {
+    position: relative;
+    width: 95px;
+    height: auto;
+    bottom: 1.2rem;
+}
+
+.login_input {
+    grid-area: login_input;
+    
+}
+
+.login_input .login_des {
+    font-size: 11px;
+    margin-bottom: 1rem;
+}
+
+@media screen and (width <= 500px) {
+    .login_input .login_des {
+        margin-bottom: .5rem; 
+    }
+}
+
+.login_input label {
+    position: relative;
+    font-size: 12px;
+    margin-right: .8rem;
+}
+
+.login_input label::before {
+    content: '_';
+    position: absolute;
+    top: -2px;
+    font-size: 11px;
+}
+
+@supports (-webkit-touch-callout: none) {
+    .login_input label::before {
+        top: 2px;
+    }
+}
+
+.login_input input {
+    width: 150px;
+    height: 20px;
+    margin-bottom: 4px;
+    border-radius: 0px;
+    border: 2px solid black;
+    border-right-color: white;
+    border-bottom-color: white;
+    padding-left: 3px;
+    font-size: 12px;
+}
+
+
+.login_button {
+    grid-area: login_button;
+    position: relative;
+}
+
+.login_button .login_btn {
+    display: grid;
+    position: relative;
+    place-items: center;
+    width: 80px;
+    height: 25px;
+    margin-bottom: .4rem;
+    border: 2px solid white;
+    border-right-color: black;
+    border-bottom-color: black;
+    cursor: default;
+}
+
+.login_button .login_btn:active {
+    border: 2px solid black;
+    border-right-color: white;
+    border-bottom-color: white;
+}
+
+.login_button .login_btn p {
+    position: relative;
+    font-size: 12px;
+}
+
+@media screen and (width <= 500px){
+    .login_button {
+        display: flex;
+        position: relative;
+        gap: .5rem;
+        justify-content: flex-end;
+        right: .8rem;
+    }
+
+    .login_button .login_btn {
+        position: relative;
+        width: 72px;
+        height: 25px;
+    }
+
+    .tap_login {
+        margin-bottom: .8rem;
+    }
+}
