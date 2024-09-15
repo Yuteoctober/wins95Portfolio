@@ -11,7 +11,7 @@
 
 .shutdown_container {
     position: relative;
-    height: 185px;
+    height: 200px;
     width: 365px;
     min-width: 282px;
     background: #c5c4c4;
@@ -92,19 +92,18 @@
 }
 
 .shutdown_text_container {
-    grid-area: shutdown_text_container;
-    display: flex;
-    flex-direction: column;
-    height: fit-content;
-    margin-top: 21px;
+    grid-area: 'shutdown_text_container';
+    margin-top: 18px;
+    
 }
 .shutdown_text_container p {
     font-size: 13px;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
+    
 }
 
 .shutdown_main_container input {
-    margin-left: -1px
+    margin-left: -1px;
 }
 
 input[type='radio'] {
@@ -114,13 +113,13 @@ input[type='radio'] {
 .shutdown_main_container label {
     position: relative;
     font-size: 12px;
+    bottom: 1.5rem;
 }
 
 .shutdown_main_container span {
     position: relative;
     border: 1px dotted transparent;
     padding: 1px;
-    bottom: 2px;
 }
 
 .shutdown_main_container span::before {
