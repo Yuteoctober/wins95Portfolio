@@ -5,7 +5,7 @@ import '../css/Shutdown.css';
 
 function Shutdown() {
     const [selectedOption, setSelectedOption] = useState(null);
-    const { shutdownWindow, setShutdownWindow } = useContext(UseContext);
+    const { shutdownWindow, setShutdownWindow, setLogin } = useContext(UseContext);
 
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
@@ -17,6 +17,9 @@ function Shutdown() {
         },
         restart: {
             border: selectedOption === "option2" ? '1px dotted black' : ''
+        },
+        logoff: {
+            border: selectedOption === "option3" ? '1px dotted black' : ''
         }
     };
 
@@ -28,6 +31,11 @@ function Shutdown() {
 
         if (selectedOption === "option2") {
             window.location.reload();
+        }
+
+        if (selectedOption === "option3") {
+            setLogin(true)
+            setShutdownWindow(false)
         }
     }
 
@@ -85,6 +93,17 @@ function Shutdown() {
                                     onChange={(e) => handleOptionChange(e)}
                                 />
                                 <span style={style.restart}>Restart the computer?</span>
+                            </label>
+                            <br />
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="option"
+                                    value="option3"
+                                    checked={selectedOption === "option3"}
+                                    onChange={(e) => handleOptionChange(e)}
+                                />
+                                <span style={style.logoff}>Log off?</span>
                             </label>
                         </div>
                         <div className="shutdown_btn_container">

@@ -2,7 +2,7 @@
     display: grid;
     position: relative;
     width: 450px;
-    min-width: 350px;
+    min-width: 300px;
     height: 170px;
     margin: 0 auto;
     top: 8rem;
@@ -116,6 +116,13 @@
     bottom: 1.2rem;
 }
 
+@media screen and (width <= 400px) {
+    .logo_icon img {
+        width: 80px;
+        right: 5px;
+    }
+}
+
 .login_input {
     grid-area: login_input;
     
@@ -213,9 +220,16 @@
     }
 }
 
+@media screen and (width <= 400px) {
+    .login_button {
+        right: 1.1rem;
+    }
+}
+
 .mario_div {
     position: relative;
     width: 450px;
+    min-width: 300px;
     height: 10px;
     margin: 0 auto;
     top: 5.2rem;
@@ -224,7 +238,6 @@
 @media screen and (width <= 500px) {
     .mario_div {
         width: 85%;
-        
     }
 }
 

@@ -93,11 +93,14 @@
 
 .shutdown_text_container {
     grid-area: shutdown_text_container;
+    display: flex;
+    flex-direction: column;
     height: fit-content;
     margin-top: 21px;
 }
 .shutdown_text_container p {
     font-size: 13px;
+    margin-bottom: 4px;
 }
 
 .shutdown_main_container input {
@@ -111,7 +114,6 @@ input[type='radio'] {
 .shutdown_main_container label {
     position: relative;
     font-size: 12px;
-    bottom: 14px;
 }
 
 .shutdown_main_container span {
