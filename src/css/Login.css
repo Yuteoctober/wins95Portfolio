@@ -11,9 +11,10 @@
     border-right: 1px solid black;
     border-bottom: 1px solid black;
     outline: 1px solid white;
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.249);
     overflow: hidden;
     grid-template-rows: 22% auto;
-    grid-template-columns: 20% 60% 20%;
+    grid-template-columns: 18% 62% 20%;
     grid-template-areas: 
     'tap_login tap_login tap_login'
     'logo_icon login_input login_button';
