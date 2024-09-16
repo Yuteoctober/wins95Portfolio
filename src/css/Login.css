@@ -82,6 +82,10 @@
     border-right-color: black;
     border-bottom-color: black;
     text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .tap_login .tap_button .login_question:active {

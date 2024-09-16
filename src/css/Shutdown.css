@@ -103,7 +103,9 @@
 }
 
 .shutdown_main_container input {
-    margin-left: -1px;
+    position: relative;
+    right: 2px;
+    top: 1px;
 }
 
 input[type='radio'] {
@@ -114,6 +116,7 @@ input[type='radio'] {
     position: relative;
     font-size: 12px;
     bottom: 1.5rem;
+    right: 4px;
 }
 
 .shutdown_main_container span {
@@ -127,7 +130,7 @@ input[type='radio'] {
     position: absolute;
     color: transparent;
     border-bottom: 1px solid black;
-    bottom: 1px;
+    bottom: 2px;
 }
 
 @-moz-document url-prefix() {
