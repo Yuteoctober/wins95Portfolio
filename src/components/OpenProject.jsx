@@ -2,25 +2,19 @@ import UseContext from '../Context'
 import { useContext } from "react";
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
-import file4 from '../assets/file4.png'
-import folder from '../assets/regFolder.png'
-import '../css/ResumeFolder.css'
+import ie from '../assets/ie.png'
+import '../css/OpenProject.css'
 
 
-function NoteFolder() {
+function OpenProject() {
 
   const { 
-    handleShow, handleShowMobile,
     projectname,
-    handleDoubleClickiframe, handleDoubleTapiframeMobile,
-    setOpenProjectExpand,
-    setProjectUrl,
-    NoteExpand, setNoteExpand,
+    projectUrl,
+    openProjectExpand, setOpenProjectExpand,
     lastTapTime, setLastTapTime,
     StyleHide,
     isTouchDevice,
-    handleDoubleTapEnterMobile,
-    handleDoubleClickEnterLink,
     handleSetFocusItemTrue,
     inlineStyleExpand,
     inlineStyle,
@@ -29,10 +23,12 @@ function NoteFolder() {
 
    } = useContext(UseContext);
 
+
+
       function handleDragStop(event, data) {
         const positionX = data.x 
         const positionY = data.y
-        setNoteExpand(prev => ({
+        setOpenProjectExpand(prev => ({
           ...prev,
           x: positionX,
           y: positionY
@@ -41,7 +37,7 @@ function NoteFolder() {
       }
 
    function handleExpandStateToggle() {
-    setNoteExpand(prevState => ({
+    setOpenProjectExpand(prevState => ({
       ...prevState,
       expand: !prevState.expand
     }));
@@ -50,7 +46,7 @@ function NoteFolder() {
   function handleExpandStateToggleMobile() {
     const now = Date.now();
     if (now - lastTapTime < 300) {
-        setNoteExpand(prevState => ({
+        setOpenProjectExpand(prevState => ({
             ...prevState,
             expand: !prevState.expand
         }));
@@ -67,41 +63,43 @@ function NoteFolder() {
         handle={'.folder_dragbar'}
         grid={[1, 1]}
         scale={1}
-        disabled={NoteExpand.expand}
+        disabled={openProjectExpand.expand}
         bounds={{top: 0}}
         defaultPosition={{ 
           x: window.innerWidth <= 500 ? 5 : 80,
           y: window.innerWidth <= 500 ? 100 : 90,
         }}
         onStop={(event, data) => handleDragStop(event, data)}
-        onStart={() => handleSetFocusItemTrue('Note')}
+        onStart={() => handleSetFocusItemTrue('OpenProject')}
       >
-        <div className='folder_folder' 
+        <div className='folder_folder-open-project' 
             onClick={(e) => {
               e.stopPropagation();
-              handleSetFocusItemTrue('Note');
+              handleSetFocusItemTrue('OpenProject');
             }}
-            style={ NoteExpand.expand ? inlineStyleExpand('Note') : inlineStyle('Note')}>
+            style={ openProjectExpand.expand ? inlineStyleExpand('OpenProject') : inlineStyle('OpenProject')}>
           <div className="folder_dragbar"
               onDoubleClick={handleExpandStateToggle}
               onTouchStart={handleExpandStateToggleMobile}
-             style={{ background: NoteExpand.focusItem? '#14045c' : '#757579'}}
+             style={{ background: openProjectExpand.focusItem? '#14045c' : '#757579'}}
           >
             <div className="folder_barname">
-              <img src={folder} alt="folder" />
-              <span>Note</span>
-            </div>
+              <img src={ie} alt="ie" style={{ width: '20px'}} />
+                <span>
+                    {projectname()}
+                </span>
+              </div>
             <div className="folder_barbtn">
               <div onClick={ !isTouchDevice? (e) => {
                 e.stopPropagation()
-                setNoteExpand(prev => ({...prev, hide: true, focusItem: false}))
-                StyleHide('Note') 
+                setOpenProjectExpand(prev => ({...prev, hide: true, focusItem: false}))
+                StyleHide('OpenProject') 
               } : undefined
             }
                    onTouchEnd={(e) => {
                     e.stopPropagation()
-                    setNoteExpand(prev => ({...prev, hide: true, focusItem: false}))
-                    StyleHide('Note')
+                    setOpenProjectExpand(prev => ({...prev, hide: true, focusItem: false}))
+                    StyleHide('OpenProject')
                   }}
               >
                 <p className='dash'></p>
@@ -110,9 +108,9 @@ function NoteFolder() {
                 onClick={ !isTouchDevice ? () => handleExpandStateToggle() : undefined}
                 onTouchEnd={handleExpandStateToggle}
               >
-                <motion.div className={`expand ${NoteExpand.expand ? 'full' : ''}`}>
+                <motion.div className={`expand ${openProjectExpand.expand ? 'full' : ''}`}>
                 </motion.div>
-                {NoteExpand.expand ? 
+                {openProjectExpand.expand ? 
                 (
                 <div className="expand_2"></div>
                 )
@@ -121,11 +119,11 @@ function NoteFolder() {
               </div>
               <div><p className='x'
                  onClick={!isTouchDevice ? () => {
-                  deleteTap('Note')
+                  deleteTap('OpenProject')
                  }: undefined
                 }
                 onTouchEnd={() => {
-                  deleteTap('Note')
+                  deleteTap('OpenProject')
               }}
               >x</p></div>
             </div>
@@ -137,42 +135,37 @@ function NoteFolder() {
               <p>View<span style={{left: '-32px'}}>_</span></p>
               <p>Help<span style={{left: '-30px'}}>_</span></p>
           </div>
-          <div className="folder_content"
-            onClick={() => iconFocusIcon('')}
-            style={NoteExpand.expand ? 
+          <div className="address_container">
+            <p>Address</p>
+            <div className="address_box">
+                <p>{projectUrl}</p>
+            </div>
+          </div>
+          <div className="openproject_content"
+            onClick={() => iconFocusIcon('OpenProject')}
+            style={openProjectExpand.expand ? 
               { height: 'calc(100svh - 122px)'} 
               : 
               {}
             }
           >
-            <div className="item_container">
-              <div className='item_1'
-                onDoubleClick={ !isTouchDevice? () => {
-                  handleDoubleClickiframe('Note', setOpenProjectExpand, setProjectUrl) 
-                  handleShow('OpenProject')
-                }
-                  : undefined}
-                onTouchEnd={() => {
-                  handleDoubleTapiframeMobile('Note', lastTapTime, setLastTapTime, setOpenProjectExpand, setProjectUrl)
-                  handleShowMobile('OpenProject');
-                }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  iconFocusIcon('Notefolder')
-                }}
-              >
-                <img src={file4} alt="file4" 
-                  className={NoteExpand.item_1Focus? 'item_1_img_focus' : ''}
-                />
-                <p className={NoteExpand.item_1Focus? 'item_1_p_focus' : ''}>
-                  Stick Note
-                </p>
-              </div>
-            </div>
+        {openProjectExpand.show && (
+          <iframe
+          src={projectUrl}
+          width="100%"
+          height="100%"
+          frameBorder="0"
+          allow="autoplay; encrypted-media; picture-in-picture"
+          allowFullScreen
+          scrolling="yes"
+        />
+        )}
+        
           </div>
-          <div className="btm_bar_container">
-            <div className="object_bar"><p>1 object(s) {NoteExpand.item_1Focus?'selected':''}</p></div>
-            <div className="size_bar"><p>29.07 MB</p></div>
+          <div className='ifram_text_container'>
+            <p>
+                If the function does not work, please click <a href={projectUrl} target="_blank" rel="noopener noreferrer">here</a> to view it directly.
+            </p>
           </div>
         </div>
       </Draggable>
@@ -180,4 +173,4 @@ function NoteFolder() {
   )
 }          
 
-export default NoteFolder
+export default OpenProject

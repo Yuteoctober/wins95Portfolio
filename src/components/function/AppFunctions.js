@@ -6,6 +6,7 @@ import Winamp from '../../assets/winampIcon.png'
 import resumefile from '../../assets/resume.png'
 import MineSweeper from '../../assets/minesweepericon.png'
 import MSN from '../../assets/msn.png'
+import ie from '../../assets/ie.png'
 
 
 
@@ -73,13 +74,57 @@ export function imageMapping (name) {
     case 'MSN':
       return MSN;
 
+    case 'OpenProject':
+      return ie;
+
     default:
       return null;
   }
 }
 
 // click to open links
-export function handleDoubleClickEnterLink(name) {
+export function handleDoubleClickiframe(name, setOpenProjectExpand, setProjectUrl) {
+
+  switch(name) {
+    case 'Nft': 
+      setProjectUrl('https://opennft.netlify.app/'); 
+      break;
+
+      case 'Note': 
+      setProjectUrl('https://fullstack-stickynotes.netlify.app/'); 
+      break;
+
+      case 'Type': 
+      setProjectUrl('https://yuteoctober.github.io/typingGame/'); 
+      break;
+
+    default: break; 
+  }
+}
+
+export function handleDoubleTapiframeMobile(name, lastTapTime, setLastTapTime, setOpenProjectExpand, setProjectUrl) {
+  const now = Date.now();
+  if (now - lastTapTime < 300) {
+    switch(name) {
+      case 'Nft': 
+        setProjectUrl('https://opennft.netlify.app/'); 
+        break;
+  
+        case 'Note': 
+        setProjectUrl('https://fullstack-stickynotes.netlify.app/'); 
+        break;
+  
+        case 'Type': 
+        setProjectUrl('https://yuteoctober.github.io/typingGame/'); 
+        break;
+  
+      default: break; 
+    }
+  }
+  setLastTapTime(now);
+  }
+
+export function handleDoubleClickEnterLink(name, setOpenProjectExpand, setProjectUrl) {
 
   switch(name) {
     case 'Nft': window.open('https://opennft.netlify.app/', '_blank'); break;
@@ -91,7 +136,7 @@ export function handleDoubleClickEnterLink(name) {
 }
 
 
-export function handleDoubleTapEnterMobile(name, lastTapTime, setLastTapTime) {
+export function handleDoubleTapEnterMobile(name, lastTapTime, setLastTapTime, setOpenProjectExpand, setProjectUrl) {
 const now = Date.now();
 if (now - lastTapTime < 300) {
   switch(name) {
@@ -104,3 +149,4 @@ if (now - lastTapTime < 300) {
 }
 setLastTapTime(now);
 }
+

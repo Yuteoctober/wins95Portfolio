@@ -10,6 +10,10 @@ import '../css/ResumeFolder.css'
 function TypeFolder() {
 
   const { 
+    handleShow, handleShowMobile,
+    handleDoubleClickiframe, handleDoubleTapiframeMobile,
+    setOpenProjectExpand,
+    setProjectUrl,
     TypeExpand, setTypeExpand,
     lastTapTime, setLastTapTime,
     StyleHide,
@@ -140,8 +144,15 @@ function TypeFolder() {
           >
             <div className="item_container">
               <div className='item_1'
-                onDoubleClick={ !isTouchDevice ? () => handleDoubleClickEnterLink('Type'): undefined}
-                onTouchEnd={() => handleDoubleTapEnterMobile('Type', lastTapTime, setLastTapTime)}
+                onDoubleClick={ !isTouchDevice ? () => {
+                  handleDoubleClickiframe('Type', setOpenProjectExpand, setProjectUrl)
+                  handleShow('OpenProject')
+                }
+                : undefined}
+                onTouchEnd={() => {
+                  handleDoubleTapiframeMobile('Type', lastTapTime, setLastTapTime, setOpenProjectExpand, setProjectUrl)
+                  handleShowMobile('OpenProject');
+                }}
                 onClick={(e) => {
                   e.stopPropagation();
                   iconFocusIcon('Typefolder')

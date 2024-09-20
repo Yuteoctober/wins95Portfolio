@@ -15,10 +15,12 @@ import MineSweeper from './components/MineSweeper'
 import MsnFolder from './components/MsnFolder';
 import iconInfo from './icon.json'
 import Login from './components/Login';
+import OpenProject from './components/OpenProject';
 import axios from 'axios';
 import { StyleHide, imageMapping, 
-  handleDoubleClickEnterLink,
-  handleDoubleTapEnterMobile } from './components/function/AppFunctions';
+  handleDoubleClickEnterLink,handleDoubleTapEnterMobile,
+  handleDoubleClickiframe, handleDoubleTapiframeMobile,
+ } from './components/function/AppFunctions';
 
 function App() {
   const [login, setLogin] = useState(true)
@@ -51,6 +53,7 @@ function App() {
   const [time, setTime] = useState('');
   const [tap, setTap] = useState([])
   const [lastTapTime, setLastTapTime] = useState(0)
+  const [projectUrl, setProjectUrl] = useState('')
   const [MybioExpand, setMybioExpand] = useState(
   {
     expand: false, // fullscreen
@@ -86,6 +89,9 @@ function App() {
   
   const [ResumeFileExpand, setResumeFileExpand] = useState(
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
+
+  const [openProjectExpand, setOpenProjectExpand] = useState(
+  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
   
   const [iconState, setIconState] = useState(() =>
   iconInfo.map(icon => ({
@@ -99,6 +105,12 @@ function App() {
 
   const [MSNExpand, setMSNExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
+
+  function projectname() {
+    if(projectUrl.length < 1) return;
+    const projectlinkletter = projectUrl.slice(8).split('.')[0];
+    return projectlinkletter[0].toUpperCase() + projectlinkletter.slice(1);
+  }
 
   // Define all state setter functions and corresponding clear functions in an array
   const allSetters = [setClippyThanks, setClippySendemail, setClippySong, setClippyUsername];
@@ -189,6 +201,8 @@ useEffect(() => { // touch support device === true
     TypeExpand, setTypeExpand,
     handleDoubleTapEnterMobile,
     handleDoubleClickEnterLink,
+    handleDoubleClickiframe, 
+    handleDoubleTapiframeMobile,
     WinampExpand, setWinampExpand,
     showClippy, setShowClippy,
     clippyIndex, setClippyIndex,
@@ -226,6 +240,9 @@ useEffect(() => { // touch support device === true
     ClearTOclippyUsernameFunction,
     sendDisable, setSendDisable,
     login, setLogin,
+    openProjectExpand, setOpenProjectExpand,
+    projectUrl, setProjectUrl,
+    projectname,
   }
 
   // show login page
@@ -251,6 +268,7 @@ useEffect(() => { // touch support device === true
         <ResumeFile/>
         <MineSweeper/>
         <MsnFolder/>
+        <OpenProject/>
         <Dragdrop/>
         <Footer/>
       </UserContext.Provider>
@@ -333,7 +351,8 @@ function ObjectState() {
           { name: 'Winamp', setter: setWinampExpand, usestate: WinampExpand },
           { name: 'ResumeFile', setter: setResumeFileExpand, usestate: ResumeFileExpand },
           { name: 'MineSweeper', setter: setMineSweeperExpand, usestate: MineSweeperExpand },
-          { name: 'MSN', setter: setMSNExpand, usestate: MSNExpand }
+          { name: 'MSN', setter: setMSNExpand, usestate: MSNExpand },
+          { name: 'OpenProject', setter: setOpenProjectExpand, usestate: openProjectExpand }
         ];
 }
 

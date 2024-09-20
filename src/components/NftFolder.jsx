@@ -10,12 +10,15 @@ import '../css/ResumeFolder.css'
 function NftFolder() {
 
   const { 
+    handleShow, handleShowMobile,
+    projectname,
+    handleDoubleClickiframe, handleDoubleTapiframeMobile,
+    setOpenProjectExpand,
+    setProjectUrl,
     NftExpand, setNftExpand,
     lastTapTime, setLastTapTime,
     StyleHide,
     isTouchDevice,
-    handleDoubleTapEnterMobile,
-    handleDoubleClickEnterLink,
     handleSetFocusItemTrue,
     inlineStyleExpand,
     inlineStyle,
@@ -141,11 +144,19 @@ function NftFolder() {
           >
             <div className="item_container">
               <div className='item_1'
-                onDoubleClick={ !isTouchDevice ?() => handleDoubleClickEnterLink('Nft'): undefined} 
-                onTouchEnd={() => handleDoubleTapEnterMobile('Nft', lastTapTime, setLastTapTime)}
+                onDoubleClick={!isTouchDevice ? () => {
+                  handleDoubleClickiframe('Nft', setOpenProjectExpand, setProjectUrl);
+                  handleShow('OpenProject');
+                } : undefined}
+                
+                onTouchEnd={() => {
+                  handleDoubleTapiframeMobile('Nft', lastTapTime, setLastTapTime, setOpenProjectExpand, setProjectUrl);
+                  handleShowMobile('OpenProject');
+                }}
+
                 onClick={(e) => {
                   e.stopPropagation();
-                  iconFocusIcon('Nftfolder')
+                  iconFocusIcon('Nftfolder');
                 }}
               >
                 <img src={file4} alt="file4" 

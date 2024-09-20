@@ -1,0 +1,117 @@
+
+/* ------------ Folders ---------------- */
+
+.folder_folder-open-project {
+    display: none;
+    position: fixed;
+    width: 600px;
+    min-width: 250px;
+    min-height: 250px;
+    height: 500px;
+    background: #c5c4c4;
+    border: 2px solid white;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    outline: 1px solid white;
+    overflow: hidden;
+    resize: both;
+}
+   
+
+@media screen and (max-width: 450px) {
+    .folder_folder-open-project {
+        width: 90%;
+        min-width: 300px;
+    }
+}
+
+.folder_folder-open-project .folder_barbtn{
+    display: flex;
+    position: relative;
+    margin-right: 4px;
+    gap: 2px;
+}
+
+.folder_folder-open-project .folder_dragbar {
+   display: flex;
+   position: relative;
+   height: 24px;
+   width: 100%;
+   margin-bottom: 1px;
+   align-items: center;
+   justify-content: space-between;
+   -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.folder_folder-open-project .file_edit_container {
+    display: flex;
+    gap: 5px;
+    font-size: 15px;
+    padding-left: 10px;
+    cursor: default;
+}
+
+
+
+/* --------------------- */
+.openproject_content {
+    position: relative;
+    width: 96%;
+    height: calc(100% - 110px);
+    margin: 0 auto;
+    top: 10px;
+    border: 1px solid black;
+    border-bottom-color: white;
+    border-right-color: white;
+    background: white;
+}
+
+.address_container {
+    display: flex;
+    position: relative;
+    width: calc(96%);
+    height: 32px;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    top: 4px;
+    margin: 0 auto;
+    border: 3px groove rgb(223, 219, 219);
+    border-left: none;
+    border-right: none;
+}
+
+.address_box {
+    width: 100%;
+    padding-left: 2px;
+    border: 1px solid black;
+    border-bottom-color: white;
+    border-right-color: white;
+    color: grey;
+}
+
+.address_box p {
+    position: relative;
+    top: 1px;
+}
+
+.ifram_text_container {
+    position: relative;
+    width: 100%;
+    font-size: 10px;
+    text-align: center;
+    top: 13px;
+}
+
+.ifram_text_container a {
+    color: rgb(4, 4, 209);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.ifram_text_container a:hover {
+    color: rgb(59, 59, 251);
+}
