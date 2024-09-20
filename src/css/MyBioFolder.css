@@ -193,6 +193,11 @@
     row-gap: 3px;
 }
 
+.biotext_container p {
+    color: #1f1e1e;
+    white-space: normal;
+}
+
 .folder_content-bio .bio_img {
     position: relative;
     width: 180px;
@@ -219,8 +224,18 @@
     font-size: 12px;
     padding-top: 1rem;
     padding-left: 1rem;
-
+    left: 1.2rem;
 }
+
+.folder_content-bio .bio_text_1 strong {
+    color: #1f1e1e;
+}
+
+.folder_content-bio .bio_text_1 span {
+    padding-left: 10px;
+    color: #2b2828;
+}
+
 
 .folder_content-bio .bio_text_1_other {
     position: relative;
@@ -228,6 +243,15 @@
     padding-left: 1rem;
 
 }
+
+.folder_content-bio .bio_text_1_other span {
+    background: rgb(181, 181, 181);
+    font-weight: bold;
+    padding: 0px 3px;
+    color: #292727;
+}
+
+
 
 .folder_content-bio .bio_text_2 {
     grid-area: bio_text_2;
@@ -239,9 +263,7 @@
 }
 
 
-.folder_content-bio span {
-    font-weight: bold;
-}
+
 
 .cv_container {
     grid-area: cv_container;

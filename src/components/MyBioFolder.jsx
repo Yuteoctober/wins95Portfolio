@@ -27,26 +27,66 @@ function MyBioFolder() {
 
    const technologyText = ( // don't have to use DangerousHTML
     <>
-        The main technology that I have been using is
-        <span> Javascript</span> and library like
-        <span> React.js</span>.
-        I have also built full-stack projects using
-        <span> Node.js</span>, <span> mongoDB</span>, and
-        <span> mySQL</span> as back-end and database.
+        I mainly use <span>JavaScript</span> and <span>React</span> 
+        to create user-friendly interfaces, often incorporating <span>Tailwind</span> CSS for styling. 
+        I've also developed full-stack projects with <span>Node.js</span>, 
+        <span>Express</span>, <span>MongoDB</span> and 
+        <span>MySQL</span> by bringing together the front end and back end 
+        for seamless applications.
     </>
   );
 
-   const bioText = {
+  const bioText = ( // don't have to use DangerousHTML
+    <>
+        <strong>Objective:</strong>
+        <br />
+        <span>Building pixel perfect web </span>
+        <span>application.</span>
+        <br />
+        <br />
+        <strong>Information:</strong>
+        <br />
+        <span>Yute S. Lilitprapun</span>
+        <br />
+        <span>Front-end developer</span>
+        <br />
+        <span>929-235-5371</span>
+        <br />
+        <br />
+        <strong>Location: </strong>
+        <br />
+        <span>New York City, Queens</span>
+        <br />
+        <span>Open to work</span>
+        <br />
+        <span>On Site / Remote</span>
+    </>
+  );
+
+  const hobbyText = ( // don't have to use DangerousHTML
+    <>
+        In my free time, I love gaming with friends. 
+        When I'm not at my computer, I make an effort 
+        to hit the gym, discover new restaurants, 
+        and go on adventures like hiking. 
+        I played basketball in high school and would love to 
+        get back into it!
+    </>
+  );
+
+  ""
+
+   const bioText2 = {
     General: [
         {
-            text1: "System:",
-            text2: "Windows 95 Portfolio",
-            text3: "4.00.490",
+            text1: "Objective:",
+            text2: "Building pixel perfect web",
+            text3: "application.",
             text4: "Register to:",
             text5: "Yute S. Lilitprapun",
-            text6: "Microsoft",
-            text7: "37495-XXX-XXX-28329",
-            text8: "Computer:",
+            text6: "Front-end developer",
+            text7: "929-235-5371",
+            text8: "Location:",
             text9: "80486",
             text10: "16.0MB RAM",
          
@@ -89,9 +129,14 @@ function MyBioFolder() {
   };
 
   function textShow(index) {
-  const selectedText = bioText.General[generalTap ? 0 : technologyTap ? 1 : 2];
+  const selectedText = bioText.General[generalTap ? bioText2 : technologyTap ? 1 : 2];
   return selectedText[`text${index}`];
 }
+
+//   function textShow(index) {
+//   const selectedText = bioText.General[generalTap ? 0 : technologyTap ? 1 : 2];
+//   return selectedText[`text${index}`];
+// }
   
   
   
@@ -182,17 +227,8 @@ function MyBioFolder() {
               className="biotext_container">
 
               <p className={generalTap? 'bio_text_1' : 'bio_text_1_other'}>
-                {textShow(1)}
-              </p> 
-              <p className='bio_text_2'>{textShow(2)}</p>   
-              <p className='bio_text_2'>{textShow(3)}</p>   
-              <p className='bio_text_1'>{textShow(4)}</p>  
-              <p className='bio_text_2'>{textShow(5)}</p>   
-              <p className='bio_text_2'>{textShow(6)}</p>   
-              <p className='bio_text_2'>{textShow(7)}</p>   
-              <p className='bio_text_1'>{textShow(8)}</p>   
-              <p className='bio_text_2'>{textShow(9)}</p>   
-              <p className='bio_text_2'>{textShow(10)}</p>   
+                {generalTap? bioText : technologyTap? technologyText : hobbyText}
+              </p>   
             </div>
            
               {/* {generalTap && (
