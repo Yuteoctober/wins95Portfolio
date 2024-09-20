@@ -385,7 +385,9 @@
     }
     .folder_content-bio .bio_img {
         width: 160px;
-
+    }
+    .folder_content-bio .bio_text_1 {
+        left: .5rem;
     }
 }
 
