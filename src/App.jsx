@@ -264,7 +264,6 @@ useEffect(() => { // touch support device === true
         <MailFolder/>
         <NftFolder/>
         <NoteFolder/>
-        <TypeFolder/>
         <ResumeFile/>
         <MineSweeper/>
         <MsnFolder/>
@@ -352,7 +351,7 @@ function ObjectState() {
           { name: 'ResumeFile', setter: setResumeFileExpand, usestate: ResumeFileExpand },
           { name: 'MineSweeper', setter: setMineSweeperExpand, usestate: MineSweeperExpand },
           { name: 'MSN', setter: setMSNExpand, usestate: MSNExpand },
-          { name: 'OpenProject', setter: setOpenProjectExpand, usestate: openProjectExpand }
+          { name: 'Internet', setter: setOpenProjectExpand, usestate: openProjectExpand }
         ];
 }
 

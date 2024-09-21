@@ -20,7 +20,7 @@
 
 @media screen and (max-width: 450px) {
     .folder_folder-open-project {
-        width: 90%;
+        width: 85%;
         min-width: 300px;
     }
 }
@@ -86,11 +86,12 @@
 
 .address_box {
     width: 100%;
-    padding-left: 2px;
+    padding-left: 4px;
     border: 1px solid black;
-    border-bottom-color: white;
-    border-right-color: white;
+    border-bottom-color: #c6c3c3;
+    border-right-color: #c6c3c3;
     color: grey;
+    background: rgb(255, 255, 255);
 }
 
 .address_box p {

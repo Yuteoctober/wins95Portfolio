@@ -74,7 +74,7 @@ export function imageMapping (name) {
     case 'MSN':
       return MSN;
 
-    case 'OpenProject':
+    case 'Internet':
       return ie;
 
     default:

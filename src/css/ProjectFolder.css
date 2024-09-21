@@ -198,6 +198,7 @@
 
 .item_1_p_focus-project {
     background: #091558;
+    height: 15px;
     border: 1px dotted white;
     color: white;
   }

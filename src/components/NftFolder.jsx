@@ -146,12 +146,12 @@ function NftFolder() {
               <div className='item_1'
                 onDoubleClick={!isTouchDevice ? () => {
                   handleDoubleClickiframe('Nft', setOpenProjectExpand, setProjectUrl);
-                  handleShow('OpenProject');
+                  handleShow('Internet');
                 } : undefined}
                 
                 onTouchEnd={() => {
                   handleDoubleTapiframeMobile('Nft', lastTapTime, setLastTapTime, setOpenProjectExpand, setProjectUrl);
-                  handleShowMobile('OpenProject');
+                  handleShowMobile('Internet');
                 }}
 
                 onClick={(e) => {

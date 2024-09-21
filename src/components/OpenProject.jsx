@@ -70,14 +70,14 @@ function OpenProject() {
           y: window.innerWidth <= 500 ? 100 : 90,
         }}
         onStop={(event, data) => handleDragStop(event, data)}
-        onStart={() => handleSetFocusItemTrue('OpenProject')}
+        onStart={() => handleSetFocusItemTrue('Internet')}
       >
         <div className='folder_folder-open-project' 
             onClick={(e) => {
               e.stopPropagation();
-              handleSetFocusItemTrue('OpenProject');
+              handleSetFocusItemTrue('Internet');
             }}
-            style={ openProjectExpand.expand ? inlineStyleExpand('OpenProject') : inlineStyle('OpenProject')}>
+            style={ openProjectExpand.expand ? inlineStyleExpand('Internet') : inlineStyle('Internet')}>
           <div className="folder_dragbar"
               onDoubleClick={handleExpandStateToggle}
               onTouchStart={handleExpandStateToggleMobile}
@@ -93,13 +93,13 @@ function OpenProject() {
               <div onClick={ !isTouchDevice? (e) => {
                 e.stopPropagation()
                 setOpenProjectExpand(prev => ({...prev, hide: true, focusItem: false}))
-                StyleHide('OpenProject') 
+                StyleHide('Internet') 
               } : undefined
             }
                    onTouchEnd={(e) => {
                     e.stopPropagation()
                     setOpenProjectExpand(prev => ({...prev, hide: true, focusItem: false}))
-                    StyleHide('OpenProject')
+                    StyleHide('Internet')
                   }}
               >
                 <p className='dash'></p>
@@ -119,11 +119,11 @@ function OpenProject() {
               </div>
               <div><p className='x'
                  onClick={!isTouchDevice ? () => {
-                  deleteTap('OpenProject')
+                  deleteTap('Internet')
                  }: undefined
                 }
                 onTouchEnd={() => {
-                  deleteTap('OpenProject')
+                  deleteTap('Internet')
               }}
               >x</p></div>
             </div>
@@ -142,7 +142,7 @@ function OpenProject() {
             </div>
           </div>
           <div className="openproject_content"
-            onClick={() => iconFocusIcon('OpenProject')}
+            onClick={() => iconFocusIcon('Internet')}
             style={openProjectExpand.expand ? 
               { height: 'calc(100svh - 122px)'} 
               : 

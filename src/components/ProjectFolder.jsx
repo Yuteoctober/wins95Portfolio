@@ -172,7 +172,7 @@ function ProjectFolder() {
                 </p>
               </div>
                 {/* ---------- project 3 ------------- */}
-              <div className='item_1-project'
+              {/* <div className='item_1-project'
                 onDoubleClick={() => handleShow('Type')}
                 onTouchStart={() => handleShowMobile('Type')}
                 onClick={(e) => {
@@ -186,7 +186,7 @@ function ProjectFolder() {
                 <p className={ProjectExpand.item_3iconFocus? 'item_1_p_focus-project' : ''}>
                   Typing
                 </p>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="btm_bar_container-project">
@@ -198,7 +198,7 @@ function ProjectFolder() {
                 {
                 !ProjectExpand.item_1iconFocus && 
                 !ProjectExpand.item_2iconFocus && 
-                !ProjectExpand.item_3iconFocus ? '3 object(s)':''
+                !ProjectExpand.item_3iconFocus ? '2 object(s)':''
                 }
               </p>
             </div>
@@ -210,7 +210,7 @@ function ProjectFolder() {
               {
                 !ProjectExpand.item_1iconFocus && 
                 !ProjectExpand.item_2iconFocus && 
-                !ProjectExpand.item_3iconFocus ? '87.33 MB':''
+                !ProjectExpand.item_3iconFocus ? '80.05 MB':''
               }
               </p>
             </div>

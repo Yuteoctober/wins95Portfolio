@@ -149,12 +149,12 @@ function NoteFolder() {
               <div className='item_1'
                 onDoubleClick={ !isTouchDevice? () => {
                   handleDoubleClickiframe('Note', setOpenProjectExpand, setProjectUrl) 
-                  handleShow('OpenProject')
+                  handleShow('Internet')
                 }
                   : undefined}
                 onTouchEnd={() => {
                   handleDoubleTapiframeMobile('Note', lastTapTime, setLastTapTime, setOpenProjectExpand, setProjectUrl)
-                  handleShowMobile('OpenProject');
+                  handleShowMobile('Internet');
                 }}
                 onClick={(e) => {
                   e.stopPropagation();
