@@ -83,6 +83,7 @@
     border: 3px groove rgb(223, 219, 219);
     border-left: none;
     border-right: none;
+    cursor: default;
 }
 
 .address_box {
