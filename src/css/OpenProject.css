@@ -59,7 +59,7 @@
 /* --------------------- */
 .openproject_content {
     position: relative;
-    width: 96%;
+    width: calc(100% - 20px);
     height: calc(100% - 110px);
     margin: 0 auto;
     top: 10px;
@@ -72,7 +72,7 @@
 .address_container {
     display: flex;
     position: relative;
-    width: calc(96%);
+    width: calc(100% - 20px);
     height: 32px;
     align-items: center;
     gap: 6px;
