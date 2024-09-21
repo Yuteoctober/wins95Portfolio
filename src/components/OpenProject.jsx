@@ -164,7 +164,7 @@ function OpenProject() {
           </div>
           <div className='ifram_text_container'>
             <p>
-                If the function does not work, please click <a href={projectUrl} target="_blank" rel="noopener noreferrer">here</a> to view it directly.
+                If the Page does not work, please click <a href={projectUrl} target="_blank" rel="noopener noreferrer">here</a> to view it directly.
             </p>
           </div>
         </div>
