@@ -23,6 +23,37 @@ function ProjectFolder() {
     deleteTap,
    } = useContext(UseContext);
 
+   const folderItems = [
+    {
+      index: '1',
+      name: 'Nft',
+      forcusName: 'ProjectNftfolder',
+      img: regFolder,
+      textName: 'OpenNFT',
+      focusState: 'item_1iconFocus',
+      size: 50.98
+    },
+    {
+      index: '2',
+      name: 'Note',
+      forcusName: 'ProjectNotefolder',
+      img: regFolder,
+      textName: 'Note',
+      focusState: 'item_2iconFocus',
+      size: 29.07
+    },
+    // {
+    //   index: '3',
+    //   name: 'Type',
+    //   forcusName: 'ProjectTypefolder',
+    //   img: regFolder,
+    //   textName: 'Typing',
+    //   focusState: 'item_3iconFocus',
+    //   size: 7.28
+    // }
+  ];
+  
+
       function handleDragStop(event, data) {
         const positionX = data.x 
         const positionY = data.y
@@ -139,54 +170,29 @@ function ProjectFolder() {
             }
           >
             <div className="item_container-project">
-              {/* ---------- project 1 ------------- */}
-              <div className='item_1-project'
-                onDoubleClick={() => handleShow('Nft')}
-                onTouchStart={() => handleShowMobile('Nft')}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  iconFocusIcon('ProjectNftfolder')
-                }}
-              >
-                <img src={regFolder} alt="regFolder-project" 
-                  className={ProjectExpand.item_1iconFocus? 'item_1_img_focus-project' : ''}
-                />
-                <p className={ProjectExpand.item_1iconFocus? 'item_1_p_focus-project' : ''}>
-                  OpenNFT
-                </p>
-              </div>
-              {/* ---------- project 2 ------------- */}
-              <div className='item_1-project'
-                onDoubleClick={() => handleShow('Note')}
-                onTouchStart={() => handleShowMobile('Note')}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  iconFocusIcon('ProjectNotefolder')
-                }}
-              >
-                <img src={regFolder} alt="regFolder-project" 
-                  className={ProjectExpand.item_2iconFocus? 'item_1_img_focus-project' : ''}
-                />
-                <p className={ProjectExpand.item_2iconFocus? 'item_1_p_focus-project' : ''}>
-                  Note
-                </p>
-              </div>
-                {/* ---------- project 3 ------------- */}
-              {/* <div className='item_1-project'
-                onDoubleClick={() => handleShow('Type')}
-                onTouchStart={() => handleShowMobile('Type')}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  iconFocusIcon('ProjectTypefolder')
-                }}
-              >
-                <img src={regFolder} alt="regFolder-project" 
-                  className={ProjectExpand.item_3iconFocus? 'item_1_img_focus-project' : ''}
-                />
-                <p className={ProjectExpand.item_3iconFocus? 'item_1_p_focus-project' : ''}>
-                  Typing
-                </p>
-              </div> */}
+              {/* ---------- projects ------------- */}
+              {folderItems.map((item) => (
+                <div 
+                  key={item.index} 
+                  className='item_1-project'
+                  onDoubleClick={() => handleShow(item.name)}
+                  onTouchStart={() => handleShowMobile(item.name)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    iconFocusIcon(item.forcusName);
+                  }}
+                >
+                  <img 
+                    src={item.img} 
+                    alt={item.img} 
+                    className={ProjectExpand[item.focusState] ? `item_1_img_focus-project` : ''}
+                  />
+                  <p className={ProjectExpand[item.focusState] ? `item_1_p_focus-project` : ''}>
+                    {item.textName}
+                  </p>
+                </div>
+              ))}
+
             </div>
           </div>
           <div className="btm_bar_container-project">
@@ -204,14 +210,16 @@ function ProjectFolder() {
             </div>
             <div className="size_bar-project">
               <p>
-              {ProjectExpand.item_1iconFocus? '50.98 MB': ''}
-              {ProjectExpand.item_2iconFocus? '29.07 MB': ''}
-              {ProjectExpand.item_3iconFocus? '7.28 MB': ''}
+              {ProjectExpand.item_1iconFocus? folderItems[0].size : ''}
+              {ProjectExpand.item_2iconFocus? folderItems[1].size : ''}
               {
                 !ProjectExpand.item_1iconFocus && 
                 !ProjectExpand.item_2iconFocus && 
-                !ProjectExpand.item_3iconFocus ? '80.05 MB':''
+                !ProjectExpand.item_3iconFocus 
+                ? folderItems.reduce((total, item) => total + item.size, 0)
+                : ''
               }
+
               </p>
             </div>
           </div>

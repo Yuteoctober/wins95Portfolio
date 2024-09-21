@@ -251,7 +251,7 @@
 .form_container input::placeholder {
     font-weight: 500;
     font-size: 14px;
-    color: black;
+    color: rgb(108, 105, 105);
   }
 
 
@@ -293,6 +293,8 @@
     letter-spacing: .5px;
 }
 
+
+
 .myemail_container p {
     position: relative;
     font-size: 14px;
@@ -300,6 +302,7 @@
     top: 3px;
     left: 6px;
     letter-spacing: .7px;
+    
 }
 
 .sendmail_icon {
@@ -346,4 +349,6 @@
         left: 1px;
     }
 }
+
+
 

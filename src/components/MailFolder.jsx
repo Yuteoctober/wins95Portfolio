@@ -171,7 +171,7 @@ const form = useRef();
                 <div className="sendmail_icon">
                   <input className="sendmail_img_container" type="submit" value="Send"></input>
                 </div>
-                  <input className="myemail_container" placeholder='yudthsoponvit@gmail.com' disabled />
+                  <input className="myemail_container" placeholder='yudthsoponvit@gmail.com' disabled style={{background: '#d4d1d1'}} />
                 </div>
                 <div className="to_container">
                   <div className="to_icon" 
