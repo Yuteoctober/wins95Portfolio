@@ -116,14 +116,20 @@ function MsnFolder() {
                 />
                 <div className="ok_cancel_username">
                   <button
-                    onClick={() => setUserName(false)}
+                    onClick={() => {
+                      setUserName(false)
+                      localStorage.setItem('username', userNameValue)
+                    }}
                   >
                     Ok
                   </button>
                   <button
                     onClick={() => {
                       setUserName(false);
-                      setUserNameValue('');
+                      setUserNameValue(() => {
+                        const name = localStorage.getItem('username')
+                        return name.length > 0 ? name : ''
+                      });
                     }}
                   >
                     Cancel
@@ -173,6 +179,7 @@ function MsnFolder() {
                 <p className='x-MSN'
                   onClick={!isTouchDevice ? () => {
                     deleteTap('MSN');
+                    setUserNameValue('');
                     setUserName(false);
                     setChatValue('')
                   } : undefined}

@@ -29,7 +29,9 @@ function App() {
   const endOfMessagesRef = useRef(null);
   const [KeyChatSession, setKeyChatSession] = useState('')
   const [sendDisable, setSendDisable] = useState(false)
-  const [userNameValue, setUserNameValue] = useState('')
+  const [userNameValue, setUserNameValue] = useState(() => {
+    return localStorage.getItem('username') || '';
+  });  
   const [chatValue, setChatValue] = useState('')
   const [chatData, setChatData] = useState([])
   const [shutdownWindow, setShutdownWindow] = useState(false)
@@ -293,9 +295,6 @@ useEffect(() => { // touch support device === true
     const filter = new Filter();
     
     setSendDisable(true)
-    setTimeout(() => {
-      setSendDisable(false)
-    }, 3000);
   if (chatValue.trim().length === 0) {
     setSendDisable(false)
     return;
@@ -320,7 +319,7 @@ useEffect(() => { // touch support device === true
 
     // Fetch the chat data after creating a new chat
     await getChat();
-
+    setSendDisable(false)
     // Scroll to the end of messages
     setTimeout(() => {
       endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
