@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import UserContext from './Context'
 import { Filter } from 'bad-words';
+import badword from './badword'
 import Footer from './components/Footer';
 import Dragdrop from './components/Dragdrop';
 import MyBioFolder from './components/MyBioFolder';
@@ -304,8 +305,10 @@ useEffect(() => { // touch support device === true
     return;
   }
 
-  filter.addWords('asl','ASL', 'NIGGERSNIGGERS', 'NIGGERNIGGER')
+  const offendedWords = badword() // imported another file
 
+  offendedWords.forEach(word => filter.addWords(word))
+  
   const newChatVal = filter.clean(chatValue);
 
   const payload = { chat: newChatVal, key: KeyChatSession, mouse: detectMouse, touch: isTouchDevice };
