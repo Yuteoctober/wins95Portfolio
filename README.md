@@ -5,7 +5,7 @@ Live Demo: https://yuteoctober.github.io/wins95Portfolio/
 ![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/markdown.png?raw=true)
 
 React Project:
-  - inspred by actual windows 95 and other idea from windows 95's portfolios
+  - inspired by actual windows 95 and other idea from windows 95's portfolios
   - everything built by me from scratch (No style component!)
 
 Functionality (imitaing windows 95 functionality)
