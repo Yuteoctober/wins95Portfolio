@@ -305,7 +305,7 @@ useEffect(() => { // touch support device === true
   console.log(payload.name)
 
   try {
-    const response = await axios.post('http://notebackend4.onrender.com/chat/createChat/', payload);
+    const response = await axios.post('https://notebackend4.onrender.com/chat/createChat/', payload);
     setChatValue('');
   
     console.log('Chat created successfully:', response.data.chat);
