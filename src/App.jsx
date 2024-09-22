@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import UserContext from './Context'
+import { Filter } from 'bad-words';
 import Footer from './components/Footer';
 import Dragdrop from './components/Dragdrop';
 import MyBioFolder from './components/MyBioFolder';
@@ -288,6 +289,9 @@ useEffect(() => { // touch support device === true
 
   // Function to create a new chat message
   async function createChat() {
+
+    const filter = new Filter();
+    
     setSendDisable(true)
     setTimeout(() => {
       setSendDisable(false)
@@ -297,7 +301,10 @@ useEffect(() => { // touch support device === true
     return;
   }
 
-  const payload = { chat: chatValue, key: KeyChatSession, mouse: detectMouse, touch: isTouchDevice };
+  const newChatVal = filter.clean(chatValue);
+  console.log(newChatVal);
+
+  const payload = { chat: newChatVal, key: KeyChatSession, mouse: detectMouse, touch: isTouchDevice };
 
   if (userNameValue.trim().length > 0) {
     payload.name = userNameValue;
