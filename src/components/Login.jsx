@@ -114,12 +114,14 @@ function Login() {
                 <p className='login_des'>Type a user name and password to log on to Windows.</p>
                     <label>User name:</label>
                     <input type="text" maxLength={20} 
-                        value={username} 
+                      onChange={() => null}
+                      value={username} 
                     />
                     <br />
                     <label style={{marginRight: '17px'}}>Password:</label>
                     <input type="password"  maxLength={20} 
-                        value={password} 
+                      onChange={() => null}
+                      value={password} 
                     />
             </div>
             <div className="login_button">

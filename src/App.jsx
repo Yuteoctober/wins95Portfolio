@@ -302,14 +302,13 @@ useEffect(() => { // touch support device === true
   }
 
   const newChatVal = filter.clean(chatValue);
-  console.log(newChatVal);
 
   const payload = { chat: newChatVal, key: KeyChatSession, mouse: detectMouse, touch: isTouchDevice };
 
   if (userNameValue.trim().length > 0) {
-    payload.name = userNameValue;
+    const cleanedName = filter.clean(userNameValue)
+    payload.name = cleanedName;
   }
-  console.log(payload.name)
 
   try {
     const response = await axios.post('https://notebackend4.onrender.com/chat/createChat/', payload);
