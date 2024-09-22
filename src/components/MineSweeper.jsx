@@ -131,15 +131,15 @@ function MineSweeper() {
       
   };
 
-  // const setFlag = (e, rowIdx, colIdx) => {
-  //   e.preventDefault();
-  //   if (squares[rowIdx][colIdx].isRevealed) return;
+  const setFlag = (e, rowIdx, colIdx) => {
+    e.preventDefault();
+    if (squares[rowIdx][colIdx].isRevealed) return;
 
-  //   const newSquares = [...squares];
-  //   newSquares[rowIdx][colIdx].isFlagged = !newSquares[rowIdx][colIdx].isFlagged;
+    const newSquares = [...squares];
+    newSquares[rowIdx][colIdx].isFlagged = !newSquares[rowIdx][colIdx].isFlagged;
 
-  //   setSquares(newSquares);
-  // };
+    setSquares(newSquares);
+  };
 
   
 
@@ -306,7 +306,7 @@ function MineSweeper() {
                     className={`square square--${square.isRevealed? "revealed" : undefined }`}
                     data-value={square.neighborBombs}
                     onClick={!isTouchDevice? (e) => reveal(e, rowIdx, colIdx) : undefined}
-                    // onContextMenu={(e) => setFlag(e, rowIdx, colIdx)}
+                    onContextMenu={(e) => setFlag(e, rowIdx, colIdx)}
                     onTouchStart={(e) => {
                       reveal(e, rowIdx, colIdx)
                     }}
@@ -314,7 +314,7 @@ function MineSweeper() {
                     {square.isRevealed && square.neighborBombs !== 0
                       ? square.neighborBombs
                       : ""}
-                    {/* {square.isFlagged ? "🚩" : ""} */}
+                    {square.isFlagged && !square.isRevealed ? "🚩" : ""}
                     {squares[rowIdx][colIdx].hasBomb && gameOver ? 
                     <img src={gameOver && !showFlag? mine : gameOver && showFlag ? flag : ''} alt="mine" className='mine_reveal'/>
 
