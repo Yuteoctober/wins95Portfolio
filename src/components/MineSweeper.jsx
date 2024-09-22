@@ -312,14 +312,19 @@ function MineSweeper() {
                     }}
                   >
                     {square.isRevealed && square.neighborBombs !== 0
-                      ? square.neighborBombs
-                      : ""}
-                    {square.isFlagged && !square.isRevealed ? "🚩" : ""}
-                    {squares[rowIdx][colIdx].hasBomb && gameOver ? 
-                    <img src={gameOver && !showFlag? mine : gameOver && showFlag ? flag : ''} alt="mine" className='mine_reveal'/>
-
-                    : ""
-                    }
+                    ? square.neighborBombs
+                    : ""}
+                  {square.isFlagged && !square.isRevealed && !gameOver ? "🚩" : ""}
+                  {gameOver && squares[rowIdx][colIdx].hasBomb ? (
+                    <img 
+                      src={showFlag && !squares[rowIdx][colIdx].hasBomb ? flag : mine} 
+                      alt="mine" 
+                      className='mine_reveal'
+                    />
+                  ) : null}
+                  {gameOver && square.isFlagged && !squares[rowIdx][colIdx].hasBomb ? (
+                    <span>🚩</span> // Display flag for non-bomb squares if flagged
+                  ) : null}
                   </div>
                 ))}
               </div>
