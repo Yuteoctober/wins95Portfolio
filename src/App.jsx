@@ -300,7 +300,7 @@ useEffect(() => { // touch support device === true
     return;
   }
 
-  filter.addWords('asl','ASL')
+  filter.addWords('asl','ASL', 'NIGGERSNIGGERS', 'NIGGERNIGGER')
 
   const newChatVal = filter.clean(chatValue);
 
