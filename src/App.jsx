@@ -301,6 +301,8 @@ useEffect(() => { // touch support device === true
     return;
   }
 
+  filter.addWords('asl','ASL')
+
   const newChatVal = filter.clean(chatValue);
 
   const payload = { chat: newChatVal, key: KeyChatSession, mouse: detectMouse, touch: isTouchDevice };
