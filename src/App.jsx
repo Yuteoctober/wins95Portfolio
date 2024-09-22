@@ -293,6 +293,10 @@ useEffect(() => { // touch support device === true
   async function createChat() {
 
     const filter = new Filter();
+
+    setTimeout(() => {
+      setSendDisable(false)
+    }, 20000);
     
     setSendDisable(true)
   if (chatValue.trim().length === 0) {
@@ -314,12 +318,12 @@ useEffect(() => { // touch support device === true
   try {
     const response = await axios.post('https://notebackend4.onrender.com/chat/createChat/', payload);
     setChatValue('');
-  
+    setSendDisable(false)
+    console.log(sendDisable)
     console.log('Chat created successfully:', response.data.chat);
 
     // Fetch the chat data after creating a new chat
     await getChat();
-    setSendDisable(false)
     // Scroll to the end of messages
     setTimeout(() => {
       endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
