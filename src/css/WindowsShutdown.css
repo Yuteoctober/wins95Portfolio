@@ -24,9 +24,9 @@
 
 .shutdown_text {
     position: absolute;
-    
-    width: 600px;
-    font-size: 3rem;
+    width: 100%;
+    max-width: 800px;
+    font-size: 5svw;
     color: rgb(230, 133, 15);
     text-align: center;
     opacity: 1;
@@ -37,6 +37,12 @@
     margin-top: -3rem;
     animation: shuttingDownText 1s forwards;
     animation-delay: 5s;
+}
+
+@media screen and (min-width: 1200px) {
+    .shutdown_text {
+       font-size: 50px;
+    }
 }
 
 @keyframes shuttingDownText {
