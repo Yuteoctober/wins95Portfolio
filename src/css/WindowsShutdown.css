@@ -1,0 +1,48 @@
+.shitdown_bg_container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #040404;
+}
+
+.shitdown_bg_container img {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    animation: shuttingDown 4s forwards;
+    animation-delay: 1s;
+}
+
+@keyframes shuttingDown {
+    0% {opacity: 0;}
+    20% {opacity: 1;}
+    90% {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+.shutdown_text {
+    position: absolute;
+    
+    width: 600px;
+    font-size: 3rem;
+    color: rgb(230, 133, 15);
+    text-align: center;
+    opacity: 1;
+    left: 50%; 
+    top: 50%; 
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    margin-top: -3rem;
+    animation: shuttingDownText 1s forwards;
+    animation-delay: 5s;
+}
+
+@keyframes shuttingDownText {
+    0% {opacity: 0;}
+    20% {opacity: 1;}
+    100% {opacity: 1;}
+}
+
+

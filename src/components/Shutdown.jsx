@@ -5,7 +5,7 @@ import '../css/Shutdown.css';
 
 function Shutdown() {
     const [selectedOption, setSelectedOption] = useState(null);
-    const { shutdownWindow, setShutdownWindow, setLogin } = useContext(UseContext);
+    const { shutdownWindow, setShutdownWindow, setLogin, setWindowsShutDownAnimation, } = useContext(UseContext);
 
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
@@ -25,8 +25,7 @@ function Shutdown() {
 
     function handleYesShutdown() {
         if (selectedOption === "option1") {
-            window.history.back()
-            document.getElementsByTagName('html') [0].remove ();
+            setWindowsShutDownAnimation(true)
         }
 
         if (selectedOption === "option2") {

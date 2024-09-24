@@ -323,7 +323,7 @@ function MineSweeper() {
                     />
                   ) : null}
                   {gameOver && square.isFlagged && !squares[rowIdx][colIdx].hasBomb ? (
-                    <span>🚩</span> // Display flag for non-bomb squares if flagged
+                    <span>🚩</span> 
                   ) : null}
                   </div>
                 ))}

@@ -18,6 +18,7 @@ import MsnFolder from './components/MsnFolder';
 import iconInfo from './icon.json'
 import Login from './components/Login';
 import OpenProject from './components/OpenProject';
+import WindowsShutdown from './components/WindowsShutdown';
 import axios from 'axios';
 import { StyleHide, imageMapping, 
   handleDoubleClickEnterLink,handleDoubleTapEnterMobile,
@@ -26,6 +27,7 @@ import { StyleHide, imageMapping,
 
 function App() {
   const [login, setLogin] = useState(true)
+  const [windowsShutDownAnimation, setWindowsShutDownAnimation] = useState(false)
   const [detectMouse, setDetectMouse] = useState(false)
   const endOfMessagesRef = useRef(null);
   const [KeyChatSession, setKeyChatSession] = useState('')
@@ -247,6 +249,7 @@ useEffect(() => { // touch support device === true
     openProjectExpand, setOpenProjectExpand,
     projectUrl, setProjectUrl,
     projectname,
+    windowsShutDownAnimation, setWindowsShutDownAnimation,
   }
 
   // show login page
@@ -254,6 +257,14 @@ useEffect(() => { // touch support device === true
     return(
       <UserContext.Provider value={contextValue}>
         <Login/>
+      </UserContext.Provider>
+    )
+  }
+
+  if(windowsShutDownAnimation) {
+    return(
+      <UserContext.Provider value={contextValue}>
+        <WindowsShutdown/>
       </UserContext.Provider>
     )
   }
