@@ -26,6 +26,9 @@ function Shutdown() {
     function handleYesShutdown() {
         if (selectedOption === "option1") {
             setWindowsShutDownAnimation(true)
+            const bodyBG = document.getElementsByTagName('body')[0];
+            bodyBG.style.background = '#040404'; 
+
         }
 
         if (selectedOption === "option2") {
