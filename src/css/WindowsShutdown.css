@@ -15,6 +15,12 @@
     animation-delay: 1s;
 }
 
+@media screen and (width < 500px) {
+    .shitdown_bg_container img{
+        transform: translateY(-50%) scale(1.6)
+    }
+}
+
 @keyframes shuttingDown {
     0% {opacity: 0;}
     20% {opacity: 1;}
@@ -50,5 +56,6 @@
     20% {opacity: 1;}
     100% {opacity: 1;}
 }
+
 
 
