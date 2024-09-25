@@ -36,7 +36,7 @@
     font-size: 4svw;
     color: rgb(230, 133, 15);
     text-align: center;
-    margin-top: -8rem;
+    margin-top: -4rem;
     animation: shuttingDownText 1s forwards;
     animation-delay: 1s;
     opacity: 0;
