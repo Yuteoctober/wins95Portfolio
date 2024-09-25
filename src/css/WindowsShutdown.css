@@ -29,28 +29,27 @@
     100% {opacity: 0;}
 }
 
-.shutdown_text {
+.shitdown_bg_container h1 {
     position: absolute;
     width: 100%;
-    max-width: 800px;
-    font-size: 5svw;
+    max-width: 900px;
+    font-size: 4svw;
     color: rgb(230, 133, 15);
     text-align: center;
-    opacity: 1;
-    opacity: 0;
     margin-top: -8rem;
     animation: shuttingDownText 1s forwards;
-    animation-delay: 5s;
+    animation-delay: 1s;
+    opacity: 0;
 }
 
 @media screen and (min-width: 1200px) {
-    .shutdown_text {
-       font-size: 50px;
+    .shitdown_bg_container h1 {
+       font-size: 45px;
     }
 }
 
 @keyframes shuttingDownText {
-    0% {opacity: 0;}
+    0% {opacity: 1;}
     20% {opacity: 1;}
     100% {opacity: 1;}
 }
