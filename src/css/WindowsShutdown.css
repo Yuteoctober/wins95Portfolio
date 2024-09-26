@@ -56,7 +56,7 @@
 }
 
 @media screen and (min-width: 1200px) {
-    .shitdown_bg_container h1 {
+    .shitdown_bg_container .text_1_shutdown, .shitdown_bg_container .text_2_shutdown {
        font-size: 45px;
     }
 }
