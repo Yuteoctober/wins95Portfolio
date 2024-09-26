@@ -1,29 +1,14 @@
 import '../css/WindowsShutdown.css';
 import windowsshut from '../assets/shuttingdownbg.png'
-import { useState } from 'react'
 
 function WindowsShutdown() {
-
-  const [ textShutDown, setTextShutDown ] = useState(true)
-
-  const text = (
-    <h1>
-      {textShutDown? 'Please wait while your computer' : 'It is now safe to turn off'}
-      <br />
-      {textShutDown? 'shut down.' : 'your computer.'}
-    </h1>
-  )
-
-
-  setTimeout(() => {
-    setTextShutDown(false)
-    
-  }, 4800);
 
   return (
     <div className='shitdown_bg_container'>
         <img src={windowsshut} alt="windowsShutdown" />
-            {text}
+        <h1 className='text_1_shutdown'>Please wait while your computer  <br /> shut down.</h1>
+        <h1 className='text_2_shutdown'>It is now safe to turn off  <br /> your computer.</h1>
+           
     </div>
   )
 }

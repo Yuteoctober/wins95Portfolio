@@ -29,7 +29,20 @@
     100% {opacity: 0;}
 }
 
-.shitdown_bg_container h1 {
+.shitdown_bg_container .text_1_shutdown {
+    position: absolute;
+    width: 100%;
+    max-width: 900px;
+    font-size: 4svw;
+    color: rgb(230, 133, 15);
+    text-align: center;
+    margin-top: -4rem;
+    animation: shuttingDownText 3.75s;
+    animation-delay: 1s;
+    opacity: 0;
+}
+
+.shitdown_bg_container .text_2_shutdown {
     position: absolute;
     width: 100%;
     max-width: 900px;
@@ -38,7 +51,7 @@
     text-align: center;
     margin-top: -4rem;
     animation: shuttingDownText 1s forwards;
-    animation-delay: 1s;
+    animation-delay: 5s;
     opacity: 0;
 }
 
@@ -49,7 +62,7 @@
 }
 
 @keyframes shuttingDownText {
-    0% {opacity: 1;}
+    0% {opacity: 0;}
     20% {opacity: 1;}
     100% {opacity: 1;}
 }
