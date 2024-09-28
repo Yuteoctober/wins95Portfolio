@@ -42,12 +42,12 @@ function BgSetting() {
       }
 
       const colorOptions = [
-        { value: 1, label: '(None)', background: 'transparent' },
-        { value: 2, label: 'Purple Summer', background: '#040482' },
-        { value: 3, label: 'Matt Blue', background: '#040482' },
-        { value: 4, label: 'Matt Green', background: '#040482' },
-        { value: 5, label: 'Emeral Green', background: '#040482' },
-        { value: 6, label: 'Blue Sky', background: '#040482' },
+        { value: 1, label: '(None)'},
+        { value: 2, label: 'Purple Summer'},
+        { value: 3, label: 'Matt Blue'},
+        { value: 4, label: 'Matt Green'},
+        { value: 5, label: 'Emeral Green' },
+        { value: 6, label: 'Blue Sky'},
       ];
 
       function setbgColorFunction2(index) {
@@ -206,7 +206,7 @@ function BgSetting() {
                     onClick={() => setbgColorFunction2(option.value)}
                     style={
                       selectedBg2 === option.value
-                        ? { background: option.background, color: 'white' }
+                        ? { background: '#040482', color: 'white' }
                         : {}
                     }
                   >
