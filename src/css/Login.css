@@ -1,3 +1,9 @@
+.login_section {
+    width: 100svw;
+    height: 100svh;
+    background: #098684;
+}
+
 .login_container {
     display: grid;
     position: relative;

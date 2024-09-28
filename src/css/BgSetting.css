@@ -1,0 +1,339 @@
+/* ------------ Folders ---------------- */
+
+.bgsetting_folder {
+    display: none;
+    position: fixed;
+    width: 420px;
+    height: 475px;
+    min-height: 320px;
+    background: #c5c4c4;
+    border: 2px solid white;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    outline: 1px solid white;
+    overflow: hidden;
+    resize: none;
+}
+
+
+.bgsetting_folder .folder_dragbar_bgsetting {
+   display: flex;
+   position: relative;
+   height: 24px;
+   width: 100%;
+   margin-bottom: 1px;
+   align-items: center;
+   justify-content: space-between;
+   -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.bgsetting_barname img {
+    position: relative;
+    width: 16px;
+    top: 3px;
+    margin-left: 5px;
+}
+
+.bgsetting_barname span {
+    position: relative;
+    font-size: 15px;
+    color: white;
+    margin-left: 5px;
+}
+
+.bgsetting_folder .bgsetting_barbtn {
+    display: flex;
+    position: relative;
+    margin-right: 4px;
+    gap: 2px;
+}
+
+.bgsetting_barbtn div {
+    width: 17px;
+    height: 17px;
+    background: #c9c9c9;
+    font-weight: bold;
+    border: 1px solid black;
+    border-top-color: rgb(198, 198, 198);border-left-color: rgb(198, 198, 198);
+    box-shadow: inset 1px 1px #ffffff, 1px 1px #000000dd;
+    cursor: default;
+}
+
+.bgsetting_barbtn div:not(.expand):active {
+    border-top-color: black;border-left-color: black;
+    border-bottom-color: white;border-right-color: white;
+}
+
+.bgsetting_barbtn .x {
+    position: relative;
+    text-align: center;
+    font-size: 18px;
+    bottom: 6px;
+}
+
+/* support only safari */
+@supports (-webkit-touch-callout: none) {
+    .bgsetting_barbtn .x {
+        bottom: 8px; 
+        left: 1px;
+    }
+}
+
+.bgsetting_barbtn .dash {
+    position: relative;
+    width: 8px;
+    top: 11px;
+    margin: 0 auto;
+    border-bottom: 2px solid black;
+}
+.bgsetting_barbtn .expand {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid black;
+    border-left-color: black;
+    box-shadow: none;
+    margin: 0 auto;
+    top: 3px;
+    z-index: 1;
+}
+.bgsetting_barbtn .expand.full {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid black;
+    border-left-color: black;
+    box-shadow: none;
+    margin: 0 auto;
+    top: 5px;
+    right: 2px;
+    z-index: 1;
+}
+
+.bgsetting_barbtn .expand_2 {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid black;
+    border-left-color: black;
+    box-shadow: none;
+    margin: 0 auto;
+    bottom: 6px;
+    left: 1.5px;
+}
+
+.file_tap_container-bgsetting {
+    display: flex;
+    position: relative;
+    margin-top: 12px;
+    font-size: 15px;
+    margin-left: 9px;
+    cursor: default;
+}
+
+.file_tap_container-bgsetting p {
+    position: relative;
+    padding: 0px 8px;
+    padding-top: 1px;
+    bottom: 2px;
+    font-size: 12px;
+    border: 2px solid black;
+    border-top-color: #f0efef;
+    border-left-color: #f0efef;
+    border-bottom-color: #c5c4c4;
+    border-right-color: rgb(53, 52, 52);
+    z-index: 999999;
+    cursor: pointer;
+}
+
+
+.bgsetting_folder .folder_content {
+    position: relative;
+    top: -3.5px;
+    margin: 0 auto;
+    width: calc(100% - 8px);
+    height: calc(100% - 4px);
+    overflow: hidden;
+    touch-action: none;
+    z-index: 2;
+}
+
+@supports (-webkit-touch-callout: none) {
+    .bgsetting_folder .folder_content {
+        top: -4px
+    }
+}
+
+.folder_content .folder_content-bgsetting {
+    position: relative;
+    width: calc(100% - 10px);
+    height: calc(100% - 95px);
+    padding: 1rem 1.5rem;
+    border: 2px solid rgb(53, 52, 52);
+    border-top-color: #f0efef;
+    border-left-color: #f0efef;
+    margin: 0 auto;
+    margin-top: 0;
+    background: #c5c4c4;
+    overflow: hidden;
+    word-break: break-word;
+}
+
+.folder_content-bgsetting img {
+    position: relative;
+    width: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.preview_bg {
+    position: absolute;
+    top: 37.9px;
+    left: 123px;
+    width: 146.5px;
+    height: 108px;
+    overflow: hidden;
+}
+
+.preview_bg img{
+    width: 100%;
+    height: 100%;
+}
+
+@media screen and (width <= 500px) {
+    .preview_bg {
+        width: 147px;
+        left: 103px;
+    }
+}
+
+
+.bgsetting_btn_container {
+    display: flex;
+    position: absolute;
+    gap: 6px;
+    right: 5px;
+    margin-top: 6px;
+
+}
+.bgsetting_btn_container div {
+    position: relative;
+    width: 70px;
+    text-align: center;
+    border: 2px solid black;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+.bgsetting_btn_container span {
+    font-size: 13px;
+}
+.bgsetting_btn_container .bgsetting_btn_ok {
+    border-top-color: #f0efef;
+    border-left-color: #f0efef;
+    cursor: pointer;
+}
+.bgsetting_btn_container .bgsetting_btn_cancel {
+    border-top-color: #f0efef;
+    border-left-color: #f0efef;
+    cursor: pointer;
+}
+
+.bgsetting_btn_container .bgsetting_btn_cancel:active,
+.bgsetting_btn_container .bgsetting_btn_ok:active {
+    border-top-color: black;
+    border-left-color: black;
+    border-bottom-color: #f0efef;
+    border-right-color: #f0efef;
+}
+
+.folder_content .bgsettingtext_container {
+   display: flex;
+   justify-content: space-between;
+   gap: 1rem;
+   font-size: 13px;
+   margin-top: 1rem;
+}
+
+.bgsettingtext_container .pattern, .wallpaper {
+    width: 100%;
+    height: 140px;
+    border: 3px groove rgb(237, 234, 234);
+}
+
+.wallpaper p {
+    position: relative;
+    background: #c5c4c4;
+    width: fit-content;
+    padding: 0px 3px;
+    bottom: 10px;
+    left: 4px;
+}
+
+.wallpaper p::before {
+    content: '_';
+    position: absolute;
+    left: 6px;
+}
+
+.wallpaper p:not(:first-child) {
+    margin-top: 5px;
+    margin-left: 2px;
+    font-size: 12px;
+}
+
+.wallpaper p:not(:first-child)::before {
+    left: 3px;
+}
+
+.pattern_container {  
+    position: relative;
+    height: 80px;
+    width: 90%;
+    border: 2px solid rgb(241, 241, 241);
+    border-top-color: black;
+    border-left-color: black;
+    background: white;
+    margin: 0 auto;
+    bottom: 5px;
+}
+
+.wallpaper_container {  
+    position: relative;
+    height: 80px;
+    width: 90%;
+    border: 2px solid rgb(241, 241, 241);
+    border-top-color: black;
+    border-left-color: black;
+    background: white;
+    margin: 0 auto;
+    bottom: 5px;
+    overflow-y: scroll;
+    
+}
+
+.wallpaper_container ul {
+    padding-left: 4px;
+    cursor: default;
+}
+
+
+
+
+@media screen and (width <= 500px) {
+    .bgsetting_folder {
+        width: 380px;
+    }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) and (min-width: 0px) {
+    .x {      
+        left: 1px;
+    }
+}

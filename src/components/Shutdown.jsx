@@ -45,16 +45,16 @@ function Shutdown() {
         setSelectedOption(null)
     }
 
-    useEffect(() => { // change body bg darker tone, when shutdown is toggled
-        const bodyElement = document.body;
+    // useEffect(() => { // change body bg darker tone, when shutdown is toggled
+    //     const bodyElement = document.body;
     
-        if (shutdownWindow) {
-            bodyElement.style.background = '#09807e';
-        } else {
-            bodyElement.style.background = '';
-        }
+    //     if (shutdownWindow) {
+    //         bodyElement.style.background = '#09807e';
+    //     } else {
+    //         bodyElement.style.background = '';
+    //     }
     
-    }, [shutdownWindow]);
+    // }, [shutdownWindow]);
     
 
     return (

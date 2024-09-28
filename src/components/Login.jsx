@@ -83,7 +83,7 @@ function Login() {
             };
           }, [sizeUp]);
   return (
-    <>
+    <section className='login_section'>
         <div className="mario_div">
           <img src={mario} alt="mario" className='mario' 
           style={{
@@ -135,7 +135,7 @@ function Login() {
                 </div>
             </div>
         </div>
-    </>
+    </section>
   )
 }
 

@@ -7,6 +7,7 @@ import resumefile from '../../assets/resume.png'
 import MineSweeper from '../../assets/minesweepericon.png'
 import MSN from '../../assets/msn.png'
 import ie from '../../assets/ie.png'
+import settings from '../../assets/setting.png'
 
 
 
@@ -76,6 +77,9 @@ export function imageMapping (name) {
 
     case 'Internet':
       return ie;
+
+    case 'Settings':
+      return settings;
 
     default:
       return null;

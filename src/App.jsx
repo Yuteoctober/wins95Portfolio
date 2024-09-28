@@ -19,6 +19,7 @@ import iconInfo from './icon.json'
 import Login from './components/Login';
 import OpenProject from './components/OpenProject';
 import WindowsShutdown from './components/WindowsShutdown';
+import BgSetting from './components/BgSetting';
 import axios from 'axios';
 import { StyleHide, imageMapping, 
   handleDoubleClickEnterLink,handleDoubleTapEnterMobile,
@@ -110,6 +111,9 @@ function App() {
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
 
   const [MSNExpand, setMSNExpand] = useState(
+    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
+
+  const [BgSettingExpand, setBgSettingExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
 
   function projectname() {
@@ -250,6 +254,7 @@ useEffect(() => { // touch support device === true
     projectUrl, setProjectUrl,
     projectname,
     windowsShutDownAnimation, setWindowsShutDownAnimation,
+    BgSettingExpand, setBgSettingExpand,
   }
 
   // show login page
@@ -283,6 +288,7 @@ useEffect(() => { // touch support device === true
         <MineSweeper/>
         <MsnFolder/>
         <OpenProject/>
+        <BgSetting/>
         <Dragdrop/>
         <Footer/>
       </UserContext.Provider>
@@ -376,7 +382,9 @@ function ObjectState() {
           { name: 'ResumeFile', setter: setResumeFileExpand, usestate: ResumeFileExpand },
           { name: 'MineSweeper', setter: setMineSweeperExpand, usestate: MineSweeperExpand },
           { name: 'MSN', setter: setMSNExpand, usestate: MSNExpand },
-          { name: 'Internet', setter: setOpenProjectExpand, usestate: openProjectExpand }
+          { name: 'Internet', setter: setOpenProjectExpand, usestate: openProjectExpand },
+          { name: 'Settings', setter: setBgSettingExpand, usestate: BgSettingExpand },
+          
         ];
 }
 

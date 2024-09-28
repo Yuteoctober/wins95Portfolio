@@ -11,6 +11,7 @@ import speaker from '../assets/speaker.png';
 import project from '../assets/regFolder.png';
 import resume from '../assets/folder.png';
 import shutdownicon from '../assets/shutdownicon.png';
+import settings from '../assets/setting.png';
 import { clippyPhrase, clippySuggest } from './function/ClippyFunction';
 export default function Footer() {
     
@@ -255,10 +256,6 @@ export default function Footer() {
                         <img src={ig} alt="ig" />
                         <span>Instagram</span>
                     </div>
-                    <div className="facebook">
-                        <img src={facebook} alt="facebook" style={{ borderRadius: '5px' }} />
-                        <span>Facebook</span>
-                    </div>
                     <div className="project"
                         onClick={() => handleShow('Project')}
                     >
@@ -270,6 +267,12 @@ export default function Footer() {
                     >
                         <img src={resume} alt="resume" />
                         <span>Resume</span>
+                    </div>
+                    <div className="shutdownicon"
+                        onClick={() => handleShow('Settings')}
+                    >
+                        <img src={settings} alt="shutdownicon" />
+                        <span>Settings</span>
                     </div>
                     <div className="groove">
                     </div>
