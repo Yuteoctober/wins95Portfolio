@@ -25,7 +25,7 @@ function WinampPlayer() {
         handle={'#winamp-container'}
         grid={[10, 10]}
         scale={1}
-        bounds=''
+        bounds={{ top: 0 }}
       >
         <motion.div
           id="winamp-container"
