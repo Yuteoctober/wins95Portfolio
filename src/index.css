@@ -71,7 +71,10 @@ body {
   background-position: center;
   background-repeat: repeat;
   overflow: hidden;
+  background-repeat: no-repeat;
 }
+
+
 
 
 /* --------------- scroll bar ----------------- */

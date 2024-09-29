@@ -4,11 +4,13 @@ import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
 import settingIcon from '../assets/setting.png'
 import bgPic from '../assets/bgpc.png'
-import bg1 from '../assets/bg1.jpg'
+import bg0 from '../assets/bg0.png'
+import bg1 from '../assets/bg1.png'
 import bg2 from '../assets/bg2.jpg'
 import bg3 from '../assets/bg3.jpg'
 import bg4 from '../assets/bg4.jpg'
 import bg5 from '../assets/bg5.jpg'
+import bg6 from '../assets/bg6.jpg'
 import '../css/BgSetting.css'
 
 
@@ -18,6 +20,11 @@ function BgSetting() {
   const [ localBg, setLocalBg ] = useState(() => {
     const prevBg = localStorage.getItem('background')
     return prevBg? prevBg : null
+  })
+  const [ themeColor, setThemeColor ] = useState(null)
+  const [ localtheme, setLocalTheme ] = useState(() => {
+    const prevTheme = localStorage.getItem('theme')
+    return prevTheme? prevTheme : null
   })
   const [ selectedBg2, setSelectedBg2 ] = useState(null)
 
@@ -42,43 +49,30 @@ function BgSetting() {
       }
 
       const colorOptions = [
-        { value: 1, label: '(None)'},
-        { value: 2, label: 'Purple Summer'},
-        { value: 3, label: 'Matt Blue'},
-        { value: 4, label: 'Matt Green'},
-        { value: 5, label: 'Emeral Green' },
-        { value: 6, label: 'Blue Sky'},
+        { value: 1, label: '(None)', color: '#098684', image: bg0 },
+        { value: 2, label: 'Purple Summer', color: '#453146', image: bg1 },
+        { value: 3, label: 'Matt Blue', color: '#456EA6', image: bg2 },
+        { value: 4, label: 'Matt Green', color: '#008081', image: bg3 },
+        { value: 6, label: 'Blue Sky', color: '#4B6B94', image: bg5 },
+        { value: 7, label: 'Dark Tone', color: '#313439', image: bg6 },
       ];
-
+      
       function setbgColorFunction2(index) {
-        setSelectedBg2(index); 
+        const selectedOption = colorOptions.find(option => option.value === index);
         
-        switch (index) {
-          case 1:
-            setImgBgPreview(null);
-            break;
-          case 2:
-            setImgBgPreview(bg1); 
-            break;
-          case 3:
-            setImgBgPreview(bg2);
-            break;
-          case 4:
-            setImgBgPreview(bg3);
-            break;
-          case 5:
-            setImgBgPreview(bg4);
-            break;
-          case 6:
-            setImgBgPreview(bg5);
-            break;
+        if (selectedOption) {
+          setSelectedBg2(index);
+          setImgBgPreview(selectedOption.image);
+          setThemeColor(selectedOption.color);
         }
       }
+      
 
       useEffect(() => {
         const bodyBG = document.getElementsByTagName('body')[0];
 
         if (localBg) {
+          bodyBG.style.backgroundColor = localtheme
           bodyBG.style.backgroundImage = `url(${localBg})`;
         }
       },[])
@@ -87,6 +81,7 @@ function BgSetting() {
         const bodyBG = document.getElementsByTagName('body')[0];
         
         if (ImgBgPreview) {
+          bodyBG.style.backgroundColor = themeColor
           bodyBG.style.backgroundImage = `url(${ImgBgPreview})`; 
         } else {
           bodyBG.style.backgroundImage = 'none';
@@ -97,6 +92,7 @@ function BgSetting() {
         const bodyBG = document.getElementsByTagName('body')[0];
       
         if (localBg) {
+          bodyBG.style.backgroundColor = localtheme
           bodyBG.style.backgroundImage = `url(${localBg})`;
         } else {
           bodyBG.style.backgroundImage = 'none';
@@ -110,10 +106,12 @@ function BgSetting() {
 
 
         if (ImgBgPreview) {
+          bodyBG.style.backgroundColor = themeColor
           bodyBG.style.backgroundImage = `url(${ImgBgPreview})`; 
         }
         
         if (ImgBgPreview) {
+          localStorage.setItem('theme', themeColor);
           localStorage.setItem('background', ImgBgPreview);
         } 
         return;
