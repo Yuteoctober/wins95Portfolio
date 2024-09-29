@@ -117,6 +117,8 @@ function BgSetting() {
         if (ImgBgPreview) {
           localStorage.setItem('theme', themeColor);
           localStorage.setItem('background', ImgBgPreview);
+          setLocalBg(ImgBgPreview)
+          setLocalTheme(themeColor)
         } 
         return;
       }
