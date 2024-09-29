@@ -11,6 +11,8 @@ import bg3 from '../assets/bg3.jpg'
 import bg4 from '../assets/bg4.jpg'
 import bg5 from '../assets/bg5.jpg'
 import bg6 from '../assets/bg6.jpg'
+import bg7 from '../assets/bg7.png'
+import bg8 from '../assets/bg8.png'
 import '../css/BgSetting.css'
 
 
@@ -55,6 +57,8 @@ function BgSetting() {
         { value: 4, label: 'Matt Green', color: '#008081', image: bg3 },
         { value: 6, label: 'Blue Sky', color: '#4B6B94', image: bg5 },
         { value: 7, label: 'Dark Tone', color: '#313439', image: bg6 },
+        { value: 8, label: 'Light Red', color: '#F7999A', image: bg7 },
+        { value: 9, label: 'Deep Purple', color: '#251496', image: bg8 },
       ];
       
       function setbgColorFunction2(index) {
