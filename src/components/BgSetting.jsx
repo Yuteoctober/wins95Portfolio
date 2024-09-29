@@ -174,7 +174,10 @@ function BgSetting() {
                     deleteTap('Settings')
                   }
                   : undefined}
-                  onTouchEnd={() => deleteTap('Settings')}
+                  onTouchEnd={() => {
+                    cancelBg()
+                    deleteTap('Settings')
+                  }}
                 >x
                 </p>
               </div>
