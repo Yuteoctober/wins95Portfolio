@@ -205,8 +205,8 @@
 
 @media screen and (width <= 500px) {
     .preview_bg {
-        width: 147px;
-        left: 102px;
+        width: 146.5px;
+        left: 97px;
     }
 }
 
@@ -328,7 +328,7 @@
 
 @media screen and (width <= 500px) {
     .bgsetting_folder {
-        width: 380px;
+        width: 370px;
     }
 }
 
