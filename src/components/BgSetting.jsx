@@ -58,7 +58,7 @@ function BgSetting() {
         { value: 6, label: 'Blue Sky', color: '#4B6B94', image: bg5 },
         { value: 7, label: 'Dark Tone', color: '#313439', image: bg6 },
         { value: 8, label: 'Light Red', color: '#F7999A', image: bg7 },
-        { value: 9, label: 'Deep Purple', color: '#3D21F7', image: bg8 },
+        { value: 9, label: 'Deep Purple', color: '#551A8B', image: bg8 },
       ];
       
       function setbgColorFunction2(index) {
