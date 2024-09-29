@@ -170,8 +170,8 @@ function BgSetting() {
                 <div>
                 <p className='x'
                   onClick={!isTouchDevice ? () => {
-                    deleteTap('Settings')
                     cancelBg()
+                    deleteTap('Settings')
                   }
                   : undefined}
                   onTouchEnd={() => deleteTap('Settings')}
