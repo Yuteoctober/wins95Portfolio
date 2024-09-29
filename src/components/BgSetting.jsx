@@ -52,10 +52,10 @@ function BgSetting() {
 
       const colorOptions = [
         { value: 1, label: '(None)', color: '#098684', image: bg0 },
-        { value: 2, label: 'Purple Summer', color: '#453146', image: bg1 },
+        { value: 2, label: 'Purple Summer', color: '#3F4565', image: bg1 },
         { value: 3, label: 'Matt Blue', color: '#456EA6', image: bg2 },
         { value: 4, label: 'Matt Green', color: '#008081', image: bg3 },
-        { value: 6, label: 'Blue Sky', color: '#4B6B94', image: bg5 },
+        { value: 6, label: 'Blue Sky', color: '#4B6894', image: bg5 },
         { value: 7, label: 'Dark Tone', color: '#313439', image: bg6 },
         { value: 8, label: 'Light Red', color: '#F7999A', image: bg7 },
         { value: 9, label: 'Deep Purple', color: '#551A8B', image: bg8 },
