@@ -30,10 +30,18 @@ function Login() {
     }
 
     useEffect(() =>{
-      const bodyBG = document.getElementsByClassName('login_section')[0];
+      const sectionBG = document.getElementsByClassName('login_section')[0];
       const theme = localStorage.getItem('theme')
+      const bg = localStorage.getItem('background')
+      const bodyBG = document.getElementsByTagName('body')[0];
+      
 
-      theme? bodyBG.style.background = theme : '#098684'
+        if (theme && bg) {
+          bodyBG.style.backgroundColor = theme
+          bodyBG.style.backgroundImage = `url(${bg})`;
+        }
+
+      theme? sectionBG.style.background = theme : '#098684'
       
     },[])
 
