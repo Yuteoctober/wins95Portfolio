@@ -38,7 +38,7 @@ function Login() {
 
         if (theme && bg) {
           bodyBG.style.backgroundColor = theme
-          bodyBG.style.backgroundImage = `url(${bg})` || '#098684'
+          bodyBG.style.backgroundImage = `url(${bg})`
         }
 
       theme? sectionBG.style.background = theme : '#098684'
