@@ -29,6 +29,14 @@ function Login() {
         setSizeUp(prev => prev + 0.1)
     }
 
+    useEffect(() =>{
+      const bodyBG = document.getElementsByClassName('login_section')[0];
+      const theme = localStorage.getItem('theme')
+
+      theme? bodyBG.style.background = theme : '#098684'
+      
+    },[])
+
     useEffect(() => {
         // Create a <style> element
             const style = document.createElement('style');
