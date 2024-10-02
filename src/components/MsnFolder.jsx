@@ -9,6 +9,7 @@ import '../css/MSN.css';
 function MsnFolder() {
 
   const {
+    themeDragBar,
     sendDisable,
     endOfMessagesRef,
     createChat,
@@ -94,7 +95,7 @@ function MsnFolder() {
           <div className={userName ? 'Username_input_div_active' : 'Username_input_div_disabled'}>
             <div className="container_username">
               <div className="form_banner"
-                style={{ background: MSNExpand.focusItem ? '#14045c' : '#757579' }}
+                style={{ background: MSNExpand.focusItem ? themeDragBar : '#757579' }}
               >
                 <img src={chat} alt="chat" />
                 <p className='username_text_banner'>
@@ -142,7 +143,7 @@ function MsnFolder() {
           <div className="folder_dragbar-MSN"
             onDoubleClick={handleExpandStateToggle}
             onTouchStart={handleExpandStateToggleMobile}
-            style={{ background: MSNExpand.focusItem ? '#14045c' : '#757579' }}
+            style={{ background: MSNExpand.focusItem ? themeDragBar : '#757579' }}
           >
             <div className="folder_barname-MSN">
               <img src={msnPic} alt="msnPic" />

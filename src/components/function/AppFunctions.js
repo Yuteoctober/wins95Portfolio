@@ -13,10 +13,10 @@ import settings from '../../assets/setting.png'
 
 
 
-// style function for bat tap
+// style function for bg tap
 export function StyleHide(index, tap, ObjectState) {
   const boxshadowstyleTrue = 'inset 1px 1px #000, 1px 1px #ffffffdd';
-  const bgStyleTrue = 'rgb(221, 220, 220)';
+  const bgStyleTrue = '#dddcdc';
 
   const boxshadowstyleFalse = 'inset 1px 1px #ffffffdd, 1.5px 1.5px #000';
   const bgStyleFalse = '#b3b2b2';

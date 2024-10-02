@@ -13,6 +13,7 @@ function MailFolder() {
   const focusEmail = useRef();
 
   const { 
+    themeDragBar,
     MailExpand, setMailExpand,
     lastTapTime, setLastTapTime,
     StyleHide,
@@ -104,7 +105,7 @@ const form = useRef();
           <div className="folder_dragbar-mail"
               onDoubleClick={handleExpandStateToggle}
               onTouchStart={handleExpandStateToggleMobile}
-             style={{ background: MailExpand.focusItem? '#14045c' : '#757579'}}
+             style={{ background: MailExpand.focusItem? themeDragBar : '#757579'}}
           >
             <div className="folder_barname-mail">
               <img src={Mail} alt="Mail" />

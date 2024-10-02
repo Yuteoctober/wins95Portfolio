@@ -10,6 +10,7 @@ import '../css/ResumeFolder.css'
 function ResumeFolder() {
 
   const { 
+    themeDragBar,
     ResumeExpand, setResumeExpand,
     lastTapTime, setLastTapTime,
     StyleHide,
@@ -78,7 +79,7 @@ function ResumeFolder() {
           <div className="folder_dragbar"
               onDoubleClick={handleExpandStateToggle}
               onTouchStart={handleExpandStateToggleMobile}
-             style={{ background: ResumeExpand.focusItem? '#14045c' : '#757579'}}
+             style={{ background: ResumeExpand.focusItem? themeDragBar : '#757579'}}
           >
             <div className="folder_barname">
               <img src={Resume} alt="Resume" />

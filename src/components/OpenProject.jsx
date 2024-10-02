@@ -9,6 +9,7 @@ import '../css/OpenProject.css'
 function OpenProject() {
 
   const { 
+    themeDragBar,
     projectname,
     projectUrl,
     openProjectExpand, setOpenProjectExpand,
@@ -81,7 +82,7 @@ function OpenProject() {
           <div className="folder_dragbar"
               onDoubleClick={handleExpandStateToggle}
               onTouchStart={handleExpandStateToggleMobile}
-             style={{ background: openProjectExpand.focusItem? '#14045c' : '#757579'}}
+             style={{ background: openProjectExpand.focusItem? themeDragBar : '#757579'}}
           >
             <div className="folder_barname">
               <img src={ie} alt="ie" style={{ width: '20px'}} />

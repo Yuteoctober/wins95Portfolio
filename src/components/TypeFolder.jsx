@@ -10,6 +10,7 @@ import '../css/ResumeFolder.css'
 function TypeFolder() {
 
   const { 
+    themeDragBar,
     handleShow, handleShowMobile,
     handleDoubleClickiframe, handleDoubleTapiframeMobile,
     setOpenProjectExpand,
@@ -82,7 +83,7 @@ function TypeFolder() {
           <div className="folder_dragbar"
               onDoubleClick={handleExpandStateToggle}
               onTouchStart={handleExpandStateToggleMobile}
-             style={{ background: TypeExpand.focusItem? '#14045c' : '#757579'}}
+             style={{ background: TypeExpand.focusItem? themeDragBar : '#757579'}}
           >
             <div className="folder_barname">
               <img src={folder} alt="folder" />

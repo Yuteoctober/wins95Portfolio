@@ -10,6 +10,7 @@ import '../css/ResumeFolder.css'
 function NoteFolder() {
 
   const { 
+    themeDragBar,
     handleShow, handleShowMobile,
     projectname,
     handleDoubleClickiframe, handleDoubleTapiframeMobile,
@@ -85,7 +86,7 @@ function NoteFolder() {
           <div className="folder_dragbar"
               onDoubleClick={handleExpandStateToggle}
               onTouchStart={handleExpandStateToggleMobile}
-             style={{ background: NoteExpand.focusItem? '#14045c' : '#757579'}}
+             style={{ background: NoteExpand.focusItem? themeDragBar : '#757579'}}
           >
             <div className="folder_barname">
               <img src={folder} alt="folder" />

@@ -27,6 +27,7 @@ import { StyleHide, imageMapping,
  } from './components/function/AppFunctions';
 
 function App() {
+  const [themeDragBar, setThemeDragBar] = useState(() => localStorage.getItem('barcolor') || '#14045c')
   const [login, setLogin] = useState(true)
   const [windowsShutDownAnimation, setWindowsShutDownAnimation] = useState(false)
   const [detectMouse, setDetectMouse] = useState(false)
@@ -191,6 +192,7 @@ useEffect(() => { // touch support device === true
   };
 
 }, []);
+
   
   const contextValue = {
     startActive, setStartActive,
@@ -255,6 +257,7 @@ useEffect(() => { // touch support device === true
     projectname,
     windowsShutDownAnimation, setWindowsShutDownAnimation,
     BgSettingExpand, setBgSettingExpand,
+    themeDragBar, setThemeDragBar,
   }
 
   // show login page

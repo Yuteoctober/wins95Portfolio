@@ -16,6 +16,7 @@ function MyBioFolder() {
   const [hobbTap, setHobbTap] = useState(false)
 
   const { 
+    themeDragBar,
     MybioExpand, setMybioExpand,
     StyleHide,
     isTouchDevice,
@@ -165,7 +166,7 @@ function MyBioFolder() {
             }}
             style={ MybioExpand.expand ? inlineStyleExpand('My Bio') : inlineStyle('My Bio')}>
           <div className="folder_dragbar"
-             style={{ background: MybioExpand.focusItem? '#14045c' : '#757579'}}
+             style={{ background: MybioExpand.focusItem? themeDragBar : '#757579'}}
           >
             <div className="bio_barname">
               <img src={MyBio} alt="MyBio" />

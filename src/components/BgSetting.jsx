@@ -8,16 +8,16 @@ import bg0 from '../assets/bg0.png'
 import bg1 from '../assets/bg1.png'
 import bg2 from '../assets/bg2.jpg'
 import bg3 from '../assets/bg3.jpg'
-import bg4 from '../assets/bg4.jpg'
 import bg5 from '../assets/bg5.png'
 import bg6 from '../assets/bg6.jpg'
 import bg7 from '../assets/bg7.png'
 import bg8 from '../assets/bg8.png'
+import bg9 from '../assets/bg9.jpg'
 import '../css/BgSetting.css'
 
 
 function BgSetting() {
-
+  const [ barcolor, setBarcolor ] = useState(null)
   const [ ImgBgPreview, setImgBgPreview ] = useState(null)
   const [ localBg, setLocalBg ] = useState(() => {
     const prevBg = localStorage.getItem('background')
@@ -31,6 +31,7 @@ function BgSetting() {
   const [ selectedBg2, setSelectedBg2 ] = useState(null)
 
   const { 
+    themeDragBar, setThemeDragBar,
     BgSettingExpand ,setBgSettingExpand,
     StyleHide,
     isTouchDevice,
@@ -51,14 +52,15 @@ function BgSetting() {
       }
 
       const colorOptions = [
-        { value: 1, label: '(None)', color: '#098684', image: bg0 },
-        { value: 2, label: 'Purple Summer', color: '#3F4565', image: bg1 },
-        { value: 3, label: 'Matt Blue', color: '#456EA6', image: bg2 },
-        { value: 4, label: 'Matt Green', color: '#008081', image: bg3 },
-        { value: 6, label: 'Blue Sky', color: '#4B6894', image: bg5 },
-        { value: 7, label: 'Dark Tone', color: '#313439', image: bg6 },
-        { value: 8, label: 'Light Red', color: '#F7999A', image: bg7 },
-        { value: 9, label: 'Deep Ocean', color: '#3F4565', image: bg8 },
+        { value: 1, label: '(None)', color: '#098684', image: bg0, barColor: '#14045c'},
+        { value: 2, label: 'Purple Summer', color: '#3F4565', image: bg1, barColor: '#3F4565'},
+        { value: 3, label: 'Matt Blue', color: '#456EA6', image: bg2, barColor: '#456EA6'},
+        { value: 4, label: 'Matt Green', color: '#008081', image: bg3, barColor: '#008081'},
+        { value: 6, label: 'Blue Sky', color: '#4B6894', image: bg5, barColor: '#4B6894'},
+        { value: 7, label: 'Dark Tone', color: '#313439', image: bg6, barColor: '#313439'},
+        { value: 8, label: 'Light Pink', color: '#f3aac0', image: bg7, barColor: '#f3aac0'},
+        { value: 9, label: 'Deep Ocean', color: '#3F4565', image: bg8, barColor: '#3F4565'},
+        { value: 10, label: 'Boring Purple', color: '#344692', image: bg9, barColor: '#344692'},
       ];
       
       function setbgColorFunction2(index) {
@@ -68,6 +70,7 @@ function BgSetting() {
           setSelectedBg2(index);
           setImgBgPreview(selectedOption.image);
           setThemeColor(selectedOption.color);
+          setBarcolor(selectedOption.barColor)
         }
       }
       
@@ -87,6 +90,7 @@ function BgSetting() {
         if (ImgBgPreview) {
           bodyBG.style.backgroundColor = themeColor
           bodyBG.style.backgroundImage = `url(${ImgBgPreview})`; 
+          setThemeDragBar(barcolor)
         } else {
           bodyBG.style.backgroundImage = 'none';
         }
@@ -94,10 +98,12 @@ function BgSetting() {
       
       function cancelBg() {
         const bodyBG = document.getElementsByTagName('body')[0];
+        const localBarColor = localStorage.getItem('barcolor')
       
         if (localBg) {
           bodyBG.style.backgroundColor = localtheme
           bodyBG.style.backgroundImage = `url(${localBg})`;
+          setThemeDragBar(localBarColor)
         } else {
           bodyBG.style.backgroundImage = 'none';
         }
@@ -112,13 +118,14 @@ function BgSetting() {
         if (ImgBgPreview) {
           bodyBG.style.backgroundColor = themeColor
           bodyBG.style.backgroundImage = `url(${ImgBgPreview})`; 
+          setThemeDragBar(barcolor)
         }
         
         if (ImgBgPreview) {
           localStorage.setItem('theme', themeColor);
           localStorage.setItem('background', ImgBgPreview);
+          localStorage.setItem('barcolor', barcolor);
           setLocalBg(ImgBgPreview)
-          setLocalTheme(themeColor)
         } 
         return;
       }
@@ -146,7 +153,7 @@ function BgSetting() {
             }}
             style={ BgSettingExpand.expand ? inlineStyleExpand('Settings') : inlineStyle('Settings')}>
           <div className="folder_dragbar_bgsetting"
-             style={{ background: BgSettingExpand.focusItem? '#14045c' : '#757579'}}
+             style={{ background: BgSettingExpand.focusItem? themeDragBar : '#757579'}}
           >
             <div className="bgsetting_barname">
               <img src={settingIcon} alt="" />

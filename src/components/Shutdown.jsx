@@ -5,7 +5,11 @@ import '../css/Shutdown.css';
 
 function Shutdown() {
     const [selectedOption, setSelectedOption] = useState(null);
-    const { shutdownWindow, setShutdownWindow, setLogin, setWindowsShutDownAnimation, } = useContext(UseContext);
+
+    const { shutdownWindow, setShutdownWindow, 
+            setLogin, setWindowsShutDownAnimation,
+            themeDragBar,
+        } = useContext(UseContext);
 
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
@@ -61,7 +65,7 @@ function Shutdown() {
         shutdownWindow ? (
             <div className='shutdown_bg'>
                 <div className="shutdown_container">
-                    <div className="nav_shutdown">
+                    <div className="nav_shutdown" style={{backgroundColor: themeDragBar}}>
                         <p>Shut Down Windows</p>
                         <div className='x_shutdown_container'
                             onClick={handleNoShutdown}

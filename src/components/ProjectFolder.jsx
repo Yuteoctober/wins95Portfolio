@@ -10,6 +10,7 @@ import '../css/ProjectFolder.css'
 function ProjectFolder() {
 
   const { 
+    themeDragBar,
     ProjectExpand, setProjectExpand,
     lastTapTime, setLastTapTime,
     StyleHide,
@@ -109,7 +110,7 @@ function ProjectFolder() {
           <div className="folder_dragbar-project"
               onDoubleClick={handleExpandStateToggle}
               onTouchStart={handleExpandStateToggleMobile}
-             style={{ background: ProjectExpand.focusItem? '#14045c' : '#757579'}}
+             style={{ background: ProjectExpand.focusItem? themeDragBar : '#757579'}}
           >
             <div className="folder_barname-project">
               <img src={Project} alt="Project" />

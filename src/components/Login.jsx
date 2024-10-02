@@ -11,7 +11,7 @@ function Login() {
     const [ password, setPassword ] = useState('1234')
     const [ sizeUp, setSizeUp ] = useState(1)
 
-    const { setLogin } = useContext(UseContext);
+    const { setLogin, themeDragBar } = useContext(UseContext);
 
     function handleLogin(e) {
         e.preventDefault()
@@ -115,7 +115,7 @@ function Login() {
         
         <div className='login_container'>
             
-            <div className="tap_login">
+            <div className="tap_login" style={{backgroundColor: themeDragBar}}>
                 <p>Welcome to Windows</p>
                 <div className="tap_button">
                     <div className="login_question"
