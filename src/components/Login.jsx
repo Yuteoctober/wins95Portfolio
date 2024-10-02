@@ -31,17 +31,19 @@ function Login() {
 
     useEffect(() =>{
       const sectionBG = document.getElementsByClassName('login_section')[0];
-      const theme = localStorage.getItem('theme')
-      const bg = localStorage.getItem('background')
+      const localtheme = localStorage.getItem('theme')
+      const localbg = localStorage.getItem('background')
       const bodyBG = document.getElementsByTagName('body')[0];
       
 
-        if (theme && bg) {
-          bodyBG.style.backgroundColor = theme
-          bodyBG.style.backgroundImage = `url(${bg})`
+        if (localtheme && localbg) {
+          bodyBG.style.backgroundColor = localtheme
+          sectionBG.style.backgroundColor = localtheme
+          bodyBG.style.backgroundImage = `url(${bodyBG})`
+        } else {
+          bodyBG.style.backgroundColor = '#098684'
+          sectionBG.style.backgroundColor = '#098684'
         }
-
-      theme? sectionBG.style.background = theme : '#098684'
       
     },[])
 
