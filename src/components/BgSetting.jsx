@@ -60,7 +60,7 @@ function BgSetting() {
         { value: 7, label: 'Dark Tone', color: '#313439', image: bg6, barColor: '#313439'},
         { value: 8, label: 'Light Pink', color: '#f3aac0', image: bg7, barColor: '#f3aac0'},
         { value: 9, label: 'Deep Ocean', color: '#3F4565', image: bg8, barColor: '#3F4565'},
-        { value: 10, label: 'Boring Purple', color: '#344692', image: bg9, barColor: '#344692'},
+        { value: 10, label: 'Purple Blue', color: '#354092', image: bg9, barColor: '#354092'},
       ];
       
       function setbgColorFunction2(index) {
