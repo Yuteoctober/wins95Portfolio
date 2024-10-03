@@ -118,20 +118,22 @@ function ResumeFile() {
               <div><p className='x-resumefile'
                  onClick={!isTouchDevice ? () => {
                   deleteTap('ResumeFile')
+                  setDownloadBox(false)
                  }: undefined
                 }
                 onTouchEnd={() => {
                   deleteTap('ResumeFile')
+                  setDownloadBox(false)
               }}
               >x</p></div>
             </div>
           </div>
 
           <div className="btn_option_btm_container"
-            onClick={() => setDownloadBox(!downloadBox)}
+            onClick={() => setDownloadBox(false)}
           > 
             <div className="download_icon"
-              onClick={() => setDownloadBox(!downloadBox)}
+              onClick={() => setDownloadBox(false)}
             >
               <img src={file} alt="file" />
               <span>Resume File</span>
