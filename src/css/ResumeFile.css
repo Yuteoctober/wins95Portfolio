@@ -173,14 +173,74 @@
     user-select: none;
 }
 
+.btn_option_btm_container .download_icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 105px;
+    height: 26px;
+    border: 2px solid white;
+    border-right-color: black;
+    border-bottom-color: black;
+}
+
+.btn_option_btm_container .download_icon:active {
+    border: 1px solid black;
+    border-right: 1px solid white;
+    border-bottom: 1px solid white;
+}
+
+.btn_option_btm_container .download_icon span {
+    position: relative;
+    font-size: 12px;
+    white-space: nowrap;
+    right: 8px;
+    top: 1px;
+    cursor: pointer;
+}
+
+.btn_option_btm_container .download_icon img {
+    position: relative;
+    width: 36px;
+    right: 4px;
+    bottom: 1px;
+}
+
+.btn_option_btm_container .file_resume_select-show {
+    display: grid;
+    position: absolute;
+    place-items: center;
+    padding: 6px 0px;
+    width: 155px;
+    height: fit-content;
+    top: 1.9rem;
+    left: 5px;
+    overflow: hidden;
+    background: #c5c4c4;
+    background: #c5c4c4;
+    border: 1px solid white;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    outline: 1px solid white;
+    gap: 1px;
+    z-index: 99;
+    
+}
+
+.btn_option_btm_container .file_resume_select-hide {
+    display: none;
+}
+
 .btn_option_btm_container .btn_download_conainer {
     display: flex;
     position: relative;
-    width: fit-content;
+    width: 93%;
     padding: 3px 9px;
     background: #c5c4c4;
-    box-shadow: inset 1.5px 1.5px #ebeaeadd, 2.1px 2.1px #000;
+    box-shadow: inset 1.5px 1.5px #ebeaeadd, 1.5px 1.5px #000;
     cursor: pointer;
+    z-index: 9998;
 }
 
 .btn_option_btm_container .btn_download_conainer img {
@@ -193,9 +253,6 @@
     position: relative;
     font-size: 12px;
     top: 1px;
-    color: rgb(49, 49, 157);
-    text-decoration: underline;
-    text-decoration-color: rgb(49, 49, 157);
 }
 
 .btn_option_btm_container .btn_download_conainer p:hover {
@@ -207,11 +264,12 @@
 .btn_option_btm_container .btn_Open_conainer {
     display: flex;
     position: relative;
-    width: fit-content;
+    width: 93%;
     padding: 3px 9px;
     background: #c5c4c4;
-    box-shadow: inset 1.5px 1.5px #ebeaeadd, 2.1px 2.1px #000;
+    box-shadow: inset 1.5px 1.5px #ebeaeadd, 1.5px 1.5px #000;
     cursor: pointer;
+    z-index: 9999;
 }
 
 .btn_option_btm_container .btn_Open_conainer img {
@@ -224,9 +282,6 @@
     position: relative;
     font-size: 12px;
     top: 1px;
-    color: rgb(49, 49, 156);
-    text-decoration: underline;
-    text-decoration-color: rgb(49, 49, 157);
 }
 
 .btn_option_btm_container .btn_Open_conainer p:hover {
@@ -269,6 +324,8 @@ iframe {
         left: 1px;
     }
 }
+
+
 
 
 

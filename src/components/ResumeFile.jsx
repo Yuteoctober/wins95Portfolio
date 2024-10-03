@@ -1,10 +1,11 @@
 import UseContext from '../Context'
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
 import resumefile from '../assets/resume.png'
 import download from '../assets/file4download.png'
 import ie from '../assets/ie.png'
+import file from '../assets/folderopen.png'
 import '../css/ResumeFile.css'
 
 
@@ -23,6 +24,8 @@ function ResumeFile() {
     deleteTap,
 
    } = useContext(UseContext);
+
+   const [ downloadBox, setDownloadBox ] = useState(false)
 
       function handleDragStop(event, data) {
         const positionX = data.x 
@@ -124,20 +127,37 @@ function ResumeFile() {
             </div>
           </div>
 
-          <div className="btn_option_btm_container">
-            <div className="btn_download_conainer"
-              onClick={() => window.open('https://drive.usercontent.google.com/u/0/uc?id=1XNn23UA2L82P2__Ccuccl3WMdR2rHG57&export=download', '_blank')}
+          <div className="btn_option_btm_container"
+            onClick={() => setDownloadBox(!downloadBox)}
+          > 
+            <div className="download_icon"
+              onClick={() => setDownloadBox(!downloadBox)}
             >
-              <img src={download} alt="download" />
-              <p>Download</p>
+              <img src={file} alt="file" />
+              <span>Resume File</span>
             </div>
-            <div className="btn_Open_conainer"
-              onClick={() => window.open('https://drive.google.com/file/d/1XNn23UA2L82P2__Ccuccl3WMdR2rHG57/view?usp=drive_link', '_blank')}
-            >
-            <img src={ie} alt="ie" />
-              <p>Open new window</p>
-            </div>
+            <div className={`file_resume_select ${downloadBox ? 'file_resume_select-show' : 'file_resume_select-hide'}`}>
+              <div className="btn_download_conainer"
+                  onClick={() => {
+                    window.open('https://drive.usercontent.google.com/u/0/uc?id=1XNn23UA2L82P2__Ccuccl3WMdR2rHG57&export=download', '_blank')
+                    setDownloadBox(false)
+                  }}
+                >
+                  <img src={download} alt="download" />
+                  <p>Download</p>
+                </div>
+                <div className="btn_Open_conainer"
+                  onClick={() => {
+                    window.open('https://drive.google.com/file/d/1XNn23UA2L82P2__Ccuccl3WMdR2rHG57/view?usp=drive_link', '_blank')
+                    setDownloadBox(false)
+                  }}
+                >
+                <img src={ie} alt="ie" />
+                  <p>Open new window</p>
+                </div>
+              </div> 
           </div>
+
           <div className="folder_content-resumefile"
             style={ResumeFileExpand.expand ? 
               { height: 'calc(100svh - 110px)'} /// fullscreen btm nav
@@ -148,6 +168,7 @@ function ResumeFile() {
           >
             {ResumeFileExpand.show ? (
               <iframe 
+              onClick={() => setDownloadBox(false)}
               src="https://drive.google.com/file/d/1XNn23UA2L82P2__Ccuccl3WMdR2rHG57/preview" 
               frameBorder='0'
             >
