@@ -318,7 +318,7 @@ function MineSweeper() {
                   {square.isFlagged && !square.isRevealed && !gameOver ? "🚩" : ""}
                   {gameOver && squares[rowIdx][colIdx].hasBomb ? (
                     <img 
-                      src={showFlag && !squares[rowIdx][colIdx].hasBomb ? flag : mine} 
+                      src={showFlag && squares[rowIdx][colIdx].hasBomb ? flag : mine} 
                       alt="mine" 
                       className='mine_reveal'
                     />

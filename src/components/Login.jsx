@@ -100,7 +100,8 @@ function Login() {
               document.head.removeChild(style);
             };
           }, [sizeUp]);
-  return (
+  
+    return (
     <section className='login_section'>
         <div className="mario_div">
           <img src={mario} alt="mario" className='mario' 
