@@ -507,6 +507,7 @@ body {
 .icon .p_focus {
     background: #091558;
     border: 1px dotted white;
+    padding: 0px 1px;
 }
 
 .icon:active {
