@@ -128,8 +128,8 @@ function MsnFolder() {
                     onClick={() => {
                       setUserName(false);
                       setUserNameValue(() => {
-                        const name = localStorage.getItem('username')
-                        return name.length > 0 ? name : ''
+                        const localName = localStorage.getItem('username')
+                        return localName.length > 0 ? localName : ''
                       });
                     }}
                   >
@@ -229,10 +229,6 @@ function MsnFolder() {
                   <span style={{ color: chat?.dev? 'red' : 'blue' }}>&lt;{chat?.dev? 'Dev' : chat.name}&gt;: </span>
                   <span style={{ color: chat?.dev? 'red' : '#171616' }}>{chat.chat}</span>
                 </p>
-                {/* Attach ref to the last chat item */}
-                {/* {index === chatData.length - 1 && (
-                  
-                )} */}
               </div>
             ))}
             <div ref={endOfMessagesRef}/>

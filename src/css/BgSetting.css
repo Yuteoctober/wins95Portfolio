@@ -136,14 +136,16 @@
 
 .file_tap_container-bgsetting p {
     position: relative;
+    height: 22px;
     padding: 0px 8px;
     padding-top: 1px;
-    bottom: 2px;
+    bottom: 1px;
     font-size: 12px;
+    background: #c5c4c4;
     border: 2px solid black;
     border-top-color: #f0efef;
     border-left-color: #f0efef;
-    border-bottom-color: #c5c4c4;
+    border-bottom-color: transparent;
     border-right-color: rgb(53, 52, 52);
     z-index: 999999;
     cursor: pointer;
@@ -192,8 +194,8 @@
 .preview_bg {
     position: absolute;
     top: 37.9px;
-    left: 123px;
-    width: 146.5px;
+    left: 122px;
+    width: 147px;
     height: 108px;
     overflow: hidden;
 }
