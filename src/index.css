@@ -498,17 +498,16 @@ body {
     position: relative;
     font-size: 12px;
     color: white;
-    padding: 0px 2px;
+    padding-left: 1px; 
+    padding-top: 2px;
     border: 1px dotted rgba(255, 255, 255, 0);
     text-align: center;
-    line-height: 14px;
+    line-height: 11px;
 }
 
 .icon .p_focus {
     background: #091558;
     border: 1px dotted white;
-    padding-left: 0px;
-    padding-right: 0px;
 }
 
 .icon:active {
