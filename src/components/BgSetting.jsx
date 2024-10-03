@@ -58,7 +58,7 @@ function BgSetting() {
         { value: 4, label: 'Matt Green', color: '#008081', image: bg3, barColor: '#008081'},
         { value: 6, label: 'Blue Sky', color: '#4B6894', image: bg5, barColor: '#4B6894'},
         { value: 7, label: 'Dark Tone', color: '#313439', image: bg6, barColor: '#313439'},
-        { value: 8, label: 'Light Pink', color: '#f3aac0', image: bg7, barColor: '#f3aac0'},
+        { value: 8, label: 'Light Pink', color: '#f3aac0', image: bg7, barColor: '#1c1719'},
         { value: 9, label: 'Deep Ocean', color: '#3F4565', image: bg8, barColor: '#3F4565'},
         { value: 10, label: 'Purple Blue', color: '#354092', image: bg9, barColor: '#354092'},
       ];
@@ -122,10 +122,11 @@ function BgSetting() {
         }
         
         if (ImgBgPreview) {
-          localStorage.setItem('theme', themeColor);
-          localStorage.setItem('background', ImgBgPreview);
-          localStorage.setItem('barcolor', barcolor);
+          localStorage.setItem('theme', themeColor); // set theme in localstroage
+          localStorage.setItem('background', ImgBgPreview); // set background in localstroage
+          localStorage.setItem('barcolor', barcolor); // set barcolor in localstroage
           setLocalBg(ImgBgPreview)
+          setLocalTheme(themeColor)
         } 
         return;
       }
