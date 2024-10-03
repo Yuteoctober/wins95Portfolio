@@ -133,7 +133,10 @@ function ResumeFile() {
             onClick={() => setDownloadBox(false)}
           > 
             <div className="download_icon"
-              onClick={() => setDownloadBox(false)}
+              onClick={(e) => {
+                e.stopPropagation()
+                setDownloadBox(!downloadBox)
+              }}
             >
               <img src={file} alt="file" />
               <span>Resume File</span>
@@ -146,7 +149,7 @@ function ResumeFile() {
                   }}
                 >
                   <img src={download} alt="download" />
-                  <p>Download</p>
+                  <p>Download File</p>
                 </div>
                 <div className="btn_Open_conainer"
                   onClick={() => {
