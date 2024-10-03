@@ -129,7 +129,7 @@ function MsnFolder() {
                       setUserName(false);
                       setUserNameValue(() => {
                         const localName = localStorage.getItem('username')
-                        return localName.length > 0 ? localName : ''
+                        return localName && localName.length > 0 ? localName : ''
                       });
                     }}
                   >
