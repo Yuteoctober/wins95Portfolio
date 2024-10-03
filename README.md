@@ -25,6 +25,11 @@ Functionality (imitaing windows 95 functionality)
     - Restart
     - log out
 
+  - Added animation on Shutdown
+  - Added Log in page 
+    - Added mario animation running
+    - Click on ? button can imcrease mario's size
+
   - Added MSN
     - Live chat app connected to backend Node, Express and Mongodb    (free server is slow sometimes)
     - Chat is live and has expiration key each session to prevent spam
