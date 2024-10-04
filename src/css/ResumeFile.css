@@ -195,7 +195,7 @@
     position: relative;
     font-size: 12px;
     white-space: nowrap;
-    right: 8px;
+    right: 9px;
     top: 1px;
     cursor: pointer;
 }
@@ -203,8 +203,8 @@
 .btn_option_btm_container .download_icon img {
     position: relative;
     width: 36px;
-    right: 4px;
-    bottom: 1px;
+    right: 6px;
+    bottom: 0px;
 }
 
 .btn_option_btm_container .file_resume_select-show {
@@ -214,15 +214,13 @@
     padding: 6px 0px;
     width: 155px;
     height: fit-content;
-    top: 1.9rem;
+    top: 2.3rem;
     left: 5px;
     overflow: hidden;
-    background: #c5c4c4;
     background: #c5c4c4;
     border: 1px solid white;
     border-right: 1px solid black;
     border-bottom: 1px solid black;
-    outline: 1px solid white;
     gap: 1px;
     z-index: 99;
     
@@ -238,7 +236,7 @@
     width: 93%;
     padding: 3px 9px;
     background: #c5c4c4;
-    box-shadow: inset 1.5px 1.5px #ebeaeadd, 1.5px 1.5px #000;
+    box-shadow: inset 1.5px 1.5px #fdfdfddd, 1.5px 1.5px #000;
     cursor: pointer;
     z-index: 9998;
 }
@@ -256,8 +254,7 @@
 }
 
 .btn_option_btm_container .btn_download_conainer p:hover {
-    color: rgb(85, 125, 255);
-    text-decoration-color: rgb(85, 125, 255);
+    color: white;
 }
 
 
@@ -267,7 +264,7 @@
     width: 93%;
     padding: 3px 9px;
     background: #c5c4c4;
-    box-shadow: inset 1.5px 1.5px #ebeaeadd, 1.5px 1.5px #000;
+    box-shadow: inset 1.5px 1.5px #fdfdfddd, 1.5px 1.5px #000;
     cursor: pointer;
     z-index: 9999;
 }
@@ -285,8 +282,7 @@
 }
 
 .btn_option_btm_container .btn_Open_conainer p:hover {
-    color: rgb(85, 125, 255);
-    text-decoration-color: rgb(85, 125, 255);
+    color: white;
 }
 
 .btn_download_conainer:active,

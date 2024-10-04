@@ -133,6 +133,13 @@ function ResumeFile() {
             onClick={() => setDownloadBox(false)}
           > 
             <div className="download_icon"
+              style={ downloadBox? {
+                background: '#ecebeb', 
+                borderBottomColor:'white',
+                borderRightColor:'white',
+                borderTopColor:'black',
+                borderLeftColor:'black'
+              }:{}}
               onClick={(e) => {
                 e.stopPropagation()
                 setDownloadBox(!downloadBox)
