@@ -1,7 +1,5 @@
 Windows 95 Portfolio updated 10/03/2024
 
-EVERYTHING IS BUILT BY ME, I'M NOT FORKING OR CLONING ANYONE!
-
 Live Demo: https://yuteoctober.github.io/wins95Portfolio/
 
 ![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/markdown.png?raw=true)
@@ -42,6 +40,9 @@ Functionality (imitaing windows 95 functionality)
   - Added Settings
     - Wallpaper can be changed
     - Theme will be changed along with wallpapaer
+
+  Added Run command icon
+    - The Run command feature will be implemented soon..
 
 Library used:
   - React Draggable => drag and drop functionality
