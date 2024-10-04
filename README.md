@@ -26,20 +26,20 @@ Functionality (imitaing windows 95 functionality)
   - Added animation on Shutdown
   - Added Log in page 
     - Added mario animation running
-    - Click on ? button can imcrease mario's size
+    - Click on ? button can increase mario's size
 
   - Added MSN
     - Live chat app connected to backend Node, Express and Mongodb    (free server is slow sometimes)
     - Chat is live and has expiration key each session to prevent spam
     - Added filter words
-    - Added auto delete for spams
+    - Added auto delete for spams on the server side
 
   - Added MineSweeper
-    - flag can be placed on desktop
+    - flag can now be placed on desktop
 
   - Added Settings
-    - Wallpaper can be changed
-    - Theme will be changed along with wallpapaer
+    - Wallpaper can now be changed
+    - Theme will also be changed along with wallpapaer
 
   Added Run command icon
     - The Run command feature will be implemented soon..
