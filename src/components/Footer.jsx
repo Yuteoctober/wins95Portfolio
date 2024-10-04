@@ -2,11 +2,10 @@ import { useEffect, useRef, useContext } from 'react';
 import UseContext from '../Context'
 import { motion, AnimatePresence  } from 'framer-motion';
 import startIcon from '../assets/95icon.png';
-import ig from '../assets/Instagram_icon.png';
+import run from '../assets/run.png';
 import github from '../assets/github.png';
 import linked from '../assets/linkedin.png';
 import sidebar from '../assets/sidebar95.png';
-import facebook from '../assets/facebook.png';
 import speaker from '../assets/speaker.png';
 import project from '../assets/regFolder.png';
 import resume from '../assets/folder.png';
@@ -250,11 +249,7 @@ export default function Footer() {
                         onClick={() => handleDoubleClickEnterLink('Github')}
                     >
                         <img src={github} alt="github" style={{ borderRadius: '5px' }} />
-                        <span>Repo</span>
-                    </div>
-                    <div className="ig">
-                        <img src={ig} alt="ig" />
-                        <span>Instagram</span>
+                        <span>Github</span>
                     </div>
                     <div className="project"
                         onClick={() => handleShow('Project')}
@@ -267,6 +262,10 @@ export default function Footer() {
                     >
                         <img src={resume} alt="resume" />
                         <span>Resume</span>
+                    </div>
+                    <div className="run">
+                        <img src={run} alt="run" />
+                        <span>Run...</span>
                     </div>
                     <div className="shutdownicon"
                         onClick={() => handleShow('Settings')}
