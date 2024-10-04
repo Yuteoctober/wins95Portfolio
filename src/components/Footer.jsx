@@ -263,15 +263,15 @@ export default function Footer() {
                         <img src={resume} alt="resume" />
                         <span>Resume</span>
                     </div>
-                    <div className="run">
-                        <img src={run} alt="run" />
-                        <span>Run...</span>
-                    </div>
                     <div className="shutdownicon"
                         onClick={() => handleShow('Settings')}
                     >
                         <img src={settings} alt="shutdownicon" />
                         <span>Settings</span>
+                    </div>
+                    <div className="run">
+                        <img src={run} alt="run" />
+                        <span>Run...</span>
                     </div>
                     <div className="groove">
                     </div>
