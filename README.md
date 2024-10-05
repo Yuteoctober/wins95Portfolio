@@ -41,8 +41,8 @@ Functionality (imitaing windows 95 functionality)
     - Wallpaper can now be changed
     - Theme will also be changed along with wallpapaer
 
-  Added Run command icon
-    - The Run command feature will be implemented soon..
+  - Added Run command 
+    - Created Run command window (implementing the function soon...)
 
 Library used:
   - React Draggable => drag and drop functionality
