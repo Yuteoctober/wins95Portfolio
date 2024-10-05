@@ -87,7 +87,8 @@ function Run() {
               <span>Run</span>
             </div>
             <div className="folder_barbtn_run">              
-              <div><p className='x'
+              <div>
+                <p className='x'
                  onClick={!isTouchDevice ? () => {
                   deleteTap('Run')
                  }: undefined
@@ -95,7 +96,8 @@ function Run() {
                 onTouchEnd={() => {
                   deleteTap('Run')
               }}
-              >x</p></div>
+              >x</p>
+              </div>
             </div>
           </div>
           <div className="run_top_container">

@@ -49,7 +49,7 @@
 .folder_folder_run .folder_barbtn_run {
     display: flex;
     position: relative;
-    margin-right: 4px;
+    margin-right: 3px;
     gap: 2px;
 }
 
@@ -74,6 +74,7 @@
     text-align: center;
     font-size: 16px;
     bottom: 6px;
+
 }
 
 /* support only safari */
