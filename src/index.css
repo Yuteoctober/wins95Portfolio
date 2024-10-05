@@ -600,7 +600,8 @@ body {
 
 .clippy_container .bubble_chat {
     position: absolute;
-    width: 190px;
+    max-width: 190px;
+    width: fit-content;
     top: -4rem;
     left: -5.8rem;
     padding-top: 8px;

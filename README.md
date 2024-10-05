@@ -12,7 +12,7 @@ Functionality (imitaing windows 95 functionality)
   - Drag and Drop
   - Shrink and Expand window
   - Start Menu
-  - Resize window (using Resize: both on CSS (not supported by mobile))
+  - Resize window
   - Hide and unhide
   - One click to highlight
   - Double Click to open (also works on mobile using usestate to capture the first touch and counting time within 3ms)

@@ -45,6 +45,68 @@ export default function Footer() {
         ClearTOclippyUsernameFunction,
         clippyUsername,
      } = useContext(UseContext);
+
+     const footerItems = [
+        {
+            className: "sidebar_popup",
+            imgSrc: sidebar,
+            imgAlt: "sidebar"
+        },
+        {
+            className: "linked",
+            imgSrc: linked,
+            imgAlt: "linked",
+            style: { borderRadius: '5px' },
+            spanText: "Linked"
+        },
+        {
+            className: "ghithub",
+            imgSrc: github,
+            imgAlt: "github",
+            style: { borderRadius: '5px' },
+            spanText: "Github",
+            onClick: () => handleDoubleClickEnterLink('Github')
+        },
+        {
+            className: "project",
+            imgSrc: project,
+            imgAlt: "project",
+            spanText: "Project",
+            onClick: () => handleShow('Project')
+        },
+        {
+            className: "resume",
+            imgSrc: resume,
+            imgAlt: "resume",
+            spanText: "Resume",
+            onClick: () => handleShow('Resume')
+        },
+        {
+            className: "shutdownicon",
+            imgSrc: settings,
+            imgAlt: "shutdownicon",
+            spanText: "Settings",
+            onClick: () => handleShow('Settings')
+        },
+        {
+            className: "run",
+            imgSrc: run,
+            imgAlt: "run",
+            spanText: "Run..."
+        },
+        {
+            className: "groove" 
+        },
+        {
+            className: "shutdownicon",
+            imgSrc: shutdownicon,
+            imgAlt: "shutdownicon",
+            spanText: "Shut down...",
+            onClick: () => setShutdownWindow(true)
+        }
+    ];
+    
+    
     
      const handleWheelScroll = (e) => { // wheel from x to Y on tap
         const container = wheelTapContainer.current;
@@ -238,49 +300,22 @@ export default function Footer() {
                 <div className="start_popup"
                     style={{display: startActive? '' : 'none'}}
                 >
-                    <div className="sidebar_popup">
-                        <img src={sidebar} alt="sidebar" />
-                    </div>
-                    <div className="linked">
-                        <img src={linked} alt="linked" style={{ borderRadius: '5px' }} />
-                        <span>Linked</span>
-                    </div>
-                    <div className="ghithub"
-                        onClick={() => handleDoubleClickEnterLink('Github')}
+                    {footerItems.map((item, index) => (
+                        <div 
+                        key={index} 
+                        className={item.className} 
+                        onClick={item.onClick}
                     >
-                        <img src={github} alt="github" style={{ borderRadius: '5px' }} />
-                        <span>Github</span>
+                        {item.imgSrc && (
+                            <img 
+                                src={item.imgSrc} 
+                                alt={item.imgAlt} 
+                                style={item.style || {}} 
+                            />
+                        )}
+                        {item.spanText && <span>{item.spanText}</span>}
                     </div>
-                    <div className="project"
-                        onClick={() => handleShow('Project')}
-                    >
-                        <img src={project} alt="project" />
-                        <span>Project</span>
-                    </div>
-                    <div className="resume"
-                        onClick={() => handleShow('Resume')}
-                    >
-                        <img src={resume} alt="resume" />
-                        <span>Resume</span>
-                    </div>
-                    <div className="shutdownicon"
-                        onClick={() => handleShow('Settings')}
-                    >
-                        <img src={settings} alt="shutdownicon" />
-                        <span>Settings</span>
-                    </div>
-                    <div className="run">
-                        <img src={run} alt="run" />
-                        <span>Run...</span>
-                    </div>
-                    <div className="groove">
-                    </div>
-                    <div className="shutdownicon"
-                        onClick={() => setShutdownWindow(true)}
-                    >
-                        <img src={shutdownicon} alt="shutdownicon" />
-                        <span>Shut down...</span>
-                    </div>
+                    ))}
                 </div>
             )}
             <AnimatePresence>
