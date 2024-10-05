@@ -20,6 +20,7 @@ import Login from './components/Login';
 import OpenProject from './components/OpenProject';
 import WindowsShutdown from './components/WindowsShutdown';
 import BgSetting from './components/BgSetting';
+import Run from './components/Run';
 import axios from 'axios';
 import { StyleHide, imageMapping, 
   handleDoubleClickEnterLink,handleDoubleTapEnterMobile,
@@ -115,6 +116,9 @@ function App() {
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
 
   const [BgSettingExpand, setBgSettingExpand] = useState(
+    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
+
+  const [RunExpand, setRunExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
 
   function projectname() {
@@ -258,6 +262,7 @@ useEffect(() => { // touch support device === true
     windowsShutDownAnimation, setWindowsShutDownAnimation,
     BgSettingExpand, setBgSettingExpand,
     themeDragBar, setThemeDragBar,
+    RunExpand, setRunExpand,
   }
 
   // show login page
@@ -292,6 +297,7 @@ useEffect(() => { // touch support device === true
         <MsnFolder/>
         <OpenProject/>
         <BgSetting/>
+        <Run/>
         <Dragdrop/>
         <Footer/>
       </UserContext.Provider>
@@ -387,6 +393,7 @@ function ObjectState() {
           { name: 'MSN', setter: setMSNExpand, usestate: MSNExpand },
           { name: 'Internet', setter: setOpenProjectExpand, usestate: openProjectExpand },
           { name: 'Settings', setter: setBgSettingExpand, usestate: BgSettingExpand },
+          { name: 'Run', setter: setRunExpand, usestate: RunExpand },
           
         ];
 }
@@ -458,6 +465,8 @@ function handleShow(name) {
   });
   if(tap.includes(name)) return;
 
+  if(name === 'Run')return; // not showing run on tap
+
   setTap(prevTap => [...prevTap, name]);
   setIconState(prevIcons => prevIcons.map(icon => ({...icon, focus: false})));
 
@@ -493,7 +502,7 @@ function handleShowMobile(name) {
       return;
     }
   });
-
+  
   if(tap.includes(name)) return;
 
   setTap(prevTap => [...prevTap, name]);
@@ -501,6 +510,7 @@ function handleShowMobile(name) {
   }
   setLastTapTime(now)
 }
+
 
     // useEffect(() => { // open Bio Folder when app starts
     //   handleShow('My Bio')

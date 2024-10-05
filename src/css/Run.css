@@ -1,0 +1,213 @@
+/* ------------ Folders ---------------- */
+
+.folder_folder_run {
+    display: none;
+    position: fixed;
+    width: 345px;
+    height: 165px;
+    background: #c5c4c4;
+    border: 2px solid white;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    outline: 1px solid white;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+   
+
+/* @media screen and (max-width: 450px) {
+    .folder_folder_run {
+    
+    }
+} */
+
+.folder_folder_run .folder_dragbar_run {
+   display: flex;
+   position: relative;
+   height: 20px;
+   width: 100%;
+   margin-bottom: 1px;
+   align-items: center;
+   justify-content: space-between;
+   -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.folder_barname_run span {
+    position: relative;
+    font-size: 13px;
+    color: white;
+    margin-left: 5px;
+    
+}
+
+.folder_folder_run .folder_barbtn_run {
+    display: flex;
+    position: relative;
+    margin-right: 4px;
+    gap: 2px;
+}
+
+.folder_barbtn_run div {
+    width: 15px;
+    height: 15px;
+    background: #c9c9c9;
+    font-weight: bold;
+    border: 1px solid black;
+    border-top-color: rgb(198, 198, 198);border-left-color: rgb(198, 198, 198);
+    box-shadow: inset 1px 1px #ffffff, 1px 1px #000000dd;
+    cursor: default;
+}
+
+.folder_barbtn_run div:not(.expand):active {
+    border-top-color: black;border-left-color: black;
+    border-bottom-color: white;border-right-color: white;
+}
+
+.folder_barbtn_run .x {
+    position: relative;
+    text-align: center;
+    font-size: 16px;
+    bottom: 6px;
+}
+
+/* support only safari */
+/* @supports (-webkit-touch-callout: none) {
+    .folder_barbtn_run .x {
+        left: 1px;
+    }
+} */
+
+.run_top_container {
+    display: flex;
+    position: relative;
+    width: 90%;
+    height: 40px;
+    gap: 10px;
+    margin-top: 1.2rem;
+    margin-left: .5rem;
+
+}
+
+.run_top_container img {
+    position: relative;
+    width: 35px;
+    height: 35px;
+}
+
+.run_top_container p {
+    font-size: 11px;
+}
+
+.run_middle_container {
+    display: flex;
+    position: relative;
+    margin-left: .5rem;
+    margin-top: .5rem;
+    gap: 17px;
+}
+
+.run_middle_container p {
+    position: relative;
+    left: 3px;
+    top: 1px;
+    font-size: 12px;
+    color: black;
+}
+
+.run_middle_container p::before {
+    content: '_';
+    position: absolute;
+}
+
+.run_middle_container input {
+    position: relative;
+    width: 80%;
+    height: 20px;
+    border: 2px solid white;
+    border-top-color: black;
+    border-left-color: black;
+    border-radius: 0;
+    background: white;
+    font-size: 11px;
+}
+
+.run_middle_container div {
+    display: grid;
+    place-items: center;
+    position: absolute;
+    width: 16px;
+    height: 16.5px;
+    top: 2px;
+    right: 1.33rem;
+    border: 2px solid rgb(248, 243, 243);
+    border-bottom-color: black;
+    border-right-color: black;
+    background: #c5c4c4;
+}
+
+.run_middle_container div:active {
+    border: 1px solid black;;
+}
+
+.run_middle_container div .arrow_down {
+    position: relative;
+    bottom: 0px;
+    font-size: 8px;
+    color: black;
+}
+
+.run_btn_container {
+    display: flex;
+    position: relative;
+    justify-content: flex-end;
+    gap: 7px;
+    margin-top: 1.2rem;
+    margin-right: 1.2rem;
+}
+
+.run_btn_container div {
+    display: grid;
+    place-items: center;
+    position: relative;
+    width: 68px;
+    height: 22px;
+    border: 2px solid white;
+    border-right-color: black;
+    border-bottom-color: black;
+    font-size: 11px;
+    text-align: center;
+    cursor: default;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.run_btn_container div:active {
+    border: 2px solid black;
+    border-right-color: white;
+    border-bottom-color: white;
+}
+
+.run_btn_container div p {
+    position: relative;
+    top: 1px;
+}
+
+.run_dropdown_box {
+    position: absolute;
+    left: 3.4rem;
+    width: 268px;
+    height: 30px;
+    border: 1px solid black;
+    background: white;
+    z-index: 2;
+}
+
+
+
+

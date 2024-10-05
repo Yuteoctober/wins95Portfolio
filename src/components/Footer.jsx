@@ -92,7 +92,8 @@ export default function Footer() {
             className: "run",
             imgSrc: run,
             imgAlt: "run",
-            spanText: "Run..."
+            spanText: "Run...",
+            onClick: () => handleShow('Run')
         },
         {
             className: "groove" 
