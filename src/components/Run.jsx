@@ -16,14 +16,11 @@ function Run() {
     themeDragBar,
     RunExpand, setRunExpand,
     lastTapTime, setLastTapTime,
-    StyleHide,
     isTouchDevice,
-    handleShowMobile,
     handleShow,
     handleSetFocusItemTrue,
     inlineStyleExpand,
     inlineStyle,
-    iconFocusIcon,
     deleteTap,
    } = useContext(UseContext);
 

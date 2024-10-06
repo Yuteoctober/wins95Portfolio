@@ -450,7 +450,9 @@ function handleShow(name) {
     const itemName = item.name.toLowerCase().trim();
     
     if(itemName === lowerCaseName) {
-      item.setter(prev => ({...prev, show: true, focusItem: true, hide: false}));
+      setTimeout(() => {
+        item.setter(prev => ({...prev, show: true, focusItem: true, hide: false}));
+      }, 100);
       if(lowerCaseName === 'mail') clippySendemailfunction();
       if(lowerCaseName === 'winamp') clippySongFunction();
       if(lowerCaseName === 'msn') clippyUsernameFunction();
@@ -488,7 +490,11 @@ function handleShowMobile(name) {
     
     
     if(itemName === lowerCaseName) {
-      item.setter(prev => ({...prev, show: true, focusItem: true, hide: false}));
+
+      setTimeout(() => {
+        item.setter(prev => ({...prev, show: true, focusItem: true, hide: false}));
+      }, 100);
+      
       if(lowerCaseName === 'mail') clippySendemailfunction();
       if(lowerCaseName === 'winamp') clippySongFunction();
       if(lowerCaseName === 'msn') clippyUsernameFunction();
