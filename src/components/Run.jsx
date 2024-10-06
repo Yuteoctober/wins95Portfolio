@@ -1,3 +1,4 @@
+import ErrorBtn from './ErrorBtn';
 import UseContext from '../Context'
 import { useContext, useState } from "react";
 import Draggable from 'react-draggable'
@@ -7,9 +8,11 @@ import '../css/Run.css'
 import { BsCaretDownFill } from "react-icons/bs";
 
 
+
 function Run() {
 
   const { 
+    ObjectState,
     themeDragBar,
     RunExpand, setRunExpand,
     lastTapTime, setLastTapTime,
@@ -24,7 +27,48 @@ function Run() {
     deleteTap,
    } = useContext(UseContext);
 
+
+   const [ErrorPopup, setErrorPopup] = useState(false)
    const [runItemBox, setRunItemBox] = useState(false)
+   const [RunInputVal, setRunInputVal] = useState('')
+
+   const cannotOpenFile = ['internet', 'type', 'run'] // file that should not be open by RUN command
+
+   function handleRunOpenFile(ObjectState, name) {
+    const object = ObjectState();
+    const lowerCaseName = name.toLowerCase();
+
+    const matchedItem = object.find(item => item.name.toLowerCase() === lowerCaseName);
+
+    if (!matchedItem) {
+        deleteTap('Run')
+        setErrorPopup(true)
+        return;
+    }
+
+    if (cannotOpenFile.includes(lowerCaseName)) return;
+
+    if (lowerCaseName === 'resume') {
+        setTimeout(() => {
+            handleShow('ResumeFile'); 
+        }, 100);
+        return;
+        
+    }
+    setTimeout(() => {
+        handleShow(matchedItem.name);
+    }, 100);
+    
+}
+
+    const listItems = ObjectState().map((item) => {
+        const lowerCaseName = item.name.toLowerCase(); 
+        if (!cannotOpenFile.includes(lowerCaseName) && lowerCaseName !== 'resumefile') {
+        return item.name; 
+        }
+        return null;
+    }).filter(Boolean);
+
 
       function handleDragStop(event, data) {
         const positionX = data.x 
@@ -55,9 +99,26 @@ function Run() {
     setLastTapTime(now);
 }
 
+    const textError = (
+        <>
+            Cannot find the file '{RunInputVal}' (or one of its component). 
+            Make sure the path and filename are correct and that all required 
+            libraries are available.
+        </>
+    ) 
+
 
   return (
     <>
+    {ErrorPopup && (
+        <ErrorBtn
+            themeDragBar={themeDragBar}
+            stateVal={RunInputVal}
+            setStateVal={setErrorPopup}
+            text={textError}
+            runOpenFuction={() => handleShow('Run')}
+        />  
+    )}
       <Draggable
         axis="both" 
         handle={'.folder_dragbar_run'}
@@ -76,6 +137,7 @@ function Run() {
             onClick={(e) => {
               e.stopPropagation();
               handleSetFocusItemTrue('Run');
+              setRunItemBox(false)
             }}
             style={ RunExpand.expand ? inlineStyleExpand('Run') : inlineStyle('Run')}>
           <div className="folder_dragbar_run"
@@ -91,10 +153,12 @@ function Run() {
                 <p className='x'
                  onClick={!isTouchDevice ? () => {
                   deleteTap('Run')
+                  setRunInputVal('')
                  }: undefined
                 }
                 onTouchEnd={() => {
                   deleteTap('Run')
+                  setRunInputVal('')
               }}
               >x</p>
               </div>
@@ -110,24 +174,52 @@ function Run() {
           </div>
           <div className="run_middle_container">
             <p>Open:</p>
-            <input maxLength={35}/>
+            <input maxLength={35} 
+                onChange={(e) => setRunInputVal(e.target.value)}
+                value={RunInputVal}
+            />
             <div 
-                onClick={() => setRunItemBox(!runItemBox)}
+                onClick={(e) => {
+                    e.stopPropagation()
+                    setRunItemBox(!runItemBox)}}
             >
                 <BsCaretDownFill className='arrow_down'/>
             </div>
           </div>
           {runItemBox && (
             <div className="run_dropdown_box">
-
+                {listItems.map((item, index) => (
+                    <p key={index}
+                        onClick={(e) => {
+                            e.stopPropagation()
+                            setRunInputVal(item)
+                            setRunItemBox(false)
+                        }}
+                    >
+                        {item}
+                    </p>
+                ))}
             </div>
           )}
           
           <div className="run_btn_container">
-            <div>
+            <div
+                style={RunInputVal.length < 1 ? {
+                    pointerEvents: 'none',
+                    color: 'grey'
+                }:{}}
+                onClick={() => {
+                    handleRunOpenFile(ObjectState, RunInputVal)
+                }}
+            >
                 <p>OK</p>
             </div>
-            <div>
+            <div 
+                onClick={() => {
+                    deleteTap('Run')
+                    setRunInputVal('')
+                }}
+            >
                 <p>Cancel</p>
             </div>
             <div>

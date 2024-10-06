@@ -42,7 +42,9 @@ Functionality (imitaing windows 95 functionality)
     - Theme will also be changed along with wallpapaer
 
   - Added Run command 
-    - Created Run command window (implementing the function soon...)
+    - Created Run command windows 10/04/2024
+    - Now Run command is fully functioned
+    - Added Error handle when type in the wrong name
 
 Library used:
   - React Draggable => drag and drop functionality

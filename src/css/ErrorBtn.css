@@ -1,0 +1,120 @@
+.error_container {
+    position: fixed;
+    max-width: 550px;
+    min-width: 405px;
+    width: 60%;
+    left: 50%;
+    top: 40%;
+    transform: translateX(-50%);
+    background: #c5c4c4;
+    border: 2px solid white;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    outline: 1px solid white;
+    z-index: 9999999999999;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding-bottom: 10px;
+}
+
+@media screen and (width <= 500px) {
+    .error_container {
+        width: 80%;
+        min-width: 0;
+    }
+}
+
+.error_container .bar_tap {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 20px;
+    margin-bottom: 3px;
+}
+
+.error_container .bar_tap p {
+    font-size: 13px;
+    padding-left: 4px;
+    color: white;
+}
+
+.error_container .bar_tap > div > p  {
+    position: relative;
+    font-size: 14px;
+    bottom: 0.5px;
+    color: black;
+}
+
+.error_container .bar_tap div {
+    display: flex;
+    align-items: center;
+    width: 15px;
+    height: 15px;
+    background: #c9c9c9;
+    font-weight: bold;
+    border: 1px solid black;
+    border-top-color: rgb(198, 198, 198);border-left-color: rgb(198, 198, 198);
+    box-shadow: inset 1px 1px #ffffff, 1px 1px #000000dd;
+    cursor: default;
+    margin-right: 1px;
+    
+}
+
+.error_container .bar_tap div:active {
+    border-top-color: black;border-left-color: black;
+    border-bottom-color: white;border-right-color: white;
+}
+
+.error_container .error_message_container {
+    display: flex;
+    position: relative;
+    width: 100%;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: .1rem;
+}
+
+.error_container .error_message_container img {
+    width: 70px;
+}
+
+.error_container .error_message_container p {
+    font-size: 11px;
+    padding-right: 8px;
+}
+
+.error_container .error_ok_btn {
+    display: grid;
+    place-items: center;
+    position: relative;
+    width: 70px;
+    height: 22px;
+    text-align: center;
+    margin: 0 auto;
+    border: 2px solid white;
+    border-right-color: black;
+    border-bottom-color: black;
+}
+
+@media screen and (width <= 500px) {
+    .error_container .error_ok_btn {
+        margin-top: .3rem;
+    }
+}
+
+.error_container .error_ok_btn:active {
+    border: 2px solid black;
+    border-right-color: white;
+    border-bottom-color: white;
+}
+
+.error_container .error_ok_btn p {
+    position: relative;
+    top: 1px;
+    font-size: 10px;
+}
+

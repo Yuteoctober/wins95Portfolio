@@ -47,6 +47,7 @@ export function imageMapping (name) {
   switch(name) {
 
     case 'MyBio':
+    case 'Mybio':
     case 'My Bio':
       return MyBio;
 
