@@ -44,9 +44,9 @@
 
 .error_container .bar_tap > div > p  {
     position: relative;
-    font-size: 14px;
-    bottom: 0.5px;
+    font-size: 15px;
     color: black;
+    text-align: center;
 }
 
 .error_container .bar_tap div {
