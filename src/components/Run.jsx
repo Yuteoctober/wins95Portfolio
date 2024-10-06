@@ -179,6 +179,11 @@ function Run() {
             <input maxLength={35} 
                 onChange={(e) => setRunInputVal(e.target.value)}
                 value={RunInputVal}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                      handleRunOpenFile(ObjectState, RunInputVal)
+                  }
+              }}
             />
             <div 
                 onClick={(e) => {
@@ -222,6 +227,7 @@ function Run() {
                     setRunInputVal('')
                     setRunItemBox(false)
                 }}
+
             >
                 <p>Cancel</p>
             </div>
