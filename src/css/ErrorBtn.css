@@ -49,6 +49,14 @@
     text-align: center;
 }
 
+@supports (-webkit-touch-callout: none) {
+    .error_container .bar_tap > div > p {
+        bottom: 1px;
+        right: 0.5px;
+    }
+}
+
+
 .error_container .bar_tap div {
     display: flex;
     align-items: center;
