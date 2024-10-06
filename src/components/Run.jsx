@@ -47,7 +47,10 @@ function Run() {
 
     if (lowerCaseName === 'resume') {
         setTimeout(() => {
-            handleShow('ResumeFile'); 
+          handleShow('ResumeFile'); 
+          deleteTap('Run')
+          setRunInputVal('')
+          setRunItemBox(false)
         }, 100);
         return;
         
