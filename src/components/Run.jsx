@@ -54,6 +54,9 @@ function Run() {
     }
     setTimeout(() => {
         handleShow(matchedItem.name);
+        deleteTap('Run')
+        setRunInputVal('')
+        setRunItemBox(false)
     }, 100);
     
 }
