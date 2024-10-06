@@ -130,8 +130,8 @@ function Run() {
         disabled={RunExpand.expand}
         bounds={{top: 0}}
         defaultPosition={{ 
-            x: 4,
-            y: window.innerHeight - 208,
+            x: 5,
+            y: window.innerHeight - 207,
         }}
         onStop={(event, data) => handleDragStop(event, data)}
         onStart={() => handleSetFocusItemTrue('Run')}
