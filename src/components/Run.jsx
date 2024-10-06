@@ -154,11 +154,13 @@ function Run() {
                  onClick={!isTouchDevice ? () => {
                   deleteTap('Run')
                   setRunInputVal('')
+                  setRunItemBox(false)
                  }: undefined
                 }
                 onTouchEnd={() => {
                   deleteTap('Run')
                   setRunInputVal('')
+                  setRunItemBox(false)
               }}
               >x</p>
               </div>
@@ -218,6 +220,7 @@ function Run() {
                 onClick={() => {
                     deleteTap('Run')
                     setRunInputVal('')
+                    setRunItemBox(false)
                 }}
             >
                 <p>Cancel</p>
