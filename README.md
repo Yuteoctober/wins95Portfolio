@@ -44,7 +44,7 @@ Functionality (imitaing windows 95 functionality)
   - Added Run command 
     - Created Run command windows 10/04/2024
     - Now Run command is fully functioned
-    - Added Error handle when type in the wrong name
+    - Added Error handling when type in the wrong file name
 
 Library used:
   - React Draggable => drag and drop functionality
