@@ -321,6 +321,7 @@
 }
 
 .wallpaper_container ul {
+    font-size: 12px;
     padding-left: 4px;
     cursor: default;
 }
