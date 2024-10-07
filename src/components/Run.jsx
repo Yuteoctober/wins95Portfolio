@@ -1,6 +1,6 @@
 import ErrorBtn from './ErrorBtn';
 import UseContext from '../Context'
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
 import RunIcon from '../assets/run.png'
@@ -24,7 +24,7 @@ function Run() {
     deleteTap,
    } = useContext(UseContext);
 
-
+   const [reMountRun, setReMountRun] = useState(0)
    const [ErrorPopup, setErrorPopup] = useState(false)
    const [runItemBox, setRunItemBox] = useState(false)
    const [RunInputVal, setRunInputVal] = useState('')
@@ -36,7 +36,7 @@ function Run() {
     const lowerCaseName = name.toLowerCase();
 
     const matchedItem = object.find(item => item.name.toLowerCase() === lowerCaseName);
-
+    
     if (!matchedItem) {
         deleteTap('Run')
         setErrorPopup(true)
@@ -110,6 +110,12 @@ function Run() {
         </>
     ) 
 
+    useEffect(() => { // make Run go back to the original position by remounting draggable by changing key
+      if(!RunExpand.show && !ErrorPopup) {
+        setReMountRun(prev => prev + 1)
+      }
+      
+    },[RunExpand.show])
 
   return (
     <>
@@ -135,6 +141,7 @@ function Run() {
         }}
         onStop={(event, data) => handleDragStop(event, data)}
         onStart={() => handleSetFocusItemTrue('Run')}
+        key={reMountRun}
       >
         <div className='folder_folder_run' 
             onClick={(e) => {
