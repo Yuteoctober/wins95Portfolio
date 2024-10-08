@@ -262,7 +262,7 @@ body {
     display: flex;
     position: absolute;
     height: 73%;
-    width: 74px;
+    width: 82px;
     justify-content: center;
     align-items: center;
     right: 4px;
@@ -271,14 +271,18 @@ body {
 }
 
 .footer .time img {
-    width: 15px;
+    position: relative;
+    width: 35px;
+    right: 1px;
 }
 
 .footer .time p {
     position: relative;
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: .7px;
-    top: 1px;
+    top: 2px;
+    right: 8px;
+    white-space: nowrap;
 }
 
 .footer .start_popup {
@@ -383,7 +387,7 @@ body {
 
 .tap_container {
     display: flex;
-    max-width: calc(100svw - 157px);
+    max-width: calc(100svw - 163px);
     padding-right: 2px;
     justify-content: flex-start;
     align-items: center;

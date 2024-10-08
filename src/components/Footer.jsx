@@ -6,7 +6,7 @@ import run from '../assets/run.png';
 import github from '../assets/github.png';
 import linked from '../assets/linkedin.png';
 import sidebar from '../assets/sidebar95.png';
-import speaker from '../assets/speaker.png';
+import display from '../assets/display.png';
 import project from '../assets/regFolder.png';
 import resume from '../assets/folder.png';
 import shutdownicon from '../assets/shutdownicon.png';
@@ -299,7 +299,7 @@ export default function Footer() {
             </div>
 
             <div className="time">
-                <img src={speaker} alt="speaker" />
+                <img src={display} alt="display" />
                 <p>{time}</p>
             </div>
             {startActive && (
