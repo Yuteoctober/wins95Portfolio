@@ -12,6 +12,9 @@ import { BsCaretDownFill } from "react-icons/bs";
 function Run() {
 
   const { 
+    remountRunPosition,
+    ErrorPopup, setErrorPopup,
+    reMountRun,
     ObjectState,
     themeDragBar,
     RunExpand, setRunExpand,
@@ -24,8 +27,6 @@ function Run() {
     deleteTap,
    } = useContext(UseContext);
 
-   const [reMountRun, setReMountRun] = useState(0)
-   const [ErrorPopup, setErrorPopup] = useState(false)
    const [runItemBox, setRunItemBox] = useState(false)
    const [RunInputVal, setRunInputVal] = useState('')
 
@@ -110,10 +111,8 @@ function Run() {
         </>
     ) 
 
-    useEffect(() => { // make Run go back to the original position by remounting draggable by changing key
-      if(!RunExpand.show && !ErrorPopup) {
-        setReMountRun(prev => prev + 1)
-      }
+    useEffect(() => { 
+      remountRunPosition()
       
     },[RunExpand.show])
 

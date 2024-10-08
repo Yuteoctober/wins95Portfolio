@@ -18,6 +18,7 @@ export default function Footer() {
     const startRef = useRef(null);
 
     const { 
+        remountRunPosition,
         startActive, setStartActive,
         time, setTime,
         tap,
@@ -93,7 +94,9 @@ export default function Footer() {
             imgSrc: run,
             imgAlt: "run",
             spanText: "Run...",
-            onClick: () => handleShow('Run')
+            onClick: () => {
+                handleShow('Run')
+                remountRunPosition()}
         },
         {
             className: "groove" 
@@ -257,6 +260,8 @@ export default function Footer() {
             return;
         }
     }, [clippySendemail, clippySong, clippyUsername]);
+
+    
 
 
     return (

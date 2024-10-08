@@ -28,6 +28,8 @@ import { StyleHide, imageMapping,
  } from './components/function/AppFunctions';
 
 function App() {
+  const [reMountRun, setReMountRun] = useState(0)
+  const [ErrorPopup, setErrorPopup] = useState(false)
   const [themeDragBar, setThemeDragBar] = useState(() => localStorage.getItem('barcolor') || '#14045c')
   const [login, setLogin] = useState(true)
   const [windowsShutDownAnimation, setWindowsShutDownAnimation] = useState(false)
@@ -119,7 +121,7 @@ function App() {
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
 
   const [RunExpand, setRunExpand] = useState(
-    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
+    {expand: false, show: false, hide: false, focusItem: true, x: 5, y: window.innerHeight - 207,});
 
   function projectname() {
     if(projectUrl.length < 1) return;
@@ -263,7 +265,12 @@ useEffect(() => { // touch support device === true
     BgSettingExpand, setBgSettingExpand,
     themeDragBar, setThemeDragBar,
     RunExpand, setRunExpand,
+    reMountRun, setReMountRun,
+    ErrorPopup, setErrorPopup,
+    remountRunPosition,
+
   }
+
 
   // show login page
   if(login) {
@@ -311,6 +318,12 @@ useEffect(() => { // touch support device === true
     // function ChatComponent() { //play sound in msn
     //     msnSound.current.play();
     // }
+
+    function remountRunPosition() { // make Run go back to the original position by remounting draggable by changing key
+      if(!RunExpand.show && !ErrorPopup) {
+        setReMountRun(prev => prev + 1)
+      }
+    }
 
     function handleMouseSeen() { //check if user is on the frontend
       setDetectMouse(true)
@@ -649,6 +662,7 @@ function handleShowMobile(name) {
         }));
       }
     });
+    
   }
 }
 
