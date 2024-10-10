@@ -323,7 +323,7 @@ function MineSweeper() {
                       className='mine_reveal'
                     />
                   ) : null}
-                  {gameOver && square.isFlagged && !squares[rowIdx][colIdx].hasBomb ? (
+                  {gameOver && square.isFlagged && !squares[rowIdx][colIdx].hasBomb && !square.isRevealed ? (
                     <span>🚩</span> 
                   ) : null}
                   </div>
