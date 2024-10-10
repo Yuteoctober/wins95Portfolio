@@ -75,34 +75,6 @@ function MyBioFolder() {
     </>
   );
 
-  ""
-
-   const bioText2 = {
-    General: [
-        {
-            text1: "Objective:",
-            text2: "Building pixel perfect web",
-            text3: "application.",
-            text4: "Register to:",
-            text5: "Yute S. Lilitprapun",
-            text6: "Front-end developer",
-            text7: "929-235-5371",
-            text8: "Location:",
-            text9: "80486",
-            text10: "16.0MB RAM",
-         
-        },
-        {
-            text1: technologyText,
-         
-      },
-        {
-            text1: "In my free time, I enjoy playing video games with friends. If I'm not in front of a computer, I will try to drag myself to the gym, try new restaurants, and embark on adventures like hiking. I used to play basketball in high school and want to find time for that again.",
-           
-        }
-    ]
-};
-
       function handleDragStop(event, data) {
         const positionX = data.x 
         const positionY = data.y
@@ -129,19 +101,6 @@ function MyBioFolder() {
     zIndex: '3'
   };
 
-  function textShow(index) {
-  const selectedText = bioText.General[generalTap ? bioText2 : technologyTap ? 1 : 2];
-  return selectedText[`text${index}`];
-}
-
-//   function textShow(index) {
-//   const selectedText = bioText.General[generalTap ? 0 : technologyTap ? 1 : 2];
-//   return selectedText[`text${index}`];
-// }
-  
-  
-  
-  
 
   return (
     <>
@@ -191,9 +150,14 @@ function MyBioFolder() {
 
                 <div>
                 <p className='x'
-                  onClick={!isTouchDevice ? () => deleteTap('My Bio')
-                  : undefined}
-                  onTouchEnd={() => deleteTap('My Bio')}
+                  onClick={!isTouchDevice ? () => {
+                    deleteTap('My Bio')
+                    handleBiotap('general')
+                  }: undefined}
+                  onTouchEnd={() => {
+                    deleteTap('My Bio')
+                    handleBiotap('general')
+                  }}
                 >x
                 </p>
               </div>
@@ -217,8 +181,6 @@ function MyBioFolder() {
             <div className="folder_content-bio"
               style={{ display: generalTap ? 'grid' : 'block' }}
             >
-              
-            {/* <h1 className='bio_h1'>{textShow(true)}</h1> */}
             <img
               alt="bioPC"
               className={generalTap ? 'bio_img' : 'bio_img_other'}
@@ -231,31 +193,32 @@ function MyBioFolder() {
                 {generalTap? bioText : technologyTap? technologyText : hobbyText}
               </p>   
             </div>
-           
-              {/* {generalTap && (
-                <div className='cv_container'>
-                  <a className='bio_cv' href="https://drive.google.com/file/d/1XNn23UA2L82P2__Ccuccl3WMdR2rHG57/view" target="_blank" rel="noreferrer" >
-                Click to view my CV.
-              </a>
-              <a className='bio_download' href="https://drive.usercontent.google.com/u/0/uc?id=1XNn23UA2L82P2__Ccuccl3WMdR2rHG57&export=download" target="_blank" rel="noreferrer" >
-                Download
-              </a>
-                </div>
-              )} */}
               
             </div>
             <div className="bio_btn_container">
               <div className="bio_btn_ok"
-              onClick={!isTouchDevice ? () => deleteTap('My Bio') : undefined}
-              onTouchEnd={() => deleteTap('My Bio')}
+              onClick={!isTouchDevice ? () => {
+                deleteTap('My Bio')
+                handleBiotap('general')
+              } : undefined}
+              onTouchEnd={() => {
+                deleteTap('My Bio')
+                handleBiotap('general')
+              }}
               >
                 <span>
                   OK
                 </span>
               </div>
               <div className="bio_btn_cancel"
-              onClick={!isTouchDevice ? () => deleteTap('My Bio') : undefined}
-              onTouchEnd={() => deleteTap('My Bio')}
+              onClick={!isTouchDevice ? () => {
+                deleteTap('My Bio')
+                handleBiotap('general')
+              } : undefined}
+              onTouchEnd={() => {
+                deleteTap('My Bio')
+                handleBiotap('general')
+              }}
               ><span>Cancel</span></div>
             </div>
           </div>
