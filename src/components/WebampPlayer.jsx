@@ -8,7 +8,7 @@ const WebampPlayer = () => {
     const [focus, setFocus] = useState(false)
 
     const { 
-        etRunExpand,
+        setRunExpand,
         setBgSettingExpand,
         setOpenProjectExpand,
         setMineSweeperExpand,
@@ -129,6 +129,7 @@ const WebampPlayer = () => {
                 setOpenProjectExpand(prev => ({...prev, focusItem: false}));
                 setBgSettingExpand(prev => ({...prev, focusItem: false}));
                 setResumeExpand(prev => ({...prev, focusItem: false}));
+                setRunExpand(prev => ({...prev, focusItem: false}));
             }
         };
     
