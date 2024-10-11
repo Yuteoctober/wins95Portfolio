@@ -29,6 +29,7 @@ import { StyleHide, imageMapping,
  } from './components/function/AppFunctions';
 
 function App() {
+  
   const [reMountRun, setReMountRun] = useState(0)
   const [ErrorPopup, setErrorPopup] = useState(false)
   const [themeDragBar, setThemeDragBar] = useState(() => localStorage.getItem('barcolor') || '#14045c')
@@ -105,12 +106,13 @@ function App() {
   const [openProjectExpand, setOpenProjectExpand] = useState(
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
   
-  const [iconState, setIconState] = useState(() =>
+  const [desktopIcon, setDesktopIcon] = useState(() =>
   iconInfo.map(icon => ({
     ...icon,
     focus: false, // blue bg on icon
   }))
 );
+
 
   const [MineSweeperExpand, setMineSweeperExpand] = useState(
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
@@ -204,7 +206,7 @@ useEffect(() => { // touch support device === true
   const contextValue = {
     startActive, setStartActive,
     time, setTime,
-    iconState, setIconState,
+    desktopIcon, setDesktopIcon,
     MybioExpand, setMybioExpand,
     tap, setTap,
     imageMapping,
@@ -418,7 +420,7 @@ function iconFocusIcon(name) { //if focus on one, the rest goes unfocus
   const allSetItems = ObjectState();
   const passedName = name.toLowerCase().split(' ').join('');
 
-  const updatedIconState = iconState.map(icon => {
+  const updateddesktopIcon = desktopIcon.map(icon => {
     const iconName = icon.name.toLowerCase().split(' ').join('');
     if ('focus' in icon) { // check if focus is in the object
       return { ...icon, focus: iconName === passedName }; //return new focus if matched
@@ -426,8 +428,9 @@ function iconFocusIcon(name) { //if focus on one, the rest goes unfocus
     return icon; // return original if none found
   });
 
-  setIconState(updatedIconState);
+  setDesktopIcon(updateddesktopIcon);
 
+  ///need to be fixed, this logic
   allSetItems.forEach(item => { // set same to folder to distinct from iconName
     const itemName = item.name.toLowerCase().split(' ').join('') + 'folder'
 
@@ -485,7 +488,7 @@ function handleShow(name) {
   if(name === 'Run')return; // not showing run on tap
 
   setTap(prevTap => [...prevTap, name]);
-  setIconState(prevIcons => prevIcons.map(icon => ({...icon, focus: false})));
+  setdesktopIcon(prevIcons => prevIcons.map(icon => ({...icon, focus: false})));
 
 }
 
@@ -527,7 +530,7 @@ function handleShowMobile(name) {
   if(tap.includes(name)) return;
 
   setTap(prevTap => [...prevTap, name]);
-  setIconState(prevIcons => prevIcons.map(icon => ({...icon, focus: false})));
+  setDesktopIcon(prevIcons => prevIcons.map(icon => ({...icon, focus: false})));
   }
   setLastTapTime(now)
 }
@@ -591,7 +594,7 @@ function handleShowMobile(name) {
       }
     });
 
-    setIconState(prevIcons => prevIcons.map(icon => ({
+    setDesktopIcon(prevIcons => prevIcons.map(icon => ({
       ...icon,
       focus: false
     })));

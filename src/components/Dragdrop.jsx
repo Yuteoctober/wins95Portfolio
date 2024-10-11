@@ -7,7 +7,7 @@ function Dragdrop() {
 
 
   const { 
-    iconState,
+    desktopIcon,
     imageMapping,
     handleShow, handleShowMobile,
     isTouchDevice,
@@ -32,7 +32,7 @@ function Dragdrop() {
   return (
     <section className='bound'>
       <div className='drag_drop'>
-            {iconState.map((icon => (
+            {desktopIcon.map((icon => (
                 <Draggable
                     key={icon.name}
                     cancel=''
@@ -61,7 +61,6 @@ function Dragdrop() {
                     </div>
                 </Draggable> 
             )))} 
-        {/* <WinampPlayer/> */}
       </div>
     </section>
   )
