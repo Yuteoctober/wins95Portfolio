@@ -11,6 +11,7 @@ import MailFolder from './components/MailFolder';
 import NftFolder from './components/NftFolder';
 import NoteFolder from './components/NoteFolder';
 import TypeFolder from './components/TypeFolder';
+import WebampPlayer from './components/WinampPlayer';
 import ResumeFile from './components/ResumeFile';
 import Shutdown from './components/Shutdown';
 import MineSweeper from './components/MineSweeper'
@@ -300,6 +301,7 @@ useEffect(() => { // touch support device === true
         <NftFolder/>
         <NoteFolder/>
         <ResumeFile/>
+        <WebampPlayer/>
         <MineSweeper/>
         <MsnFolder/>
         <OpenProject/>

@@ -527,39 +527,9 @@ body {
     position: absolute;
     margin-left: 12rem;
     z-index: -1;
-}
-
-#winamp-container {
-    display: grid;
-    position: relative;
-    place-items: center;
-    width: 51px;
-    height: 60px;
-    top: 7px;
-}
-
-#winamp-container img {
-    position: relative;
-    width: 33px;
-    bottom: 7px;
-    pointer-events: none;
-}
-
-.wimamp-focus_img {
-    filter: brightness(8%) sepia(10) saturate(50) hue-rotate(200deg);
-}
-
-.winamp_p_focus {
-    background: #091558;
-    border: 1px dotted white;
-}
-
-#winamp-container p {
-    position: relative;
-    width: fit-content;
-    font-size: 11px;
-    color: white;
-    bottom: 4px;
+    width: 100px;
+    height: 800px;
+    top: 1rem;
 }
 
 #webamp {
@@ -569,13 +539,6 @@ body {
     user-select: none;
 }
 
-.winamp_container_draggable {
-    position: absolute;
-    width: 275px;
-    height: 360px;
-    top: 2rem;
-    left: 5rem;
-}
 
 
 /* -------------- clippy ---------------- */

@@ -61,7 +61,7 @@ function Dragdrop() {
                     </div>
                 </Draggable> 
             )))} 
-        <WinampPlayer/>
+        {/* <WinampPlayer/> */}
       </div>
     </section>
   )
