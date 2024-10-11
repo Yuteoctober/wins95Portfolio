@@ -485,6 +485,7 @@ body {
     width: 50px;
     gap: 4px;
     margin-bottom: 1.5rem;
+    padding: 0px 2px;
     cursor: default;
     z-index: 2;
 }
@@ -517,9 +518,6 @@ body {
 .icon:active {
     opacity: 0.5;
 }
-
-
-
 
 /* ------------- WIMAMP ---------------- */
 
