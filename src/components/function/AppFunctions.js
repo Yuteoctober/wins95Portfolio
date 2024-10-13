@@ -8,6 +8,7 @@ import MineSweeper from '../../assets/minesweepericon.png'
 import MSN from '../../assets/msn.png'
 import ie from '../../assets/ie.png'
 import settings from '../../assets/setting.png'
+import file from '../../assets/file4download.png'
 
 
 
@@ -58,10 +59,11 @@ export function imageMapping (name) {
       return Mail;
 
     case 'Project':
-    case 'Nft':
-    case 'Note':
-    case 'Type':
       return Project;
+
+      case 'Nft':
+      case 'Note':
+        return file;
       
     case 'Winamp':
       return Winamp;
