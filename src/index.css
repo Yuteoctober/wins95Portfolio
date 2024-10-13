@@ -289,7 +289,7 @@ body {
     display: grid;
     grid-template-columns: .3fr 1.9fr;
     position: absolute;
-    width: 185px;
+    width: 180px;
     bottom: 2.4rem;
     left: 1px;
     background: #c5c2c2;
@@ -308,6 +308,13 @@ body {
         'sidebar groove'
         'sidebar shutdown';
 }
+
+@media screen and (width <= 500px){
+    .footer .start_popup {
+        width: 170px;
+    }  
+}
+
 
 .start_popup div {
     display: flex;
