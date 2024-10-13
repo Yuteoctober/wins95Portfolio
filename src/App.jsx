@@ -29,7 +29,13 @@ import { StyleHide, imageMapping,
  } from './components/function/AppFunctions';
 
 function App() {
-  
+  const [key, setKey] = useState(1)
+  const [dragging, setDragging] = useState(false)
+  const DesktopRef = useRef(null);
+  const ProjectFolderRef = useRef(null);
+  const ResumeFolderRef = useRef(null);
+  const [draggedIcon, setDraggedIcon] = useState(null); 
+  const [dropTargetFolder, setDropTargetFolder] = useState(null);
   const [reMountRun, setReMountRun] = useState(0)
   const [ErrorPopup, setErrorPopup] = useState(false)
   const [themeDragBar, setThemeDragBar] = useState(() => localStorage.getItem('barcolor') || '#14045c')
@@ -76,26 +82,24 @@ function App() {
     x: 0, y: 0, // position before fullscreen
   });
   const [ResumeExpand, setResumeExpand] = useState(
-  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, item_1Focus: false});
+  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0});
 
   const [ProjectExpand, setProjectExpand] = useState(
   {
     expand: false, show: false, hide: false, focusItem: true,  // focusItem is window, item_1focus - 5 is the icon
-    x: 0, y: 0, item_1iconFocus: false, item_2iconFocus: false, 
-    item_3iconFocus: false, 
-  });
+    x: 0, y: 0});
   
   const [MailExpand, setMailExpand] = useState(
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
 
   const [NftExpand, setNftExpand] = useState(
-  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, item_1Focus: false});
+  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0});
 
   const [NoteExpand, setNoteExpand] = useState(
-  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, item_1Focus: false});
+  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0});
 
   const [TypeExpand, setTypeExpand] = useState(
-  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, item_1Focus: false});
+  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0});
 
   const [WinampExpand, setWinampExpand] = useState(
   {focus: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
@@ -202,8 +206,66 @@ useEffect(() => { // touch support device === true
 
 }, []);
 
+const handleOnDrag = (name, ref) => () => {
+  setDragging(true)
+  const iconRef = ref
+  if (iconRef && ResumeFolderRef.current && ProjectFolderRef.current) {
+    const iconRect = iconRef.getBoundingClientRect();
+    const resumeFolderRect = ResumeFolderRef.current.getBoundingClientRect();
+    const projectFolderRect = ProjectFolderRef.current.getBoundingClientRect();
+    const desktopRect = DesktopRef.current.getBoundingClientRect();
+
+    const offset = 55;
+
+    // Check for intersection with the Resume folder
+    if (
+      iconRect.left < resumeFolderRect.right - offset &&
+      iconRect.right > resumeFolderRect.left + offset &&
+      iconRect.top < resumeFolderRect.bottom - offset &&
+      iconRect.bottom > resumeFolderRect.top + offset 
+    ) {
+      if(name === 'Resume') return;
+      setDropTargetFolder('Resume');
+    } 
+    // Check for intersection with the Project folder
+    else if (
+      iconRect.left < projectFolderRect.right - offset &&
+      iconRect.right > projectFolderRect.left + offset &&
+      iconRect.top < projectFolderRect.bottom - offset &&
+      iconRect.bottom > projectFolderRect.top + offset
+    ) {
+      if(name === 'Project') return;
+      setDropTargetFolder('Project');
+    } 
+    else if (
+      iconRect.left < desktopRect.right &&
+      iconRect.right > desktopRect.left &&
+      iconRect.top < desktopRect.bottom &&
+      iconRect.bottom > desktopRect.top 
+    ) {
+      setDropTargetFolder('Desktop');
+    } 
+    // Default case if not intersecting with any folder
+    else {
+      setDropTargetFolder('Desktop');
+    }
+  } else {
+    // Set to Desktop if refs are not set
+    setDropTargetFolder('Desktop');
+  }
   
+};
+
   const contextValue = {
+    key, setKey,
+    dragging, setDragging,
+    handleOnDrag,
+    DesktopRef,
+    ProjectFolderRef,
+    ResumeFolderRef,
+    handleDrop,
+    dropTargetFolder, setDropTargetFolder,
+    draggedIcon, setDraggedIcon,
     startActive, setStartActive,
     time, setTime,
     desktopIcon, setDesktopIcon,
@@ -300,8 +362,8 @@ useEffect(() => { // touch support device === true
         <ResumeFolder/>
         <ProjectFolder/>
         <MailFolder/>
-        <NftFolder/>
-        <NoteFolder/>
+        {/* <NftFolder/>
+        <NoteFolder/> */}
         <ResumeFile/>
         <WebampPlayer/>
         <MineSweeper/>
@@ -314,14 +376,28 @@ useEffect(() => { // touch support device === true
       </UserContext.Provider>
     </>
   )
+  
 
-    /* <iframe
-      style={{ width: '50%', height: '60%' }}
-      src="https://www.google.com/webhp?igu=1"
-    ></iframe> */
-    // function ChatComponent() { //play sound in msn
-    //     msnSound.current.play();
-    // }
+  function handleDrop(e, name, target) {
+    setDragging(false)
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (!target || name === target) return; // Exit if folder is empty or same as the icon
+
+    const droppedIcon = desktopIcon.find(icon => icon.name === name);
+    if(droppedIcon.folderId === target) return;
+    if (droppedIcon) {
+        setDesktopIcon(prevIcons => {
+            const updatedIcons = prevIcons.filter(icon => icon.name !== droppedIcon.name);
+            const newIcon = { ...droppedIcon, folderId: target };
+            setDropTargetFolder('')
+            setDraggedIcon('');
+            setKey(prev => prev + 1) //readjust folder icon by re-mount
+            return [...updatedIcons, newIcon];
+        });
+    }
+}
 
     function remountRunPosition() { // make Run go back to the original position by remounting draggable by changing key
       if(!RunExpand.show && !ErrorPopup) {
@@ -433,27 +509,7 @@ function iconFocusIcon(name) { //if focus on one, the rest goes unfocus
   ///need to be fixed, this logic
   allSetItems.forEach(item => { // set same to folder to distinct from iconName
     const itemName = item.name.toLowerCase().split(' ').join('') + 'folder'
-
-    if ('focus' in item.usestate) {
       item.setter(prev => ({ ...prev, focus: passedName === itemName }));
-    }
-
-    if ('item_1Focus' in item.usestate) {
-      item.setter(prev => ({ ...prev, item_1Focus: passedName === itemName}));
-    }
-
-    if ('item_1iconFocus' in item.usestate) {
-      item.setter(prev => ({ ...prev, item_1iconFocus: passedName === 'projectnftfolder' ? true : false }));
-    }
-
-    if ('item_2iconFocus' in item.usestate) {
-      item.setter(prev => ({ ...prev, item_2iconFocus: passedName === 'projectnotefolder' ? true : false }));
-    }
-
-    // Update item_3Focus properties for item.usestate
-    if ('item_3iconFocus' in item.usestate) {
-      item.setter(prev => ({ ...prev, item_3iconFocus: passedName === 'projecttypefolder' ? true : false }));
-    }
   });
 }
 
@@ -474,21 +530,24 @@ function handleShow(name) {
       if(lowerCaseName === 'mail') clippySendemailfunction();
       if(lowerCaseName === 'winamp') clippySongFunction();
       if(lowerCaseName === 'msn') clippyUsernameFunction();
+      if(lowerCaseName === 'nft') {
+        handleDoubleClickiframe('Nft', setOpenProjectExpand, setProjectUrl)
+        handleShow('Internet');
+      }
+      if(lowerCaseName === 'note') {
+        handleDoubleClickiframe('Note', setOpenProjectExpand, setProjectUrl)
+        handleShow('Internet');
+      }
     }
-    if(itemName !== lowerCaseName) {
-      item.setter(prev => ({...prev, focusItem: false}));
-    }
-    if(itemName === lowerCaseName) {
-      item.setter(prev => ({...prev, hide: false}));
-      return;
-    }
+    item.setter(prev => ({...prev,focusItem: false}));
+
   });
   if(tap.includes(name)) return;
 
-  if(name === 'Run')return; // not showing run on tap
+  if(name === 'Run' || name === 'Nft' || name === 'Note')return; // not showing run on tap
 
   setTap(prevTap => [...prevTap, name]);
-  setdesktopIcon(prevIcons => prevIcons.map(icon => ({...icon, focus: false})));
+  setDesktopIcon(prevIcons => prevIcons.map(icon => ({...icon, focus: false})));
 
 }
 
@@ -507,24 +566,26 @@ function handleShowMobile(name) {
     const itemName = item.name.toLowerCase().trim();
     
     
+    
     if(itemName === lowerCaseName) {
-
       setTimeout(() => {
         item.setter(prev => ({...prev, show: true, focusItem: true, hide: false}));
       }, 100);
-      
       if(lowerCaseName === 'mail') clippySendemailfunction();
       if(lowerCaseName === 'winamp') clippySongFunction();
       if(lowerCaseName === 'msn') clippyUsernameFunction();
+      if(lowerCaseName === 'nft') {
+        handleDoubleClickiframe('Nft', setOpenProjectExpand, setProjectUrl)
+        handleShow('Internet');
+      }
+      if(lowerCaseName === 'Note') {
+        handleDoubleClickiframe('Note', setOpenProjectExpand, setProjectUrl)
+        handleShow('Internet');
+      }
     }
-    if(itemName !== lowerCaseName) {
-      item.setter(prev => ({...prev, focusItem: false}));
-    }
-    
-    if(itemName === lowerCaseName) {
-      item.setter(prev => ({...prev, hide: false}));
-      return;
-    }
+
+    item.setter(prev => ({...prev,focusItem: false}));
+
   });
   
   if(tap.includes(name)) return;
@@ -535,10 +596,6 @@ function handleShowMobile(name) {
   setLastTapTime(now)
 }
 
-
-    // useEffect(() => { // open Bio Folder when app starts
-    //   handleShow('My Bio')
-    // },[])
 
   function handleClippyFunction(setterFunction, clearFunction, allSetters) {
     // Clear all existing timeouts

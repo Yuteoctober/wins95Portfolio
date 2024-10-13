@@ -1,32 +1,62 @@
-
 [
     {
         "name": "My Bio",
-        "pic": "MyBio"
+        "pic": "MyBio",
+        "folderId": "Desktop",
+        "size": 4
     },
     {
         "name": "Resume",
-        "pic": "Resume"
+        "pic": "Resume",
+        "folderId": "Desktop",
+        "size": 30
     },
     {
         "name": "Mail",
-        "pic": "Mail"
+        "pic": "Mail",
+        "folderId": "Desktop",
+        "size": 12
     },
     {
         "name": "Project",
-        "pic": "Project"
+        "pic": "Project",
+        "folderId": "Desktop",
+        "size": 2000
     },
     {
         "name": "Mine Sweeper",
-        "pic": "MineSweeper"
+        "pic": "MineSweeper",
+        "folderId": "Desktop",
+        "size": 250
     },
     {
         "name": "MSN",
-        "pic": "MSN"
+        "pic": "MSN",
+        "folderId": "Desktop",
+        "size": 1500
     },
     {
         "name": "Winamp",
-        "pic": "Winamp"
+        "pic": "Winamp",
+        "folderId": "Desktop",
+        "size": 4300
+    },
+    {
+        "name": "ResumeFile",
+        "pic": "ResumeFile",
+        "folderId": "Resume",
+        "size": 28
+    },
+    {
+        "name": "Nft",
+        "pic": "Nft",
+        "folderId": "Project",
+        "size": 15
+    },
+    {
+        "name": "Note",
+        "pic": "Note",
+        "folderId": "Project",
+        "size": 10
     }
-   
 ]

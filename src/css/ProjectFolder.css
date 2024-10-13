@@ -13,7 +13,11 @@
     border-bottom: 1px solid black;
     outline: 1px solid white;
     overflow: hidden;
-   resize: both;
+    resize: both;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 @media screen and (max-width: 450px) {
@@ -156,15 +160,18 @@
     margin-top: 2px;
     background: rgb(255, 255, 255);
     overflow: hidden;
-    padding-left: .4rem;
-    padding-top: .2rem;
 }
 
-.folder_content-project .item_container-project {
+.parent_container-project {
+    height: calc(100%);
+    overflow-y: auto;
+    padding: 10px 5px;
+}
+
+.parent_container-project .item_container-project {
     display: flex;
-    position: relative;
-    gap: .5rem;
-    top: .9rem;
+    flex-wrap: wrap;
+    gap: 5px;
 
 }
 
@@ -190,10 +197,8 @@
     filter: brightness(8%) sepia(10) saturate(50) hue-rotate(200deg);
 }
 
-.item_container-project .item_1-project p {
-    position: relative;
-    font-size: 11px;
-
+.item_container-project .p_normal {
+    color: black!important;
 }
 
 .item_1_p_focus-project {

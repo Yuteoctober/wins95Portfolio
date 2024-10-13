@@ -1,69 +1,81 @@
-import { useEffect, useContext } from 'react'
-import UseContext from '../Context'
-import Draggable from 'react-draggable'
-import WinampPlayer from './WinampPlayer';
+import { useEffect, useContext, useRef } from 'react';
+import UseContext from '../Context';
+import Draggable from 'react-draggable';
 
 function Dragdrop() {
-
-
-  const { 
+  const {
+    DesktopRef,
+    handleOnDrag,
+    ProjectFolderRef,
+    ResumeFolderRef,
+    isDragging, setIsDragging,
+    dropTargetFolder, setDropTargetFolder,
+    draggedIcon, setDraggedIcon,
+    handleDrop,
     desktopIcon,
     imageMapping,
     handleShow, handleShowMobile,
     isTouchDevice,
     iconFocusIcon,
+    setStartActive
   } = useContext(UseContext);
 
-  const handleBodyClick = (event) => {
-    if (!event.target.closest('.icon')) {
-      iconFocusIcon('')
-    }
-  };
+  // Create an array of refs for each icon
+  const iconRefs = useRef([]);
+
+  
   
 
-  useEffect(() => {
-    document.body.addEventListener('click', handleBodyClick);
-    return () => {
-      document.body.removeEventListener('click', handleBodyClick);
-    };
-  }, []);
-
-
   return (
-    <section className='bound'>
+    <section className='bound' 
+    ref={DesktopRef}
+    onClick={(e) => {
+      if (!isDragging) {
+        iconFocusIcon('');
+        setStartActive(false)
+      }
+      e.preventDefault();
+      e.stopPropagation();
+    }}>
       <div className='drag_drop'>
-            {desktopIcon.map((icon => (
-                <Draggable
-                    key={icon.name}
-                    cancel=''
-                    axis="both" 
-                    handle={'.icon'}
-                    grid={[10, 10]}
-                    scale={1}
-                    bounds='.bound'
-                >
-                    <div className='icon' key={icon.name}
-                      onDoubleClick={() => handleShow(icon.name)}                      
-                      onClick={ !isTouchDevice ? (e) => {
-                        iconFocusIcon(icon.name);
-                        e.stopPropagation()
-                      } : undefined
-                    }           
-                      onTouchStart={() => {
-                        handleShowMobile(icon.name);
-                        iconFocusIcon(icon.name);
-                      }}
-                    >
-                    <img src={imageMapping(icon.pic)} alt='#' className={icon.focus? 'img_focus' : ''}/>
-                        <p className={icon.focus? 'p_focus' : ''} >
-                          {icon.name}
-                        </p>
-                    </div>
-                </Draggable> 
-            )))} 
+        {desktopIcon.filter(icon => icon.folderId === 'Desktop').map((icon) => (
+          <Draggable
+            key={icon.name}
+            grid={[10, 10]}
+            axis="both" 
+            handle=".icon" 
+            scale={1}
+            bounds='.bound'
+            onStart={() => setDropTargetFolder('')}
+            onDrag={handleOnDrag(icon.name, iconRefs.current[icon.name])}
+            onStop={(e) => {
+              handleDrop(e, icon.name, dropTargetFolder);
+            }}
+          >
+            <div
+              className='icon'
+              ref={(el) => iconRefs.current[icon.name] = el} 
+              onDoubleClick={() => handleShow(icon.name)}                      
+              onClick={!isTouchDevice ? (e) => {
+                iconFocusIcon(icon.name);
+                e.stopPropagation();
+              } : undefined}           
+              onTouchStart={() => {
+                handleShowMobile(icon.name);
+                iconFocusIcon(icon.name);
+              }}
+              
+            >
+              <img src={imageMapping(icon.pic)} alt={icon.name} className={icon.focus ? 'img_focus' : ''} />
+              <p className={icon.focus ? 'p_focus' : ''}>
+                {icon.name}
+              </p>
+            </div>
+          </Draggable> 
+        ))} 
       </div>
     </section>
-  )
+  );
 }
 
-export default Dragdrop
+export default Dragdrop;

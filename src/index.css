@@ -481,16 +481,17 @@ body {
     display: grid;
     position: relative;
     place-items: center;
-    height: 63px;
-    width: 50px;
+    height: 70px;
+    width: 65px;
     gap: 4px;
-    margin-bottom: 1.5rem;
-    padding: 0px 2px;
+    margin-bottom: .9rem;
     cursor: default;
     z-index: 2;
+
 }
 
 .icon img {
+    position: relative;
     width: 35px;
     pointer-events: none;
 }
@@ -508,6 +509,7 @@ body {
     border: 1px dotted rgba(255, 255, 255, 0);
     text-align: center;
     line-height: 11px;
+
 }
 
 .icon .p_focus {
@@ -516,8 +518,11 @@ body {
 }
 
 .icon:active {
-    opacity: 0.5;
+    opacity: 0.7;
+    z-index: 9999999;
+    /* background: #00000075; */
 }
+
 
 /* ------------- WIMAMP ---------------- */
 
