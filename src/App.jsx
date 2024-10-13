@@ -110,12 +110,16 @@ function App() {
   const [openProjectExpand, setOpenProjectExpand] = useState(
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
   
-  const [desktopIcon, setDesktopIcon] = useState(() =>
-  iconInfo.map(icon => ({
-    ...icon,
-    focus: false, // blue bg on icon
-  }))
-);
+  const [desktopIcon, setDesktopIcon] = useState(() => {
+    const localItems = localStorage.getItem('icons');
+    return localItems 
+        ? JSON.parse(localItems)
+        : iconInfo.map(icon => ({
+            ...icon,
+            focus: false, // blue bg on icon
+        }));
+});
+
 
 
   const [MineSweeperExpand, setMineSweeperExpand] = useState(
@@ -394,6 +398,7 @@ const handleOnDrag = (name, ref) => () => {
             setDropTargetFolder('')
             setDraggedIcon('');
             setKey(prev => prev + 1) //readjust folder icon by re-mount
+            localStorage.setItem('icons', JSON.stringify([...updatedIcons, newIcon]));
             return [...updatedIcons, newIcon];
         });
     }
