@@ -196,9 +196,10 @@ function ProjectFolder() {
             <div className="object_bar-project">
               <p>
                 {desktopIcon.filter(icon => icon.folderId === 'Project').some(icon => icon.focus) ? 
-                  '1 ' :
-                  desktopIcon.filter(icon => icon.folderId === 'Project').length
-                }{' ' + 'object(s)'}
+                  '1 object(s) selected'
+                  :
+                  desktopIcon.filter(icon => icon.folderId === 'Project').length  + ' ' + 'object(s)'
+                }
               </p>
             </div>
             <div className="size_bar-project">

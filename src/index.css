@@ -289,7 +289,7 @@ body {
     display: grid;
     grid-template-columns: .3fr 1.9fr;
     position: absolute;
-    width: 170px;
+    width: 185px;
     bottom: 2.4rem;
     left: 1px;
     background: #c5c2c2;

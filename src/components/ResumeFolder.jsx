@@ -175,9 +175,10 @@ function ResumeFolder() {
           <div className="object_bar">
             <p>
               {desktopIcon.filter(icon => icon.folderId === 'Resume').some(icon => icon.focus) ? 
-                '1 ' :
-                desktopIcon.filter(icon => icon.folderId === 'Resume').length
-              }{' ' + 'object(s)'}
+                '1 object(s) selected'
+                :
+                desktopIcon.filter(icon => icon.folderId === 'Resume').length + ' ' + 'object(s)'
+              }
             </p>
           </div>
           <div className="size_bar">
