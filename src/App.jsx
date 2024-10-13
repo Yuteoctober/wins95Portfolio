@@ -583,7 +583,7 @@ function handleShowMobile(name) {
         handleDoubleClickiframe('Nft', setOpenProjectExpand, setProjectUrl)
         handleShow('Internet');
       }
-      if(lowerCaseName === 'Note') {
+      if(lowerCaseName === 'note') {
         handleDoubleClickiframe('Note', setOpenProjectExpand, setProjectUrl)
         handleShow('Internet');
       }
@@ -594,6 +594,8 @@ function handleShowMobile(name) {
   });
   
   if(tap.includes(name)) return;
+
+  if(name === 'Run' || name === 'Nft' || name === 'Note')return; // not showing run on tap
 
   setTap(prevTap => [...prevTap, name]);
   setDesktopIcon(prevIcons => prevIcons.map(icon => ({...icon, focus: false})));
