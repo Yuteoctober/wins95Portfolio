@@ -46,6 +46,10 @@ Functionality (imitaing windows 95 functionality)
     - Now Run command is fully functioned
     - Added Error handling when type in the wrong file name
 
+  - Added new drag and drop feature
+    - now every icon can be drag and drop to any folder
+    - fixed bug where dragging out of fold cause other icon to flow in different direction by adding key to its container and reupdate key rearrange(re-mount) the container
+
 Library used:
   - React Draggable => drag and drop functionality
   - Framer-motion => for some animation
