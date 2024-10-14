@@ -186,7 +186,7 @@ function App() {
 
 
 useEffect(() => { // touch support device === true
-  iconFocusIcon('')
+  iconFocusIcon('') // make icon focus goes false 
 
   const htmlElement = document.documentElement; //check if user is in frontend
   htmlElement.addEventListener('mouseenter', handleMouseSeen);
@@ -367,8 +367,6 @@ const handleOnDrag = (name, ref) => () => {
         <ResumeFolder/>
         <ProjectFolder/>
         <MailFolder/>
-        {/* <NftFolder/>
-        <NoteFolder/> */}
         <ResumeFile/>
         <WebampPlayer/>
         <MineSweeper/>
@@ -391,14 +389,16 @@ const handleOnDrag = (name, ref) => () => {
     if (!target || name === target) return; // Exit if folder is empty or same as the icon
 
     const droppedIcon = desktopIcon.find(icon => icon.name === name);
-    if(droppedIcon.folderId === target) return;
+
+    if(droppedIcon.folderId === target) return; // make sure its not in the same folder
+
     if (droppedIcon) {
         setDesktopIcon(prevIcons => {
             const updatedIcons = prevIcons.filter(icon => icon.name !== droppedIcon.name);
             const newIcon = { ...droppedIcon, folderId: target };
             setDropTargetFolder('')
             setDraggedIcon('');
-            setKey(prev => prev + 1) //readjust folder icon by re-mount
+            setKey(prev => prev + 1) //make folder icon by re-mount
             localStorage.setItem('icons', JSON.stringify([...updatedIcons, newIcon]));
             return [...updatedIcons, newIcon];
         });
@@ -477,7 +477,7 @@ async function getChat() {
   }
 }
 
-function ObjectState() {
+function ObjectState() { // Add all the state realted to folder here !! very important
   return [
           { name: 'Mybio', setter: setMybioExpand, usestate: MybioExpand},
           { name: 'Resume', setter: setResumeExpand, usestate: ResumeExpand },
@@ -497,7 +497,7 @@ function ObjectState() {
         ];
 }
 
-function iconFocusIcon(name) { //if focus on one, the rest goes unfocus
+function iconFocusIcon(name) { // if focus on one, the rest goes unfocus
 
   const allSetItems = ObjectState();
   const passedName = name.toLowerCase().split(' ').join('');
@@ -505,9 +505,9 @@ function iconFocusIcon(name) { //if focus on one, the rest goes unfocus
   const updateddesktopIcon = desktopIcon.map(icon => {
     const iconName = icon.name.toLowerCase().split(' ').join('');
     if ('focus' in icon) { // check if focus is in the object
-      return { ...icon, focus: iconName === passedName }; //return new focus if matched
+      return { ...icon, focus: iconName === passedName }; // return new focus if matched
     }
-    return { ...icon, focus: false }; // return original if none found
+    return { ...icon, focus: false }; // return all false if no found
   });
 
   setDesktopIcon(updateddesktopIcon);
@@ -559,8 +559,8 @@ function handleShow(name) {
 
 function handleShowMobile(name) {
 
-
   const now = Date.now()
+
   if (now - lastTapTime < 300) {
 
   const lowerCaseName = name.toLowerCase().split(' ').join('');
@@ -570,8 +570,6 @@ function handleShowMobile(name) {
   allSetItems.forEach((item) => {
 
     const itemName = item.name.toLowerCase().trim();
-    
-    
     
     if(itemName === lowerCaseName) {
       setTimeout(() => {
