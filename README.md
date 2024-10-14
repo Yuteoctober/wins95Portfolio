@@ -48,7 +48,7 @@ Functionality (imitaing windows 95 functionality)
 
   - Added new drag and drop feature
     - now every icon can be drag and drop to any folder
-    - fixed bug where dragging out of fold cause other icon to flow in different direction by adding key to its container and reupdate key rearrange(re-mount) the container
+    - fixed bug where dragging out of fold cause other icon to flow in different direction by adding key to its container to rearrange(re-mount) the container
     - icons will now be saved in user localstroage
 
 Library used:
