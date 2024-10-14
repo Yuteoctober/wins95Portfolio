@@ -12,12 +12,11 @@
     border-right: 1px solid black;
     border-bottom: 1px solid black;
     outline: 1px solid white;
-    overflow: hidden;
-    resize: both;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    resize: both;
 }
    
 
@@ -159,8 +158,6 @@
     margin: 0 auto;
     margin-top: 2px;
     background: rgb(255, 255, 255);
-    overflow: hidden;
-
 }
 
 
@@ -173,7 +170,7 @@
 
 .item_container {
     display: flex;
-    position: relative;
+    position: absolute;
     flex-wrap: wrap;
     gap: 5px;
 }

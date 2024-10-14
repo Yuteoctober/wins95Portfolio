@@ -526,7 +526,7 @@ body {
 
 .icon:active {
     opacity: 0.7;
-    z-index: 9999999;
+    z-index: 999999999999999;
     /* background: #00000075; */
 }
 

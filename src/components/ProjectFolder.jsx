@@ -12,6 +12,7 @@ function ProjectFolder() {
   const iconRefs = useRef([]);
 
   const { 
+    dragging,
     key, setKey,
     setDropTargetFolder,
     dropTargetFolder,
@@ -85,7 +86,14 @@ function ProjectFolder() {
               e.stopPropagation();
               handleSetFocusItemTrue('Project');
             }}
-            style={ ProjectExpand.expand ? inlineStyleExpand('Project') : inlineStyle('Project')}>
+            style={{
+              ...(
+                  ProjectExpand.expand
+                      ? inlineStyleExpand('Project')
+                      : inlineStyle('Project')
+              ),
+              overflow: dragging ? '' : 'hidden'
+          }}>
           <div className="folder_dragbar-project"
               onDoubleClick={handleExpandStateToggle}
               onTouchStart={handleExpandStateToggleMobile}
@@ -143,11 +151,10 @@ function ProjectFolder() {
           </div>
           <div className="folder_content-project"
             onClick={() => iconFocusIcon('')}
-            style={ProjectExpand.expand ? 
-              { height: 'calc(100svh - 122px)'} 
-              : 
-              {}
-            }
+            style={{ 
+              height: ProjectExpand.expand ? 'calc(100svh - 122px)' : '',
+              overflow: dragging? '' : 'hidden' 
+            }}
           >
             <div className='parent_container-project' key={key}>
               <div className="item_container-project" onClick={(e) => e.stopPropagation()}>
@@ -160,7 +167,10 @@ function ProjectFolder() {
                     grid={[10, 10]}
                     scale={1}
                     bounds={false}
-                    onStart={() => setDropTargetFolder('')}
+                    onStart={() => {
+                      setDropTargetFolder('')
+                      handleShow('Project')
+                    }}
                     onDrag={handleOnDrag(icon.name, iconRefs.current[icon.name])}
                     onStop={(e) => {
                       handleDrop(e, icon.name, dropTargetFolder);
