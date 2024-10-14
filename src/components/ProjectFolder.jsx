@@ -159,7 +159,6 @@ function ProjectFolder() {
                     handle={'.icon'}
                     grid={[10, 10]}
                     scale={1}
-                    disabled={ProjectExpand.expand}
                     bounds={false}
                     onStart={() => setDropTargetFolder('')}
                     onDrag={handleOnDrag(icon.name, iconRefs.current[icon.name])}

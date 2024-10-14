@@ -82,7 +82,8 @@ function ResumeFolder() {
             e.stopPropagation();
           handleSetFocusItemTrue('Resume');
           }}
-          style={ResumeExpand.expand ? inlineStyleExpand('Resume') : inlineStyle('Resume')}
+          style={
+            ResumeExpand.expand ? inlineStyleExpand('Resume') : inlineStyle('Resume')}
         >
         <div className="folder_dragbar"
           onDoubleClick={handleExpandStateToggle}
@@ -142,7 +143,6 @@ function ResumeFolder() {
                   handle={'.icon'}
                   grid={[10, 10]}
                   scale={1}
-                  disabled={ResumeExpand.expand}
                   bounds={false}
                   onStart={() => setDropTargetFolder('')}
                   onDrag={handleOnDrag(icon.name, iconRefs.current[icon.name])}
