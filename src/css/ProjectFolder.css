@@ -12,7 +12,6 @@
     border-right: 1px solid black;
     border-bottom: 1px solid black;
     outline: 1px solid white;
-    overflow: hidden;
     resize: both;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -159,7 +158,6 @@
     margin: 0 auto;
     margin-top: 2px;
     background: rgb(255, 255, 255);
-    overflow: hidden;
 }
 
 .parent_container-project {
@@ -170,6 +168,7 @@
 
 .parent_container-project .item_container-project {
     display: flex;
+    position: absolute;
     flex-wrap: wrap;
     gap: 5px;
 

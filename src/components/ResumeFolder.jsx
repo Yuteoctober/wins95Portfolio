@@ -82,8 +82,14 @@ function ResumeFolder() {
             e.stopPropagation();
           handleSetFocusItemTrue('Resume');
           }}
-          style={
-            ResumeExpand.expand ? inlineStyleExpand('Resume') : inlineStyle('Resume')}
+          style={{
+            ...(
+                ResumeExpand.expand
+                    ? inlineStyleExpand('Resume')
+                    : inlineStyle('Resume')
+            ),
+            overflow: dragging ? '' : 'hidden'
+        }}
         >
         <div className="folder_dragbar"
           onDoubleClick={handleExpandStateToggle}
@@ -132,7 +138,12 @@ function ResumeFolder() {
         </div>
         <div className="folder_content"
           onClick={() => iconFocusIcon('')}
-          style={ResumeExpand.expand ? { height: 'calc(100svh - 122px)' } : {}}
+          style={{ 
+            height: ResumeExpand.expand ? 'calc(100svh - 122px)' : '',
+            overflow: dragging? '' : 'hidden' 
+          }}
+
+
         >
           <div className='parent_item_container' key={key}>
             <div className="item_container" onClick={(e) => e.stopPropagation()}>
@@ -144,7 +155,10 @@ function ResumeFolder() {
                   grid={[10, 10]}
                   scale={1}
                   bounds={false}
-                  onStart={() => setDropTargetFolder('')}
+                  onStart={() => {
+                    setDropTargetFolder('')
+                    handleShow('Resume')
+                  }}
                   onDrag={handleOnDrag(icon.name, iconRefs.current[icon.name])}
                   onStop={(e) => {
                     handleDrop(e, icon.name, dropTargetFolder);
