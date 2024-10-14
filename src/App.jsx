@@ -186,6 +186,7 @@ function App() {
 
 
 useEffect(() => { // touch support device === true
+  iconFocusIcon('')
 
   const htmlElement = document.documentElement; //check if user is in frontend
   htmlElement.addEventListener('mouseenter', handleMouseSeen);
@@ -506,7 +507,7 @@ function iconFocusIcon(name) { //if focus on one, the rest goes unfocus
     if ('focus' in icon) { // check if focus is in the object
       return { ...icon, focus: iconName === passedName }; //return new focus if matched
     }
-    return icon; // return original if none found
+    return { ...icon, focus: false }; // return original if none found
   });
 
   setDesktopIcon(updateddesktopIcon);
