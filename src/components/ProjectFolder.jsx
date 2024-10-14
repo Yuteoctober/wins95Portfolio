@@ -169,7 +169,7 @@ function ProjectFolder() {
                     bounds={false}
                     onStart={() => {
                       setDropTargetFolder('')
-                      handleShow('Project')
+                      handleSetFocusItemTrue('Project')
                     }}
                     onDrag={handleOnDrag(icon.name, iconRefs.current[icon.name])}
                     onStop={(e) => {

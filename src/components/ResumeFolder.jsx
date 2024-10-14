@@ -157,7 +157,7 @@ function ResumeFolder() {
                   bounds={false}
                   onStart={() => {
                     setDropTargetFolder('')
-                    handleShow('Resume')
+                    handleSetFocusItemTrue('Resume')
                   }}
                   onDrag={handleOnDrag(icon.name, iconRefs.current[icon.name])}
                   onStop={(e) => {
