@@ -35,8 +35,6 @@ function Dragdrop() {
       return acc;
     }, {});
   
-    console.log('Captured icon positions:', positions); // Log the captured positions
-  
     const updatedIcons = desktopIcon.map(icon => {
       if (positions[icon.name]) {
         return { ...icon, x: positions[icon.name].x, y: positions[icon.name].y }; // Update position
@@ -48,8 +46,19 @@ function Dragdrop() {
   };
 
   useEffect(() => {
-    captureIconPositions()
-  },[])
+    // Capture positions initially
+    captureIconPositions();
+
+    const handleResize = () => {
+      captureIconPositions();
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
   
 
   return (
