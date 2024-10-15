@@ -112,13 +112,17 @@ function App() {
   
   const [desktopIcon, setDesktopIcon] = useState(() => {
     const localItems = localStorage.getItem('icons');
-    return localItems 
-        ? JSON.parse(localItems)
-        : iconInfo.map(icon => ({
-            ...icon,
-            focus: false, // blue bg on icon
-        }));
-});
+    const parsedItems = localItems ? JSON.parse(localItems) : iconInfo.map(icon => ({
+      ...icon,
+      focus: false, // blue bg on icon
+    }));
+  
+    // Sort parsed items by their x and y coordinates
+    const sortedDesktopIcons = sortDesktopIcons(parsedItems);
+    
+    return sortedDesktopIcons;
+  });
+  
 
 
 
@@ -261,7 +265,9 @@ const handleOnDrag = (name, ref) => () => {
   
 };
 
+
   const contextValue = {
+    handleDragStop,
     key, setKey,
     dragging, setDragging,
     handleOnDrag,
@@ -379,6 +385,30 @@ const handleOnDrag = (name, ref) => () => {
       </UserContext.Provider>
     </>
   )
+
+  function sortDesktopIcons(iconArr) {
+    if (!Array.isArray(iconArr)) return [];
+    const sortedIcons = [...iconArr].sort((a, b) => a.y - b.y);
+    return sortedIcons;
+}
+
+function handleDragStop(data, iconName) {
+  const positionX = data.x;
+  const positionY = data.y;
+
+  // Create updated icons array
+  const updatedIcons = desktopIcon.map(icon =>
+      icon.name === iconName
+          ? { ...icon, x: positionX, y: positionY }
+          : icon
+  );
+
+  setDesktopIcon(updatedIcons);
+  localStorage.setItem('icons', JSON.stringify(updatedIcons));
+}
+
+
+ 
   
 
   function handleDrop(e, name, target) {
@@ -387,10 +417,14 @@ const handleOnDrag = (name, ref) => () => {
     e.stopPropagation();
 
     if (!target || name === target) return; // Exit if folder is empty or same as the icon
+    
 
     const droppedIcon = desktopIcon.find(icon => icon.name === name);
 
-    if(droppedIcon.folderId === target) return; // make sure its not in the same folder
+    if(droppedIcon.folderId === target) {
+      
+      return; // make sure its not in the same folder
+    }
 
     if (droppedIcon) {
         setDesktopIcon(prevIcons => {

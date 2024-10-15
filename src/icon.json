@@ -3,60 +3,80 @@
         "name": "My Bio",
         "pic": "MyBio",
         "folderId": "Desktop",
-        "size": 4
+        "size": 4,
+        "x": 1,
+        "y": 1
     },
     {
         "name": "Resume",
         "pic": "Resume",
         "folderId": "Desktop",
-        "size": 30
+        "size": 30,
+        "x": 2,
+        "y": 2
     },
     {
         "name": "Mail",
         "pic": "Mail",
         "folderId": "Desktop",
-        "size": 12
+        "size": 12,
+        "x": 3,
+        "y": 3
     },
     {
         "name": "Project",
         "pic": "Project",
         "folderId": "Desktop",
-        "size": 2000
+        "size": 2000,
+        "x": 4,
+        "y": 4
     },
     {
         "name": "Mine Sweeper",
         "pic": "MineSweeper",
         "folderId": "Desktop",
-        "size": 250
+        "size": 250,
+        "x": 5,
+        "y": 5
     },
     {
         "name": "MSN",
         "pic": "MSN",
         "folderId": "Desktop",
-        "size": 1500
+        "size": 1500,
+        "x": 6,
+        "y": 6
     },
     {
         "name": "Winamp",
         "pic": "Winamp",
         "folderId": "Desktop",
-        "size": 4300
+        "size": 4300,
+        "x": 7,
+        "y": 7
     },
     {
         "name": "ResumeFile",
         "pic": "ResumeFile",
         "folderId": "Resume",
-        "size": 28
+        "size": 28,
+        "x": 8,
+        "y": 8
     },
     {
         "name": "Nft",
         "pic": "Nft",
         "folderId": "Project",
-        "size": 15
+        "size": 15,
+        "x": 9,
+        "y": 9
     },
     {
         "name": "Note",
         "pic": "Note",
         "folderId": "Project",
-        "size": 10
+        "size": 10,
+        "x": 10,
+        "y": 10
     }
 ]

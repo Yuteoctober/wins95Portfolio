@@ -4,6 +4,7 @@ import Draggable from 'react-draggable';
 
 function Dragdrop() {
   const {
+    handleDragStop,
     DesktopRef,
     handleOnDrag,
     ProjectFolderRef,
@@ -12,7 +13,7 @@ function Dragdrop() {
     dropTargetFolder, setDropTargetFolder,
     draggedIcon, setDraggedIcon,
     handleDrop,
-    desktopIcon,
+    desktopIcon,setDesktopIcon,
     imageMapping,
     handleShow, handleShowMobile,
     isTouchDevice,
@@ -22,9 +23,6 @@ function Dragdrop() {
 
   // Create an array of refs for each icon
   const iconRefs = useRef([]);
-
-  
-  
 
   return (
     <section className='bound' 
@@ -48,8 +46,9 @@ function Dragdrop() {
             bounds='.bound'
             onStart={() => setDropTargetFolder('')}
             onDrag={handleOnDrag(icon.name, iconRefs.current[icon.name])}
-            onStop={(e) => {
-              handleDrop(e, icon.name, dropTargetFolder);
+            onStop={(e, data) => {
+              handleDragStop(data, icon.name, icon.index)
+              handleDrop(e, icon.name, dropTargetFolder)
             }}
           >
             <div
