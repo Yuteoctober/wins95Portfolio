@@ -392,20 +392,25 @@ const handleOnDrag = (name, ref) => () => {
     return sortedIcons;
 }
 
-function handleDragStop(data, iconName) {
-  const positionX = data.x;
-  const positionY = data.y;
+function handleDragStop(data, iconName, ref) {
+  // Capture the actual viewport position of the dragged icon
+  const iconElement = ref; // Get the icon ref using its name
 
-  // Create updated icons array
-  const updatedIcons = desktopIcon.map(icon =>
+  if (iconElement) {
+    const { x, y } = iconElement.getBoundingClientRect();
+
+
+    const updatedIcons = desktopIcon.map(icon =>
       icon.name === iconName
-          ? { ...icon, x: positionX, y: positionY }
-          : icon
-  );
+        ? { ...icon, x, y } 
+        : icon
+    );
 
-  setDesktopIcon(updatedIcons);
-  localStorage.setItem('icons', JSON.stringify(updatedIcons));
+    setDesktopIcon(updatedIcons);
+    localStorage.setItem('icons', JSON.stringify(updatedIcons));
+  } 
 }
+
 
 
  

@@ -23,6 +23,34 @@ function Dragdrop() {
 
   // Create an array of refs for each icon
   const iconRefs = useRef([]);
+  
+  // Create an array of refs for each icon
+  const captureIconPositions = () => {
+    const positions = desktopIcon.reduce((acc, icon) => {
+      const iconElement = iconRefs.current[icon.name]; // Get the icon ref using its name
+      if (iconElement) {
+        const { x, y } = iconElement.getBoundingClientRect(); // Get the current position
+        acc[icon.name] = { x, y }; 
+      }
+      return acc;
+    }, {});
+  
+    console.log('Captured icon positions:', positions); // Log the captured positions
+  
+    const updatedIcons = desktopIcon.map(icon => {
+      if (positions[icon.name]) {
+        return { ...icon, x: positions[icon.name].x, y: positions[icon.name].y }; // Update position
+      }
+      return icon; 
+    });
+  
+    setDesktopIcon(updatedIcons); 
+  };
+
+  useEffect(() => {
+    captureIconPositions()
+  },[])
+  
 
   return (
     <section className='bound' 
@@ -47,7 +75,7 @@ function Dragdrop() {
             onStart={() => setDropTargetFolder('')}
             onDrag={handleOnDrag(icon.name, iconRefs.current[icon.name])}
             onStop={(e, data) => {
-              handleDragStop(data, icon.name, icon.index)
+              handleDragStop(data, icon.name, iconRefs.current[icon.name])
               handleDrop(e, icon.name, dropTargetFolder)
             }}
           >
