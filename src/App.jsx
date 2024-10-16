@@ -382,42 +382,31 @@ const handleOnDrag = (name, ref) => () => {
   )
 
   function sortDesktopIcons(iconArr) {
-  if (!Array.isArray(iconArr)) return [];
+    if (!Array.isArray(iconArr)) return [];
 
-  // Create a copy of the input array to avoid modifying the original
-  const sortedIcons = [...iconArr];
+    const lesserXItems = [];
 
-  // Stable sort function
-  sortedIcons.sort((a, b) => {
-    if (a.y !== b.y) {
-      return a.y - b.y; // Sort by y value
-    }
-    if (a.x !== b.x) {
-      return a.x - b.x; // Sort by x value if y values are equal
-    }
-    // If both x and y are equal, maintain original order
-    return iconArr.indexOf(a) - iconArr.indexOf(b);
-  });
+    // Sort icons by y value, and then by x value if y values are equal
+    const sortedIcons = [...iconArr].sort((a, b) => {
+        if (a.y === b.y) {
+            // Compare x values to determine sort order
+            if (a.x > b.x) {
+                // Push the item with the greater x value to the lesserXItems array
+                if (!lesserXItems.includes(a)) {
+                    lesserXItems.push(a);
+                }
+            }
+        }
+        return a.y - b.y; // Sort by y value
+    });
 
-  // Separate pass to handle 'lesserXItems'
-  const finalResult = [];
-  const lesserXItems = [];
+    // Remove any items that were pushed to lesserXItems from the sorted array
+    const firstArr = sortedIcons.filter(item => !lesserXItems.includes(item));
 
-  for (let i = 0; i < sortedIcons.length; i++) {
-    if (i > 0 && sortedIcons[i].y === sortedIcons[i - 1].y && sortedIcons[i].x < sortedIcons[i - 1].x) {
-      lesserXItems.push(sortedIcons[i]);
-    } else {
-      finalResult.push(sortedIcons[i]);
-    }
-  }
+    console.log('Sorted Icons:', firstArr);
+    console.log('Lesser X Items:', lesserXItems);
 
-  // Combine the results
-  const result = [...finalResult, ...lesserXItems];
-
-  console.log('Sorted Icons:', finalResult);
-  console.log('Lesser X Items:', lesserXItems);
-
-  return result;
+    return [...firstArr, ...lesserXItems]; // Append lesserXItems at the end
 }
 
 
