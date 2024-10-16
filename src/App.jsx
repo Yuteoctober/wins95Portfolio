@@ -112,16 +112,11 @@ function App() {
   
   const [desktopIcon, setDesktopIcon] = useState(() => {
     const localItems = localStorage.getItem('icons');
-    const parsedItems = localItems ? JSON.parse(localItems) : iconInfo.map(icon => ({
-      ...icon,
-      focus: false, // blue bg on icon
-    }));
-  
-    // Sort parsed items by their x and y coordinates
-    const sortedDesktopIcons = sortDesktopIcons(parsedItems);
-    
-    return sortedDesktopIcons;
-  });
+    const parsedItems = localItems ? JSON.parse(localItems) : iconInfo;
+    return parsedItems; // This ensures the parsed items or iconInfo is returned correctly
+});
+
+
   
 
 
@@ -388,9 +383,34 @@ const handleOnDrag = (name, ref) => () => {
 
   function sortDesktopIcons(iconArr) {
     if (!Array.isArray(iconArr)) return [];
-    const sortedIcons = [...iconArr].sort((a, b) => a.y - b.y);
-    return sortedIcons;
+    
+    console.log('Original Icons:', iconArr);
+
+    const lesserXItems = [];
+
+    // Sort icons by y value, handling lesser x values
+    const sortedIcons = [...iconArr].sort((a, b) => {
+        if (a.y === b.y) {
+            if (a.x < b.x) {
+                // Push the item with the smaller x value to the lesserXItems array
+                if (!lesserXItems.includes(a)) {
+                    lesserXItems.push(a);
+                }
+                return 1; // Ensure 'b' stays before 'a' since 'a' is pushed to lesserXItems
+            }
+            return -1; // 'a' should be before 'b' if a.x > b.x
+        }
+        return a.y - b.y; // Otherwise, sort by y value
+    });
+
+    const firstArr = sortedIcons.filter(item => !lesserXItems.includes(item));
+
+    console.log('Sorted Icons:', firstArr);
+    console.log('Lesser X Items:', lesserXItems);
+
+    return [...firstArr, ...lesserXItems]; // Append lesserXItems at the end
 }
+
 
 function handleDragStop(data, iconName, ref) {
   // Capture the actual viewport position of the dragged icon
@@ -399,22 +419,22 @@ function handleDragStop(data, iconName, ref) {
   if (iconElement) {
     const { x, y } = iconElement.getBoundingClientRect();
 
+    setDesktopIcon(prevIcons => {
+      // Create updatedIcons based on the previous state
+      const updatedIcons = prevIcons.map(icon =>
+        icon.name === iconName
+          ? { ...icon, x: x, y: y }
+          : icon
+      );
 
-    const updatedIcons = desktopIcon.map(icon =>
-      icon.name === iconName
-        ? { ...icon, x, y } 
-        : icon
-    );
-
-    setDesktopIcon(updatedIcons);
-    localStorage.setItem('icons', JSON.stringify(updatedIcons));
-  } 
+      const sorted = sortDesktopIcons(updatedIcons)
+      localStorage.setItem('icons', JSON.stringify(sorted));
+      return updatedIcons; // Return the updated state
+    });
+  }
 }
 
 
-
- 
-  
 
   function handleDrop(e, name, target) {
     setDragging(false)
