@@ -383,22 +383,20 @@ const handleOnDrag = (name, ref) => () => {
 
   function sortDesktopIcons(iconArr) {
     if (!Array.isArray(iconArr)) return [];
-    
-    console.log('Original Icons:', iconArr);
+
 
     const lesserXItems = [];
 
     // Sort icons by y value, handling lesser x values
     const sortedIcons = [...iconArr].sort((a, b) => {
         if (a.y === b.y) {
-            if (a.x < b.x) {
+            if (a.x <= b.x) {
                 // Push the item with the smaller x value to the lesserXItems array
-                if (!lesserXItems.includes(a)) {
-                    lesserXItems.push(a);
+                if (!lesserXItems.includes(b)) {
+                    lesserXItems.push(b);
+                    console.log(b)
                 }
-                return 1; // Ensure 'b' stays before 'a' since 'a' is pushed to lesserXItems
             }
-            return -1; // 'a' should be before 'b' if a.x > b.x
         }
         return a.y - b.y; // Otherwise, sort by y value
     });
