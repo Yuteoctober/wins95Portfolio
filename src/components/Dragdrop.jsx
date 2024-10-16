@@ -4,6 +4,7 @@ import Draggable from 'react-draggable';
 
 function Dragdrop() {
   const {
+    key,
     handleDragStop,
     DesktopRef,
     handleOnDrag,
@@ -25,7 +26,7 @@ function Dragdrop() {
   const iconRefs = useRef([]);
   
   // Create an array of refs for each icon
-  const captureIconPositions = () => {
+  function captureIconPositions()  {
     const positions = desktopIcon.reduce((acc, icon) => {
       const iconElement = iconRefs.current[icon.name]; // Get the icon ref using its name
       if (iconElement) {
@@ -43,14 +44,16 @@ function Dragdrop() {
     });
   
     setDesktopIcon(updatedIcons); 
-  };
+  }
 
   useEffect(() => {
     // Capture positions initially
     captureIconPositions();
+    console.log(desktopIcon)
 
     const handleResize = () => {
       captureIconPositions();
+      console.log('hello')
     };
 
     window.addEventListener('resize', handleResize);
@@ -58,7 +61,7 @@ function Dragdrop() {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [key]);
   
 
   return (
