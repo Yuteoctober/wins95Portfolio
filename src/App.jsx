@@ -394,7 +394,6 @@ const handleOnDrag = (name, ref) => () => {
                 // Push the item with the smaller x value to the lesserXItems array
                 if (!lesserXItems.includes(b)) {
                     lesserXItems.push(b);
-                    console.log(b)
                 }
             }
         }
