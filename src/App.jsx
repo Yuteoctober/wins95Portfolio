@@ -8,9 +8,6 @@ import MyBioFolder from './components/MyBioFolder';
 import ResumeFolder from './components/ResumeFolder';
 import ProjectFolder from './components/ProjectFolder';
 import MailFolder from './components/MailFolder';
-import NftFolder from './components/NftFolder';
-import NoteFolder from './components/NoteFolder';
-import TypeFolder from './components/TypeFolder';
 import WebampPlayer from './components/WinampPlayer';
 import ResumeFile from './components/ResumeFile';
 import Shutdown from './components/Shutdown';
@@ -29,6 +26,7 @@ import { StyleHide, imageMapping,
  } from './components/function/AppFunctions';
 
 function App() {
+  const [chatDown, setChatDown] = useState(false)
   const [key, setKey] = useState(1)
   const [dragging, setDragging] = useState(false)
   const DesktopRef = useRef(null);
@@ -170,8 +168,10 @@ function App() {
         }, 1000);
         
       }
+      setChatDown(false)
     } catch (error) {
       console.error('Error fetching chat:', error);
+      setChatDown(true)
     }
   }
   // Initial fetch and set up interval to fetch every 5 seconds
@@ -262,6 +262,7 @@ const handleOnDrag = (name, ref) => () => {
 
 
   const contextValue = {
+    chatDown,
     handleDragStop,
     key, setKey,
     dragging, setDragging,
@@ -380,6 +381,7 @@ const handleOnDrag = (name, ref) => () => {
       </UserContext.Provider>
     </>
   )
+  
 
   function sortDesktopIcons(iconArr) {
     if (!Array.isArray(iconArr)) return [];
@@ -402,9 +404,6 @@ const handleOnDrag = (name, ref) => () => {
 
     // Remove any items that were pushed to lesserXItems from the sorted array
     const firstArr = sortedIcons.filter(item => !lesserXItems.includes(item));
-
-    console.log('Sorted Icons:', firstArr);
-    console.log('Lesser X Items:', lesserXItems);
 
     return [...firstArr, ...lesserXItems]; // Append lesserXItems at the end
 }
