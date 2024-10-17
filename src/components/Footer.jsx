@@ -18,6 +18,7 @@ export default function Footer() {
     const startRef = useRef(null);
 
     const { 
+        chatDown,
         remountRunPosition,
         startActive, setStartActive,
         time, setTime,
@@ -241,7 +242,7 @@ export default function Footer() {
         if(clippyTouched) return clippyPhrase.interruption[0].phrase;
         if(clippySendemail) return clippySuggest[0]
         if(clippySong) return clippySuggest[2]
-        if(clippyUsername) return clippySuggest[3]
+        if(clippyUsername) return !chatDown? clippySuggest[3] : clippySuggest[4]
         
         return clippyPhrase.inspiration[clippyIndex].phrase // return default from phrase 
     }
