@@ -208,7 +208,7 @@ body {
 .footer {
     display: flex;
     position: fixed;
-    height: 37px;
+    height: 35px;
     width: 100%;
     bottom: 0;
     background: #b3b2b2;
@@ -220,16 +220,18 @@ body {
 .footer .btn_start{
     display: flex;
     position: relative;
-    height: 73%;
+    height: 28px;
     width: 66px;
     align-items: center;
     justify-content: center;
-    gap: 3px;
-    margin-left: 4px;
-    margin-right: 2px;
+    gap: 0px;
+    margin-left: 2px;
+    margin-right: 1px;
     border-radius: 0px;
     background: #b3b2b2;
-    box-shadow: inset 1px 1px #ffffffdd, 2.1px 2.1px #000;
+    border: 2px solid #f5f2f2;
+    border-bottom-color: #1e1d1d;
+    border-right-color: #1e1d1d;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -237,19 +239,19 @@ body {
 }
 
 .footer .btn_start.active {
-    box-shadow: inset 1px 1px #000, 1px 1px #ffffffdd;
     outline: 1px dotted black;
     outline-offset: -6px;
+    border: 2px solid #1e1d1d;
+    border-bottom-color: #f5f2f2;
+    border-right-color: #f5f2f2;
     background: rgba(255, 255, 255, 0.493);
-}
-
-.footer .btn_start:active {
-    box-shadow: inset 1px 1px #000, 1px 1px #ffffffdd;
 }
 
 
 .footer .btn_start img {
-    width: 18px;
+    position: relative;
+    width: 22px;
+    right: 2px;
 }
 
 .footer .btn_start h4 {
@@ -290,13 +292,14 @@ body {
     grid-template-columns: .3fr 1.9fr;
     position: absolute;
     width: 180px;
-    bottom: 2.4rem;
-    left: 1px;
+    bottom: 30.5px;
+    left: 2px;
     background: #c5c2c2;
-    border: 1px solid white;
-    border-bottom-color: black;
-    border-right-color: black;
-    outline: 1px solid rgb(251, 251, 251);
+    border: 2px solid #f5f2f2;
+    border-top: 3px solid #f5f2f2;
+    border-left: 3px solid #f5f2f2;
+    border-bottom-color: #1e1d1d;
+    border-right-color: #1e1d1d;
     grid-template-areas:
         'sidebar winamp'
         'sidebar linked'
@@ -319,7 +322,7 @@ body {
 .start_popup div {
     display: flex;
     width: 100%;
-    height: 40px;
+    height: 38px;
     align-items: center;
     gap: .7rem;
     padding-left: .6rem;
@@ -416,7 +419,7 @@ body {
     position: relative;
     align-items: center;
     gap: 4px;
-    height: 27px;
+    height: 26px;
     width: fit-content;
     padding: 0px 8px;
     cursor: default;
@@ -477,9 +480,9 @@ body {
     flex-direction: column;
     flex-wrap: wrap;
     width: 1px;
-    column-gap: 1.5rem;
+    column-gap: 1rem;
     padding-top: 1rem;
-    padding-left: .5rem;
+    padding-left: .0rem;
 }
 
 
