@@ -286,6 +286,7 @@ export default function Footer() {
                 {tap.map((item, index) => (
                     <div className="start_tap" key={index}
                         onClick={(e) => {
+                            setStartActive(false)
                             handleHideFolder(index);
                             e.stopPropagation()
                         }}

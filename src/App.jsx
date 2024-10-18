@@ -129,7 +129,7 @@ function App() {
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
 
   const [RunExpand, setRunExpand] = useState(
-    {expand: false, show: false, hide: false, focusItem: true, x: 5, y: window.innerHeight - 207,});
+    {expand: false, show: false, hide: false, focusItem: true, x: 3, y: window.innerHeight - 204,});
 
   function projectname() {
     if(projectUrl.length < 1) return;
@@ -566,7 +566,6 @@ function iconFocusIcon(name) { // if focus on one, the rest goes unfocus
     }
     return { ...icon, focus: false }; // return all false if no found
   });
-
   setDesktopIcon(updateddesktopIcon);
 
   ///need to be fixed, this logic
@@ -606,6 +605,7 @@ function handleShow(name) {
 
   });
   if(tap.includes(name)) return;
+  setStartActive(false)
 
   if(name === 'Run' || name === 'Nft' || name === 'Note')return; // not showing run on tap
 
@@ -650,6 +650,7 @@ function handleShowMobile(name) {
   });
   
   if(tap.includes(name)) return;
+  setStartActive(false)
 
   if(name === 'Run' || name === 'Nft' || name === 'Note')return; // not showing run on tap
 
