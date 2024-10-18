@@ -322,7 +322,7 @@ body {
 .start_popup div {
     display: flex;
     width: 100%;
-    height: 38px;
+    height: 40px;
     align-items: center;
     gap: .7rem;
     padding-left: .6rem;
