@@ -251,13 +251,14 @@ body {
 .footer .btn_start img {
     position: relative;
     width: 22px;
-    right: 2px;
+    right: 1px;
 }
 
 .footer .btn_start h4 {
     position: relative;
     font-size: 14px;
     top: 1px;
+    left: 1px;
 }
 
 .footer .time {
