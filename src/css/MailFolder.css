@@ -153,6 +153,7 @@
     gap: 5px;
     font-size: 15px;
     padding-left: 10px;
+    margin-top: px;
     cursor: default;
 }
 
@@ -214,7 +215,6 @@
     border-right-color: white;
     border-bottom-color: white;
     margin: 0 auto;
-    margin-top: 2px;
     background: #c5c4c4;
     overflow: hidden;
 }
@@ -258,14 +258,14 @@
 .to_container {
     display: flex;
     width: calc(100% - 2px);
-    gap: 10px;   
+    gap: 10px;  
 }
 
 .to_container .to_icon {
     display: grid;
     position: relative;
     place-items: center;
-    width: fit-content;
+    width: 60px;
     height: 24px;
     padding-left: 5px;
     box-shadow: inset 1.5px 1.5px #ffffffdd, 1.5px 1.5px #000;
@@ -285,12 +285,13 @@
 
 .to_container .to_icon p {
     position: relative;
-    width: 55px;
+    width: 60px;
     font-size: 13px;
     font-weight: bold;
     top: 2px;
     left: 8px;
     letter-spacing: .5px;
+    font-size: 12px;
 }
 
 
@@ -316,7 +317,7 @@
     width: 60px;
     height: 24px;
     padding-left: 12px;
-    padding-top: 6px;
+    padding-top: 7px;
     padding-bottom: 10px;
     background: red;
     font-size: 13px;
