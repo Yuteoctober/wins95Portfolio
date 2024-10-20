@@ -466,10 +466,9 @@ body {
 /* --------------- DragDrop ----------------- */
 
 .bound {
-    width: 100%;
+    width: 100svw;
     height: 96svh;
     padding-top: .5rem;
-    padding-left: .5rem;
     padding-right: .5rem;
     overflow: hidden;
 }
@@ -477,13 +476,13 @@ body {
 .drag_drop {
     display: flex;
     position: relative;
-    height: 90%;
+    height: 98%;
     flex-direction: column;
     flex-wrap: wrap;
     width: 1px;
     column-gap: 1rem;
     padding-top: 1rem;
-    padding-left: .0rem;
+    padding-left: .6rem;
 }
 
 
