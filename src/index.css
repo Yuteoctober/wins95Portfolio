@@ -264,7 +264,7 @@ body {
 .footer .time {
     display: flex;
     position: absolute;
-    height: 73%;
+    height: 28px;
     width: 82px;
     justify-content: center;
     align-items: center;
