@@ -19,6 +19,7 @@ import OpenProject from './components/OpenProject';
 import WindowsShutdown from './components/WindowsShutdown';
 import BgSetting from './components/BgSetting';
 import Run from './components/Run';
+import Notification from './components/Notification';
 import axios from 'axios';
 import { StyleHide, imageMapping, 
   handleDoubleClickEnterLink,handleDoubleTapEnterMobile,
@@ -364,6 +365,7 @@ const handleOnDrag = (name, ref) => () => {
   return (
     <>
       <UserContext.Provider value={contextValue}>
+        <Notification/>
         <Shutdown/>
         <MyBioFolder/>
         <ResumeFolder/>

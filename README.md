@@ -51,6 +51,9 @@ Functionality (imitaing windows 95 functionality)
     - fixed bug where dragging out of fold cause other icon to flow in different direction by adding key to its container to rearrange(re-mount) the container
     - icons will now be saved in user localstroage
 
+  - Added notification when page loaded
+    - display message and running animation
+
 Library used:
   - React Draggable => drag and drop functionality
   - Framer-motion => for some animation
