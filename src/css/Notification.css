@@ -4,8 +4,8 @@
     height: fit-content;
     right: 1rem;
     top: 1rem;
-    background: #ffffff;
-    border: 2px solid white;
+    background: #fffffffb;
+    border: 2px solid rgb(255, 255, 255);
     border-right: 1px solid black;
     border-bottom: 1px solid black;
     overflow: hidden;
@@ -16,8 +16,8 @@
 
 @media screen and (width <= 500px){
     .noti_container {
-        max-width: 300px;
-        width: 70%;
+        /* max-width: 300px; */
+        width: 90%;
         left: 50%;
         opacity: 0;
         transform: translateX(-50%);
