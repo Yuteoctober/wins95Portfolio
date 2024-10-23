@@ -8,7 +8,6 @@
     border: 2px solid white;
     border-right: 1px solid black;
     border-bottom: 1px solid black;
-    outline: 1px solid white;
     overflow: hidden;
     z-index: 999999999999;
     opacity: 0;
@@ -22,7 +21,6 @@
         left: 50%;
         opacity: 0;
         transform: translateX(-50%);
-    
     }
 }
 
