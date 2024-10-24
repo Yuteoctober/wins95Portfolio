@@ -46,7 +46,7 @@ function Notification() {
             animate={screenWidth <= 500 ? { top: 16 } : { right: 16 }}
             exit={screenWidth <= 500 ? { top: -500 } : { right: -500 }}
             transition={{
-              duration: 1,
+              duration: 3,
               ease: 'easeInOut',
               type: 'spring',
               stiffness: 90,
