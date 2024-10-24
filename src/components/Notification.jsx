@@ -1,62 +1,74 @@
 import React, { useEffect, useState } from 'react';
 import '../css/Notification.css';
+import { motion, AnimatePresence } from 'framer-motion';
+
 import icon_wins95 from '../assets/95icon.png';
 
 function Notification() {
-  const [hasAnimated, setHasAnimated] = useState(false);
-
-  // Function to apply animation based on screen width
-  const applyAnimation = () => {
-    const notiContainer = document.querySelector('.noti_container');
-    const screenWidth = window.innerWidth;
-
-    if (!hasAnimated && notiContainer) {
-        if (screenWidth <= 500) {
-          // Directly apply the animation from top
-          notiContainer.style.animation = 'noti_slide_from_top 10s ease-in-out forwards';
-        } else {
-          // Directly apply the animation from right
-          notiContainer.style.animation = 'noti_slide_from_right 10s ease-in-out forwards';
-        }
-  
-        setHasAnimated(true); // Mark animation as done
-      }
-    };
+  const [notiOn, setNotiOn] = useState(false);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-    // Run animation on load
-    applyAnimation();
 
-    // Run animation on resize, but only if it hasn't run before
+    setTimeout(() => { //delay notfi
+      setNotiOn(true)
+    }, 6000);
+
     const handleResize = () => {
-      if (!hasAnimated) {
-        applyAnimation();
-      }
+      setScreenWidth(window.innerWidth);
     };
 
     window.addEventListener('resize', handleResize);
 
-    // Cleanup event listener on component unmount
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [hasAnimated]);
+  }, []);
+
+  useEffect(() =>{ // make noti disappear
+
+    if(notiOn){
+      setTimeout(() => {
+        setNotiOn(false)
+      }, 7000);
+    }
+
+  },[notiOn])
 
   return (
-    <div className='noti_container'>
-      <div className="noti_icon">
-        <img src={icon_wins95} alt="icon_wins95" />
-        <p>Notification</p>
-      </div>
-      <div className="noti_message">
-        <p>
-          Welcome to My Portfolio!
-          <br />
-          This portfolio is still a work in progress.
-          If you like what you see, feel free to reach out and contact me!
-        </p>
-      </div>
-    </div>
+    <>
+      <AnimatePresence>
+      {notiOn && (
+          <motion.div
+            className="noti_container"
+            onClick={() => setNotiOn(false)}
+            initial={screenWidth <= 500 ? { top: -500} : { right: -500}}
+            animate={screenWidth <= 500 ? { top: 16 } : { right: 16 }}
+            exit={screenWidth <= 500 ? { top: -500 } : { right: -500 }}
+            transition={{
+              duration: 1,
+              ease: 'easeInOut',
+              type: 'spring',
+              stiffness: 90,
+              damping: 13,
+            }}
+          >
+            <div className="noti_icon">
+              <img src={icon_wins95} alt="icon_wins95" />
+              <p>Notification</p>
+            </div>
+            <div className="noti_message">
+              <p>
+                Welcome to My Portfolio!
+                <br />
+                This portfolio is still a work in progress.
+                If you like what you see, feel free to reach out and contact me!
+              </p>
+            </div>
+          </motion.div>
+      )}
+      </AnimatePresence>
+    </>
   );
 }
 
