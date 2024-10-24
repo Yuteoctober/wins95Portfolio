@@ -40,14 +40,20 @@ function Notification() {
       <AnimatePresence>
       {notiOn && (
           <motion.div
+            key='Noti'
             className="noti_container"
             onClick={() => setNotiOn(false)}
             initial={screenWidth <= 500 ? { top: -500} : { right: -500}}
             animate={screenWidth <= 500 ? { top: 16 } : { right: 16 }}
-            exit={screenWidth <= 500 ? { top: -500 } : { right: -500 }}
+            exit={{
+              top: screenWidth <= 500 ? -500 : undefined,
+              right: screenWidth > 500 ? -500 : undefined,
+              transition: {
+                type: 'tween',
+                duration: 1
+              }
+            }}
             transition={{
-              duration: 3,
-              ease: 'easeInOut',
               type: 'spring',
               stiffness: 90,
               damping: 13,
