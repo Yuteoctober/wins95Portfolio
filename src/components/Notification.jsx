@@ -39,7 +39,7 @@ function Notification() {
     if (notiOn) {
       const timeoutId = setTimeout(() => {
         setNotiOn(false);
-      }, 7000);
+      }, 12000);
       setClearNotiTimeOut(timeoutId)
   
       // Cleanup function to clear the timeout when `notiOn` changes or component unmounts
