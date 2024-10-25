@@ -168,9 +168,10 @@ function App() {
         
         if (updatedChat.length - chatData.length === 1 && (!MSNExpand.show || MSNExpand.hide)) {
           setNotiOn(false);
-          clearTimeout(clearNotiTimeOut)
+          
 
           setTimeout(() => {
+            clearTimeout(clearNotiTimeOut)
             setNotiOn(true);
             setNewMessage('msn');  // Set the new message when turning notification back on
           }, 1000);
