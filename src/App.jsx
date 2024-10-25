@@ -597,6 +597,8 @@ function iconFocusIcon(name) { // if focus on one, the rest goes unfocus
 
 function handleShow(name) {
 
+  if(name === '' || !name) return;
+
   const lowerCaseName = name.toLowerCase().split(' ').join('');
 
   const allSetItems = ObjectState() // call all usestate object
@@ -639,6 +641,8 @@ function handleShowMobile(name) {
   const now = Date.now()
 
   if (now - lastTapTime < 300) {
+
+  if(name === '' || !name) return;
 
   const lowerCaseName = name.toLowerCase().split(' ').join('');
 
