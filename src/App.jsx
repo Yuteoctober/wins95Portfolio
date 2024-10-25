@@ -27,6 +27,9 @@ import { StyleHide, imageMapping,
  } from './components/function/AppFunctions';
 
 function App() {
+  const [clearNotiTimeOut, setClearNotiTimeOut] = useState(null)
+  const [newMessage, setNewMessage] = useState('');
+  const [notiOn, setNotiOn] = useState(false);
   const [chatDown, setChatDown] = useState(false)
   const [key, setKey] = useState(1)
   const [dragging, setDragging] = useState(false)
@@ -141,9 +144,10 @@ function App() {
   // Define all state setter functions and corresponding clear functions in an array
   const allSetters = [setClippyThanks, setClippySendemail, setClippySong, setClippyUsername];
   const allClears = [ClearTOclippyThanksYouFunction, ClearTOclippySendemailfunction, ClearTOSongfunction, ClearTOclippyUsernameFunction];
-    
-  // Main useEffect to fetch chat data every 5 seconds
+   
   
+  
+  // Main useEffect to fetch chat data every 5 seconds
   useEffect(() => {
   
   async function fetchChatData() {
@@ -161,6 +165,16 @@ function App() {
       // Only update chatData if the chat length has changed
       if (updatedChat.length !== chatData.length || KeyChatSession !== sessionKey) {
         
+        
+        if (updatedChat.length - chatData.length === 1 && (!MSNExpand.show || MSNExpand.hide)) {
+          setNotiOn(false);
+          clearTimeout(clearNotiTimeOut)
+
+          setTimeout(() => {
+            setNotiOn(true);
+            setNewMessage('msn');  // Set the new message when turning notification back on
+          }, 1000);
+        }
         setChatData(updatedChat);
         setKeyChatSession(sessionKey);
         
@@ -182,7 +196,7 @@ function App() {
 
   return () => clearInterval(intervalId); // Clear interval on component unmount
   
-}, [chatData, KeyChatSession]); // run useeffect when chatData change
+}, [chatData, KeyChatSession, MSNExpand]); // run useeffect when chatData change
 
 
 useEffect(() => { // touch support device === true
@@ -263,6 +277,9 @@ const handleOnDrag = (name, ref) => () => {
 
 
   const contextValue = {
+    clearNotiTimeOut, setClearNotiTimeOut,
+    newMessage, setNewMessage,
+    notiOn, setNotiOn,
     chatDown,
     handleDragStop,
     key, setKey,

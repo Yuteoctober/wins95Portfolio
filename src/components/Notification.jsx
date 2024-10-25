@@ -1,17 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import '../css/Notification.css';
 import { motion, AnimatePresence } from 'framer-motion';
-
+import UseContext from '../Context';
+import msnIcon from '../assets/msn.png';
 import icon_wins95 from '../assets/95icon.png';
 
 function Notification() {
-  const [notiOn, setNotiOn] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-  useEffect(() => {
+  const {
+    clearNotiTimeOut, setClearNotiTimeOut,
+    isTouchDevice,
+    handleShow, handleShowMobile,
+    newMessage, 
+    setNewMessage, 
+    notiOn, setNotiOn,
+  } = useContext(UseContext);
 
-    setTimeout(() => { //delay notfi
-      setNotiOn(true)
+  useEffect(() => {
+    // Delay the notification appearance
+    setTimeout(() => {
+      setNotiOn(true);
     }, 6000);
 
     const handleResize = () => {
@@ -25,25 +34,53 @@ function Notification() {
     };
   }, []);
 
-  useEffect(() =>{ // make noti disappear
+  useEffect(() => {
 
-    if(notiOn){
-      setTimeout(() => {
-        setNotiOn(false)
+    if (notiOn) {
+      const timeoutId = setTimeout(() => {
+        setNotiOn(false);
       }, 7000);
+      setClearNotiTimeOut(timeoutId)
+  
+      // Cleanup function to clear the timeout when `notiOn` changes or component unmounts
+      return () => {
+        clearTimeout(timeoutId);
+      };
     }
+  }, [notiOn]);
+  
 
-  },[notiOn])
+  function newNotification(messageType) {
+    switch (messageType) {
+      case 'msn':
+        return {
+          img: msnIcon,
+          text1: 'You got a new message!',
+          text2: '',
+          function: 'Msn'
+        };
+      default:
+        return {
+          img: icon_wins95,
+          text1: 'Welcome to My Portfolio!',
+          text2: 'This portfolio is still a work in progress. If you like what you see, feel free to reach out and contact me!',
+          function: ''
+        };
+    }
+  }
 
   return (
     <>
       <AnimatePresence>
-      {notiOn && (
+        {notiOn && (
           <motion.div
-            key='Noti'
+            onClick={()=> {
+            handleShow(newNotification(newMessage).function)
+            setNotiOn(false)
+          }}       
+            key="Noti"
             className="noti_container"
-            onClick={() => setNotiOn(false)}
-            initial={screenWidth <= 500 ? { top: -500} : { right: -500}}
+            initial={screenWidth <= 500 ? { top: -500 } : { right: -500 }}
             animate={screenWidth <= 500 ? { top: 16 } : { right: 16 }}
             exit={{
               top: screenWidth <= 500 ? -500 : undefined,
@@ -56,23 +93,22 @@ function Notification() {
             transition={{
               type: 'spring',
               stiffness: 90,
-              damping: 13,
+              damping: 13
             }}
           >
             <div className="noti_icon">
-              <img src={icon_wins95} alt="icon_wins95" />
+              <img src={newNotification(newMessage).img} alt="Notification Icon" />
               <p>Notification</p>
             </div>
             <div className="noti_message">
               <p>
-                Welcome to My Portfolio!
+                {newNotification(newMessage).text1}
                 <br />
-                This portfolio is still a work in progress.
-                If you like what you see, feel free to reach out and contact me!
+                {newNotification(newMessage).text2}
               </p>
             </div>
           </motion.div>
-      )}
+        )}
       </AnimatePresence>
     </>
   );
