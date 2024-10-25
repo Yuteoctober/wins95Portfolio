@@ -57,7 +57,7 @@ function Notification() {
           img: msnIcon,
           text1: 'You got a new message!',
           text2: '',
-          function: 'Msn'
+          function: 'MSN'
         };
       default:
         return {
