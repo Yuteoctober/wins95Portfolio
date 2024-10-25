@@ -1,5 +1,5 @@
 import UseContext from '../Context';
-import { useContext, useEffect, useRef, useState} from "react";
+import { Fragment, useContext, useEffect, useRef, useState} from "react";
 import Draggable from 'react-draggable';
 import { motion } from 'framer-motion';
 import Resume from '../assets/folder.png';
@@ -148,7 +148,7 @@ function ResumeFolder() {
           <div className='parent_item_container' key={key}>
             <div className="item_container" onClick={(e) => e.stopPropagation()}>
               {desktopIcon.filter(icon => icon.folderId === 'Resume').map(icon => (
-                <>
+                <Fragment key={icon.name}>
                   <Draggable
                   axis="both" 
                   handle={'.icon'}
@@ -180,7 +180,7 @@ function ResumeFolder() {
                     <p className={icon.focus ? 'p_focus' : 'p_normal'}>{icon.name}</p>
                   </div>
                   </Draggable>
-                </>
+                </Fragment>
               ))}
             </div>
           </div>

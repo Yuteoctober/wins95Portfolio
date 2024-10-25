@@ -54,6 +54,9 @@ Functionality (imitaing windows 95 functionality)
   - Added notification when page loaded
     - display message and running animation
 
+  - Added MSN notification
+    - Notification will pops up when there is a new message when MSN is hidden or closed
+
 Library used:
   - React Draggable => drag and drop functionality
   - Framer-motion => for some animation
