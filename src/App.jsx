@@ -25,7 +25,6 @@ import { StyleHide, imageMapping,
   handleDoubleClickEnterLink,handleDoubleTapEnterMobile,
   handleDoubleClickiframe, handleDoubleTapiframeMobile,
  } from './components/function/AppFunctions';
- import ReconnectingWebSocket from 'reconnecting-websocket';
 
 function App() {
   const [allowNoti, setAllowNoti] = useState(false)
