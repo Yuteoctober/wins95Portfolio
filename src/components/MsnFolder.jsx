@@ -242,15 +242,15 @@ function MsnFolder() {
               placeholder='Enter your message here...'
               value={chatValue}
               onChange={(e) => setChatValue(e.target.value)}
+              onKeyDown={(e) => {
+                if(e.key === 'Enter') createChat() 
+              }}
             />
             <button
               style={{color: sendDisable? 'grey': null}}
               disabled={sendDisable}
               onClick={() => { 
                 createChat()   
-              }}
-              onKeyDown={(e) => {
-                if(e.key === 'Enter') createChat() 
               }}
             >
               Send
