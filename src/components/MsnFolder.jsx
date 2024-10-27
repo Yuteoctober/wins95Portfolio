@@ -249,6 +249,9 @@ function MsnFolder() {
               onClick={() => { 
                 createChat()   
               }}
+              onKeyDown={(e) => {
+                if(e.key === 'Enter') createChat() 
+              }}
             >
               Send
             </button>
