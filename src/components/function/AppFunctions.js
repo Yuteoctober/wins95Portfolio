@@ -157,3 +157,51 @@ if (now - lastTapTime < 300) {
 setLastTapTime(now);
 }
 
+export function iconContainerSize(size) {
+  switch(size) {
+    case 1:
+      return {width: '85px', height: '90px'};
+    case 2:
+      return {width: '80px', height: '85px'};
+    case 3:
+      return {width: '75px', height: '80px'};
+    case 4:
+      return {width: '70px', height: '75px'};
+    case 5:
+      return {width: '65px', height: '70px'};
+    default:
+      return {width: '65px', height: '70px'};
+  }
+}
+export function iconImgSize(size) {
+  switch(size) {
+    case 1:
+      return {width: '55px'};
+    case 2:
+      return {width: '50px'};
+    case 3:
+      return {width: '45px'};
+    case 4:
+      return {width: '40px'};
+    case 5:
+      return {width: '35px'};
+    default:
+      return {width: '35px'};
+  }
+}
+export function iconTextSize(size) {
+  switch(size) {
+    case 1:
+      return {fontSize: '16px'};
+    case 2:
+      return {fontSize: '15px'};
+    case 3:
+      return {fontSize: '14px'};
+    case 4:
+      return {fontSize: '13px'};
+    case 5:
+      return {fontSize: '12px'};
+    default:
+      return {fontSize: '12px'};
+  }
+}

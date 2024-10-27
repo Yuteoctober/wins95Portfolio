@@ -463,6 +463,35 @@ body {
     transform: scale(1.65);
 }
 
+/* ------------ ICON SIZE ---------------------- */
+
+.icon_size_container {
+    display: grid;
+    position: absolute;
+    width: 95px;
+    right: 4.5rem;
+    bottom: 1.6rem;
+    place-items: center;
+    background: #c5c2c2;
+    border: 2px solid white;
+    border-bottom-color: black;
+    border-right-color: black;
+    z-index: 999999999;
+}
+
+.icon_size_container div {
+    width: 100%;
+    font-size: 12px;
+    padding: 3px; padding-left: 6px;
+    cursor: default;
+}
+
+.icon_size_container div:hover {
+    background: #040d91;
+    color: white;
+}
+
+
 /* --------------- DragDrop ----------------- */
 
 .bound {

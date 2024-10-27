@@ -12,8 +12,10 @@ function ProjectFolder() {
   const iconRefs = useRef([]);
 
   const { 
+    iconContainerSize, iconImgSize, iconTextSize,
+    iconScreenSize,
     dragging,
-    key, setKey,
+    key,
     setDropTargetFolder,
     dropTargetFolder,
     handleDrop,
@@ -177,20 +179,24 @@ function ProjectFolder() {
                     }}
                   >
                     <div className='icon' key={icon.name}
-                    ref={(el) => iconRefs.current[icon.name] = el}
-                    onDoubleClick={() => handleShow(icon.name)}                      
-                    onClick={ !isTouchDevice ? (e) => {
-                      iconFocusIcon(icon.name);
-                      e.stopPropagation()
-                    } : undefined
-                  }           
+                      style={iconContainerSize(iconScreenSize)}
+                      ref={(el) => iconRefs.current[icon.name] = el}
+                      onDoubleClick={() => handleShow(icon.name)}                      
+                      onClick={ !isTouchDevice ? (e) => {
+                        iconFocusIcon(icon.name);
+                        e.stopPropagation()
+                      } : undefined
+                    }           
                     onTouchStart={() => {
                       handleShowMobile(icon.name);
                       iconFocusIcon(icon.name);
                     }}
                   >
-                  <img src={imageMapping(icon.pic)} alt='#' className={icon.focus? 'img_focus' : ''}/>
+                  <img src={imageMapping(icon.pic)} alt='#' className={icon.focus? 'img_focus' : ''}
+                    style={iconImgSize(iconScreenSize)}
+                  />
                       <p className={icon.focus? 'p_focus' : 'p_normal'} 
+                        style={iconTextSize(iconScreenSize)}
                       >
                         {icon.name}
                       </p>

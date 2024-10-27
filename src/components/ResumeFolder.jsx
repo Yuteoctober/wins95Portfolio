@@ -10,8 +10,10 @@ function ResumeFolder() {
   const iconRefs = useRef([]);
 
   const { 
-    key, setKey,
-    dragging, setDragging,
+    iconContainerSize, iconImgSize, iconTextSize,
+    iconScreenSize,
+    key,
+    dragging,
     handleOnDrag,
     handleDrop,
     ResumeFolderRef,
@@ -165,6 +167,7 @@ function ResumeFolder() {
                   }}
                 >
                   <div className='icon' key={icon.name}
+                    style={iconContainerSize(iconScreenSize)}
                     ref={(el) => iconRefs.current[icon.name] = el}
                     onDoubleClick={() => handleShow(icon.name)}                      
                     onClick={!isTouchDevice ? (e) => {
@@ -176,8 +179,14 @@ function ResumeFolder() {
                       iconFocusIcon(icon.name);
                     }}
                   >
-                    <img src={imageMapping(icon.pic)} alt='#' className={icon.focus ? 'img_focus' : ''}/>
-                    <p className={icon.focus ? 'p_focus' : 'p_normal'}>{icon.name}</p>
+                    <img src={imageMapping(icon.pic)} alt='#' className={icon.focus ? 'img_focus' : ''}
+                      style={iconImgSize(iconScreenSize)}
+                    />
+                    <p className={icon.focus ? 'p_focus' : 'p_normal'}
+                      style={iconTextSize(iconScreenSize)}
+                    >
+                      {icon.name}
+                    </p>
                   </div>
                   </Draggable>
                 </Fragment>
