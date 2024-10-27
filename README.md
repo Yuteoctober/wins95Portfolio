@@ -58,6 +58,7 @@ Functionality (imitaing windows 95 functionality)
     - Notification will pops up when there is a new message when MSN is hidden or closed
 
   - Now MSN live chat is using websocket instead of API for better performance
+    - Added Reconnecting websocket, reconnect chat after user nevigate awawy and come back
 
 Library used:
   - React Draggable => drag and drop functionality
