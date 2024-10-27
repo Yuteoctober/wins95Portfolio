@@ -194,58 +194,6 @@ function App() {
       
   },[chatData])
 
-//   // Main useEffect to fetch chat data every 5 seconds
-//   useEffect(() => {
-
-//   async function fetchChatData() {
-//     try {
-//       const response = await axios.get(`https://notebackend4.onrender.com/chat/getchat/`, {
-//         headers: {
-//           'Content-Type': 'application/json',
-//           'Access-Control-Allow-Origin': '*'
-//         }
-//       });
-//       const updatedChat = response.data.chat;
-//       const sessionKey = response.data.key
-
-
-//       // Only update chatData if the chat length has changed
-//       if (updatedChat.length !== chatData.length || KeyChatSession !== sessionKey) {
-
-
-//         if (updatedChat.length - chatData.length === 1 && (!MSNExpand.show || MSNExpand.hide)) {
-//           setNotiOn(false);
-
-
-//           setTimeout(() => {
-//             clearTimeout(clearNotiTimeOut)
-//             setNotiOn(true);
-//             setNewMessage('msn');  // Set the new message when turning notification back on
-//           }, 1000);
-//         }
-//         setChatData(updatedChat);
-//         setKeyChatSession(sessionKey);
-
-//         setTimeout(() => {
-//           endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
-//         }, 1000);
-
-//       }
-//       setChatDown(false)
-//     } catch (error) {
-//       console.error('Error fetching chat:', error);
-//       setChatDown(true)
-//     }
-//   }
-//   // Initial fetch and set up interval to fetch every 5 seconds
-//   fetchChatData();
-
-//   const intervalId = setInterval(fetchChatData, 5000);
-
-//   return () => clearInterval(intervalId); // Clear interval on component unmount
-
-// }, [chatData, KeyChatSession, MSNExpand]); // run useeffect when chatData change
-
 
 useEffect(() => { // touch support device === true
   iconFocusIcon('') // make icon focus goes false
@@ -589,51 +537,6 @@ function handleDragStop(data, iconName, ref) {
   }
 
 
-//   // Function to create a new chat message
-//   async function createChat() {
-
-//     const filter = new Filter();
-
-//     setTimeout(() => {
-//       setSendDisable(false)
-//     }, 20000);
-
-//     setSendDisable(true)
-//   if (chatValue.trim().length === 0) {
-//     setSendDisable(false)
-//     return;
-//   }
-
-//   const offendedWords = badword() // imported another file
-
-//   offendedWords.forEach(word => filter.addWords(word))
-
-//   const newChatVal = filter.clean(chatValue);
-
-//   const payload = { chat: newChatVal, key: KeyChatSession, mouse: detectMouse, touch: isTouchDevice };
-
-//   if (userNameValue.trim().length > 0) {
-//     const cleanedName = filter.clean(userNameValue)
-//     payload.name = cleanedName;
-//   }
-
-//   try {
-//     const response = await axios.post('https://notebackend4.onrender.com/chat/createChat/', payload);
-//     setChatValue('');
-//     setSendDisable(false)
-//     console.log(sendDisable)
-//     console.log('Chat created successfully:', response.data.chat);
-
-//     // Fetch the chat data after creating a new chat
-//     await getChat();
-//     // Scroll to the end of messages
-//     setTimeout(() => {
-//       endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
-//     }, 1000);
-//   } catch (error) {
-//     console.error('Error creating chat:', error.response ? error.response.data : error.message);
-//   }
-// }
 
 // Function to fetch chat data
 async function getChat() {
