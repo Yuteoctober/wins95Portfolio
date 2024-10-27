@@ -145,11 +145,15 @@ function App() {
 
 
   useEffect(() => {
-    const options = {
-      maxRetries: 10, 
-      reconnectInterval: 1000, 
+    let retryCount = 0;
+    const maxRetries = 10;
+
+    const connectWebSocket = () => {
+    socket.current = new WebSocket('wss://notebackend4.onrender.com');
+
+    socket.current.onopen = () => {
+      retryCount = 0; 
     };
-    socket.current = new ReconnectingWebSocket('wss://notebackend4.onrender.com', [], options)
 
     socket.current.onmessage = (event) => {
       const data = JSON.parse(event.data)
@@ -171,14 +175,22 @@ function App() {
       console.error('WebSocket error:', error)
       setChatDown(true)
     }
-
-    // Clean up the WebSocket connection on component unmount
-    return () => {
-      if (socket.current) {
-        socket.current.close()
+    socket.current.onclose = () => {
+      if (retryCount < maxRetries) {
+        retryCount++;
+        setTimeout(connectWebSocket, 1000); // Reconnect after 1 second
+      } else {
+        console.log('Max retries reached. WebSocket closed permanently.');
       }
-    }
-  }, [])
+    };
+  };
+
+  connectWebSocket();
+
+  return () => {
+    socket.current && socket.current.close();
+  };
+}, []);
 
   useEffect(() => { // noti
     if(allowNoti){
