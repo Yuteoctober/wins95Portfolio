@@ -192,11 +192,11 @@ export function iconImgSize(size) {
 export function iconTextSize(size) {
   switch(size) {
     case 1:
-      return {fontSize: '16px'};
+      return {fontSize: '16px', lineHeight: '13px'};
     case 2:
-      return {fontSize: '15px'};
+      return {fontSize: '15px', lineHeight: '12px'};
     case 3:
-      return {fontSize: '14px'};
+      return {fontSize: '14px', lineHeight: '12px'};
     case 4:
       return {fontSize: '13px'};
     case 5:
