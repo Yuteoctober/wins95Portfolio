@@ -178,6 +178,7 @@ function App() {
       if (retryCount < maxRetries) {
         retryCount++;
         getChat()
+        endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" })
         setTimeout(connectWebSocket, 1000); // Reconnect after 1 second
       } else {
         console.log('Max retries reached. WebSocket closed permanently.');
