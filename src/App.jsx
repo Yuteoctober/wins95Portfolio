@@ -172,7 +172,6 @@ function App() {
 
     socket.current.onerror = (error) => {
       console.error('WebSocket error:', error)
-      setChatDown(true)
     }
     socket.current.onclose = () => {
       if (retryCount < maxRetries) {
@@ -564,12 +563,14 @@ async function getChat() {
         'Access-Control-Allow-Origin': '*'
       }
     });
+    setChatDown(false)
     setChatData(response.data.chat);
     if(MSNExpand.show){
       endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
     }
     // setKeyChatSession(response.data.key)
   } catch (error) {
+    setChatDown(true)
     console.error('Error fetching Chat:', error);
   }
 }
