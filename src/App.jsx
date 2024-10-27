@@ -565,6 +565,9 @@ async function getChat() {
       }
     });
     setChatData(response.data.chat);
+    if(MSNExpand.show){
+      endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
     // setKeyChatSession(response.data.key)
   } catch (error) {
     console.error('Error fetching Chat:', error);
