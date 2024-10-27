@@ -178,9 +178,6 @@ function App() {
       if (retryCount < maxRetries) {
         retryCount++;
         getChat()
-        setTimeout(() => {
-          endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" })
-        }, 100)
         setTimeout(connectWebSocket, 1000); // Reconnect after 1 second
       } else {
         console.log('Max retries reached. WebSocket closed permanently.');
@@ -197,6 +194,11 @@ function App() {
 
   useEffect(() => { // noti
     if(allowNoti){
+
+      if (chatData.length) {
+        endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
+      }
+
       if(!MSNExpand.show || MSNExpand.hide) {
         setNotiOn(false);
         setTimeout(() => {
