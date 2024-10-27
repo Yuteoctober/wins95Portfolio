@@ -25,6 +25,7 @@ import { StyleHide, imageMapping,
   handleDoubleClickEnterLink,handleDoubleTapEnterMobile,
   handleDoubleClickiframe, handleDoubleTapiframeMobile,
  } from './components/function/AppFunctions';
+ import ReconnectingWebSocket from 'reconnecting-websocket';
 
 function App() {
   const [allowNoti, setAllowNoti] = useState(false)
@@ -144,7 +145,11 @@ function App() {
 
 
   useEffect(() => {
-    socket.current = new WebSocket('wss://notebackend4.onrender.com')
+    const options = {
+      maxRetries: 10, 
+      reconnectInterval: 1000, 
+    };
+    socket.current = new ReconnectingWebSocket('wss://notebackend4.onrender.com', [], options)
 
     socket.current.onmessage = (event) => {
       const data = JSON.parse(event.data)
