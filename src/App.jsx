@@ -24,9 +24,15 @@ import axios from 'axios';
 import { StyleHide, imageMapping,
   handleDoubleClickEnterLink,handleDoubleTapEnterMobile,
   handleDoubleClickiframe, handleDoubleTapiframeMobile,
+  iconContainerSize, iconImgSize, iconTextSize,
  } from './components/function/AppFunctions';
 
 function App() {
+  const [iconScreenSize, setIconScreenSize] = useState(() => {
+    const savedIconSize = localStorage.getItem('iconSize');
+    return savedIconSize ? Number(savedIconSize) : 0
+  });
+  const [iconSize, setIconSize] = useState(false)
   const [allowNoti, setAllowNoti] = useState(false)
   const socket = useRef(null);
   const [clearNotiTimeOut, setClearNotiTimeOut] = useState(null)
@@ -290,6 +296,9 @@ const handleOnDrag = (name, ref) => () => {
 
 
   const contextValue = {
+    iconContainerSize, iconImgSize, iconTextSize,
+    iconScreenSize, setIconScreenSize,
+    iconSize, setIconSize,
     clearNotiTimeOut, setClearNotiTimeOut,
     newMessage, setNewMessage,
     notiOn, setNotiOn,
@@ -371,7 +380,6 @@ const handleOnDrag = (name, ref) => () => {
     reMountRun, setReMountRun,
     ErrorPopup, setErrorPopup,
     remountRunPosition,
-
   }
 
 

@@ -4,15 +4,15 @@ import Draggable from 'react-draggable';
 
 function Dragdrop() {
   const {
+    iconContainerSize, iconImgSize, iconTextSize,
+    iconScreenSize,
+    setIconSize,
     key,
     handleDragStop,
     DesktopRef,
     handleOnDrag,
-    ProjectFolderRef,
-    ResumeFolderRef,
-    isDragging, setIsDragging,
+    isDragging, 
     dropTargetFolder, setDropTargetFolder,
-    draggedIcon, setDraggedIcon,
     handleDrop,
     desktopIcon,setDesktopIcon,
     imageMapping,
@@ -50,8 +50,6 @@ function Dragdrop() {
   useEffect(() => {
     // Capture positions initially
       captureIconPositions();
-  
- 
 
     const handleResize = () => {
       captureIconPositions();
@@ -64,6 +62,7 @@ function Dragdrop() {
       window.removeEventListener('resize', handleResize);
     };
   }, [key]);
+
   
 
   return (
@@ -73,6 +72,7 @@ function Dragdrop() {
       if (!isDragging) {
         iconFocusIcon('');
         setStartActive(false)
+        setIconSize(false)
       }
       e.preventDefault();
       e.stopPropagation();
@@ -95,6 +95,7 @@ function Dragdrop() {
           >
             <div
               className='icon'
+              style={iconContainerSize(iconScreenSize)}
               ref={(el) => iconRefs.current[icon.name] = el} 
               onDoubleClick={() => handleShow(icon.name)}                      
               onClick={!isTouchDevice ? (e) => {
@@ -107,8 +108,12 @@ function Dragdrop() {
               }}
               
             >
-              <img src={imageMapping(icon.pic)} alt={icon.name} className={icon.focus ? 'img_focus' : ''} />
-              <p className={icon.focus ? 'p_focus' : ''}>
+              <img src={imageMapping(icon.pic)} alt={icon.name} className={icon.focus ? 'img_focus' : ''} 
+                style={iconImgSize(iconScreenSize)}
+              />
+              <p className={icon.focus ? 'p_focus' : ''}
+                style={iconTextSize(iconScreenSize)}
+              >
                 {icon.name}
               </p>
             </div>
