@@ -35,7 +35,7 @@ function MsnFolder() {
   useEffect(() => {
     setTimeout(() => {
      endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" }); 
-    }, 105);
+    }, 1000);
   }, [MSNExpand.show]); // Run this effect when open/close 
 
   function handleDragStop(event, data) {
