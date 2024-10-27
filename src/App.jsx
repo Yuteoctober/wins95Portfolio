@@ -21,12 +21,14 @@ import BgSetting from './components/BgSetting';
 import Run from './components/Run';
 import Notification from './components/Notification';
 import axios from 'axios';
-import { StyleHide, imageMapping, 
+import { StyleHide, imageMapping,
   handleDoubleClickEnterLink,handleDoubleTapEnterMobile,
   handleDoubleClickiframe, handleDoubleTapiframeMobile,
  } from './components/function/AppFunctions';
 
 function App() {
+  const [allowNoti, setAllowNoti] = useState(false)
+  const socket = useRef(null);
   const [clearNotiTimeOut, setClearNotiTimeOut] = useState(null)
   const [newMessage, setNewMessage] = useState('');
   const [notiOn, setNotiOn] = useState(false);
@@ -36,7 +38,7 @@ function App() {
   const DesktopRef = useRef(null);
   const ProjectFolderRef = useRef(null);
   const ResumeFolderRef = useRef(null);
-  const [draggedIcon, setDraggedIcon] = useState(null); 
+  const [draggedIcon, setDraggedIcon] = useState(null);
   const [dropTargetFolder, setDropTargetFolder] = useState(null);
   const [reMountRun, setReMountRun] = useState(0)
   const [ErrorPopup, setErrorPopup] = useState(false)
@@ -49,7 +51,7 @@ function App() {
   const [sendDisable, setSendDisable] = useState(false)
   const [userNameValue, setUserNameValue] = useState(() => {
     return localStorage.getItem('username') || '';
-  });  
+  });
   const [chatValue, setChatValue] = useState('')
   const [chatData, setChatData] = useState([])
   const [shutdownWindow, setShutdownWindow] = useState(false)
@@ -90,7 +92,7 @@ function App() {
   {
     expand: false, show: false, hide: false, focusItem: true,  // focusItem is window, item_1focus - 5 is the icon
     x: 0, y: 0});
-  
+
   const [MailExpand, setMailExpand] = useState(
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
 
@@ -105,23 +107,18 @@ function App() {
 
   const [WinampExpand, setWinampExpand] = useState(
   {focus: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
-  
+
   const [ResumeFileExpand, setResumeFileExpand] = useState(
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
 
   const [openProjectExpand, setOpenProjectExpand] = useState(
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
-  
+
   const [desktopIcon, setDesktopIcon] = useState(() => {
     const localItems = localStorage.getItem('icons');
     const parsedItems = localItems ? JSON.parse(localItems) : iconInfo;
     return parsedItems; // This ensures the parsed items or iconInfo is returned correctly
 });
-
-
-  
-
-
 
   const [MineSweeperExpand, setMineSweeperExpand] = useState(
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
@@ -144,64 +141,110 @@ function App() {
   // Define all state setter functions and corresponding clear functions in an array
   const allSetters = [setClippyThanks, setClippySendemail, setClippySong, setClippyUsername];
   const allClears = [ClearTOclippyThanksYouFunction, ClearTOclippySendemailfunction, ClearTOSongfunction, ClearTOclippyUsernameFunction];
-   
-  
-  
-  // Main useEffect to fetch chat data every 5 seconds
+
+
   useEffect(() => {
-  
-  async function fetchChatData() {
-    try {
-      const response = await axios.get(`https://notebackend4.onrender.com/chat/getchat/`, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*'
-        }
-      });
-      const updatedChat = response.data.chat;
-      const sessionKey = response.data.key
+    socket.current = new WebSocket('wss://notebackend4.onrender.com')
 
+    socket.current.onmessage = (event) => {
+      const data = JSON.parse(event.data)
+      
+      if (data.key) {
+        setKeyChatSession(data.key)
+      } else if (data.name && data.chat) {
+        setChatData(prevData => [...prevData, data])
+        setAllowNoti(true)
 
-      // Only update chatData if the chat length has changed
-      if (updatedChat.length !== chatData.length || KeyChatSession !== sessionKey) {
-        
-        
-        if (updatedChat.length - chatData.length === 1 && (!MSNExpand.show || MSNExpand.hide)) {
-          setNotiOn(false);
-          
-
-          setTimeout(() => {
-            clearTimeout(clearNotiTimeOut)
-            setNotiOn(true);
-            setNewMessage('msn');  // Set the new message when turning notification back on
-          }, 1000);
-        }
-        setChatData(updatedChat);
-        setKeyChatSession(sessionKey);
-        
+        // Scroll to the end of messages after updating chat data
         setTimeout(() => {
-          endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
-        }, 1000);
-        
+          endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" })
+        }, 100)
       }
-      setChatDown(false)
-    } catch (error) {
-      console.error('Error fetching chat:', error);
+    }
+
+    socket.current.onerror = (error) => {
+      console.error('WebSocket error:', error)
       setChatDown(true)
     }
-  }
-  // Initial fetch and set up interval to fetch every 5 seconds
-  fetchChatData();
-  
-  const intervalId = setInterval(fetchChatData, 5000);
 
-  return () => clearInterval(intervalId); // Clear interval on component unmount
-  
-}, [chatData, KeyChatSession, MSNExpand]); // run useeffect when chatData change
+    // Clean up the WebSocket connection on component unmount
+    return () => {
+      if (socket.current) {
+        socket.current.close()
+      }
+    }
+  }, [])
+
+  useEffect(() => { // noti
+    if(allowNoti){
+      if(!MSNExpand.show || MSNExpand.hide) {
+        setNotiOn(false);
+        setTimeout(() => {
+            clearTimeout(clearNotiTimeOut)
+            setNotiOn(true);
+            setNewMessage('msn');  // Notification message
+        }, 100);
+      }
+    }
+      
+  },[chatData])
+
+//   // Main useEffect to fetch chat data every 5 seconds
+//   useEffect(() => {
+
+//   async function fetchChatData() {
+//     try {
+//       const response = await axios.get(`https://notebackend4.onrender.com/chat/getchat/`, {
+//         headers: {
+//           'Content-Type': 'application/json',
+//           'Access-Control-Allow-Origin': '*'
+//         }
+//       });
+//       const updatedChat = response.data.chat;
+//       const sessionKey = response.data.key
+
+
+//       // Only update chatData if the chat length has changed
+//       if (updatedChat.length !== chatData.length || KeyChatSession !== sessionKey) {
+
+
+//         if (updatedChat.length - chatData.length === 1 && (!MSNExpand.show || MSNExpand.hide)) {
+//           setNotiOn(false);
+
+
+//           setTimeout(() => {
+//             clearTimeout(clearNotiTimeOut)
+//             setNotiOn(true);
+//             setNewMessage('msn');  // Set the new message when turning notification back on
+//           }, 1000);
+//         }
+//         setChatData(updatedChat);
+//         setKeyChatSession(sessionKey);
+
+//         setTimeout(() => {
+//           endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
+//         }, 1000);
+
+//       }
+//       setChatDown(false)
+//     } catch (error) {
+//       console.error('Error fetching chat:', error);
+//       setChatDown(true)
+//     }
+//   }
+//   // Initial fetch and set up interval to fetch every 5 seconds
+//   fetchChatData();
+
+//   const intervalId = setInterval(fetchChatData, 5000);
+
+//   return () => clearInterval(intervalId); // Clear interval on component unmount
+
+// }, [chatData, KeyChatSession, MSNExpand]); // run useeffect when chatData change
 
 
 useEffect(() => { // touch support device === true
-  iconFocusIcon('') // make icon focus goes false 
+  iconFocusIcon('') // make icon focus goes false
+  getChat()
 
   const htmlElement = document.documentElement; //check if user is in frontend
   htmlElement.addEventListener('mouseenter', handleMouseSeen);
@@ -242,11 +285,11 @@ const handleOnDrag = (name, ref) => () => {
       iconRect.left < resumeFolderRect.right - offset &&
       iconRect.right > resumeFolderRect.left + offset &&
       iconRect.top < resumeFolderRect.bottom - offset &&
-      iconRect.bottom > resumeFolderRect.top + offset 
+      iconRect.bottom > resumeFolderRect.top + offset
     ) {
       if(name === 'Resume') return;
       setDropTargetFolder('Resume');
-    } 
+    }
     // Check for intersection with the Project folder
     else if (
       iconRect.left < projectFolderRect.right - offset &&
@@ -256,15 +299,15 @@ const handleOnDrag = (name, ref) => () => {
     ) {
       if(name === 'Project') return;
       setDropTargetFolder('Project');
-    } 
+    }
     else if (
       iconRect.left < desktopRect.right &&
       iconRect.right > desktopRect.left &&
       iconRect.top < desktopRect.bottom &&
-      iconRect.bottom > desktopRect.top 
+      iconRect.bottom > desktopRect.top
     ) {
       setDropTargetFolder('Desktop');
-    } 
+    }
     // Default case if not intersecting with any folder
     else {
       setDropTargetFolder('Desktop');
@@ -273,7 +316,7 @@ const handleOnDrag = (name, ref) => () => {
     // Set to Desktop if refs are not set
     setDropTargetFolder('Desktop');
   }
-  
+
 };
 
 
@@ -310,7 +353,7 @@ const handleOnDrag = (name, ref) => () => {
     TypeExpand, setTypeExpand,
     handleDoubleTapEnterMobile,
     handleDoubleClickEnterLink,
-    handleDoubleClickiframe, 
+    handleDoubleClickiframe,
     handleDoubleTapiframeMobile,
     WinampExpand, setWinampExpand,
     showClippy, setShowClippy,
@@ -321,7 +364,7 @@ const handleOnDrag = (name, ref) => () => {
     clippySendemail, setClippySendemail,
     clippyThanksYouFunction,
     clippySendemailfunction,
-    RandomTimeoutShowClippy, 
+    RandomTimeoutShowClippy,
     firstTimoutShowclippy,
     SecondRandomTimeoutShowClippy,
     ClearTOclippySendemailfunction,
@@ -401,7 +444,7 @@ const handleOnDrag = (name, ref) => () => {
       </UserContext.Provider>
     </>
   )
-  
+
 
   function sortDesktopIcons(iconArr) {
     if (!Array.isArray(iconArr)) return [];
@@ -460,12 +503,12 @@ function handleDragStop(data, iconName, ref) {
     e.stopPropagation();
 
     if (!target || name === target) return; // Exit if folder is empty or same as the icon
-    
+
 
     const droppedIcon = desktopIcon.find(icon => icon.name === name);
 
     if(droppedIcon.folderId === target) {
-      
+
       return; // make sure its not in the same folder
     }
 
@@ -488,55 +531,104 @@ function handleDragStop(data, iconName, ref) {
       }
     }
 
+
     function handleMouseSeen() { //check if user is on the frontend
       setDetectMouse(true)
     }
 
-  // Function to create a new chat message
-  async function createChat() {
-
-    const filter = new Filter();
-
-    setTimeout(() => {
-      setSendDisable(false)
-    }, 20000);
-    
-    setSendDisable(true)
-  if (chatValue.trim().length === 0) {
-    setSendDisable(false)
-    return;
-  }
-
-  const offendedWords = badword() // imported another file
-
-  offendedWords.forEach(word => filter.addWords(word))
+    async function createChat() { // create chat
+      const filter = new Filter();
   
-  const newChatVal = filter.clean(chatValue);
+      setTimeout(() => {
+          setSendDisable(false);
+      }, 20000);
+  
+      setSendDisable(true);
+  
+      if (chatValue.trim().length === 0) {
+          setSendDisable(false);
+          return;
+      }
+  
+      const offendedWords = badword(); // imported another file
+      offendedWords.forEach(word => filter.addWords(word));
+  
+      const newChatVal = filter.clean(chatValue);
+      const payload = {
+          chat: newChatVal,
+          key: KeyChatSession,
+          mouse: detectMouse,
+          touch: isTouchDevice,
+      };
 
-  const payload = { chat: newChatVal, key: KeyChatSession, mouse: detectMouse, touch: isTouchDevice };
-
-  if (userNameValue.trim().length > 0) {
-    const cleanedName = filter.clean(userNameValue)
-    payload.name = cleanedName;
+      if (userNameValue.trim().length < 1) {
+        payload.name = 'Anonymous'
+      }
+  
+      if (userNameValue.trim().length > 0) {
+          const cleanedName = filter.clean(userNameValue);
+          payload.name = cleanedName;
+      }
+  
+      // Send the payload via WebSocket
+      if (socket.current) { // Check if socket is initialized
+          socket.current.send(JSON.stringify(payload));
+      } else {
+          console.error('WebSocket is not initialized.');
+      }
+  
+      // Clear the chat input field and reset sendDisable
+      setChatValue('');
+      setSendDisable(false);
+      console.log('Chat message sent:', payload);
   }
 
-  try {
-    const response = await axios.post('https://notebackend4.onrender.com/chat/createChat/', payload);
-    setChatValue('');
-    setSendDisable(false)
-    console.log(sendDisable)
-    console.log('Chat created successfully:', response.data.chat);
 
-    // Fetch the chat data after creating a new chat
-    await getChat();
-    // Scroll to the end of messages
-    setTimeout(() => {
-      endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, 1000);
-  } catch (error) {
-    console.error('Error creating chat:', error.response ? error.response.data : error.message);
-  }
-}
+//   // Function to create a new chat message
+//   async function createChat() {
+
+//     const filter = new Filter();
+
+//     setTimeout(() => {
+//       setSendDisable(false)
+//     }, 20000);
+
+//     setSendDisable(true)
+//   if (chatValue.trim().length === 0) {
+//     setSendDisable(false)
+//     return;
+//   }
+
+//   const offendedWords = badword() // imported another file
+
+//   offendedWords.forEach(word => filter.addWords(word))
+
+//   const newChatVal = filter.clean(chatValue);
+
+//   const payload = { chat: newChatVal, key: KeyChatSession, mouse: detectMouse, touch: isTouchDevice };
+
+//   if (userNameValue.trim().length > 0) {
+//     const cleanedName = filter.clean(userNameValue)
+//     payload.name = cleanedName;
+//   }
+
+//   try {
+//     const response = await axios.post('https://notebackend4.onrender.com/chat/createChat/', payload);
+//     setChatValue('');
+//     setSendDisable(false)
+//     console.log(sendDisable)
+//     console.log('Chat created successfully:', response.data.chat);
+
+//     // Fetch the chat data after creating a new chat
+//     await getChat();
+//     // Scroll to the end of messages
+//     setTimeout(() => {
+//       endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
+//     }, 1000);
+//   } catch (error) {
+//     console.error('Error creating chat:', error.response ? error.response.data : error.message);
+//   }
+// }
 
 // Function to fetch chat data
 async function getChat() {
@@ -548,7 +640,7 @@ async function getChat() {
       }
     });
     setChatData(response.data.chat);
-    setKeyChatSession(response.data.key)
+    // setKeyChatSession(response.data.key)
   } catch (error) {
     console.error('Error fetching Chat:', error);
   }
@@ -570,7 +662,7 @@ function ObjectState() { // Add all the state realted to folder here !! very imp
           { name: 'Internet', setter: setOpenProjectExpand, usestate: openProjectExpand },
           { name: 'Settings', setter: setBgSettingExpand, usestate: BgSettingExpand },
           { name: 'Run', setter: setRunExpand, usestate: RunExpand },
-          
+
         ];
 }
 
@@ -606,7 +698,7 @@ function handleShow(name) {
   allSetItems.forEach((item) => {
 
     const itemName = item.name.toLowerCase().trim();
-    
+
     if(itemName === lowerCaseName) {
       setTimeout(() => {
         item.setter(prev => ({...prev, show: true, focusItem: true, hide: false}));
@@ -651,7 +743,7 @@ function handleShowMobile(name) {
   allSetItems.forEach((item) => {
 
     const itemName = item.name.toLowerCase().trim();
-    
+
     if(itemName === lowerCaseName) {
       setTimeout(() => {
         item.setter(prev => ({...prev, show: true, focusItem: true, hide: false}));
@@ -672,7 +764,7 @@ function handleShowMobile(name) {
     item.setter(prev => ({...prev,focusItem: false}));
 
   });
-  
+
   if(tap.includes(name)) return;
   setStartActive(false)
 
@@ -695,28 +787,28 @@ function handleShowMobile(name) {
     });
     setterFunction(true);
     setShowClippy(true);
-    
+
     clearTimeout(clearFunction.current);
     if (RandomTimeoutShowClippy.current) clearTimeout(RandomTimeoutShowClippy.current);
     if (firstTimoutShowclippy.current) clearTimeout(firstTimoutShowclippy.current);
     if (SecondRandomTimeoutShowClippy.current) clearTimeout(SecondRandomTimeoutShowClippy.current);
-    
+
     clearFunction.current = setTimeout(() => {
       setterFunction(false);
       setShowClippy(false);
       setRandomClippyPopup(prev => !prev);
     }, 8000);
   }
-  
-  
+
+
   function clippyThanksYouFunction() {
     handleClippyFunction(setClippyThanks, ClearTOclippyThanksYouFunction, allSetters);
   }
-  
+
   function clippySendemailfunction() {
     handleClippyFunction(setClippySendemail, ClearTOclippySendemailfunction, allSetters);
   }
-  
+
   function clippySongFunction() {
     handleClippyFunction(setClippySong, ClearTOSongfunction, allSetters);
   }
@@ -724,7 +816,7 @@ function handleShowMobile(name) {
   function clippyUsernameFunction() {
     handleClippyFunction(setClippyUsername, ClearTOclippyUsernameFunction, allSetters);
   }
-  
+
   function handleSetFocusItemTrue(name) { //click on one, other goes false
 
     const LowerCaseName = name.toLowerCase().split(' ').join('');
@@ -748,12 +840,12 @@ function handleShowMobile(name) {
   function inlineStyleExpand (name) {
     const passedName = name.split(' ').join('').toLowerCase();
     const setState = ObjectState();
-  
+
     const item = setState.find(item => {
       const itemName = item.name.split(' ').join('').toLowerCase();
       return itemName === passedName;
     });
-  
+
     if (item) {
       return {
         display: item.usestate.show ? 'block' : '',
@@ -770,16 +862,16 @@ function handleShowMobile(name) {
     }
     return {};
   }
-  
+
   function inlineStyle(name) {
     const setState = ObjectState();
     const passedName = name.split(' ').join('').toLowerCase();
-  
+
     const item = setState.find(item => {
         const itemName = item.name.split(' ').join('').toLowerCase();
         return itemName === passedName;
     });
-  
+
     if (item) {
         return {
             display: item.usestate.show ? 'block' : '',
@@ -790,14 +882,14 @@ function handleShowMobile(name) {
     }
     return {};
   }
-  
+
   function deleteTap(name) {
     const setState = ObjectState();
     const passedName = name.toLowerCase().split(' ').join('');
-  
+
     setState.forEach(item => {
       const itemName = item.name.toLowerCase().split(' ').join('');
-  
+
       if (itemName === passedName) {
         item.setter(prev => ({
           ...prev,
@@ -812,7 +904,7 @@ function handleShowMobile(name) {
         }));
       }
     });
-    
+
   }
 }
 
