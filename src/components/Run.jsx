@@ -113,6 +113,16 @@ function Run() {
 
     useEffect(() => { 
       remountRunPosition()
+      const handleResize = () => {
+        remountRunPosition()
+  
+      };
+  
+      window.addEventListener('resize', handleResize);
+  
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
       
     },[RunExpand.show])
 
