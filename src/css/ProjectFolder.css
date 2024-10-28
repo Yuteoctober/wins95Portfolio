@@ -168,7 +168,7 @@
 
 .parent_container-project .item_container-project {
     display: flex;
-    position: absolute;
+    position: relative;
     flex-wrap: wrap;
     gap: 5px;
 

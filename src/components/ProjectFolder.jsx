@@ -159,7 +159,12 @@ function ProjectFolder() {
             }}
           >
             <div className='parent_container-project' key={key}>
-              <div className="item_container-project" onClick={(e) => e.stopPropagation()}>
+              <div className="item_container-project" 
+                style={{
+                  position: dragging? 'absolute' : '',
+                }}
+                onClick={(e) => e.stopPropagation()}
+              >
                 {/* ---------- projects ------------- */}
                 {desktopIcon.filter(icon => icon.folderId === 'Project').map(icon => (
                   <>

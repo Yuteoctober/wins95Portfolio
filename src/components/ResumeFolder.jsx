@@ -147,8 +147,15 @@ function ResumeFolder() {
 
 
         >
-          <div className='parent_item_container' key={key}>
-            <div className="item_container" onClick={(e) => e.stopPropagation()}>
+          <div className='parent_item_container' key={key}
+
+          >
+            <div className="item_container" 
+              style={{
+                position: dragging? 'absolute' : '',
+              }}
+              onClick={(e) => e.stopPropagation()}
+              >
               {desktopIcon.filter(icon => icon.folderId === 'Resume').map(icon => (
                 <Fragment key={icon.name}>
                   <Draggable
