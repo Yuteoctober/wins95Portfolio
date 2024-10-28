@@ -468,7 +468,7 @@ body {
 .icon_size_container {
     display: grid;
     position: absolute;
-    width: 95px;
+    width: 110px;
     right: 4.5rem;
     bottom: 1.6rem;
     place-items: center;
@@ -481,8 +481,7 @@ body {
 
 .icon_size_container div {
     width: 100%;
-    font-size: 12px;
-    padding: 3px; padding-left: 6px;
+    padding: 5px; padding-left: 6px;
     cursor: default;
 }
 
@@ -491,6 +490,11 @@ body {
     color: white;
 }
 
+.icon_size_container p {
+    position: relative;
+    font-size: 12px;
+    left: 19px;
+}
 
 /* --------------- DragDrop ----------------- */
 
@@ -513,7 +517,6 @@ body {
     padding-top: 1rem;
     padding-left: .6rem;
 }
-
 
 
 .icon {

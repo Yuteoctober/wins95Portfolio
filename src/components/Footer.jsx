@@ -12,6 +12,8 @@ import resume from '../assets/folder.png';
 import shutdownicon from '../assets/shutdownicon.png';
 import settings from '../assets/setting.png';
 import { clippyPhrase, clippySuggest } from './function/ClippyFunction';
+import { BsCheck  } from "react-icons/bs";
+
 export default function Footer() {
     
     const wheelTapContainer = useRef(null)
@@ -20,6 +22,7 @@ export default function Footer() {
    
 
     const { 
+        iconTextSize,
         iconScreenSize, setIconScreenSize,
         iconSize, setIconSize,
         chatDown,
@@ -381,13 +384,23 @@ export default function Footer() {
                 <div key={item.value}
                     onClick={() => {
                         const newVal = item.value
-                        console.log(newVal)
                         setIconScreenSize(newVal)
                         setIconSize(false)
                         localStorage.setItem('iconSize', newVal)
                     }}
                 >
-                    {item.label}
+                {item.value === iconTextSize(iconScreenSize).number && (
+                 <BsCheck  
+                    style={{
+                        position: 'absolute',
+                        fontSize: '15px',
+                    }}
+                 />   
+                ) }
+                
+                    <p>
+                        {item.label}
+                    </p>
                 </div>
             ))}
             </div>  

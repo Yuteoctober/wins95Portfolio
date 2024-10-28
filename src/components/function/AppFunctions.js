@@ -192,16 +192,16 @@ export function iconImgSize(size) {
 export function iconTextSize(size) {
   switch(size) {
     case 1:
-      return {fontSize: '16px', lineHeight: '13px'};
+      return {fontSize: '16px', lineHeight: '13px', number: 1};
     case 2:
-      return {fontSize: '15px', lineHeight: '12px'};
+      return {fontSize: '15px', lineHeight: '12px', number: 2};
     case 3:
-      return {fontSize: '14px', lineHeight: '12px'};
+      return {fontSize: '14px', lineHeight: '12px', number: 3};
     case 4:
-      return {fontSize: '13px'};
+      return {fontSize: '13px', number: 4};
     case 5:
-      return {fontSize: '12px'};
+      return {fontSize: '12px', number: 5};
     default:
-      return {fontSize: '12px'};
+      return {fontSize: '12px', number: 5};
   }
 }
