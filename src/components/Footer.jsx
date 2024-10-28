@@ -295,6 +295,7 @@ export default function Footer() {
                     className={`btn_start ${startActive ? 'active' : ''}`}
                     onClick={(e) => {
                         setStartActive(!startActive);
+                        setIconSize(false)
                         e.stopPropagation(); // prevent to click on body from this element
                     }}
                 >
@@ -327,7 +328,9 @@ export default function Footer() {
                     <img src={display} alt="display" 
                         onClick={(e) => {
                             e.stopPropagation()
-                            setIconSize(!iconSize)}}
+                            setIconSize(!iconSize)
+                            setStartActive(false)
+                        }}
                     />
                     <p>{time}</p>
                 </div>
