@@ -136,7 +136,7 @@ function App() {
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
 
   const [RunExpand, setRunExpand] = useState(
-    {expand: false, show: false, hide: false, focusItem: true, x: 3, y: window.innerHeight - 204,});
+    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
 
   function projectname() {
     if(projectUrl.length < 1) return;

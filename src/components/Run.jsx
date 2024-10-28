@@ -113,16 +113,6 @@ function Run() {
 
     useEffect(() => { 
       remountRunPosition()
-      const handleResize = () => {
-        remountRunPosition()
-  
-      };
-  
-      window.addEventListener('resize', handleResize);
-  
-      return () => {
-        window.removeEventListener('resize', handleResize);
-      };
       
     },[RunExpand.show])
 
@@ -145,8 +135,8 @@ function Run() {
         disabled={RunExpand.expand}
         bounds={{top: 0}}
         defaultPosition={{ 
-            x: RunExpand.x,
-            y: RunExpand.y,
+            x: 3,
+            y: window.innerHeight - 204,
         }}
         onStop={(event, data) => handleDragStop(event, data)}
         onStart={() => handleSetFocusItemTrue('Run')}
