@@ -39,7 +39,7 @@ Featured Functionality
 ![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/game.gif?raw=true)
 
 - Shutting Down
-![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/gashutdownme.gif?raw=true)
+![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/shutdown.gif?raw=true)
 
 
 All the functionalities
