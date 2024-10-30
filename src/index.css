@@ -576,10 +576,10 @@ body {
     padding: 5px;
 }
 
-.react-calendar__month-view__days button>abbr {
+.react-calendar__month-view__days abbr {
     position: relative;
     top: 1px;
-    color: rgb(28, 26, 26);
+    color: #1c1a1a;
 }
 
 .react-calendar__month-view__days button {
@@ -592,13 +592,32 @@ body {
 .react-calendar__month-view__days button:hover {
     background: #0000001a;
 }
-.react-calendar__month-view__days button>abbr:hover {
+.react-calendar__month-view__days button:hover>abbr {
     color: white;
 }
 
 .react-calendar__month-view__weekdays__weekday {
     cursor: default;
 }
+
+.react-calendar__tile--now {
+    background: #0000001a;
+}
+
+.react-calendar__tile--now abbr{
+    color: white;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth abbr{
+    color: #a7a7a7;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth:hover abbr{
+    color: white;
+}
+
+
+  
 
 @media screen and (width <= 500px) {
     .react-calendar {
