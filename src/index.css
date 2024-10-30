@@ -286,6 +286,11 @@ body {
     top: 2px;
     right: 8px;
     white-space: nowrap;
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .footer .start_popup {
@@ -496,6 +501,95 @@ body {
     position: relative;
     font-size: 12px;
     left: 19px;
+}
+
+/* ------------------ Calender ----------------- */
+.calender_container {
+    display: grid;
+    position: absolute;
+    place-items: center;
+    width: fit-content;
+    height: auto;
+    background: #c5c2c2;
+    border: 2px solid white;
+    border-bottom-color: black;
+    border-right-color: black;
+    padding: 10px;
+    bottom: 2.2rem;
+    right: 0;
+    z-index: 9999999999999;
+    overflow: hidden;
+}
+
+.react-calendar {
+    display: grid;
+    width: 210px;
+    height: 175px;
+    place-items: center;
+    text-align: center;
+}
+
+.react-calendar__navigation {
+    display: flex;
+    justify-content: space-around;
+    gap: 2px;
+    margin-bottom: 4px;
+}
+
+.react-calendar__navigation__label {
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.react-calendar__navigation__label span {
+    position: relative;
+    top: 1px;
+}
+
+.react-calendar__navigation button {
+    border-radius: 0px;
+    border: 1px solid black;
+    border-top-color: white;
+    border-left-color: white;
+}
+
+.react-calendar__navigation button:active {
+    border: 1px solid white;
+    border-top-color: black;
+    border-left-color: black;
+}
+
+.react-calendar__navigation button {
+    font-size: 13px;
+}
+
+.react-calendar__month-view__weekdays {
+    position: relative;
+    font-size: 12px;
+}
+
+.react-calendar__month-view__days {
+    padding: 5px;
+}
+
+.react-calendar__month-view__days button>abbr {
+    position: relative;
+    top: 1px;
+}
+
+.react-calendar__month-view__days button {
+    font-size: 12px;
+    border: none;
+    padding: 4px;
+    
+}
+
+.react-calendar__month-view__days button:hover {
+    background: #0000001a;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+    cursor: default;
 }
 
 /* --------------- DragDrop ----------------- */
