@@ -8,7 +8,42 @@ React Project:
   - Inspired by actual windows 95 and some other idea from windows 95's portfolios
   - Everything built by me from scratch (No style component!)
 
-Functionality (imitaing windows 95 functionality)
+
+Featured Functionality
+
+ - Log in
+![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/login.gif?raw=true)
+
+ - Drag and Drop
+![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/dragDrop.gif?raw=true)
+
+ - Change background
+![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/bg.gif?raw=true)
+
+ - Notification
+![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/Noti.gif?raw=true)
+
+ - Change icon size
+![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/iconSize.gif?raw=true)
+
+ - Calendar
+![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/calendar.gif?raw=true)
+
+ - Run command
+![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/run.gif?raw=true)
+
+ - Live Chat
+![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/msn.gif?raw=true)
+
+ - Mine Sweeper
+![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/game.gif?raw=true)
+
+ - Shutting Down
+![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/gashutdownme.gif?raw=true)
+
+
+All the functionalities
+
   - Drag and Drop
   - Shrink and Expand window
   - Start Menu
