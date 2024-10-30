@@ -431,7 +431,9 @@ export default function Footer() {
                 <div className="calender_container" 
                     ref={calenderRef}
                 >
-                    <Calendar onChange={calOnChange} value={calValue} />
+                    <Calendar onChange={calOnChange} value={calValue} 
+                        
+                    />
                 </div>
             )}
             
