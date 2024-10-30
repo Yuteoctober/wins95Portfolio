@@ -4,6 +4,7 @@ import Draggable from 'react-draggable';
 
 function Dragdrop() {
   const {
+    setCalenderToggle,
     iconContainerSize, iconImgSize, iconTextSize,
     iconScreenSize,
     setIconSize,
@@ -73,6 +74,7 @@ function Dragdrop() {
         iconFocusIcon('');
         setStartActive(false)
         setIconSize(false)
+        setCalenderToggle(false)
       }
       e.preventDefault();
       e.stopPropagation();

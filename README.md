@@ -62,10 +62,13 @@ Functionality (imitaing windows 95 functionality)
 
   - Added Icon size adjustable on the icon next to the clock on footer
 
+  - Added Calender by clicking the time on the footer
+
 Library used:
   - React Draggable => drag and drop functionality
   - Framer-motion => for some animation
   - Webamp => Winamp music player (for music app)
+  - npm i react-calendar => for calender
 
 All the windows 95 icons and others can be found here
 special thanks to whoever own this web

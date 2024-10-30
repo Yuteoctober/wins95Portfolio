@@ -13,15 +13,19 @@ import shutdownicon from '../assets/shutdownicon.png';
 import settings from '../assets/setting.png';
 import { clippyPhrase, clippySuggest } from './function/ClippyFunction';
 import { BsCheck  } from "react-icons/bs";
+import Calendar from 'react-calendar';
 
 export default function Footer() {
     
     const wheelTapContainer = useRef(null)
     const startRef = useRef(null);
     const iconSizeRef = useRef(null);
+    const calenderRef = useRef(null);
+    const [calValue, calOnChange] = useState(new Date());
    
 
     const { 
+        calenderToggle, setCalenderToggle,
         iconTextSize,
         iconScreenSize, setIconScreenSize,
         iconSize, setIconSize,
@@ -141,6 +145,10 @@ export default function Footer() {
             // Check if the click is outside the icon size element
             if (iconSizeRef.current && !iconSizeRef.current.contains(event.target)) {
                 setIconSize(false);
+            }
+
+            if (calenderRef.current && !calenderRef.current.contains(event.target)) {
+                setCalenderToggle(false);
             }
         };
     
@@ -296,6 +304,7 @@ export default function Footer() {
                     onClick={(e) => {
                         setStartActive(!startActive);
                         setIconSize(false)
+                        setCalenderToggle(false)
                         e.stopPropagation(); // prevent to click on body from this element
                     }}
                 >
@@ -330,9 +339,19 @@ export default function Footer() {
                             e.stopPropagation()
                             setIconSize(!iconSize)
                             setStartActive(false)
+                            setCalenderToggle(false)
                         }}
                     />
-                    <p>{time}</p>
+                    <p 
+                        onClick={(e) => {
+                            e.stopPropagation()
+                            setCalenderToggle(!calenderToggle)
+                            setIconSize(false)
+                            setStartActive(false)
+                        }}
+                    >
+                        {time}
+                    </p>
                 </div>
                 {startActive && (
                     <div className="start_popup"
@@ -408,6 +427,14 @@ export default function Footer() {
             ))}
             </div>  
             )}
+            {calenderToggle && (
+                <div className="calender_container" 
+                    ref={calenderRef}
+                >
+                    <Calendar onChange={calOnChange} value={calValue} />
+                </div>
+            )}
+            
         </>
     );
 }

@@ -28,6 +28,7 @@ import { StyleHide, imageMapping,
  } from './components/function/AppFunctions';
 
 function App() {
+  const [calenderToggle, setCalenderToggle] = useState(false)
   const [iconScreenSize, setIconScreenSize] = useState(() => {
     const savedIconSize = localStorage.getItem('iconSize');
     return savedIconSize ? Number(savedIconSize) : 0
@@ -296,6 +297,7 @@ const handleOnDrag = (name, ref) => () => {
 
 
   const contextValue = {
+    calenderToggle, setCalenderToggle,
     iconContainerSize, iconImgSize, iconTextSize,
     iconScreenSize, setIconScreenSize,
     iconSize, setIconSize,
