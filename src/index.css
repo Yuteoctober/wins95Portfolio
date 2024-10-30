@@ -523,10 +523,11 @@ body {
 
 .react-calendar {
     display: grid;
-    width: 210px;
-    height: 175px;
+    width: 235px;
+    height: 180px;
     place-items: center;
     text-align: center;
+    
 }
 
 .react-calendar__navigation {
@@ -544,6 +545,7 @@ body {
 .react-calendar__navigation__label span {
     position: relative;
     top: 1px;
+    
 }
 
 .react-calendar__navigation button {
@@ -551,6 +553,8 @@ body {
     border: 1px solid black;
     border-top-color: white;
     border-left-color: white;
+    color: black;
+    padding: 3px 6px;
 }
 
 .react-calendar__navigation button:active {
@@ -575,6 +579,7 @@ body {
 .react-calendar__month-view__days button>abbr {
     position: relative;
     top: 1px;
+    color: rgb(28, 26, 26);
 }
 
 .react-calendar__month-view__days button {
@@ -587,9 +592,19 @@ body {
 .react-calendar__month-view__days button:hover {
     background: #0000001a;
 }
+.react-calendar__month-view__days button>abbr:hover {
+    color: white;
+}
 
 .react-calendar__month-view__weekdays__weekday {
     cursor: default;
+}
+
+@media screen and (width <= 500px) {
+    .react-calendar {
+        width: 235px;
+        height: 215px;
+    }
 }
 
 /* --------------- DragDrop ----------------- */
