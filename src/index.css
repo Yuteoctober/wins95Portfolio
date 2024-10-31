@@ -538,6 +538,7 @@ body {
 }
 
 .react-calendar__navigation__label {
+    width: 120px;
     pointer-events: none;
     white-space: nowrap;
 }
