@@ -16,30 +16,39 @@ Featured Functionality
 ![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/login.gif?raw=true)
 
 - Drag and Drop
+  
 ![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/dragDrop.gif?raw=true)
 
 - Change icon size
+  
 ![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/iconSize.gif?raw=true)
 
 - Change background
+  
 ![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/bg.gif?raw=true)
 
 - Run command
+  
 ![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/run.gif?raw=true)
 
 - Live Chat
+  
 ![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/msn.gif?raw=true)
 
 - Notification
+  
 ![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/Noti.gif?raw=true)
 
 - Calendar
+  
 ![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/calendar.gif?raw=true)
 
 - Mine Sweeper
+  
 ![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/game.gif?raw=true)
 
 - Shutting Down
+  
 ![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/shutdown.gif?raw=true)
 
 
