@@ -1,4 +1,4 @@
-Windows 95 Portfolio updated 10/03/2024
+Windows 95 Portfolio
 
 Live Demo: https://yuteoctober.github.io/wins95Portfolio/
 
@@ -97,7 +97,7 @@ All the functionalities
 
   - Added Icon size adjustable on the icon next to the clock on footer
 
-  - Added Calender by clicking the time on the footer
+  - Added Calender by clicking the time on the footer 10/30/2024
 
 Library used:
   - React Draggable => drag and drop functionality
