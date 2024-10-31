@@ -12,6 +12,7 @@ React Project:
 Featured Functionality
 
 - Log in
+  
 ![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/login.gif?raw=true)
 
 - Drag and Drop
