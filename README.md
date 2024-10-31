@@ -26,14 +26,14 @@ Featured Functionality
 - Run command
 ![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/run.gif?raw=true)
 
+- Live Chat
+![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/msn.gif?raw=true)
+
 - Notification
 ![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/Noti.gif?raw=true)
 
 - Calendar
 ![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/calendar.gif?raw=true)
-
-- Live Chat
-![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/msn.gif?raw=true)
 
 - Mine Sweeper
 ![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/game.gif?raw=true)
