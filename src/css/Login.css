@@ -16,7 +16,7 @@
     border-right: 1px solid black;
     border-bottom: 1px solid black;
     outline: 1px solid white;
-    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.249);
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.148);
     overflow: hidden;
     grid-template-rows: 22% auto;
     grid-template-columns: 18% 62% 20%;
