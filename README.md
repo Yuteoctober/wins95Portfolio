@@ -109,6 +109,8 @@ All the functionalities
 
   - Added Calender by clicking the time on the footer 10/30/2024
 
+  - Added sub folder on start menu imitating real windows 95 functionality 11/06/2024
+
 Library used:
   - React Draggable => drag and drop functionality
   - Framer-motion => for some animation

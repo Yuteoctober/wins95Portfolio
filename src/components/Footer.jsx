@@ -14,6 +14,8 @@ import settings from '../assets/setting.png';
 import { clippyPhrase, clippySuggest } from './function/ClippyFunction';
 import { BsCheck  } from "react-icons/bs";
 import Calendar from 'react-calendar';
+import { BsFillCaretRightFill } from "react-icons/bs";
+
 
 export default function Footer() {
     
@@ -25,6 +27,10 @@ export default function Footer() {
    
 
     const { 
+        isTouchDevice,
+        desktopIcon,
+        projectStartBar, setProjectStartBar,
+        resumeStartBar, setResumejectStartBar,
         calenderToggle, setCalenderToggle,
         iconTextSize,
         iconScreenSize, setIconScreenSize,
@@ -61,6 +67,36 @@ export default function Footer() {
 
      const footerItems = [
         {
+            className: "project",
+            imgSrc: project,
+            imgAlt: "project",
+            spanText: "Project",
+            arrow: true,
+            onClick: () => {
+                setProjectStartBar(!projectStartBar)
+                setResumejectStartBar(false)
+            },
+            onmouseenter: () => {
+                setProjectStartBar(true)
+                setResumejectStartBar(false)
+            },
+        },
+        {
+            className: "resume",
+            imgSrc: resume,
+            imgAlt: "resume",
+            spanText: "Resume",
+            arrow: true,
+            onClick: () => {
+                setResumejectStartBar(!resumeStartBar)
+                setProjectStartBar(false)
+            },
+            onmouseenter: () => {
+                setResumejectStartBar(true);
+                setProjectStartBar(false);
+            },
+        },
+        {
             className: "sidebar_popup",
             imgSrc: sidebar,
             imgAlt: "sidebar"
@@ -79,20 +115,6 @@ export default function Footer() {
             style: { borderRadius: '5px' },
             spanText: "Github",
             onClick: () => handleDoubleClickEnterLink('Github')
-        },
-        {
-            className: "project",
-            imgSrc: project,
-            imgAlt: "project",
-            spanText: "Project",
-            onClick: () => handleShow('Project')
-        },
-        {
-            className: "resume",
-            imgSrc: resume,
-            imgAlt: "resume",
-            spanText: "Resume",
-            onClick: () => handleShow('Resume')
         },
         {
             className: "shutdownicon",
@@ -134,6 +156,13 @@ export default function Footer() {
         const intervalId = setInterval(getCurrentLocalTime12Hour, 1000); // update every 1 second
         return () => clearInterval(intervalId);
     }, []);
+
+    useEffect(() => {
+        if(!startActive){
+            setProjectStartBar(false)
+            setResumejectStartBar(false)
+        }
+    },[startActive])
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -295,6 +324,9 @@ export default function Footer() {
         { label: '3480x2160', value: 5 }
     ];
 
+    const projectFolderItem = desktopIcon.filter(icon => icon.folderId === 'Project').length
+    const resumeFolderItem = desktopIcon.filter(icon => icon.folderId === 'Resume').length
+
     return (
         <>
             <div className="footer">
@@ -358,10 +390,14 @@ export default function Footer() {
                         style={{display: startActive? '' : 'none'}}
                     >
                         {footerItems.map((item, index) => (
-                            <div 
+                            <motion.div 
                             key={index} 
                             className={item.className} 
-                            onClick={item.onClick}
+                            onClick={(e) => {
+                                e.stopPropagation()
+                                item.onClick()
+                            }}
+                            onHoverStart={!isTouchDevice && item.onmouseenter}
                         >
                             {item.imgSrc && (
                                 <img 
@@ -371,10 +407,46 @@ export default function Footer() {
                                 />
                             )}
                             {item.spanText && <span>{item.spanText}</span>}
-                        </div>
+                            {item.arrow && (<p><BsFillCaretRightFill/></p>)}
+                        </motion.div>
                         ))}
+                        {projectStartBar && (
+                            <motion.div className="sub_start_container"
+                                style={{display: projectFolderItem === 0 ? 'none' : ''}}
+                            >
+                            {desktopIcon.filter(icon => icon.folderId === 'Project').map(icon => (
+                                <div className="icon_sub_start" key={icon.name}
+                                    onClick={() => handleShow(icon.name)}
+                                >
+                                    <img src={imageMapping(icon.name)} alt={icon.name}/>
+                                    <p>{icon.name}</p>
+                                </div>
+                            ))}
+                        </motion.div>
+                        )}
+                        {resumeStartBar && (
+                            <motion.div className="sub_start_container" 
+                            style={{
+                                display: resumeFolderItem === 0 ? 'none' : '',
+                                top: '2.5rem'
+                            }}
+                           
+
+                            >
+                            {desktopIcon.filter(icon => icon.folderId === 'Resume').map(icon => (
+                                <div className="icon_sub_start" key={icon.name}
+                                    onClick={() => handleShow(icon.name)}
+                                >
+                                    <img src={imageMapping(icon.name)} alt={icon.name}/>
+                                    <p>{icon.name}</p>
+                                </div>
+                            ))}
+                        </motion.div>
+                        )}
+                        
                     </div>
-                )}
+                    )}
+                    
                 <AnimatePresence>
                 {showClippy && (
                     <motion.div

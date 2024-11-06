@@ -28,6 +28,8 @@ import { StyleHide, imageMapping,
  } from './components/function/AppFunctions';
 
 function App() {
+  const [resumeStartBar, setResumejectStartBar] = useState(false)
+  const [projectStartBar, setProjectStartBar] = useState(false)
   const [calenderToggle, setCalenderToggle] = useState(false)
   const [iconScreenSize, setIconScreenSize] = useState(() => {
     const savedIconSize = localStorage.getItem('iconSize');
@@ -297,6 +299,8 @@ const handleOnDrag = (name, ref) => () => {
 
 
   const contextValue = {
+    projectStartBar, setProjectStartBar,
+    resumeStartBar, setResumejectStartBar,
     calenderToggle, setCalenderToggle,
     iconContainerSize, iconImgSize, iconTextSize,
     iconScreenSize, setIconScreenSize,
