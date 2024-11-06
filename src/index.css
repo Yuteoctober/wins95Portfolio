@@ -399,6 +399,7 @@ body {
     position: absolute;
     flex-direction: column;
     width: 140px !important;
+    max-height: 244px;
     height: fit-content !important;
     background: red;
     gap: 0 !important;
@@ -409,6 +410,11 @@ body {
     border-top-color: white;
     border-left-color: white;
     box-shadow: inset 0px 1px #ffffffdd, 0px 1px #464444;
+    overflow-y: auto;
+}
+.sub_start_container::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
 }
 
 /* target Safari */
