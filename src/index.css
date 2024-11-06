@@ -336,12 +336,12 @@ body {
     z-index: 999;
 }
 
-.start_popup div:not(.sidebar_popup):hover {
+.start_popup div:not(.sidebar_popup):not(.sub_start_container):hover {
     background: #040d91;
     color: white;
 }
 
-.start_popup div:not(.sidebar_popup):hover > span::before {
+.start_popup div:not(.sidebar_popup):not(.sub_start_container):hover > span::before {
     border-color: white;
 }
 
@@ -381,6 +381,64 @@ body {
     align-self: end;
     right: 9px;
 }
+
+.footer .start_popup p {
+    position: absolute;
+    font-size: 9px;
+    color: #171414;
+    right: .3rem;
+    margin-top: 3px;
+}
+
+.footer .start_popup div:hover > p {
+    color: white;
+}
+
+.sub_start_container {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    width: 140px !important;
+    height: fit-content !important;
+    background: red;
+    gap: 0 !important;
+    padding: 2px 0px!important;
+    left: 10.8rem;
+    background: #b3b2b2;
+    border: 1px solid #141414;
+    border-top-color: white;
+    border-left-color: white;
+    box-shadow: inset 0px 1px #ffffffdd, 0px 1px #464444;
+}
+
+/* target Safari */
+@supports (-webkit-touch-callout: none) {
+    .sub_start_container  {
+        left: 10.2rem; 
+    }
+}
+
+
+.sub_start_container .icon_sub_start {
+    display: flex;
+    position: relative;
+    width: 99%;
+    height: fit-content!important;
+    padding: 2px 4px;
+    gap: 9px;
+}
+
+.sub_start_container .icon_sub_start img {
+    position: relative;
+    width: 18px;
+    height: 18px;
+}
+
+.sub_start_container .icon_sub_start p {
+    position: relative;
+    font-size: 13px;
+}
+
 
 
 /* .start_popup .resume {
@@ -502,6 +560,7 @@ body {
     font-size: 12px;
     left: 19px;
 }
+
 
 /* ------------------ Calender ----------------- */
 .calender_container {
