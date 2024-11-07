@@ -102,19 +102,19 @@ export default function Footer() {
             imgAlt: "sidebar"
         },
         {
-            className: "linked",
-            imgSrc: linked,
-            imgAlt: "linked",
-            style: { borderRadius: '5px' },
-            spanText: "Linked"
-        },
-        {
             className: "ghithub",
             imgSrc: github,
             imgAlt: "github",
             style: { borderRadius: '5px' },
             spanText: "Github",
             onClick: () => handleDoubleClickEnterLink('Github')
+        },
+        {
+            className: "linked",
+            imgSrc: linked,
+            imgAlt: "linked",
+            style: { borderRadius: '5px' },
+            spanText: "Linked"
         },
         {
             className: "shutdownicon",
