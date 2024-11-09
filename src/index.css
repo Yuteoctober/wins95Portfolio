@@ -318,12 +318,6 @@ body {
         'sidebar shutdown';
 }
 
-@media screen and (width <= 500px){
-    .footer .start_popup {
-        width: 170px;
-    }  
-}
-
 
 .start_popup div {
     display: flex;
@@ -405,6 +399,7 @@ body {
     gap: 0 !important;
     padding: 2px 0px!important;
     left: 10.8rem;
+    top: -1px;
     background: #bdb9b9;
     border: 1px solid #141414;
     border-top-color: white;
@@ -415,13 +410,6 @@ body {
 .sub_start_container::-webkit-scrollbar {
     width: 0px;
     height: 0px;
-}
-
-/* target Safari */
-@supports (-webkit-touch-callout: none) {
-    .sub_start_container  {
-        left: 10.2rem; 
-    }
 }
 
 
@@ -586,13 +574,19 @@ body {
     overflow: hidden;
 }
 
+
 .react-calendar {
     display: grid;
     width: 235px;
     height: 180px;
     place-items: center;
     text-align: center;
-    
+}
+
+@supports (-webkit-touch-callout: none) {
+    .react-calendar  {
+        height: 210px;
+    }
 }
 
 .react-calendar__navigation {
