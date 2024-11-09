@@ -428,7 +428,7 @@ export default function Footer() {
                             <motion.div className="sub_start_container" 
                             style={{
                                 display: resumeFolderItem === 0 ? 'none' : '',
-                                top: '2.5rem'
+                                top: '2.55rem'
                             }}
                            
 
