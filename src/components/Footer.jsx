@@ -99,7 +99,11 @@ export default function Footer() {
         {
             className: "sidebar_popup",
             imgSrc: sidebar,
-            imgAlt: "sidebar"
+            imgAlt: "sidebar",
+            onmouseenter: () => {
+                setResumejectStartBar(false);
+                setProjectStartBar(false);
+            },
         },
         {
             className: "ghithub",
@@ -107,21 +111,33 @@ export default function Footer() {
             imgAlt: "github",
             style: { borderRadius: '5px' },
             spanText: "Github",
-            onClick: () => handleDoubleClickEnterLink('Github')
+            onClick: () => handleDoubleClickEnterLink('Github'),
+            onmouseenter: () => {
+                setResumejectStartBar(false);
+                setProjectStartBar(false);
+            },
         },
         {
             className: "linked",
             imgSrc: linked,
             imgAlt: "linked",
             style: { borderRadius: '5px' },
-            spanText: "Linked"
+            spanText: "Linked",
+            onmouseenter: () => {
+                setResumejectStartBar(false);
+                setProjectStartBar(false);
+            },
         },
         {
             className: "shutdownicon",
             imgSrc: settings,
             imgAlt: "shutdownicon",
             spanText: "Settings",
-            onClick: () => handleShow('Settings')
+            onClick: () => handleShow('Settings'),
+            onmouseenter: () => {
+                setResumejectStartBar(false);
+                setProjectStartBar(false);
+            },
         },
         {
             className: "run",
@@ -130,7 +146,12 @@ export default function Footer() {
             spanText: "Run...",
             onClick: () => {
                 handleShow('Run')
-                remountRunPosition()}
+                remountRunPosition()
+            },
+            onmouseenter: () => {
+                setResumejectStartBar(false);
+                setProjectStartBar(false);
+            },
         },
         {
             className: "groove" 
@@ -140,7 +161,11 @@ export default function Footer() {
             imgSrc: shutdownicon,
             imgAlt: "shutdownicon",
             spanText: "Shut down...",
-            onClick: () => setShutdownWindow(true)
+            onClick: () => setShutdownWindow(true),
+            onmouseenter: () => {
+                setResumejectStartBar(false);
+                setProjectStartBar(false);
+            },
         }
     ];
     
