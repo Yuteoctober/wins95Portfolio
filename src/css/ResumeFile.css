@@ -88,8 +88,7 @@
 /* support only safari */
 @supports (-webkit-touch-callout: none) {
     .folder_barbtn-resumefile .x-resumefile {
-        bottom: 8px; 
-        left: 1px;
+        bottom: 7px; 
     }
 }
 

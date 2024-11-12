@@ -118,7 +118,8 @@ function OpenProject() {
                 :
                 (null)}
               </div>
-              <div><p className='x'
+              <div>
+                <p className='x'
                  onClick={!isTouchDevice ? () => {
                   deleteTap('Internet')
                  }: undefined
@@ -126,7 +127,8 @@ function OpenProject() {
                 onTouchEnd={() => {
                   deleteTap('Internet')
               }}
-              >x</p></div>
+                >×</p>
+              </div>
             </div>
           </div>
 

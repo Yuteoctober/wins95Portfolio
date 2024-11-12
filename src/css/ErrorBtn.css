@@ -37,8 +37,9 @@
 }
 
 .error_container .bar_tap p {
+    position: relative;
     font-size: 13px;
-    padding-left: 4px;
+    left: 3px;
     color: white;
 }
 
@@ -94,6 +95,7 @@
     font-size: 11px;
     padding-right: 8px;
 }
+
 
 .error_container .error_ok_btn {
     display: grid;

@@ -266,7 +266,7 @@ function MineSweeper() {
                   deleteTap('MineSweeper')
                   handleNewGame()
                 }}
-              >x</p></div>
+              >×</p></div>
             </div>
           </div>
 

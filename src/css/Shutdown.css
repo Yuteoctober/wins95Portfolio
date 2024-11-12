@@ -47,8 +47,8 @@
 
 .nav_shutdown .x_shutdown_container {
     position: relative;
-    width: 17px;
-    height: 17px;
+    width: 15px;
+    height: 15px;
     margin-right: 3px;
     background: #c9c9c9;
     font-weight: bold;
@@ -66,8 +66,8 @@
 
 .nav_shutdown .x_shutdown_container p {
     position: relative;
-    bottom: 7px;
-    right: 1px;
+    bottom: 6.5px;
+    left: -2.5px;
     font-size: 18px;
     color: black;
 }

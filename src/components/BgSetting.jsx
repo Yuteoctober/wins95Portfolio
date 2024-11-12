@@ -188,7 +188,7 @@ function BgSetting() {
                     cancelBg()
                     deleteTap('Settings')
                   }}
-                >x
+                >×
                 </p>
               </div>
             </div>

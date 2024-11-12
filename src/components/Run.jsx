@@ -171,7 +171,7 @@ function Run() {
                   setRunInputVal('')
                   setRunItemBox(false)
               }}
-              >x</p>
+              >×</p>
               </div>
             </div>
           </div>

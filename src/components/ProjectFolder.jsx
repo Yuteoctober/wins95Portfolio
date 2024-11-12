@@ -133,7 +133,8 @@ function ProjectFolder() {
                 :
                 (null)}
               </div>
-              <div><p className='x-project'
+              <div>
+                <p className='x-project'
                  onClick={!isTouchDevice ? () => {
                   deleteTap('Project')
                  }: undefined
@@ -141,7 +142,8 @@ function ProjectFolder() {
                 onTouchEnd={() => {
                   deleteTap('Project')
               }}
-              >x</p></div>
+                >×</p>
+              </div>
             </div>
           </div>
 

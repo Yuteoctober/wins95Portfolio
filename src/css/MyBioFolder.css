@@ -71,13 +71,13 @@
     position: relative;
     text-align: center;
     font-size: 18px;
-    bottom: 6px;
+    bottom: 5px;
 }
 
 /* support only safari */
 @supports (-webkit-touch-callout: none) {
     .bio_barbtn .x {
-        bottom: 8px; 
+        bottom: 7px; 
         left: 1px;
     }
 }

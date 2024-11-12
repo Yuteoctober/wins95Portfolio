@@ -106,7 +106,7 @@ function MsnFolder() {
                 <div className="close_form_banner"
                   onClick={() => setUserName(false)}
                 >
-                  <p>x</p>
+                  <p>×</p>
                 </div>
               </div>
               <form onSubmit={(e) => { e.preventDefault() }}>
@@ -192,7 +192,7 @@ function MsnFolder() {
                     setChatValue('')
                   }}
                 >
-                  x
+                  ×
                 </p>
               </div>
             </div>
