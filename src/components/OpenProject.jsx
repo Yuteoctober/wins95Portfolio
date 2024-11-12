@@ -139,7 +139,7 @@ function OpenProject() {
               <p>Help<span style={{left: '-30px'}}>_</span></p>
           </div>
           <div className="address_container">
-            <p>Address</p>
+            <p className='address'>Address:</p>
             <div className="address_box">
                 <p>{projectUrl}</p>
             </div>
