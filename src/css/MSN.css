@@ -92,13 +92,13 @@
     position: relative;
     text-align: center;
     font-size: 18px;
-    bottom: 6px;
+    bottom: 5px;
 }
 
 /* support only safari */
 @supports (-webkit-touch-callout: none) {
     .folder_barbtn-MSN .x-MSN {
-        bottom: 8px; 
+        bottom: 7px; 
         left: 1px;
     }
 }
@@ -413,7 +413,7 @@
     border-bottom-color: black;
     background: #c5c4c4;
     text-align: center;
-    right: 4px;
+    right: 3px;
     cursor: default;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -430,12 +430,13 @@
 .form_banner .close_form_banner p {
     position: relative;
     bottom: 7px;
+    left: 0.5px;
     font-size: 16px;
 }
 @supports (-webkit-touch-callout: none) {
     .form_banner .close_form_banner p {
-        bottom: 8px;
-        left: .5px;
+        bottom: 7px;
+        left: 0.5px;
     }
 }
 

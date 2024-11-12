@@ -24,7 +24,7 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
                     runOpenFuction()
                 }}
             >
-                <p>x</p>
+                <p>×</p>
             </div>
         </div>
         <div className="error_message_container">

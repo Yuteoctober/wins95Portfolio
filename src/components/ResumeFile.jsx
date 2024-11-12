@@ -115,7 +115,8 @@ function ResumeFile() {
                 :
                 (null)}
               </div>
-              <div><p className='x-resumefile'
+              <div>
+                <p className='x-resumefile'
                  onClick={!isTouchDevice ? () => {
                   deleteTap('ResumeFile')
                   setDownloadBox(false)
@@ -125,7 +126,8 @@ function ResumeFile() {
                   deleteTap('ResumeFile')
                   setDownloadBox(false)
               }}
-              >x</p></div>
+                >×</p>
+              </div>
             </div>
           </div>
 

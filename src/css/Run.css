@@ -73,16 +73,17 @@
     position: relative;
     text-align: center;
     font-size: 16px;
-    bottom: 6.5px;
+    bottom: 6px;
 
 }
 
 /* support only safari */
-/* @supports (-webkit-touch-callout: none) {
+@supports (-webkit-touch-callout: none) {
     .folder_barbtn_run .x {
+        bottom: 5.5px;
         left: 1px;
     }
-} */
+}
 
 .run_top_container {
     display: flex;

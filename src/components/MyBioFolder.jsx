@@ -158,7 +158,7 @@ function MyBioFolder() {
                     deleteTap('My Bio')
                     handleBiotap('general')
                   }}
-                >x
+                >×
                 </p>
               </div>
             </div>

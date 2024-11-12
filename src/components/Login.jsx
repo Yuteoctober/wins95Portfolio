@@ -122,7 +122,7 @@ function Login() {
                     <div className="login_question"
                         onClick={handleMarioSizeUp}
                     >
-                        <p>?</p>
+                        <p className='login_question_mark'>?</p>
                     </div>
                 </div>
             </div>

@@ -127,7 +127,7 @@ function ResumeFolder() {
               <p className='x'
                 onClick={!isTouchDevice ? () => deleteTap('Resume') : undefined}
                 onTouchEnd={() => deleteTap('Resume')}
-              >x</p>
+              >×</p>
             </div>
           </div>
         </div>

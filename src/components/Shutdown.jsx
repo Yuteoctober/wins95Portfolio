@@ -70,7 +70,7 @@ function Shutdown() {
                         <div className='x_shutdown_container'
                             onClick={handleNoShutdown}
                         >
-                            <p>x</p>
+                            <p>×</p>
                         </div>
                     </div>
                     <div className="shutdown_main_container">

@@ -160,7 +160,7 @@
     position: relative;
     font-size: 12px;
     margin-right: .8rem;
-    bottom: ;
+
 }
 
 .login_input label::before {
@@ -215,8 +215,23 @@
 
 .login_button .login_btn p {
     position: relative;
+    top: 1px;
     font-size: 12px;
 }
+
+.login_question_mark {
+    position: relative;
+}
+
+/* support only safari */
+@supports (-webkit-touch-callout: none) {
+    .login_question_mark {
+        position: relative;
+        top: -2px;
+    }
+}
+
+
 
 @media screen and (width <= 500px){
     .login_button {

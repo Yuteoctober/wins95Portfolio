@@ -55,6 +55,20 @@
     cursor: default;
 }
 
+.folder_folder-open-project .x {
+    position: relative;
+    bottom: 6px;
+}
+
+
+/* support only safari */
+@supports (-webkit-touch-callout: none) {
+    .folder_folder-open-project .x {
+        bottom: 7px; 
+        left: 1.5px;
+    }
+}
+
 
 
 /* --------------------- */

@@ -145,7 +145,7 @@ const form = useRef();
                   : undefined
                 }
                 onTouchEnd={() => deleteTap('Mail')}
-              >x</p></div>
+              >×</p></div>
             </div>
           </div>
 
