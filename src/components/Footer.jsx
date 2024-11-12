@@ -161,7 +161,10 @@ export default function Footer() {
             imgSrc: shutdownicon,
             imgAlt: "shutdownicon",
             spanText: "Shut down...",
-            onClick: () => setShutdownWindow(true),
+            onClick: () => {
+                setShutdownWindow(true)
+                setStartActive(false)
+            },
             onmouseenter: () => {
                 setResumejectStartBar(false);
                 setProjectStartBar(false);
