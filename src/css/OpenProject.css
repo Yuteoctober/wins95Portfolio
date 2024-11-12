@@ -99,20 +99,24 @@
     border-right: none;
     cursor: default;
 }
-
+.address_container .address {
+    position: relative;
+    top: 1px;
+}
 .address_box {
     width: 100%;
     padding-left: 4px;
     border: 2px solid black;
     border-bottom-color: #c6c5c5;
     border-right-color: #c6c5c5;
-    color: grey;
+    color: black;
     background: rgb(255, 255, 255);
 }
 
 .address_box p {
     position: relative;
     top: 1px;
+    cursor: auto;
 }
 
 .ifram_text_container {
