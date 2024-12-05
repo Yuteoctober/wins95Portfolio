@@ -27,7 +27,7 @@
 .leftside_btc p {
     position: relative;
     font-size: 14px;
-    top: 10px;
+    top: 14px;
 }
 
 .leftside_btc_btm {
@@ -54,8 +54,8 @@
 
 .rightside_btc h2 {
     position: relative;
-    top: 8px;
-    letter-spacing: .1rem;
+    top: 12px;
+    letter-spacing: .06rem;
     font-size: 16px;
     
 }

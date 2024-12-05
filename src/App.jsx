@@ -29,7 +29,7 @@ import { StyleHide, imageMapping,
  } from './components/function/AppFunctions';
 
 function App() {
-  const [btcShow, setBtcShow] = useState(false)
+  const [btcShow, setBtcShow] = useState(true)
   const [resumeStartBar, setResumejectStartBar] = useState(false)
   const [projectStartBar, setProjectStartBar] = useState(false)
   const [calenderToggle, setCalenderToggle] = useState(false)
