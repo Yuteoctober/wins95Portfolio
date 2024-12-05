@@ -20,6 +20,7 @@ import WindowsShutdown from './components/WindowsShutdown';
 import BgSetting from './components/BgSetting';
 import Run from './components/Run';
 import Notification from './components/Notification';
+import BTC from './components/BTC';
 import axios from 'axios';
 import { StyleHide, imageMapping,
   handleDoubleClickEnterLink,handleDoubleTapEnterMobile,
@@ -28,6 +29,7 @@ import { StyleHide, imageMapping,
  } from './components/function/AppFunctions';
 
 function App() {
+  const [btcShow, setBtcShow] = useState(false)
   const [resumeStartBar, setResumejectStartBar] = useState(false)
   const [projectStartBar, setProjectStartBar] = useState(false)
   const [calenderToggle, setCalenderToggle] = useState(false)
@@ -299,6 +301,7 @@ const handleOnDrag = (name, ref) => () => {
 
 
   const contextValue = {
+    btcShow, setBtcShow,
     projectStartBar, setProjectStartBar,
     resumeStartBar, setResumejectStartBar,
     calenderToggle, setCalenderToggle,
@@ -422,6 +425,7 @@ const handleOnDrag = (name, ref) => () => {
         <OpenProject/>
         <BgSetting/>
         <Run/>
+        <BTC/>
         <Dragdrop/>
         <Footer/>
       </UserContext.Provider>

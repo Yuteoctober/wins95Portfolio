@@ -265,11 +265,11 @@ body {
     display: flex;
     position: absolute;
     height: 28px;
-    width: 82px;
+    width: fit-content;
     justify-content: center;
     align-items: center;
     right: 4px;
-    gap: 2px;
+    gap: 1px;
     box-shadow: inset 1px 1px #000, 1px 1px #ffffffdd;
 }
 
@@ -277,6 +277,7 @@ body {
     position: relative;
     width: 35px;
     right: 1px;
+    cursor: pointer;
 }
 
 .footer .time p {
@@ -455,7 +456,8 @@ body {
 
 .tap_container {
     display: flex;
-    max-width: calc(100svw - 163px);
+    position: relative;
+    max-width: calc(100svw - 181px);
     padding-right: 2px;
     justify-content: flex-start;
     align-items: center;
