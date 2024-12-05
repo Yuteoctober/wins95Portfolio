@@ -400,7 +400,8 @@ export default function Footer() {
                         style={{
                             position: 'relative',
                             width: '18px',
-                            left: '5px'
+                            left: '5px',
+                            zIndex: '2'
                         }} 
                         onClick={() => setBtcShow(!btcShow)}
                     />
