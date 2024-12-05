@@ -111,6 +111,10 @@ All the functionalities
 
   - Added sub folder on start menu imitating real windows 95 functionality 11/06/2024
 
+  - Added BitCoin price real-time tracking display and icon celebrating BTC hits $100k 12/5/2024
+    - User can hide / unhide in tap bar 
+    - Using Coinbase websocket to display
+
 Library used:
   - React Draggable => drag and drop functionality
   - Framer-motion => for some animation
