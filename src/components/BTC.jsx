@@ -1,12 +1,14 @@
 import { useState, useEffect, useContext, useRef } from 'react';
 import UseContext from '../Context';
-import btc_coin from '../assets/btc.gif'
+import btc_coin from '../assets/btc_icon.webp'
+import '../css/BTC.css';
 
 
 function BTC() {
 
   const { btcShow, setBtcShow } = useContext(UseContext);
   const [price, setPrice] = useState(null);
+  const [detail, setDetail] = useState(null)
   
   useEffect(() => {
     const socket = new WebSocket('wss://ws-feed.exchange.coinbase.com');
@@ -16,18 +18,18 @@ function BTC() {
       channels: [
         {
           name: "ticker",
-          product_ids: ["BTC-USD"], // Replace with the currency pair you want
+          product_ids: ["BTC-USD"], 
         },
       ],
     };
 
     socket.onopen = () => {
-      console.log('WebSocket connected');
       socket.send(JSON.stringify(subscribeMessage)); // Send subscription message
     };
 
     socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
+      setDetail(data)
       if (data.type === "ticker" && data.price) {
         setPrice(parseFloat(data.price));
       }
@@ -47,8 +49,9 @@ function BTC() {
   }, [btcShow]);
   
   
-  
-
+  const volume = !detail ? 'Loading...' : '$' + Math.floor(detail?.volume_24h * detail?.price).toLocaleString();
+  const high = !detail ? 'Loading...' : Math.floor(detail?.high_24h).toLocaleString();
+  const low = !detail ? 'Loading...' : Math.floor(detail?.low_24h).toLocaleString();
   // Format the price with commas
   const formattedPrice = price
     ? new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(price)
@@ -57,29 +60,26 @@ function BTC() {
   return (
     <>
         {btcShow && (
-            <div className='btc_container'
-            style={{
-                display: 'flex',
-                width: '150px',
-                height: '150px',
-                position: 'absolute',
-                justifyContent:'center',
-                alignItems:'center',
-                flexDirection: 'column',
-                right: '.5rem',
-                top: '.5rem',
-                gap: '.5rem'
-            }}
-        >
-          <img src={btc_coin} alt="btc_coin" 
-            style={{
-                width: '50%',
-                height: '50%'
-            }}
-          />
-            <h2 style={{letterSpacing: '.1rem', fontSize: '22px', color: 'black'}}>
-            {formattedPrice || 'Loading...'}
-            </h2>
+            <div className='btc_container'>
+              <div className="container_leftside_btc">
+               <div className="leftside_btc">
+                 <img src={btc_coin} alt="btc_coin" />
+                 <p>BTC-USD</p>
+              </div>
+              <div className="leftside_btc_btm">
+                <p>Vol: {volume}</p>
+                <span>High: {high}</span>
+                <span>Low: {low}</span>
+              </div> 
+              </div>
+              
+              <div className="rightside_btc">
+                <h2>
+                  {formattedPrice || 'Loading...'}
+                </h2>
+              </div>
+         
+            
         </div>
         )}
     </>
