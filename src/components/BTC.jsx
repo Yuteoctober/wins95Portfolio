@@ -44,7 +44,7 @@ function BTC() {
     return () => {
       socket.close();
     };
-  }, []);
+  }, [btcShow]);
   
   
   
