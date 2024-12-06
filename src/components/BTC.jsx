@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext, useRef } from 'react';
 import UseContext from '../Context';
 import btc_coin from '../assets/btc_icon.webp'
+import { LuRefreshCw } from "react-icons/lu";
 import '../css/BTC.css';
 
 
@@ -9,6 +10,7 @@ function BTC() {
   const { btcShow, setBtcShow } = useContext(UseContext);
   const [price, setPrice] = useState(null);
   const [detail, setDetail] = useState(null)
+  const [refresh, setRefresh] = useState(false)
   
   useEffect(() => {
     const socket = new WebSocket('wss://ws-feed.exchange.coinbase.com');
@@ -46,7 +48,7 @@ function BTC() {
     return () => {
       socket.close();
     };
-  }, [btcShow]);
+  }, [btcShow, refresh]);
   
   
   const volume = !detail ? 'Loading...' : '$' + Math.floor(detail?.volume_24h * detail?.price).toLocaleString();
@@ -61,6 +63,10 @@ function BTC() {
     <>
         {btcShow && (
             <div className='btc_container'>
+              <LuRefreshCw className={`refresher ${refresh? 'active' : ''}`}
+                onClick={() => setRefresh(true)}
+                onAnimationEnd={() => setRefresh(false)}
+              />
               <div className="container_leftside_btc">
                <div className="leftside_btc">
                  <img src={btc_coin} alt="btc_coin" />
@@ -78,8 +84,6 @@ function BTC() {
                   {formattedPrice || 'Loading...'}
                 </h2>
               </div>
-         
-            
         </div>
         )}
     </>
