@@ -12,41 +12,49 @@ function BTC() {
   const [detail, setDetail] = useState(null)
   const [refresh, setRefresh] = useState(false)
   
+  const socketRef = useRef(null); 
+
   useEffect(() => {
-    const socket = new WebSocket('wss://ws-feed.exchange.coinbase.com');
+    // Check if the WebSocket is already created
+    if (!socketRef.current || socketRef.current.readyState === WebSocket.CLOSED) {
+      const socket = new WebSocket("wss://ws-feed.exchange.coinbase.com");
+      socketRef.current = socket; // Save the WebSocket instance in ref
 
-    const subscribeMessage = {
-      type: "subscribe",
-      channels: [
-        {
-          name: "ticker",
-          product_ids: ["BTC-USD"], 
-        },
-      ],
-    };
+      const subscribeMessage = {
+        type: "subscribe",
+        channels: [
+          {
+            name: "ticker",
+            product_ids: ["BTC-USD"],
+          },
+        ],
+      };
 
-    socket.onopen = () => {
-      socket.send(JSON.stringify(subscribeMessage)); // Send subscription message
-    };
+      socket.onopen = () => {
+        socket.send(JSON.stringify(subscribeMessage)); // Send subscription message
+      };
 
-    socket.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      setDetail(data)
-      if (data.type === "ticker" && data.price) {
-        setPrice(parseFloat(data.price));
-      }
-    };
+      socket.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        setDetail(data);
+        if (data.type === "ticker" && data.price) {
+          setPrice(parseFloat(data.price));
+        }
+      };
 
-    socket.onerror = (error) => {
-      console.error('WebSocket error:', error);
-    };
+      socket.onerror = (error) => {
+        console.error("WebSocket error:", error);
+      };
 
-    socket.onclose = () => {
-      console.log('WebSocket connection closed');
-    };
+      socket.onclose = () => {
+        console.log("WebSocket connection closed");
+      };
+    }
 
     return () => {
-      socket.close();
+      if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
+        socketRef.current.close(); // Cleanup WebSocket connection on unmount
+      }
     };
   }, [btcShow, refresh]);
   
