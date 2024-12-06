@@ -59,7 +59,7 @@ function BTC() {
   }, [btcShow, refresh]);
   
   
-  const volume = !detail ? 'Loading...' : '$' + Math.floor(detail?.volume_24h * detail?.price).toLocaleString();
+  const volume = !detail ? 'Loading...' : '$' + Math.floor(detail?.volume_24h * (+detail?.high_24h + +detail?.low_24h / 2)).toLocaleString();
   const high = !detail ? 'Loading...' : Math.floor(detail?.high_24h).toLocaleString();
   const low = !detail ? 'Loading...' : Math.floor(detail?.low_24h).toLocaleString();
   // Format the price with commas
