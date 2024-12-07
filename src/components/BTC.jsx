@@ -15,8 +15,6 @@ function BTC() {
   const socketRef = useRef(null); 
 
   useEffect(() => {
-    // Check if the WebSocket is already created
-    if (!socketRef.current || socketRef.current.readyState === WebSocket.CLOSED) {
       const socket = new WebSocket("wss://ws-feed.exchange.coinbase.com");
       socketRef.current = socket; // Save the WebSocket instance in ref
 
@@ -47,15 +45,12 @@ function BTC() {
       };
 
       socket.onclose = () => {
-        socketRef.current = null;
         console.log("WebSocket connection closed");
       };
-    }
 
     return () => {
       if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
         socketRef.current.close(); // Cleanup WebSocket connection on unmount
-        socketRef.current = null;
       }
     };
   }, [btcShow, refresh]);
@@ -83,7 +78,11 @@ function BTC() {
                  <p>BTC-USD</p>
               </div>
               <div className="leftside_btc_btm">
-                <p>Vol: {volume}</p>
+                <p>Vol: 
+                  <span style={{position:'relative', left: '7px'}}>
+                    {volume}
+                  </span>
+                </p>
                 <span>High: {high}</span>
                 <span>Low: {low}</span>
               </div> 
