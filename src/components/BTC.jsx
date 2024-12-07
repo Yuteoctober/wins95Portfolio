@@ -34,6 +34,7 @@ function BTC() {
 
       socket.onmessage = (event) => {
         const data = JSON.parse(event.data);
+        console.log(data)
         setDetail(data);
         if (data.type === "ticker" && data.price) {
           setPrice(parseFloat(data.price));
@@ -55,7 +56,8 @@ function BTC() {
     };
   }, [btcShow, refresh]);
   
-  
+  const percentage = !detail || !detail.open_24h ? "0.00%" : `${price >= detail.open_24h ? "+" : ""}${(((price - detail.open_24h) / detail.open_24h) * 100).toFixed(2)}%`;
+
   const volume = !detail ? 'Loading...' : '$' + Math.floor(detail?.volume_24h * (+detail?.high_24h + +detail?.low_24h / 2)).toLocaleString();
   const high = !detail ? 'Loading...' : Math.floor(detail?.high_24h).toLocaleString();
   const low = !detail ? 'Loading...' : Math.floor(detail?.low_24h).toLocaleString();
@@ -92,6 +94,9 @@ function BTC() {
                 <h2>
                   {formattedPrice || 'Loading...'}
                 </h2>
+                <span style={{ color: percentage >= 0 ? '#25bc25' : '#db2222' }}>
+                  {percentage}
+                </span>
               </div>
         </div>
         )}
