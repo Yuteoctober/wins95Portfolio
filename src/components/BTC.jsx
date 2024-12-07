@@ -47,6 +47,7 @@ function BTC() {
       };
 
       socket.onclose = () => {
+        socketRef.current = null;
         console.log("WebSocket connection closed");
       };
     }
@@ -54,6 +55,7 @@ function BTC() {
     return () => {
       if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
         socketRef.current.close(); // Cleanup WebSocket connection on unmount
+        socketRef.current = null;
       }
     };
   }, [btcShow, refresh]);
