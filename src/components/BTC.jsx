@@ -93,10 +93,11 @@ function BTC() {
               <div className="rightside_btc">
                 <h2>
                   {formattedPrice || 'Loading...'}
-                </h2>
-                <span style={{ color: percentage >= 0 ? '#25bc25' : '#db2222' }}>
+                  <span style={{ color: percentage >= 0 ? '#25bc25' : '#db2222' }}>
                   {percentage}
                 </span>
+                </h2>
+                
               </div>
         </div>
         )}
