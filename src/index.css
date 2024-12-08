@@ -280,19 +280,25 @@ body {
     cursor: pointer;
 }
 
-.footer .time p {
+.footer .time .p_time_div {
     position: relative;
-    font-size: 11px;
-    letter-spacing: .7px;
-    top: 2px;
-    right: 8px;
-    white-space: nowrap;
+    top: 1px;
+    right: 7px;
     cursor: default;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    padding: 1px 2px;
+    
+}
+
+.footer .time p {
+    position: relative;
+    font-size: 11px;
+    letter-spacing: .7px;
+    white-space: nowrap;
+    top: 0.5px;
+    padding: 0px 3px;
 }
 
 .footer .start_popup {
@@ -458,7 +464,7 @@ body {
 .tap_container {
     display: flex;
     position: relative;
-    max-width: calc(100svw - 181px);
+    max-width: calc(100svw - 184px);
     padding-right: 2px;
     justify-content: flex-start;
     align-items: center;
