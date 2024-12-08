@@ -1,7 +1,7 @@
 .btc_container {
     display: flex;
     position: absolute;
-    width: 280px;
+    width: 275px;
     height: 100px;
     background: rgba(242, 242, 241, 0.628);
     right: 1rem;
@@ -17,7 +17,7 @@
     width: 35px;
     height: 35px;
     top: 10px;
-    right: 4px;
+    right: 2px;
 }
 
 .leftside_btc {
@@ -64,7 +64,7 @@
     top: 12px;
     letter-spacing: .06rem;
     font-size: 16px;
-    color: #db2222 #0caf0c;
+    color: #db2222 #0ac20a;
 }
 
 

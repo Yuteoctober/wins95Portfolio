@@ -413,7 +413,7 @@ export default function Footer() {
                             setCalenderToggle(false)
                         }}
                     />
-                    <p 
+                    <p style={{background: calenderToggle? '#8c8888c2':''}}
                         onClick={(e) => {
                             e.stopPropagation()
                             setCalenderToggle(!calenderToggle)
