@@ -413,16 +413,19 @@ export default function Footer() {
                             setCalenderToggle(false)
                         }}
                     />
-                    <p style={{background: calenderToggle? '#8c8888c2':''}}
-                        onClick={(e) => {
-                            e.stopPropagation()
-                            setCalenderToggle(!calenderToggle)
-                            setIconSize(false)
-                            setStartActive(false)
-                        }}
-                    >
-                        {time}
-                    </p>
+                    <div className='p_time_div'
+                        style={{background: calenderToggle? '#8c8888c2':''}}>
+                        <p
+                            onClick={(e) => {
+                                e.stopPropagation()
+                                setCalenderToggle(!calenderToggle)
+                                setIconSize(false)
+                                setStartActive(false)
+                            }}
+                        >
+                            {time}
+                        </p>
+                    </div>
                 </div>
                 {startActive && (
                     <div className="start_popup"
