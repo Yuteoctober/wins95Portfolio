@@ -56,7 +56,11 @@ function BTC() {
     };
   }, [btcShow, refresh]);
   
-  const percentage = !detail || !detail.open_24h ? "0.00%" : `${price >= detail.open_24h ? "+" : ""}${(((price - detail.open_24h) / detail.open_24h) * 100).toFixed(2)}%`;
+  const percentageValue = !detail || !detail.open_24h 
+  ? 0 
+  : +(((price - detail.open_24h) / detail.open_24h) * 100).toFixed(2);
+
+  const percentage = `${percentageValue >= 0 ? "+" : ""}${percentageValue}%`;
 
   const volume = !detail ? 'Loading...' : '$' + Math.floor(detail?.volume_24h * (+detail?.high_24h + +detail?.low_24h / 2)).toLocaleString();
   const high = !detail ? 'Loading...' : Math.floor(detail?.high_24h).toLocaleString();
@@ -93,9 +97,9 @@ function BTC() {
               <div className="rightside_btc">
                 <h2>
                   {formattedPrice || 'Loading...'}
-                  <span style={{ color: percentage > -1 ? '#25bc25' : '#db2222' }}>
-                  {percentage}
-                </span>
+                  <span style={{ color: percentageValue >= 0 ? '#28a745' : '#dc3545' }}>
+                    {percentage}
+                  </span>
                 </h2>
                 
               </div>
