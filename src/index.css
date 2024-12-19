@@ -464,7 +464,7 @@ body {
 .tap_container {
     display: flex;
     position: relative;
-    max-width: calc(100svw - 184px);
+    max-width: calc(100svw - 189px);
     padding-right: 2px;
     justify-content: flex-start;
     align-items: center;
@@ -487,29 +487,39 @@ body {
     align-items: center;
     gap: 4px;
     height: 26px;
-    width: fit-content;
+    max-width: 180px;
+    min-width: 30px;
+    width: 200px;
     padding: 0px 8px;
     cursor: default;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    overflow: hidden;
+    
+}
+
+.start_tap p {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 @media screen and (width >= 500px){
     .start_tap {
-        padding-right: 8px;
+        /* padding-right: 8px; */
     }  
 }
 
 @media screen and (width >= 800px){
     .start_tap {
-        padding-right: 40px;
+        /* padding-right: 40px; */
     }  
 }
 @media screen and (width >= 1000px){
     .start_tap {
-        padding-right: 80px;
+        /* padding-right: 80px; */
     }  
 }
 
