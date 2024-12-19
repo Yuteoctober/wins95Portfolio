@@ -506,22 +506,18 @@ body {
     overflow: hidden;
 }
 
-@media screen and (width >= 500px){
+@media screen and (width <= 800px){
     .start_tap {
-        /* padding-right: 8px; */
+        max-width: 140px;
     }  
 }
 
-@media screen and (width >= 800px){
+@media screen and (width <= 500px){
     .start_tap {
-        /* padding-right: 40px; */
+        max-width: 80px;
     }  
 }
-@media screen and (width >= 1000px){
-    .start_tap {
-        /* padding-right: 80px; */
-    }  
-}
+
 
 .start_tap img {
     position: relative;
