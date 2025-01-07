@@ -425,7 +425,7 @@ const handleOnDrag = (name, ref) => () => {
         <OpenProject/>
         <BgSetting/>
         <Run/>
-        <BTC/>
+        {btcShow && <BTC/>}
         <Dragdrop/>
         <Footer/>
       </UserContext.Provider>
