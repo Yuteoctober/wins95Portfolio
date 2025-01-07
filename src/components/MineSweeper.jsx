@@ -19,6 +19,7 @@ function MineSweeper() {
   const [clearTimer, setClearTimer] = useState(null)
   const [ROWS, setROWS] = useState(10);
   const [COLS, setCOLS] = useState(10);
+
   const [MINES, setMINES] = useState(() => {
     const storedLevel = localStorage.getItem('level');
     if(Number(storedLevel) >= 20) {
@@ -29,6 +30,7 @@ function MineSweeper() {
     }
     return 2; 
   });
+  const [tempMine, setTempMine] = useState(MINES)
     
 
 
@@ -134,13 +136,27 @@ function MineSweeper() {
 
   const setFlag = (e, rowIdx, colIdx) => {
     e.preventDefault();
+
+    // Prevent flagging revealed squares
     if (squares[rowIdx][colIdx].isRevealed) return;
 
-    const newSquares = [...squares];
-    newSquares[rowIdx][colIdx].isFlagged = !newSquares[rowIdx][colIdx].isFlagged;
+    // Deep copy the squares to avoid mutating the original state
+    const newSquares = squares.map((row, rIdx) => 
+      row.map((square, cIdx) => 
+        rIdx === rowIdx && cIdx === colIdx 
+          ? { ...square, isFlagged: !square.isFlagged } 
+          : square
+      )
+    );
 
+    // Update tempMine count based on the new flag status
+    const isFlagged = newSquares[rowIdx][colIdx].isFlagged;
+    setTempMine(tempMine + (isFlagged ? -1 : 1));
+
+    // Update the squares state
     setSquares(newSquares);
-  };
+};
+
 
   
 
@@ -192,7 +208,8 @@ function MineSweeper() {
       setGameOver(false)
       setGameDisable(false)
       setGameDisable(false)
-      setFirstTimeCount(true)  
+      setFirstTimeCount(true) 
+      setTempMine(MINES)
     }
   
   
@@ -283,7 +300,13 @@ function MineSweeper() {
             }>
             <div className='timer_mine_container'>
               <div className="count">
-              <p>{MINES < 10 ? '00'+ MINES : MINES < 100 ? '0' + MINES : MINES > 999 ? 999 : MINES}</p>
+              <p>
+                {tempMine < 10 && tempMine > -1 ? '00' + tempMine 
+                : tempMine < 0 ? tempMine
+                : '0' + tempMine
+                }
+              </p>
+
               </div>
               <div className="face_container">
                 <img src={gameOver && !showFlag? dead : smile} alt="" 
