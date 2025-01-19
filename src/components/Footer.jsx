@@ -24,6 +24,9 @@ export default function Footer() {
     const startRef = useRef(null);
     const iconSizeRef = useRef(null);
     const calenderRef = useRef(null);
+    const startPopUpRef = useRef(null)
+    const projectRef = useRef(null)
+    const resumeRef = useRef(null)
     const [calValue, calOnChange] = useState(new Date());
    
 
@@ -180,6 +183,61 @@ export default function Footer() {
         const container = wheelTapContainer.current;
         container.scrollLeft += e.deltaY;
       };
+
+      useEffect(() => {
+        const handleMouseMove = (event) => {
+          const startPopupContainer = startPopUpRef.current;
+          const projectContainer = projectRef.current;
+          const resumeContainer = resumeRef.current;
+      
+          if (startPopupContainer) {
+            const startRect = startPopupContainer.getBoundingClientRect();
+      
+            let projectRect = null;
+            let resumeRect = null;
+      
+            if (projectContainer) {
+              projectRect = projectContainer.getBoundingClientRect();
+            }
+            if (resumeContainer) {
+              resumeRect = resumeContainer.getBoundingClientRect();
+            }
+      
+            const isMouseOutsideStart =
+              event.clientX < startRect.left ||
+              event.clientX > startRect.right ||
+              event.clientY < startRect.top ||
+              event.clientY > startRect.bottom;
+      
+            const isMouseOutsideProject = projectRect
+              ? event.clientX < projectRect.left ||
+                event.clientX > projectRect.right ||
+                event.clientY < projectRect.top ||
+                event.clientY > projectRect.bottom
+              : true;
+      
+            const isMouseOutsideResume = resumeRect
+              ? event.clientX < resumeRect.left ||
+                event.clientX > resumeRect.right ||
+                event.clientY < resumeRect.top ||
+                event.clientY > resumeRect.bottom
+              : true;
+      
+            if (isMouseOutsideStart && isMouseOutsideProject && isMouseOutsideResume) {
+              setProjectStartBar(false);
+              setResumejectStartBar(false);
+            }
+          }
+        };
+      
+        document.addEventListener('mousemove', handleMouseMove);
+      
+        return () => {
+          document.removeEventListener('mousemove', handleMouseMove);
+        };
+      }, []);
+      
+      
     
     useEffect(() => { // set local time
         getCurrentLocalTime12Hour();
@@ -429,6 +487,7 @@ export default function Footer() {
                 </div>
                 {startActive && (
                     <div className="start_popup"
+                        ref={startPopUpRef}
                         style={{display: startActive? '' : 'none'}}
                     >
                         {footerItems.map((item, index) => (
@@ -454,6 +513,7 @@ export default function Footer() {
                         ))}
                         {projectStartBar && (
                             <motion.div className="sub_start_container"
+                                ref={projectRef}
                                 style={{display: projectFolderItem === 0 ? 'none' : ''}}
                             >
                             {desktopIcon.filter(icon => icon.folderId === 'Project').map(icon => (
@@ -468,12 +528,11 @@ export default function Footer() {
                         )}
                         {resumeStartBar && (
                             <motion.div className="sub_start_container" 
-                            style={{
-                                display: resumeFolderItem === 0 ? 'none' : '',
-                                top: '2.55rem'
-                            }}
-                           
-
+                                ref={resumeRef}
+                                style={{
+                                    display: resumeFolderItem === 0 ? 'none' : '',
+                                    top: '2.55rem'
+                                }}
                             >
                             {desktopIcon.filter(icon => icon.folderId === 'Resume').map(icon => (
                                 <div className="icon_sub_start" key={icon.name}
