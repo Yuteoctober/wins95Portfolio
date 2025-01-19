@@ -13,22 +13,38 @@ import bg6 from '../assets/bg6.jpg'
 import bg7 from '../assets/bg7.png'
 import bg8 from '../assets/bg8.png'
 import bg9 from '../assets/bg9.jpg'
+import eff1 from '../assets/noise.png'
+import eff2 from '../assets/oldtv.jpg'
+import eff3 from '../assets/brokenTV.jpg'
+import eff4 from '../assets/DarkTV.jpg'
+import eff5 from '../assets/glitch.gif'
+import eff6 from '../assets/glitch2.gif'
 import '../css/BgSetting.css'
 
 
 function BgSetting() {
+  const [bgTap, setBgTap] = useState(true)
+  const [effectTap, setEffectTap] = useState(false)
   const [ barcolor, setBarcolor ] = useState(null)
   const [ ImgBgPreview, setImgBgPreview ] = useState(null)
+  const [ ImgBgPreviewEffect, setImgBgPreviewEffect ] = useState(null)
+  
   const [ localBg, setLocalBg ] = useState(() => {
     const prevBg = localStorage.getItem('background')
     return prevBg? prevBg : null
   })
+  const [ localEffect, setLocalEffect ] = useState(() => {
+    const prevEffect = localStorage.getItem('effect')
+    return prevEffect? prevEffect : null
+  })
+
   const [ themeColor, setThemeColor ] = useState(null)
   const [ localtheme, setLocalTheme ] = useState(() => {
     const prevTheme = localStorage.getItem('theme')
     return prevTheme? prevTheme : null
   })
   const [ selectedBg2, setSelectedBg2 ] = useState(null)
+  const [ selectedBg2Effect, setSelectedBg2Effect ] = useState(null)
 
   const { 
     themeDragBar, setThemeDragBar,
@@ -63,6 +79,16 @@ function BgSetting() {
         { value: 10, label: 'Purple Blue', color: '#354092', image: bg9, barColor: '#354092'},
       ];
       
+      const effectOptions = [
+        { value: 1, label: '(None)', image: 'none'},
+        { value: 2, label: 'Noise', image: eff1},
+        { value: 3, label: 'Old TV', image: eff2},
+        { value: 4, label: 'Broken TV', image: eff3},
+        { value: 5, label: 'Dark TV', image: eff4},
+        { value: 6, label: 'Glitch', image: eff5},
+        { value: 7, label: 'Glitch Two', image: eff6},
+      ];
+      
       function setbgColorFunction2(index) {
         const selectedOption = colorOptions.find(option => option.value === index);
         
@@ -73,12 +99,39 @@ function BgSetting() {
           setBarcolor(selectedOption.barColor)
         }
       }
+
+      function setbgColorFunction2Effect(index) {
+        const selectedOption = effectOptions.find(option => option.value === index);
+        
+        if (selectedOption) {
+          setSelectedBg2Effect(index);
+          setImgBgPreviewEffect(selectedOption.image);
+        }
+      }
+
+      useEffect(() => { // when exited app, make set everything to null to prevent bug when reopen
+
+        if(!BgSettingExpand.show) {
+          setImgBgPreview(null)
+          setImgBgPreviewEffect(null)
+          setSelectedBg2(null)
+          setSelectedBg2Effect(null)
+          setEffectTap(false)
+          setBgTap(true)
+        }
+
+      },[BgSettingExpand])
       
 
       useEffect(() => {
         const bodyBG = document.getElementsByTagName('body')[0];
+        const rootEffect = document.getElementById('root');
 
-        if (localBg) {
+        if (localEffect) { // for effect
+          rootEffect.style.setProperty('--before-bg-image', `url(${localEffect})`);
+        }
+
+        if (localBg) { // for background
           bodyBG.style.backgroundColor = localtheme
           bodyBG.style.backgroundImage = `url(${localBg})`;
         }
@@ -86,26 +139,36 @@ function BgSetting() {
 
       function appleBG() {
         const bodyBG = document.getElementsByTagName('body')[0];
-        
-        if (ImgBgPreview) {
+        const rootEffect = document.getElementById('root');
+
+        if (ImgBgPreviewEffect) { // for Effect
+          rootEffect.style.setProperty('--before-bg-image', `url(${ImgBgPreviewEffect})`);
+        } 
+
+        if (ImgBgPreview) { // for background
           bodyBG.style.backgroundColor = themeColor
           bodyBG.style.backgroundImage = `url(${ImgBgPreview})`; 
           setThemeDragBar(barcolor)
         } else {
-          bodyBG.style.backgroundImage = 'none';
+          return;
         }
       }
       
       function cancelBg() {
         const bodyBG = document.getElementsByTagName('body')[0];
+        const rootEffect = document.getElementById('root');
         const localBarColor = localStorage.getItem('barcolor')
+
+        if (localEffect) { // for Effect
+          rootEffect.style.setProperty('--before-bg-image', `url(${localEffect})`);
+        } 
       
-        if (localBg) {
+        if (localBg) { // for background
           bodyBG.style.backgroundColor = localtheme
           bodyBG.style.backgroundImage = `url(${localBg})`;
           setThemeDragBar(localBarColor)
         } else {
-          bodyBG.style.backgroundImage = 'none';
+          return;
         }
       }
       
@@ -113,15 +176,26 @@ function BgSetting() {
       function okBg() {
 
         const bodyBG = document.getElementsByTagName('body')[0]
+        const rootEffect = document.getElementById('root');
 
 
-        if (ImgBgPreview) {
+        if (ImgBgPreviewEffect) { // for effect
+          rootEffect.style.setProperty('--before-bg-image', `url(${ImgBgPreviewEffect})`);
+        }
+        
+        if (ImgBgPreviewEffect) { // for effect
+          localStorage.setItem('effect', ImgBgPreviewEffect); // set background in localstroage
+          setLocalEffect(ImgBgPreviewEffect)
+          setLocalEffect(localEffect)
+        } 
+
+        if (ImgBgPreview) { // for background
           bodyBG.style.backgroundColor = themeColor
           bodyBG.style.backgroundImage = `url(${ImgBgPreview})`; 
           setThemeDragBar(barcolor)
         }
         
-        if (ImgBgPreview) {
+        if (ImgBgPreview) { // for background
           localStorage.setItem('theme', themeColor); // set theme in localstroage
           localStorage.setItem('background', ImgBgPreview); // set background in localstroage
           localStorage.setItem('barcolor', barcolor); // set barcolor in localstroage
@@ -194,11 +268,71 @@ function BgSetting() {
             </div>
           </div>
           <div className="file_tap_container-bgsetting">
-          <p>
+          <p 
+            style={{ 
+              borderBottomColor: bgTap ? '' : '#f0efef',
+              bottom: bgTap? '2px' : '',
+            }}
+            onClick={() => {
+              setBgTap(true)
+              setEffectTap(false)
+            }}
+          >
             Background
+          </p>
+          <p
+            style={{ 
+              borderBottomColor: effectTap ? '' : '#f0efef',
+              bottom: effectTap? '2px' : '',
+            }}
+            onClick={() => {
+              setBgTap(false)
+              setEffectTap(true)
+            }}
+          >
+            Effect
           </p>
           </div>
           <div className="folder_content">
+          {/* Background Section */}
+          {bgTap && (
+            <div className="folder_content-bgsetting">
+              <img
+                alt="bgsettingPC"
+                className='bgsetting_img'
+                src={bgPic}
+              />
+              <div className="preview_bg">
+                {ImgBgPreview && (
+                  <img src={ImgBgPreview} alt='' />
+                )}
+              </div>
+              <div className="bgsettingtext_container">
+                <div className="wallpaper">
+                  <p>Wallpaper</p>
+                  <p>Select an HTML Element or Picture</p>
+                  <div className="wallpaper_container">
+                    {colorOptions.map((option) => (
+                      <ul
+                        key={option.value}
+                        onClick={() => setbgColorFunction2(option.value)}
+                        style={
+                          selectedBg2 === option.value
+                            ? { background: '#040482', color: 'white' }
+                            : {}
+                        }
+                      >
+                        {option.label}
+                      </ul>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Effect Section */}
+          {effectTap && (
             <div className="folder_content-bgsetting">
             <img
               alt="bgsettingPC"
@@ -206,71 +340,71 @@ function BgSetting() {
               src={bgPic}
             />
             <div className="preview_bg">
-              {ImgBgPreview && (
-                <img src={ImgBgPreview} alt='' />
+              {ImgBgPreviewEffect && (
+                <img src={ImgBgPreviewEffect} alt='' />
               )}
             </div>
-            <div className="bgsettingtext_container"> 
+            <div className="bgsettingtext_container">
               <div className="wallpaper">
-                <p>Wallpaper</p>
-                <p>Select an HTML Element or Picture</p>
+                <p>Effect</p>
+                <p>Select desired Effect</p>
                 <div className="wallpaper_container">
-                {colorOptions.map((option) => (
-                  <ul
-                    key={option.value}
-                    onClick={() => setbgColorFunction2(option.value)}
-                    style={
-                      selectedBg2 === option.value
-                        ? { background: '#040482', color: 'white' }
-                        : {}
-                    }
-                  >
-                    {option.label}
-                  </ul>
-                ))}
+                  {effectOptions.map((option) => (
+                    <ul
+                      key={option.value}
+                      onClick={() => setbgColorFunction2Effect(option.value)}
+                      style={
+                        selectedBg2Effect === option.value
+                          ? { background: '#040482', color: 'white' }
+                          : {}
+                      }
+                    >
+                      {option.label}
+                    </ul>
+                  ))}
                 </div>
               </div>
             </div>
-              
-            </div>
-            <div className="bgsetting_btn_container">
-              <div className="bgsetting_btn_ok"
-                onClick={!isTouchDevice ? () => {
-                  deleteTap('Settings')
-                  okBg()
-              } 
-              : undefined
+          </div>
+          )}
+{/* ------------------------ EFFECT END ----------------------------- */}
+          <div className="bgsetting_btn_container">
+            <div className="bgsetting_btn_ok"
+              onClick={!isTouchDevice ? () => {
+                deleteTap('Settings')
+                okBg()
+              } : undefined
               }
               onTouchEnd={() => {
                 deleteTap('Settings')
                 okBg()
               }}
-              >
-                <span>
-                  OK
-                </span>
-              </div>
+            >
+              <span>OK</span>
+            </div>
 
-              <div className="bgsetting_btn_cancel"
+            <div className="bgsetting_btn_cancel"
               onClick={!isTouchDevice ? () => { 
                 deleteTap('Settings') 
                 cancelBg()
-              }
-              : undefined
+              } : undefined
               }
               onTouchEnd={() => {
                 deleteTap('Settings')
                 cancelBg()
               }}
-              ><span>Cancel</span>
-              </div>
+            >
+              <span>Cancel</span>
+            </div>
 
-              <div className="bgsetting_btn_cancel"
-                onClick={appleBG}
-              ><span>Apply</span>
-              </div>
+            <div className="bgsetting_btn_cancel"
+              onClick={appleBG}
+            >
+              <span>Apply</span>
             </div>
           </div>
+        </div>
+
         </motion.div>
       </Draggable>
     </>

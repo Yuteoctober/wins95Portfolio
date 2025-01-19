@@ -1,10 +1,29 @@
 
-
-
 @font-face {
     font-family: 'win95';
     src: url('../src/assets/win95.ttf') format('truetype');
 }
+
+#root {
+    position: absolute;
+    width: 100%;
+    height: 100svh;
+    overflow: hidden;
+}
+#root::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: var(--before-bg-image);
+    background-size: cover; 
+    opacity: 0.04;
+    pointer-events: none; 
+    z-index: 99999999999;
+}
+
 
 /* Reset.css */
 *,
