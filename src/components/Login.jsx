@@ -34,8 +34,13 @@ function Login() {
       const localtheme = localStorage.getItem('theme')
       const localbg = localStorage.getItem('background')
       const bodyBG = document.getElementsByTagName('body')[0];
+      const localEffect = localStorage.getItem('effect')
       
+        if(localEffect) {
+          const rootEffect = document.getElementById('root')
 
+          rootEffect.style.setProperty('--before-bg-image', `url(${localEffect})`);
+        }
         if (localtheme && localbg) {
           bodyBG.style.backgroundColor = localtheme
           sectionBG.style.backgroundColor = localtheme
