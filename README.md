@@ -115,6 +115,8 @@ All the functionalities
     - User can hide / unhide in tap bar 
     - Using Coinbase websocket to display
 
+  - Added Effect pattern in settings 1/19/2025
+
 Library used:
   - React Draggable => drag and drop functionality
   - Framer-motion => for some animation
