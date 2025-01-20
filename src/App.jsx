@@ -188,7 +188,7 @@ function App() {
       if (retryCount < maxRetries) {
         retryCount++;
         getChat()
-        setTimeout(connectWebSocket, 1000); // Reconnect after 1 second
+        setTimeout(connectWebSocket, 100); // Reconnect after 1 second
       } else {
         console.log('Max retries reached. WebSocket closed permanently.');
       }
