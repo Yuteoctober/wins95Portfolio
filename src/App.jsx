@@ -585,9 +585,9 @@ async function getChat() {
     });
     setChatDown(false)
     setChatData(response.data.chat);
-    if(MSNExpand.show){
-      endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
-    }
+    // if(MSNExpand.show){
+    //   endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
+    // }
     // setKeyChatSession(response.data.key)
   } catch (error) {
     setChatDown(true)
