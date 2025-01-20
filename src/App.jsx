@@ -198,7 +198,9 @@ function App() {
   connectWebSocket();
 
   return () => {
-    socket.current && socket.current.close();
+    if (socket.current) {
+      socket.current.close();
+    }
   };
 }, []);
 
