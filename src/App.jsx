@@ -22,6 +22,7 @@ import Run from './components/Run';
 import Notification from './components/Notification';
 import BTC from './components/BTC';
 import axios from 'axios';
+import loadingSpin from './assets/loading.gif'
 import { StyleHide, imageMapping,
   handleDoubleClickEnterLink,handleDoubleTapEnterMobile,
   handleDoubleClickiframe, handleDoubleTapiframeMobile,
@@ -29,6 +30,7 @@ import { StyleHide, imageMapping,
  } from './components/function/AppFunctions';
 
 function App() {
+  const [loading, setLoading] = useState(true)
   const [btcShow, setBtcShow] = useState(false)
   const [resumeStartBar, setResumejectStartBar] = useState(false)
   const [projectStartBar, setProjectStartBar] = useState(false)
@@ -163,6 +165,7 @@ function App() {
 
     socket.current.onopen = () => {
       retryCount = 0; 
+      setLoading(false)
     };
 
     socket.current.onmessage = (event) => {
@@ -188,7 +191,7 @@ function App() {
       if (retryCount < maxRetries) {
         retryCount++;
         getChat()
-        setTimeout(connectWebSocket, 100); // Reconnect after 1 second
+        setTimeout(connectWebSocket, 1000); // Reconnect after 1 second
       } else {
         console.log('Max retries reached. WebSocket closed permanently.');
       }
@@ -396,6 +399,9 @@ const handleOnDrag = (name, ref) => () => {
 
   // show login page
   if(login) {
+    if(!login) {
+      setLoading(true)
+    }
     return(
       <UserContext.Provider value={contextValue}>
         <Login/>
@@ -408,6 +414,29 @@ const handleOnDrag = (name, ref) => () => {
       <UserContext.Provider value={contextValue}>
         <WindowsShutdown/>
       </UserContext.Provider>
+    )
+  }
+
+  if(loading && !login) {
+    const localThemeBg = localStorage.getItem('theme') || '#098684'; 
+
+    return(
+      <div 
+      style={{
+        width: '100%',
+        height: '100svh',
+        background: localThemeBg
+      }}>
+        <img src={loadingSpin} alt="loading" 
+          style={{
+            width: '30px',
+            position: 'absolute',
+            left: '50%',
+            top: '50%',
+            transform: 'translate(-50%, -50%)',
+          }}
+        />
+      </div>
     )
   }
 
