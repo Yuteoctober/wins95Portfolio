@@ -191,9 +191,8 @@ function App() {
     socket.current.onclose = () => {
       if (retryCount < maxRetries) {
         retryCount++;
-        const delay = Math.min(1000 * 2 ** retryCount, 30000); // Exponential delay (max 30 seconds)
-        console.log(`Reconnecting in ${delay / 1000}s`);
-        setTimeout(connectWebSocket, delay);
+        getChat()
+        setTimeout(connectWebSocket, 1000); // Reconnect after 1 second
       } else {
         console.log('Max retries reached. WebSocket closed permanently.');
       }
