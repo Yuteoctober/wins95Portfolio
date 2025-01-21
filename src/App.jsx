@@ -165,7 +165,6 @@ function App() {
 
     socket.current.onopen = () => {
       retryCount = 0; 
-      setLoading(false)
     };
 
     socket.current.onmessage = (event) => {
@@ -612,6 +611,7 @@ async function getChat() {
         'Access-Control-Allow-Origin': '*'
       }
     });
+    setLoading(false)
     setChatDown(false)
     setChatData(response.data.chat);
     // if(MSNExpand.show){
@@ -620,6 +620,11 @@ async function getChat() {
     // setKeyChatSession(response.data.key)
   } catch (error) {
     setChatDown(true)
+    setLoading(false)
+    // setTimeout(() => {
+    //   if(loading)
+    //   setLoading(false)
+    // }, 5000);
     console.error('Error fetching Chat:', error);
   }
 }
