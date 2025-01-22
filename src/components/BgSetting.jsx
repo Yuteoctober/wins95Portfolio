@@ -279,7 +279,6 @@ function BgSetting() {
             }}
           >
             <span style={{
-              padding: '1px 4px',
               border: bgTap? '1px dotted black' :''
             }}>
               Background
@@ -297,7 +296,6 @@ function BgSetting() {
             }}
           >
             <span style={{
-                    padding: '1px 4px',
                     border: effectTap? '1px dotted black' :''
                   }}>
             Effect
