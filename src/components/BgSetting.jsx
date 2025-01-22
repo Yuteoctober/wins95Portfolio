@@ -278,7 +278,13 @@ function BgSetting() {
               setEffectTap(false)
             }}
           >
-            Background
+            <span style={{
+              padding: '1px 4px',
+              border: bgTap? '1px dotted black' :''
+            }}>
+              Background
+            </span>
+            
           </p>
           <p
             style={{ 
@@ -290,8 +296,14 @@ function BgSetting() {
               setEffectTap(true)
             }}
           >
+            <span style={{
+                    padding: '1px 4px',
+                    border: effectTap? '1px dotted black' :''
+                  }}>
             Effect
+            </span>
           </p>
+          
           </div>
           <div className="folder_content">
           {/* Background Section */}
@@ -346,7 +358,9 @@ function BgSetting() {
             </div>
             <div className="bgsettingtext_container">
               <div className="wallpaper">
-                <p>Effect</p>
+                <p>
+                  Effect
+                </p>
                 <p>Select desired Effect</p>
                 <div className="wallpaper_container">
                   {effectOptions.map((option) => (
