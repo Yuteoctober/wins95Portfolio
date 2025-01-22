@@ -151,6 +151,20 @@
     cursor: pointer;
 }
 
+.file_tap_container-bgsetting span {
+    position: relative;
+    height: fit-content;
+    padding: 1px 4px;
+    
+}
+
+@supports (-webkit-touch-callout: none) {
+    .file_tap_container-bgsetting span {
+        top: 1px;
+        padding: 0px 4px;
+    }
+}
+
 
 .bgsetting_folder .folder_content {
     position: relative;
