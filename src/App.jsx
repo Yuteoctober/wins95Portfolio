@@ -187,12 +187,14 @@ function App() {
 
     socket.current.onerror = (error) => {
       console.error('WebSocket error:', error)
+      setLoading(false)
     }
     socket.current.onclose = () => {
       if (retryCount < maxRetries) {
         retryCount++;
         getChat()
         setTimeout(connectWebSocket, 1000); // Reconnect after 1 second
+      
       } else {
         console.log('Max retries reached. WebSocket closed permanently.');
       }
