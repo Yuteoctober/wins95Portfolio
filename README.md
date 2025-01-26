@@ -116,6 +116,7 @@ All the functionalities
     - Using Coinbase websocket to display
 
   - Added Effect pattern in settings 1/19/2025
+  - Added My Computer and working on file system 1/26/2025
 
 Library used:
   - React Draggable => drag and drop functionality
