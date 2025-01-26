@@ -1,4 +1,5 @@
-import MyBio from '../../assets/pc.png'
+import MyComputer from '../../assets/pc.png'
+import About from '../../assets/ipng.png'
 import Resume from '../../assets/folder.png'
 import Mail from '../../assets/mail.png'
 import Project from '../../assets/regFolder.png'
@@ -47,10 +48,13 @@ export function StyleHide(index, tap, ObjectState) {
 export function imageMapping (name) { 
   switch(name) {
 
-    case 'MyBio':
-    case 'Mybio':
-    case 'My Bio':
-      return MyBio;
+    case 'About':
+    case 'about':
+      return About;
+
+    case 'MyComputer':
+    case 'My Computer':
+      return MyComputer;
 
     case 'Resume':
       return Resume;

@@ -2,7 +2,7 @@ import UseContext from '../Context'
 import { useContext, useState } from "react";
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
-import MyBio from '../assets/pc.png'
+import About from '../assets/ipng.png'
 import bioPC from '../assets/bio_pc.png'
 import tech from '../assets/tech.png'
 import hobby from '../assets/hobby.png'
@@ -116,32 +116,32 @@ function MyBioFolder() {
           y: window.innerWidth <= 500 ? 35 : 40,
         }}
         onStop={(event, data) => handleDragStop(event, data)}
-        onStart={() => handleSetFocusItemTrue('My Bio')}
+        onStart={() => handleSetFocusItemTrue('About')}
       >
         <motion.div className='bio_folder' 
             onClick={(e) => {
               e.stopPropagation();
-              handleSetFocusItemTrue('My Bio');
+              handleSetFocusItemTrue('About');
             }}
-            style={ MybioExpand.expand ? inlineStyleExpand('My Bio') : inlineStyle('My Bio')}>
+            style={ MybioExpand.expand ? inlineStyleExpand('About') : inlineStyle('About')}>
           <div className="folder_dragbar"
              style={{ background: MybioExpand.focusItem? themeDragBar : '#757579'}}
           >
             <div className="bio_barname">
-              <img src={MyBio} alt="MyBio" />
-              <span>My Bio</span>
+              <img src={About} alt="About" />
+              <span>About</span>
             </div>
             <div className="bio_barbtn">
               <div onClick={ !isTouchDevice ? (e) => {
                 e.stopPropagation()
                 setMybioExpand(prev => ({...prev, hide: true, focusItem: false}))
-                StyleHide('My Bio')
+                StyleHide('About')
               } : undefined
               }   
                 onTouchEnd={(e) => {
                 e.stopPropagation()
                 setMybioExpand(prev => ({...prev, hide: true, focusItem: false}))
-                StyleHide('My Bio')
+                StyleHide('About')
               }}
 
               >
@@ -151,11 +151,11 @@ function MyBioFolder() {
                 <div>
                 <p className='x'
                   onClick={!isTouchDevice ? () => {
-                    deleteTap('My Bio')
+                    deleteTap('About')
                     handleBiotap('general')
                   }: undefined}
                   onTouchEnd={() => {
-                    deleteTap('My Bio')
+                    deleteTap('About')
                     handleBiotap('general')
                   }}
                 >×
@@ -198,11 +198,11 @@ function MyBioFolder() {
             <div className="bio_btn_container">
               <div className="bio_btn_ok"
               onClick={!isTouchDevice ? () => {
-                deleteTap('My Bio')
+                deleteTap('About')
                 handleBiotap('general')
               } : undefined}
               onTouchEnd={() => {
-                deleteTap('My Bio')
+                deleteTap('About')
                 handleBiotap('general')
               }}
               >
@@ -212,11 +212,11 @@ function MyBioFolder() {
               </div>
               <div className="bio_btn_cancel"
               onClick={!isTouchDevice ? () => {
-                deleteTap('My Bio')
+                deleteTap('About')
                 handleBiotap('general')
               } : undefined}
               onTouchEnd={() => {
-                deleteTap('My Bio')
+                deleteTap('About')
                 handleBiotap('general')
               }}
               ><span>Cancel</span></div>
