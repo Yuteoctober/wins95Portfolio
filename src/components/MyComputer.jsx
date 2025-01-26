@@ -3,11 +3,18 @@ import { Fragment, useContext, useEffect, useRef, useState} from "react";
 import Draggable from 'react-draggable';
 import { motion } from 'framer-motion';
 import MyComputerPic from '../assets/pc.png';
-import '../css/ResumeFolder.css';
+import '../css/MyComputer.css';
+import dskIcon from '../assets/desktop.png'
+import pcIcon from '../assets/pcicon.png'
+import driveCIcon from '../assets/c.png'
+import RomIcon from '../assets/rom.png'
+import { BsCaretDownFill } from "react-icons/bs";
 
 function MyComputer() {
 
   const iconRefs = useRef([]);
+  const [popUpFolder, setPopUpFolder] = useState(false)
+  const [selectedFolder, setSelectedFolder] = useState({label: 'My Computer', img: pcIcon})
 
   const { 
     iconContainerSize, iconImgSize, iconTextSize,
@@ -60,6 +67,21 @@ function MyComputer() {
       }));
     }
     setLastTapTime(now);
+  }
+
+  const popUpiconList = [
+    {label: 'Desktop', img: dskIcon},
+    {label: 'My Computer', img: pcIcon},
+    {label: 'Hard Disk (C:)', img: driveCIcon},
+    {label: 'Hard Disk (D:)', img: driveCIcon},
+    {label: 'CD-ROM', img: RomIcon},
+  ]
+
+
+  function MarginOnSelectedIcon(name) {
+    if(name === 'Desktop') return;
+    if(name === 'My Computer') return '.9rem'
+    return '1.9rem'
   }
 
   return (
@@ -138,14 +160,53 @@ function MyComputer() {
           <p>View<span style={{ left: '-32px' }}>_</span></p>
           <p>Help<span style={{ left: '-30px' }}>_</span></p>
         </div>
-        <div className="folder_content"
-          onClick={() => iconFocusIcon('')}
+        <div className="drive_control">
+          <div className="drive_link">
+            {popUpFolder && (
+              <div className="popup_select_folder">
+              <div className="selected_icon">
+                <ul>
+                {popUpiconList.map((icon, index) => (
+                  <li key={index}
+                    onClick={() => {
+                      setSelectedFolder({label: icon.label, img: icon.img})
+                      setPopUpFolder(false)
+                    }}
+                  >
+                    <img src={icon.img} alt={icon.label} 
+                      style={{marginLeft: MarginOnSelectedIcon(icon.label)}}
+                    />
+                    <span>{icon.label}</span>
+                  </li>
+                ))}
+                </ul>
+              </div>
+            </div>
+            )}
+            <div className='folder_select_left_container'>
+              <img src={selectedFolder.img} alt={selectedFolder.label} />
+              <p>
+                {selectedFolder.label}
+              </p>
+            </div>
+            <div className="folder_select_btn"
+              onClick={() => setPopUpFolder(!popUpFolder)}
+            >
+              <span>
+                <BsCaretDownFill/> 
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="folder_content-mypc"
+          onClick={() => {
+            iconFocusIcon('')
+            setPopUpFolder(false)
+          }}
           style={{ 
             height: MyComputerExpand.expand ? 'calc(100svh - 122px)' : '',
             overflow: dragging? '' : 'hidden' 
           }}
-
-
         >
           <div className='parent_item_container' key={key}
 

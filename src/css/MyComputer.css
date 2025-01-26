@@ -1,0 +1,122 @@
+
+.drive_control {
+    display: flex;
+    position: relative;
+    height: 30px;
+    padding: 0px 4px;
+}
+
+.folder_folder .folder_content-mypc {
+    position: relative;
+    width: calc(100% - 6px);
+    height: calc(100% - 110px);
+    border: 1px solid black;
+    border-right-color: white;
+    border-bottom-color: white;
+    margin: 0 auto;
+    margin-top: 1px;
+    background: rgb(255, 255, 255);
+}
+
+.drive_control .drive_link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    height: 24px;
+    width: 100%;
+    margin-top: 2px;
+    border: 1px solid rgb(21, 21, 21);
+    border-right: 1px solid white;
+    border-bottom: 1px solid white;
+    outline: 1px solid rgb(121, 118, 118);
+    background: white;
+}
+
+.drive_control .folder_select_left_container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.drive_link p {
+    position: relative;
+    font-size: 13px;
+    top: 9px;
+    right: 8px;
+}
+
+.drive_link img {
+    position: relative;
+    width: 38px;
+    right: 5px;
+}
+
+.drive_link .folder_select_btn {
+    display: grid;
+    place-items: center;
+    position: relative;
+    width: 18px;
+    height: 20px;
+    right: 1px;
+    background: #c5c4c4;
+    border: 2px solid black;
+    border-top-color: #f6f4f4;
+    border-left-color: #f6f4f4;
+}
+
+.drive_link .folder_select_btn:active {
+    border: 2px solid #f6f4f4;
+    border-top-color: black;
+    border-left-color: black;
+}
+
+.drive_link .folder_select_btn span {
+    position: relative;
+    font-size: 10px;
+    top: 2px;
+}
+
+.popup_select_folder {
+    position: absolute;
+    width: calc(99% + 6px);
+    left: -2px;
+    height: fit-content;
+    padding: 2px 0px;
+    margin-top: 8.4rem;
+    background: white;
+    border: 1px solid black;
+    z-index: 9999999;
+
+}
+
+.popup_select_folder .selected_icon ul {
+    display: flex;
+    flex-direction: column;
+    padding-left: 2px;
+}
+
+.popup_select_folder .selected_icon li {
+    display: flex;
+    height: 20px;
+    align-items: center;
+}
+
+.popup_select_folder .selected_icon li > img {
+    width: 35px;
+}
+
+.popup_select_folder .selected_icon li:hover {
+    background: #040d91;
+}
+
+.popup_select_folder .selected_icon span {
+    position: relative;
+    font-size: 13px;
+    right: 6px;
+}
+
+.popup_select_folder .selected_icon li:hover span {
+    color: white;
+}
+    

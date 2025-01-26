@@ -63,7 +63,7 @@ function Notification() {
         return {
           img: icon_wins95,
           text1: 'Welcome to My Portfolio!',
-          text2: 'This portfolio is still a work in progress. If you like what you see, feel free to reach out and contact me!',
+          text2: 'This portfolio is still a work in progress. Please Clear browser history or local storage if there is an issue with icon.',
           function: ''
         };
     }
