@@ -42,7 +42,7 @@
     {
         "name": "Mine Sweeper",
         "pic": "MineSweeper",
-        "folderId": "Desktop",
+        "folderId": "Project",
         "size": 250,
         "x": 5,
         "y": 5
