@@ -711,14 +711,13 @@ body {
 }
 
 
-  
-
 @media screen and (width <= 500px) {
     .react-calendar {
         width: 235px;
         height: 215px;
     }
 }
+
 
 /* --------------- DragDrop ----------------- */
 
