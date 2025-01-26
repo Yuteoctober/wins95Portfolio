@@ -1,11 +1,19 @@
 [
     {
-        "name": "My Bio",
-        "pic": "MyBio",
+        "name": "About",
+        "pic": "About",
         "folderId": "Desktop",
         "size": 4,
         "x": 1,
         "y": 1
+    },
+    {
+        "name": "MyComputer",
+        "pic": "MyComputer",
+        "folderId": "Desktop",
+        "size": 4,
+        "x": 1.5,
+        "y": 1.5
     },
     {
         "name": "Resume",

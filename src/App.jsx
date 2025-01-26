@@ -5,6 +5,7 @@ import badword from './badword'
 import Footer from './components/Footer';
 import Dragdrop from './components/Dragdrop';
 import MyBioFolder from './components/MyBioFolder';
+import MyComputer from './components/MyComputer';
 import ResumeFolder from './components/ResumeFolder';
 import ProjectFolder from './components/ProjectFolder';
 import MailFolder from './components/MailFolder';
@@ -51,6 +52,7 @@ function App() {
   const DesktopRef = useRef(null);
   const ProjectFolderRef = useRef(null);
   const ResumeFolderRef = useRef(null);
+  const MyComputerRef = useRef(null);
   const [draggedIcon, setDraggedIcon] = useState(null);
   const [dropTargetFolder, setDropTargetFolder] = useState(null);
   const [reMountRun, setReMountRun] = useState(0)
@@ -125,6 +127,9 @@ function App() {
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
 
   const [openProjectExpand, setOpenProjectExpand] = useState(
+  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
+
+  const [MyComputerExpand, setMyComputerExpand] = useState(
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
 
   const [desktopIcon, setDesktopIcon] = useState(() => {
@@ -309,6 +314,7 @@ const handleOnDrag = (name, ref) => () => {
 
 
   const contextValue = {
+    MyComputerExpand, setMyComputerExpand,
     btcShow, setBtcShow,
     projectStartBar, setProjectStartBar,
     resumeStartBar, setResumejectStartBar,
@@ -327,6 +333,7 @@ const handleOnDrag = (name, ref) => () => {
     DesktopRef,
     ProjectFolderRef,
     ResumeFolderRef,
+    MyComputerRef,
     handleDrop,
     dropTargetFolder, setDropTargetFolder,
     draggedIcon, setDraggedIcon,
@@ -448,6 +455,7 @@ const handleOnDrag = (name, ref) => () => {
       <UserContext.Provider value={contextValue}>
         <Notification/>
         <Shutdown/>
+        <MyComputer/>
         <MyBioFolder/>
         <ResumeFolder/>
         <ProjectFolder/>
@@ -629,7 +637,7 @@ async function getChat() {
 
 function ObjectState() { // Add all the state realted to folder here !! very important
   return [
-          { name: 'Mybio', setter: setMybioExpand, usestate: MybioExpand},
+          { name: 'About', setter: setMybioExpand, usestate: MybioExpand},
           { name: 'Resume', setter: setResumeExpand, usestate: ResumeExpand },
           { name: 'Project', setter: setProjectExpand, usestate: ProjectExpand },
           { name: 'Mail', setter: setMailExpand, usestate: MailExpand },
@@ -643,6 +651,7 @@ function ObjectState() { // Add all the state realted to folder here !! very imp
           { name: 'Internet', setter: setOpenProjectExpand, usestate: openProjectExpand },
           { name: 'Settings', setter: setBgSettingExpand, usestate: BgSettingExpand },
           { name: 'Run', setter: setRunExpand, usestate: RunExpand },
+          { name: 'MyComputer', setter: setMyComputerExpand, usestate: MyComputerExpand },
 
         ];
 }
