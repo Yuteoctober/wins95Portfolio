@@ -42,13 +42,13 @@
 .drive_link p {
     position: relative;
     font-size: 13px;
-    top: 9px;
+    top: 7px;
     right: 8px;
 }
 
 .drive_link img {
     position: relative;
-    width: 38px;
+    width: 34px;
     right: 5px;
 }
 
