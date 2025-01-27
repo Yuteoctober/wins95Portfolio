@@ -96,9 +96,10 @@ function MyComputer() {
   }
 
   useEffect(() => {
-    if(MyComputerExpand.show) {
+      setSelectedFolder({label: 'My Computer', img: pcIcon})
       setCurrentFolder('MyComputer')
-    }
+      setPopUpFolder(false)
+    
   },[MyComputerExpand.show])
   
 
