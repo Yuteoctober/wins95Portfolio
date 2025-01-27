@@ -14,16 +14,18 @@ function MyComputer() {
 
   const iconRefs = useRef([]);
   const [popUpFolder, setPopUpFolder] = useState(false)
-  const [selectedFolder, setSelectedFolder] = useState({label: 'My Computer', img: pcIcon})
+  
 
   const { 
+    DiskRef,
+    selectedFolder, setSelectedFolder,
+    currentFolder, setCurrentFolder,
     iconContainerSize, iconImgSize, iconTextSize,
     iconScreenSize,
     key,
     dragging,
     handleOnDrag,
     handleDrop,
-    MyComputerRef,
     dropTargetFolder, setDropTargetFolder,
     imageMapping,
     desktopIcon, 
@@ -69,20 +71,45 @@ function MyComputer() {
     setLastTapTime(now);
   }
 
+  function NevigateToFolder(name) {
+    switch (name) {
+      case 'Hard Disk (C:)':
+        setCurrentFolder('DiskC');
+        break;
+
+      case 'Hard Disk (D:)':
+        setCurrentFolder('DiskD');
+        break;
+
+      case 'My Computer':
+      case 'MyComputer':
+        setCurrentFolder('MyComputer');
+        break;
+
+      case 'CD-ROM':
+        setCurrentFolder('CD-ROM');
+        break;
+
+      default:
+        return;
+    }
+  }
+  
+
+  // popup select folder
   const popUpiconList = [
-    {label: 'Desktop', img: dskIcon},
     {label: 'My Computer', img: pcIcon},
     {label: 'Hard Disk (C:)', img: driveCIcon},
     {label: 'Hard Disk (D:)', img: driveCIcon},
     {label: 'CD-ROM', img: RomIcon},
   ]
 
-
+  // margin to popup select folder
   function MarginOnSelectedIcon(name) {
-    if(name === 'Desktop') return;
-    if(name === 'My Computer') return '.9rem'
-    return '1.9rem'
+    if(name === 'My Computer') return;
+    return '.9rem'
   }
+
 
   return (
     <Draggable
@@ -100,7 +127,7 @@ function MyComputer() {
       onStart={() => {handleSetFocusItemTrue('MyComputer')}}
     >
         <motion.div 
-          ref={MyComputerRef}
+          ref={DiskRef}
           className='folder_folder'
           onClick={(e) => {
             e.stopPropagation();
@@ -169,8 +196,9 @@ function MyComputer() {
                 {popUpiconList.map((icon, index) => (
                   <li key={index}
                     onClick={() => {
-                      setSelectedFolder({label: icon.label, img: icon.img})
+                      setSelectedFolder(icon)
                       setPopUpFolder(false)
+                      NevigateToFolder(icon.label)
                     }}
                   >
                     <img src={icon.img} alt={icon.label} 
@@ -190,7 +218,9 @@ function MyComputer() {
               </p>
             </div>
             <div className="folder_select_btn"
-              onClick={() => setPopUpFolder(!popUpFolder)}
+              onClick={() => {
+                setPopUpFolder(!popUpFolder)
+              }}
             >
               <span>
                 <BsCaretDownFill/> 
@@ -217,7 +247,7 @@ function MyComputer() {
               }}
               onClick={(e) => e.stopPropagation()}
               >
-              {desktopIcon.filter(icon => icon.folderId === 'MyComputer').map(icon => (
+              {desktopIcon.filter(icon => icon.folderId === currentFolder).map(icon => (
                 <Fragment key={icon.name}>
                   <Draggable
                   axis="both" 
@@ -233,6 +263,7 @@ function MyComputer() {
                   onStop={(e) => {
                     handleDrop(e, icon.name, dropTargetFolder);
                   }}
+                  disabled={currentFolder === 'MyComputer'? true : false}
                 >
                   <div className='icon' key={icon.name}
                     style={iconContainerSize(iconScreenSize)}
@@ -265,17 +296,17 @@ function MyComputer() {
         <div className="btm_bar_container">
           <div className="object_bar">
             <p>
-              {desktopIcon.filter(icon => icon.folderId === 'MyComputer').some(icon => icon.focus) ? 
+              {desktopIcon.filter(icon => icon.folderId === currentFolder).some(icon => icon.focus) ? 
                 '1 object(s) selected'
                 :
-                desktopIcon.filter(icon => icon.folderId === 'MyComputer').length + ' ' + 'object(s)'
+                desktopIcon.filter(icon => icon.folderId === currentFolder).length + ' ' + 'object(s)'
               }
             </p>
           </div>
           <div className="size_bar">
             <p>
               {(() => {
-                const filteredIcons = desktopIcon.filter(icon => icon.folderId === 'MyComputer');
+                const filteredIcons = desktopIcon.filter(icon => icon.folderId === currentFolder);
                 const totalSize = filteredIcons.reduce((total, icon) => total + icon.size, 0);
                 const allNotFocused = filteredIcons.every(icon => !icon.focus);
 
