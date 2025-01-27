@@ -94,6 +94,12 @@ function MyComputer() {
         return;
     }
   }
+
+  useEffect(() => {
+    if(MyComputerExpand.show) {
+      setCurrentFolder('MyComputer')
+    }
+  },[MyComputerExpand.show])
   
 
   // popup select folder

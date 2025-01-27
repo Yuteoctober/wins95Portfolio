@@ -24,10 +24,8 @@ import Notification from './components/Notification';
 import BTC from './components/BTC';
 import axios from 'axios';
 import loadingSpin from './assets/loading.gif'
-import dskIcon from './assets/desktop.png'
 import pcIcon from './assets/pcicon.png'
 import driveCIcon from './assets/c.png'
-import RomIcon from './assets/rom.png'
 import { StyleHide, imageMapping,
   handleDoubleClickEnterLink,handleDoubleTapEnterMobile,
   handleDoubleClickiframe, handleDoubleTapiframeMobile,
