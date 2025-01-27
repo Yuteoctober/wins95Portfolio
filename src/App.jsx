@@ -24,6 +24,10 @@ import Notification from './components/Notification';
 import BTC from './components/BTC';
 import axios from 'axios';
 import loadingSpin from './assets/loading.gif'
+import dskIcon from './assets/desktop.png'
+import pcIcon from './assets/pcicon.png'
+import driveCIcon from './assets/c.png'
+import RomIcon from './assets/rom.png'
 import { StyleHide, imageMapping,
   handleDoubleClickEnterLink,handleDoubleTapEnterMobile,
   handleDoubleClickiframe, handleDoubleTapiframeMobile,
@@ -31,6 +35,8 @@ import { StyleHide, imageMapping,
  } from './components/function/AppFunctions';
 
 function App() {
+  const [selectedFolder, setSelectedFolder] = useState({label: 'My Computer', img: pcIcon})
+  const [currentFolder, setCurrentFolder] = useState('MyComputer')
   const [loading, setLoading] = useState(true)
   const [btcShow, setBtcShow] = useState(false)
   const [resumeStartBar, setResumejectStartBar] = useState(false)
@@ -52,7 +58,7 @@ function App() {
   const DesktopRef = useRef(null);
   const ProjectFolderRef = useRef(null);
   const ResumeFolderRef = useRef(null);
-  const MyComputerRef = useRef(null);
+  const DiskRef = useRef(null);
   const [draggedIcon, setDraggedIcon] = useState(null);
   const [dropTargetFolder, setDropTargetFolder] = useState(null);
   const [reMountRun, setReMountRun] = useState(0)
@@ -171,7 +177,6 @@ function App() {
     socket.current.onopen = () => {
       retryCount = 0; 
       setLoading(false)
-      console.log('hello')
     };
 
     socket.current.onmessage = (event) => {
@@ -270,8 +275,11 @@ const handleOnDrag = (name, ref) => () => {
     const resumeFolderRect = ResumeFolderRef.current.getBoundingClientRect();
     const projectFolderRect = ProjectFolderRef.current.getBoundingClientRect();
     const desktopRect = DesktopRef.current.getBoundingClientRect();
+    const diskRect = DiskRef.current.getBoundingClientRect();
 
     const offset = 55;
+
+    
 
     // Check for intersection with the Resume folder
     if (
@@ -292,6 +300,25 @@ const handleOnDrag = (name, ref) => () => {
     ) {
       if(name === 'Project') return;
       setDropTargetFolder('Project');
+    }
+    // Check for intersection with the Disk 
+    else if (
+      iconRect.left < diskRect.right - offset &&
+      iconRect.right > diskRect.left + offset &&
+      iconRect.top < diskRect.bottom - offset &&
+      iconRect.bottom > diskRect.top + offset
+    ) {
+
+      if(name === 'MyComputer') return;
+        if(currentFolder === 'DiskC'){
+          setDropTargetFolder('DiskC');
+        }
+        if(currentFolder === 'DiskD'){
+          setDropTargetFolder('DiskD');
+        }
+
+        console.log(dropTargetFolder)
+        console.log(currentFolder)
     }
     else if (
       iconRect.left < desktopRect.right &&
@@ -314,6 +341,8 @@ const handleOnDrag = (name, ref) => () => {
 
 
   const contextValue = {
+    selectedFolder, setSelectedFolder,
+    currentFolder, setCurrentFolder,
     MyComputerExpand, setMyComputerExpand,
     btcShow, setBtcShow,
     projectStartBar, setProjectStartBar,
@@ -333,7 +362,7 @@ const handleOnDrag = (name, ref) => () => {
     DesktopRef,
     ProjectFolderRef,
     ResumeFolderRef,
-    MyComputerRef,
+    DiskRef,
     handleDrop,
     dropTargetFolder, setDropTargetFolder,
     draggedIcon, setDraggedIcon,
@@ -683,6 +712,20 @@ function handleShow(name) {
 
   const lowerCaseName = name.toLowerCase().split(' ').join('');
 
+
+  // call this first if open disk
+  if (lowerCaseName === 'harddisk(c:)') {
+    setCurrentFolder('DiskC')
+    setSelectedFolder({label: 'Hard Disk (C:)', img: driveCIcon})
+    return;
+  }
+
+  if (lowerCaseName === 'harddisk(d:)') {
+    setCurrentFolder('DiskD')
+    setSelectedFolder({label: 'Hard Disk (D:)', img: driveCIcon})
+    return;
+  }
+
   const allSetItems = ObjectState() // call all usestate object
 
   allSetItems.forEach((item) => {
@@ -712,6 +755,11 @@ function handleShow(name) {
   setStartActive(false)
 
   if(name === 'Run' || name === 'Nft' || name === 'Note')return; // not showing run on tap
+
+  if(name === 'Hard Disk (C:)' || name === 'Hard Disk (D:)' || name === 'CD-ROM')  {
+    setMyComputerExpand(prev => ({prev,focusItem: true, show: true}))
+    return;
+  }
 
   setTap(prevTap => [...prevTap, name]);
   setDesktopIcon(prevIcons => prevIcons.map(icon => ({...icon, focus: false})));

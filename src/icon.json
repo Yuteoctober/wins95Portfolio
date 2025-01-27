@@ -58,7 +58,7 @@
     {
         "name": "Winamp",
         "pic": "Winamp",
-        "folderId": "Desktop",
+        "folderId": "DiskC",
         "size": 4300,
         "x": 7,
         "y": 7
@@ -86,5 +86,29 @@
         "size": 10,
         "x": 10,
         "y": 10
+    },
+    {
+        "name": "Hard Disk (C:)",
+        "pic": "Hard Disk (C:)",
+        "folderId": "MyComputer",
+        "size": 4000,
+        "x": 11,
+        "y": 11
+    },
+    {
+        "name": "Hard Disk (D:)",
+        "pic": "Hard Disk (D:)",
+        "folderId": "MyComputer",
+        "size": 1000,
+        "x": 12,
+        "y": 12
+    },
+    {
+        "name": "CD-ROM",
+        "pic": "CD-ROM",
+        "folderId": "MyComputer",
+        "size": 500,
+        "x": 13,
+        "y": 13
     }
 ]

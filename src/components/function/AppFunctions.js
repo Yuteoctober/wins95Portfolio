@@ -10,6 +10,8 @@ import MSN from '../../assets/msn.png'
 import ie from '../../assets/ie.png'
 import settings from '../../assets/setting.png'
 import file from '../../assets/file4download.png'
+import disk from '../../assets/c - Copy.png'
+import rom from '../../assets/rom - Copy.png'
 
 
 
@@ -87,6 +89,14 @@ export function imageMapping (name) {
 
     case 'Settings':
       return settings;
+
+    case 'Hard Disk (C:)':
+    case 'Hard Disk (D:)':
+      return disk;
+
+    case 'CD-ROM':
+    case 'cd-rom':
+      return rom;
 
     default:
       return null;

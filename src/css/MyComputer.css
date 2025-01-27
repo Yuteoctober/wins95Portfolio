@@ -83,10 +83,10 @@
     left: -2px;
     height: fit-content;
     padding: 2px 0px;
-    margin-top: 8.4rem;
+    margin-top: 7.4rem;
     background: white;
     border: 1px solid black;
-    z-index: 9999999;
+    z-index: 5;
 
 }
 
