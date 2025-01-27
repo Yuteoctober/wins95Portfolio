@@ -4,6 +4,7 @@
     position: relative;
     height: 30px;
     padding: 0px 4px;
+    gap: 2px;
 }
 
 .folder_folder .folder_content-mypc {
@@ -118,5 +119,39 @@
 
 .popup_select_folder .selected_icon li:hover span {
     color: white;
+}
+
+.undo_btn {
+    display: grid;
+    position: relative;
+    align-items: center;
+    width: 28px;
+    height: 24px;
+    top: 2px;
+    left: 1px;
+    margin-right: 1px;
+    margin-left: 1px;
+    border: 1px solid white;
+    border-right: 1px solid #151515;
+    border-bottom: 1px solid #151515;
+    outline: 1px solid #797676;
+}
+
+.undo_btn:active {
+    border: 1px solid #151515;
+    border-right: 1px solid white;
+    border-bottom: 1px solid white;
+}
+
+.undo_btn.disabled {
+    border: 1px solid #151515;
+    border-right: 1px solid white;
+    border-bottom: 1px solid white; 
+}
+
+.undo_btn img {
+    position: relative;
+    left: 3px;
+    width: 20px;
 }
     
