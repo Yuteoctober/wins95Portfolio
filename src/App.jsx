@@ -819,6 +819,11 @@ function handleShowMobile(name) {
 
   if(name === 'Run' || name === 'Nft' || name === 'Note')return; // not showing run on tap
 
+  if(name === 'Hard Disk (C:)' || name === 'Hard Disk (D:)' || name === 'CD-ROM')  {
+    setMyComputerExpand(prev => ({prev,focusItem: true, show: true}))
+    return;
+  }
+
   setTap(prevTap => [...prevTap, name]);
   setDesktopIcon(prevIcons => prevIcons.map(icon => ({...icon, focus: false})));
   }
