@@ -776,6 +776,19 @@ function handleShowMobile(name) {
 
   const lowerCaseName = name.toLowerCase().split(' ').join('');
 
+  // call this first if open disk
+  if (lowerCaseName === 'harddisk(c:)') {
+    setCurrentFolder('DiskC')
+    setSelectedFolder({label: 'Hard Disk (C:)', img: driveCIcon})
+    return;
+  }
+
+  if (lowerCaseName === 'harddisk(d:)') {
+    setCurrentFolder('DiskD')
+    setSelectedFolder({label: 'Hard Disk (D:)', img: driveCIcon})
+    return;
+  }
+
   const allSetItems = ObjectState();
 
   allSetItems.forEach((item) => {
