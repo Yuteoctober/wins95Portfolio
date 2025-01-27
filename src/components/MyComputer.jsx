@@ -4,19 +4,20 @@ import Draggable from 'react-draggable';
 import { motion } from 'framer-motion';
 import MyComputerPic from '../assets/pc.png';
 import '../css/MyComputer.css';
-import dskIcon from '../assets/desktop.png'
 import pcIcon from '../assets/pcicon.png'
 import driveCIcon from '../assets/c.png'
 import RomIcon from '../assets/rom.png'
+import undoIcon from '../assets/arrowback.png'
 import { BsCaretDownFill } from "react-icons/bs";
 
 function MyComputer() {
 
   const iconRefs = useRef([]);
   const [popUpFolder, setPopUpFolder] = useState(false)
-  
+
 
   const { 
+    undo, setUndo,
     DiskRef,
     selectedFolder, setSelectedFolder,
     currentFolder, setCurrentFolder,
@@ -71,29 +72,27 @@ function MyComputer() {
     setLastTapTime(now);
   }
 
+  console.log(undo)
+
   function NevigateToFolder(name) {
-    switch (name) {
-      case 'Hard Disk (C:)':
-        setCurrentFolder('DiskC');
-        break;
-
-      case 'Hard Disk (D:)':
-        setCurrentFolder('DiskD');
-        break;
-
-      case 'My Computer':
-      case 'MyComputer':
-        setCurrentFolder('MyComputer');
-        break;
-
-      case 'CD-ROM':
-        setCurrentFolder('CD-ROM');
-        break;
-
-      default:
-        return;
+    // Map folder names to internal folder identifiers
+    const folderMap = {
+      'Hard Disk (C:)': 'DiskC',
+      'Hard Disk (D:)': 'DiskD',
+      'My Computer': 'MyComputer',
+      'CD-ROM': 'CD-ROM',
+    };
+  
+    // Get the folder identifier from the map
+    const folder = folderMap[name];
+  
+    // If the folder is valid, update the current folder and undo stack
+    if (folder) {
+      setCurrentFolder(folder);
+      setUndo(prev => [...prev, folder]);
     }
   }
+  
 
   useEffect(() => {
       setSelectedFolder({label: 'My Computer', img: pcIcon})
@@ -116,6 +115,36 @@ function MyComputer() {
     if(name === 'My Computer') return;
     return '.9rem'
   }
+
+  // undo function
+  function UndoFunction() {
+
+    const folderMap = [
+      {folder: 'MyComputer', label: 'My Computer', img: pcIcon},
+      {folder: 'DiskC',label: 'Hard Disk (C:)', img: driveCIcon},
+      {folder: 'DiskD',label: 'Hard Disk (D:)', img: driveCIcon},
+      {folder: 'CD-ROM',label: 'CD-ROM', img: RomIcon},
+    ]
+
+    if (undo.length === 1) return; 
+  
+    const updatedUndo = undo.slice(0, -1);
+  
+    // Update the undo stack and set the current folder
+    setUndo(updatedUndo);
+    setCurrentFolder(updatedUndo[updatedUndo.length - 1] || 'MyComputer');
+    
+
+    const selectedFolder = folderMap.find(item => item.folder === updatedUndo[updatedUndo.length - 1]);
+  
+    // Update the selected folder state if a match is found, else fallback
+    if (selectedFolder) {
+      setSelectedFolder({ label: selectedFolder.label, img: selectedFolder.img });
+    } else {
+      setSelectedFolder({ label: 'My Computer', img: pcIcon }); 
+    }
+  }
+  
 
 
   return (
@@ -233,6 +262,11 @@ function MyComputer() {
                 <BsCaretDownFill/> 
               </span>
             </div>
+          </div>
+          <div className="undo_btn"
+            onClick={() => UndoFunction()}
+          >
+            <img src={undoIcon} alt="undoIcon" />
           </div>
         </div>
         <div className="folder_content-mypc"

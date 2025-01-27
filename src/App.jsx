@@ -33,6 +33,7 @@ import { StyleHide, imageMapping,
  } from './components/function/AppFunctions';
 
 function App() {
+  const [undo, setUndo] = useState(['MyComputer'])
   const [selectedFolder, setSelectedFolder] = useState({label: 'My Computer', img: pcIcon})
   const [currentFolder, setCurrentFolder] = useState('MyComputer')
   const [loading, setLoading] = useState(true)
@@ -339,6 +340,7 @@ const handleOnDrag = (name, ref) => () => {
 
 
   const contextValue = {
+    undo, setUndo,
     selectedFolder, setSelectedFolder,
     currentFolder, setCurrentFolder,
     MyComputerExpand, setMyComputerExpand,
@@ -715,12 +717,14 @@ function handleShow(name) {
   if (lowerCaseName === 'harddisk(c:)') {
     setCurrentFolder('DiskC')
     setSelectedFolder({label: 'Hard Disk (C:)', img: driveCIcon})
+    setUndo(prev => [...prev, 'DiskC'])
     return;
   }
 
   if (lowerCaseName === 'harddisk(d:)') {
     setCurrentFolder('DiskD')
     setSelectedFolder({label: 'Hard Disk (D:)', img: driveCIcon})
+    setUndo(prev => [...prev, 'DiskD'])
     return;
   }
 
@@ -778,12 +782,14 @@ function handleShowMobile(name) {
   if (lowerCaseName === 'harddisk(c:)') {
     setCurrentFolder('DiskC')
     setSelectedFolder({label: 'Hard Disk (C:)', img: driveCIcon})
+    setUndo(prev => [...prev, 'DiskC'])
     return;
   }
 
   if (lowerCaseName === 'harddisk(d:)') {
     setCurrentFolder('DiskD')
     setSelectedFolder({label: 'Hard Disk (D:)', img: driveCIcon})
+    setUndo(prev => [...prev, 'DiskD'])
     return;
   }
 
