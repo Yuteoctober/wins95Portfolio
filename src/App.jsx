@@ -32,7 +32,7 @@ import { StyleHide, imageMapping,
 
 function App() {
   const [undo, setUndo] = useState(['MyComputer'])
-  const [selectedFolder, setSelectedFolder] = useState({label: 'My Computer', img: imageMapping('MyComputer')})
+  const [selectedFolder, setSelectedFolder] = useState({label: 'MyComputer', img: imageMapping('MyComputer')})
   const [currentFolder, setCurrentFolder] = useState('MyComputer')
   const [loading, setLoading] = useState(true)
   const [btcShow, setBtcShow] = useState(false)
