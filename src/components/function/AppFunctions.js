@@ -10,8 +10,8 @@ import MSN from '../../assets/msn.png'
 import ie from '../../assets/ie.png'
 import settings from '../../assets/setting.png'
 import file from '../../assets/file4download.png'
-import disk from '../../assets/c - Copy.png'
-import rom from '../../assets/rom - Copy.png'
+import disk from '../../assets/c.png'
+import rom from '../../assets/rom.png'
 
 
 

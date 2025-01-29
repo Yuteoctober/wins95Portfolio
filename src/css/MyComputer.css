@@ -40,17 +40,19 @@
     align-content: center;
 }
 
-.drive_link p {
+.drive_link .folder_select_left_container p {
     position: relative;
     font-size: 13px;
-    top: 7px;
-    right: 8px;
+    top: 1px;
+    left: 10px;
 }
 
-.drive_link img {
+.drive_link .folder_select_left_container img {
     position: relative;
-    width: 34px;
-    right: 5px;
+    width: 14px;
+    height: 14px;
+    top: 3px;
+    left: 4px;
 }
 
 .drive_link .folder_select_btn {
@@ -104,7 +106,9 @@
 }
 
 .popup_select_folder .selected_icon li > img {
-    width: 35px;
+    width: 16px;
+    height: 16px;
+    margin-right: 12px;
 }
 
 .popup_select_folder .selected_icon li:hover {
@@ -141,12 +145,6 @@
     border: 1px solid #151515;
     border-right: 1px solid white;
     border-bottom: 1px solid white;
-}
-
-.undo_btn.disabled {
-    border: 1px solid #151515;
-    border-right: 1px solid white;
-    border-bottom: 1px solid white; 
 }
 
 .undo_btn img {
