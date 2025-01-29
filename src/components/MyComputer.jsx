@@ -2,7 +2,6 @@ import UseContext from '../Context';
 import { Fragment, useContext, useEffect, useRef, useState} from "react";
 import Draggable from 'react-draggable';
 import { motion } from 'framer-motion';
-import MyComputerPic from '../assets/pc.png';
 import '../css/MyComputer.css';
 import pcIcon from '../assets/pcicon.png'
 import undoIcon from '../assets/arrowback.png'

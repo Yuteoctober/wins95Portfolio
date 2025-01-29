@@ -319,9 +319,6 @@ const handleOnDrag = (name, ref) => () => {
         if(currentFolder === 'Project'){
           setDropTargetFolder('Project');
         }
-
-        console.log(dropTargetFolder)
-        console.log(currentFolder)
     }
     else if (
       iconRect.left < desktopRect.right &&
