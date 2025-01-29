@@ -5,8 +5,6 @@ import { motion } from 'framer-motion';
 import MyComputerPic from '../assets/pc.png';
 import '../css/MyComputer.css';
 import pcIcon from '../assets/pcicon.png'
-import driveCIcon from '../assets/c.png'
-import RomIcon from '../assets/rom.png'
 import undoIcon from '../assets/arrowback.png'
 import { BsCaretDownFill } from "react-icons/bs";
 
@@ -72,7 +70,6 @@ function MyComputer() {
     setLastTapTime(now);
   }
 
-  console.log(undo)
 
   function NevigateToFolder(name) {
     // Map folder names to internal folder identifiers
@@ -95,7 +92,7 @@ function MyComputer() {
   
 
   useEffect(() => {
-      setSelectedFolder({label: 'My Computer', img: pcIcon})
+      setSelectedFolder({label: 'My Computer', img: imageMapping('MyComputer')})
       setCurrentFolder('MyComputer')
       setPopUpFolder(false)
     
@@ -104,26 +101,26 @@ function MyComputer() {
 
   // popup select folder
   const popUpiconList = [
-    {label: 'My Computer', img: pcIcon},
-    {label: 'Hard Disk (C:)', img: driveCIcon},
-    {label: 'Hard Disk (D:)', img: driveCIcon},
-    {label: 'CD-ROM', img: RomIcon},
+    {label: 'My Computer', img: imageMapping('MyComputer')},
+    {label: 'Hard Disk (C:)', img: imageMapping('Hard Disk (C:)')},
+    {label: 'Hard Disk (D:)', img: imageMapping('Hard Disk (D:)')},
+    {label: 'CD-ROM', img: imageMapping('CD-ROM')},
   ]
 
   // margin to popup select folder
   function MarginOnSelectedIcon(name) {
-    if(name === 'My Computer') return;
-    return '.9rem'
+    if(name === 'My Computer') return '0.2rem';
+    return '1.1rem'
   }
 
   // undo function
   function UndoFunction() {
 
     const folderMap = [
-      {folder: 'MyComputer', label: 'My Computer', img: pcIcon},
-      {folder: 'DiskC',label: 'Hard Disk (C:)', img: driveCIcon},
-      {folder: 'DiskD',label: 'Hard Disk (D:)', img: driveCIcon},
-      {folder: 'CD-ROM',label: 'CD-ROM', img: RomIcon},
+      {folder: 'MyComputer', label: 'My Computer', img: imageMapping('MyComputer')},
+      {folder: 'DiskC',label: 'Hard Disk (C:)', img: imageMapping('Hard Disk (C:)')},
+      {folder: 'DiskD',label: 'Hard Disk (D:)', img: imageMapping('Hard Disk (D:)')},
+      {folder: 'CD-ROM',label: 'CD-ROM', img: imageMapping('CD-ROM')},
     ]
 
     if (undo.length === 1) return; 
@@ -143,6 +140,69 @@ function MyComputer() {
     } else {
       setSelectedFolder({ label: 'My Computer', img: pcIcon }); 
     }
+  }
+
+  function handleShowInfolder(name) {
+
+    //  const lowerCaseName = name.toLowerCase().split(' ').join('');
+
+      if (name === 'Hard Disk (C:)') {
+        setCurrentFolder('DiskC')
+        setSelectedFolder({label: 'Hard Disk (C:)', img: imageMapping(name)})
+        setUndo(prev => [...prev, 'DiskC'])
+        return;
+      }
+    
+      if (name === 'Hard Disk (D:)') {
+        setCurrentFolder('DiskD')
+        setSelectedFolder({label: 'Hard Disk (D:)', img: imageMapping(name)})
+        setUndo(prev => [...prev, 'DiskD'])
+        return;
+      }
+
+      if (name === 'Resume') {
+        setCurrentFolder('Resume')
+        setSelectedFolder({label: 'Resume', img: imageMapping(name)})
+        setUndo(prev => [...prev, 'Resume'])
+        return;
+      }
+
+      if (name === 'Project') {
+        setCurrentFolder('Project')
+        setSelectedFolder({label: 'Project', img: imageMapping(name)})
+        setUndo(prev => [...prev, 'Project'])
+        return;
+      }
+
+      handleShow(name)
+  }
+
+  function handleShowInfolderMobile(name) {
+
+    //  const lowerCaseName = name.toLowerCase().split(' ').join('');
+
+      if (name === 'Hard Disk (C:)') {
+        setCurrentFolder('DiskC')
+        setSelectedFolder({label: 'Hard Disk (C:)', img: imageMapping(name)})
+        setUndo(prev => [...prev, 'DiskC'])
+        return;
+      }
+    
+      if (name === 'Hard Disk (D:)') {
+        setCurrentFolder('DiskD')
+        setSelectedFolder({label: 'Hard Disk (D:)', img: imageMapping(name)})
+        setUndo(prev => [...prev, 'DiskD'])
+        return;
+      }
+
+      if (name === 'Resume') {
+        setCurrentFolder('Resume')
+        setSelectedFolder({label: 'Hard Disk (D:)', img: imageMapping(name)})
+        setUndo(prev => [...prev, 'Resume'])
+        return;
+      }
+
+      handleShowMobile(name)
   }
   
 
@@ -184,8 +244,8 @@ function MyComputer() {
           style={{ background: MyComputerExpand.focusItem ? themeDragBar : '#757579' }}
         >
           <div className="folder_barname">
-            <img src={MyComputerPic} alt="MyComputerPic" />
-            <span>MyComputer</span>
+            <img src={imageMapping(selectedFolder.label)} alt="selectedFolder.label" />
+            <span>{selectedFolder.label}</span>
           </div>
           <div className="folder_barbtn">
             <div onClick={ !isTouchDevice ? (e) => {
@@ -237,7 +297,7 @@ function MyComputer() {
                       NevigateToFolder(icon.label)
                     }}
                   >
-                    <img src={icon.img} alt={icon.label} 
+                    <img src={imageMapping(icon.label)} alt={icon.label} 
                       style={{marginLeft: MarginOnSelectedIcon(icon.label)}}
                     />
                     <span>{icon.label}</span>
@@ -309,13 +369,13 @@ function MyComputer() {
                   <div className='icon' key={icon.name}
                     style={iconContainerSize(iconScreenSize)}
                     ref={(el) => iconRefs.current[icon.name] = el}
-                    onDoubleClick={() => handleShow(icon.name)}                      
+                    onDoubleClick={() => handleShowInfolder(icon.name)}                      
                     onClick={!isTouchDevice ? (e) => {
                       iconFocusIcon(icon.name);
                       e.stopPropagation();
                     } : undefined}           
                     onTouchStart={() => {
-                      handleShowMobile(icon.name);
+                      handleShowInfolderMobile(icon.name);
                       iconFocusIcon(icon.name);
                     }}
                   >

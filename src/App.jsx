@@ -24,8 +24,6 @@ import Notification from './components/Notification';
 import BTC from './components/BTC';
 import axios from 'axios';
 import loadingSpin from './assets/loading.gif'
-import pcIcon from './assets/pcicon.png'
-import driveCIcon from './assets/c.png'
 import { StyleHide, imageMapping,
   handleDoubleClickEnterLink,handleDoubleTapEnterMobile,
   handleDoubleClickiframe, handleDoubleTapiframeMobile,
@@ -34,7 +32,7 @@ import { StyleHide, imageMapping,
 
 function App() {
   const [undo, setUndo] = useState(['MyComputer'])
-  const [selectedFolder, setSelectedFolder] = useState({label: 'My Computer', img: pcIcon})
+  const [selectedFolder, setSelectedFolder] = useState({label: 'My Computer', img: imageMapping('MyComputer')})
   const [currentFolder, setCurrentFolder] = useState('MyComputer')
   const [loading, setLoading] = useState(true)
   const [btcShow, setBtcShow] = useState(false)
@@ -314,6 +312,12 @@ const handleOnDrag = (name, ref) => () => {
         }
         if(currentFolder === 'DiskD'){
           setDropTargetFolder('DiskD');
+        }
+        if(currentFolder === 'Resume'){
+          setDropTargetFolder('Resume');
+        }
+        if(currentFolder === 'Project'){
+          setDropTargetFolder('Project');
         }
 
         console.log(dropTargetFolder)
@@ -713,20 +717,20 @@ function handleShow(name) {
   const lowerCaseName = name.toLowerCase().split(' ').join('');
 
 
-  // call this first if open disk
-  if (lowerCaseName === 'harddisk(c:)') {
-    setCurrentFolder('DiskC')
-    setSelectedFolder({label: 'Hard Disk (C:)', img: driveCIcon})
-    setUndo(prev => [...prev, 'DiskC'])
-    return;
-  }
+  // // call this first if open disk
+  // if (lowerCaseName === 'harddisk(c:)') {
+  //   setCurrentFolder('DiskC')
+  //   setSelectedFolder({label: 'Hard Disk (C:)', img: driveCIcon})
+  //   setUndo(prev => [...prev, 'DiskC'])
+  //   return;
+  // }
 
-  if (lowerCaseName === 'harddisk(d:)') {
-    setCurrentFolder('DiskD')
-    setSelectedFolder({label: 'Hard Disk (D:)', img: driveCIcon})
-    setUndo(prev => [...prev, 'DiskD'])
-    return;
-  }
+  // if (lowerCaseName === 'harddisk(d:)') {
+  //   setCurrentFolder('DiskD')
+  //   setSelectedFolder({label: 'Hard Disk (D:)', img: driveCIcon})
+  //   setUndo(prev => [...prev, 'DiskD'])
+  //   return;
+  // }
 
   const allSetItems = ObjectState() // call all usestate object
 
@@ -779,19 +783,19 @@ function handleShowMobile(name) {
   const lowerCaseName = name.toLowerCase().split(' ').join('');
 
   // call this first if open disk
-  if (lowerCaseName === 'harddisk(c:)') {
-    setCurrentFolder('DiskC')
-    setSelectedFolder({label: 'Hard Disk (C:)', img: driveCIcon})
-    setUndo(prev => [...prev, 'DiskC'])
-    return;
-  }
+  // if (lowerCaseName === 'harddisk(c:)') {
+  //   setCurrentFolder('DiskC')
+  //   setSelectedFolder({label: 'Hard Disk (C:)', img: driveCIcon})
+  //   setUndo(prev => [...prev, 'DiskC'])
+  //   return;
+  // }
 
-  if (lowerCaseName === 'harddisk(d:)') {
-    setCurrentFolder('DiskD')
-    setSelectedFolder({label: 'Hard Disk (D:)', img: driveCIcon})
-    setUndo(prev => [...prev, 'DiskD'])
-    return;
-  }
+  // if (lowerCaseName === 'harddisk(d:)') {
+  //   setCurrentFolder('DiskD')
+  //   setSelectedFolder({label: 'Hard Disk (D:)', img: driveCIcon})
+  //   setUndo(prev => [...prev, 'DiskD'])
+  //   return;
+  // }
 
   const allSetItems = ObjectState();
 
