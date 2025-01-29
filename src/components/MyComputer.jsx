@@ -179,8 +179,9 @@ function MyComputer() {
 
   function handleShowInfolderMobile(name) {
 
-    //  const lowerCaseName = name.toLowerCase().split(' ').join('');
+    const now = Date.now()
 
+    if (now - lastTapTime < 300) {
       if (name === 'Hard Disk (C:)') {
         setCurrentFolder('DiskC')
         setSelectedFolder({label: 'Hard Disk (C:)', img: imageMapping(name)})
@@ -217,6 +218,12 @@ function MyComputer() {
       }
 
       handleShowMobile(name)
+
+    }
+    setLastTapTime(now)
+
+
+     
   }
   
 
