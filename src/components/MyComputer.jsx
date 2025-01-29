@@ -202,6 +202,20 @@ function MyComputer() {
         return;
       }
 
+      if (name === 'Resume') {
+        setCurrentFolder('Resume')
+        setSelectedFolder({label: 'Resume', img: imageMapping(name)})
+        setUndo(prev => [...prev, 'Resume'])
+        return;
+      }
+
+      if (name === 'Project') {
+        setCurrentFolder('Project')
+        setSelectedFolder({label: 'Project', img: imageMapping(name)})
+        setUndo(prev => [...prev, 'Project'])
+        return;
+      }
+
       handleShowMobile(name)
   }
   
