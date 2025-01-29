@@ -12,7 +12,6 @@ function MyComputer() {
   const iconRefs = useRef([]);
   const [popUpFolder, setPopUpFolder] = useState(false)
 
-
   const { 
     undo, setUndo,
     DiskRef,
@@ -41,6 +40,29 @@ function MyComputer() {
     deleteTap,
   } = useContext(UseContext);
 
+   // popup select folder
+   const popUpiconList = [
+    {name: 'MyComputer', pic: imageMapping('MyComputer'), at: 'MyComputer'},
+    {name: 'Hard Disk (C:)', pic: imageMapping('Hard Disk (C:)'), at: 'DiskC'},
+    {name: 'Hard Disk (D:)', pic: imageMapping('Hard Disk (D:)'), at: 'DiskD'},
+    {name: 'CD-ROM', pic: imageMapping('CD-ROM'), at: 'CD-ROM'},
+  ]
+
+  // const popUpiconList = desktopIcon.filter(a => {
+  //   if(a.type === 'Drive') {
+  //     return true
+  //   }
+  //   return false
+  // })
+
+  const subFolders = desktopIcon.filter(a => {
+    if(a.type === 'folder'){
+      return true
+    }
+    return false
+  })
+
+  console.log(subFolders)
   function handleDragStop(event, data) {
     const positionX = data.x;
     const positionY = data.y;
@@ -70,53 +92,51 @@ function MyComputer() {
   }
 
 
-  function NevigateToFolder(name) {
+  function NevigateToFolder(name) { /// important to nevigate
     // Map folder names to internal folder identifiers
     const folderMap = {
       'Hard Disk (C:)': 'DiskC',
       'Hard Disk (D:)': 'DiskD',
-      'My Computer': 'MyComputer',
+      'MyComputer': 'MyComputer',
       'CD-ROM': 'CD-ROM',
+      'Resume': 'Resume',
+      'Project': 'Project'
     };
   
     // Get the folder identifier from the map
     const folder = folderMap[name];
   
     // If the folder is valid, update the current folder and undo stack
-    if (folder) {
+ 
       setCurrentFolder(folder);
       setUndo(prev => [...prev, folder]);
-    }
+    
   }
   
 
   useEffect(() => {
-      setSelectedFolder({label: 'My Computer', img: imageMapping('MyComputer')})
+      setSelectedFolder({label: 'MyComputer', img: imageMapping('MyComputer')})
       setCurrentFolder('MyComputer')
       setPopUpFolder(false)
+      setUndo(['MyComputer'])
     
   },[MyComputerExpand.show])
   
 
-  // popup select folder
-  const popUpiconList = [
-    {label: 'My Computer', img: imageMapping('MyComputer')},
-    {label: 'Hard Disk (C:)', img: imageMapping('Hard Disk (C:)')},
-    {label: 'Hard Disk (D:)', img: imageMapping('Hard Disk (D:)')},
-    {label: 'CD-ROM', img: imageMapping('CD-ROM')},
-  ]
-
   // margin to popup select folder
-  function MarginOnSelectedIcon(name) {
-    if(name === 'My Computer') return '0.2rem';
-    return '1.1rem'
+  function MarginOnSelectedIcon(name, sub) {
+    if(name === 'MyComputer') return '0.2rem';
+    if(name.includes('Disk') || name.includes('CD-ROM')) return '1.1rem'
+    if(sub === 'sub1') return '2rem'
+    if(sub === 'sub2') return '2.9rem'
+    return;
   }
 
   // undo function
   function UndoFunction() {
 
     const folderMap = [
-      {folder: 'MyComputer', label: 'My Computer', img: imageMapping('MyComputer')},
+      {folder: 'MyComputer', label: 'MyComputer', img: imageMapping('MyComputer')},
       {folder: 'DiskC',label: 'Hard Disk (C:)', img: imageMapping('Hard Disk (C:)')},
       {folder: 'DiskD',label: 'Hard Disk (D:)', img: imageMapping('Hard Disk (D:)')},
       {folder: 'CD-ROM',label: 'CD-ROM', img: imageMapping('CD-ROM')},
@@ -137,11 +157,11 @@ function MyComputer() {
     if (selectedFolder) {
       setSelectedFolder({ label: selectedFolder.label, img: selectedFolder.img });
     } else {
-      setSelectedFolder({ label: 'My Computer', img: pcIcon }); 
+      setSelectedFolder({ label: 'MyComputer', img: imageMapping('MyComputer') }); 
     }
   }
 
-  function handleShowInfolder(name) {
+  function handleShowInfolder(name) { //important
 
     //  const lowerCaseName = name.toLowerCase().split(' ').join('');
 
@@ -306,26 +326,59 @@ function MyComputer() {
         <div className="drive_control">
           <div className="drive_link">
             {popUpFolder && (
-              <div className="popup_select_folder">
-              <div className="selected_icon">
-                <ul>
-                {popUpiconList.map((icon, index) => (
-                  <li key={index}
-                    onClick={() => {
-                      setSelectedFolder(icon)
-                      setPopUpFolder(false)
-                      NevigateToFolder(icon.label)
-                    }}
-                  >
-                    <img src={imageMapping(icon.label)} alt={icon.label} 
-                      style={{marginLeft: MarginOnSelectedIcon(icon.label)}}
-                    />
-                    <span>{icon.label}</span>
-                  </li>
-                ))}
-                </ul>
+              
+                <div className="popup_select_folder">
+                <div className="selected_icon">
+                  <ul>
+                  {popUpiconList.map((icon, index) => (
+                    <>
+                      <li key={index}
+                        onClick={() => {
+                          setSelectedFolder({label: icon.name, img: imageMapping(icon.name)})
+                          setPopUpFolder(false)
+                          NevigateToFolder(icon.name)
+                        }}
+                      >
+                        <img src={imageMapping(icon.name)} alt={icon.name} 
+                          style={{marginLeft: MarginOnSelectedIcon(icon.name)}}
+                        />
+                        <span>{icon.name}</span>
+                      </li>
+                      {subFolders.map((subFolder, index) => (
+                        subFolder.folderId === icon.at && (
+                          <>
+                            <li key={index} onClick={() => {
+                              setSelectedFolder({label: subFolder.name, img: imageMapping(subFolder.name)})
+                              setPopUpFolder(false)
+                              NevigateToFolder(subFolder.name)
+                            }}>
+                            <img src={imageMapping(subFolder.name)} alt={subFolder.name} 
+                              style={{ marginLeft: MarginOnSelectedIcon(subFolder.name, 'sub1') }}
+                            />
+                            <span>{subFolder.name}</span>
+                            </li>
+                            {subFolders.map((subSubFolder, index) => 
+                              subSubFolder.folderId === subFolder.name ? 
+                              <li key={index} onClick={() => {
+                                setSelectedFolder({label: subSubFolder.name, img: imageMapping(subSubFolder.name)})
+                                setPopUpFolder(false)
+                                NevigateToFolder(subSubFolder.name)
+                              }}>
+                              <img src={imageMapping(subFolder.name)} alt={subSubFolder.name} 
+                                style={{ marginLeft: MarginOnSelectedIcon(subSubFolder.name, 'sub2') }}
+                              />
+                              <span>{subSubFolder.name}</span>
+                              </li> 
+                              : null
+                            )}
+                          </>
+                      )
+                      ))}
+                    </>
+                  ))}
+                  </ul>
+                </div>
               </div>
-            </div>
             )}
             <div className='folder_select_left_container'>
               <img src={selectedFolder.img} alt={selectedFolder.label} />

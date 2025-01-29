@@ -13,7 +13,7 @@
         "pic": "MyComputer",
         "folderId": "Desktop",
         "size": 4,
-        "type": ".exe",
+        "type": "Drive",
         "x": 1.5,
         "y": 1.5
     },

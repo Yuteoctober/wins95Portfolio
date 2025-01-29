@@ -83,14 +83,21 @@
 .popup_select_folder {
     position: absolute;
     width: calc(99% + 6px);
-    left: -2px;
+    z-index: 5;
+    margin-top: 2rem;
+}
+
+.selected_icon {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
     height: fit-content;
-    padding: 2px 0px;
-    margin-top: 7.4rem;
+    width: 100%;
     background: white;
     border: 1px solid black;
-    z-index: 5;
-
+    padding: 2px 0px;
+    left: -2px;
+    overflow-y: auto;
 }
 
 .popup_select_folder .selected_icon ul {
@@ -98,6 +105,7 @@
     flex-direction: column;
     padding-left: 2px;
     flex-grow: 1;
+    overflow-y: auto;
 }
 
 .popup_select_folder .selected_icon li {
