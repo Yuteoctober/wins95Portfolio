@@ -12,6 +12,7 @@ import settings from '../../assets/setting.png'
 import file from '../../assets/file4download.png'
 import disk from '../../assets/c.png'
 import rom from '../../assets/rom.png'
+import btc from '../../assets/btc_icon.webp'
 
 
 
@@ -98,6 +99,10 @@ export function imageMapping (name) {
     case 'CD-ROM':
     case 'cd-rom':
       return rom;
+
+    case 'Bitcoin':
+    case 'bitcoin':
+      return btc
 
     default:
       return null;
