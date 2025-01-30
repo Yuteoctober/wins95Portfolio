@@ -41,11 +41,21 @@ function MyComputer() {
   } = useContext(UseContext);
 
    // popup select folder
-   const popUpiconList = [
+   const popUpiconList = [ // important default folderand disks
     {name: 'MyComputer', pic: imageMapping('MyComputer'), at: 'MyComputer'},
     {name: 'Hard Disk (C:)', pic: imageMapping('Hard Disk (C:)'), at: 'DiskC'},
     {name: 'Hard Disk (D:)', pic: imageMapping('Hard Disk (D:)'), at: 'DiskD'},
     {name: 'CD-ROM', pic: imageMapping('CD-ROM'), at: 'CD-ROM'},
+  ]
+
+  const folderMap = [ // important all the folder name
+    {folder: 'MyComputer', label: 'MyComputer', img: imageMapping('MyComputer')},
+    {folder: 'DiskC',label: 'Hard Disk (C:)', img: imageMapping('Hard Disk (C:)')},
+    {folder: 'DiskD',label: 'Hard Disk (D:)', img: imageMapping('Hard Disk (D:)')},
+    {folder: 'CD-ROM',label: 'CD-ROM', img: imageMapping('CD-ROM')},
+    {folder: 'Resume',label: 'Resume', img: imageMapping('Resume')},
+    {folder: 'Project',label: 'Project', img: imageMapping('Project')},
+    {folder: 'Picture',label: 'Picture', img: imageMapping('Picture')},
   ]
 
   // const popUpiconList = desktopIcon.filter(a => {
@@ -62,7 +72,6 @@ function MyComputer() {
     return false
   })
 
-  console.log(subFolders)
   function handleDragStop(event, data) {
     const positionX = data.x;
     const positionY = data.y;
@@ -135,13 +144,6 @@ function MyComputer() {
 
   // undo function
   function UndoFunction() {
-
-    const folderMap = [
-      {folder: 'MyComputer', label: 'MyComputer', img: imageMapping('MyComputer')},
-      {folder: 'DiskC',label: 'Hard Disk (C:)', img: imageMapping('Hard Disk (C:)')},
-      {folder: 'DiskD',label: 'Hard Disk (D:)', img: imageMapping('Hard Disk (D:)')},
-      {folder: 'CD-ROM',label: 'CD-ROM', img: imageMapping('CD-ROM')},
-    ]
 
     if (undo.length === 1) return; 
   
