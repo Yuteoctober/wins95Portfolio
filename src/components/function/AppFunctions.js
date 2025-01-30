@@ -65,6 +65,7 @@ export function imageMapping (name) {
       return Mail;
 
     case 'Project':
+    case 'Picture':
       return Project;
 
       case 'Nft':

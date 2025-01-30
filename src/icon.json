@@ -65,7 +65,7 @@
     {
         "name": "Winamp",
         "pic": "Winamp",
-        "folderId": "DiskC",
+        "folderId": "DiskD",
         "size": 4300,
         "type": ".exe",
         "x": 7,
@@ -124,5 +124,14 @@
         "type": "Drive",
         "x": 13,
         "y": 13
+    },
+    {
+        "name": "Picture",
+        "pic": "Picture",
+        "folderId": "DiskC",
+        "size": 1000,
+        "type": "folder",
+        "x": 14,
+        "y": 14
     }
 ]

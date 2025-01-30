@@ -22,6 +22,7 @@ import BgSetting from './components/BgSetting';
 import Run from './components/Run';
 import Notification from './components/Notification';
 import BTC from './components/BTC';
+import EmptyFolder from './components/EmptyFolder';
 import axios from 'axios';
 import loadingSpin from './assets/loading.gif'
 import { StyleHide, imageMapping,
@@ -56,6 +57,7 @@ function App() {
   const ProjectFolderRef = useRef(null);
   const ResumeFolderRef = useRef(null);
   const DiskRef = useRef(null);
+  const PictureRef = useRef(null)
   const [draggedIcon, setDraggedIcon] = useState(null);
   const [dropTargetFolder, setDropTargetFolder] = useState(null);
   const [reMountRun, setReMountRun] = useState(0)
@@ -133,6 +135,9 @@ function App() {
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
 
   const [MyComputerExpand, setMyComputerExpand] = useState(
+  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
+  
+  const [pictureExpand, setPictureExpand] = useState(
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
 
   const [desktopIcon, setDesktopIcon] = useState(() => {
@@ -273,13 +278,22 @@ const handleOnDrag = (name, ref) => () => {
     const projectFolderRect = ProjectFolderRef.current.getBoundingClientRect();
     const desktopRect = DesktopRef.current.getBoundingClientRect();
     const diskRect = DiskRef.current.getBoundingClientRect();
+    const PictureRect = PictureRef.current.getBoundingClientRect();
 
     const offset = 55;
 
     
-
-    // Check for intersection with the Resume folder
     if (
+      iconRect.left < PictureRect.right - offset &&
+      iconRect.right > PictureRect.left + offset &&
+      iconRect.top < PictureRect.bottom - offset &&
+      iconRect.bottom > PictureRect.top + offset
+    ) {
+      if(name === 'Picture') return;
+      setDropTargetFolder('Picture');
+    }
+    // Check for intersection with the Resume folder
+    else if (
       iconRect.left < resumeFolderRect.right - offset &&
       iconRect.right > resumeFolderRect.left + offset &&
       iconRect.top < resumeFolderRect.bottom - offset &&
@@ -305,7 +319,6 @@ const handleOnDrag = (name, ref) => () => {
       iconRect.top < diskRect.bottom - offset &&
       iconRect.bottom > diskRect.top + offset
     ) {
-
       if(name === 'MyComputer') return;
         if(currentFolder === 'DiskC'){
           setDropTargetFolder('DiskC');
@@ -318,6 +331,9 @@ const handleOnDrag = (name, ref) => () => {
         }
         if(currentFolder === 'Project'){
           setDropTargetFolder('Project');
+        }
+        if(currentFolder === 'Picture'){
+          setDropTargetFolder('Picture');
         }
     }
     else if (
@@ -483,6 +499,12 @@ const handleOnDrag = (name, ref) => () => {
   return (
     <>
       <UserContext.Provider value={contextValue}>
+        <EmptyFolder
+          state={pictureExpand} 
+          setState={setPictureExpand}
+          refState={PictureRef}
+          folderName='Picture'
+        />
         <Notification/>
         <Shutdown/>
         <MyComputer/>
@@ -682,6 +704,7 @@ function ObjectState() { // Add all the state realted to folder here !! very imp
           { name: 'Settings', setter: setBgSettingExpand, usestate: BgSettingExpand },
           { name: 'Run', setter: setRunExpand, usestate: RunExpand },
           { name: 'MyComputer', setter: setMyComputerExpand, usestate: MyComputerExpand },
+          { name: 'Picture', setter: setPictureExpand, usestate: pictureExpand },
 
         ];
 }

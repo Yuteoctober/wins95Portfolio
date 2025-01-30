@@ -100,7 +100,8 @@ function MyComputer() {
       'MyComputer': 'MyComputer',
       'CD-ROM': 'CD-ROM',
       'Resume': 'Resume',
-      'Project': 'Project'
+      'Project': 'Project',
+      'Picture': 'Picture',
     };
   
     // Get the folder identifier from the map
@@ -193,6 +194,13 @@ function MyComputer() {
         return;
       }
 
+      if (name === 'Picture') {
+        setCurrentFolder('Picture')
+        setSelectedFolder({label: 'Picture', img: imageMapping(name)})
+        setUndo(prev => [...prev, 'Picture'])
+        return;
+      }
+
       handleShow(name)
   }
 
@@ -233,6 +241,13 @@ function MyComputer() {
         setCurrentFolder('Project')
         setSelectedFolder({label: 'Project', img: imageMapping(name)})
         setUndo(prev => [...prev, 'Project'])
+        return;
+      }
+
+      if (name === 'Picture') {
+        setCurrentFolder('Picture')
+        setSelectedFolder({label: 'Picture', img: imageMapping(name)})
+        setUndo(prev => [...prev, 'Picture'])
         return;
       }
 
