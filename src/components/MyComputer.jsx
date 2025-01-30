@@ -202,6 +202,10 @@ function MyComputer() {
         setUndo(prev => [...prev, 'Picture'])
         return;
       }
+      
+      if(name === 'CD-ROM'){
+        return;
+      }
 
       handleShow(name)
   }
@@ -250,6 +254,9 @@ function MyComputer() {
         setCurrentFolder('Picture')
         setSelectedFolder({label: 'Picture', img: imageMapping(name)})
         setUndo(prev => [...prev, 'Picture'])
+        return;
+      }
+      if(name === 'CD-ROM'){
         return;
       }
 
