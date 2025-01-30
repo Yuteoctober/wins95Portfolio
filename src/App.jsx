@@ -734,23 +734,12 @@ function handleShow(name) {
 
   if(name === '' || !name) return;
 
+  if(name === 'Bitcoin') {
+    setBtcShow(true)
+    return;
+  }
+
   const lowerCaseName = name.toLowerCase().split(' ').join('');
-
-
-  // // call this first if open disk
-  // if (lowerCaseName === 'harddisk(c:)') {
-  //   setCurrentFolder('DiskC')
-  //   setSelectedFolder({label: 'Hard Disk (C:)', img: driveCIcon})
-  //   setUndo(prev => [...prev, 'DiskC'])
-  //   return;
-  // }
-
-  // if (lowerCaseName === 'harddisk(d:)') {
-  //   setCurrentFolder('DiskD')
-  //   setSelectedFolder({label: 'Hard Disk (D:)', img: driveCIcon})
-  //   setUndo(prev => [...prev, 'DiskD'])
-  //   return;
-  // }
 
   const allSetItems = ObjectState() // call all usestate object
 
@@ -782,10 +771,10 @@ function handleShow(name) {
 
   if(name === 'Run' || name === 'Nft' || name === 'Note')return; // not showing run on tap
 
-  if(name === 'Hard Disk (C:)' || name === 'Hard Disk (D:)' || name === 'CD-ROM')  {
-    setMyComputerExpand(prev => ({prev,focusItem: true, show: true}))
-    return;
-  }
+  // if(name === 'Hard Disk (C:)' || name === 'Hard Disk (D:)' || name === 'CD-ROM')  {
+  //   setMyComputerExpand(prev => ({prev,focusItem: true, show: true}))
+  //   return;
+  // }
 
   setTap(prevTap => [...prevTap, name]);
   setDesktopIcon(prevIcons => prevIcons.map(icon => ({...icon, focus: false})));
@@ -799,6 +788,11 @@ function handleShowMobile(name) {
   if (now - lastTapTime < 300) {
 
   if(name === '' || !name) return;
+
+  if(name === 'Bitcoin') {
+    setBtcShow(true)
+    return;
+  }
 
   const lowerCaseName = name.toLowerCase().split(' ').join('');
 
@@ -849,10 +843,10 @@ function handleShowMobile(name) {
 
   if(name === 'Run' || name === 'Nft' || name === 'Note')return; // not showing run on tap
 
-  if(name === 'Hard Disk (C:)' || name === 'Hard Disk (D:)' || name === 'CD-ROM')  {
-    setMyComputerExpand(prev => ({prev,focusItem: true, show: true}))
-    return;
-  }
+  // if(name === 'Hard Disk (C:)' || name === 'Hard Disk (D:)' || name === 'CD-ROM')  {
+  //   setMyComputerExpand(prev => ({prev,focusItem: true, show: true}))
+  //   return;
+  // }
 
   setTap(prevTap => [...prevTap, name]);
   setDesktopIcon(prevIcons => prevIcons.map(icon => ({...icon, focus: false})));

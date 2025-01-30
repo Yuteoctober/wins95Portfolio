@@ -133,5 +133,14 @@
         "type": "folder",
         "x": 14,
         "y": 14
+    },
+    {
+        "name": "Bitcoin",
+        "pic": "Bitcoin",
+        "folderId": "DiskD",
+        "size": 500,
+        "type": ".exe",
+        "x": 15,
+        "y": 15
     }
 ]
