@@ -65,7 +65,7 @@ function MyComputer() {
   //   return false
   // })
 
-  const subFolders = desktopIcon.filter(a => {
+  const subFolders = desktopIcon.filter(a => { // get all the folder
     if(a.type === 'folder'){
       return true
     }
@@ -388,7 +388,7 @@ function MyComputer() {
                                 setPopUpFolder(false)
                                 NevigateToFolder(subSubFolder.name)
                               }}>
-                              <img src={imageMapping(subFolder.name)} alt={subSubFolder.name} 
+                              <img src={imageMapping(subSubFolder.name)} alt={subSubFolder.name} 
                                 style={{ marginLeft: MarginOnSelectedIcon(subSubFolder.name, 'sub2') }}
                               />
                               <span>{subSubFolder.name}</span>
