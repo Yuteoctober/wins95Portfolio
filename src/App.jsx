@@ -282,6 +282,7 @@ const handleOnDrag = (name, ref) => () => {
 
     const offset = 55;
 
+    if(name === 'MyComputer') return; // prevent MyComputer from being dragged into folder
     
     if (
       iconRect.left < PictureRect.right - offset &&
