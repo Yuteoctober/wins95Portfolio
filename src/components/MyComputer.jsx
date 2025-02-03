@@ -3,7 +3,6 @@ import { Fragment, useContext, useEffect, useRef, useState} from "react";
 import Draggable from 'react-draggable';
 import { motion } from 'framer-motion';
 import '../css/MyComputer.css';
-import pcIcon from '../assets/pcicon.png'
 import undoIcon from '../assets/arrowback.png'
 import { BsCaretDownFill } from "react-icons/bs";
 
@@ -443,7 +442,10 @@ function MyComputer() {
               style={{
                 position: dragging? 'absolute' : '',
               }}
-              onClick={(e) => e.stopPropagation()}
+              onClick={(e) => {
+                e.stopPropagation() 
+                iconFocusIcon('');
+              }}
               >
               {desktopIcon.filter(icon => icon.folderId === currentFolder).map(icon => (
                 <Fragment key={icon.name}>

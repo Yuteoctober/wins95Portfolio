@@ -142,5 +142,60 @@
         "type": ".exe",
         "x": 15,
         "y": 15
+    },
+    {
+        "name": "001",
+        "pic": "Jpeg",
+        "folderId": "Picture",
+        "size": 50,
+        "type": ".jpeg",
+        "x": 16,
+        "y": 16
+    },
+    {
+        "name": "002",
+        "pic": "Jpeg",
+        "folderId": "Picture",
+        "size": 50,
+        "type": ".jpeg",
+        "x": 17,
+        "y": 17
+    },
+    {
+        "name": "003",
+        "pic": "Jpeg",
+        "folderId": "Picture",
+        "size": 50,
+        "type": ".jpeg",
+        "x": 18,
+        "y": 18
+    }, 
+    {
+        "name": "004",
+        "pic": "Jpeg",
+        "folderId": "Picture",
+        "size": 50,
+        "type": ".jpeg",
+        "x": 19,
+        "y": 19
+    }, 
+    {
+        "name": "005",
+        "pic": "Jpeg",
+        "folderId": "Picture",
+        "size": 50,
+        "type": ".jpeg",
+        "x": 20,
+        "y": 20
+    }, 
+    {
+        "name": "006",
+        "pic": "Jpeg",
+        "folderId": "Picture",
+        "size": 50,
+        "type": ".jpeg",
+        "x": 21,
+        "y": 21
     }
+    
 ]
