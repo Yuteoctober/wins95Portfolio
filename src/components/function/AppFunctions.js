@@ -13,6 +13,7 @@ import file from '../../assets/file4download.png'
 import disk from '../../assets/c.png'
 import rom from '../../assets/rom.png'
 import btc from '../../assets/btc_icon.webp'
+import jpeg from '../../assets/jpeg.png'
 
 
 
@@ -103,6 +104,9 @@ export function imageMapping (name) {
     case 'Bitcoin':
     case 'bitcoin':
       return btc
+
+    case 'Jpeg':
+      return jpeg;
 
     default:
       return null;

@@ -2,7 +2,6 @@ import ErrorBtn from './ErrorBtn';
 import UseContext from '../Context'
 import { useContext, useState, useEffect } from "react";
 import Draggable from 'react-draggable'
-import { motion } from 'framer-motion';
 import RunIcon from '../assets/run.png'
 import '../css/Run.css'
 import { BsCaretDownFill } from "react-icons/bs";
@@ -12,6 +11,9 @@ import { BsCaretDownFill } from "react-icons/bs";
 function Run() {
 
   const { 
+    textError,
+    runItemBox, setRunItemBox,
+    RunInputVal, setRunInputVal,
     remountRunPosition,
     ErrorPopup, setErrorPopup,
     reMountRun,
@@ -26,9 +28,6 @@ function Run() {
     inlineStyle,
     deleteTap,
    } = useContext(UseContext);
-
-   const [runItemBox, setRunItemBox] = useState(false)
-   const [RunInputVal, setRunInputVal] = useState('')
 
    const cannotOpenFile = ['internet', 'type', 'run'] // file that should not be open by RUN command
 
@@ -103,13 +102,6 @@ function Run() {
     setLastTapTime(now);
 }
 
-    const textError = (
-        <>
-            Cannot find the file '{RunInputVal}' (or one of its component). 
-            Make sure the path and filename are correct and that all required 
-            libraries are available.
-        </>
-    ) 
 
     useEffect(() => { 
       remountRunPosition()
@@ -124,7 +116,7 @@ function Run() {
             stateVal={RunInputVal}
             setStateVal={setErrorPopup}
             text={textError}
-            runOpenFuction={() => handleShow('Run')}
+            runOpenFuction={() => null} //handleShow('Run')
         />  
     )}
       <Draggable

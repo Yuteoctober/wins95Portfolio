@@ -154,7 +154,10 @@ function ResumeFolder() {
               style={{
                 position: dragging? 'absolute' : '',
               }}
-              onClick={(e) => e.stopPropagation()}
+              onClick={(e) => {
+                e.stopPropagation() 
+                iconFocusIcon('');
+              }}
               >
               {desktopIcon.filter(icon => icon.folderId === 'Resume').map(icon => (
                 <Fragment key={icon.name}>

@@ -159,7 +159,10 @@ function ProjectFolder() {
             <div
               className="item_container-project"
               style={{ position: dragging ? 'absolute' : '' }}
-              onClick={(e) => e.stopPropagation()}
+              onClick={(e) => {
+                e.stopPropagation() 
+                iconFocusIcon('');
+              }}
             >
               {desktopIcon.filter((icon) => icon.folderId === 'Project').map((icon) => (
                 <Draggable

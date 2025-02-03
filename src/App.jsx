@@ -23,6 +23,7 @@ import Run from './components/Run';
 import Notification from './components/Notification';
 import BTC from './components/BTC';
 import EmptyFolder from './components/EmptyFolder';
+import ErrorBtn from './components/ErrorBtn';
 import axios from 'axios';
 import loadingSpin from './assets/loading.gif'
 import { StyleHide, imageMapping,
@@ -32,6 +33,9 @@ import { StyleHide, imageMapping,
  } from './components/function/AppFunctions';
 
 function App() {
+  const [errorPopUpVal, setErrorPopUpVal] = useState('')
+  const [runItemBox, setRunItemBox] = useState(false)
+  const [RunInputVal, setRunInputVal] = useState('')
   const [undo, setUndo] = useState(['MyComputer'])
   const [selectedFolder, setSelectedFolder] = useState({label: 'MyComputer', img: imageMapping('MyComputer')})
   const [currentFolder, setCurrentFolder] = useState('MyComputer')
@@ -158,7 +162,15 @@ function App() {
   const [RunExpand, setRunExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
 
-  function projectname() {
+  const textError = ( // error message
+      <>
+          Cannot find the file '{RunInputVal}' (or one of its component). 
+          Make sure the path and filename are correct and that all required 
+          libraries are available.
+      </>
+  ) 
+  
+    function projectname() {
     if(projectUrl.length < 1) return;
     const projectlinkletter = projectUrl.slice(8).split('.')[0];
     return projectlinkletter[0].toUpperCase() + projectlinkletter.slice(1);
@@ -356,8 +368,10 @@ const handleOnDrag = (name, ref) => () => {
 
 };
 
-
   const contextValue = {
+    textError,
+    runItemBox, setRunItemBox,
+    RunInputVal, setRunInputVal,
     undo, setUndo,
     selectedFolder, setSelectedFolder,
     currentFolder, setCurrentFolder,
@@ -500,6 +514,15 @@ const handleOnDrag = (name, ref) => () => {
   return (
     <>
       <UserContext.Provider value={contextValue}>
+      {ErrorPopup && (
+        <ErrorBtn
+            themeDragBar={themeDragBar}
+            stateVal={RunInputVal}
+            setStateVal={setErrorPopup}
+            text={textError}
+            runOpenFuction={() => null}
+        />  
+    )}
         <EmptyFolder
           state={pictureExpand} 
           setState={setPictureExpand}
@@ -734,6 +757,11 @@ function iconFocusIcon(name) { // if focus on one, the rest goes unfocus
 function handleShow(name) {
 
   if(name === '' || !name) return;
+
+  if(name[0] === '0'){ // prevent showing picture for now, until the feature is finished
+    setErrorPopup(true)
+    return;
+  } 
 
   if(name === 'Bitcoin') {
     setBtcShow(true)
