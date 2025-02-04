@@ -162,7 +162,7 @@ function ProjectFolder() {
               onClick={(e) => {
                 e.stopPropagation() 
                 iconFocusIcon('');
-                setProjectExpand(prev => ({...prev, focusItem: true}))
+                handleSetFocusItemTrue('Project');
               }}
             >
               {desktopIcon.filter((icon) => icon.folderId === 'Project').map((icon) => (
