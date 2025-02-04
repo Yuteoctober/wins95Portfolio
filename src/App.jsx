@@ -759,20 +759,32 @@ function handleShow(name) {
 
   if(name === '' || !name) return;
 
-  if(name[0] === '0'){ // prevent showing picture for now, until the feature is finished
-    setRegErrorPopUp(true)
-    setRegErrorPopUpVal(name)
-    return;
-  } 
+  // if(name[0] === '0'){ // prevent showing picture for now, until the feature is finished
+  //   setRegErrorPopUp(true)
+  //   setRegErrorPopUpVal(name)
+  //   return;
+  // } 
 
-  if(name === 'Bitcoin') {
-    setBtcShow(true)
-    return;
-  }
+  // if(name === 'Bitcoin') {
+  //   setBtcShow(true)
+  //   return;
+  // }
 
   const lowerCaseName = name.toLowerCase().split(' ').join('');
 
   const allSetItems = ObjectState() // call all usestate object
+
+  const itemExists = allSetItems.some(item => item.name.toLowerCase().split(' ').join('') === lowerCaseName);
+
+  if (!itemExists) {
+    if (lowerCaseName === 'bitcoin') {
+      setBtcShow(true);
+      return;
+    } 
+      setRegErrorPopUp(true);
+      setRegErrorPopUpVal(name);
+      return;
+  }
 
   allSetItems.forEach((item) => {
 
@@ -815,20 +827,21 @@ function handleShowMobile(name) {
 
   if(name === '' || !name) return;
 
-  if(name[0] === '0'){ // prevent showing picture for now, until the feature is finished
-    setRegErrorPopUp(true)
-    setRegErrorPopUpVal(name)
-    return;
-  } 
-
-  if(name === 'Bitcoin') {
-    setBtcShow(true)
-    return;
-  }
-
   const lowerCaseName = name.toLowerCase().split(' ').join('');
 
   const allSetItems = ObjectState();
+
+  const itemExists = allSetItems.some(item => item.name.toLowerCase().split(' ').join('') === lowerCaseName);
+
+  if (!itemExists) {
+    if (lowerCaseName === 'bitcoin') {
+      setBtcShow(true);
+      return;
+    } 
+      setRegErrorPopUp(true);
+      setRegErrorPopUpVal(name);
+      return;
+  }
 
   allSetItems.forEach((item) => {
 
