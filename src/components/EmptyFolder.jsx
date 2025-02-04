@@ -152,7 +152,10 @@ function EmptyFolder({state, setState, refState, folderName}) {
               style={{
                 position: dragging? 'absolute' : '',
               }}
-              onClick={(e) => e.stopPropagation()}
+              onClick={(e) => {
+                e.stopPropagation() 
+                iconFocusIcon('');
+              }}
               >
               {desktopIcon.filter(icon => icon.folderId === folderName).map(icon => (
                 <Fragment key={icon.name}>
