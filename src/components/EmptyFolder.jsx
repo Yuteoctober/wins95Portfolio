@@ -184,7 +184,7 @@ function EmptyFolder({state, setState, refState, folderName}) {
                       iconFocusIcon(icon.name);
                     }}
                   >
-                    <img src={imageMapping(icon.name)} alt='#' className={icon.focus ? 'img_focus' : ''}
+                    <img src={imageMapping(icon.pic)} alt='#' className={icon.focus ? 'img_focus' : ''}
                       style={iconImgSize(iconScreenSize)}
                     />
                     <p className={icon.focus ? 'p_focus' : 'p_normal'}
