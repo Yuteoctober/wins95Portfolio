@@ -33,7 +33,8 @@ import { StyleHide, imageMapping,
  } from './components/function/AppFunctions';
 
 function App() {
-  const [errorPopUpVal, setErrorPopUpVal] = useState('')
+  const [regErrorPopUp, setRegErrorPopUp] = useState(false)
+  const [regErrorPopUpVal, setRegErrorPopUpVal] = useState('')
   const [runItemBox, setRunItemBox] = useState(false)
   const [RunInputVal, setRunInputVal] = useState('')
   const [undo, setUndo] = useState(['MyComputer'])
@@ -514,11 +515,11 @@ const handleOnDrag = (name, ref) => () => {
   return (
     <>
       <UserContext.Provider value={contextValue}>
-      {ErrorPopup && (
+      {regErrorPopUp && (
         <ErrorBtn
             themeDragBar={themeDragBar}
-            stateVal={RunInputVal}
-            setStateVal={setErrorPopup}
+            stateVal={regErrorPopUpVal}
+            setStateVal={setRegErrorPopUp}
             text={textError}
             runOpenFuction={() => null}
         />  
@@ -759,7 +760,8 @@ function handleShow(name) {
   if(name === '' || !name) return;
 
   if(name[0] === '0'){ // prevent showing picture for now, until the feature is finished
-    setErrorPopup(true)
+    setRegErrorPopUp(true)
+    setRegErrorPopUpVal(name)
     return;
   } 
 
@@ -812,6 +814,12 @@ function handleShowMobile(name) {
   if (now - lastTapTime < 300) {
 
   if(name === '' || !name) return;
+
+  if(name[0] === '0'){ // prevent showing picture for now, until the feature is finished
+    setRegErrorPopUp(true)
+    setRegErrorPopUpVal(name)
+    return;
+  } 
 
   if(name === 'Bitcoin') {
     setBtcShow(true)

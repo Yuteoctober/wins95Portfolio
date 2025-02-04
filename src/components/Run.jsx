@@ -116,7 +116,7 @@ function Run() {
             stateVal={RunInputVal}
             setStateVal={setErrorPopup}
             text={textError}
-            runOpenFuction={() => null} //handleShow('Run')
+            runOpenFuction={() => handleShow('Run')} 
         />  
     )}
       <Draggable
