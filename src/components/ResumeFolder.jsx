@@ -157,6 +157,7 @@ function ResumeFolder() {
               onClick={(e) => {
                 e.stopPropagation() 
                 iconFocusIcon('');
+                setResumeExpand(prev => ({...prev, focusItem: true}))
               }}
               >
               {desktopIcon.filter(icon => icon.folderId === 'Resume').map(icon => (
