@@ -445,6 +445,7 @@ function MyComputer() {
               onClick={(e) => {
                 e.stopPropagation() 
                 iconFocusIcon('');
+                setMyComputerExpand(prev => ({...prev, focusItem: true}))
               }}
               >
               {desktopIcon.filter(icon => icon.folderId === currentFolder).map(icon => (

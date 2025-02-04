@@ -155,6 +155,7 @@ function EmptyFolder({state, setState, refState, folderName}) {
               onClick={(e) => {
                 e.stopPropagation() 
                 iconFocusIcon('');
+                setState(prev => ({...prev, focusItem: true}))
               }}
               >
               {desktopIcon.filter(icon => icon.folderId === folderName).map(icon => (
