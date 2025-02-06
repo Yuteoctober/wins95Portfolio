@@ -520,7 +520,7 @@ export default function Footer() {
                                 <div className="icon_sub_start" key={icon.name}
                                     onClick={() => handleShow(icon.name)}
                                 >
-                                    <img src={imageMapping(icon.name)} alt={icon.name}/>
+                                    <img src={imageMapping(icon.pic)} alt={icon.name}/>
                                     <p>{icon.name}</p>
                                 </div>
                             ))}
@@ -538,7 +538,7 @@ export default function Footer() {
                                 <div className="icon_sub_start" key={icon.name}
                                     onClick={() => handleShow(icon.name)}
                                 >
-                                    <img src={imageMapping(icon.name)} alt={icon.name}/>
+                                    <img src={imageMapping(icon.pic)} alt={icon.name}/>
                                     <p>{icon.name}</p>
                                 </div>
                             ))}
