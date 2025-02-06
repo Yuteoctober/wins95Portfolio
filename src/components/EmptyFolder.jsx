@@ -62,6 +62,17 @@ function EmptyFolder({state, setState, refState, folderName, photoMode}) {
     setLastTapTime(now);
   }
 
+  const parentItemContainerStyle = {
+    background: '#c5c4c4',
+    padding: '0',
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: '-1.5rem',
+    height: '100%',
+    scrollbarWidth : 'none',
+    TouchEvent: 'auto',
+  }
+
   return (
     <Draggable
       axis="both" 
@@ -152,16 +163,7 @@ function EmptyFolder({state, setState, refState, folderName, photoMode}) {
 
         >
           <div className='parent_item_container' key={key}
-            style={{
-              background: photoMode? '#c5c4c4': '',
-              padding: photoMode? '0': '',
-              display: photoMode? 'flex': '',
-              justifyContent: photoMode? 'center': '',
-              marginTop: photoMode? '-1.5rem': '',
-              height: photoMode? '100%': '',
-              scrollbarWidth : photoMode? 'none': '',
-              TouchEvent: photoMode? 'auto': '',
-            }}
+            style={photoMode ? parentItemContainerStyle : {}}
           >
             <div className="item_container" 
               style={{
