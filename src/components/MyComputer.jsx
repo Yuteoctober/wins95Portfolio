@@ -112,7 +112,7 @@ function MyComputer() {
       'Picture': 'Picture',
     };
   
-    // Get the folder identifier from the map
+    // Get the folder identifier from the mapy
     const folder = folderMap[name];
   
     // If the folder is valid, update the current folder and undo stack
@@ -201,10 +201,6 @@ function MyComputer() {
         setUndo(prev => [...prev, 'Picture'])
         return;
       }
-      
-      if(name === 'CD-ROM'){
-        return;
-      }
 
       handleShow(name)
   }
@@ -253,9 +249,6 @@ function MyComputer() {
         setCurrentFolder('Picture')
         setSelectedFolder({label: 'Picture', img: imageMapping(name)})
         setUndo(prev => [...prev, 'Picture'])
-        return;
-      }
-      if(name === 'CD-ROM'){
         return;
       }
 

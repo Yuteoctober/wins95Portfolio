@@ -775,12 +775,6 @@ function handleShow(name) {
 
   if(name === '' || !name) return;
 
-  // if(name[0] === '0'){ // prevent showing picture for now, until the feature is finished
-  //   setRegErrorPopUp(true)
-  //   setRegErrorPopUpVal(name)
-  //   return;
-  // } 
-
   if(name === 'Bitcoin') {
     setBtcShow(true)
     return;
@@ -790,7 +784,7 @@ function handleShow(name) {
 
   const allSetItems = ObjectState() // call all usestate object
 
-  // const itemExists = allSetItems.some(item => item.name.toLowerCase().split(' ').join('') === lowerCaseName);
+  const itemExists = allSetItems.some(item => item.name.toLowerCase().split(' ').join('') === lowerCaseName);
 
   const pictureMatch = allPicture.find(picture => name.includes(picture.name));
   
@@ -800,11 +794,11 @@ function handleShow(name) {
     return;
   }
 
-//   if (!itemExists) {
-//     setRegErrorPopUp(true);
-//     setRegErrorPopUpVal(name);
-//     return;
-// }
+  if (!itemExists) {
+    setRegErrorPopUp(true);
+    setRegErrorPopUpVal(name);
+    return;
+}
 
   allSetItems.forEach((item) => {
 
@@ -847,11 +841,6 @@ function handleShowMobile(name) {
 
     if(name === '' || !name) return;
 
-    // if(name[0] === '0'){ // prevent showing picture for now, until the feature is finished
-    //   setRegErrorPopUp(true)
-    //   setRegErrorPopUpVal(name)
-    //   return;
-    // } 
   
     if(name === 'Bitcoin') {
       setBtcShow(true)
@@ -862,7 +851,7 @@ function handleShowMobile(name) {
   
     const allSetItems = ObjectState() // call all usestate object
   
-    // const itemExists = allSetItems.some(item => item.name.toLowerCase().split(' ').join('') === lowerCaseName);
+    const itemExists = allSetItems.some(item => item.name.toLowerCase().split(' ').join('') === lowerCaseName);
   
     const pictureMatch = allPicture.find(picture => name.includes(picture.name));
     
@@ -872,11 +861,11 @@ function handleShowMobile(name) {
       return;
     }
   
-  //   if (!itemExists) {
-  //     setRegErrorPopUp(true);
-  //     setRegErrorPopUpVal(name);
-  //     return;
-  // }
+    if (!itemExists) {
+      setRegErrorPopUp(true);
+      setRegErrorPopUpVal(name);
+      return;
+  }
   
     allSetItems.forEach((item) => {
   

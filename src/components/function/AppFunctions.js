@@ -134,6 +134,7 @@ export function handleDoubleClickPhotoOpen(name, setCurrentPhoto) {
 export function handleDoubleClickPhotoOpenMobile(name, setCurrentPhoto, lastTapTime, setLastTapTime) {
   const now = Date.now();
   if (now - lastTapTime < 300) {
+    
     switch(name) {
       case '001': 
         setCurrentPhoto({name: name, pic: firstPic}); 
