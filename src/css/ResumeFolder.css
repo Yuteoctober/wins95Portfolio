@@ -18,12 +18,20 @@
     user-select: none;
     resize: both;
 }
-   
+
+.folder_folder.photo_mode {
+    width: 450px;
+    height: 380px;
+}
 
 @media screen and (max-width: 450px) {
     .folder_folder {
         width: 80%;
         min-width: 300px;
+    }
+    .folder_folder.photo_mode {
+        width: 90%;
+        height: 300px;
     }
 }
 

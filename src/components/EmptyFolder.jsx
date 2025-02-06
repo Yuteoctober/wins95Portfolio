@@ -90,7 +90,7 @@ function EmptyFolder({state, setState, refState, folderName, photoMode}) {
     >
         <motion.div 
           ref={refState}
-          className='folder_folder'
+          className={`folder_folder ${photoMode? 'photo_mode' : ''}`}
           onClick={(e) => {
             e.stopPropagation();
           handleSetFocusItemTrue(folderName);
@@ -101,7 +101,7 @@ function EmptyFolder({state, setState, refState, folderName, photoMode}) {
                     ? inlineStyleExpand(folderName)
                     : inlineStyle(folderName)
             ),
-            overflow: dragging ? '' : 'hidden'
+            overflow: dragging ? '' : 'hidden',
         }}
         >
         <div className="folder_dragbar"
