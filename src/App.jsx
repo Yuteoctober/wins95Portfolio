@@ -845,61 +845,70 @@ function handleShowMobile(name) {
 
   if (now - lastTapTime < 300) {
 
-  if(name === '' || !name) return;
+    if(name === '' || !name) return;
 
-  const lowerCaseName = name.toLowerCase().split(' ').join('');
-
-  const allSetItems = ObjectState();
-
-  // const itemExists = allSetItems.some(item => item.name.toLowerCase().split(' ').join('') === lowerCaseName);
-
-  // if (!itemExists) {
+    // if(name[0] === '0'){ // prevent showing picture for now, until the feature is finished
+    //   setRegErrorPopUp(true)
+    //   setRegErrorPopUpVal(name)
+    //   return;
+    // } 
+  
+    if(name === 'Bitcoin') {
+      setBtcShow(true)
+      return;
+    }
+  
+    const lowerCaseName = name.toLowerCase().split(' ').join('');
+  
+    const allSetItems = ObjectState() // call all usestate object
+  
+    // const itemExists = allSetItems.some(item => item.name.toLowerCase().split(' ').join('') === lowerCaseName);
+  
+    const pictureMatch = allPicture.find(picture => name.includes(picture.name));
+    
+    if (pictureMatch) {
+      handleDoubleClickPhotoOpen(name, setCurrentPhoto);
+      handleShow('Photo');
+      return;
+    }
+  
+  //   if (!itemExists) {
   //     setRegErrorPopUp(true);
   //     setRegErrorPopUpVal(name);
   //     return;
   // }
-
-  const pictureMatch = allPicture.find(picture => name.includes(picture.name));
   
-  if (pictureMatch) {
-    handleDoubleClickPhotoOpenMobile(name, setCurrentPhoto);
-    handleShow('Photo');
-    return;
-  }
-
-  allSetItems.forEach((item) => {
-
-    const itemName = item.name.toLowerCase().trim();
-
-    if(itemName === lowerCaseName) {
-      setTimeout(() => {
-        item.setter(prev => ({...prev, show: true, focusItem: true, hide: false}));
-      }, 100);
-      if(lowerCaseName === 'mail') clippySendemailfunction();
-      if(lowerCaseName === 'winamp') clippySongFunction();
-      if(lowerCaseName === 'msn') clippyUsernameFunction();
-      if(lowerCaseName === 'nft') {
-        handleDoubleClickiframe('Nft', setOpenProjectExpand, setProjectUrl)
-        handleShow('Internet');
+    allSetItems.forEach((item) => {
+  
+      const itemName = item.name.toLowerCase().trim();
+  
+      if(itemName === lowerCaseName) {
+        setTimeout(() => {
+          item.setter(prev => ({...prev, show: true, focusItem: true, hide: false}));
+        }, 100);
+        if(lowerCaseName === 'mail') clippySendemailfunction();
+        if(lowerCaseName === 'winamp') clippySongFunction();
+        if(lowerCaseName === 'msn') clippyUsernameFunction();
+        if(lowerCaseName === 'nft') {
+          handleDoubleClickiframe('Nft', setOpenProjectExpand, setProjectUrl)
+          handleShow('Internet');
+        }
+        if(lowerCaseName === 'note') {
+          handleDoubleClickiframe('Note', setOpenProjectExpand, setProjectUrl)
+          handleShow('Internet');
+        }
       }
-      if(lowerCaseName === 'note') {
-        handleDoubleClickiframe('Note', setOpenProjectExpand, setProjectUrl)
-        handleShow('Internet');
-      }
-    }
-
-    item.setter(prev => ({...prev,focusItem: false}));
-
-  });
-
-  if(tap.includes(name)) return;
-  setStartActive(false)
-
-  if(name === 'Run' || name === 'Nft' || name === 'Note')return; // not showing run on tap
-
-
-  setTap(prevTap => [...prevTap, name]);
-  setDesktopIcon(prevIcons => prevIcons.map(icon => ({...icon, focus: false})));
+      item.setter(prev => ({...prev,focusItem: false}));
+  
+    });
+    if(tap.includes(name)) return;
+    setStartActive(false)
+  
+    if(name === 'Run' || name === 'Nft' || name === 'Note')return; // not showing run on tap
+  
+    setTap(prevTap => [...prevTap, name]);
+    setDesktopIcon(prevIcons => prevIcons.map(icon => ({...icon, focus: false})));
+  
   }
   setLastTapTime(now)
 }
