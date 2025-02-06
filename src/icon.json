@@ -27,20 +27,20 @@
         "y": 2
     },
     {
-        "name": "Mail",
-        "pic": "Mail",
-        "folderId": "Desktop",
-        "size": 12,
-        "type": ".exe",
-        "x": 3,
-        "y": 3
-    },
-    {
         "name": "Project",
         "pic": "Project",
         "folderId": "Desktop",
         "size": 2000,
         "type": "folder",
+        "x": 3,
+        "y": 3
+    },
+    {
+        "name": "Mail",
+        "pic": "Mail",
+        "folderId": "Desktop",
+        "size": 12,
+        "type": ".exe",
         "x": 4,
         "y": 4
     },
