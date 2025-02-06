@@ -14,8 +14,12 @@ import disk from '../../assets/c.png'
 import rom from '../../assets/rom.png'
 import btc from '../../assets/btc_icon.webp'
 import jpeg from '../../assets/jpeg.png'
-import firstPic from '../../assets/001.png'
-import secondPic from '../../assets/002.png'
+import firstPic from '../../assets/001.jpg'
+import secondPic from '../../assets/002.jpg'
+import thirdPic from '../../assets/003.jpg'
+import fourthPic from '../../assets/004.jpg'
+import fifthPic from '../../assets/005.jpg'
+import sixthPic from '../../assets/006.jpg'
 
 
 
@@ -126,6 +130,22 @@ export function handleDoubleClickPhotoOpen(name, setCurrentPhoto) {
       case '002': 
         setCurrentPhoto({name: name, pic: secondPic}); 
         break;
+      
+      case '003':
+        setCurrentPhoto({name: name, pic: thirdPic});
+        break;
+      
+      case '004':
+        setCurrentPhoto({name: name, pic: fourthPic});
+        break;
+
+      case '005':
+        setCurrentPhoto({name: name, pic: fifthPic});
+        break;
+
+      case '006':
+        setCurrentPhoto({name: name, pic: sixthPic});
+        break;
 
     default: break; 
   }
@@ -142,6 +162,22 @@ export function handleDoubleClickPhotoOpenMobile(name, setCurrentPhoto, lastTapT
   
       case '002': 
         setCurrentPhoto({name: name, pic: secondPic}); 
+        break;
+
+      case '003':
+         setCurrentPhoto({name: name, pic: thirdPic});
+        break;
+        
+      case '004':
+        setCurrentPhoto({name: name, pic: fourthPic});
+        break;
+  
+      case '005':
+        setCurrentPhoto({name: name, pic: fifthPic});
+        break;
+  
+      case '006':
+        setCurrentPhoto({name: name, pic: sixthPic});
         break;
   
       default: break;
