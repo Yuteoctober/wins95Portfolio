@@ -67,7 +67,6 @@ function EmptyFolder({state, setState, refState, folderName, photoMode}) {
     padding: '0',
     display: 'flex',
     justifyContent: 'center',
-    marginTop: '-1.5rem',
     height: '100%',
     scrollbarWidth : 'none',
     TouchEvent: 'auto',
@@ -155,7 +154,7 @@ function EmptyFolder({state, setState, refState, folderName, photoMode}) {
           onClick={() => iconFocusIcon('')}
           style={
             photoMode? 
-            {height: '100%', overflow: dragging? '' : 'hidden' }
+            {height: 'calc(100% - 52px)', overflow: dragging? '' : 'hidden' }
             :
             {height: state.expand ? 'calc(100svh - 122px)' : '', overflow: dragging? '' : 'hidden' }
           }
