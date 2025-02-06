@@ -1,15 +1,17 @@
 import UseContext from '../Context';
 import { Fragment, useContext, useEffect, useRef, useState} from "react";
 import Draggable from 'react-draggable';
-import { motion } from 'framer-motion';
+import { motion} from 'framer-motion';
 import '../css/ResumeFolder.css';
 import PropTypes from 'prop-types';
+import photoicon from '../assets/jpeg.png';
 
-function EmptyFolder({state, setState, refState, folderName}) {
+function EmptyFolder({state, setState, refState, folderName, photoMode}) {
 
   const iconRefs = useRef([]);
 
   const { 
+    currentPhoto, setCurrentPhoto,
     iconContainerSize, iconImgSize, iconTextSize,
     iconScreenSize,
     key,
@@ -97,8 +99,10 @@ function EmptyFolder({state, setState, refState, folderName}) {
           style={{ background: state.focusItem ? themeDragBar : '#757579' }}
         >
           <div className="folder_barname">
-            <img src={imageMapping(folderName)} alt="folderName" />
-            <span>{folderName}</span>
+            <img src={photoMode? photoicon : imageMapping(folderName)} alt="" 
+              style={photoMode? {width: '18px', top: '4px'} : {}}
+            />
+            <span>{photoMode? currentPhoto.name : folderName}</span>
           </div>
           <div className="folder_barbtn">
             <div onClick={ !isTouchDevice ? (e) => {
@@ -138,19 +142,30 @@ function EmptyFolder({state, setState, refState, folderName}) {
         </div>
         <div className="folder_content"
           onClick={() => iconFocusIcon('')}
-          style={{ 
-            height: state.expand ? 'calc(100svh - 122px)' : '',
-            overflow: dragging? '' : 'hidden' 
-          }}
+          style={
+            photoMode? 
+            {height: '100%', overflow: dragging? '' : 'hidden' }
+            :
+            {height: state.expand ? 'calc(100svh - 122px)' : '', overflow: dragging? '' : 'hidden' }
+          }
 
 
         >
           <div className='parent_item_container' key={key}
-
+            style={{
+              background: photoMode? '#c5c4c4': '',
+              padding: photoMode? '0': '',
+              display: photoMode? 'flex': '',
+              justifyContent: photoMode? 'center': '',
+              marginTop: photoMode? '-1.5rem': '',
+            }}
           >
             <div className="item_container" 
               style={{
                 position: dragging? 'absolute' : '',
+                margin: photoMode? 'auto': '',
+                maxWidth: photoMode? '1000px': '',
+                maxHeight: photoMode? '1000px': '',
               }}
               onClick={(e) => {
                 e.stopPropagation() 
@@ -158,7 +173,16 @@ function EmptyFolder({state, setState, refState, folderName}) {
                 handleSetFocusItemTrue(folderName);
               }}
               >
-              {desktopIcon.filter(icon => icon.folderId === folderName).map(icon => (
+              {photoMode && (
+                <img src={currentPhoto.pic} 
+                style={{
+                  position:'relative',
+                  width: '100%',
+                  height: '100%',
+                  margin: '0 auto',
+                }}/>
+              )}
+                {desktopIcon.filter(icon => icon.folderId === folderName).map(icon => (
                 <Fragment key={icon.name}>
                   <Draggable
                   axis="both" 
@@ -203,7 +227,12 @@ function EmptyFolder({state, setState, refState, folderName}) {
             </div>
           </div>
         </div>
-        <div className="btm_bar_container">
+        {photoMode ? (
+          null
+        )
+        :
+        (
+          <div className="btm_bar_container">
           <div className="object_bar">
             <p>
               {desktopIcon.filter(icon => icon.folderId === folderName).some(icon => icon.focus) ? 
@@ -232,6 +261,8 @@ function EmptyFolder({state, setState, refState, folderName}) {
             </p>
           </div>
         </div>
+        )}
+        
       </motion.div>
     </Draggable>
   );
@@ -245,6 +276,7 @@ EmptyFolder.propTypes = {
   setState: PropTypes.func.isRequired,
   refState: PropTypes.object,
   folderName: PropTypes.string.isRequired,
+  photoMode: PropTypes.bool,
 };
 
 export default EmptyFolder;

@@ -14,8 +14,8 @@ import disk from '../../assets/c.png'
 import rom from '../../assets/rom.png'
 import btc from '../../assets/btc_icon.webp'
 import jpeg from '../../assets/jpeg.png'
-
-
+import firstPic from '../../assets/001.png'
+import secondPic from '../../assets/002.png'
 
 
 
@@ -105,6 +105,7 @@ export function imageMapping (name) {
     case 'bitcoin':
       return btc
 
+    case 'Photo':
     case name[0] === '0':
     case 'Jpeg':
       return jpeg;
@@ -113,6 +114,40 @@ export function imageMapping (name) {
       return null;
   }
 }
+
+// set photo to the current photo
+export function handleDoubleClickPhotoOpen(name, setCurrentPhoto) {
+
+    switch(name) {
+      case '001': 
+        setCurrentPhoto({name: name, pic: firstPic}); 
+        break;
+  
+      case '002': 
+        setCurrentPhoto({name: name, pic: secondPic}); 
+        break;
+
+    default: break; 
+  }
+}
+
+export function handleDoubleClickPhotoOpenMobile(name, setCurrentPhoto, lastTapTime, setLastTapTime) {
+  const now = Date.now();
+  if (now - lastTapTime < 300) {
+    switch(name) {
+      case '001': 
+        setCurrentPhoto({name: name, pic: firstPic}); 
+        break;
+  
+      case '002': 
+        setCurrentPhoto({name: name, pic: secondPic}); 
+        break;
+  
+      default: break;
+    }
+  }
+  setLastTapTime(now);
+  }
 
 // click to open links
 export function handleDoubleClickiframe(name, setOpenProjectExpand, setProjectUrl) {

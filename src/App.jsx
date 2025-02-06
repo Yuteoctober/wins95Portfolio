@@ -30,9 +30,11 @@ import { StyleHide, imageMapping,
   handleDoubleClickEnterLink,handleDoubleTapEnterMobile,
   handleDoubleClickiframe, handleDoubleTapiframeMobile,
   iconContainerSize, iconImgSize, iconTextSize,
+  handleDoubleClickPhotoOpen, handleDoubleClickPhotoOpenMobile
  } from './components/function/AppFunctions';
 
 function App() {
+  const [currentPhoto, setCurrentPhoto] = useState({});
   const [regErrorPopUp, setRegErrorPopUp] = useState(false)
   const [regErrorPopUpVal, setRegErrorPopUpVal] = useState('')
   const [runItemBox, setRunItemBox] = useState(false)
@@ -145,6 +147,9 @@ function App() {
   const [pictureExpand, setPictureExpand] = useState(
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
 
+  const [photoOpenExpand, setPhotoOpenExpand] = useState(
+  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
+
   const [desktopIcon, setDesktopIcon] = useState(() => {
     const localItems = localStorage.getItem('icons');
     const parsedItems = localItems ? JSON.parse(localItems) : iconInfo;
@@ -162,6 +167,8 @@ function App() {
 
   const [RunExpand, setRunExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
+
+  const allPicture = desktopIcon.filter(picture => picture.type === '.jpeg'); // photo open
 
   const textError = ( // error message
       <>
@@ -370,6 +377,7 @@ const handleOnDrag = (name, ref) => () => {
 };
 
   const contextValue = {
+    currentPhoto, setCurrentPhoto,
     textError,
     runItemBox, setRunItemBox,
     RunInputVal, setRunInputVal,
@@ -529,6 +537,13 @@ const handleOnDrag = (name, ref) => () => {
           setState={setPictureExpand}
           refState={PictureRef}
           folderName='Picture'
+        />
+
+        <EmptyFolder
+          state={photoOpenExpand} 
+          setState={setPhotoOpenExpand}
+          folderName='Photo'
+          photoMode={true}
         />
         <Notification/>
         <Shutdown/>
@@ -730,6 +745,7 @@ function ObjectState() { // Add all the state realted to folder here !! very imp
           { name: 'Run', setter: setRunExpand, usestate: RunExpand },
           { name: 'MyComputer', setter: setMyComputerExpand, usestate: MyComputerExpand },
           { name: 'Picture', setter: setPictureExpand, usestate: pictureExpand },
+          { name: 'Photo', setter: setPhotoOpenExpand, usestate: photoOpenExpand },
 
         ];
 }
@@ -765,26 +781,30 @@ function handleShow(name) {
   //   return;
   // } 
 
-  // if(name === 'Bitcoin') {
-  //   setBtcShow(true)
-  //   return;
-  // }
+  if(name === 'Bitcoin') {
+    setBtcShow(true)
+    return;
+  }
 
   const lowerCaseName = name.toLowerCase().split(' ').join('');
 
   const allSetItems = ObjectState() // call all usestate object
 
-  const itemExists = allSetItems.some(item => item.name.toLowerCase().split(' ').join('') === lowerCaseName);
+  // const itemExists = allSetItems.some(item => item.name.toLowerCase().split(' ').join('') === lowerCaseName);
 
-  if (!itemExists) {
-    if (lowerCaseName === 'bitcoin') {
-      setBtcShow(true);
-      return;
-    } 
-      setRegErrorPopUp(true);
-      setRegErrorPopUpVal(name);
-      return;
+  const pictureMatch = allPicture.find(picture => name.includes(picture.name));
+  
+  if (pictureMatch) {
+    handleDoubleClickPhotoOpen(name, setCurrentPhoto);
+    handleShow('Photo');
+    return;
   }
+
+//   if (!itemExists) {
+//     setRegErrorPopUp(true);
+//     setRegErrorPopUpVal(name);
+//     return;
+// }
 
   allSetItems.forEach((item) => {
 
@@ -831,16 +851,20 @@ function handleShowMobile(name) {
 
   const allSetItems = ObjectState();
 
-  const itemExists = allSetItems.some(item => item.name.toLowerCase().split(' ').join('') === lowerCaseName);
+  // const itemExists = allSetItems.some(item => item.name.toLowerCase().split(' ').join('') === lowerCaseName);
 
-  if (!itemExists) {
-    if (lowerCaseName === 'bitcoin') {
-      setBtcShow(true);
-      return;
-    } 
-      setRegErrorPopUp(true);
-      setRegErrorPopUpVal(name);
-      return;
+  // if (!itemExists) {
+  //     setRegErrorPopUp(true);
+  //     setRegErrorPopUpVal(name);
+  //     return;
+  // }
+
+  const pictureMatch = allPicture.find(picture => name.includes(picture.name));
+  
+  if (pictureMatch) {
+    handleDoubleClickPhotoOpenMobile(name, setCurrentPhoto);
+    handleShow('Photo');
+    return;
   }
 
   allSetItems.forEach((item) => {
