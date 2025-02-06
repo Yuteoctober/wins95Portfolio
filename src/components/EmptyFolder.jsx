@@ -158,6 +158,9 @@ function EmptyFolder({state, setState, refState, folderName, photoMode}) {
               display: photoMode? 'flex': '',
               justifyContent: photoMode? 'center': '',
               marginTop: photoMode? '-1.5rem': '',
+              height: photoMode? '100%': '',
+              scrollbarWidth : photoMode? 'none': '',
+              TouchEvent: photoMode? 'auto': '',
             }}
           >
             <div className="item_container" 
