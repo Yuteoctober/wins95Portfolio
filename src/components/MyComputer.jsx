@@ -256,9 +256,6 @@ function MyComputer() {
 
     }
     setLastTapTime(now)
-
-
-     
   }
   
 
@@ -283,7 +280,7 @@ function MyComputer() {
           className='folder_folder'
           onClick={(e) => {
             e.stopPropagation();
-          handleSetFocusItemTrue('MyComputer');
+            handleSetFocusItemTrue('MyComputer');
           }}
           style={{
             ...(
@@ -413,14 +410,15 @@ function MyComputer() {
             </div>
           </div>
           <div className="undo_btn"
-            onClick={() => UndoFunction()}
+            onClick={() => {
+              setPopUpFolder(false)
+              UndoFunction()}}
           >
             <img src={undoIcon} alt="undoIcon" />
           </div>
         </div>
         <div className="folder_content-mypc"
           onClick={() => {
-            iconFocusIcon('')
             setPopUpFolder(false)
           }}
           style={{ 
@@ -435,11 +433,11 @@ function MyComputer() {
               style={{
                 position: dragging? 'absolute' : '',
               }}
-              onClick={(e) => {
-                e.stopPropagation() 
-                iconFocusIcon('');
-                handleSetFocusItemTrue('MyComputer');
-              }}
+              // onClick={(e) => {
+              //   e.stopPropagation() 
+              //   iconFocusIcon('');
+              //   handleSetFocusItemTrue('MyComputer');
+              // }}
               >
               {desktopIcon.filter(icon => icon.folderId === currentFolder).map(icon => (
                 <Fragment key={icon.name}>
@@ -463,10 +461,10 @@ function MyComputer() {
                     style={iconContainerSize(iconScreenSize)}
                     ref={(el) => iconRefs.current[icon.name] = el}
                     onDoubleClick={() => handleShowInfolder(icon.name)}                      
-                    onClick={!isTouchDevice ? (e) => {
+                    onClick={(e) => {
                       iconFocusIcon(icon.name);
                       e.stopPropagation();
-                    } : undefined}           
+                    }}           
                     onTouchStart={() => {
                       handleShowInfolderMobile(icon.name);
                       iconFocusIcon(icon.name);

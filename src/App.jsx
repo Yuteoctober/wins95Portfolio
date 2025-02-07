@@ -172,7 +172,7 @@ function App() {
 
   const textError = ( // error message
       <>
-          Cannot find the file '{RunInputVal}' (or one of its component). 
+          Cannot find the file '{RunInputVal || regErrorPopUpVal}' (or one of its component). 
           Make sure the path and filename are correct and that all required 
           libraries are available.
       </>
