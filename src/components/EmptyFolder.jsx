@@ -166,7 +166,7 @@ function EmptyFolder({state, setState, refState, folderName, photoMode}) {
           >
             <div className="item_container" 
               style={{
-                position: dragging? 'absolute' : '',
+                position: dragging && !photoMode ? 'absolute' : '',
                 margin: photoMode? 'auto': '',
                 maxWidth: photoMode? '1000px': '',
                 maxHeight: photoMode? '1000px': '',
