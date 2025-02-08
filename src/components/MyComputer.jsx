@@ -336,7 +336,7 @@ function MyComputer() {
           <p>View<span style={{ left: '-32px' }}>_</span></p>
           <p>Help<span style={{ left: '-30px' }}>_</span></p>
         </div>
-        <div className="drive_control">
+        <div className="drive_control" >
           <div className="drive_link">
             {popUpFolder && (
               
@@ -393,7 +393,8 @@ function MyComputer() {
                 </div>
               </div>
             )}
-            <div className='folder_select_left_container'>
+            <div className='folder_select_left_container'
+            >
               <img src={selectedFolder.img} alt={selectedFolder.label} />
               <p>
                 {selectedFolder.label}
@@ -418,26 +419,27 @@ function MyComputer() {
           </div>
         </div>
         <div className="folder_content-mypc"
-          onClick={() => {
-            setPopUpFolder(false)
-          }}
+          onClick={(e) =>  e.stopPropagation()}
           style={{ 
             height: MyComputerExpand.expand ? 'calc(100svh - 122px)' : '',
             overflow: dragging? '' : 'hidden' 
           }}
         >
           <div className='parent_item_container' key={key}
-
+            onClick={() => {   
+              handleSetFocusItemTrue('MyComputer');
+              iconFocusIcon('')
+            }}
           >
+
             <div className="item_container" 
+            onClick={(e) => {
+              e.stopPropagation();
+              setPopUpFolder(false)
+            }}
               style={{
                 position: dragging? 'absolute' : '',
               }}
-              // onClick={(e) => {
-              //   e.stopPropagation() 
-              //   iconFocusIcon('');
-              //   handleSetFocusItemTrue('MyComputer');
-              // }}
               >
               {desktopIcon.filter(icon => icon.folderId === currentFolder).map(icon => (
                 <Fragment key={icon.name}>
@@ -449,7 +451,6 @@ function MyComputer() {
                   bounds={false}
                   onStart={() => {
                     setDropTargetFolder('')
-                    handleSetFocusItemTrue('MyComputer')
                   }}
                   onDrag={handleOnDrag(icon.name, iconRefs.current[icon.name])}
                   onStop={(e) => {
@@ -461,11 +462,12 @@ function MyComputer() {
                     style={iconContainerSize(iconScreenSize)}
                     ref={(el) => iconRefs.current[icon.name] = el}
                     onDoubleClick={() => handleShowInfolder(icon.name)}                      
-                    onClick={(e) => {
+                    onClick={!isTouchDevice ? (e) => {
                       iconFocusIcon(icon.name);
                       e.stopPropagation();
-                    }}           
-                    onTouchStart={() => {
+                    }: undefined }           
+                    onTouchStart={(e) => {
+                      e.stopPropagation();
                       handleShowInfolderMobile(icon.name);
                       iconFocusIcon(icon.name);
                     }}

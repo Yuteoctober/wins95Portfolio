@@ -178,6 +178,7 @@
 
 .item_container {
     display: flex;
+    width: fit-content;
     position: relative;
     flex-wrap: wrap;
     gap: 5px;
