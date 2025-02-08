@@ -20,6 +20,11 @@ import thirdPic from '../../assets/003.jpg'
 import fourthPic from '../../assets/004.jpg'
 import fifthPic from '../../assets/005.jpg'
 import sixthPic from '../../assets/006.jpg'
+import seventhPic from '../../assets/007.jpg'
+import eighthPic from '../../assets/008.jpg'
+import ninthPic from '../../assets/009.jpg'
+import tenthPic from '../../assets/010.jpg'
+import eleventhPic from '../../assets/011.jpg'
 
 
 
@@ -147,6 +152,26 @@ export function handleDoubleClickPhotoOpen(name, setCurrentPhoto) {
         setCurrentPhoto({name: name, pic: sixthPic});
         break;
 
+      case '007':
+        setCurrentPhoto({name: name, pic: seventhPic});
+        break;
+
+      case '008':
+        setCurrentPhoto({name: name, pic: eighthPic});
+        break; 
+      
+      case '009':
+        setCurrentPhoto({name: name, pic: ninthPic});
+        break;
+
+      case '010':
+        setCurrentPhoto({name: name, pic: tenthPic});
+        break;
+
+      case '011':
+        setCurrentPhoto({name: name, pic: eleventhPic});
+        break;
+
     default: break; 
   }
 }
@@ -179,6 +204,26 @@ export function handleDoubleClickPhotoOpenMobile(name, setCurrentPhoto, lastTapT
       case '006':
         setCurrentPhoto({name: name, pic: sixthPic});
         break;
+
+      case '007':
+        setCurrentPhoto({name: name, pic: seventhPic});
+       break;
+  
+      case '008':
+       setCurrentPhoto({name: name, pic: eighthPic});
+      break; 
+        
+      case '009':
+       setCurrentPhoto({name: name, pic: ninthPic});
+      break;
+  
+      case '010':
+       setCurrentPhoto({name: name, pic: tenthPic});
+      break;
+  
+      case '011':
+       setCurrentPhoto({name: name, pic: eleventhPic});
+      break;
   
       default: break;
     }
