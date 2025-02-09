@@ -271,7 +271,7 @@ function MsnFolder() {
             </p>
           </div>
           <div className="folder_content-MSN">
-            {chatData.length === 0 && (
+            {loadedMessages.length === 0 && (
               <span style={{ position: 'relative', fontSize: '13px' }}>
                 LOADING.......
               </span>
