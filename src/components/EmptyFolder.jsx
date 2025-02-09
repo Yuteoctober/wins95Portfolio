@@ -170,6 +170,7 @@ function EmptyFolder({state, setState, refState, folderName, photoMode}) {
                 margin: photoMode? 'auto': '',
                 maxWidth: photoMode? '1000px': '',
                 maxHeight: photoMode? '1000px': '',
+                padding: photoMode? '0': '',
               }}
               onClick={(e) => {
                 e.stopPropagation() 
