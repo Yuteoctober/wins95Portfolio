@@ -7,7 +7,6 @@ import chat from '../assets/chat.png';
 import '../css/MSN.css';
 
 function MsnFolder() {
-
   const {
     themeDragBar,
     sendDisable,
@@ -27,16 +26,69 @@ function MsnFolder() {
   } = useContext(UseContext);
 
   const [userName, setUserName] = useState(false);
+  const [loadedMessages, setLoadedMessages] = useState([]); // State to manage loaded messages
+  const topOfMessagesRef = useRef(null); // Ref to track the top of the chat container
+  const [initialLoading, setInitialLoading] = useState(false)
 
   const lastMessage = chatData.length > 0
     ? chatData[chatData.length - 1].date.split('').slice(0, 10).join('')
     : 'No messages yet';
 
+
+  useEffect(() => {
+    setLoadedMessages(chatData.slice(-40)); // Load the last 60 messages initially
+  }, [MSNExpand.show]);
+
   useEffect(() => {
     setTimeout(() => {
-     endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" }); 
-    }, 1000);
-  }, [MSNExpand.show]); // Run this effect when open/close 
+      endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 3000);
+  }, [MSNExpand.show]); // Run this effect when open/close
+
+  useEffect(() => {
+    setTimeout(() => {
+      setInitialLoading(true)
+    }, 5000);
+  },[])
+
+  useEffect(() => {
+    if(initialLoading) {
+      const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        loadMoreMessages();
+      }
+    }, {
+      root: null,
+      rootMargin: '0px',
+      threshold: 1.0
+    });
+
+    if (topOfMessagesRef.current) {
+      observer.observe(topOfMessagesRef.current);
+    }
+
+    return () => {
+      if (topOfMessagesRef.current) {
+        observer.unobserve(topOfMessagesRef.current);
+      }
+    };
+    }
+    
+  }, [topOfMessagesRef.current, loadedMessages, initialLoading]);
+
+  function loadMoreMessages() {
+
+    const currentLength = loadedMessages.length;
+    const moreMessages = chatData.slice(Math.max(chatData.length - currentLength - 20, 0), chatData.length - currentLength);
+    
+    setTimeout(() => {
+        setLoadedMessages(prevMessages => [...moreMessages, ...prevMessages]);
+    }, 1500);
+  }
+
+  useEffect(() => {
+    setLoadedMessages(prevMessages => [...prevMessages, chatData[chatData.length - 1]]);
+  },[chatData.length])
 
   function handleDragStop(event, data) {
     const positionX = data.x;
@@ -65,7 +117,6 @@ function MsnFolder() {
     }
     setLastTapTime(now);
   }
-
 
   return (
     <>
@@ -114,8 +165,8 @@ function MsnFolder() {
                   Username:
                 </p>
                 <input type="text" maxLength={20} placeholder='Enter your username here...'
-                    value={userNameValue}
-                    onChange={(e) => setUserNameValue(e.target.value)}
+                  value={userNameValue}
+                  onChange={(e) => setUserNameValue(e.target.value)}
                 />
                 <div className="ok_cancel_username">
                   <button
@@ -211,8 +262,8 @@ function MsnFolder() {
               <img src={chat} alt="chat" />
 
             </div>
-              <span>Username: {userNameValue? userNameValue: 'Anonymous'}</span>
-            
+            <span>Username: {userNameValue ? userNameValue : 'Anonymous'}</span>
+
           </div>
           <div className="chat_to_div">
             <p>
@@ -221,19 +272,22 @@ function MsnFolder() {
           </div>
           <div className="folder_content-MSN">
             {chatData.length === 0 && (
-                <span style={{position: 'relative', fontSize: '13px'}}>
-                  LOADING.......
-                </span>
+              <span style={{ position: 'relative', fontSize: '13px' }}>
+                LOADING.......
+              </span>
             )}
-            {chatData.map((chat, index) => (
-              <div className='text_container' key={chat.id || index}>
-                <p>
-                  <span style={{ color: chat?.dev? 'red' : 'blue' }}>&lt;{chat?.dev? 'Dev' : chat.name}&gt;: </span>
-                  <span style={{ color: chat?.dev? 'red' : '#171616' }}>{chat.chat}</span>
-                </p>
-              </div>
+            <div ref={topOfMessagesRef} /> {/* Ref to track the top of the chat container */}
+            {loadedMessages?.map((chat, index) => (            
+              chat && (
+                <div className='text_container' key={index}>
+                  <p>
+                    <span style={{ color: chat?.dev ? 'red' : 'blue' }}>&lt;{chat?.dev ? 'Dev' : chat.name}&gt;: </span>
+                    <span style={{ color: chat?.dev ? 'red' : '#171616' }}>{chat.chat}</span>
+                  </p>
+                </div>
+              )
             ))}
-            <div ref={endOfMessagesRef}/>
+            <div ref={endOfMessagesRef} />
           </div>
 
           <div className="enter_text_div">
@@ -243,14 +297,14 @@ function MsnFolder() {
               value={chatValue}
               onChange={(e) => setChatValue(e.target.value)}
               onKeyDown={(e) => {
-                if(e.key === 'Enter') createChat() 
+                if (e.key === 'Enter') createChat()
               }}
             />
             <button
-              style={{color: sendDisable? 'grey': null}}
+              style={{ color: sendDisable ? 'grey' : null }}
               disabled={sendDisable}
-              onClick={() => { 
-                createChat()   
+              onClick={() => {
+                createChat()
               }}
             >
               Send
@@ -258,7 +312,7 @@ function MsnFolder() {
           </div>
           <div className="status_div">
             <p>
-            {chatValue.trim().length > 0
+              {chatValue.trim().length > 0
                 ? `${userNameValue} is typing...`
                 : `Last message received on ${lastMessage}`}
             </p>
