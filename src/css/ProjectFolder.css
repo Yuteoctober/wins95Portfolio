@@ -163,7 +163,7 @@
 .parent_container-project {
     height: calc(100%);
     overflow-y: auto;
-    padding: 10px 5px;
+    
 }
 
 .parent_container-project .item_container-project {
@@ -172,7 +172,7 @@
     position: relative;
     flex-wrap: wrap;
     gap: 5px;
-
+    padding: 6px 2px;
 }
 
 .item_container-project .item_1-project {

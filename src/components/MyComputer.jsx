@@ -443,7 +443,7 @@ function MyComputer() {
               {desktopIcon.filter(icon => icon.folderId === currentFolder).map(icon => (
                 <Fragment key={icon.name}>
                   <Draggable
-                  axis={currentFolder === 'MyComputer'? 'none' : 'both'}
+                  axis={currentFolder === 'MyComputer' ? 'none' : 'both'}
                   handle={'.icon'}
                   grid={[10, 10]}
                   scale={1}
