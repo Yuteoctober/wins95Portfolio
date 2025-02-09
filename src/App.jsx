@@ -34,6 +34,7 @@ import { StyleHide, imageMapping,
  } from './components/function/AppFunctions';
 
 function App() {
+  const [loadedMessages, setLoadedMessages] = useState([]);
   const [currentPhoto, setCurrentPhoto] = useState({});
   const [regErrorPopUp, setRegErrorPopUp] = useState(false)
   const [regErrorPopUpVal, setRegErrorPopUpVal] = useState('')
@@ -208,6 +209,7 @@ function App() {
         setKeyChatSession(data.key)
       } else if (data.name && data.chat) {
         setChatData(prevData => [...prevData, data])
+        setLoadedMessages(prevMessages => [...prevMessages, data])
         setAllowNoti(true)
 
         // Scroll to the end of messages after updating chat data
@@ -377,6 +379,7 @@ const handleOnDrag = (name, ref) => () => {
 };
 
   const contextValue = {
+    loadedMessages, setLoadedMessages,
     currentPhoto, setCurrentPhoto,
     textError,
     runItemBox, setRunItemBox,
@@ -717,6 +720,7 @@ async function getChat() {
     });
     setChatDown(false)
     setChatData(response.data.chat);
+    setLoadedMessages(response.data.chat.slice(-40))
     // if(MSNExpand.show){
     //   endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
     // }

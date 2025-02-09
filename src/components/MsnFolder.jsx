@@ -8,6 +8,7 @@ import '../css/MSN.css';
 
 function MsnFolder() {
   const {
+    loadedMessages, setLoadedMessages,
     themeDragBar,
     sendDisable,
     endOfMessagesRef,
@@ -26,7 +27,6 @@ function MsnFolder() {
   } = useContext(UseContext);
 
   const [userName, setUserName] = useState(false);
-  const [loadedMessages, setLoadedMessages] = useState(chatData || []); // State to manage loaded messages
   const topOfMessagesRef = useRef(null); // Ref to track the top of the chat container
   const [initialLoading, setInitialLoading] = useState(false)
 
@@ -86,11 +86,11 @@ function MsnFolder() {
     }, 1500);
   }
 
-  useEffect(() => {
-    if (loadedMessages.length > 1) {
-      setLoadedMessages(prevMessages => [...prevMessages, chatData[chatData.length - 1]]);
-    }
-  }, [chatData.length]);
+  // useEffect(() => {
+  //   if (loadedMessages.length > 1) {
+  //     setLoadedMessages(prevMessages => [...prevMessages, chatData[chatData.length - 1]]);
+  //   }
+  // }, [chatData.length]);
 
   function handleDragStop(event, data) {
     const positionX = data.x;
