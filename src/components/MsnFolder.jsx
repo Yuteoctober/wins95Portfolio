@@ -42,7 +42,7 @@ function MsnFolder() {
   useEffect(() => {
     setTimeout(() => {
       endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, 4000);
+    }, 1500);
   }, [MSNExpand.show]); // Run this effect when open/close
 
   useEffect(() => {
@@ -82,15 +82,15 @@ function MsnFolder() {
     const moreMessages = chatData.slice(Math.max(chatData.length - currentLength - 20, 0), chatData.length - currentLength);
     
     setTimeout(() => {
-      setLoadedMessages(prevMessages => [...moreMessages, ...prevMessages]);
+        setLoadedMessages(prevMessages => [...moreMessages, ...prevMessages]);
     }, 1500);
   }
 
   useEffect(() => {
-    if(loadedMessages.lenth > 1) {
+    if (loadedMessages.length > 1) {
       setLoadedMessages(prevMessages => [...prevMessages, chatData[chatData.length - 1]]);
     }
-  },[chatData.length])
+  }, [chatData.length]);
 
   function handleDragStop(event, data) {
     const positionX = data.x;
@@ -119,7 +119,6 @@ function MsnFolder() {
     }
     setLastTapTime(now);
   }
-
 
   return (
     <>
@@ -274,13 +273,13 @@ function MsnFolder() {
             </p>
           </div>
           <div className="folder_content-MSN">
-            {(chatData.length === 0 && loadedMessages) && (
+            {chatData.length === 0 &&  (
               <span style={{ position: 'relative', fontSize: '13px' }}>
                 LOADING.......
               </span>
             )}
             <div ref={topOfMessagesRef} /> {/* Ref to track the top of the chat container */}
-            {loadedMessages?.map((chat, index) => (
+            {loadedMessages?.map((chat, index) => (            
               chat && (
                 <div className='text_container' key={index}>
                   <p>
