@@ -172,7 +172,7 @@
 .parent_item_container {
     height: calc(100%);
     overflow-y: auto;
-    padding: 10px 5px;
+    
 }
 
 
@@ -182,6 +182,7 @@
     position: relative;
     flex-wrap: wrap;
     gap: 5px;
+    padding: 6px 2px;
 }
 
 
