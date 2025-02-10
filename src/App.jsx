@@ -632,6 +632,7 @@ function handleDragStop(data, iconName, ref) {
     const droppedIcon = desktopIcon.find(icon => icon.name === name);
 
     if(droppedIcon.folderId === target) {
+      setKey(prev => prev + 1)
 
       return; // make sure its not in the same folder
     }
