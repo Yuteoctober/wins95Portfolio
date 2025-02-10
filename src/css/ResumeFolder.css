@@ -26,7 +26,7 @@
 
 @media screen and (max-width: 450px) {
     .folder_folder {
-        width: 80%;
+        width: 84%;
         min-width: 300px;
     }
     .folder_folder.photo_mode {
