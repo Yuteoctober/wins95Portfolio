@@ -855,6 +855,8 @@ function iconFocusIcon(name) { // if focus on one, the rest goes unfocus
 
 function handleShow(name) {
 
+  setRightClickDefault(false);
+
   if(name === '' || !name) return;
 
   if(name === 'Bitcoin') {
@@ -916,6 +918,8 @@ function handleShow(name) {
 }
 
 function handleShowMobile(name) {
+
+  setRightClickDefault(false);
 
   const now = Date.now()
 
