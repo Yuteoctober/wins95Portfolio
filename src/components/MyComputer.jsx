@@ -462,7 +462,6 @@ function MyComputer() {
                   }}
                   onDrag={handleOnDrag(icon.name, iconRefs.current[icon.name])}
                   onStop={(e) => {
-                    clearTimeout(timerRef.current);
                     handleDrop(e, icon.name, dropTargetFolder);
                   }}
                 >
