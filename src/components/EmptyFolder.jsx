@@ -5,14 +5,15 @@ import { motion} from 'framer-motion';
 import '../css/ResumeFolder.css';
 import PropTypes from 'prop-types';
 import photoicon from '../assets/jpeg.png';
+import binEmp from '../assets/bin2.png'
+import bin from '../assets/bin.png'
 
 function EmptyFolder({state, setState, refState, folderName, photoMode}) {
 
   const iconRefs = useRef([]);
 
   const { 
-    timerRef,
-    currentPhoto, setCurrentPhoto,
+    currentPhoto,
     iconContainerSize, iconImgSize, iconTextSize,
     iconScreenSize,
     key,
@@ -73,6 +74,10 @@ function EmptyFolder({state, setState, refState, folderName, photoMode}) {
     TouchEvent: 'auto',
   }
 
+  const recycleBin = desktopIcon.filter(icon => icon.folderId === 'RecycleBin');
+  const recycleBinLength = recycleBin.length;
+
+
   return (
     <Draggable
       axis="both" 
@@ -103,6 +108,7 @@ function EmptyFolder({state, setState, refState, folderName, photoMode}) {
             ),
             overflow: dragging ? '' : 'hidden',
         }}
+        
         >
         <div className="folder_dragbar"
           onDoubleClick={handleExpandStateToggle}
@@ -110,9 +116,15 @@ function EmptyFolder({state, setState, refState, folderName, photoMode}) {
           style={{ background: state.focusItem ? themeDragBar : '#757579' }}
         >
           <div className="folder_barname">
-            <img src={photoMode? photoicon : imageMapping(folderName)} alt="" 
-              style={photoMode? {width: '18px', top: '4px'} : {}}
-            />
+          <img 
+            src={photoMode ? photoicon 
+                  : folderName === 'RecycleBin' && recycleBinLength === 0 ? binEmp 
+                  : folderName === 'RecycleBin' && recycleBinLength > 0 ? bin 
+                  : imageMapping(folderName)
+                } 
+            alt="" 
+            style={photoMode ? { width: '18px', top: '4px' } : {}}
+          />
             <span>{photoMode? currentPhoto.name : folderName}</span>
           </div>
           <div className="folder_barbtn">
@@ -208,15 +220,17 @@ function EmptyFolder({state, setState, refState, folderName, photoMode}) {
                   <div className='icon' key={icon.name}
                     style={iconContainerSize(iconScreenSize)}
                     ref={(el) => iconRefs.current[icon.name] = el}
-                    onDoubleClick={() => handleShow(icon.name)}                      
+                    onDoubleClick={() => {
+                      folderName === 'RecycleBin'? '' : handleShowMobile(icon.name)
+                    }}                 
                     onClick={!isTouchDevice ? (e) => {
                       iconFocusIcon(icon.name);
                       e.stopPropagation();
                     } : undefined}           
                     onTouchStart={(e) => {
                       e.stopPropagation();
-                      handleShowMobile(icon.name);
                       iconFocusIcon(icon.name);
+                      {folderName === 'RecycleBin'? '' : handleShowMobile(icon.name);}
                     }}
                   >
                     <img src={imageMapping(icon.pic)} alt='#' className={icon.focus ? 'img_focus' : ''}

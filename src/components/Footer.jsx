@@ -16,6 +16,8 @@ import { clippyPhrase, clippySuggest } from './function/ClippyFunction';
 import { BsCheck  } from "react-icons/bs";
 import Calendar from 'react-calendar';
 import { BsFillCaretRightFill } from "react-icons/bs";
+import binEmp from '../assets/bin2.png'
+import bin from '../assets/bin.png'
 
 
 export default function Footer() {
@@ -415,6 +417,9 @@ export default function Footer() {
     const projectFolderItem = desktopIcon.filter(icon => icon.folderId === 'Project').length
     const resumeFolderItem = desktopIcon.filter(icon => icon.folderId === 'Resume').length
 
+    const recycleBin = desktopIcon.filter(icon => icon.folderId === 'RecycleBin');
+    const recycleBinLength = recycleBin.length;
+
     return (
         <>
             <div className="footer">
@@ -446,7 +451,10 @@ export default function Footer() {
                             style={StyleHide(index, tap, ObjectState)}
                             >
                             {
-                            <img src={imageMapping(item)} alt={item} />
+                            <img src={
+                                item === 'RecycleBin' && recycleBinLength === 0 ? binEmp 
+                                : item === 'RecycleBin' && recycleBinLength > 0 ? bin 
+                                : imageMapping(item)} alt={item} />
                             }
                             <p>{item}</p>
                         </div>  

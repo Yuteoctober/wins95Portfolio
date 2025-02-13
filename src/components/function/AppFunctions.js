@@ -25,6 +25,8 @@ import eighthPic from '../../assets/008.jpg'
 import ninthPic from '../../assets/009.jpg'
 import tenthPic from '../../assets/010.jpg'
 import eleventhPic from '../../assets/011.jpg'
+import binEmp from '../../assets/bin2.png'
+import bin from '../../assets/bin.png'
 
 
 
@@ -118,6 +120,11 @@ export function imageMapping (name) {
     case name[0] === '0':
     case 'Jpeg':
       return jpeg;
+    
+    case 'bin':
+    case 'RecycleBin':
+    case 'recyclebin':
+      return binEmp;
 
     default:
       return null;
