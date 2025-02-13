@@ -12,6 +12,7 @@ function MyComputer() {
   const [popUpFolder, setPopUpFolder] = useState(false)
 
   const { 
+    timerRef,
     undo, setUndo,
     DiskRef,
     selectedFolder, setSelectedFolder,
@@ -208,8 +209,10 @@ function MyComputer() {
   function handleShowInfolderMobile(name) {
 
     const now = Date.now()
+    
 
     if (now - lastTapTime < 300) {
+
       if (name === 'Hard Disk (C:)') {
         setCurrentFolder('DiskC')
         setSelectedFolder({label: 'Hard Disk (C:)', img: imageMapping(name)})
@@ -454,6 +457,7 @@ function MyComputer() {
                   }}
                   onDrag={handleOnDrag(icon.name, iconRefs.current[icon.name])}
                   onStop={(e) => {
+                    clearTimeout(timerRef.current);
                     handleDrop(e, icon.name, dropTargetFolder);
                   }}
                 >
@@ -465,7 +469,8 @@ function MyComputer() {
                       iconFocusIcon(icon.name);
                       e.stopPropagation();
                     }: undefined}           
-                    onTouchStart={() => {
+                    onTouchStart={(e) => {
+                      e.stopPropagation();
                       handleShowInfolderMobile(icon.name);
                       iconFocusIcon(icon.name);
                     }}

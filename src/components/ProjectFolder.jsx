@@ -9,6 +9,7 @@ function ProjectFolder() {
   const iconRefs = useRef([]);
 
   const {
+    timerRef,
     iconContainerSize,
     iconImgSize,
     iconTextSize,
@@ -177,7 +178,9 @@ function ProjectFolder() {
                     handleSetFocusItemTrue('Project');
                   }}
                   onDrag={handleOnDrag(icon.name, iconRefs.current[icon.name])}
-                  onStop={(e) => handleDrop(e, icon.name, dropTargetFolder)}
+                  onStop={(e) => {
+                    handleDrop(e, icon.name, dropTargetFolder)
+                  }}
                   key={icon.name}
                 >
                   <div
@@ -189,7 +192,8 @@ function ProjectFolder() {
                       iconFocusIcon(icon.name);
                       e.stopPropagation();
                     } : undefined}
-                    onTouchStart={() => {
+                    onTouchStart={(e) => {
+                      e.stopPropagation();
                       handleShowMobile(icon.name);
                       iconFocusIcon(icon.name);
                     }}

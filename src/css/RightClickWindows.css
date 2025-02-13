@@ -1,0 +1,43 @@
+.window_rightclick_container {
+    position: absolute;
+    width: 138px;
+    height: 180px;
+    background: #c5c4c4;
+    border: 2px solid white;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    outline: 1px solid white;
+    padding: 4px 2px;
+    z-index: 9999999999999;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.window_rightclick_container p {
+    position: relative;
+    font-size: 12px;
+    width: 100%;
+    padding: 1px 24px;
+    white-space: nowrap;
+    cursor: default;
+}
+
+.window_rightclick_container p:hover {
+    background: #040d91;
+    color: white;
+}
+
+.window_rightclick_container h5 {
+    padding: 0px;
+    border-bottom: 2.5px groove #eae8e8;
+    margin: 4px 0px;
+}
+.window_rightclick_container span {
+    position: absolute;
+    font-size: 10px;
+    right: 4px;
+    top: 5px
+
+}

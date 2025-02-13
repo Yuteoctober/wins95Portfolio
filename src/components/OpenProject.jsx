@@ -55,8 +55,6 @@ function OpenProject() {
     setLastTapTime(now);
 }
 
-
-
   return (
     <>
       <Draggable

@@ -4,6 +4,7 @@ import Draggable from 'react-draggable';
 
 function Dragdrop() {
   const {
+    timerRef,
     setCalenderToggle,
     iconContainerSize, iconImgSize, iconTextSize,
     iconScreenSize,
@@ -64,6 +65,7 @@ function Dragdrop() {
     };
   }, [key]);
 
+
   
 
   return (
@@ -78,7 +80,8 @@ function Dragdrop() {
       }
       e.preventDefault();
       e.stopPropagation();
-    }}>
+    }}
+    >
       <div className='drag_drop'>
         {desktopIcon.filter(icon => icon.folderId === 'Desktop').map((icon) => (
           <Draggable
@@ -104,7 +107,8 @@ function Dragdrop() {
                 iconFocusIcon(icon.name);
                 e.stopPropagation();
               } : undefined}           
-              onTouchStart={() => {
+              onTouchStart={(e) => {
+                e.stopPropagation();
                 handleShowMobile(icon.name);
                 iconFocusIcon(icon.name);
               }}

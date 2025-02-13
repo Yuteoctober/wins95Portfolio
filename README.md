@@ -118,6 +118,10 @@ All the functionalities
   - Added Effect pattern in settings 1/19/2025
   - Added My Computer and working on file system 1/26/2025
 
+  - Added Right Click and still working on more functions 2/13/2025
+    - on Desktop uses right click
+    - on mobile uses long press 
+
 Library used:
   - React Draggable => drag and drop functionality
   - Framer-motion => for some animation

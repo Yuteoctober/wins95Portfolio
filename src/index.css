@@ -9,6 +9,10 @@
     width: 100%;
     height: 100svh;
     overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 #root::before {
     content: "";
@@ -475,7 +479,7 @@ body {
 .start_popup .groove {
     margin: 0 auto;
     height: 1px;
-    border-top: 2.5px groove rgb(239, 239, 239);
+    border-top: 2.5px groove #efefef;
 }
 
 
