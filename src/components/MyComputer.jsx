@@ -12,6 +12,7 @@ function MyComputer() {
   const [popUpFolder, setPopUpFolder] = useState(false)
 
   const { 
+    setRightClickDefault,
     timerRef,
     undo, setUndo,
     DiskRef,
@@ -166,6 +167,8 @@ function MyComputer() {
 
   function handleShowInfolder(name) { //important
 
+    setRightClickDefault(false);
+
     //  const lowerCaseName = name.toLowerCase().split(' ').join('');
 
       if (name === 'Hard Disk (C:)') {
@@ -207,6 +210,8 @@ function MyComputer() {
   }
 
   function handleShowInfolderMobile(name) {
+
+    setRightClickDefault(false);
 
     const now = Date.now()
     
