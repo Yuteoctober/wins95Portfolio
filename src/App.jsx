@@ -69,6 +69,7 @@ function App() {
   const DesktopRef = useRef(null);
   const ProjectFolderRef = useRef(null);
   const ResumeFolderRef = useRef(null);
+  const BinRef = useRef(null);
   const DiskRef = useRef(null);
   const PictureRef = useRef(null)
   const [draggedIcon, setDraggedIcon] = useState(null);
@@ -172,6 +173,9 @@ function App() {
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
 
   const [RunExpand, setRunExpand] = useState(
+    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
+  
+  const [BinExpand, setBinExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
 
   const allPicture = desktopIcon.filter(picture => picture.type === '.jpeg'); // photo open
@@ -365,28 +369,42 @@ useEffect(() => { // touch support device === true
 
 }, []);
 
+console.log(dropTargetFolder)
+console.log(BinRef.current)
 const handleOnDrag = (name, ref) => () => {
   setDragging(true)
   const iconRef = ref
   if (iconRef && ResumeFolderRef.current && ProjectFolderRef.current) {
+    const BinRect = BinRef.current.getBoundingClientRect();
     const iconRect = iconRef.getBoundingClientRect();
     const resumeFolderRect = ResumeFolderRef.current.getBoundingClientRect();
     const projectFolderRect = ProjectFolderRef.current.getBoundingClientRect();
     const desktopRect = DesktopRef.current.getBoundingClientRect();
     const diskRect = DiskRef.current.getBoundingClientRect();
     const PictureRect = PictureRef.current.getBoundingClientRect();
+    
 
     const offset = 55;
 
-    if(name === 'MyComputer') return; // prevent MyComputer from being dragged into folder
-    
+    if(name === 'MyComputer' || name === 'RecycleBin') return; // prevent MyComputer from being dragged into folder
+
     if (
+      iconRect.left < BinRect.right - offset &&
+      iconRect.right > BinRect.left + offset &&
+      iconRect.top < BinRect.bottom - offset &&
+      iconRect.bottom > BinRect.top + offset
+    ) {
+      if(name === 'RecycleBin') return;
+      setDropTargetFolder('RecycleBin');
+    }
+    
+    // Check for intersection with the Picture folder
+    else if (
       iconRect.left < PictureRect.right - offset &&
       iconRect.right > PictureRect.left + offset &&
       iconRect.top < PictureRect.bottom - offset &&
       iconRect.bottom > PictureRect.top + offset
     ) {
-      if(name === 'Picture') return;
       setDropTargetFolder('Picture');
     }
     // Check for intersection with the Resume folder
@@ -432,6 +450,9 @@ const handleOnDrag = (name, ref) => () => {
         if(currentFolder === 'Picture'){
           setDropTargetFolder('Picture');
         }
+        if(currentFolder === 'RecycleBin'){
+          setDropTargetFolder('RecycleBin');
+        }
     }
     else if (
       iconRect.left < desktopRect.right &&
@@ -453,6 +474,8 @@ const handleOnDrag = (name, ref) => () => {
 };
 
   const contextValue = {
+    BinRef,
+    BinExpand, setBinExpand,
     refresh, setRefresh,
     timerRef,
     rightClickDefault, setRightClickDefault,
@@ -618,6 +641,13 @@ const handleOnDrag = (name, ref) => () => {
           setState={setPictureExpand}
           refState={PictureRef}
           folderName='Picture'
+        />
+
+        <EmptyFolder
+          state={BinExpand} 
+          setState={setBinExpand}
+          refState={BinRef}
+          folderName='RecycleBin'
         />
 
         <EmptyFolder
@@ -830,6 +860,7 @@ function ObjectState() { // Add all the state realted to folder here !! very imp
           { name: 'MyComputer', setter: setMyComputerExpand, usestate: MyComputerExpand },
           { name: 'Picture', setter: setPictureExpand, usestate: pictureExpand },
           { name: 'Photo', setter: setPhotoOpenExpand, usestate: photoOpenExpand },
+          { name: 'RecycleBin', setter: setBinExpand, usestate: BinExpand },
 
         ];
 }

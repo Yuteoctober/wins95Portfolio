@@ -1,6 +1,8 @@
 import { useEffect, useContext, useRef } from 'react';
 import UseContext from '../Context';
 import Draggable from 'react-draggable';
+import binEmp from '../assets/bin2.png'
+import bin from '../assets/bin.png'
 
 function Dragdrop() {
   const {
@@ -65,7 +67,8 @@ function Dragdrop() {
     };
   }, [key]);
 
-
+  const recycleBin = desktopIcon.filter(icon => icon.folderId === 'RecycleBin');
+  const recycleBinLength = recycleBin.length;
   
 
   return (
@@ -116,7 +119,10 @@ function Dragdrop() {
               }}
               
             >
-              <img src={imageMapping(icon.pic)} alt={icon.name} className={icon.focus ? 'img_focus' : ''} 
+              <img 
+                src={icon.name === 'RecycleBin' && recycleBinLength === 0 ? binEmp 
+                  : icon.name === 'RecycleBin' && recycleBinLength > 0 ? bin 
+                  : imageMapping(icon.pic)} alt={icon.name} className={icon.focus ? 'img_focus' : ''} 
                 style={iconImgSize(iconScreenSize)}
               />
               <p className={icon.focus ? 'p_focus' : ''}
