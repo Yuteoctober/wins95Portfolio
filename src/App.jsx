@@ -24,16 +24,20 @@ import Notification from './components/Notification';
 import BTC from './components/BTC';
 import EmptyFolder from './components/EmptyFolder';
 import ErrorBtn from './components/ErrorBtn';
+import RightClickWindows from './components/RightClickWindows';
 import axios from 'axios';
 import loadingSpin from './assets/loading.gif'
 import { StyleHide, imageMapping,
   handleDoubleClickEnterLink,handleDoubleTapEnterMobile,
   handleDoubleClickiframe, handleDoubleTapiframeMobile,
   iconContainerSize, iconImgSize, iconTextSize,
-  handleDoubleClickPhotoOpen, handleDoubleClickPhotoOpenMobile
+  handleDoubleClickPhotoOpen,
  } from './components/function/AppFunctions';
 
 function App() {
+  const timerRef = useRef(null); // time counter for long press
+  const [rightClickDefault, setRightClickDefault] = useState(false); // right click bg
+  const [rightClickPosition, setRightClickPosition] = useState({ x: 0, y: 0 });
   const [loadedMessages, setLoadedMessages] = useState([]);
   const [currentPhoto, setCurrentPhoto] = useState({});
   const [regErrorPopUp, setRegErrorPopUp] = useState(false)
@@ -188,6 +192,75 @@ function App() {
   // Define all state setter functions and corresponding clear functions in an array
   const allSetters = [setClippyThanks, setClippySendemail, setClippySong, setClippyUsername];
   const allClears = [ClearTOclippyThanksYouFunction, ClearTOclippySendemailfunction, ClearTOSongfunction, ClearTOclippyUsernameFunction];
+
+  useEffect(() => {
+    const handleRightClick = (e) => {
+      e.preventDefault(); // Prevent right-click menu
+      setRightClickPosition({ x: e.clientX, y: e.clientY }); // Capture click position
+      setRightClickDefault(true); // Show right-click menu
+    };
+
+    document.addEventListener("contextmenu", handleRightClick);
+
+    return () => {
+      document.removeEventListener("contextmenu", handleRightClick);
+    };
+  }, []);
+
+
+  useEffect(() => {
+    const handleTouchStart = (e) => {
+
+      if (dragging) return; // Prevent duplicate triggers
+
+      timerRef.current = setTimeout(() => {
+        setRightClickPosition({ x: e.touches[0].clientX, y: e.touches[0].clientY });
+        setRightClickDefault(true);
+      }, 800); // 800ms long press threshold
+    };
+
+    const handleTouchEnd = () => {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    };
+
+    document.addEventListener("touchstart", handleTouchStart);
+    document.addEventListener("touchend", handleTouchEnd);
+    document.addEventListener("touchmove", handleTouchEnd); // Cancel if moved
+    document.addEventListener("touchcancel", handleTouchEnd);
+
+    return () => {
+      document.removeEventListener("touchstart", handleTouchStart);
+      document.removeEventListener("touchend", handleTouchEnd);
+      document.removeEventListener("touchmove", handleTouchEnd);
+      document.removeEventListener("touchcancel", handleTouchEnd);
+    };
+  }, []);
+
+
+  
+  useEffect(() => {
+    const handleInteraction = (e) => {
+      if (e.button === 0 && !document.querySelector(".window_rightclick_container")?.contains(e.target)) { 
+        setRightClickDefault(false);
+      }
+    };
+  
+    const handleInteractionMobile = (e) => {
+      if (rightClickDefault && !document.querySelector(".window_rightclick_container")?.contains(e.target)) {
+        setRightClickDefault(false);
+      }
+    };
+  
+    document.addEventListener("mousedown", handleInteraction);
+    document.addEventListener("touchstart", handleInteractionMobile);
+  
+    return () => {
+      document.removeEventListener("mousedown", handleInteraction);
+      document.removeEventListener("touchstart", handleInteractionMobile);
+    };
+  }, [rightClickDefault]);
+  
 
 
   useEffect(() => {
@@ -379,6 +452,9 @@ const handleOnDrag = (name, ref) => () => {
 };
 
   const contextValue = {
+    timerRef,
+    rightClickDefault, setRightClickDefault,
+    rightClickPosition, setRightClickPosition,
     loadedMessages, setLoadedMessages,
     currentPhoto, setCurrentPhoto,
     textError,
@@ -548,6 +624,7 @@ const handleOnDrag = (name, ref) => () => {
           folderName='Photo'
           photoMode={true}
         />
+        <RightClickWindows/>
         <Notification/>
         <Shutdown/>
         <MyComputer/>

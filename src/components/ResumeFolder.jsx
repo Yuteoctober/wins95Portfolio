@@ -10,6 +10,7 @@ function ResumeFolder() {
   const iconRefs = useRef([]);
 
   const { 
+    timerRef,
     iconContainerSize, iconImgSize, iconTextSize,
     iconScreenSize,
     key,
@@ -185,7 +186,8 @@ function ResumeFolder() {
                       iconFocusIcon(icon.name);
                       e.stopPropagation();
                     } : undefined}           
-                    onTouchStart={() => {
+                    onTouchStart={(e) => {
+                      e.stopPropagation();
                       handleShowMobile(icon.name);
                       iconFocusIcon(icon.name);
                     }}

@@ -86,11 +86,6 @@ function MsnFolder() {
     }, 1500);
   }
 
-  // useEffect(() => {
-  //   if (loadedMessages.length > 1) {
-  //     setLoadedMessages(prevMessages => [...prevMessages, chatData[chatData.length - 1]]);
-  //   }
-  // }, [chatData.length]);
 
   function handleDragStop(event, data) {
     const positionX = data.x;

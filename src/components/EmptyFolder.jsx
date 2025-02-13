@@ -11,6 +11,7 @@ function EmptyFolder({state, setState, refState, folderName, photoMode}) {
   const iconRefs = useRef([]);
 
   const { 
+    timerRef,
     currentPhoto, setCurrentPhoto,
     iconContainerSize, iconImgSize, iconTextSize,
     iconScreenSize,
@@ -212,7 +213,8 @@ function EmptyFolder({state, setState, refState, folderName, photoMode}) {
                       iconFocusIcon(icon.name);
                       e.stopPropagation();
                     } : undefined}           
-                    onTouchStart={() => {
+                    onTouchStart={(e) => {
+                      e.stopPropagation();
                       handleShowMobile(icon.name);
                       iconFocusIcon(icon.name);
                     }}
