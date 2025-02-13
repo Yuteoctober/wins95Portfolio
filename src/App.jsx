@@ -35,6 +35,7 @@ import { StyleHide, imageMapping,
  } from './components/function/AppFunctions';
 
 function App() {
+  const [refresh, setRefresh] = useState(0)
   const timerRef = useRef(null); // time counter for long press
   const [rightClickDefault, setRightClickDefault] = useState(false); // right click bg
   const [rightClickPosition, setRightClickPosition] = useState({ x: 0, y: 0 });
@@ -452,6 +453,7 @@ const handleOnDrag = (name, ref) => () => {
 };
 
   const contextValue = {
+    refresh, setRefresh,
     timerRef,
     rightClickDefault, setRightClickDefault,
     rightClickPosition, setRightClickPosition,

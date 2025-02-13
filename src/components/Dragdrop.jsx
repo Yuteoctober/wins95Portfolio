@@ -4,7 +4,7 @@ import Draggable from 'react-draggable';
 
 function Dragdrop() {
   const {
-    timerRef,
+    refresh, setRefresh,
     setCalenderToggle,
     iconContainerSize, iconImgSize, iconTextSize,
     iconScreenSize,
@@ -70,19 +70,21 @@ function Dragdrop() {
 
   return (
     <section className='bound' 
-    ref={DesktopRef}
-    onClick={(e) => {
-      if (!isDragging) {
-        iconFocusIcon('');
-        setStartActive(false)
-        setIconSize(false)
-        setCalenderToggle(false)
-      }
-      e.preventDefault();
-      e.stopPropagation();
+      ref={DesktopRef}
+      onClick={(e) => {
+        if (!isDragging) {
+          iconFocusIcon('');
+          setStartActive(false)
+          setIconSize(false)
+          setCalenderToggle(false)
+        }
+        e.preventDefault();
+        e.stopPropagation();
     }}
     >
-      <div className='drag_drop'>
+      <div className='drag_drop'
+        key={refresh}
+      >
         {desktopIcon.filter(icon => icon.folderId === 'Desktop').map((icon) => (
           <Draggable
             key={icon.name}

@@ -8,6 +8,9 @@ function RightClickWindows() {
   const screenHeight = window.innerHeight;
 
   const { 
+    iconFocusIcon,
+    setRefresh,
+    setKey,
     handleShow,
     rightClickDefault, setRightClickDefault,
     rightClickPosition, setRightClickPosition,
@@ -35,7 +38,15 @@ function RightClickWindows() {
             <h5></h5>
             <p style={{color: '#8a8989'}}>Paste</p>
             <p style={{color: '#8a8989'}}>Paste Shortcut</p>
-            <p>Undo Delete</p>
+            <p 
+              onClick={() => {
+                setRefresh(prev => prev + 1); 
+                setRightClickDefault(false);
+                iconFocusIcon('');
+              }}
+            >
+              Refresh
+            </p>
             <h5></h5>
             <p>
                 New
