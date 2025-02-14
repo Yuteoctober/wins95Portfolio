@@ -12,6 +12,10 @@ function MyComputer() {
   const [popUpFolder, setPopUpFolder] = useState(false)
 
   const { 
+    handleShowInfolderMobile, handleShowInfolder,
+    handleMobileLongPress,
+    setRightClickIcon,
+    setIconBeingRightClicked,
     setRightClickDefault,
     timerRef,
     undo, setUndo,
@@ -165,106 +169,7 @@ function MyComputer() {
     }
   }
 
-  function handleShowInfolder(name) { //important
-
-    setRightClickDefault(false);
-
-    //  const lowerCaseName = name.toLowerCase().split(' ').join('');
-
-      if (name === 'Hard Disk (C:)') {
-        setCurrentFolder('DiskC')
-        setSelectedFolder({label: 'Hard Disk (C:)', img: imageMapping(name)})
-        setUndo(prev => [...prev, 'DiskC'])
-        return;
-      }
-    
-      if (name === 'Hard Disk (D:)') {
-        setCurrentFolder('DiskD')
-        setSelectedFolder({label: 'Hard Disk (D:)', img: imageMapping(name)})
-        setUndo(prev => [...prev, 'DiskD'])
-        return;
-      }
-
-      if (name === 'Resume') {
-        setCurrentFolder('Resume')
-        setSelectedFolder({label: 'Resume', img: imageMapping(name)})
-        setUndo(prev => [...prev, 'Resume'])
-        return;
-      }
-
-      if (name === 'Project') {
-        setCurrentFolder('Project')
-        setSelectedFolder({label: 'Project', img: imageMapping(name)})
-        setUndo(prev => [...prev, 'Project'])
-        return;
-      }
-
-      if (name === 'Picture') {
-        setCurrentFolder('Picture')
-        setSelectedFolder({label: 'Picture', img: imageMapping(name)})
-        setUndo(prev => [...prev, 'Picture'])
-        return;
-      }
-
-      handleShow(name)
-  }
-
-  function handleShowInfolderMobile(name) {
-
-    setRightClickDefault(false);
-
-    const now = Date.now()
-    
-
-    if (now - lastTapTime < 300) {
-
-      if (name === 'Hard Disk (C:)') {
-        setCurrentFolder('DiskC')
-        setSelectedFolder({label: 'Hard Disk (C:)', img: imageMapping(name)})
-        setUndo(prev => [...prev, 'DiskC'])
-        return;
-      }
-    
-      if (name === 'Hard Disk (D:)') {
-        setCurrentFolder('DiskD')
-        setSelectedFolder({label: 'Hard Disk (D:)', img: imageMapping(name)})
-        setUndo(prev => [...prev, 'DiskD'])
-        return;
-      }
-
-      if (name === 'Resume') {
-        setCurrentFolder('Resume')
-        setSelectedFolder({label: 'Hard Disk (D:)', img: imageMapping(name)})
-        setUndo(prev => [...prev, 'Resume'])
-        return;
-      }
-
-      if (name === 'Resume') {
-        setCurrentFolder('Resume')
-        setSelectedFolder({label: 'Resume', img: imageMapping(name)})
-        setUndo(prev => [...prev, 'Resume'])
-        return;
-      }
-
-      if (name === 'Project') {
-        setCurrentFolder('Project')
-        setSelectedFolder({label: 'Project', img: imageMapping(name)})
-        setUndo(prev => [...prev, 'Project'])
-        return;
-      }
-
-      if (name === 'Picture') {
-        setCurrentFolder('Picture')
-        setSelectedFolder({label: 'Picture', img: imageMapping(name)})
-        setUndo(prev => [...prev, 'Picture'])
-        return;
-      }
-
-      handleShowMobile(name)
-
-    }
-    setLastTapTime(now)
-  }
+  
   
 
 
@@ -469,6 +374,11 @@ function MyComputer() {
                   <div className='icon' key={icon.name}
                     style={iconContainerSize(iconScreenSize)}
                     ref={(el) => iconRefs.current[icon.name] = el}
+                    onContextMenu={() => {
+                      setRightClickIcon(true);
+                      iconFocusIcon(icon.name);
+                      setIconBeingRightClicked(icon.name);
+                    }}
                     onDoubleClick={() => handleShowInfolder(icon.name)}                      
                     onClick={!isTouchDevice ? (e) => {
                       iconFocusIcon(icon.name);
@@ -478,6 +388,7 @@ function MyComputer() {
                       e.stopPropagation();
                       handleShowInfolderMobile(icon.name);
                       iconFocusIcon(icon.name);
+                      handleMobileLongPress(e, icon.name);
                     }}
                   >
                     <img src={imageMapping(icon.pic)} alt='#' className={icon.focus ? 'img_focus' : ''}

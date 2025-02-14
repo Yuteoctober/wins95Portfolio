@@ -13,6 +13,9 @@ function EmptyFolder({state, setState, refState, folderName, photoMode}) {
   const iconRefs = useRef([]);
 
   const { 
+    handleMobileLongPress,
+    setRightClickIcon,
+    setIconBeingRightClicked,
     currentPhoto,
     iconContainerSize, iconImgSize, iconTextSize,
     iconScreenSize,
@@ -221,8 +224,13 @@ function EmptyFolder({state, setState, refState, folderName, photoMode}) {
                   <div className='icon' key={icon.name}
                     style={iconContainerSize(iconScreenSize)}
                     ref={(el) => iconRefs.current[icon.name] = el}
+                    onContextMenu={() => {
+                      setRightClickIcon(true);
+                      iconFocusIcon(icon.name);
+                      setIconBeingRightClicked(icon.name);
+                    }}
                     onDoubleClick={() => {
-                      folderName === 'RecycleBin'? '' : handleShowMobile(icon.name)
+                      folderName === 'RecycleBin'? '' : handleShow(icon.name)
                     }}                 
                     onClick={!isTouchDevice ? (e) => {
                       iconFocusIcon(icon.name);
@@ -231,6 +239,7 @@ function EmptyFolder({state, setState, refState, folderName, photoMode}) {
                     onTouchStart={(e) => {
                       e.stopPropagation();
                       iconFocusIcon(icon.name);
+                      handleMobileLongPress(e, icon.name);
                       {folderName === 'RecycleBin'? '' : handleShowMobile(icon.name);}
                     }}
                   >

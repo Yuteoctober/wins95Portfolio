@@ -9,6 +9,9 @@ function ProjectFolder() {
   const iconRefs = useRef([]);
 
   const {
+    handleMobileLongPress,
+    setRightClickIcon,
+    setIconBeingRightClicked,
     timerRef,
     iconContainerSize,
     iconImgSize,
@@ -188,6 +191,11 @@ function ProjectFolder() {
                     className="icon"
                     style={iconContainerSize(iconScreenSize)}
                     ref={(el) => (iconRefs.current[icon.name] = el)}
+                    onContextMenu={() => {
+                      setRightClickIcon(true);
+                      iconFocusIcon(icon.name);
+                      setIconBeingRightClicked(icon.name);
+                    }}
                     onDoubleClick={() => handleShow(icon.name)}
                     onClick={!isTouchDevice ? (e) => {
                       iconFocusIcon(icon.name);
@@ -197,6 +205,7 @@ function ProjectFolder() {
                       e.stopPropagation();
                       handleShowMobile(icon.name);
                       iconFocusIcon(icon.name);
+                      handleMobileLongPress(e, icon.name);
                     }}
                   >
                     <img

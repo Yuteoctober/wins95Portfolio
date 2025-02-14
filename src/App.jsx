@@ -485,10 +485,112 @@ const handleOnDrag = (name, ref) => () => {
     // Set to Desktop if refs are not set
     setDropTargetFolder('Desktop');
   }
-
 };
 
+
+function handleShowInfolder(name) { //important handleshow for in folder
+
+  setRightClickDefault(false);
+
+  //  const lowerCaseName = name.toLowerCase().split(' ').join('');
+
+    if (name === 'Hard Disk (C:)') {
+      setCurrentFolder('DiskC')
+      setSelectedFolder({label: 'Hard Disk (C:)', img: imageMapping(name)})
+      setUndo(prev => [...prev, 'DiskC'])
+      return;
+    }
+  
+    if (name === 'Hard Disk (D:)') {
+      setCurrentFolder('DiskD')
+      setSelectedFolder({label: 'Hard Disk (D:)', img: imageMapping(name)})
+      setUndo(prev => [...prev, 'DiskD'])
+      return;
+    }
+
+    if (name === 'Resume') {
+      setCurrentFolder('Resume')
+      setSelectedFolder({label: 'Resume', img: imageMapping(name)})
+      setUndo(prev => [...prev, 'Resume'])
+      return;
+    }
+
+    if (name === 'Project') {
+      setCurrentFolder('Project')
+      setSelectedFolder({label: 'Project', img: imageMapping(name)})
+      setUndo(prev => [...prev, 'Project'])
+      return;
+    }
+
+    if (name === 'Picture') {
+      setCurrentFolder('Picture')
+      setSelectedFolder({label: 'Picture', img: imageMapping(name)})
+      setUndo(prev => [...prev, 'Picture'])
+      return;
+    }
+
+    handleShow(name)
+}
+
+function handleShowInfolderMobile(name) { //important handleshow for in folder
+
+  setRightClickDefault(false);
+
+  const now = Date.now()
+  
+
+  if (now - lastTapTime < 300) {
+
+    if (name === 'Hard Disk (C:)') {
+      setCurrentFolder('DiskC')
+      setSelectedFolder({label: 'Hard Disk (C:)', img: imageMapping(name)})
+      setUndo(prev => [...prev, 'DiskC'])
+      return;
+    }
+  
+    if (name === 'Hard Disk (D:)') {
+      setCurrentFolder('DiskD')
+      setSelectedFolder({label: 'Hard Disk (D:)', img: imageMapping(name)})
+      setUndo(prev => [...prev, 'DiskD'])
+      return;
+    }
+
+    if (name === 'Resume') {
+      setCurrentFolder('Resume')
+      setSelectedFolder({label: 'Hard Disk (D:)', img: imageMapping(name)})
+      setUndo(prev => [...prev, 'Resume'])
+      return;
+    }
+
+    if (name === 'Resume') {
+      setCurrentFolder('Resume')
+      setSelectedFolder({label: 'Resume', img: imageMapping(name)})
+      setUndo(prev => [...prev, 'Resume'])
+      return;
+    }
+
+    if (name === 'Project') {
+      setCurrentFolder('Project')
+      setSelectedFolder({label: 'Project', img: imageMapping(name)})
+      setUndo(prev => [...prev, 'Project'])
+      return;
+    }
+
+    if (name === 'Picture') {
+      setCurrentFolder('Picture')
+      setSelectedFolder({label: 'Picture', img: imageMapping(name)})
+      setUndo(prev => [...prev, 'Picture'])
+      return;
+    }
+
+    handleShowMobile(name)
+
+  }
+  setLastTapTime(now)
+}
+
   const contextValue = {
+    handleShowInfolderMobile, handleShowInfolder,
     handleMobileLongPress,
     iconBeingRightClicked, setIconBeingRightClicked,
     rightClickIcon, setRightClickIcon,
