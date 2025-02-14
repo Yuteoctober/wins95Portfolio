@@ -369,6 +369,7 @@ function MyComputer() {
                   onDrag={handleOnDrag(icon.name, iconRefs.current[icon.name])}
                   onStop={(e) => {
                     handleDrop(e, icon.name, dropTargetFolder);
+                    clearTimeout(timerRef.current)
                   }}
                 >
                   <div className='icon' key={icon.name}
