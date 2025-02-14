@@ -13,6 +13,7 @@ function EmptyFolder({state, setState, refState, folderName, photoMode}) {
   const iconRefs = useRef([]);
 
   const { 
+    timerRef,
     handleMobileLongPress,
     setRightClickIcon,
     setIconBeingRightClicked,
@@ -219,6 +220,7 @@ function EmptyFolder({state, setState, refState, folderName, photoMode}) {
                   onDrag={handleOnDrag(icon.name, iconRefs.current[icon.name])}
                   onStop={(e) => {
                     handleDrop(e, icon.name, dropTargetFolder);
+                    clearTimeout(timerRef.current)
                   }}
                 >
                   <div className='icon' key={icon.name}
