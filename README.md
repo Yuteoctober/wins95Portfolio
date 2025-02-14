@@ -121,6 +121,7 @@ All the functionalities
   - Added Right Click and still working on more functions 2/13/2025
     - on Desktop uses right click
     - on mobile uses long press 
+    - Right click can be done on icon now
 
 Library used:
   - React Draggable => drag and drop functionality

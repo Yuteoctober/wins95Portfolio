@@ -6,6 +6,13 @@ import bin from '../assets/bin.png'
 
 function Dragdrop() {
   const {
+    handleMobileLongPress,
+    dragging,
+    setRightClickPosition,
+    timerRef,
+    setRightClickDefault,
+    iconBeingRightClicked, setIconBeingRightClicked,
+    rightClickIcon, setRightClickIcon,
     refresh, setRefresh,
     setCalenderToggle,
     iconContainerSize, iconImgSize, iconTextSize,
@@ -101,12 +108,18 @@ function Dragdrop() {
             onStop={(e, data) => {
               handleDragStop(data, icon.name, iconRefs.current[icon.name])
               handleDrop(e, icon.name, dropTargetFolder)
+              clearTimeout(timerRef.current)
             }}
           >
             <div
               className='icon'
               style={iconContainerSize(iconScreenSize)}
               ref={(el) => iconRefs.current[icon.name] = el} 
+              onContextMenu={() => {
+                setRightClickIcon(true);
+                iconFocusIcon(icon.name);
+                setIconBeingRightClicked(icon.name);
+              }}
               onDoubleClick={() => handleShow(icon.name)}                      
               onClick={!isTouchDevice ? (e) => {
                 iconFocusIcon(icon.name);
@@ -116,8 +129,8 @@ function Dragdrop() {
                 e.stopPropagation();
                 handleShowMobile(icon.name);
                 iconFocusIcon(icon.name);
+                handleMobileLongPress(e, icon.name);
               }}
-              
             >
               <img 
                 src={icon.name === 'RecycleBin' && recycleBinLength === 0 ? binEmp 

@@ -114,6 +114,7 @@ function ResumeFolder() {
               setResumeExpand(prev => ({...prev, hide: true, focusItem: false}))
               StyleHide('Resume')
             }}
+            onTouchStart={(e) => e.stopPropagation()}
             >
               <p className='dash'></p>
             </div>

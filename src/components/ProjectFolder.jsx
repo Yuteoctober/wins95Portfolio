@@ -119,6 +119,7 @@ function ProjectFolder() {
                 setProjectExpand((prev) => ({ ...prev, hide: true, focusItem: false }));
                 StyleHide('Project');
               }}
+              onTouchStart={(e) => e.stopPropagation()}
             >
               <p className="dash-project"></p>
             </div>

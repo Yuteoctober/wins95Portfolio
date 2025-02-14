@@ -37,6 +37,8 @@ import { StyleHide, imageMapping,
 function App() {
   const [refresh, setRefresh] = useState(0)
   const timerRef = useRef(null); // time counter for long press
+  const [iconBeingRightClicked, setIconBeingRightClicked] = useState(''); // right click Icon
+  const [rightClickIcon, setRightClickIcon] = useState(false); // right click Icon
   const [rightClickDefault, setRightClickDefault] = useState(false); // right click bg
   const [rightClickPosition, setRightClickPosition] = useState({ x: 0, y: 0 });
   const [loadedMessages, setLoadedMessages] = useState([]);
@@ -243,17 +245,32 @@ function App() {
   }, []);
 
 
+  function handleMobileLongPress(e, name) { // long press icon on mobile
+    if(dragging) return;
+    timerRef.current = setTimeout(() => {
+      setRightClickPosition({ x: e.touches[0].clientX, y: e.touches[0].clientY });
+      setRightClickIcon(true);
+      setIconBeingRightClicked(name);
+      setRightClickDefault(true);
+    }, 800)
+  }
+
+
   
   useEffect(() => {
     const handleInteraction = (e) => {
       if (e.button === 0 && !document.querySelector(".window_rightclick_container")?.contains(e.target)) { 
         setRightClickDefault(false);
+        setRightClickIcon(false)
+        setIconBeingRightClicked('')
       }
     };
   
     const handleInteractionMobile = (e) => {
       if (rightClickDefault && !document.querySelector(".window_rightclick_container")?.contains(e.target)) {
         setRightClickDefault(false);
+        setRightClickIcon(false)
+        setIconBeingRightClicked('')
       }
     };
   
@@ -369,8 +386,6 @@ useEffect(() => { // touch support device === true
 
 }, []);
 
-console.log(dropTargetFolder)
-console.log(BinRef.current)
 const handleOnDrag = (name, ref) => () => {
   setDragging(true)
   const iconRef = ref
@@ -474,6 +489,9 @@ const handleOnDrag = (name, ref) => () => {
 };
 
   const contextValue = {
+    handleMobileLongPress,
+    iconBeingRightClicked, setIconBeingRightClicked,
+    rightClickIcon, setRightClickIcon,
     BinRef,
     BinExpand, setBinExpand,
     refresh, setRefresh,

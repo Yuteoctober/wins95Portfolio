@@ -99,6 +99,7 @@ function ResumeFile() {
                     setResumeFileExpand(prev => ({...prev, hide: true, focusItem: false}))
                     StyleHide('ResumeFile')
                   }}
+                  onTouchStart={(e) => e.stopPropagation()}
               >
                 <p className='dash-resumefile'></p>
               </div>
