@@ -10,6 +10,9 @@ function ResumeFolder() {
   const iconRefs = useRef([]);
 
   const { 
+    handleMobileLongPress,
+    setRightClickIcon,
+    setIconBeingRightClicked,
     timerRef,
     iconContainerSize, iconImgSize, iconTextSize,
     iconScreenSize,
@@ -182,6 +185,11 @@ function ResumeFolder() {
                   <div className='icon' key={icon.name}
                     style={iconContainerSize(iconScreenSize)}
                     ref={(el) => iconRefs.current[icon.name] = el}
+                    onContextMenu={() => {
+                      setRightClickIcon(true);
+                      iconFocusIcon(icon.name);
+                      setIconBeingRightClicked(icon.name);
+                    }}
                     onDoubleClick={() => handleShow(icon.name)}                      
                     onClick={!isTouchDevice ? (e) => {
                       iconFocusIcon(icon.name);
@@ -191,6 +199,7 @@ function ResumeFolder() {
                       e.stopPropagation();
                       handleShowMobile(icon.name);
                       iconFocusIcon(icon.name);
+                      handleMobileLongPress(e, icon.name);
                     }}
                   >
                     <img src={imageMapping(icon.pic)} alt='#' className={icon.focus ? 'img_focus' : ''}
