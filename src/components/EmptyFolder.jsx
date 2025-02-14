@@ -138,6 +138,7 @@ function EmptyFolder({state, setState, refState, folderName, photoMode}) {
               setState(prev => ({...prev, hide: true, focusItem: false}))
               StyleHide(folderName)
             }}
+            onTouchStart={(e) => e.stopPropagation()}
             >
               <p className='dash'></p>
             </div>

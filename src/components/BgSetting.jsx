@@ -246,7 +246,7 @@ function BgSetting() {
                 setBgSettingExpand(prev => ({...prev, hide: true, focusItem: false}))
                 StyleHide('Settings')
               }}
-
+                onTouchStart={(e) => e.stopPropagation()}
               >
                 <p className='dash'></p>
               </div>

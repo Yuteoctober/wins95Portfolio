@@ -8,6 +8,8 @@ function RightClickWindows() {
   const screenHeight = window.innerHeight;
 
   const { 
+    iconBeingRightClicked, setIconBeingRightClicked,
+    rightClickIcon, setRightClickIcon,
     setDesktopIcon, desktopIcon,
     iconFocusIcon,
     setRefresh,
@@ -25,7 +27,7 @@ function RightClickWindows() {
 
   return (
     <>
-      {rightClickDefault && (
+      {(rightClickDefault && !rightClickIcon) && (
         <div className='window_rightclick_container'
           style={{ 
             top: screenHeight - rightClickPosition.y < 217 ? screenHeight - 217 : rightClickPosition.y,
@@ -66,6 +68,42 @@ function RightClickWindows() {
             </p>
         </div>  
       )}
+      {(rightClickDefault && rightClickIcon) &&  (
+        <div className='window_rightclick_container'
+        style={{ 
+          top: screenHeight - rightClickPosition.y < 217 ? screenHeight - 217 : rightClickPosition.y,
+          left: screenWidth - rightClickPosition.x < 138 ? screenWidth - 138 : rightClickPosition.x,
+          height: '212px', width: '128px'
+        }}
+      >  
+          <p 
+            onClick={() => {
+              handleShow(iconBeingRightClicked)
+              iconFocusIcon('')
+              setRightClickIcon(false);
+            }}
+          >
+            Open
+          </p>
+          <p style={{paddingLeft: '25px'}}>Edit</p>
+          <h5></h5>
+          <p>
+            Send To
+            <span>
+                <BsFillCaretRightFill/>
+            </span>
+          </p>
+          <h5></h5>
+          <p style={{color: '#8a8989'}}>Cut</p>
+          <p style={{color: '#8a8989'}}>Copy</p>
+          <h5></h5>
+          <p>Delete</p>
+          <p>Rename</p>
+          <h5></h5>
+          <p>Properties</p>
+      </div> 
+      )}
+       
     </>
   );
 }

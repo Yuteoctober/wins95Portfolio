@@ -100,6 +100,7 @@ function OpenProject() {
                     setOpenProjectExpand(prev => ({...prev, hide: true, focusItem: false}))
                     StyleHide('Internet')
                   }}
+                    onTouchStart={(e) => e.stopPropagation()}
               >
                 <p className='dash'></p>
               </div>

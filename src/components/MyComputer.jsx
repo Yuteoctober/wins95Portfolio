@@ -319,6 +319,7 @@ function MyComputer() {
               setMyComputerExpand(prev => ({...prev, hide: true, focusItem: false}))
               StyleHide('MyComputer')
             }}
+            onTouchStart={(e) => e.stopPropagation()}
             >
               <p className='dash'></p>
             </div>
