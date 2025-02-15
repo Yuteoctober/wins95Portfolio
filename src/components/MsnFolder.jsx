@@ -48,7 +48,7 @@ useEffect(() => {
         endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
         hasScrolledRef.current = true; // Mark as executed
       }
-    }, 500);
+    }, 1000);
 
     return () => clearTimeout(timeoutId); // Cleanup timeout
   }
