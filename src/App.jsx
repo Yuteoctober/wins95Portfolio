@@ -205,7 +205,7 @@ function App() {
 
   useEffect(() => { // if user has older verion of page and does not have the reset button, automatically reset stroage for user
     const resetIcon = desktopIcon.find(icon => icon.name === 'ResetStorage')
-    if(resetIcon) {
+    if(!resetIcon) {
       localStorage.clear();
       location.reload();
     }
