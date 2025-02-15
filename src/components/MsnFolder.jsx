@@ -37,11 +37,6 @@ function MsnFolder() {
 
 
   useEffect(() => {
-    setLoadedMessages(chatData.slice(-40)); // Load the last 60 messages initially
-  }, [MSNExpand.show]);
-
-
-  useEffect(() => {
     endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [MSNExpand.show])
   
