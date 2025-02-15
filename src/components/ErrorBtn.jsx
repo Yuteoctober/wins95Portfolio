@@ -1,11 +1,45 @@
 import UseContext from '../Context'
-import { useContext } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import Error from '../assets/error.png'
 import '../css/ErrorBtn.css'
 
 function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
-
+    const [YesNo, setYesNo] = useState(false)
+    const [Content, setContent] = useState('')
     const { handleSetFocusItemTrue } = useContext(UseContext);
+    const textResetStroage = "Warning: Resetting local storage will erase all your info. Are you sure you want to continue?"
+
+    useEffect(() => {
+        handleBtn(stateVal)
+    }, [stateVal]); 
+
+    function handleBtn(name) {
+        switch (name) {
+            case "ResetStorage":
+                setYesNo(true);
+                setContent(textResetStroage)
+                break;
+            default:
+                setYesNo(false);
+                setContent(text)
+                break;
+        }
+    }
+
+    function handleFunction(name) {
+        switch (name) {
+            case "ResetStorage":
+                return removeLocalStorage();
+
+            default:
+                return runOpenFuction();
+        }
+    }
+    
+    function removeLocalStorage() {
+        localStorage.clear();
+        location.reload();
+    }
 
   return (
     <div className="error_container"
@@ -29,16 +63,29 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
         </div>
         <div className="error_message_container">
             <img src={Error} alt="error" />
-            <p>{text}</p>
+            <p>{Content}</p>
         </div>
-        <div className="error_ok_btn"
-            onClick={() => {
-                setStateVal(false)
-                runOpenFuction()
-            }}
+        <div className={`confirm_container${YesNo ? '' : 'none'}`}>
+            <div className="error_ok_btn"
+                onClick={() => {
+                    setStateVal(false)
+                    handleFunction(stateVal)
+                }}
+                
+            >
+                <p>{YesNo ? 'YES' : 'OK'}</p>
+            </div>
+            {YesNo && (
+             <div className="error_ok_btn"
+                onClick={() => {
+                    setStateVal(false)
+                }}
+                
+            >
+                <p>NO</p>
+            </div>   
+            )}
             
-        >
-            <p>OK</p>
         </div>
     </div>
   )

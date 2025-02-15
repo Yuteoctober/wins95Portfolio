@@ -250,6 +250,15 @@
         "type": "folder",
         "x": 27,
         "y": 27    
+    },
+    {
+        "name": "ResetStorage",
+        "pic": "ResetStorage",
+        "folderId": "Desktop",
+        "size": 20,
+        "type": ".exe",
+        "x": 28,
+        "y": 28    
     }
 
 ]

@@ -26,7 +26,7 @@ import ninthPic from '../../assets/009.jpg'
 import tenthPic from '../../assets/010.jpg'
 import eleventhPic from '../../assets/011.jpg'
 import binEmp from '../../assets/bin2.png'
-import bin from '../../assets/bin.png'
+import reset from '../../assets/reset.png'
 
 
 
@@ -125,6 +125,9 @@ export function imageMapping (name) {
     case 'RecycleBin':
     case 'recyclebin':
       return binEmp;
+
+    case 'ResetStorage':
+      return reset;
 
     default:
       return null;
