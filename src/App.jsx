@@ -191,16 +191,26 @@ function App() {
       </>
   ) 
   
-    function projectname() {
-    if(projectUrl.length < 1) return;
-    const projectlinkletter = projectUrl.slice(8).split('.')[0];
-    return projectlinkletter[0].toUpperCase() + projectlinkletter.slice(1);
+  function projectname() { // project name 
+      if(projectUrl.length < 1) return;
+
+      const projectlinkletter = projectUrl.slice(8).split('.')[0];
+
+      return projectlinkletter[0].toUpperCase() + projectlinkletter.slice(1);
   }
 
   // Define all state setter functions and corresponding clear functions in an array
   const allSetters = [setClippyThanks, setClippySendemail, setClippySong, setClippyUsername];
   const allClears = [ClearTOclippyThanksYouFunction, ClearTOclippySendemailfunction, ClearTOSongfunction, ClearTOclippyUsernameFunction];
 
+  useEffect(() => { // if user has older verion of page and does not have the reset button, automatically reset stroage for user
+    const resetIcon = desktopIcon.find(icon => icon.name === 'ResetStorage')
+    if(resetIcon) {
+      localStorage.clear();
+      location.reload();
+    }
+  },[])
+  
   useEffect(() => {
     const handleRightClick = (e) => {
       e.preventDefault(); // Prevent right-click menu
