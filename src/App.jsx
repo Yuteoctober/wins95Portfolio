@@ -542,42 +542,54 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
   if (now - lastTapTime < 300) {
 
     if (name === 'Hard Disk (C:)') {
-      setCurrentFolder('DiskC')
+      setTimeout(() => { // set time out for dom to be able to remove and prevent ghost touch
+        setCurrentFolder('DiskC')
+      }, 100);
       setSelectedFolder({label: 'Hard Disk (C:)', img: imageMapping(name)})
       setUndo(prev => [...prev, 'DiskC'])
       return;
     }
   
     if (name === 'Hard Disk (D:)') {
-      setCurrentFolder('DiskD')
+      setTimeout(() => {
+        setCurrentFolder('DiskD') 
+      }, 100);
       setSelectedFolder({label: 'Hard Disk (D:)', img: imageMapping(name)})
       setUndo(prev => [...prev, 'DiskD'])
       return;
     }
 
     if (name === 'Resume') {
-      setCurrentFolder('Resume')
+      setTimeout(() => {
+        setCurrentFolder('Resume')
+      }, 100);
       setSelectedFolder({label: 'Hard Disk (D:)', img: imageMapping(name)})
       setUndo(prev => [...prev, 'Resume'])
       return;
     }
 
     if (name === 'Resume') {
-      setCurrentFolder('Resume')
+      setTimeout(() => {
+        setCurrentFolder('Resume')
+      }, 100);
       setSelectedFolder({label: 'Resume', img: imageMapping(name)})
       setUndo(prev => [...prev, 'Resume'])
       return;
     }
 
     if (name === 'Project') {
-      setCurrentFolder('Project')
+      setTimeout(() => {
+        setCurrentFolder('Project')
+      }, 100);
       setSelectedFolder({label: 'Project', img: imageMapping(name)})
       setUndo(prev => [...prev, 'Project'])
       return;
     }
 
     if (name === 'Picture') {
-      setCurrentFolder('Picture')
+      setTimeout(() => {
+        setCurrentFolder('Picture')
+      }, 100);
       setSelectedFolder({label: 'Picture', img: imageMapping(name)})
       setUndo(prev => [...prev, 'Picture'])
       return;
