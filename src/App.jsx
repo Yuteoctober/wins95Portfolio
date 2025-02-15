@@ -35,6 +35,7 @@ import { StyleHide, imageMapping,
  } from './components/function/AppFunctions';
 
 function App() {
+  const [inFolder, setInFolder] = useState('')
   const [refresh, setRefresh] = useState(0)
   const timerRef = useRef(null); // time counter for long press
   const [iconBeingRightClicked, setIconBeingRightClicked] = useState(''); // right click Icon
@@ -602,6 +603,7 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
 }
 
   const contextValue = {
+    inFolder, setInFolder,
     handleShowInfolderMobile, handleShowInfolder,
     handleMobileLongPress,
     iconBeingRightClicked, setIconBeingRightClicked,

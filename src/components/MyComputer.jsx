@@ -12,6 +12,7 @@ function MyComputer() {
   const [popUpFolder, setPopUpFolder] = useState(false)
 
   const { 
+    inFolder, setInFolder,
     handleShowInfolderMobile, handleShowInfolder,
     handleMobileLongPress,
     setRightClickIcon,
@@ -379,6 +380,7 @@ function MyComputer() {
                       setRightClickIcon(true);
                       iconFocusIcon(icon.name);
                       setIconBeingRightClicked(icon.name);
+                      setInFolder(icon.name);
                     }}
                     onDoubleClick={() => handleShowInfolder(icon.name)}                      
                     onClick={!isTouchDevice ? (e) => {
@@ -390,6 +392,7 @@ function MyComputer() {
                       handleShowInfolderMobile(icon.name);
                       iconFocusIcon(icon.name);
                       handleMobileLongPress(e, icon.name);
+                      setInFolder(icon.name);
                     }}
                   >
                     <img src={imageMapping(icon.pic)} alt='#' className={icon.focus ? 'img_focus' : ''}
