@@ -14,21 +14,22 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
     }, [stateVal]); 
 
     function handleBtn(name) {
-        switch (name) {
-            case "ResetStorage":
+        switch (name.toLowerCase()) {
+            case "resetstorage":
                 setYesNo(true);
-                setContent(textResetStroage)
+                setContent(textResetStroage);
                 break;
             default:
                 setYesNo(false);
-                setContent(text)
+                setContent(text);
                 break;
         }
     }
+    
 
     function handleFunction(name) {
-        switch (name) {
-            case "ResetStorage":
+        switch (name.toLowerCase()) {
+            case "resetstorage":
                 return removeLocalStorage();
 
             default:
