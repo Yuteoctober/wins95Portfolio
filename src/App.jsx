@@ -994,7 +994,7 @@ function ObjectState() { // Add all the state realted to folder here !! very imp
           { name: 'Mail', setter: setMailExpand, usestate: MailExpand },
           { name: 'Nft', setter: setNftExpand, usestate: NftExpand},
           { name: 'Note', setter: setNoteExpand, usestate: NoteExpand },
-          { name: 'Type', setter: setTypeExpand, usestate: TypeExpand },
+          // { name: 'Type', setter: setTypeExpand, usestate: TypeExpand },
           { name: 'Winamp', setter: setWinampExpand, usestate: WinampExpand },
           { name: 'ResumeFile', setter: setResumeFileExpand, usestate: ResumeFileExpand },
           { name: 'MineSweeper', setter: setMineSweeperExpand, usestate: MineSweeperExpand },

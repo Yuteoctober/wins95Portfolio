@@ -11,6 +11,7 @@ import { BsCaretDownFill } from "react-icons/bs";
 function Run() {
 
   const { 
+    desktopIcon,
     textError,
     runItemBox, setRunItemBox,
     RunInputVal, setRunInputVal,
@@ -32,18 +33,25 @@ function Run() {
    const cannotOpenFile = ['internet', 'type', 'run'] // file that should not be open by RUN command
 
    function handleRunOpenFile(ObjectState, name) {
-    const object = ObjectState();
-    const lowerCaseName = name.toLowerCase();
+    const object = desktopIcon;
+    const lowerCaseName = name.toLowerCase().trim();
 
-    const matchedItem = object.find(item => item.name.toLowerCase() === lowerCaseName);
+    const matchedItem = object.find(item => item.name.toLowerCase().trim() === lowerCaseName);
     
-    if (!matchedItem) {
-        deleteTap('Run')
-        setErrorPopup(true)
-        return;
-    }
+    // if (!matchedItem) {
+    //     deleteTap('Run')
+    //     setErrorPopup(true)
+    //     return;
+    // }
 
-    if (cannotOpenFile.includes(lowerCaseName)) return;
+    // if (cannotOpenFile.includes(lowerCaseName)) return;
+
+    if(lowerCaseName === 'internet') {
+      deleteTap('Run')
+      setRunInputVal('')
+      setRunItemBox(false)
+      return;
+    }
 
     if (lowerCaseName === 'resume') {
         setTimeout(() => {
@@ -56,7 +64,8 @@ function Run() {
         
     }
     setTimeout(() => {
-        handleShow(matchedItem.name);
+      const passedName = matchedItem ? matchedItem.name : name
+        handleShow(passedName);
         deleteTap('Run')
         setRunInputVal('')
         setRunItemBox(false)
@@ -64,9 +73,9 @@ function Run() {
     
 }
 
-    const listItems = ObjectState().map((item) => {
+    const listItems = desktopIcon.map((item) => {
         const lowerCaseName = item.name.toLowerCase(); 
-        if (!cannotOpenFile.includes(lowerCaseName) && lowerCaseName !== 'resumefile') {
+        if (!cannotOpenFile.includes(lowerCaseName) && lowerCaseName !== 'resumefile' && lowerCaseName[0] !== '0') {
         return item.name; 
         }
         return null;
