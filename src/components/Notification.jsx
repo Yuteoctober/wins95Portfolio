@@ -62,8 +62,8 @@ function Notification() {
       default:
         return {
           img: icon_wins95,
-          text1: 'Welcome to My Portfolio!',
-          text2: 'This portfolio is still a work in progress. Please Clear browser history or local storage if there is an issue with icon.',
+          text1: 'Welcome to My Windows 95 Portfolio! 🎉',
+          text2: 'It’s a fun, retro-styled space where I showcase my projects and Windows 95 vibes included. Hope you enjoy exploring!',
           function: ''
         };
     }
