@@ -31,7 +31,7 @@ function RightClickWindows() {
 
   function handleSwitchOpenFolder() { // decide which folder function to call
 
-    if(iconBeingRightClicked === inFolder) {
+    if(iconBeingRightClicked === inFolder) { 
       handleShowInfolder(iconBeingRightClicked)
       setInFolder('')
       return;
