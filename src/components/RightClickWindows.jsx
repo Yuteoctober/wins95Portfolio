@@ -8,6 +8,7 @@ function RightClickWindows() {
   const screenHeight = window.innerHeight;
 
   const { 
+    inFolder, setInFolder,
     handleShowInfolder, 
     iconBeingRightClicked, setIconBeingRightClicked,
     rightClickIcon, setRightClickIcon,
@@ -26,20 +27,16 @@ function RightClickWindows() {
     setRefresh(prev => prev + 1);
   }
 
-  console.log(iconBeingRightClicked)
+  console.log(iconBeingRightClicked, inFolder)
 
   function handleSwitchOpenFolder() { // decide which folder function to call
-    switch (iconBeingRightClicked) {
-      case 'Hard Disk (C:)':
-        handleShowInfolder(iconBeingRightClicked);
-        break;
-      case 'Hard Disk (D:)':
-        handleShowInfolder(iconBeingRightClicked);
-        break;
-      
-      default: handleShow(iconBeingRightClicked);
-        break;
+
+    if(iconBeingRightClicked === inFolder) {
+      handleShowInfolder(iconBeingRightClicked)
+      setInFolder('')
+      return;
     }
+    handleShow(iconBeingRightClicked);
   }
 
   return (
