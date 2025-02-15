@@ -35,6 +35,7 @@ import { StyleHide, imageMapping,
  } from './components/function/AppFunctions';
 
 function App() {
+  const maxZindexRef = useRef(2);
   const [inFolder, setInFolder] = useState('')
   const [refresh, setRefresh] = useState(0)
   const timerRef = useRef(null); // time counter for long press
@@ -123,42 +124,42 @@ function App() {
     x: 0, y: 0, // position before fullscreen
   });
   const [ResumeExpand, setResumeExpand] = useState(
-  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0});
+  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [ProjectExpand, setProjectExpand] = useState(
   {
     expand: false, show: false, hide: false, focusItem: true,  // focusItem is window, item_1focus - 5 is the icon
-    x: 0, y: 0});
+    x: 0, y: 0, zIndex: 1,});
 
   const [MailExpand, setMailExpand] = useState(
-  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
+  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [NftExpand, setNftExpand] = useState(
-  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0});
+  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [NoteExpand, setNoteExpand] = useState(
-  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0});
+  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [TypeExpand, setTypeExpand] = useState(
-  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0});
+  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [WinampExpand, setWinampExpand] = useState(
-  {focus: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
+  {focus: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [ResumeFileExpand, setResumeFileExpand] = useState(
-  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
+  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [openProjectExpand, setOpenProjectExpand] = useState(
-  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
+  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [MyComputerExpand, setMyComputerExpand] = useState(
-  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
+  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
   
   const [pictureExpand, setPictureExpand] = useState(
-  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
+  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [photoOpenExpand, setPhotoOpenExpand] = useState(
-  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
+  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [desktopIcon, setDesktopIcon] = useState(() => {
     const localItems = localStorage.getItem('icons');
@@ -167,19 +168,19 @@ function App() {
 });
 
   const [MineSweeperExpand, setMineSweeperExpand] = useState(
-  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
+  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [MSNExpand, setMSNExpand] = useState(
-    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
+    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [BgSettingExpand, setBgSettingExpand] = useState(
-    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
+    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [RunExpand, setRunExpand] = useState(
-    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
+    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
   
   const [BinExpand, setBinExpand] = useState(
-    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0,});
+    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const allPicture = desktopIcon.filter(picture => picture.type === '.jpeg'); // photo open
 
@@ -1067,7 +1068,8 @@ function handleShow(name) {
 
     if(itemName === lowerCaseName) {
       setTimeout(() => {
-        item.setter(prev => ({...prev, show: true, focusItem: true, hide: false}));
+        item.setter(prev => ({...prev, show: true, focusItem: true, hide: false, zIndex: maxZindexRef.current + 1 }));
+            maxZindexRef.current = item.usestate.zIndex; // Update max zIndex reference
       }, 100);
       if(lowerCaseName === 'mail') clippySendemailfunction();
       if(lowerCaseName === 'winamp') clippySongFunction();
@@ -1136,7 +1138,8 @@ function handleShowMobile(name) {
   
       if(itemName === lowerCaseName) {
         setTimeout(() => {
-          item.setter(prev => ({...prev, show: true, focusItem: true, hide: false}));
+          item.setter(prev => ({...prev, show: true, focusItem: true, hide: false, zIndex: maxZindexRef.current + 1 }));
+            maxZindexRef.current = item.usestate.zIndex; // Update max zIndex reference
         }, 100);
         if(lowerCaseName === 'mail') clippySendemailfunction();
         if(lowerCaseName === 'winamp') clippySongFunction();
@@ -1206,25 +1209,26 @@ function handleShowMobile(name) {
     handleClippyFunction(setClippyUsername, ClearTOclippyUsernameFunction, allSetters);
   }
 
-  function handleSetFocusItemTrue(name) { //click on one, other goes false
-
+  function handleSetFocusItemTrue(name) {
     const LowerCaseName = name.toLowerCase().split(' ').join('');
     const setState = ObjectState();
-
+    
     setState.forEach((item) => {
-      const itemName = item.name.toLowerCase()
-      if(itemName === LowerCaseName) {
-        item.setter(prev => ({...prev, focusItem: true}));
-      } else {
-        item.setter(prev => ({...prev, focusItem: false}));
-      }
+        const itemName = item.name.toLowerCase();
+        // For the clicked item, set the focus to true
+        if (itemName === LowerCaseName) {
+            const newZIndex = maxZindexRef.current + 1;  // Calculate the new zIndex
+            item.setter(prev => ({ ...prev, focusItem: true, zIndex: newZIndex }));
+            maxZindexRef.current = newZIndex;  // Update maxZindexRef
+        } else {
+            item.setter(prev => ({ ...prev, focusItem: false }));
+        }
     });
 
-    setDesktopIcon(prevIcons => prevIcons.map(icon => ({
-      ...icon,
-      focus: false
-    })));
-  }
+    setDesktopIcon(prevIcons => prevIcons.map(icon => ({ ...icon, focus: false })));
+}
+
+
 
   function inlineStyleExpand (name) {
     const passedName = name.split(' ').join('').toLowerCase();
@@ -1244,7 +1248,7 @@ function handleShowMobile(name) {
         left: `${item.usestate.x <= 0 ? Math.abs(item.usestate.x) * 2 + item.usestate.x : -item.usestate.x}px`,
         top: `${item.usestate.y <= 0 ? Math.abs(item.usestate.y) * 2 + item.usestate.y : -item.usestate.y}px`,
         opacity: item.usestate.hide ? '0' : '1',
-        zIndex: item.usestate.hide ? '-1' : (item.usestate.focusItem ? '999' : '3'),
+        zIndex: item.usestate.hide ? '-1' : (item.usestate.focusItem ? '999' : item.usestate.zIndex),
         pointerEvents: item.usestate.hide ? 'none' : 'auto',
         resize: item.usestate.expand ? 'none' : ''
       };
@@ -1265,12 +1269,15 @@ function handleShowMobile(name) {
         return {
             display: item.usestate.show ? 'block' : '',
             opacity: item.usestate.hide ? '0' : '1',
-            zIndex: item.usestate.hide ? '-1' : (item.usestate.focusItem ? '999' : '3'),
-            pointerEvents: item.usestate.hide ? 'none' : 'auto'
+            zIndex: item.usestate.hide ? '-1' : (item.usestate.focusItem ? '999' : item.usestate.zIndex),
+            pointerEvents: item.usestate.hide ? 'none' : 'auto',
         };
     }
+
     return {};
-  }
+}
+
+
 
   function deleteTap(name) {
     const setState = ObjectState();
