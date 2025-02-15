@@ -756,7 +756,7 @@ body {
     gap: 4px;
     margin-bottom: .9rem;
     cursor: default;
-    z-index: 2;
+    z-index: 1;
     animation : refreshIcon 0.1s ;
 }
 
