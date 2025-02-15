@@ -29,7 +29,8 @@ function MsnFolder() {
   const [userName, setUserName] = useState(false);
   const topOfMessagesRef = useRef(null); // Ref to track the top of the chat container
   const [initialLoading, setInitialLoading] = useState(false)
-
+  const hasScrolledRef = useRef(false);
+  
   const lastMessage = chatData.length > 0
     ? chatData[chatData.length - 1].date.split('').slice(0, 10).join('')
     : 'No messages yet';
@@ -39,11 +40,20 @@ function MsnFolder() {
     setLoadedMessages(chatData.slice(-40)); // Load the last 60 messages initially
   }, [MSNExpand.show]);
 
-  useEffect(() => {
-    setTimeout(() => {
-      endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, 1500);
-  }, [MSNExpand.show]); // Run this effect when open/close
+  
+
+useEffect(() => {
+  if (!hasScrolledRef.current && MSNExpand.show) {
+    const timeoutId = setTimeout(() => {
+      if (loadedMessages.length > 0) {
+        endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
+        hasScrolledRef.current = true; // Mark as executed
+      }
+    }, 500);
+
+    return () => clearTimeout(timeoutId); // Cleanup timeout
+  }
+}, [MSNExpand.show, loadedMessages.length]); // Dependencies to trigger effect
 
   useEffect(() => {
     setTimeout(() => {
