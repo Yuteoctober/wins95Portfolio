@@ -389,7 +389,7 @@ function MyComputer() {
                       e.stopPropagation();
                       handleShowInfolderMobile(icon.name);
                       iconFocusIcon(icon.name);
-                      // handleMobileLongPress(e, icon.name); have to fix ghost issue after elelment is removed from dom
+                      handleMobileLongPress(e, icon.name);
                     }}
                   >
                     <img src={imageMapping(icon.pic)} alt='#' className={icon.focus ? 'img_focus' : ''}
