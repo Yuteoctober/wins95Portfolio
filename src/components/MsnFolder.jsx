@@ -30,7 +30,7 @@ function MsnFolder() {
   const topOfMessagesRef = useRef(null); // Ref to track the top of the chat container
   const [initialLoading, setInitialLoading] = useState(false)
   const hasScrolledRef = useRef(false);
-  
+
   const lastMessage = chatData.length > 0
     ? chatData[chatData.length - 1].date.split('').slice(0, 10).join('')
     : 'No messages yet';
@@ -40,6 +40,10 @@ function MsnFolder() {
     setLoadedMessages(chatData.slice(-40)); // Load the last 60 messages initially
   }, [MSNExpand.show]);
 
+
+  useEffect(() => {
+    endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [MSNExpand.show])
   
 
 useEffect(() => {
