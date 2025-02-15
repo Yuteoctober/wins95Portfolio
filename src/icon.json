@@ -254,7 +254,7 @@
     {
         "name": "ResetStorage",
         "pic": "ResetStorage",
-        "folderId": "Desktop",
+        "folderId": "DiskD",
         "size": 20,
         "type": ".exe",
         "x": 28,
