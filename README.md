@@ -123,6 +123,12 @@ All the functionalities
     - on mobile uses long press 
     - Right click can be done on icon now
 
+  - Added Right click on each icon and icon in bin 2/16/2025
+    - right clicking on icon now able to open and delete
+    - after icon being deleted, it will move to RecycleBin
+    - right click on icon in RecycleBin will show option to restore
+    - clicking on restore will store the icon to its previous position
+
 Library used:
   - React Draggable => drag and drop functionality
   - Framer-motion => for some animation

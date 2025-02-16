@@ -34,13 +34,18 @@ import { StyleHide, imageMapping,
   handleDoubleClickPhotoOpen,
  } from './components/function/AppFunctions';
 
+
 function App() {
+  const [deleteIcon, setDeleteIcon] = useState(0)
   const refBeingClicked = useRef(null)
   const maxZindexRef = useRef(2);
   const [inFolder, setInFolder] = useState('')
   const [refresh, setRefresh] = useState(0)
   const timerRef = useRef(null); // time counter for long press
-  const [binRestoreArr, setBinRestoreArr] = useState([]) 
+  const [binRestoreArr, setBinRestoreArr] = useState(() => {
+    const getRestoreArr = localStorage.getItem('restoreArray');
+    return getRestoreArr ? JSON.parse(getRestoreArr) : [];
+  });
   const [rightClickBin, setRightClickBin] = useState(false) // right click icon in bin folder
   const [iconBeingRightClicked, setIconBeingRightClicked] = useState({}); // right click Icon
   const [rightClickIcon, setRightClickIcon] = useState(false); // right click Icon
@@ -215,7 +220,6 @@ function App() {
     }
   },[])
 
-  
 useEffect(() => {
   const handleRightClick = (e) => {
     e.preventDefault();
@@ -650,6 +654,7 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
 }
 
   const contextValue = {
+    deleteIcon, setDeleteIcon,
     handleMobileLongPressBin,
     refBeingClicked,
     binRestoreArr, setBinRestoreArr,
