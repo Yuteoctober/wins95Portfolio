@@ -8,21 +8,10 @@ const WebampPlayer = () => {
     const [focus, setFocus] = useState(false)
 
     const { 
-        setRunExpand,
-        setBgSettingExpand,
-        setOpenProjectExpand,
-        setMineSweeperExpand,
-        setMSNExpand,
+        ObjectState,
+        maxZindexRef,
         WinampExpand, setWinampExpand,
-        setMybioExpand,
-        setProjectExpand,
-        setMailExpand,
-        setNftExpand,
-        setNoteExpand,
-        setTypeExpand,
-        setResumeExpand,
-        setResumeFileExpand,
-        setIconState, 
+
         deleteTap,
       } = useContext(UseContext);
 
@@ -100,7 +89,9 @@ const WebampPlayer = () => {
             }
             
             if(WinampExpand.focusItem && !WinampExpand.hide) {
-                webampElement.style.zIndex = 3;
+                const maxZindex = (maxZindexRef.current || 0 ) + 1;
+                webampElement.style.zIndex = maxZindex;
+                maxZindexRef.cururent = maxZindex;
             }
                
         } 
@@ -111,25 +102,10 @@ const WebampPlayer = () => {
         const handleFocusWinamp = (event) => {
             
             if (event.target.closest('#webamp') && !focus) {
-                setIconState(prevIcons => prevIcons.map(icon => ({
-                    ...icon,
-                    focus: false
-                  })));
-                setWinampExpand(prev => ({...prev, focusItem: true, focus: false}));
-                setMybioExpand(prev => ({...prev, focusItem: false}));
-                setProjectExpand(prev => ({...prev, focusItem: false}));
-                setMailExpand(prev => ({...prev, focusItem: false}));
-                setNoteExpand(prev => ({...prev, focusItem: false}));
-                setNftExpand(prev => ({...prev, focusItem: false}));
-                setTypeExpand(prev => ({...prev, focusItem: false}));
-                setResumeExpand(prev => ({...prev, focusItem: false}));
-                setResumeFileExpand(prev => ({...prev, focusItem: false}));
-                setMSNExpand(prev => ({...prev, focusItem: false}));
-                setMineSweeperExpand(prev => ({...prev, focusItem: false}));
-                setOpenProjectExpand(prev => ({...prev, focusItem: false}));
-                setBgSettingExpand(prev => ({...prev, focusItem: false}));
-                setResumeExpand(prev => ({...prev, focusItem: false}));
-                setRunExpand(prev => ({...prev, focusItem: false}));
+                const allState = ObjectState()
+                allState.forEach(item => {
+                    item.setter(prev => ({...prev, focusItem: item.name === 'Winamp'}))
+                })
             }
         };
     
