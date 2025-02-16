@@ -116,8 +116,8 @@ export function imageMapping (name) {
     case 'bitcoin':
       return btc
 
-    case 'Photo':
     case name[0] === '0':
+    case 'Photo':
     case 'Jpeg':
       return jpeg;
     
