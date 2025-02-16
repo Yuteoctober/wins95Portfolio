@@ -12,6 +12,7 @@ function MyComputer() {
   const [popUpFolder, setPopUpFolder] = useState(false)
 
   const { 
+    refBeingClicked,
     inFolder, setInFolder,
     handleShowInfolderMobile, handleShowInfolder,
     handleMobileLongPress,
@@ -372,6 +373,7 @@ function MyComputer() {
                     handleDrop(e, icon.name, dropTargetFolder);
                     clearTimeout(timerRef.current)
                   }}
+                  key={key}
                 >
                   <div className='icon' key={icon.name}
                     style={iconContainerSize(iconScreenSize)}
@@ -379,8 +381,9 @@ function MyComputer() {
                     onContextMenu={() => {
                       setRightClickIcon(true);
                       iconFocusIcon(icon.name);
-                      setIconBeingRightClicked(icon.name);
+                      setIconBeingRightClicked(icon);
                       setInFolder(icon.name);
+                      refBeingClicked.current = iconRefs.current[icon.name]
                     }}
                     onDoubleClick={() => handleShowInfolder(icon.name)}                      
                     onClick={!isTouchDevice ? (e) => {
@@ -391,8 +394,9 @@ function MyComputer() {
                       e.stopPropagation();
                       handleShowInfolderMobile(icon.name);
                       iconFocusIcon(icon.name);
-                      handleMobileLongPress(e, icon.name);
+                      handleMobileLongPress(e, icon);
                       setInFolder(icon.name);
+                      refBeingClicked.current = iconRefs.current[icon.name]
                     }}
                   >
                     <img src={imageMapping(icon.pic)} alt='#' className={icon.focus ? 'img_focus' : ''}

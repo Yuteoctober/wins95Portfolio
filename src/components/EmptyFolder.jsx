@@ -13,6 +13,10 @@ function EmptyFolder({state, setState, refState, folderName, photoMode}) {
   const iconRefs = useRef([]);
 
   const { 
+    handleMobileLongPressBin,
+    refBeingClicked,
+    binRestoreArr, setBinRestoreArr,
+    rightClickBin, setRightClickBin,
     timerRef,
     handleMobileLongPress,
     setRightClickIcon,
@@ -227,10 +231,20 @@ function EmptyFolder({state, setState, refState, folderName, photoMode}) {
                     style={iconContainerSize(iconScreenSize)}
                     ref={(el) => iconRefs.current[icon.name] = el}
                     onContextMenu={() => {
-                      setRightClickIcon(true);
-                      iconFocusIcon(icon.name);
-                      setIconBeingRightClicked(icon.name);
+                      if (folderName === 'RecycleBin') {
+                        setRightClickBin(true);
+                        setRightClickIcon(false);
+                        iconFocusIcon(icon.name);
+                        refBeingClicked.current = iconRefs.current[icon.name]
+                        return;
+                      } 
+                        setRightClickIcon(true);
+                        setRightClickBin(false);
+                        iconFocusIcon(icon.name);
+                        setIconBeingRightClicked(icon);
+                        refBeingClicked.current = iconRefs.current[icon.name]
                     }}
+                    
                     onDoubleClick={() => {
                       folderName === 'RecycleBin'? '' : handleShow(icon.name)
                     }}                 
@@ -240,9 +254,13 @@ function EmptyFolder({state, setState, refState, folderName, photoMode}) {
                     } : undefined}           
                     onTouchStart={(e) => {
                       e.stopPropagation();
+                      if(folderName === 'RecycleBin'){
+                        handleMobileLongPressBin(e, icon);
+                        return;
+                      }
                       iconFocusIcon(icon.name);
-                      handleMobileLongPress(e, icon.name);
-                      {folderName === 'RecycleBin'? '' : handleShowMobile(icon.name);}
+                      handleMobileLongPress(e, icon);
+                      handleShowMobile(icon.name)
                     }}
                   >
                     <img src={imageMapping(icon.pic)} alt='#' className={icon.focus ? 'img_focus' : ''}
