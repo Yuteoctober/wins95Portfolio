@@ -32,7 +32,7 @@ const WebampPlayer = () => {
                         url: mp3,
                         duration: 213
                     }],
-                    zIndex: 3
+                    zIndex: 999
                 };
                 const webamp = new Webamp(options);
                 webampInstance = webamp;
@@ -74,6 +74,7 @@ const WebampPlayer = () => {
         };
     }, []);
 
+
     useEffect(() => {
         const webampElement = document.querySelector('#webamp');
     
@@ -83,12 +84,12 @@ const WebampPlayer = () => {
                 webampElement.style.zIndex = 999;
             } 
 
-            if(WinampExpand.focusItem && WinampExpand.hide) {
-                webampElement.style.touchAction = 'none'
-                webampElement.style.zIndex = -1;
-            }
+            // if(WinampExpand.focusItem && WinampExpand.hide) {
+            //     webampElement.style.touchAction = 'none'
+            //     webampElement.style.zIndex = -1;
+            // }
             
-            if(WinampExpand.focusItem && !WinampExpand.hide) {
+            if(!WinampExpand.focusItem && !WinampExpand.hide) {
                 const maxZindex = (maxZindexRef.current || 0 ) + 1;
                 webampElement.style.zIndex = maxZindex;
                 maxZindexRef.cururent = maxZindex;
@@ -100,8 +101,8 @@ const WebampPlayer = () => {
     useEffect(() => {
         
         const handleFocusWinamp = (event) => {
-            
-            if (event.target.closest('#webamp') && !focus) {
+
+            if (event.target.closest('#webamp' || event.target.closest('#winamp-container')) && !focus) {
                 const allState = ObjectState()
                 allState.forEach(item => {
                     item.setter(prev => ({...prev, focusItem: item.name === 'Winamp'}))
