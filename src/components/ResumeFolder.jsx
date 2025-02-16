@@ -166,6 +166,7 @@ function ResumeFolder() {
                 handleSetFocusItemTrue('Resume');
               }}
               >
+              {}
               {desktopIcon.filter(icon => icon.folderId === 'Resume').map(icon => (
                 <Fragment key={icon.name}>
                   <Draggable

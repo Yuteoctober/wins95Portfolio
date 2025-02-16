@@ -1262,8 +1262,8 @@ function handleShowMobile(name) {
         const itemName = item.name.toLowerCase();
         // For the clicked item, set the focus to true
         if (itemName === LowerCaseName) {
-            const newZIndex = maxZindexRef.current + 1;  // Calculate the new zIndex
-            item.setter(prev => ({ ...prev, focusItem: true, zIndex: newZIndex }));
+            const newZIndex = (maxZindexRef.current || 0) + 1;  // Calculate the new zIndex
+              item.setter(prev => ({ ...prev, focusItem: true, zIndex: newZIndex })); 
             maxZindexRef.current = newZIndex;  // Update maxZindexRef
         } else {
             item.setter(prev => ({ ...prev, focusItem: false }));
@@ -1343,32 +1343,6 @@ function handleShowMobile(name) {
         }));
       }
     });
-
-    function handleDeleteIcon() { // rgiht click delete
-    
-        if(iconBeingRightClicked.name === 'MyComputer' || iconBeingRightClicked.name === 'RecycleBin') return;
-        // Add icon to binRestoreArr
-        setBinRestoreArr(prevArr => [
-          ...prevArr, 
-          {
-            name: iconBeingRightClicked.name, 
-            OldFolder: iconBeingRightClicked.folderId
-          }
-        ]);
-    
-        const droppedIcon = desktopIcon.find(icon => icon.name === iconBeingRightClicked.name);
-        // Update desktopIcon array correctly
-        if (droppedIcon) { 
-          setDesktopIcon(prevIcons => {
-            const updatedIcons = prevIcons.filter(icon => icon.name !== droppedIcon.name);
-            const newIcon = { ...droppedIcon, folderId: 'RecycleBin' };
-            setKey(prev => prev + 1); // make folder icon by re-mount
-            localStorage.setItem('icons', JSON.stringify([...updatedIcons, newIcon]));
-            return [...updatedIcons, newIcon];
-            
-          });
-        }
-      }
 
   }
 }
