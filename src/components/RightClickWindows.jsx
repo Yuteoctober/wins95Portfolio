@@ -8,7 +8,6 @@ function RightClickWindows() {
   const screenHeight = window.innerHeight;
 
   const { 
-    handleDrop,
     setKey,
     refBeingClicked,
     binRestoreArr, setBinRestoreArr,
@@ -64,7 +63,6 @@ function RightClickWindows() {
         setKey(prev => prev + 1); // make folder icon by re-mount
         localStorage.setItem('icons', JSON.stringify([...updatedIcons, newIcon]));
         return [...updatedIcons, newIcon];
-        
       });
     }
   }

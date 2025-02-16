@@ -235,6 +235,7 @@ function EmptyFolder({state, setState, refState, folderName, photoMode}) {
                         setRightClickBin(true);
                         setRightClickIcon(false);
                         iconFocusIcon(icon.name);
+                        setIconBeingRightClicked(icon);
                         refBeingClicked.current = iconRefs.current[icon.name]
                         return;
                       } 
@@ -256,6 +257,7 @@ function EmptyFolder({state, setState, refState, folderName, photoMode}) {
                       e.stopPropagation();
                       if(folderName === 'RecycleBin'){
                         handleMobileLongPressBin(e, icon);
+                        iconFocusIcon(icon.name);
                         return;
                       }
                       iconFocusIcon(icon.name);
