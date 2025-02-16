@@ -44,7 +44,8 @@ function RightClickWindows() {
     }
     handleShow(iconBeingRightClicked.name);
   }
-  console.log(binRestoreArr)
+
+  
   function handleDeleteIcon() {
 
     const IconCannotBeDeleted = ['MyComputer', 'RecycleBin', "Hard Disk (C:)", "Hard Disk (D:)", "CD-ROM" ]
