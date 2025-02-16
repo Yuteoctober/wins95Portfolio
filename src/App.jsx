@@ -35,11 +35,14 @@ import { StyleHide, imageMapping,
  } from './components/function/AppFunctions';
 
 function App() {
+  const refBeingClicked = useRef(null)
   const maxZindexRef = useRef(2);
   const [inFolder, setInFolder] = useState('')
   const [refresh, setRefresh] = useState(0)
   const timerRef = useRef(null); // time counter for long press
-  const [iconBeingRightClicked, setIconBeingRightClicked] = useState(''); // right click Icon
+  const [binRestoreArr, setBinRestoreArr] = useState([]) 
+  const [rightClickBin, setRightClickBin] = useState(false) // right click icon in bin folder
+  const [iconBeingRightClicked, setIconBeingRightClicked] = useState({}); // right click Icon
   const [rightClickIcon, setRightClickIcon] = useState(false); // right click Icon
   const [rightClickDefault, setRightClickDefault] = useState(false); // right click bg
   const [rightClickPosition, setRightClickPosition] = useState({ x: 0, y: 0 });
@@ -68,7 +71,7 @@ function App() {
   const [newMessage, setNewMessage] = useState('');
   const [notiOn, setNotiOn] = useState(false);
   const [chatDown, setChatDown] = useState(false)
-  const [key, setKey] = useState(1)
+  const [key, setKey] = useState(0)
   const [dragging, setDragging] = useState(false)
   const DesktopRef = useRef(null);
   const ProjectFolderRef = useRef(null);
@@ -211,20 +214,35 @@ function App() {
       location.reload();
     }
   },[])
+
   
-  useEffect(() => {
-    const handleRightClick = (e) => {
-      e.preventDefault(); // Prevent right-click menu
-      setRightClickPosition({ x: e.clientX, y: e.clientY }); // Capture click position
-      setRightClickDefault(true); // Show right-click menu
-    };
+useEffect(() => {
+  const handleRightClick = (e) => {
+    e.preventDefault();
 
-    document.addEventListener("contextmenu", handleRightClick);
+    const iconRect = refBeingClicked.current?.getBoundingClientRect();
+    setRightClickPosition({ x: e.clientX, y: e.clientY });
 
-    return () => {
-      document.removeEventListener("contextmenu", handleRightClick);
-    };
-  }, []);
+    const isIconRef =
+      e.clientX > iconRect?.left &&
+      e.clientX < iconRect?.right &&
+      e.clientY > iconRect?.top &&
+      e.clientY < iconRect?.bottom;
+
+    if (!isIconRef) {
+      setRightClickBin(false);
+      setRightClickIcon(false);
+    }
+
+    setRightClickDefault(true);
+  };
+
+  document.addEventListener("contextmenu", handleRightClick);
+
+  return () => {
+    document.removeEventListener("contextmenu", handleRightClick);
+  };
+}, []);
 
 
   useEffect(() => {
@@ -257,15 +275,31 @@ function App() {
   }, []);
 
 
-  function handleMobileLongPress(e, name) { // long press icon on mobile
+  function handleMobileLongPress(e, icon) { // long press icon on mobile
     if(dragging) return;
-    timerRef.current = setTimeout(() => {
+    timerRef.current = setTimeout(() => {  
       setRightClickPosition({ x: e.touches[0].clientX, y: e.touches[0].clientY });
+      setRightClickBin(false)
       setRightClickIcon(true);
-      setIconBeingRightClicked(name);
+      setIconBeingRightClicked(icon);
       setRightClickDefault(true);
+      
     }, 800)
   }
+
+  function handleMobileLongPressBin(e, icon) { // long press icon on mobile
+    if(dragging) return;
+    timerRef.current = setTimeout(() => {  
+      setRightClickPosition({ x: e.touches[0].clientX, y: e.touches[0].clientY });
+      setRightClickIcon(false);
+      setRightClickBin(true)
+      setIconBeingRightClicked(icon);
+      setRightClickDefault(true);
+      
+    }, 800)
+  }
+
+
 
 
   
@@ -274,7 +308,8 @@ function App() {
       if (e.button === 0 && !document.querySelector(".window_rightclick_container")?.contains(e.target)) { 
         setRightClickDefault(false);
         setRightClickIcon(false)
-        setIconBeingRightClicked('')
+        setRightClickBin(false)
+        setIconBeingRightClicked({})
       }
     };
   
@@ -282,7 +317,8 @@ function App() {
       if (rightClickDefault && !document.querySelector(".window_rightclick_container")?.contains(e.target)) {
         setRightClickDefault(false);
         setRightClickIcon(false)
-        setIconBeingRightClicked('')
+        setRightClickBin(false)
+        setIconBeingRightClicked({})
       }
     };
   
@@ -614,11 +650,15 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
 }
 
   const contextValue = {
+    handleMobileLongPressBin,
+    refBeingClicked,
+    binRestoreArr, setBinRestoreArr,
+    rightClickBin, setRightClickBin,
     inFolder, setInFolder,
     handleShowInfolderMobile, handleShowInfolder,
     handleMobileLongPress,
     iconBeingRightClicked, setIconBeingRightClicked,
-    rightClickIcon, setRightClickIcon,
+    rightClickIcon, setRightClickIcon, 
     BinRef,
     BinExpand, setBinExpand,
     refresh, setRefresh,

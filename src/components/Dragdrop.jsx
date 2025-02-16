@@ -6,6 +6,7 @@ import bin from '../assets/bin.png'
 
 function Dragdrop() {
   const {
+    refBeingClicked,
     handleMobileLongPress,
     dragging,
     setRightClickPosition,
@@ -118,7 +119,8 @@ function Dragdrop() {
               onContextMenu={() => {
                 setRightClickIcon(true);
                 iconFocusIcon(icon.name);
-                setIconBeingRightClicked(icon.name);
+                setIconBeingRightClicked(icon);
+                refBeingClicked.current = iconRefs.current[icon.name]
               }}
               onDoubleClick={() => handleShow(icon.name)}                      
               onClick={!isTouchDevice ? (e) => {
@@ -129,7 +131,8 @@ function Dragdrop() {
                 e.stopPropagation();
                 handleShowMobile(icon.name);
                 iconFocusIcon(icon.name);
-                handleMobileLongPress(e, icon.name);
+                handleMobileLongPress(e, icon);
+                refBeingClicked.current = iconRefs.current[icon.name]
               }}
             >
               <img 
