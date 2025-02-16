@@ -654,6 +654,7 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
 }
 
   const contextValue = {
+    maxZindexRef,
     deleteIcon, setDeleteIcon,
     handleMobileLongPressBin,
     refBeingClicked,
