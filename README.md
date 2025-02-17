@@ -128,6 +128,8 @@ All the functionalities
     - after icon being deleted, it will move to RecycleBin
     - right click on icon in RecycleBin will show option to restore
     - clicking on restore will store the icon to its previous position
+  
+  - If icons on desktop is moved before clicking refresh, icons will be sorted
 
 Library used:
   - React Draggable => drag and drop functionality

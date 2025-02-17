@@ -36,6 +36,8 @@ import { StyleHide, imageMapping,
 
 
 function App() {
+  const [sortedIcon, setSortedIcon] = useState([])
+  const [sortIconTrigger, setSortIconTrigger] = useState(0)
   const [deleteIcon, setDeleteIcon] = useState(0)
   const refBeingClicked = useRef(null)
   const maxZindexRef = useRef(2);
@@ -220,10 +222,12 @@ function App() {
     }
   },[])
 
+
 useEffect(() => {
   const handleRightClick = (e) => {
     e.preventDefault();
 
+  
     const iconRect = refBeingClicked.current?.getBoundingClientRect();
     setRightClickPosition({ x: e.clientX, y: e.clientY });
 
@@ -654,6 +658,8 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
 }
 
   const contextValue = {
+    sortedIcon, setSortedIcon,
+    sortIconTrigger, setSortIconTrigger,
     maxZindexRef,
     deleteIcon, setDeleteIcon,
     handleMobileLongPressBin,
@@ -903,7 +909,7 @@ function handleDragStop(data, iconName, ref) {
 
   if (iconElement) {
     const { x, y } = iconElement.getBoundingClientRect();
-
+    iconFocusIcon('') // all icon goes false
     setDesktopIcon(prevIcons => {
       // Create updatedIcons based on the previous state
       const updatedIcons = prevIcons.map(icon =>
@@ -914,6 +920,7 @@ function handleDragStop(data, iconName, ref) {
 
       const sorted = sortDesktopIcons(updatedIcons)
       localStorage.setItem('icons', JSON.stringify(sorted));
+      setSortedIcon(sorted) // saved sort icon to state to use when refresh
       return updatedIcons; // Return the updated state
     });
   }
