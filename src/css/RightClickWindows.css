@@ -3,10 +3,10 @@
     width: 138px;
     height: 180px;
     background: #c5c4c4;
-    border: 2px solid white;
+    border: 2px solid rgb(238, 237, 237);
     border-right: 1px solid black;
     border-bottom: 1px solid black;
-    outline: 1px solid white;
+    outline: 1px solid rgb(255, 255, 255);
     padding: 4px 2px;
     z-index: 9999999999999;
     -webkit-user-select: none;
