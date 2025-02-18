@@ -222,6 +222,7 @@ function App() {
     }
   },[])
 
+
 useEffect(() => {
   const handleRightClick = (e) => {
     e.preventDefault();
@@ -925,55 +926,58 @@ function handleDragStop(data, iconName, ref) {
   }
 }
 
+
+
+function handleDrop(e, name, target, oldFolderID) {
+  setDragging(false)
+  e.preventDefault();
+  e.stopPropagation();
+
+  if (!target || name === target) return; // Exit if folder is empty or same as the icon
+
+  const droppedIcon = desktopIcon.find(icon => icon.name === name);
   
 
-  function handleDrop(e, name, target, oldFolderID) {
-    setDragging(false)
-    e.preventDefault();
-    e.stopPropagation();
 
-    if (!target || name === target) return; // Exit if folder is empty or same as the icon
+  if(droppedIcon.folderId === target) {
+    setKey(prev => prev + 1)
 
-    const droppedIcon = desktopIcon.find(icon => icon.name === name);
-    const itemInBin = desktopIcon.filter(icon => icon.folderId === 'RecycleBin'); // delete arr in bin if its being dragged out
+    return; // make sure its not in the same folder
+  }
 
-    const checkBinItem = binRestoreArr.filter(icon => 
-      !itemInBin.some(i => i.name === icon.name)
-    );
 
-    setBinRestoreArr(checkBinItem)
+  if (target === 'RecycleBin') {
+    setBinRestoreArr(prevArr => {
+      const updatedArr = [
+        ...prevArr,
+        {
+          name: name,
+          OldFolder: oldFolderID
+        }
+      ];
+      localStorage.setItem('restoreArray', JSON.stringify(updatedArr));
+      return updatedArr; 
+    });
+  } else {
+    setBinRestoreArr(prev => {
+      const updatedArr = prev.filter(item => item.name !== name);
+      localStorage.setItem('restoreArray', JSON.stringify(updatedArr));
+      return updatedArr;
+    });
+  }
+  
 
-    if(droppedIcon.folderId === target) {
-      setKey(prev => prev + 1)
-
-      return; // make sure its not in the same folder
-    }
-
-    if(target === 'RecycleBin') {
-        setBinRestoreArr(prevArr => {
-          const updatedArr = [
-          ...prevArr,
-          {
-            name: name,
-            OldFolder: oldFolderID
-          }
-        ];
-        localStorage.setItem('restoreArray', JSON.stringify(updatedArr));
-        return updatedArr; 
+  if (droppedIcon) {
+      setDesktopIcon(prevIcons => {
+          const updatedIcons = prevIcons.filter(icon => icon.name !== droppedIcon.name);
+          const newIcon = { ...droppedIcon, folderId: target };
+          setDropTargetFolder('')
+          setDraggedIcon('');
+          setKey(prev => prev + 1) //make folder icon by re-mount
+          localStorage.setItem('icons', JSON.stringify([...updatedIcons, newIcon]));
+          return [...updatedIcons, newIcon];
       });
-    }
-
-    if (droppedIcon) {
-        setDesktopIcon(prevIcons => {
-            const updatedIcons = prevIcons.filter(icon => icon.name !== droppedIcon.name);
-            const newIcon = { ...droppedIcon, folderId: target };
-            setDropTargetFolder('')
-            setDraggedIcon('');
-            setKey(prev => prev + 1) //make folder icon by re-mount
-            localStorage.setItem('icons', JSON.stringify([...updatedIcons, newIcon]));
-            return [...updatedIcons, newIcon];
-        });
-    }
+  }
 }
 
     function remountRunPosition() { // make Run go back to the original position by remounting draggable by changing key
