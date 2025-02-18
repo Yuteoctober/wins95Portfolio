@@ -181,7 +181,7 @@ function ResumeFolder() {
                   }}
                   onDrag={handleOnDrag(icon.name, iconRefs.current[icon.name])}
                   onStop={(e) => {
-                    handleDrop(e, icon.name, dropTargetFolder);
+                    handleDrop(e, icon.name, dropTargetFolder, icon.folderId);
                     clearTimeout(timerRef.current)
                   }}
                   key={key}
