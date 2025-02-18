@@ -219,6 +219,7 @@ useEffect(() => {
                   setMSNExpand(prev => ({ ...prev, hide: true, focusItem: false }));
                   StyleHide('MSN');
                 }}
+                onTouchStart={(e) => e.stopPropagation()}
               >
                 <p className='dash-MSN'></p>
               </div>
