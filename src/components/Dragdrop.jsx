@@ -108,7 +108,7 @@ function Dragdrop() {
             onDrag={handleOnDrag(icon.name, iconRefs.current[icon.name])}
             onStop={(e, data) => {
               handleDragStop(data, icon.name, iconRefs.current[icon.name])
-              handleDrop(e, icon.name, dropTargetFolder)
+              handleDrop(e, icon.name, dropTargetFolder, icon.folderId)
               clearTimeout(timerRef.current)
             }}
           >

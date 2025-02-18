@@ -928,20 +928,35 @@ function handleDragStop(data, iconName, ref) {
 
 
 
-  function handleDrop(e, name, target) {
+  function handleDrop(e, name, target, oldFolderID) {
     setDragging(false)
     e.preventDefault();
     e.stopPropagation();
 
     if (!target || name === target) return; // Exit if folder is empty or same as the icon
 
-
+    console.log(name)
     const droppedIcon = desktopIcon.find(icon => icon.name === name);
 
     if(droppedIcon.folderId === target) {
       setKey(prev => prev + 1)
 
       return; // make sure its not in the same folder
+    }
+
+    if(target === 'RecycleBin') {
+        setBinRestoreArr(prevArr => {
+          const updatedArr = [
+          ...prevArr,
+          {
+            name: name,
+            OldFolder: oldFolderID
+          }
+        ];
+        localStorage.setItem('restoreArray', JSON.stringify(updatedArr));
+        return updatedArr; 
+      });
+      console.log(binRestoreArr)
     }
 
     if (droppedIcon) {
