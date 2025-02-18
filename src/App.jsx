@@ -222,7 +222,6 @@ function App() {
     }
   },[])
 
-
 useEffect(() => {
   const handleRightClick = (e) => {
     e.preventDefault();
@@ -926,7 +925,7 @@ function handleDragStop(data, iconName, ref) {
   }
 }
 
-
+  
 
   function handleDrop(e, name, target, oldFolderID) {
     setDragging(false)
@@ -935,8 +934,14 @@ function handleDragStop(data, iconName, ref) {
 
     if (!target || name === target) return; // Exit if folder is empty or same as the icon
 
-    console.log(name)
     const droppedIcon = desktopIcon.find(icon => icon.name === name);
+    const itemInBin = desktopIcon.filter(icon => icon.folderId === 'RecycleBin'); // delete arr in bin if its being dragged out
+
+    const checkBinItem = binRestoreArr.filter(icon => 
+      !itemInBin.some(i => i.name === icon.name)
+    );
+
+    setBinRestoreArr(checkBinItem)
 
     if(droppedIcon.folderId === target) {
       setKey(prev => prev + 1)
@@ -956,7 +961,6 @@ function handleDragStop(data, iconName, ref) {
         localStorage.setItem('restoreArray', JSON.stringify(updatedArr));
         return updatedArr; 
       });
-      console.log(binRestoreArr)
     }
 
     if (droppedIcon) {
