@@ -909,7 +909,7 @@ function handleDragStop(data, iconName, ref) {
 
   if (iconElement) {
     const { x, y } = iconElement.getBoundingClientRect();
-    iconFocusIcon('') // all icon goes false
+    isTouchDevice ? '' : iconFocusIcon('') // all icon goes false
     setDesktopIcon(prevIcons => {
       // Create updatedIcons based on the previous state
       const updatedIcons = prevIcons.map(icon =>
@@ -917,7 +917,7 @@ function handleDragStop(data, iconName, ref) {
           ? { ...icon, x: x, y: y }
           : icon
       );
-
+        
       const sorted = sortDesktopIcons(updatedIcons)
       localStorage.setItem('icons', JSON.stringify(sorted));
       setSortedIcon(sorted) // saved sort icon to state to use when refresh

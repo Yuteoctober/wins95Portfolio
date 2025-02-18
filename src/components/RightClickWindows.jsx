@@ -180,7 +180,10 @@ function RightClickWindows() {
             <p style={{color: '#8a8989'}}>Paste</p>
             <p style={{color: '#8a8989'}}>Paste Shortcut</p>
             <p 
-              onClick={() => refreshed()}
+              onClick={() => {
+                refreshed()
+                iconFocusIcon('')
+              }}
             >
               Refresh
             </p>
