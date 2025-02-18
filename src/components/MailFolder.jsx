@@ -123,6 +123,7 @@ const form = useRef();
                     setMailExpand(prev => ({...prev, hide: true, focusItem: false}))
                     StyleHide('Mail')
                   }}
+                  onTouchStart={(e) => e.stopPropagation()}
               >
                 <p className='dash-mail'></p>
               </div>

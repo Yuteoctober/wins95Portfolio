@@ -143,7 +143,7 @@ function MyBioFolder() {
                 setMybioExpand(prev => ({...prev, hide: true, focusItem: false}))
                 StyleHide('About')
               }}
-
+              onTouchStart={(e) => e.stopPropagation()}
               >
                 <p className='dash'></p>
               </div>

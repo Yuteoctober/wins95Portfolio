@@ -253,11 +253,12 @@ function MineSweeper() {
                 StyleHide('MineSweeper') 
               } : undefined
             }
-                   onTouchEnd={(e) => {
-                    e.stopPropagation()
-                    setMineSweeperExpand(prev => ({...prev, hide: true, focusItem: false}))
-                    StyleHide('MineSweeper')
-                  }}
+                onTouchEnd={(e) => {
+                e.stopPropagation()
+                setMineSweeperExpand(prev => ({...prev, hide: true, focusItem: false}))
+                StyleHide('MineSweeper')
+              }}
+                onTouchStart={(e) => e.stopPropagation()}
               >
                 <p className='dash-MineSweeper'></p>
               </div>
