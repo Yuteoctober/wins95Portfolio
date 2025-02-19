@@ -19,6 +19,8 @@ import eff3 from '../assets/brokenTV.jpg'
 import eff4 from '../assets/DarkTV.jpg'
 import eff5 from '../assets/glitch.gif'
 import eff6 from '../assets/glitch2.gif'
+import bg10 from '../assets/live_glitch.gif'
+import bg11 from '../assets/live_xp.gif'
 import '../css/BgSetting.css'
 
 
@@ -77,6 +79,8 @@ function BgSetting() {
         { value: 8, label: 'Light Pink', color: '#f3aac0', image: bg7, barColor: '#1c1719'},
         { value: 9, label: 'Deep Ocean', color: '#3F4565', image: bg8, barColor: '#3F4565'},
         { value: 10, label: 'Purple Blue', color: '#354092', image: bg9, barColor: '#354092'},
+        { value: 11, label: 'Live Dark Glitch', color: 'Black', image: bg10, barColor: 'Black'},
+        { value: 12, label: 'Live Windows XP', color: '#396EE5', image: bg11, barColor: '#396EE5'},
       ];
       
       const effectOptions = [
