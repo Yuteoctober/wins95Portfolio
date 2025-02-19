@@ -36,6 +36,7 @@ function MineSweeper() {
 
 
   const { 
+    setRightClickDefault,
     themeDragBar,
     MineSweeperExpand, setMineSweeperExpand,
     lastTapTime, setLastTapTime,
@@ -236,6 +237,10 @@ function MineSweeper() {
               e.stopPropagation();
               handleSetFocusItemTrue('MineSweeper');
             }}
+            onContextMenu={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              setRightClickDefault(false)}}
             style={ MineSweeperExpand.expand ? inlineStyleExpand('MineSweeper') : inlineStyle('MineSweeper')}>
           <div className="folder_dragbar-MineSweeper"
               // onDoubleClick={handleExpandStateToggle}
