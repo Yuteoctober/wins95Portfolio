@@ -6,7 +6,7 @@
     width: 400px;
     min-width: 300px;
     min-height: 250px;
-    height: 600px;
+    height: 620px;
     background: #c5c4c4;
     border: 2px solid white;
     border-right: 1px solid black;
@@ -148,11 +148,12 @@
 .folder_folder-resumefile .folder_content-resumefile {
     position: relative;
     width: calc(100% - 8px);
-    height: calc(100% - 70px);
+    height: calc(100% - 33px);
     border: 2px solid black;
     border-right-color: white;
     border-bottom-color: white;
     margin: 0 auto;
+    margin-top: 5px;
     background: rgb(255, 255, 255);
     overflow-y: scroll;
     scrollbar-width: none;
