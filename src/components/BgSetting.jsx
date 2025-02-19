@@ -14,6 +14,12 @@ import bg7 from '../assets/bg7.png'
 import bg8 from '../assets/bg8.png'
 import bg9 from '../assets/bg9.jpg'
 import bg10 from '../assets/live_glitch.gif'
+import eff1 from '../assets/noise.png'
+import eff2 from '../assets/oldtv.jpg'
+import eff3 from '../assets/brokenTV.jpg'
+import eff4 from '../assets/DarkTV.jpg'
+import eff5 from '../assets/glitch.gif'
+import eff6 from '../assets/glitch2.gif'
 import '../css/BgSetting.css'
 
 
