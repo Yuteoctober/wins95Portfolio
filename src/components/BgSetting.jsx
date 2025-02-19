@@ -13,13 +13,6 @@ import bg6 from '../assets/bg6.jpg'
 import bg7 from '../assets/bg7.png'
 import bg8 from '../assets/bg8.png'
 import bg9 from '../assets/bg9.jpg'
-import eff1 from '../assets/noise.png'
-import eff2 from '../assets/oldtv.jpg'
-import eff3 from '../assets/brokenTV.jpg'
-import eff4 from '../assets/DarkTV.jpg'
-import eff5 from '../assets/glitch.gif'
-import eff6 from '../assets/glitch2.gif'
-import bg10 from '../assets/live_glitch.gif'
 import '../css/BgSetting.css'
 
 
@@ -81,6 +74,16 @@ function BgSetting() {
         { value: 11, label: 'Live Dark Glitch', color: 'Black', image: bg10, barColor: 'Black'}
       ];
       
+      
+      const effectOptions = [
+        { value: 1, label: '(None)', image: 'none'},
+        { value: 2, label: 'Noise', image: eff1},
+        { value: 3, label: 'Old TV', image: eff2},
+        { value: 4, label: 'Broken TV', image: eff3},
+        { value: 5, label: 'Dark TV', image: eff4},
+        { value: 6, label: 'Glitch', image: eff5},
+        { value: 7, label: 'Glitch Two', image: eff6},
+      ];
       
       const effectOptions = [
         { value: 1, label: '(None)', image: 'none'},
