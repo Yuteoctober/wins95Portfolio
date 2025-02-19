@@ -909,7 +909,6 @@ function handleDragStop(data, iconName, ref) {
 
   if (iconElement) {
     const { x, y } = iconElement.getBoundingClientRect();
-    isTouchDevice ? '' : iconFocusIcon('') // all icon goes false
     setDesktopIcon(prevIcons => {
       // Create updatedIcons based on the previous state
       const updatedIcons = prevIcons.map(icon =>
