@@ -13,8 +13,7 @@ import bg6 from '../assets/bg6.jpg'
 import bg7 from '../assets/bg7.png'
 import bg8 from '../assets/bg8.png'
 import bg9 from '../assets/bg9.jpg'
-import bg10 from '../assets/live_glitch.gif'
-import bg11 from '../assets/live_grey.gif'
+import bg10 from '../assets/live_grey.gif'
 import eff1 from '../assets/noise.png'
 import eff2 from '../assets/oldtv.jpg'
 import eff3 from '../assets/brokenTV.jpg'
@@ -79,8 +78,7 @@ function BgSetting() {
         { value: 8, label: 'Light Pink', color: '#f3aac0', image: bg7, barColor: '#1c1719'},
         { value: 9, label: 'Deep Ocean', color: '#3F4565', image: bg8, barColor: '#3F4565'},
         { value: 10, label: 'Purple Blue', color: '#354092', image: bg9, barColor: '#354092'},
-        { value: 11, label: 'Live Dark Glitch', color: 'Black', image: bg10, barColor: 'Black'},
-        { value: 12, label: 'Live Dark Grey', color: '#3C3C3C', image: bg11, barColor: '#3C3C3C'},
+        { value: 11, label: 'Live Weavy Grey', color: '#3C3C3C', image: bg10, barColor: '#3C3C3C'},
       ];
       
       
