@@ -78,7 +78,7 @@ function BgSetting() {
         { value: 8, label: 'Light Pink', color: '#f3aac0', image: bg7, barColor: '#1c1719'},
         { value: 9, label: 'Deep Ocean', color: '#3F4565', image: bg8, barColor: '#3F4565'},
         { value: 10, label: 'Purple Blue', color: '#354092', image: bg9, barColor: '#354092'},
-        { value: 11, label: 'Live Weavy Grey', color: '#3C3C3C', image: bg10, barColor: '#3C3C3C'},
+        { value: 11, label: 'Live Wavy Grey', color: '#3C3C3C', image: bg10, barColor: '#3C3C3C'},
       ];
       
       
