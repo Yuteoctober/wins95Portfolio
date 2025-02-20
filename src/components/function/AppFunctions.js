@@ -257,9 +257,9 @@ export function handleDoubleClickiframe(name, setOpenProjectExpand, setProjectUr
       setProjectUrl('https://fullstack-stickynotes.netlify.app/'); 
       break;
 
-      case 'Type': 
-      setProjectUrl('https://yuteoctober.github.io/typingGame/'); 
-      break;
+      // case 'Type': 
+      // setProjectUrl('https://yuteoctober.github.io/typingGame/'); 
+      // break;
 
     default: break; 
   }
@@ -287,13 +287,16 @@ export function handleDoubleTapiframeMobile(name, lastTapTime, setLastTapTime, s
   setLastTapTime(now);
   }
 
-export function handleDoubleClickEnterLink(name, setOpenProjectExpand, setProjectUrl) {
+export function handleDoubleClickEnterLink(name, handleshow) {
 
   switch(name) {
     case 'Nft': window.open('https://opennft.netlify.app/', '_blank'); break;
     case 'Note': window.open('https://fullstack-stickynotes.netlify.app/', '_blank'); break;
     case 'Type': window.open('https://yuteoctober.github.io/typingGame/', '_blank'); break;
-    case 'Github': window.open('https://github.com/Yuteoctober/wins95Portfolio/', '_blank'); break;
+    case 'Github': 
+      handleshow('Github'); 
+      break;
+
     default: break; 
   }
 }

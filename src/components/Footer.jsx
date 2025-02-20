@@ -118,7 +118,10 @@ export default function Footer() {
             imgAlt: "github",
             style: { borderRadius: '5px' },
             spanText: "Github",
-            onClick: () => handleDoubleClickEnterLink('Github'),
+            onClick: () => {
+                handleDoubleClickEnterLink('Github', handleShow)
+                setStartActive(false)
+            },
             onmouseenter: () => {
                 setResumejectStartBar(false);
                 setProjectStartBar(false);
