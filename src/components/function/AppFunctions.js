@@ -27,6 +27,7 @@ import tenthPic from '../../assets/010.jpg'
 import eleventhPic from '../../assets/011.jpg'
 import binEmp from '../../assets/bin2.png'
 import reset from '../../assets/reset.png'
+import github from '../../assets/github.png'
 
 
 
@@ -128,6 +129,9 @@ export function imageMapping (name) {
 
     case 'ResetStorage':
       return reset;
+
+    case 'Github':
+      return github;
 
     default:
       return null;

@@ -214,8 +214,8 @@ function App() {
   const allSetters = [setClippyThanks, setClippySendemail, setClippySong, setClippyUsername];
   const allClears = [ClearTOclippyThanksYouFunction, ClearTOclippySendemailfunction, ClearTOSongfunction, ClearTOclippyUsernameFunction];
 
-  useEffect(() => { // if user has older verion of page and does not have the reset button, automatically reset stroage for user
-    const resetIcon = desktopIcon.find(icon => icon.name === 'ResetStorage')
+  useEffect(() => { // force user to update version by clearing their local storage!
+    const resetIcon = desktopIcon.find(icon => icon.name === 'Github')
     if(!resetIcon) {
       localStorage.clear();
       location.reload();

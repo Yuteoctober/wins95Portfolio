@@ -243,13 +243,22 @@
         "y": 26
     },
     {
+        "name": "Github",
+        "pic": "Github",
+        "folderId": "Desktop",
+        "size": 15,
+        "type": ".exe",
+        "x": 27,
+        "y": 27    
+    },
+    {
         "name": "RecycleBin",
         "pic": "RecycleBin",
         "folderId": "Desktop",
         "size": 250,
         "type": "folder",
-        "x": 27,
-        "y": 27    
+        "x": 28,
+        "y": 28    
     },
     {
         "name": "ResetStorage",
@@ -257,8 +266,8 @@
         "folderId": "DiskD",
         "size": 20,
         "type": ".exe",
-        "x": 28,
-        "y": 28    
+        "x": 29,
+        "y": 29    
     }
 
 ]

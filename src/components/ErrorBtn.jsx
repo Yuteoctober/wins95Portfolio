@@ -8,6 +8,8 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
     const [Content, setContent] = useState('')
     const { handleSetFocusItemTrue } = useContext(UseContext);
     const textResetStroage = "Warning: Resetting local storage will erase all your info. Are you sure you want to continue?"
+    const textGithub = "Warning: You will be redirecting to another site, are you sure you want to continue?"
+
 
     useEffect(() => {
         handleBtn(stateVal)
@@ -19,6 +21,12 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
                 setYesNo(true);
                 setContent(textResetStroage);
                 break;
+
+            case "github":
+                setYesNo(true);
+                setContent(textGithub);
+                break;
+
             default:
                 setYesNo(false);
                 setContent(text);
@@ -31,6 +39,9 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
         switch (name.toLowerCase()) {
             case "resetstorage":
                 return removeLocalStorage();
+
+            case "github": 
+                return window.open('https://github.com/Yuteoctober/wins95Portfolio/', '_blank');
 
             default:
                 return runOpenFuction();
