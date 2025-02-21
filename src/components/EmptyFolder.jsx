@@ -147,6 +147,8 @@ function EmptyFolder({state, setState, refState, folderName, photoMode, paintMod
                     : inlineStyle(folderName)
             ),
             overflow: dragging ? '' : 'hidden',
+            width: paintMode && window.innerWidth > 450 ? '500px' : paintMode && window.innerWidth < 450 ? '90%' : '',
+            height: paintMode && window.innerHeight > 450 ? '400px' : paintMode && window.innerWidth < 450 ? '84%' : ''
         }}
         
         >
