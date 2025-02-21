@@ -129,6 +129,7 @@ All the functionalities
     - right click on icon in RecycleBin will show option to restore
     - clicking on restore will store the icon to its previous position
   
+  - Added Paint using Library [Paint](https://github.com/1j01/jspaint)
 
 Library used:
   - React Draggable => drag and drop functionality

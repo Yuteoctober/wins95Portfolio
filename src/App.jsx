@@ -192,7 +192,10 @@ function App() {
   const [BinExpand, setBinExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
-  const allPicture = desktopIcon.filter(picture => picture.type === '.jpeg'); // photo open
+    const [PaintExpand, setPaintExpand] = useState(
+      {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
+  
+    const allPicture = desktopIcon.filter(picture => picture.type === '.jpeg'); // photo open
 
   const textError = ( // error message
       <>
@@ -834,6 +837,13 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
         />  
     )}
         <EmptyFolder
+          state={PaintExpand} 
+          setState={setPaintExpand}
+          folderName='Paint'
+          paintMode={true}
+        />
+
+        <EmptyFolder
           state={pictureExpand} 
           setState={setPictureExpand}
           refState={PictureRef}
@@ -1081,6 +1091,7 @@ function ObjectState() { // Add all the state realted to folder here !! very imp
           { name: 'Picture', setter: setPictureExpand, usestate: pictureExpand },
           { name: 'Photo', setter: setPhotoOpenExpand, usestate: photoOpenExpand },
           { name: 'RecycleBin', setter: setBinExpand, usestate: BinExpand },
+          { name: 'Paint', setter: setPaintExpand, usestate: PaintExpand },
 
         ];
 }

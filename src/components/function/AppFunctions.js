@@ -28,6 +28,7 @@ import eleventhPic from '../../assets/011.jpg'
 import binEmp from '../../assets/bin2.png'
 import reset from '../../assets/reset.png'
 import github from '../../assets/github.png'
+import paint from '../../assets/paint.png'
 
 
 
@@ -132,6 +133,10 @@ export function imageMapping (name) {
 
     case 'Github':
       return github;
+
+    case "paint":
+    case "Paint":
+      return paint;
 
     default:
       return null;

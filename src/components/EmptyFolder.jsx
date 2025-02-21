@@ -8,7 +8,7 @@ import photoicon from '../assets/jpeg.png';
 import binEmp from '../assets/bin2.png'
 import bin from '../assets/bin.png'
 
-function EmptyFolder({state, setState, refState, folderName, photoMode}) {
+function EmptyFolder({state, setState, refState, folderName, photoMode, paintMode}) {
 
   const iconRefs = useRef([]);
 
@@ -166,7 +166,13 @@ function EmptyFolder({state, setState, refState, folderName, photoMode}) {
           </div>
         </div>
 
-        <div className="file_edit_container">
+        {paintMode ? ( // run paint
+          <iframe src="https://jspaint.app" width="100%" height="100%"></iframe>
+        )
+        :
+        (
+          <>
+            <div className="file_edit_container">
           <p>File<span style={{ left: '-23px' }}>_</span></p>
           <p>Edit<span style={{ left: '-24px' }}>_</span></p>
           <p>View<span style={{ left: '-32px' }}>_</span></p>
@@ -315,7 +321,9 @@ function EmptyFolder({state, setState, refState, folderName, photoMode}) {
           </div>
         </div>
         )}
-        
+          </>
+        )}
+
       </motion.div>
     </Draggable>
   );
@@ -330,6 +338,7 @@ EmptyFolder.propTypes = {
   refState: PropTypes.object,
   folderName: PropTypes.string.isRequired,
   photoMode: PropTypes.bool,
+  paintMode: PropTypes.bool,
 };
 
 export default EmptyFolder;
