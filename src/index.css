@@ -881,7 +881,14 @@ body {
     border-color: rgb(216, 218, 165)  transparent transparent transparent;
     transform: scaleY(1.5);
     z-index: 1003;
+
 }
 
+.block_menu_paint {
+    position: absolute;
+    width: 30px;
+    height: 20px;
+    z-index: 5;
+}
 
 

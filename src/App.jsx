@@ -661,6 +661,7 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
 }
 
   const contextValue = {
+    PaintExpand, setPaintExpand,
     sortedIcon, setSortedIcon,
     sortIconTrigger, setSortIconTrigger,
     maxZindexRef,

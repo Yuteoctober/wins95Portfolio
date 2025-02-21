@@ -11,8 +11,10 @@ import bin from '../assets/bin.png'
 function EmptyFolder({state, setState, refState, folderName, photoMode, paintMode}) {
 
   const iconRefs = useRef([]);
+  const iframeRef = useRef(null);
 
   const { 
+    PaintExpand, setPaintExpand,
     handleMobileLongPressBin,
     refBeingClicked,
     binRestoreArr, setBinRestoreArr,
@@ -85,6 +87,36 @@ function EmptyFolder({state, setState, refState, folderName, photoMode, paintMod
   const recycleBin = desktopIcon.filter(icon => icon.folderId === 'RecycleBin');
   const recycleBinLength = recycleBin.length;
 
+
+  useEffect(() => {
+    const iframe = iframeRef.current;
+
+    const handleMessage = (event) => {
+      // Ensure the message is from the expected origin
+      if (event.origin !== 'https://expected-iframe-origin.com') {
+        return;
+      }
+
+      // Handle the message
+      if (event.data === 'disableMenuItem') {
+        // Disable the menu item
+        const iframeDocument = iframe.contentWindow.document;
+        const menuItem = iframeDocument.getElementById('menu-item-eioteacvdqt');
+        if (menuItem) {
+          menuItem.style.pointerEvents = 'none';
+          menuItem.style.opacity = '0.5'; // Optional: visual indication it's disabled
+        }
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+
+    return () => {
+      window.removeEventListener('message', handleMessage);
+    };
+  }, []);
+  
+  
 
   return (
     <Draggable
@@ -167,7 +199,15 @@ function EmptyFolder({state, setState, refState, folderName, photoMode, paintMod
         </div>
 
         {paintMode ? ( // run paint
-          <iframe src="https://jspaint.app" width="100%" height="100%"></iframe>
+          <>
+          <div className="block_menu_paint"></div>
+          <iframe 
+            src="https://jspaint.app" 
+            ref={iframeRef}
+            width="100%"
+            height="100%">
+          </iframe>
+          </>
         )
         :
         (
