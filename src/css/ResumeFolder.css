@@ -20,6 +20,7 @@
 }
 
 .folder_folder.photo_mode {
+    min-width: 260px;
     width: 450px;
     height: 380px;
 }
