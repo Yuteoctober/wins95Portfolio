@@ -63,6 +63,7 @@ function MyComputer() {
     {folder: 'Resume',label: 'Resume', img: imageMapping('Resume')},
     {folder: 'Project',label: 'Project', img: imageMapping('Project')},
     {folder: 'Picture',label: 'Picture', img: imageMapping('Picture')},
+    {folder: 'Utility',label: 'Utility', img: imageMapping('Utility')},
   ]
 
   // const popUpiconList = desktopIcon.filter(a => {
@@ -118,6 +119,7 @@ function MyComputer() {
       'Resume': 'Resume',
       'Project': 'Project',
       'Picture': 'Picture',
+      'Utility': 'Utility',
     };
   
     // Get the folder identifier from the mapy

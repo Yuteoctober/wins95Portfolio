@@ -65,7 +65,7 @@
     {
         "name": "Winamp",
         "pic": "Winamp",
-        "folderId": "DiskD",
+        "folderId": "Utility",
         "size": 4300,
         "type": ".exe",
         "x": 7,
@@ -137,7 +137,7 @@
     {
         "name": "Bitcoin",
         "pic": "Bitcoin",
-        "folderId": "DiskD",
+        "folderId": "Utility",
         "size": 500,
         "type": ".exe",
         "x": 15,
@@ -263,7 +263,7 @@
     {
         "name": "ResetStorage",
         "pic": "ResetStorage",
-        "folderId": "DiskD",
+        "folderId": "Utility",
         "size": 20,
         "type": ".exe",
         "x": 29,
@@ -272,11 +272,20 @@
     {
         "name": "Paint",
         "pic": "Paint",
-        "folderId": "DiskD",
+        "folderId": "Utility",
         "size": 200,
         "type": ".exe",
         "x": 30,
         "y": 30    
+    },
+    {
+        "name": "Utility",
+        "pic": "Utility",
+        "folderId": "DiskD",
+        "size": 2500,
+        "type": "folder",
+        "x": 31,
+        "y": 31
     }
 
 ]

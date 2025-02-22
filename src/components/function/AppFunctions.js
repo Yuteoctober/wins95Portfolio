@@ -81,6 +81,7 @@ export function imageMapping (name) {
 
     case 'Project':
     case 'Picture':
+    case 'Utility':
       return Project;
 
       case 'Nft':

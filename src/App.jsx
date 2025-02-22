@@ -86,6 +86,7 @@ function App() {
   const BinRef = useRef(null);
   const DiskRef = useRef(null);
   const PictureRef = useRef(null)
+  const UtilityRef = useRef(null)
   const [draggedIcon, setDraggedIcon] = useState(null);
   const [dropTargetFolder, setDropTargetFolder] = useState(null);
   const [reMountRun, setReMountRun] = useState(0)
@@ -192,8 +193,11 @@ function App() {
   const [BinExpand, setBinExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
-    const [PaintExpand, setPaintExpand] = useState(
-      {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
+  const [PaintExpand, setPaintExpand] = useState(
+    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
+  
+  const [UtilityExpand, setUtilityExpand] = useState(
+    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
   
     const allPicture = desktopIcon.filter(picture => picture.type === '.jpeg'); // photo open
 
@@ -218,7 +222,7 @@ function App() {
   const allClears = [ClearTOclippyThanksYouFunction, ClearTOclippySendemailfunction, ClearTOSongfunction, ClearTOclippyUsernameFunction];
 
   useEffect(() => { // force user to update version by clearing their local storage!
-    const resetIcon = desktopIcon.find(icon => icon.name === 'Github')
+    const resetIcon = desktopIcon.find(icon => icon.name === 'Utility')
     if(!resetIcon) {
       localStorage.clear();
       location.reload();
@@ -445,6 +449,8 @@ useEffect(() => { // touch support device === true
 
 }, []);
 
+console.log(UtilityRef)
+
 const handleOnDrag = (name, ref) => () => {
   setDragging(true)
   const iconRef = ref
@@ -456,13 +462,26 @@ const handleOnDrag = (name, ref) => () => {
     const desktopRect = DesktopRef.current.getBoundingClientRect();
     const diskRect = DiskRef.current.getBoundingClientRect();
     const PictureRect = PictureRef.current.getBoundingClientRect();
-    
+    const UtilityRect = UtilityRef.current.getBoundingClientRect();
+  
 
     const offset = 55;
 
     if(name === 'MyComputer' || name === 'RecycleBin') return; // prevent MyComputer from being dragged into folder
 
+    
+    // utility
     if (
+      iconRect.left < UtilityRect.right - offset &&
+      iconRect.right > UtilityRect.left + offset &&
+      iconRect.top < UtilityRect.bottom - offset &&
+      iconRect.bottom > UtilityRect.top + offset
+    ) {
+      if(name === 'Utility') return;
+      setDropTargetFolder('Utility');
+    }
+
+    else if (
       iconRect.left < BinRect.right - offset &&
       iconRect.right > BinRect.left + offset &&
       iconRect.top < BinRect.bottom - offset &&
@@ -479,8 +498,10 @@ const handleOnDrag = (name, ref) => () => {
       iconRect.top < PictureRect.bottom - offset &&
       iconRect.bottom > PictureRect.top + offset
     ) {
+      if(name === 'Picture') return;
       setDropTargetFolder('Picture');
     }
+    
     // Check for intersection with the Resume folder
     else if (
       iconRect.left < resumeFolderRect.right - offset &&
@@ -507,26 +528,15 @@ const handleOnDrag = (name, ref) => () => {
       iconRect.right > diskRect.left + offset &&
       iconRect.top < diskRect.bottom - offset &&
       iconRect.bottom > diskRect.top + offset
-    ) {
-      if(name === 'MyComputer') return;
-        if(currentFolder === 'DiskC'){
-          setDropTargetFolder('DiskC');
-        }
-        if(currentFolder === 'DiskD'){
-          setDropTargetFolder('DiskD');
-        }
-        if(currentFolder === 'Resume'){
-          setDropTargetFolder('Resume');
-        }
-        if(currentFolder === 'Project'){
-          setDropTargetFolder('Project');
-        }
-        if(currentFolder === 'Picture'){
-          setDropTargetFolder('Picture');
-        }
-        if(currentFolder === 'RecycleBin'){
-          setDropTargetFolder('RecycleBin');
-        }
+    ) { 
+      // check within MyComputer
+      if (name === 'MyComputer') return;
+      // add new folder in this array
+      const validFolders = ['DiskC', 'DiskD', 'Resume', 'Project', 'Picture', 'RecycleBin', 'Utility'];
+
+      if (validFolders.includes(currentFolder)) {
+        setDropTargetFolder(currentFolder);
+}
     }
     else if (
       iconRect.left < desktopRect.right &&
@@ -585,6 +595,13 @@ function handleShowInfolder(name) { //important handleshow for in folder
       setCurrentFolder('Picture')
       setSelectedFolder({label: 'Picture', img: imageMapping(name)})
       setUndo(prev => [...prev, 'Picture'])
+      return;
+    }
+
+    if (name === 'Utility') {
+      setCurrentFolder('Utility')
+      setSelectedFolder({label: 'Utility', img: imageMapping(name)})
+      setUndo(prev => [...prev, 'Utility'])
       return;
     }
 
@@ -654,6 +671,15 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
       return;
     }
 
+    if (name === 'Utility') {
+      setTimeout(() => {
+        setCurrentFolder('Utility')
+      }, 100);
+      setSelectedFolder({label: 'Utility', img: imageMapping(name)})
+      setUndo(prev => [...prev, 'Utility'])
+      return;
+    }
+
     handleShowMobile(name)
 
   }
@@ -661,6 +687,7 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
 }
 
   const contextValue = {
+    UtilityRef,
     PaintExpand, setPaintExpand,
     sortedIcon, setSortedIcon,
     sortIconTrigger, setSortIconTrigger,
@@ -856,6 +883,13 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
           setState={setBinExpand}
           refState={BinRef}
           folderName='RecycleBin'
+        />
+
+        <EmptyFolder
+          state={UtilityExpand} 
+          setState={setUtilityExpand}
+          refState={UtilityRef}
+          folderName='Utility'
         />
 
         <EmptyFolder
@@ -1093,6 +1127,7 @@ function ObjectState() { // Add all the state realted to folder here !! very imp
           { name: 'Photo', setter: setPhotoOpenExpand, usestate: photoOpenExpand },
           { name: 'RecycleBin', setter: setBinExpand, usestate: BinExpand },
           { name: 'Paint', setter: setPaintExpand, usestate: PaintExpand },
+          { name: 'Utility', setter: setUtilityExpand, usestate: UtilityExpand },
 
         ];
 }
