@@ -104,7 +104,7 @@ function EmptyFolder({state, setState, refState, folderName, photoMode, paintMod
     >
         <motion.div 
           ref={refState}
-          className={`folder_folder ${photoMode? 'photo_mode' : ''}`}
+          className={`folder_folder ${photoMode || paintMode ? 'photo_mode' : ''}`}
           onClick={(e) => {
             e.stopPropagation();
           handleSetFocusItemTrue(folderName);
@@ -116,8 +116,6 @@ function EmptyFolder({state, setState, refState, folderName, photoMode, paintMod
                     : inlineStyle(folderName)
             ),
             overflow: dragging ? '' : 'hidden',
-            width: paintMode && window.innerWidth > 450 ? '500px' : paintMode && window.innerWidth < 450 ? '90%' : '',
-            height: paintMode && window.innerHeight > 450 ? '400px' : paintMode && window.innerWidth < 450 ? '84%' : ''
         }}
         
         >
@@ -173,7 +171,7 @@ function EmptyFolder({state, setState, refState, folderName, photoMode, paintMod
           <>
           <div className="block_menu_paint"></div>
           <div className="block_menu_paint_extra"></div>
-          <iframe 
+          <iframe className='paintiframe'
             src="https://jspaint.app" 
             width="100%"
             height="100%"

@@ -25,6 +25,7 @@
     height: 380px;
 }
 
+
 @media screen and (max-width: 450px) {
     .folder_folder {
         width: 84%;
