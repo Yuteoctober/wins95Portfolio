@@ -104,7 +104,9 @@ function EmptyFolder({state, setState, refState, folderName, photoMode, paintMod
     >
         <motion.div 
           ref={refState}
-          className={`folder_folder ${photoMode || paintMode ? 'photo_mode' : ''}`}
+          className={`folder_folder ${photoMode? 'photo_mode' 
+            : paintMode? 'paint_mode' 
+            : ''}`}
           onClick={(e) => {
             e.stopPropagation();
           handleSetFocusItemTrue(folderName);

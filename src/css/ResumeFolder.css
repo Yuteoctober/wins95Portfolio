@@ -25,6 +25,12 @@
     height: 380px;
 }
 
+.folder_folder.paint_mode {
+    min-width: 260px;
+    width: 450px;
+    height: 380px;
+}
+
 
 @media screen and (max-width: 450px) {
     .folder_folder {
@@ -34,6 +40,10 @@
     .folder_folder.photo_mode {
         width: 90%;
         height: 300px;
+    }
+    .folder_folder.paint_mode {
+        width: 90%;
+        height: 370px;
     }
 }
 
