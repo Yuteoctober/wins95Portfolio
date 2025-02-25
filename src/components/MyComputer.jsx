@@ -134,6 +134,7 @@ function MyComputer() {
   
 
   useEffect(() => {
+    // defaulting to Mycomputer
       setSelectedFolder({label: 'MyComputer', img: imageMapping('MyComputer')})
       setCurrentFolder('MyComputer')
       setPopUpFolder(false)
