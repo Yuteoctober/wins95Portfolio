@@ -227,6 +227,8 @@ function App() {
       localStorage.clear();
       location.reload();
     }
+
+    window.open('https://yuteoctober.github.io/resume_web/')
   },[])
 
 
