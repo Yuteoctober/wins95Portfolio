@@ -27,6 +27,11 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
                 setContent(textGithub);
                 break;
 
+            case "webresume":
+                setYesNo(true);
+                setContent(textGithub);
+                break;
+
             default:
                 setYesNo(false);
                 setContent(text);
@@ -42,6 +47,9 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
 
             case "github": 
                 return window.open('https://github.com/Yuteoctober/wins95Portfolio/', '_blank');
+
+            case "webresume": 
+                return window.open('https://yuteoctober.github.io/resume_web/', '_blank');
 
             default:
                 return runOpenFuction();

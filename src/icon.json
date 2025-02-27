@@ -252,13 +252,22 @@
         "y": 27    
     },
     {
+        "name": "WebResume",
+        "pic": "WebResume",
+        "folderId": "Desktop",
+        "size": 2100,
+        "type": ".exe",
+        "x": 28,
+        "y": 28
+    },
+    {
         "name": "RecycleBin",
         "pic": "RecycleBin",
         "folderId": "Desktop",
         "size": 250,
         "type": "folder",
-        "x": 28,
-        "y": 28    
+        "x": 29,
+        "y": 29    
     },
     {
         "name": "ResetStorage",
@@ -266,8 +275,8 @@
         "folderId": "Utility",
         "size": 20,
         "type": ".exe",
-        "x": 29,
-        "y": 29    
+        "x": 30,
+        "y": 30    
     },
     {
         "name": "Paint",
@@ -275,8 +284,8 @@
         "folderId": "Utility",
         "size": 200,
         "type": ".exe",
-        "x": 30,
-        "y": 30    
+        "x": 31,
+        "y": 31    
     },
     {
         "name": "Utility",
@@ -284,8 +293,9 @@
         "folderId": "DiskD",
         "size": 2500,
         "type": "folder",
-        "x": 31,
-        "y": 31
+        "x": 32,
+        "y": 32
     }
+    
 
 ]

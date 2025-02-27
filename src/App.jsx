@@ -222,13 +222,11 @@ function App() {
   const allClears = [ClearTOclippyThanksYouFunction, ClearTOclippySendemailfunction, ClearTOSongfunction, ClearTOclippyUsernameFunction];
 
   useEffect(() => { // force user to update version by clearing their local storage!
-    const resetIcon = desktopIcon.find(icon => icon.name === 'Utility')
+    const resetIcon = desktopIcon.find(icon => icon.name === 'WebResume')
     if(!resetIcon) {
       localStorage.clear();
       location.reload();
     }
-
-    window.open('https://yuteoctober.github.io/resume_web/')
   },[])
 
 
