@@ -254,11 +254,20 @@
     {
         "name": "WebResume",
         "pic": "WebResume",
-        "folderId": "Desktop",
+        "folderId": "Resume",
         "size": 2100,
         "type": ".exe",
         "x": 28,
         "y": 28
+    },
+    {
+        "name": "AiAgent",
+        "pic": "AiAgent",
+        "folderId": "Desktop",
+        "size": 10000,
+        "type": ".exe",
+        "x": 33,
+        "y": 33
     },
     {
         "name": "RecycleBin",
@@ -296,6 +305,8 @@
         "x": 32,
         "y": 32
     }
+    
+
     
 
 ]

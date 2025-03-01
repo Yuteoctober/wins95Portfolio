@@ -29,6 +29,7 @@ import binEmp from '../../assets/bin2.png'
 import reset from '../../assets/reset.png'
 import github from '../../assets/github.png'
 import paint from '../../assets/paint.png'
+import aiagent from '../../assets/ai_robot.png'
 
 
 
@@ -139,6 +140,9 @@ export function imageMapping (name) {
     case "paint":
     case "Paint":
       return paint;
+
+      case "AiAgent":
+        return aiagent;
 
     default:
       return null;
@@ -258,15 +262,15 @@ export function handleDoubleClickiframe(name, setOpenProjectExpand, setProjectUr
   switch(name) {
     case 'Nft': 
       setProjectUrl('https://opennft.netlify.app/'); 
-      break;
+    break;
 
-      case 'Note': 
+    case 'Note': 
       setProjectUrl('https://fullstack-stickynotes.netlify.app/'); 
-      break;
+    break;
 
-      // case 'Type': 
-      // setProjectUrl('https://yuteoctober.github.io/typingGame/'); 
-      // break;
+    case 'AiAgent': 
+        setProjectUrl('https://yuteoctober.github.io/AI_chatbot/'); 
+    break;
 
     default: break; 
   }
@@ -284,8 +288,8 @@ export function handleDoubleTapiframeMobile(name, lastTapTime, setLastTapTime, s
         setProjectUrl('https://fullstack-stickynotes.netlify.app/'); 
         break;
   
-        case 'Type': 
-        setProjectUrl('https://yuteoctober.github.io/typingGame/'); 
+        case 'AiAgent': 
+        setProjectUrl('https://yuteoctober.github.io/AI_chatbot/'); 
         break;
   
       default: break; 

@@ -222,7 +222,7 @@ function App() {
   const allClears = [ClearTOclippyThanksYouFunction, ClearTOclippySendemailfunction, ClearTOSongfunction, ClearTOclippyUsernameFunction];
 
   useEffect(() => { // force user to update version by clearing their local storage!
-    const resetIcon = desktopIcon.find(icon => icon.name === 'WebResume')
+    const resetIcon = desktopIcon.find(icon => icon.name === 'AiAgent')
     if(!resetIcon) {
       localStorage.clear();
       location.reload();
@@ -1114,7 +1114,7 @@ function ObjectState() { // Add all the state realted to folder here !! very imp
           { name: 'Mail', setter: setMailExpand, usestate: MailExpand },
           { name: 'Nft', setter: setNftExpand, usestate: NftExpand},
           { name: 'Note', setter: setNoteExpand, usestate: NoteExpand },
-          // { name: 'Type', setter: setTypeExpand, usestate: TypeExpand },
+          { name: 'AiAgent', setter: setOpenProjectExpand, usestate: openProjectExpand },
           { name: 'Winamp', setter: setWinampExpand, usestate: WinampExpand },
           { name: 'ResumeFile', setter: setResumeFileExpand, usestate: ResumeFileExpand },
           { name: 'MineSweeper', setter: setMineSweeperExpand, usestate: MineSweeperExpand },
@@ -1204,6 +1204,10 @@ function handleShow(name) {
         handleDoubleClickiframe('Note', setOpenProjectExpand, setProjectUrl)
         handleShow('Internet');
       }
+      if(lowerCaseName === 'aiagent') {
+        handleDoubleClickiframe('AiAgent', setOpenProjectExpand, setProjectUrl)
+        handleShow('Internet');
+      }
     }
     item.setter(prev => ({...prev,focusItem: false}));
 
@@ -1211,7 +1215,7 @@ function handleShow(name) {
   if(tap.includes(name)) return;
   setStartActive(false)
 
-  if(name === 'Run' || name === 'Nft' || name === 'Note')return; // not showing run on tap
+  if(name === 'Run' || name === 'Nft' || name === 'Note' || name === 'AiAgent')return; // not showing run on tap
 
   setTap(prevTap => [...prevTap, name]);
   setDesktopIcon(prevIcons => prevIcons.map(icon => ({...icon, focus: false})));
@@ -1274,6 +1278,10 @@ function handleShowMobile(name) {
           handleDoubleClickiframe('Note', setOpenProjectExpand, setProjectUrl)
           handleShow('Internet');
         }
+        if(lowerCaseName === 'aiagent') {
+          handleDoubleClickiframe('AiAgent', setOpenProjectExpand, setProjectUrl)
+          handleShow('Internet');
+        }
       }
       item.setter(prev => ({...prev,focusItem: false}));
   
@@ -1281,7 +1289,7 @@ function handleShowMobile(name) {
     if(tap.includes(name)) return;
     setStartActive(false)
   
-    if(name === 'Run' || name === 'Nft' || name === 'Note')return; // not showing run on tap
+    if(name === 'Run' || name === 'Nft' || name === 'Note' || name === 'AiAgent')return; // not showing run on tap
   
     setTap(prevTap => [...prevTap, name]);
     setDesktopIcon(prevIcons => prevIcons.map(icon => ({...icon, focus: false})));

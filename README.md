@@ -130,6 +130,7 @@ All the functionalities
     - clicking on restore will store the icon to its previous position
   
   - Added Paint using Library [Paint](https://github.com/1j01/jspaint)
+  - Added AiAgent project 3/1/2025
 
 Library used:
   - React Draggable => drag and drop functionality
