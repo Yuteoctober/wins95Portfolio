@@ -36,6 +36,7 @@ import { StyleHide, imageMapping,
 
 
 function App() {
+  const [onlineUser, setOnlineUser] = useState(0)
   const [sortedIcon, setSortedIcon] = useState([])
   const [sortIconTrigger, setSortIconTrigger] = useState(0)
   const [deleteIcon, setDeleteIcon] = useState(0)
@@ -348,6 +349,7 @@ useEffect(() => {
   
 
 
+
   useEffect(() => {
     let retryCount = 0;
     const maxRetries = 10;
@@ -362,6 +364,10 @@ useEffect(() => {
 
     socket.current.onmessage = (event) => {
       const data = JSON.parse(event.data)
+
+      if (data.count !== undefined) {
+        setOnlineUser(data.count);
+    }
       
       if (data.key) {
         setKeyChatSession(data.key)
@@ -449,7 +455,6 @@ useEffect(() => { // touch support device === true
 
 }, []);
 
-console.log(UtilityRef)
 
 const handleOnDrag = (name, ref) => () => {
   setDragging(true)
@@ -687,6 +692,7 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
 }
 
   const contextValue = {
+    onlineUser, setOnlineUser,
     UtilityRef,
     PaintExpand, setPaintExpand,
     sortedIcon, setSortedIcon,

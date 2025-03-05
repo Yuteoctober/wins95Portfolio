@@ -288,9 +288,11 @@
     align-items: center;
 }
 
-.chat_to_div p {
+.chat_to_div span {
+    position: relative;
+    top: 1px;
     font-size: 13px;
-
+    padding-left: 1px;
 }
 
 .enter_text_div {

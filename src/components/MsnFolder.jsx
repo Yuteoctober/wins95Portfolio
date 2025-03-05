@@ -8,6 +8,7 @@ import '../css/MSN.css';
 
 function MsnFolder() {
   const {
+    onlineUser,
     loadedMessages, setLoadedMessages,
     themeDragBar,
     sendDisable,
@@ -273,9 +274,9 @@ useEffect(() => {
 
           </div>
           <div className="chat_to_div">
-            <p>
-              To: everyone
-            </p>
+            <span>
+              Online User : <span>{onlineUser}</span>
+            </span>
           </div>
           <div className="folder_content-MSN">
             {chatData.length === 0 &&  (
