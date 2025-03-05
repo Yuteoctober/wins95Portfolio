@@ -275,7 +275,7 @@ useEffect(() => {
           </div>
           <div className="chat_to_div">
             <span>
-              Online User : <span>{onlineUser}</span>
+              Online User: <span>{onlineUser}</span>
             </span>
           </div>
           <div className="folder_content-MSN">

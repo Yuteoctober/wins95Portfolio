@@ -692,7 +692,7 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
 }
 
   const contextValue = {
-    onlineUser, setOnlineUser,
+    onlineUser,
     UtilityRef,
     PaintExpand, setPaintExpand,
     sortedIcon, setSortedIcon,
