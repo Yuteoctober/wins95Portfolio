@@ -18,6 +18,7 @@ import Calendar from 'react-calendar';
 import { BsFillCaretRightFill } from "react-icons/bs";
 import binEmp from '../assets/bin2.png'
 import bin from '../assets/bin.png'
+import news from '../assets/news.png'
 
 
 export default function Footer() {
@@ -438,8 +439,7 @@ export default function Footer() {
                 >
                     <img src={startIcon} alt="startIcon" />
                     <h4>Start</h4>
-                </div>
-
+                </div>        
                 {/* -------- CREATE TAP ON FOOTER -------- */}
                 <div className="tap_container" ref={wheelTapContainer}
                     onWheel={handleWheelScroll}
@@ -465,6 +465,15 @@ export default function Footer() {
                 </div>
 
                 <div className="time">
+                    <img src={news} alt="news" 
+                            style={{
+                                position: 'relative',
+                                width: '18px',
+                                left: '3px',
+                                zIndex: '2'
+                            }} 
+                            onClick={() => null}
+                    />
                     <img src={btc_icon} alt="btc_icon" 
                         style={{
                             position: 'relative',

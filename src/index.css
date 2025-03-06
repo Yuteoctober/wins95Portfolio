@@ -482,12 +482,17 @@ body {
     border-top: 2.5px groove #efefef;
 }
 
+.shortcut_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 
 .tap_container {
     display: flex;
     position: relative;
-    max-width: calc(100svw - 189px);
+    max-width: calc(100svw - 210px);
     padding-right: 2px;
     justify-content: flex-start;
     align-items: center;
