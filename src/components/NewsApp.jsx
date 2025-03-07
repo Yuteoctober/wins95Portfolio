@@ -66,10 +66,8 @@ function NewsApp() {
                         <div className="news" key={item._id}
                             onClick={() => openNews(item.url)}
                         >
-                            <div className="news_content">
-                                <img src={item.urlToImage} alt="" />
-                                <h5>{item.originalNews}</h5>
-                            </div>
+                            <img src={item.urlToImage} alt="" />
+                            <h5>{item.originalNews}</h5>
                         </div>
                     ))
                 ) : (
