@@ -7,8 +7,11 @@ import "../css/NewsApp.css";
 function NewsApp() {
     const newsContainerRef = useRef()
     const [allNews, setAllNews] = useState([]); 
-
     const { newsPopup, setNewsPopup } = useContext(UseContext);
+    const filteredNews = [...new Map(allNews.map(item => [item.url, item])).values()]
+    .sort((a, b) => b.rank - a.rank);
+
+
 
     useEffect(() => {
         fetchNews();
@@ -62,7 +65,7 @@ function NewsApp() {
                 >
                 <h1>Latest News</h1>
                 {allNews.length > 0 ? (
-                    allNews.map(item => (
+                    filteredNews.map(item => (
                         <div className="news" key={item._id}
                             onClick={() => openNews(item.url)}
                         >
