@@ -8,8 +8,16 @@ function NewsApp() {
     const newsContainerRef = useRef()
     const [allNews, setAllNews] = useState([]); 
     const { newsPopup, setNewsPopup } = useContext(UseContext);
-    const filteredNews = [...new Map(allNews.map(item => [item.url, item])).values()]
-    .sort((a, b) => b.rank - a.rank);
+    const hasSeen = new Set();
+
+    const filteredNews = allNews // filter dup and rerank
+        .filter(item => {
+            if (hasSeen.has(item.url)) return false;
+            hasSeen.add(item.url);
+            return true;
+        })
+        .sort((a, b) => b.rank - a.rank);
+
 
 
 
