@@ -4,7 +4,7 @@
     position: absolute;
     width: 540px;
     height: calc(100svh - 50px);
-    background: #979696af;
+    background: #f2f2f183;
     top: 0.5rem;
     margin-left: 0.5rem;
     z-index: 9999999;
@@ -13,8 +13,8 @@
     padding: 1rem;
     padding-top: 3rem;
     border-radius: .3rem;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 
 }
 
