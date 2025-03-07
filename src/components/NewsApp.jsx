@@ -54,12 +54,13 @@ function NewsApp() {
         <AnimatePresence>
             {newsPopup && (
                 <motion.div className="news_container"
-                ref={newsContainerRef}
-                initial={{opacity: 0, x:'-500px'}}
-                animate={{opacity: 1, x: 0}}
-                transition={{ ease: 'easeInOut', duration: 0.3}}
-                exit={{opacity: 0, x:'-500px'}}
+                    ref={newsContainerRef}
+                    initial={{opacity: 0, x:'-500px'}}
+                    animate={{opacity: 1, x: 0}}
+                    transition={{ ease: 'easeInOut', duration: 0.3}}
+                    exit={{opacity: 0, x:'-500px'}}
                 >
+                <h1>Latest News</h1>
                 {allNews.length > 0 ? (
                     allNews.map(item => (
                         <div className="news" key={item._id}
