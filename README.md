@@ -132,6 +132,10 @@ All the functionalities
   - Added Paint using Library [Paint](https://github.com/1j01/jspaint)
   - Added AiAgent project 3/1/2025
 
+  - Added News icon on task bar
+    - can display tatest news by clicking on the article
+    - connected to back-end
+
 Library used:
   - React Draggable => drag and drop functionality
   - Framer-motion => for some animation

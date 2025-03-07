@@ -34,6 +34,7 @@ export default function Footer() {
    
 
     const { 
+        newsPopup, setNewsPopup,
         btcShow, setBtcShow,
         isTouchDevice,
         desktopIcon,
@@ -472,7 +473,10 @@ export default function Footer() {
                                 left: '3px',
                                 zIndex: '2'
                             }} 
-                            onClick={() => null}
+                            onClick={(e) => {
+                                e.stopPropagation()
+                                setNewsPopup(!newsPopup)
+                            }}
                     />
                     <img src={btc_icon} alt="btc_icon" 
                         style={{

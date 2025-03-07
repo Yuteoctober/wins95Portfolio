@@ -3,9 +3,6 @@ import { useContext, useState } from "react";
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
 import resumefile from '../assets/resume.png'
-import download from '../assets/file4download.png'
-import ie from '../assets/ie.png'
-import file from '../assets/folderopen.png'
 import '../css/ResumeFile.css'
 
 

@@ -27,6 +27,7 @@ import ErrorBtn from './components/ErrorBtn';
 import RightClickWindows from './components/RightClickWindows';
 import axios from 'axios';
 import loadingSpin from './assets/loading.gif'
+import NewsApp from './components/NewsApp'
 import { StyleHide, imageMapping,
   handleDoubleClickEnterLink,handleDoubleTapEnterMobile,
   handleDoubleClickiframe, handleDoubleTapiframeMobile,
@@ -36,6 +37,7 @@ import { StyleHide, imageMapping,
 
 
 function App() {
+  const [newsPopup, setNewsPopup] = useState(false)
   const [onlineUser, setOnlineUser] = useState(0)
   const [sortedIcon, setSortedIcon] = useState([])
   const [sortIconTrigger, setSortIconTrigger] = useState(0)
@@ -692,6 +694,7 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
 }
 
   const contextValue = {
+    newsPopup, setNewsPopup,
     onlineUser,
     UtilityRef,
     PaintExpand, setPaintExpand,
@@ -904,6 +907,7 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
           folderName='Photo'
           photoMode={true}
         />
+        <NewsApp/>
         <RightClickWindows/>
         <Notification/>
         <Shutdown/>

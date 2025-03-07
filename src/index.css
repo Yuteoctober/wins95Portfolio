@@ -292,7 +292,7 @@ body {
     justify-content: center;
     align-items: center;
     right: 4px;
-    gap: 1px;
+    gap: 0px;
     box-shadow: inset 1px 1px #000, 1px 1px #ffffffdd;
 }
 
@@ -358,7 +358,7 @@ body {
     gap: .7rem;
     padding-left: .6rem;
     cursor: default;
-    z-index: 999;
+    z-index: 99999999999999;
 }
 
 .start_popup div:not(.sidebar_popup):not(.sub_start_container):hover {
@@ -492,7 +492,7 @@ body {
 .tap_container {
     display: flex;
     position: relative;
-    max-width: calc(100svw - 210px);
+    max-width: calc(100svw - 205px);
     padding-right: 2px;
     justify-content: flex-start;
     align-items: center;
