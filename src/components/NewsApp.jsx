@@ -16,7 +16,7 @@ function NewsApp() {
             hasSeen.add(item.url);
             return true;
         })
-        .sort((a, b) => b.rank - a.rank);
+        .sort((a, b) => b.rank - a.rank).slice(0,20);
 
 
 
