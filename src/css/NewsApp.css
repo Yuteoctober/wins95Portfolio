@@ -44,7 +44,7 @@
     border-color: rgb(224, 221, 221);
 }
 
-.news_container .news_content:hover > h5 {
+.news_container .news:hover > h5 {
     color: #c6c5c5;
 }
 
