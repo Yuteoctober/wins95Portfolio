@@ -8,16 +8,18 @@ function NewsApp() {
     const newsContainerRef = useRef()
     const [allNews, setAllNews] = useState([]); 
     const { newsPopup, setNewsPopup } = useContext(UseContext);
+    
     const hasSeen = new Set();
-
-    const filteredNews = allNews // filter dup and rerank
+    const filteredNews  = allNews
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // Sort latest first
         .filter(item => {
             if (hasSeen.has(item.url)) return false;
             hasSeen.add(item.url);
             return true;
-        })
-        .sort((a, b) => b.rank - a.rank).slice(0,20);
+    }).slice(0,20);
 
+
+        
 
 
 
@@ -73,8 +75,8 @@ function NewsApp() {
                 >
                 <h1>Latest News</h1>
                 {allNews.length > 0 ? (
-                    filteredNews.map(item => (
-                        <div className="news" key={item._id}
+                    filteredNews.map((item, index) => (
+                        <div className="news" key={index}
                             onClick={() => openNews(item.url)}
                         >
                             <img src={item.urlToImage} alt="" />
