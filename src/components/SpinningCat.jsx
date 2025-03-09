@@ -8,7 +8,7 @@ import catGif from '../assets/cat.gif'
 function SpinningCat() {
     const videoRef = useRef(null);
     
-    const {runCatVideo, setRunCatVideo, isTouchDevice} = useContext(UseContext);
+    const {runCatVideo, setRunCatVideo} = useContext(UseContext);
 
 
     
@@ -49,13 +49,11 @@ return (
             >
                 <video src={catVideo}
                     ref={videoRef}
-                    muted={isTouchDevice ? true : false}
+                    muted
                     playsInline
                     controls={false}
-                    disablePictureInPicture
+                    disablePictureInPicture 
                     controlsList="nodownload noplaybackrate"
-                    width="100%"
-                    height="auto"
                 />
                 <img src={catGif} alt="" className='catgif'
                     onAnimationEnd={handleAnimationEnd}
