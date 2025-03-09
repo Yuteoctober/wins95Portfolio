@@ -49,7 +49,6 @@ return (
             >
                 <video src={catVideo}
                     ref={videoRef}
-                    autoPlay
                     muted={isTouchDevice ? true : false}
                     playsInline
                     controls={false}
