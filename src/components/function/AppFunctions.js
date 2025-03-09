@@ -30,6 +30,7 @@ import reset from '../../assets/reset.png'
 import github from '../../assets/github.png'
 import paint from '../../assets/paint.png'
 import aiagent from '../../assets/ai_robot.png'
+import cat from '../../assets/catpic.png'
 
 
 
@@ -141,8 +142,14 @@ export function imageMapping (name) {
     case "Paint":
       return paint;
 
-      case "AiAgent":
-        return aiagent;
+    case "AiAgent":
+      return aiagent;
+
+    case "Cat":
+    case "cat":
+      return cat;
+
+
 
     default:
       return null;

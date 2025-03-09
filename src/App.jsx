@@ -28,6 +28,7 @@ import RightClickWindows from './components/RightClickWindows';
 import axios from 'axios';
 import loadingSpin from './assets/loading.gif'
 import NewsApp from './components/NewsApp'
+import SpinningCat from './components/SpinningCat';
 import { StyleHide, imageMapping,
   handleDoubleClickEnterLink,handleDoubleTapEnterMobile,
   handleDoubleClickiframe, handleDoubleTapiframeMobile,
@@ -37,6 +38,7 @@ import { StyleHide, imageMapping,
 
 
 function App() {
+  const [runCatVideo, setRunCatVideo] = useState(false)
   const [newsPopup, setNewsPopup] = useState(false)
   const [onlineUser, setOnlineUser] = useState(0)
   const [sortedIcon, setSortedIcon] = useState([])
@@ -225,7 +227,7 @@ function App() {
   const allClears = [ClearTOclippyThanksYouFunction, ClearTOclippySendemailfunction, ClearTOSongfunction, ClearTOclippyUsernameFunction];
 
   useEffect(() => { // force user to update version by clearing their local storage!
-    const resetIcon = desktopIcon.find(icon => icon.name === 'AiAgent')
+    const resetIcon = desktopIcon.find(icon => icon.name === 'Cat')
     if(!resetIcon) {
       localStorage.clear();
       location.reload();
@@ -694,6 +696,7 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
 }
 
   const contextValue = {
+    runCatVideo, setRunCatVideo,
     newsPopup, setNewsPopup,
     onlineUser,
     UtilityRef,
@@ -907,6 +910,7 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
           folderName='Photo'
           photoMode={true}
         />
+        <SpinningCat/>
         <NewsApp/>
         <RightClickWindows/>
         <Notification/>

@@ -266,8 +266,17 @@
         "folderId": "Desktop",
         "size": 10000,
         "type": ".exe",
-        "x": 33,
-        "y": 33
+        "x": 29,
+        "y": 29
+    },
+    {
+        "name": "Cat",
+        "pic": "Cat",
+        "folderId": "Desktop",
+        "size": 5000,
+        "type": ".exe",
+        "x": 30,
+        "y": 30
     },
     {
         "name": "RecycleBin",
@@ -275,8 +284,8 @@
         "folderId": "Desktop",
         "size": 250,
         "type": "folder",
-        "x": 29,
-        "y": 29    
+        "x": 31,
+        "y": 31    
     },
     {
         "name": "ResetStorage",
@@ -284,8 +293,8 @@
         "folderId": "Utility",
         "size": 20,
         "type": ".exe",
-        "x": 30,
-        "y": 30    
+        "x": 32,
+        "y": 32    
     },
     {
         "name": "Paint",
@@ -293,8 +302,8 @@
         "folderId": "Utility",
         "size": 200,
         "type": ".exe",
-        "x": 31,
-        "y": 31    
+        "x": 33,
+        "y": 33    
     },
     {
         "name": "Utility",
@@ -302,10 +311,9 @@
         "folderId": "DiskD",
         "size": 2500,
         "type": "folder",
-        "x": 32,
-        "y": 32
+        "x": 34,
+        "y": 34
     }
-    
 
     
 

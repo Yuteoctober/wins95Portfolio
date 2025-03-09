@@ -6,9 +6,14 @@ import '../css/ErrorBtn.css'
 function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
     const [YesNo, setYesNo] = useState(false)
     const [Content, setContent] = useState('')
-    const { handleSetFocusItemTrue } = useContext(UseContext);
+
+    const { 
+        handleSetFocusItemTrue, setRunCatVideo 
+
+    } = useContext(UseContext);
     const textResetStroage = "Warning: Resetting local storage will erase all your info. Are you sure you want to continue?"
     const textGithub = "Warning: You will be redirecting to another site, are you sure you want to continue?"
+    const textCat = "Warning: Are you sure you want to worship this Cat!"
 
 
     useEffect(() => {
@@ -32,6 +37,11 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
                 setContent(textGithub);
                 break;
 
+            case "cat":
+                setYesNo(true);
+                setContent(textCat);
+                break;
+
             default:
                 setYesNo(false);
                 setContent(text);
@@ -49,7 +59,12 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
                 return window.open('https://github.com/Yuteoctober/wins95Portfolio/', '_blank');
 
             case "webresume": 
-                return window.open('https://yuteoctober.github.io/resume_web/', '_blank');
+                
+            return window.open('https://yuteoctober.github.io/resume_web/', '_blank');
+            
+            case "cat": 
+                setRunCatVideo(true)
+                return;
 
             default:
                 return runOpenFuction();
