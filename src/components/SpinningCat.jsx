@@ -36,8 +36,8 @@ function SpinningCat() {
         setTimeout(() => {
             if (videoRef.current) {
                 audioRef.current.volume = 0.25
-                audioRef.current.play()
                 videoRef.current.play();
+                audioRef.current.play()
             }
         },3000)
     };
