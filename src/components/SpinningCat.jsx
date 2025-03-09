@@ -13,24 +13,6 @@ function SpinningCat() {
     const {runCatVideo, setRunCatVideo} = useContext(UseContext);
 
 
-    
-    useEffect(() => {
-        const videoElement = videoRef.current;
-        if (!videoElement) return;
-
-        const handleEnd = () => {
-            setTimeout(() => {
-                setRunCatVideo(false)
-            },2000);
-            
-        };
-
-        videoElement.addEventListener('ended', handleEnd);
-
-        return () => {
-            videoElement.removeEventListener('ended', handleEnd); 
-        };
-    }, []);
   
     const handleAnimationEnd = () => {
         setTimeout(() => {
@@ -38,6 +20,9 @@ function SpinningCat() {
                 audioRef.current.volume = 0.25
                 videoRef.current.play();
                 audioRef.current.play()
+                setTimeout(() => {
+                    setRunCatVideo(false)
+                }, 64000);
             }
         },3000)
     };
