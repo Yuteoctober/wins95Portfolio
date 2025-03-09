@@ -4,9 +4,11 @@ import UseContext from '../Context';
 import '../css/SpinningCat.css';
 import catVideo from '../assets/catvideo.mp4'
 import catGif from '../assets/cat.gif'
+import catautio from '../assets/cataudio.mp3'
 
 function SpinningCat() {
     const videoRef = useRef(null);
+    const audioRef = useRef(null);
     
     const {runCatVideo, setRunCatVideo} = useContext(UseContext);
 
@@ -33,7 +35,8 @@ function SpinningCat() {
     const handleAnimationEnd = () => {
         setTimeout(() => {
             if (videoRef.current) {
-                videoRef.current.volume = 0.25
+                audioRef.current.volume = 0.25
+                audioRef.current.play()
                 videoRef.current.play();
             }
         },3000)
@@ -58,6 +61,7 @@ return (
                 <img src={catGif} alt="" className='catgif'
                     onAnimationEnd={handleAnimationEnd}
                 />
+                <audio ref={audioRef} src={catautio}></audio>
             </motion.div>  
         )}
     </AnimatePresence>
