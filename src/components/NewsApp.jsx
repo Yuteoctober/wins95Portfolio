@@ -11,17 +11,11 @@ function NewsApp() {
     
     const hasSeen = new Set();
     const filteredNews  = allNews
-        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // Sort latest first
         .filter(item => {
             if (hasSeen.has(item.url)) return false;
             hasSeen.add(item.url);
             return true;
-    }).slice(0,20);
-
-
-        
-
-
+    }).slice(0,20).reverse();
 
     useEffect(() => {
         fetchNews();

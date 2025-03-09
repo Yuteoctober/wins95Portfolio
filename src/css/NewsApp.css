@@ -68,7 +68,9 @@
 
 .news_container::-webkit-scrollbar {
     width: 0px;
+
 }
+
 
 @media screen and (width <= 600px){
     .news_container {
