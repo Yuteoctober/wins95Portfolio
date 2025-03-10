@@ -8,10 +8,8 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    pointer-events: none;
-    touch-action: none;
-    animation: bgAppear 0.8s ease-in-out forwards;
-    animation-delay: 2.5s;
+    animation: bgFlicker 1s forwards;
+    animation-delay: 1s;
 
 }
 
@@ -39,6 +37,38 @@
     animation-delay: 2s;
 }
 
+.exit_btn {
+    display: grid;
+    position: absolute;
+    width: 60px;
+    height: 50px;
+    border: 2px solid #000000c4;
+    z-index: 10;
+    cursor: pointer;
+    text-align: center;
+    place-items: center;
+    border-radius: 4px;
+    left: 50%;
+    transform: translate(-50%);
+    top: 1rem;
+    background: #000000c4;
+    color: white;
+    opacity: 0;
+    animation: videoAppear 1s ease-in-out forwards;
+    animation-delay: 4s;
+}
+
+
+
+.exit_btn:hover{
+    background: black;
+}
+
+.exit_btn:active {
+    width: 55px;
+    height: 47px;
+}
+
 
 @keyframes catAppear {
     0%{
@@ -62,11 +92,38 @@
     }
 }
 
-@keyframes bgAppear {
-    0%{
+@keyframes bgFlicker {
+    0% {
         background: transparent;
     }
+    10% {
+        background: #FF5733; /* Red-orange */
+    }
+    20% {
+        background: #FF4500; /* Orange-red */
+    }
+    30% {
+        background: #00FD0A; /* Green */
+    }
+    40% {
+        background: #33C1FF; /* Light blue */
+    }
+    50% {
+        background: #FFD700; /* Yellow */
+    }
+    60% {
+        background: #8A2BE2; /* Blue-violet */
+    }
+    70% {
+        background: #FF1493; /* Deep pink */
+    }
+    80% {
+        background: #ADFF2F; /* Green-yellow */
+    }
+    90% {
+        background: #FF6347; /* Tomato red */
+    }
     100% {
-        background: #00FD0A;
+        background: #00FD0A; /* Final green */
     }
 }

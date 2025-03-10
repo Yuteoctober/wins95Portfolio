@@ -9,10 +9,14 @@ import catautio from '../assets/cataudio.mp3'
 function SpinningCat() {
     const videoRef = useRef(null);
     const audioRef = useRef(null);
+    const timeoutRef = useRef(null)
     
     const {runCatVideo, setRunCatVideo} = useContext(UseContext);
 
-
+    const handleEscape = () => {
+        clearTimeout(timeoutRef.current);
+        setRunCatVideo(false)
+    }
   
     const handleAnimationEnd = () => {
         setTimeout(() => {
@@ -20,11 +24,12 @@ function SpinningCat() {
                 audioRef.current.volume = 0.25
                 videoRef.current.play();
                 audioRef.current.play()
-                setTimeout(() => {
+                const timeOut = setTimeout(() => {
                     setRunCatVideo(false)
-                }, 64000);
+                }, 62000);
+                timeoutRef.current =  timeOut
             }
-        },3000)
+        },500)
     };
 
 return (
@@ -35,6 +40,11 @@ return (
                 exit={{opacity: 0}}
                 transition={{ ease: 'easeInOut', duration: 0.5}}
             >
+                <div className="exit_btn"
+                    onClick={handleEscape}
+                >
+                <span>Exit</span>
+                </div>
                 <video src={catVideo}
                     ref={videoRef}
                     muted
