@@ -8,6 +8,7 @@ import catautio from '../assets/cataudio.mp3'
 import oiia from '../assets/oiia.mp3'
 
 function SpinningCat() {
+    const [unmountCat, setUnmountCat] = useState(0)
     const videoRef = useRef(null);
     const audioRef = useRef(null);
     const timeoutRef = useRef(null)
@@ -22,6 +23,8 @@ function SpinningCat() {
 
     const handleEscape = () => {
         clearTimeout(timeoutRef.current);
+        oiiaRef.current.currentTime = 0;
+        setUnmountCat(prev => prev + 1)
         setRunCatVideo(false)
     }
 
@@ -79,7 +82,7 @@ return (
                     onAnimationEnd={handleAnimationEnd}
                 />
                 <audio ref={audioRef} src={catautio} />
-                <audio ref={oiiaRef} src={oiia} />
+                <audio key={unmountCat} ref={oiiaRef} src={oiia} />
             </motion.div>  
         )}
     </AnimatePresence>
