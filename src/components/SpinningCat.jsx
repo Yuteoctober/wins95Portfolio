@@ -43,7 +43,7 @@ return (
                 <div className="exit_btn"
                     onClick={handleEscape}
                 >
-                <span>Exit</span>
+                <span>ESC</span>
                 </div>
                 <video src={catVideo}
                     ref={videoRef}

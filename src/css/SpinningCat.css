@@ -40,9 +40,9 @@
 .exit_btn {
     display: grid;
     position: absolute;
-    width: 60px;
-    height: 50px;
-    border: 2px solid #000000c4;
+    width: 52px;
+    height: 45px;
+    border: 2px solid #00000060;
     z-index: 10;
     cursor: pointer;
     text-align: center;
@@ -51,7 +51,7 @@
     left: 50%;
     transform: translate(-50%);
     top: 1rem;
-    background: #000000c4;
+    background: #0000007f;
     color: white;
     opacity: 0;
     animation: videoAppear 1s ease-in-out forwards;
