@@ -9,7 +9,7 @@
     -ms-user-select: none;
     user-select: none;
     animation: bgFlicker 1s forwards;
-    animation-delay: 1s;
+    animation-delay: 4s;
 
 }
 
@@ -21,10 +21,11 @@
     z-index: 1;
     opacity: 0;
     animation: videoAppear 1s ease-in-out forwards;
-    animation-delay: 4s;
+    animation-delay: 8s;
 }
 
 .cat_container .catgif {
+    will-change: opacity, transform;
     width: 20%;
     min-width: 400px;
     object-fit: cover;
@@ -33,8 +34,7 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    animation: catAppear 0.8s ease-in-out forwards;
-    animation-delay: 2s;
+    animation: catAppear 6s ease forwards;
 }
 
 .exit_btn {
@@ -71,12 +71,13 @@
 
 @keyframes catAppear {
     0%{
+        opacity: 0;
+    }
+    20%{
         opacity: 1;
-        
-
     }
     80%{
-        opacity: 0;
+        opacity: 1;
     }
     100%{
         opacity: 0;

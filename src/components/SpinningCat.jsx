@@ -5,17 +5,31 @@ import '../css/SpinningCat.css';
 import catVideo from '../assets/catvideo.mp4'
 import catGif from '../assets/cat.gif'
 import catautio from '../assets/cataudio.mp3'
+import oiia from '../assets/oiia.mp3'
 
 function SpinningCat() {
     const videoRef = useRef(null);
     const audioRef = useRef(null);
     const timeoutRef = useRef(null)
+    const oiiaRef = useRef(null)
     
     const {runCatVideo, setRunCatVideo} = useContext(UseContext);
+
+    useEffect(() => { 
+        const img = new Image();
+        img.src = catGif; // Preload GIF
+    }, []);
 
     const handleEscape = () => {
         clearTimeout(timeoutRef.current);
         setRunCatVideo(false)
+    }
+
+    const handleStartSound = () => {
+        if(oiiaRef.current){
+            oiiaRef.current.volume = 0.25;
+            oiiaRef.current.play();
+        }
     }
   
     const handleAnimationEnd = () => {
@@ -61,9 +75,11 @@ return (
                     controlsList="nodownload noplaybackrate"
                 />
                 <img src={catGif} alt="" className='catgif'
+                    onAnimationStart={handleStartSound}
                     onAnimationEnd={handleAnimationEnd}
                 />
-                <audio ref={audioRef} src={catautio}></audio>
+                <audio ref={audioRef} src={catautio} />
+                <audio ref={oiiaRef} src={oiia} />
             </motion.div>  
         )}
     </AnimatePresence>
