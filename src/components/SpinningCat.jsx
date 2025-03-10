@@ -20,21 +20,23 @@ function SpinningCat() {
   
     const handleAnimationEnd = () => {
         setTimeout(() => {
-            if (videoRef.current) {
-                audioRef.current.volume = 0.25
-                audioRef.current.play() 
-
-                setTimeout(() => {
-                    videoRef.current.play();
-                         
-                }, 200);
-                
-                const timeOut = setTimeout(() => {
-                    setRunCatVideo(false)
+            if (videoRef.current && audioRef.current) {
+                audioRef.current.volume = 0.25;
+    
+                // Play audio and video simultaneously
+                Promise.all([
+                    audioRef.current.play(),
+                    videoRef.current.play()
+                ]).catch((error) => {
+                    console.error("Playback failed:", error);
+                });
+    
+                // Stop video after 64 seconds
+                timeoutRef.current = setTimeout(() => {
+                    setRunCatVideo(false);
                 }, 64000);
-                timeoutRef.current =  timeOut
             }
-        },500)
+        }, 500);
     };
 
 return (
