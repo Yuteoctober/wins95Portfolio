@@ -26,7 +26,7 @@ function SpinningCat() {
                 audioRef.current.play()
                 const timeOut = setTimeout(() => {
                     setRunCatVideo(false)
-                }, 62000);
+                }, 64000);
                 timeoutRef.current =  timeOut
             }
         },500)
