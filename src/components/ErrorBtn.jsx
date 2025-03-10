@@ -13,7 +13,7 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
     } = useContext(UseContext);
     const textResetStroage = "Warning: Resetting local storage will erase all your info. Are you sure you want to continue?"
     const textGithub = "Warning: You will be redirecting to another site, are you sure you want to continue?"
-    const textCat = "Warning: Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai!"
+    const textCat = "Warning: Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai !"
 
 
     useEffect(() => {
