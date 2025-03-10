@@ -22,8 +22,13 @@ function SpinningCat() {
         setTimeout(() => {
             if (videoRef.current) {
                 audioRef.current.volume = 0.25
-                videoRef.current.play();
-                audioRef.current.play()
+                audioRef.current.play() 
+
+                setTimeout(() => {
+                    videoRef.current.play();
+                         
+                }, 200);
+                
                 const timeOut = setTimeout(() => {
                     setRunCatVideo(false)
                 }, 64000);
