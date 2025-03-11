@@ -22,7 +22,7 @@ function SpinningCat() {
 
     const handleEscape = () => {
         clearTimeout(timeoutRef.current);
-        oiiaRef.current.currentTime = 0;
+        // oiiaRef.current.currentTime = 0;
         setRunCatVideo(false)
     }
 
