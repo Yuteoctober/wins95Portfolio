@@ -77,7 +77,7 @@ return (
                 <div className={`exit_btn ${escBtn ? '' : 'hide'}`}
                     onClick={((e) => {
                         e.stopPropagation
-                        handleEscape
+                        handleEscape()
                     })}
                 >
                 <span>ESC</span>
