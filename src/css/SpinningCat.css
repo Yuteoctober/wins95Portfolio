@@ -55,6 +55,19 @@
     opacity: 0;
     animation: btnAppear 0.4s ease-in-out forwards;
     animation-delay: 4s;
+    transition: ease-in-out 0.3s;
+    top: 1rem;
+}
+
+.exit_btn span {
+    position: relative;
+    left: 1px;
+}
+
+.exit_btn.hide {
+    opacity: 1;
+    top: -3rem;
+    transition: ease-in-out 0.3s;
 }
 
 
@@ -89,11 +102,11 @@
 @keyframes btnAppear {
     0%{
         opacity: 0;
-        top: -2rem;
+
     }
     100%{
         opacity: 1;
-        top: 1rem;
+
     }
 }
 

@@ -8,12 +8,22 @@ import catautio from '../assets/cataudio.mp3'
 import oiia from '../assets/oiia.mp3'
 
 function SpinningCat() {
+    const [escBtn, setBscBtn] = useState(false);
     const videoRef = useRef(null);
     const audioRef = useRef(null);
     const timeoutRef = useRef(null)
     const oiiaRef = useRef(null)
     
     const {runCatVideo, setRunCatVideo} = useContext(UseContext);
+
+    useEffect(() => {
+        
+        if(escBtn){
+            setTimeout(() => {
+                setBscBtn(false)
+            }, 3000);
+        }
+    },[escBtn])
 
     useEffect(() => { 
         const img = new Image();
@@ -22,7 +32,7 @@ function SpinningCat() {
 
     const handleEscape = () => {
         clearTimeout(timeoutRef.current);
-        // oiiaRef.current.currentTime = 0;
+        oiiaRef.current.currentTime = 0;
         setRunCatVideo(false)
     }
 
@@ -49,6 +59,7 @@ function SpinningCat() {
                 // Stop video after 64 seconds
                 timeoutRef.current = setTimeout(() => {
                     setRunCatVideo(false);
+                    oiiaRef.current.currentTime = 0;
                 }, 64000);
             }
         }, 500);
@@ -59,11 +70,15 @@ return (
     <AnimatePresence>
         {runCatVideo && (
             <motion.div className="cat_container"
+            onClick={() => setBscBtn(true)}
                 exit={{opacity: 0}}
                 transition={{ ease: 'easeInOut', duration: 0.5}}
             >
-                <div className="exit_btn"
-                    onClick={handleEscape}
+                <div className={`exit_btn ${escBtn ? '' : 'hide'}`}
+                    onClick={((e) => {
+                        e.stopPropagation
+                        handleEscape
+                    })}
                 >
                 <span>ESC</span>
                 </div>
