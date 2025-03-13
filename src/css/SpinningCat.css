@@ -54,7 +54,7 @@
     color: white;
     opacity: 0;
     animation: btnAppear 0.4s ease-in-out forwards;
-    animation-delay: 4s;
+    animation-delay: 1s;
     transition: ease-in-out 0.3s;
     top: 1rem;
 }
