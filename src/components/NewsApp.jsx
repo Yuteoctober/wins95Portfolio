@@ -15,7 +15,7 @@ function NewsApp() {
             if (hasSeen.has(item.url)) return false;
             hasSeen.add(item.url);
             return true;
-    }).slice(0,20);
+    }).reverse().slice(0,20);
 
     useEffect(() => {
         fetchNews();
