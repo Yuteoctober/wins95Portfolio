@@ -47,6 +47,9 @@
 .news_container .news:hover > h5 {
     color: #c6c5c5;
 }
+.news_container .news:hover > img {
+    opacity: 0.9;
+}
 
 .news_container img {
     width: 100%;

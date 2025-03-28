@@ -241,7 +241,6 @@ useEffect(() => {
                 <p className='x-MSN'
                   onClick={!isTouchDevice ? () => {
                     deleteTap('MSN');
-                    setUserNameValue('');
                     setUserName(false);
                     setChatValue('')
                   } : undefined}
