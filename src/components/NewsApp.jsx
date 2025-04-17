@@ -23,7 +23,7 @@ function NewsApp() {
 
     async function fetchNews() {
         try {
-            const response = await axios.get("https://ai-tweet-bot-8yto.onrender.com/news/getNews");
+            const response = await axios.get("https://ai-tweet-bot.onrender.com/news/getNews");
             setAllNews(response.data.news); 
         } catch (error) {
             console.error("Error fetching news:", error);
