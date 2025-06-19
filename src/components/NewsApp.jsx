@@ -1,14 +1,26 @@
-import UseContext from '../Context'
+import UseContext from '../Context';
 import { useState, useEffect, useRef, useContext } from "react";
 import axios from "axios";
-import { motion, AnimatePresence  } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import "../css/NewsApp.css";
+import { MdGpsFixed } from "react-icons/md";
 
 function NewsApp() {
     const newsContainerRef = useRef();
-    const [coords, setCoords] = useState(null);
-    const [weather, setWeather] = useState(null);
-    const [city, setCity] = useState('');
+    const [weather, setWeather] = useState(() => {
+        const storedTempF = localStorage.getItem('tempF');
+        const storedIconCode = localStorage.getItem('iconCode');
+        if (storedTempF && storedIconCode) {
+            return { temp: JSON.parse(storedTempF), code: parseInt(storedIconCode) };
+        }
+        return null;
+    });
+
+    const [city, setCity] = useState(() => {
+        const storedCity = localStorage.getItem('city');
+        return storedCity ? JSON.parse(storedCity) : null;
+    });
+
     const [error, setError] = useState('');
     const [allNews, setAllNews] = useState([]);
     const { newsPopup, setNewsPopup } = useContext(UseContext);
@@ -72,42 +84,43 @@ function NewsApp() {
     }
 
     useEffect(() => {
-        if (newsPopup) {
-            navigator.geolocation.getCurrentPosition(
-                (pos) => {
-                    setCoords({
-                        lat: pos.coords.latitude,
-                        lon: pos.coords.longitude,
-                    });
-                },
-                () => setError('Location permission denied')
-            );
+        if (newsPopup && (!weather || !city)) {
+            getUserLocation();
         }
     }, [newsPopup]);
 
-    useEffect(() => {
-        if (!coords) return;
+    function getUserLocation() {
+        navigator.geolocation.getCurrentPosition(
+            (pos) => {
+                const lat = pos.coords.latitude;
+                const lon = pos.coords.longitude;
+                fetchWeatherAndCity(lat, lon); // force fetch
+            },
+            () => setError('Location permission denied')
+        );
+    }
 
-        const { lat, lon } = coords;
-
-        // Fetch weather
+    function fetchWeatherAndCity(lat, lon) {
+        if(!lat || !lon) return;
+        // Weather API
         const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weathercode`;
         fetch(weatherUrl)
             .then((res) => res.json())
             .then((data) => {
                 const current = data.current;
-                setWeather({
-                    temp: ((current.temperature_2m * 9/5) + 32).toFixed(0),
-                    code: current.weathercode,
-                });
+                const tempF = ((current.temperature_2m * 9 / 5) + 32).toFixed(0);
+                const code = current.weathercode;
+                setWeather({ temp: tempF, code: code });
+                localStorage.setItem('tempF', JSON.stringify(tempF));
+                localStorage.setItem('iconCode', JSON.stringify(code));
             })
             .catch(() => setError('Failed to fetch weather'));
 
-        // Fetch city name
+        // City API
         const geoUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`;
         fetch(geoUrl, {
             headers: {
-                'User-Agent': 'NewsApp/1.0 (your@email.com)'
+                'User-Agent': 'NewsApp/1.0 (you@example.com)'
             }
         })
             .then((res) => res.json())
@@ -115,45 +128,52 @@ function NewsApp() {
                 const address = data.address;
                 const cityName = address.city || address.town || address.village || address.state || 'Unknown';
                 setCity(cityName);
+                localStorage.setItem('city', JSON.stringify(cityName));
             })
             .catch(() => setCity('Unknown'));
-    }, [coords]);
-
-    
+    }
 
     return (
         <>
-        <AnimatePresence>
-            {newsPopup && (
-                <motion.div
-                className="news_container"
-                ref={newsContainerRef}
-                initial={{ opacity: 0, x: '-500px' }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ ease: 'easeInOut', duration: 0.3 }}
-                exit={{ opacity: 0, x: '-500px' }}
-                >
-                {weather && (
-                    <div className="weather_container">
-                    <h1>{city}</h1>
-                    <h1>{weatherIcons[weather.code] || '❓'} {weather.temp}°F</h1>
-                    </div>
+            <AnimatePresence>
+                {newsPopup && (
+                    <motion.div
+                        className="news_container"
+                        ref={newsContainerRef}
+                        initial={{ opacity: 0, x: '-500px' }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ ease: 'easeInOut', duration: 0.3 }}
+                        exit={{ opacity: 0, x: '-500px' }}
+                    >
+                        {weather && (
+                            <div className="weather_container">
+                                <span className='location'
+                                    onClick={() => {
+                                        getUserLocation()
+                                    }}
+                                >
+                                    <MdGpsFixed />
+                                </span>
+                                <h1>{city}</h1>
+                                <h1>{weatherIcons[weather.code] || '❓'} {weather.temp}°F</h1>
+                            </div>
+                        )}
+                        {error && <p className="error">{error}</p>}
+
+                        <h1>Latest News</h1>
+                        {allNews.length > 0 ? (
+                            filteredNews.map((item, index) => (
+                                <div className="news" key={index} onClick={() => openNews(item.url)}>
+                                    <img src={item.urlToImage} alt="" />
+                                    <h5>{item.originalNews}</h5>
+                                </div>
+                            ))
+                        ) : (
+                            <p>News are loading...</p>
+                        )}
+                    </motion.div>
                 )}
-                
-                <h1>Latest News</h1>
-                {allNews.length > 0 ? (
-                    filteredNews.map((item, index) => (
-                    <div className="news" key={index} onClick={() => openNews(item.url)}>
-                        <img src={item.urlToImage} alt="" />
-                        <h5>{item.originalNews}</h5>
-                    </div>
-                    ))
-                ) : (
-                    <p>News are loading...</p>
-                )}
-                </motion.div>
-            )}
-        </AnimatePresence>
+            </AnimatePresence>
         </>
     );
 }
