@@ -84,9 +84,7 @@ function NewsApp() {
     }
 
     useEffect(() => {
-        if (newsPopup && (!weather || !city)) {
-            getUserLocation();
-        }
+        getUserLocation();
     }, [newsPopup]);
 
     function getUserLocation() {
