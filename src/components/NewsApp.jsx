@@ -46,9 +46,11 @@ function NewsApp() {
         95: '⛈️',
     };
 
-    useEffect(() => {
+    useEffect(() => { // call fetchNews when user open news
+        if (newsPopup) {
         fetchNews();
-    }, []);
+        }
+    }, [newsPopup]);
 
     async function fetchNews() {
         try {
@@ -153,7 +155,7 @@ function NewsApp() {
                                     <MdGpsFixed />
                                 </span>
                                 <h1>{city}</h1>
-                                <h1>{weatherIcons[weather.code] || '❓'} {weather.temp}°F</h1>
+                                <h1>{weatherIcons[weather.code] || ''} {weather.temp}°F</h1>
                             </div>
                         )}
                         {error && <p className="error">{error}</p>}
