@@ -47,10 +47,8 @@ function NewsApp() {
     };
 
     useEffect(() => { // call fetchNews when user open news
-        if (newsPopup) {
         fetchNews();
-        }
-    }, [newsPopup]);
+    }, []);
 
     async function fetchNews() {
         try {
@@ -86,7 +84,9 @@ function NewsApp() {
     }
 
     useEffect(() => {
-        getUserLocation();
+        if(newsPopup){
+            getUserLocation();   
+        }
     }, [newsPopup]);
 
     function getUserLocation() {
