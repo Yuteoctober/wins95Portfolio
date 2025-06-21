@@ -7,7 +7,7 @@ import { MdGpsFixed } from "react-icons/md";
 
 function NewsApp() {
     const newsContainerRef = useRef();
-    const [Cel, setCel] = useState(false); // Celsius or Fahrenheit
+    const [Cel, setCel] = useState(true); // Celsius or Fahrenheit
     const [weather, setWeather] = useState(() => {
         const storedTempF = localStorage.getItem('tempF');
         const storedIconCode = localStorage.getItem('iconCode');
