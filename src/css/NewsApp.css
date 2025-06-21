@@ -104,6 +104,16 @@
     color: #474747;
 }
 
+.temp {
+   position: relative;
+   margin-left: 4px;
+   cursor: pointer;
+}
+
+.temp:hover {
+   color: #474747; 
+}
+
 
 @media screen and (width <= 600px){
     .news_container {
