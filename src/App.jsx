@@ -359,7 +359,7 @@ useEffect(() => {
     const maxRetries = 10;
 
     const connectWebSocket = () => {
-    socket.current = new WebSocket('wss://notebackend4.onrender.com');
+    socket.current = new WebSocket('wss://notebackend4-wrqt.onrender.com');
 
     socket.current.onopen = () => {
       retryCount = 0; 
@@ -1101,7 +1101,7 @@ function handleDrop(e, name, target, oldFolderID) {
 // Function to fetch chat data
 async function getChat() {
   try {
-    const response = await axios.get(`https://notebackend4.onrender.com/chat/getchat/`, {
+    const response = await axios.get(`https://notebackend4-wrqt.onrender.com/chat/getchat/`, {
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*'
