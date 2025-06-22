@@ -29,6 +29,7 @@ import axios from 'axios';
 import loadingSpin from './assets/loading.gif'
 import NewsApp from './components/NewsApp'
 import SpinningCat from './components/SpinningCat';
+import Patch from './components/Patch';
 import { StyleHide, imageMapping,
   handleDoubleClickEnterLink,handleDoubleTapEnterMobile,
   handleDoubleClickiframe, handleDoubleTapiframeMobile,
@@ -204,6 +205,9 @@ function App() {
   const [UtilityExpand, setUtilityExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
   
+  const [PatchExpand, setPatchExpand] = useState(
+    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
+  
     const allPicture = desktopIcon.filter(picture => picture.type === '.jpeg'); // photo open
 
   const textError = ( // error message
@@ -227,7 +231,11 @@ function App() {
   const allClears = [ClearTOclippyThanksYouFunction, ClearTOclippySendemailfunction, ClearTOSongfunction, ClearTOclippyUsernameFunction];
 
   useEffect(() => { // force user to update version by clearing their local storage!
-    const resetIcon = desktopIcon.find(icon => icon.name === 'Cat')
+    setTimeout(() => {
+      setPatchExpand({show: true, focusItem:true})
+    }, 2500);
+    
+    const resetIcon = desktopIcon.find(icon => icon.name === 'Patch')
     if(!resetIcon) {
       localStorage.clear();
       location.reload();
@@ -696,6 +704,7 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
 }
 
   const contextValue = {
+    PatchExpand, setPatchExpand,
     runCatVideo, setRunCatVideo,
     newsPopup, setNewsPopup,
     onlineUser,
@@ -910,6 +919,7 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
           folderName='Photo'
           photoMode={true}
         />
+        <Patch/>
         <SpinningCat/>
         <NewsApp/>
         <RightClickWindows/>
@@ -1142,6 +1152,7 @@ function ObjectState() { // Add all the state realted to folder here !! very imp
           { name: 'RecycleBin', setter: setBinExpand, usestate: BinExpand },
           { name: 'Paint', setter: setPaintExpand, usestate: PaintExpand },
           { name: 'Utility', setter: setUtilityExpand, usestate: UtilityExpand },
+          { name: 'Patch', setter: setPatchExpand, usestate: PatchExpand },
 
         ];
 }

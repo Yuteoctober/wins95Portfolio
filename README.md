@@ -136,6 +136,12 @@ All the functionalities
     - can display tatest news by clicking on the article
     - connected to back-end
 
+  - Added Tempature on news App 18/06/2025
+    - can detect user's location
+    - able to switch between Celcius and Farenheit 21/06/2025
+
+  - Added Patch App 21/06/2025
+
 Library used:
   - React Draggable => drag and drop functionality
   - Framer-motion => for some animation

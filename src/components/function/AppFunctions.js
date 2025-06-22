@@ -31,6 +31,7 @@ import github from '../../assets/github.png'
 import paint from '../../assets/paint.png'
 import aiagent from '../../assets/ai_robot.png'
 import cat from '../../assets/catpic.png'
+import patch from '../../assets/patch.png'
 
 
 
@@ -148,6 +149,10 @@ export function imageMapping (name) {
     case "Cat":
     case "cat":
       return cat;
+
+    case "patch":
+    case "Patch":
+      return patch;
 
 
 

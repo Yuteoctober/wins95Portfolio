@@ -1,0 +1,49 @@
+.content_container {
+    position: relative;
+    width: 98%;
+    height: 95%;
+    left: 50%;
+    margin-top: 4px;
+    border: 1px solid black;
+    border-right-color: white;
+    border-bottom-color: white;
+    transform: translate(-50%);
+    background: #f9f9ead8;
+    padding: 2px;
+}
+
+.patch_head {
+    display: flex;
+    position: relative;
+    align-items: center;
+    height: 40px;
+    margin-left: -1.1rem;
+}
+
+.patch_head img {
+    position: relative;
+    width: 42px;
+}
+
+.patch_head h1 {
+    position: relative;
+    font-size: 16px;
+    left: -6px;
+    top: 2px;
+}
+
+.patch_note {
+    position: relative;
+    height: 100%;
+    overflow-y: auto;
+    padding-left: 12px;
+    padding-right: 8px;
+    padding-top: 0px;
+    font-size: 14px;
+}
+
+.patch_log {
+  font-size: 13px;
+  color: black;
+  white-space: pre-wrap;
+}
