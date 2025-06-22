@@ -232,7 +232,7 @@ function App() {
 
   useEffect(() => { // force user to update version by clearing their local storage!
     setTimeout(() => {
-      setPatchExpand({show: true, focusItem:true})
+      handleShow('Patch');
     }, 2500);
     
     const resetIcon = desktopIcon.find(icon => icon.name === 'Patch')
