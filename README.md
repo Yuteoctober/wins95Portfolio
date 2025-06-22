@@ -141,6 +141,9 @@ All the functionalities
     - able to switch between Celcius and Farenheit 21/06/2025
 
   - Added Patch App 21/06/2025
+  - Now weather prediction can track user's local time 22/6/2025
+  - Added Weather 🌙 sticker when its night time 22/6/2025
+
 
 Library used:
   - React Draggable => drag and drop functionality

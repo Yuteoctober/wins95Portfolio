@@ -36,10 +36,15 @@ function NewsApp() {
         .reverse()
         .slice(0, 20);
 
+    const time = new Date()
+    const hours = time.getHours();
+    const isNight = hours > 17 || hours < 6;
+
+
     const weatherIcons = {
-        0: '☀️',
-        1: '🌤️',
-        2: '⛅',
+        0: isNight ? '🌙' : '☀️',
+        1: isNight ? '🌙' : '🌤️',
+        2: isNight ? '🌙' : '⛅',
         3: '☁️',
         45: '🌫️',
         61: '🌧️',
