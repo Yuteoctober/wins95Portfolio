@@ -3,8 +3,8 @@ const patchNotes = [
     head: "**Weather App**",
     date: "2025-06-22",
     notes: [
-      "- Now weather prediction can track user's local time.",
-      "- Added Weather 🌙 sticker when its night time."
+      "Now weather prediction can track user's local time.",
+      "Added Weather 🌙 sticker when its night time."
     ]
   },
   {

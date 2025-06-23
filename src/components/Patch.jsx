@@ -57,6 +57,7 @@ function Patch() {
                 handleSetFocusItemTrue('Patch');
             }}
             style={{
+                height: window.innerHeight <= 700 ? '80%' : '',
                 width: '200px',
                 resize: 'none',
                 ...(PatchExpand.expand ? inlineStyleExpand('Patch') : inlineStyle('Patch'))
