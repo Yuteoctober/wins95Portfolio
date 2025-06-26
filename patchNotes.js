@@ -1,5 +1,12 @@
 const patchNotes = [
   {
+    head: "**Setting Background**",
+    date: "2025-06-26",
+    notes: [
+      "Added color picker to Settings for background customization.",
+    ]
+  },
+  {
     head: "**Weather App**",
     date: "2025-06-22",
     notes: [

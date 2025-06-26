@@ -144,6 +144,8 @@ All the functionalities
   - Now weather prediction can track user's local time 22/6/2025
   - Added Weather 🌙 sticker when its night time 22/6/2025
 
+  - Added color picker to Settings for background customization. 26/06/2025
+
 
 Library used:
   - React Draggable => drag and drop functionality

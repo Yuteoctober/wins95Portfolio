@@ -340,6 +340,13 @@
     cursor: default;
 }
 
+.color_picker_container {
+    position: absolute;
+    left: 50%;
+    top: 1rem;
+    transform: translateX(-50%);
+    z-index: 9;
+}
 
 
 
