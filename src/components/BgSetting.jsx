@@ -75,7 +75,7 @@ function BgSetting() {
 
       const colorOptions = [
         { value: 1, label: '(None)', color: '#098684', image: bg0, barColor: '#14045c'},
-        { value: 13, label: 'Choose your color', color: userPickedColor, image: userPickedColor, barColor: userPickedColor},
+        { value: 13, label: 'Choose your favorite color', color: userPickedColor, image: userPickedColor, barColor: userPickedColor},
         { value: 2, label: 'Purple Summer', color: '#3F4565', image: bg1, barColor: '#3F4565'},
         { value: 3, label: 'Matt Blue', color: '#456EA6', image: bg2, barColor: '#456EA6'},
         { value: 4, label: 'Matt Green', color: '#008081', image: bg3, barColor: '#008081'},
@@ -132,7 +132,7 @@ function BgSetting() {
       useEffect(() => { // when exited app, make set everything to null to prevent bug when reopen
 
         if(!BgSettingExpand.show) {
-          setImgBgPreview(null)
+          setImgBgPreview(bg0) // set default preview to teal green
           setImgBgPreviewEffect(null)
           setSelectedBg2(null)
           setSelectedBg2Effect(null)
@@ -277,6 +277,7 @@ function BgSetting() {
                   onClick={!isTouchDevice ? () => {
                     cancelBg()
                     deleteTap('Settings')
+                    setPickerPanel(false);
                   }
                   : undefined}
                   onTouchEnd={() => {
@@ -375,7 +376,8 @@ function BgSetting() {
                       >
                         {option.label}
                         {option.value === 13 && (
-                          <span style={{ position: 'relative', left: '8px' }}>
+                          <span 
+                            style={{ position: 'relative', left: '8px'}}>
                             {userPickedColor}
                           </span>
                         )}
