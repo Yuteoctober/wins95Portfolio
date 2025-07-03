@@ -1,5 +1,12 @@
 const patchNotes = [
   {
+    head: "**Clippy**",
+    date: "2025-07-03",
+    notes: [
+      "Added Clippy's new speech.",
+    ]
+  },
+  {
     head: "**Setting Background**",
     date: "2025-06-26",
     notes: [
