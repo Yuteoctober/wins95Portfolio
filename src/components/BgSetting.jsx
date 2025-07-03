@@ -132,7 +132,7 @@ function BgSetting() {
       useEffect(() => { // when exited app, make set everything to null to prevent bug when reopen
 
         if(!BgSettingExpand.show) {
-          setImgBgPreview(bg0) // set default preview to teal green
+          setImgBgPreview(null) // set default preview to teal green
           setImgBgPreviewEffect(null)
           setSelectedBg2(null)
           setSelectedBg2Effect(null)
