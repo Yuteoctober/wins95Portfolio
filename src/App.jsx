@@ -362,63 +362,77 @@ useEffect(() => {
 
 
 
-  useEffect(() => {
+    useEffect(() => {
     let retryCount = 0;
     const maxRetries = 10;
 
-    const connectWebSocket = () => {
-    socket.current = new WebSocket('wss://notebackend4.onrender.com');
+    const connectWebSocket = async () => {
+      try {
+        // Wake up Render backend
+        await fetch('https://notebackend4.onrender.com/ping');
 
-    socket.current.onopen = () => {
-      retryCount = 0; 
-      setLoading(false)
+        socket.current = new WebSocket('wss://notebackend4.onrender.com');
+
+        socket.current.onopen = () => {
+          retryCount = 0;
+          setLoading(false);
+        };
+
+        socket.current.onmessage = (event) => {
+          const data = JSON.parse(event.data);
+
+          if (data.count !== undefined) {
+            setOnlineUser(data.count);
+          }
+
+          if (data.key) {
+            setKeyChatSession(data.key);
+          } else if (data.name && data.chat) {
+            setChatData(prevData => [...prevData, data]);
+            setLoadedMessages(prev => [...prev, data]);
+            setAllowNoti(true);
+
+            setTimeout(() => {
+              endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
+            }, 100);
+          }
+        };
+
+        socket.current.onerror = (error) => {
+          console.error('WebSocket error:', error);
+          setLoading(false);
+          if (retryCount < maxRetries) {
+            retryCount++;
+            setTimeout(connectWebSocket, 1000);
+          }
+        };
+
+        socket.current.onclose = () => {
+          if (retryCount < maxRetries) {
+            retryCount++;
+            setTimeout(connectWebSocket, 1000);
+          } else {
+            console.log('Max retries reached. WebSocket closed permanently.');
+          }
+        };
+      } catch (err) {
+        console.error("Connection setup error:", err);
+        if (retryCount < maxRetries) {
+          retryCount++;
+          setTimeout(connectWebSocket, 1000);
+        }
+      }
     };
 
-    socket.current.onmessage = (event) => {
-      const data = JSON.parse(event.data)
+    connectWebSocket();
 
-      if (data.count !== undefined) {
-        setOnlineUser(data.count);
-    }
-      
-      if (data.key) {
-        setKeyChatSession(data.key)
-      } else if (data.name && data.chat) {
-        setChatData(prevData => [...prevData, data])
-        setLoadedMessages(prevMessages => [...prevMessages, data])
-        setAllowNoti(true)
-
-        // Scroll to the end of messages after updating chat data
-        setTimeout(() => {
-          endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" })
-        }, 100)
-      }
-    }
-
-    socket.current.onerror = (error) => {
-      console.error('WebSocket error:', error)
-      setLoading(false)
-    }
-    socket.current.onclose = () => {
-      if (retryCount < maxRetries) {
-        retryCount++;
-        getChat()
-        setTimeout(connectWebSocket, 1000); // Reconnect after 1 second
-      
-      } else {
-        console.log('Max retries reached. WebSocket closed permanently.');
+    return () => {
+      if (socket.current) {
+        socket.current.close();
       }
     };
-  };
+  }, []);
 
-  connectWebSocket();
-
-  return () => {
-    if (socket.current) {
-      socket.current.close();
-    }
-  };
-}, []);
 
   useEffect(() => { // noti
     if(allowNoti){
