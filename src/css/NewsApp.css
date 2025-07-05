@@ -18,6 +18,11 @@
 
 }
 
+/* Ensure 2 items per row with spacing */
+.news_container > * {
+    flex: 0 0 calc(50% - 10px); /* 5px is half the gap (10px total between two items) */
+}
+
 .news_container h1 {
     position: absolute;
     z-index: 2;
