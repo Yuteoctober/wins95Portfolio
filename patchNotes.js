@@ -1,5 +1,12 @@
 const patchNotes = [
   {
+    head: "**New Project**",
+    date: "2025-07-10",
+    notes: [
+      "Added 3D Object in Project folder.",
+    ]
+  },
+  {
     head: "**Clippy**",
     date: "2025-07-03",
     notes: [

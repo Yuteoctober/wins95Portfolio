@@ -146,6 +146,8 @@ All the functionalities
 
   - Added color picker to Settings for background customization. 26/06/2025
 
+  - Added 3D Object in Project folder. 10/07/2025
+
 
 Library used:
   - React Draggable => drag and drop functionality

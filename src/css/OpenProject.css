@@ -5,7 +5,7 @@
     display: none;
     position: fixed;
     width: 600px;
-    min-width: 250px;
+    min-width: 420px;
     min-height: 250px;
     min-height: 500px;
     height: 75%;
@@ -111,11 +111,13 @@
     border-right-color: #c6c5c5;
     color: black;
     background: rgb(255, 255, 255);
+    overflow: hidden;
 }
 
 .address_box p {
     position: relative;
     top: 1px;
+    white-space: nowrap;
     cursor: auto;
 }
 

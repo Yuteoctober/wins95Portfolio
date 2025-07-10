@@ -322,9 +322,14 @@
         "type": ".exe",
         "x": 35,
         "y": 35
+    },
+    {
+        "name": "3dObject",
+        "pic": "3dObject",
+        "folderId": "Project",
+        "size": 1000,
+        "type": ".exe",
+        "x": 36,
+        "y": 36
     }
-
-
-    
-
 ]
