@@ -368,8 +368,8 @@ useEffect(() => {
 
     const connectWebSocket = async () => {
       try {
-        // Wake up Render backend
-        await fetch('https://notebackend4.onrender.com/ping');
+        // // Wake up Render backend
+        // await fetch('https://notebackend4.onrender.com/ping');
 
         socket.current = new WebSocket('wss://notebackend4.onrender.com');
 
@@ -382,6 +382,7 @@ useEffect(() => {
           const data = JSON.parse(event.data);
 
           if (data.count !== undefined) {
+            console.log(data)
             setOnlineUser(data.count);
           }
 
