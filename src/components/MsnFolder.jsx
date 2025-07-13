@@ -285,7 +285,7 @@ useEffect(() => {
             )}
             <div ref={topOfMessagesRef} /> {/* Ref to track the top of the chat container */}
             {loadedMessages?.map((chat, index) => (            
-              chat && (
+              chat.chat.length > 0 && (
                 <div className='text_container' key={index}>
                   <p>
                     <span style={{ color: chat?.dev ? 'red' : chat.bot ? 'purple' : 'blue' }}>&lt;{chat?.dev ? 'Dev' : chat.name}&gt;: </span>
