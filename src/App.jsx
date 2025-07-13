@@ -421,6 +421,9 @@ useEffect(() => {
           retryCount++;
           setTimeout(connectWebSocket, 1000);
         }
+        setTimeout(() => {
+          setLoading(false);
+        }, 5000);
       }
     };
 

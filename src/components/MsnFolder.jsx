@@ -288,8 +288,8 @@ useEffect(() => {
               chat && (
                 <div className='text_container' key={index}>
                   <p>
-                    <span style={{ color: chat?.dev ? 'red' : 'blue' }}>&lt;{chat?.dev ? 'Dev' : chat.name}&gt;: </span>
-                    <span style={{ color: chat?.dev ? 'red' : '#171616' }}>{chat.chat}</span>
+                    <span style={{ color: chat?.dev ? 'red' : chat.bot ? 'purple' : 'blue' }}>&lt;{chat?.dev ? 'Dev' : chat.name}&gt;: </span>
+                    <span style={{ color: chat?.dev ? 'red' : chat.bot ? 'purple' : '#171616' }}>{chat.chat}</span>
                   </p>
                 </div>
               )
