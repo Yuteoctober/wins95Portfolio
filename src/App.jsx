@@ -371,7 +371,7 @@ useEffect(() => {
         // // Wake up Render backend
         await fetch('https://notebackend-wrqt.onrender.com/ping');
 
-        socket.current = new WebSocket('wss://notebackend-wrqt.onrender.com.com');
+        socket.current = new WebSocket('wss://notebackend-wrqt.onrender.com');
 
         socket.current.onopen = () => {
           retryCount = 0;
