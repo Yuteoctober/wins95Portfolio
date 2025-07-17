@@ -402,14 +402,14 @@ useEffect(() => {
         socket.current.onerror = (error) => {
           console.error('WebSocket error:', error);
           setLoading(false);
-          if (retryCount < maxRetries) {
+          if (retryCount < maxRetries && (detectMouse || isTouchDevice)) {
             retryCount++;
             setTimeout(connectWebSocket, 1000);
           }
         };
 
         socket.current.onclose = () => {
-          if (retryCount < maxRetries) {
+          if (retryCount < maxRetries && (detectMouse || isTouchDevice)) {
             retryCount++;
             setTimeout(connectWebSocket, 1000);
           } else {
@@ -436,7 +436,6 @@ useEffect(() => {
       }
     };
   }, []);
-
 
   useEffect(() => { // noti
     if(allowNoti){
