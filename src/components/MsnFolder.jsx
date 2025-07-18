@@ -8,6 +8,7 @@ import '../css/MSN.css';
 
 function MsnFolder() {
   const {
+    chatBotActive, setChatBotActive,
     onlineUser,
     loadedMessages, setLoadedMessages,
     themeDragBar,
@@ -270,13 +271,18 @@ useEffect(() => {
 
             </div>
             <span>Username: {userNameValue ? userNameValue : 'Anonymous'}</span>
-
+            <div className={`activate_bot ${chatBotActive ? 'active' : ''}`}
+              onClick={() => setChatBotActive(!chatBotActive)}
+            >
+              <span>{chatBotActive? 'Bot Online' : 'Bot Offline' }</span>
+            </div>     
           </div>
           <div className="chat_to_div">
             <span>
               Online User: <span>{onlineUser}</span>
             </span>
           </div>
+          
           <div className="folder_content-MSN">
             {chatData.length === 0 &&  (
               <span style={{ position: 'relative', fontSize: '13px' }}>

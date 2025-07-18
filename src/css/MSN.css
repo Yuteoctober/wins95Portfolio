@@ -260,6 +260,32 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    
+}
+
+.activate_bot {
+    position: absolute;
+    width: 72px;
+    padding: 1px 0px;
+    right: 0rem;
+    border: 2px solid white;
+    border-right-color: black;
+    border-bottom-color: black;
+    color: grey;
+    
+    
+}
+
+.activate_bot.active {
+    border: 2px solid black;
+    border-right-color: white;
+    border-bottom-color: white;  
+    color: black;
+}
+
+.activate_bot span {
+    font-size: 13px;
+    position: relative;
 }
 
 .groove_div .chat_name_msn_div:active {

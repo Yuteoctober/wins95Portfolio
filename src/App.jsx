@@ -39,6 +39,7 @@ import { StyleHide, imageMapping,
 
 
 function App() {
+  const [chatBotActive, setChatBotActive] = useState(false);
   const [runCatVideo, setRunCatVideo] = useState(false)
   const [newsPopup, setNewsPopup] = useState(false)
   const [onlineUser, setOnlineUser] = useState(0)
@@ -721,6 +722,7 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
 }
 
   const contextValue = {
+    chatBotActive, setChatBotActive,
     PatchExpand, setPatchExpand,
     runCatVideo, setRunCatVideo,
     newsPopup, setNewsPopup,
@@ -1099,6 +1101,7 @@ function handleDrop(e, name, target, oldFolderID) {
           key: KeyChatSession,
           mouse: detectMouse,
           touch: isTouchDevice,
+          botactive: chatBotActive,
       };
 
       if (userNameValue.trim().length < 1) {
