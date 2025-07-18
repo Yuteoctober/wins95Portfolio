@@ -1078,6 +1078,7 @@ function handleDrop(e, name, target, oldFolderID) {
       setDetectMouse(true)
     }
 
+
     async function createChat() { // create chat
       const filter = new Filter();
   
@@ -1101,7 +1102,7 @@ function handleDrop(e, name, target, oldFolderID) {
           key: KeyChatSession,
           mouse: detectMouse,
           touch: isTouchDevice,
-          botactive: chatBotActive,
+          chatBotActive: chatBotActive,
       };
 
       if (userNameValue.trim().length < 1) {
@@ -1116,6 +1117,7 @@ function handleDrop(e, name, target, oldFolderID) {
       // Send the payload via WebSocket
       if (socket.current) { // Check if socket is initialized
           socket.current.send(JSON.stringify(payload));
+          console.log(payload)
       } else {
           console.error('WebSocket is not initialized.');
       }
@@ -1125,7 +1127,6 @@ function handleDrop(e, name, target, oldFolderID) {
       setSendDisable(false);
       console.log('Chat message sent:', payload);
   }
-
 
 
 // Function to fetch chat data
