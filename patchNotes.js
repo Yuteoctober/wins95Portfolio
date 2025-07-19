@@ -1,5 +1,14 @@
 const patchNotes = [
   {
+    head: "**MSN APP**",
+    date: "2025-07-19",
+    notes: [
+      "Added AI Chat Bot to MSN app.",
+      "Chat Bot is able to be switched on/off.",
+      "Auto activate Chat Bot when no other users are online.",
+    ]
+  },
+  {
     head: "**New Project**",
     date: "2025-07-10",
     notes: [

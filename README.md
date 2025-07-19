@@ -147,6 +147,8 @@ All the functionalities
   - Added color picker to Settings for background customization. 26/06/2025
 
   - Added 3D Object in Project folder. 10/07/2025
+  - Added AI Chat Bot to MSN app. 18/07/2025
+  - Chat Bot is able to be switched on/off.
 
 
 Library used:
