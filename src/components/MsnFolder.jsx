@@ -39,9 +39,6 @@ function MsnFolder() {
 
 
   useEffect(() => {
-    if(onlineUser < 4) {
-      setChatBotActive(true);
-    }
     endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [MSNExpand.show])
   
