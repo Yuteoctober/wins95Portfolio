@@ -1,5 +1,13 @@
 const patchNotes = [
   {
+    head: "**NEW FORTUNE APP**",
+    date: "2025-07-21",
+    notes: [
+      "Added Fortune Teller app.",
+      "Can predict your weekly fortune",
+    ]
+  },
+  {
     head: "**MSN APP**",
     date: "2025-07-19",
     notes: [

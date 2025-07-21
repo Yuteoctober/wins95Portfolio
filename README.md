@@ -148,7 +148,8 @@ All the functionalities
 
   - Added 3D Object in Project folder. 10/07/2025
   - Added AI Chat Bot to MSN app. 18/07/2025
-  - Chat Bot is able to be switched on/off.
+  - Chat Bot is able to be switched on/off
+  - Added Weekly Fortune Teller in Project folder. 21/07/2025
 
 
 Library used:

@@ -33,6 +33,7 @@ import aiagent from '../../assets/ai_robot.png'
 import cat from '../../assets/catpic.png'
 import patch from '../../assets/patch.png'
 import ThreedObject from '../../assets/3dObject.png'
+import Fortune from '../../assets/fortune.png'
 
 // style function for bg tap
 export function StyleHide(index, tap, ObjectState) {
@@ -155,6 +156,10 @@ export function imageMapping (name) {
 
     case "3dObject":
       return ThreedObject;
+
+    case "Fortune":
+    case "fortune":
+      return Fortune;
 
     default:
       return null;
@@ -288,6 +293,10 @@ export function handleDoubleClickiframe(name, setOpenProjectExpand, setProjectUr
         setProjectUrl('https://yuteoctober.github.io/3d_book/'); 
     break;
 
+    case 'Fortune': 
+        setProjectUrl('https://yuteoctober.github.io/week_fortune/'); 
+    break;
+
     default: break; 
   }
 }
@@ -311,6 +320,10 @@ export function handleDoubleTapiframeMobile(name, lastTapTime, setLastTapTime, s
         case '3dObject': 
         setProjectUrl('https://yuteoctober.github.io/3d_book/'); 
         break;
+
+        case 'Fortune': 
+        setProjectUrl('https://yuteoctober.github.io/week_fortune/'); 
+        break;
   
       default: break; 
     }
@@ -325,6 +338,7 @@ export function handleDoubleClickEnterLink(name, handleshow) {
     case 'Note': window.open('https://fullstack-stickynotes.netlify.app/', '_blank'); break;
     case 'Type': window.open('https://yuteoctober.github.io/typingGame/', '_blank'); break;
     case '3dObject': window.open('https://yuteoctober.github.io/3d_book/', '_blank'); break;
+    case 'Fortune': window.open('https://yuteoctober.github.io/week_fortune/', '_blank'); break;
     case 'Github': 
       handleshow('Github'); 
       break;
@@ -343,6 +357,7 @@ if (now - lastTapTime < 300) {
     case 'Type': window.open('https://yuteoctober.github.io/typingGame/', '_blank'); break;
     case 'Github': window.open('https://github.com/Yuteoctober/wins95Portfolio/', '_blank'); break;
     case '3dObject': window.open('https://yuteoctober.github.io/3d_book/', '_blank'); break;
+    case 'Fortune': window.open('https://yuteoctober.github.io/week_fortune/', '_blank'); break;
     default: break; 
   }
 }

@@ -236,7 +236,7 @@ function App() {
       handleShow('Patch');
     }, 2500);
     
-    const resetIcon = desktopIcon.find(icon => icon.name === '3dObject')
+    const resetIcon = desktopIcon.find(icon => icon.name === 'Fortune')
     if(!resetIcon) {
       localStorage.clear();
       location.reload();
@@ -1161,6 +1161,7 @@ function ObjectState() { // Add all the state realted to folder here !! very imp
           { name: 'Note', setter: setNoteExpand, usestate: NoteExpand },
           { name: 'AiAgent', setter: setOpenProjectExpand, usestate: openProjectExpand },
           { name: '3dObject', setter: setOpenProjectExpand, usestate: openProjectExpand },
+          { name: 'Fortune', setter: setOpenProjectExpand, usestate: openProjectExpand },
           { name: 'Winamp', setter: setWinampExpand, usestate: WinampExpand },
           { name: 'ResumeFile', setter: setResumeFileExpand, usestate: ResumeFileExpand },
           { name: 'MineSweeper', setter: setMineSweeperExpand, usestate: MineSweeperExpand },
@@ -1259,6 +1260,10 @@ function handleShow(name) {
         handleDoubleClickiframe('3dObject', setOpenProjectExpand, setProjectUrl)
         handleShow('Internet');
       }
+      if(lowerCaseName === 'fortune') {
+        handleDoubleClickiframe('Fortune', setOpenProjectExpand, setProjectUrl)
+        handleShow('Internet');
+      }
       
     }
     item.setter(prev => ({...prev,focusItem: false}));
@@ -1267,7 +1272,7 @@ function handleShow(name) {
   if(tap.includes(name)) return;
   setStartActive(false)
 
-  if(name === 'Run' || name === 'Nft' || name === 'Note' || name === 'AiAgent' || name === '3dObject')return; // not showing run on tap
+  if(name === 'Run' || name === 'Nft' || name === 'Note' || name === 'AiAgent' || name === '3dObject' || name === 'Fortune')return; // not showing run on tap
 
   setTap(prevTap => [...prevTap, name]);
   setDesktopIcon(prevIcons => prevIcons.map(icon => ({...icon, focus: false})));
@@ -1338,6 +1343,10 @@ function handleShowMobile(name) {
         handleDoubleClickiframe('3dObject', setOpenProjectExpand, setProjectUrl)
         handleShow('Internet');
         }
+        if(lowerCaseName === 'fortune') {
+        handleDoubleClickiframe('Fortune', setOpenProjectExpand, setProjectUrl)
+        handleShow('Internet');
+      }
       }
       item.setter(prev => ({...prev,focusItem: false}));
   
@@ -1345,7 +1354,7 @@ function handleShowMobile(name) {
     if(tap.includes(name)) return;
     setStartActive(false)
   
-    if(name === 'Run' || name === 'Nft' || name === 'Note' || name === 'AiAgent' || name === '3dObject')return; // not showing run on tap
+    if(name === 'Run' || name === 'Nft' || name === 'Note' || name === 'AiAgent' || name === '3dObject' || name === 'Fortune')return; // not showing run on tap
   
     setTap(prevTap => [...prevTap, name]);
     setDesktopIcon(prevIcons => prevIcons.map(icon => ({...icon, focus: false})));
