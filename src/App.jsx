@@ -30,6 +30,7 @@ import loadingSpin from './assets/loading.gif'
 import NewsApp from './components/NewsApp'
 import SpinningCat from './components/SpinningCat';
 import Patch from './components/Patch';
+import WindowsDragLogin from './components/WindowsDragLogin';
 import { StyleHide, imageMapping,
   handleDoubleClickEnterLink,handleDoubleTapEnterMobile,
   handleDoubleClickiframe, handleDoubleTapiframeMobile,
@@ -39,6 +40,8 @@ import { StyleHide, imageMapping,
 
 
 function App() {
+  const [tileBG, setTileBG] = useState('#098684')
+  const [tileScreen, setTileScreen] = useState(true)
   const [chatBotActive, setChatBotActive] = useState(false);
   const [runCatVideo, setRunCatVideo] = useState(false)
   const [newsPopup, setNewsPopup] = useState(false)
@@ -722,6 +725,8 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
 }
 
   const contextValue = {
+    tileBG, setTileBG,
+    tileScreen, setTileScreen,
     chatBotActive, setChatBotActive,
     PatchExpand, setPatchExpand,
     runCatVideo, setRunCatVideo,
@@ -857,6 +862,7 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
     return(
       <UserContext.Provider value={contextValue}>
         <Login/>
+        <WindowsDragLogin/>
       </UserContext.Provider>
     )
   }
@@ -892,9 +898,19 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
     )
   }
 
+  // // show login page
+  // if(tileScreen ) {
+  //   return(
+  //     <UserContext.Provider value={contextValue}>
+  //       <WindowsDragLogin/>
+  //     </UserContext.Provider>
+  //   )
+  // }
+
   return (
     <>
       <UserContext.Provider value={contextValue}>
+      <WindowsDragLogin/>
       {regErrorPopUp && (
         <ErrorBtn
             themeDragBar={themeDragBar}
@@ -1151,34 +1167,47 @@ async function getChat() {
   }
 }
 
-function ObjectState() { // Add all the state realted to folder here !! very important
-  return [
-          { name: 'About', setter: setMybioExpand, usestate: MybioExpand},
-          { name: 'Resume', setter: setResumeExpand, usestate: ResumeExpand },
-          { name: 'Project', setter: setProjectExpand, usestate: ProjectExpand },
-          { name: 'Mail', setter: setMailExpand, usestate: MailExpand },
-          { name: 'Nft', setter: setNftExpand, usestate: NftExpand},
-          { name: 'Note', setter: setNoteExpand, usestate: NoteExpand },
-          { name: 'AiAgent', setter: setOpenProjectExpand, usestate: openProjectExpand },
-          { name: '3dObject', setter: setOpenProjectExpand, usestate: openProjectExpand },
-          { name: 'Fortune', setter: setOpenProjectExpand, usestate: openProjectExpand },
-          { name: 'Winamp', setter: setWinampExpand, usestate: WinampExpand },
-          { name: 'ResumeFile', setter: setResumeFileExpand, usestate: ResumeFileExpand },
-          { name: 'MineSweeper', setter: setMineSweeperExpand, usestate: MineSweeperExpand },
-          { name: 'MSN', setter: setMSNExpand, usestate: MSNExpand },
-          { name: 'Internet', setter: setOpenProjectExpand, usestate: openProjectExpand },
-          { name: 'Settings', setter: setBgSettingExpand, usestate: BgSettingExpand },
-          { name: 'Run', setter: setRunExpand, usestate: RunExpand },
-          { name: 'MyComputer', setter: setMyComputerExpand, usestate: MyComputerExpand },
-          { name: 'Picture', setter: setPictureExpand, usestate: pictureExpand },
-          { name: 'Photo', setter: setPhotoOpenExpand, usestate: photoOpenExpand },
-          { name: 'RecycleBin', setter: setBinExpand, usestate: BinExpand },
-          { name: 'Paint', setter: setPaintExpand, usestate: PaintExpand },
-          { name: 'Utility', setter: setUtilityExpand, usestate: UtilityExpand },
-          { name: 'Patch', setter: setPatchExpand, usestate: PatchExpand },
 
-        ];
+function ObjectState() {
+  return [
+    { name: 'About',       setter: setMybioExpand,      usestate: MybioExpand,      color: '#2e6cb0', size: 'small' }, // Brighter blue
+    { name: 'Resume',      setter: setResumeExpand,     usestate: ResumeExpand,     color: '#418a44', size: 'small' }, // Brighter green
+    { name: 'Project',     setter: setProjectExpand,    usestate: ProjectExpand,    color: '#d37500', size: 'small' }, // Brighter orange
+    { name: 'Picture',     setter: setPictureExpand,    usestate: pictureExpand,    color: '#553294', size: 'large' }, // Brighter purple
+    { name: 'Mail',        setter: setMailExpand,       usestate: MailExpand,       color: '#b21a4d', size: 'small' }, // Brighter red
+    { name: 'Nft',         setter: setNftExpand,        usestate: NftExpand,        color: '#8e1d7e', size: 'small' }, // Brighter purple
+    { name: 'Note',        setter: setNoteExpand,       usestate: NoteExpand,       color: '#725136', size: 'small' }, // Brighter brown
+    { name: 'AiAgent',     setter: setOpenProjectExpand,usestate: openProjectExpand,color: '#527584', size: 'small' }, // Brighter blue-gray
+    { name: '3dObject',    setter: setOpenProjectExpand,usestate: openProjectExpand,color: '#009fba', size: 'small' }, // Brighter teal
+    { name: 'Fortune',     setter: setOpenProjectExpand,usestate: openProjectExpand,color: '#e0582b', size: 'small' }, // Brighter burnt orange
+    { name: 'Winamp',      setter: setWinampExpand,     usestate: WinampExpand,     color: '#c3a909', size: 'small' }, // Brighter yellow
+    { name: 'ResumeFile',  setter: setResumeFileExpand, usestate: ResumeFileExpand, color: '#85a543', size: 'small' }, // Brighter olive green
+    { name: 'MineSweeper', setter: setMineSweeperExpand,usestate: MineSweeperExpand,color: '#bb3330', size: 'small' }, // Brighter dark red
+    { name: 'MSN',         setter: setMSNExpand,        usestate: MSNExpand,        color: '#34468f', size: 'small' }, // Brighter dark blue
+    { name: 'Internet',    setter: setOpenProjectExpand,usestate: openProjectExpand,color: '#009fba', size: 'small' }, // Brighter teal
+    { name: 'Settings',    setter: setBgSettingExpand,  usestate: BgSettingExpand,  color: '#8c8c8c', size: 'small' }, // Brighter gray
+    { name: 'Run',         setter: setRunExpand,        usestate: RunExpand,        color: '#56727a', size: 'small' }, // Brighter blue-gray
+    { name: 'MyComputer',  setter: setMyComputerExpand, usestate: MyComputerExpand, color: '#1f7ace', size: 'small' }, // Brighter blue
+    { name: 'Photo',       setter: setPhotoOpenExpand,  usestate: photoOpenExpand,  color: '#00785d', size: 'small' }, // Brighter teal
+    { name: 'RecycleBin',  setter: setBinExpand,        usestate: BinExpand,        color: '#408742', size: 'small' }, // Brighter green
+    { name: 'Paint',       setter: setPaintExpand,      usestate: PaintExpand,      color: '#c1b22e', size: 'small' }, // Brighter yellow
+    { name: 'Utility',     setter: setUtilityExpand,    usestate: UtilityExpand,    color: '#745536', size: 'small' }, // Brighter brown
+    { name: 'Patch',       setter: setPatchExpand,      usestate: PatchExpand,      color: '#56727a', size: 'small' }, // Brighter blue-gray
+  ];
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function iconFocusIcon(name) { // if focus on one, the rest goes unfocus
 

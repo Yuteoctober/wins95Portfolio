@@ -339,7 +339,7 @@ body {
     border-right-color: #1e1d1d;
     grid-template-areas:
         'sidebar winamp'
-        'sidebar linked'
+        'sidebar tile'
         'sidebar ghithub'
         'sidebar facebook'
         'sidebar ig'

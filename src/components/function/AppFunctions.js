@@ -34,6 +34,11 @@ import cat from '../../assets/catpic.png'
 import patch from '../../assets/patch.png'
 import ThreedObject from '../../assets/3dObject.png'
 import Fortune from '../../assets/fortune.png'
+import run from '../../assets/run.png'
+import backarrow from '../../assets/backarrow.png'
+import tile from '../../assets/tile.png'
+
+
 
 // style function for bg tap
 export function StyleHide(index, tap, ObjectState) {
@@ -160,6 +165,16 @@ export function imageMapping (name) {
     case "Fortune":
     case "fortune":
       return Fortune;
+
+    case "Run":
+      return run;
+
+    case "Exit":
+      return backarrow;
+
+    case "tile":
+    case "Tile":
+      return tile;
 
     default:
       return null;

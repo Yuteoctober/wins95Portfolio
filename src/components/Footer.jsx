@@ -5,6 +5,7 @@ import startIcon from '../assets/95icon.png';
 import run from '../assets/run.png';
 import github from '../assets/github.png';
 import linked from '../assets/linkedin.png';
+import tile from '../assets/tile.png';
 import sidebar from '../assets/sidebar95.png';
 import display from '../assets/display.png';
 import project from '../assets/regFolder.png';
@@ -34,6 +35,7 @@ export default function Footer() {
    
 
     const { 
+        tileScreen, setTileScreen,
         onlineUser,
         newsPopup, setNewsPopup,
         btcShow, setBtcShow,
@@ -74,6 +76,7 @@ export default function Footer() {
         ClearTOclippyUsernameFunction,
         clippyUsername,
      } = useContext(UseContext);
+
 
      const footerItems = [
         {
@@ -132,10 +135,14 @@ export default function Footer() {
         },
         {
             className: "linked",
-            imgSrc: linked,
-            imgAlt: "linked",
+            imgSrc: tile,
+            imgAlt: "Tile",
             style: { borderRadius: '5px' },
-            spanText: "Linked",
+            spanText: "Tile Screen",
+            onClick: () => {
+                setTileScreen(true),
+                setStartActive(false)
+            },
             onmouseenter: () => {
                 setResumejectStartBar(false);
                 setProjectStartBar(false);

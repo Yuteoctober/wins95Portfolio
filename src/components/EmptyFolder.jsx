@@ -1,7 +1,7 @@
 import UseContext from '../Context';
 import { Fragment, useContext, useEffect, useRef, useState} from "react";
 import Draggable from 'react-draggable';
-import { motion} from 'framer-motion';
+import {motion} from 'framer-motion';
 import '../css/ResumeFolder.css';
 import PropTypes from 'prop-types';
 import photoicon from '../assets/jpeg.png';

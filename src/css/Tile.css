@@ -1,0 +1,110 @@
+.bg_tile_container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 99999999999999999999;
+}
+
+.bg_tile_container .date_time {
+  position: absolute;
+  font-size: 54px;
+  font-weight: bold;
+  color: rgb(222, 215, 215);
+  margin-top: -6rem;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  padding: 4px;
+  position: relative;
+  margin: 0 auto;
+  max-width: 1200px;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-user-select: none; 
+  -moz-user-select: none;   
+  -ms-user-select: none;    
+  user-select: none;
+  overscroll-behavior: contain;
+}
+
+.grid-container::-webkit-scrollbar {
+    width: 0px;
+}
+
+
+
+.tile {
+    min-height: 100px;
+    min-width: 100px;
+    padding: 10px;
+    display: flex;
+    font-weight: bold;
+    cursor: pointer;
+    font-weight: lighter;
+    font-size: 14px;
+    color: #d1cfcf;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+.tile:hover {
+    opacity: 0.8 !important;
+}
+.tile:active {
+    cursor: grabbing;
+}
+
+
+/* Tile sizes */
+.tile.small {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+/* .tile.medium {
+  grid-column: span 2;
+  grid-row: span 1;
+} */
+.tile.large {
+  grid-column: span 2 !important;
+  grid-row: span 2 !important;
+}
+
+ .tile_pic_container {
+  position: relative;
+    width: 100%;
+    height: 100%;
+    top: 4px;
+    left: 2px;
+  }
+
+  .tile_pic {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 20px;
+  opacity: 0.75;
+}
+
+
+@media screen and (width <= 750px) {
+  .grid-container {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    top: 0;
+    transform: translateY(0);
+    overflow-y: auto;
+    max-height: 100svh;
+    gap: 4px;
+  }  
+
+
+  .tile {
+    min-width: 0;
+    width: 100%;
+    font-size: 13px;
+  }
+
+  .bg_tile_container .date_time {
+    display: none;
+  }
+}

@@ -1,5 +1,13 @@
 const patchNotes = [
   {
+    head: "**Added Tile grid App**",
+    date: "2025-07-27",
+    notes: [
+      "Added Tile grid App",
+      "More feature will be added later.."
+    ]
+  },
+  {
     head: "**NEW FORTUNE APP**",
     date: "2025-07-21",
     notes: [
