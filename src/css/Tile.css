@@ -7,10 +7,10 @@
 
 .bg_tile_container .date_time {
   position: absolute;
-  font-size: 50px;
+  font-size: 40px;
   font-weight: bold;
   color: rgb(222, 215, 215);
-  margin-top: -4.5rem;
+  margin-top: -4.2rem;
   left: 0.5rem;
 }
 
