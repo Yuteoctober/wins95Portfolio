@@ -125,4 +125,8 @@
   .bg_tile_container .date_time {
     display: none;
   }
+
+  .time_icon p {
+  font-size: 30px;
+}
 }
