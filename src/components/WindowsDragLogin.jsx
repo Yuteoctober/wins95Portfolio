@@ -45,7 +45,7 @@ const transformedIcons = icons.map((icon, index) => ({
 const timeIcon = {
   id: transformedIcons.length,
   content: 'Time',
-  color: '#6c2eb0',
+  color: '#2b2a26',
   size: 'large',
 };
 
