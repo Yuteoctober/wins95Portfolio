@@ -37,13 +37,29 @@ export default function WindowsDragLogin() {
     content: icon.name ? icon.name : null,
     color: icon.color ? icon.color : '',
     size: icon.size ? icon.size : 'small'
-
     };
 });
 
+  const timeIcon = {
+    id: transformedIcons.length + 1,
+    content: 'Time',
+    color: '#6c2eb0',
+    size: 'large'
+  }
+
+ const insertIndex = Math.max(transformedIcons.length - 8, 0); // prevent negative index
+
+  const addedIcons = [
+  ...transformedIcons.slice(0, insertIndex),
+  timeIcon,
+  ...transformedIcons.slice(insertIndex)
+];
+
+  
+
   const [tiles, setTiles] = useState(() => {
   const saved = localStorage.getItem('tiles');
-  return saved ? JSON.parse(saved) : transformedIcons;
+  return saved ? JSON.parse(saved) : addedIcons;
   });
 
   useEffect(() => {

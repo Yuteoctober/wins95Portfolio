@@ -1195,7 +1195,7 @@ function ObjectState() {
     { name: 'Settings',    setter: setBgSettingExpand,  usestate: BgSettingExpand,  color: '#8c8c8c', size: 'small' }, // Brighter gray
     { name: 'Run',         setter: setRunExpand,        usestate: RunExpand,        color: '#56727a', size: 'small' }, // Brighter blue-gray
     { name: 'MyComputer',  setter: setMyComputerExpand, usestate: MyComputerExpand, color: '#1f7ace', size: 'small' }, // Brighter blue
-    { name: 'Patch',       setter: setPatchExpand,      usestate: PatchExpand,      color: '#56727a', size: 'large' }, // Brighter blue-gray
+    { name: 'Patch',       setter: setPatchExpand,      usestate: PatchExpand,      color: '#56727a', size: 'small' }, // Brighter blue-gray
     { name: 'Photo',       setter: setPhotoOpenExpand,  usestate: photoOpenExpand,  color: '#00785d', size: 'small' }, // Brighter teal
     { name: 'RecycleBin',  setter: setBinExpand,        usestate: BinExpand,        color: '#408742', size: 'small' }, // Brighter green
     { name: 'Paint',       setter: setPaintExpand,      usestate: PaintExpand,      color: '#c1b22e', size: 'small' }, // Brighter yellow

@@ -7,15 +7,16 @@
 
 .bg_tile_container .date_time {
   position: absolute;
-  font-size: 54px;
+  font-size: 50px;
   font-weight: bold;
   color: rgb(222, 215, 215);
-  margin-top: -6rem;
+  margin-top: -4.5rem;
+  left: 0.5rem;
 }
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 6px;
   padding: 4px;
   position: relative;
@@ -86,8 +87,23 @@
   opacity: 0.75;
 }
 
+.time_icon {
+  display: grid;
+  position: absolute;
+  place-items: center;
+  width: 100%;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  gap: 0.5rem;
+}
 
-@media screen and (width <= 750px) {
+.time_icon p {
+  font-size: 50px;
+}
+
+
+@media screen and (width <= 630px) {
   .grid-container {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     top: 0;

@@ -2,6 +2,7 @@ import { useRef, useContext, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useDrag, useDrop } from 'react-dnd';
 import UseContext from '../Context';
+import dayjs from 'dayjs';
 
 // Import slideshow images
 import p1 from '../assets/001.jpg';
@@ -27,6 +28,7 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
 
   const ref = useRef(null);
   const [imgIndex, setImgIndex] = useState(0);
+  const [currentTime, setCurrentTime] = useState(null);
 
   useEffect(() => {
     if (content !== 'Picture') return;
@@ -67,6 +69,14 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
         pointerEvents: disable ? 'none' : 'auto',
   }
 
+  useEffect(() => { // time
+    const timer = setInterval(() => {
+      setCurrentTime(dayjs().format('HH:mm:ss'));
+    }, 1000); // update every second
+
+    return () => clearInterval(timer); 
+  }, []);
+
   const tileClasses = `tile ${size} ${color || ''}`;
 
   return (
@@ -79,11 +89,15 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
         transition={{ ease: 'easeInOut', duration: 1 }}
         exit={{ opacity: 0 }}
         style={{
+          position: 'relative',
           opacity: isDragging ? 0.5 : 1,
           background: color,
           ...silideImg
         }}
         onClick={() => {
+          if (content === 'Time') {
+            return;
+          }
           if (content === 'Exit') {
             setTileScreen(false);
             return;
@@ -92,6 +106,11 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           setTileScreen(false);
         }}
       >
+        {content === 'Time' && (
+          <div className="time_icon">
+            <p>{currentTime}</p>
+          </div>
+        )}
         {content}
         <div className="tile_pic_container">
           <img className="tile_pic" src={imageMapping(content)} alt="" />
