@@ -7,10 +7,9 @@
 
 .bg_tile_container .date_time {
   position: absolute;
-  font-size: 40px;
-  font-weight: bold;
+  font-size: 34px;
   color: rgb(222, 215, 215);
-  margin-top: -4.2rem;
+  margin-top: -3.8rem;
   left: 0.5rem;
 }
 
@@ -29,12 +28,12 @@
   -ms-user-select: none;    
   user-select: none;
   overscroll-behavior: contain;
+  
 }
 
 .grid-container::-webkit-scrollbar {
     width: 0px;
 }
-
 
 
 .tile {

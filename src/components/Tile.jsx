@@ -16,6 +16,8 @@ import p8 from '../assets/008.jpg';
 import p9 from '../assets/009.jpg';
 import p10 from '../assets/010.jpg';
 import p11 from '../assets/011.jpg';
+import chat from '../assets/chat.gif';
+
 
 const imageList = [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11];
 const ItemType = 'TILE';
@@ -62,12 +64,29 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
     drag(drop(ref));
   }
 
-  const silideImg = {
-        backgroundImage: content === 'Picture' ? `url(${imageList[imgIndex]})` : '',
+  function tileBG(content, disable) {
+  switch (content) {
+    case 'Picture':
+      return {
+        backgroundImage: `url(${imageList[imgIndex]})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         pointerEvents: disable ? 'none' : 'auto',
+      };
+
+    case 'MSN':
+      return {
+        backgroundImage: `url(${chat})`,
+        backgroundPosition: 'center',
+        backgroundSize: '160px',
+        backgroundRepeat: 'no-repeat',
+      };
+
+    default:
+      return {};
   }
+}
+
   
 
 
@@ -96,7 +115,7 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           position: 'relative',
           opacity: isDragging ? 0.5 : 1,
           background: color,
-          ...silideImg
+          ...tileBG(content, disable)
         }}
         onClick={() => {
           if (content === 'Time') {
