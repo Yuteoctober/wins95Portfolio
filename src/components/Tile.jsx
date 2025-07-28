@@ -53,7 +53,6 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
   const [{ isDragging }, drag] = useDrag({
     type: ItemType,
     item: { id, index },
-    canDrag: !disable && id !== 'exit',
     collect: monitor => ({
       isDragging: monitor.isDragging(),
     }),

@@ -37,7 +37,6 @@ import Fortune from '../../assets/fortune.png'
 import run from '../../assets/run.png'
 import backarrow from '../../assets/backarrow.png'
 import tile from '../../assets/tile.png'
-import clock from '../../assets/clock.png'
 
 
 
@@ -177,8 +176,6 @@ export function imageMapping (name) {
     case "Tile":
       return tile;
 
-    case "Time":
-      return clock;
 
     default:
       return null;
