@@ -87,6 +87,16 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
   }
 }
 
+function mappingIconImage(content) {
+    switch (content) {
+      case 'MSN':
+      return;
+
+      default:
+        return imageMapping(content);
+    }
+} 
+
   
 
 
@@ -140,7 +150,7 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
         )}
         {content}
         <div className="tile_pic_container">
-          <img className="tile_pic" src={imageMapping(content)} alt="" />
+          <img className="tile_pic" src={mappingIconImage(content)} alt="" />
         </div>
       </motion.div>
     </AnimatePresence>
