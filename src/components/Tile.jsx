@@ -22,6 +22,7 @@ const ItemType = 'TILE';
 
 export default function Tile({ id, content, index, size, color, moveTile, imageMapping, disable }) {
   const {
+    tileScreen,
     setTileScreen,
     handleShow,
   } = useContext(UseContext);

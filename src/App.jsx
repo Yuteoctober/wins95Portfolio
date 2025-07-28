@@ -277,7 +277,7 @@ useEffect(() => {
   return () => {
     document.removeEventListener("contextmenu", handleRightClick);
   };
-}, []);
+}, [tileScreen]);
 
 
   useEffect(() => {
@@ -311,7 +311,7 @@ useEffect(() => {
       document.removeEventListener("touchmove", handleTouchEnd);
       document.removeEventListener("touchcancel", handleTouchEnd);
     };
-  }, []);
+  }, [tileScreen]);
 
 
   function handleMobileLongPress(e, icon) { // long press icon on mobile
