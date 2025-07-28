@@ -100,7 +100,13 @@
 }
 
 .time_icon p {
-  font-size: 50px;
+  font-size: 40px;
+}
+
+@media screen and (width <= 800px) {
+  .time_icon p {
+  font-size: 36px;
+}
 }
 
 

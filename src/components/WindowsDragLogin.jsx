@@ -28,38 +28,44 @@ export default function WindowsDragLogin() {
 
    } = useContext(UseContext);
 
-  
-  const icons = ObjectState();
 
-    const transformedIcons = icons.map((icon, index) => {
-    return {
-    id: index,
-    content: icon.name ? icon.name : null,
-    color: icon.color ? icon.color : '',
-    size: icon.size ? icon.size : 'small'
-    };
-});
+const bannedIcon = ['Photo'];
 
-  const timeIcon = {
-    id: transformedIcons.length + 1,
-    content: 'Time',
-    color: '#6c2eb0',
-    size: 'large'
-  }
+const icons = ObjectState();
 
- const insertIndex = Math.max(transformedIcons.length - 8, 0); // prevent negative index
+// Transform original icons with defaults
+const transformedIcons = icons.map((icon, index) => ({
+  id: index,
+  content: icon.name || null,
+  color: icon.color || '',
+  size: icon.size || 'small',
+}));
 
-  const addedIcons = [
+// Define a new Time icon
+const timeIcon = {
+  id: transformedIcons.length,
+  content: 'Time',
+  color: '#6c2eb0',
+  size: 'large',
+};
+
+// Insert the time icon before the last 8 icons
+const insertIndex = Math.max(transformedIcons.length - 8, 0);
+const iconsWithTime = [
   ...transformedIcons.slice(0, insertIndex),
   timeIcon,
-  ...transformedIcons.slice(insertIndex)
+  ...transformedIcons.slice(insertIndex),
 ];
+
+// Remove banned icons
+const finalIcons = iconsWithTime.filter(icon => !bannedIcon.includes(icon.content));
+
 
   
 
   const [tiles, setTiles] = useState(() => {
   const saved = localStorage.getItem('tiles');
-  return saved ? JSON.parse(saved) : addedIcons;
+  return saved ? JSON.parse(saved) : finalIcons;
   });
 
   useEffect(() => {
