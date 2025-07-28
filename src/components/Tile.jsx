@@ -22,7 +22,6 @@ const ItemType = 'TILE';
 
 export default function Tile({ id, content, index, size, color, moveTile, imageMapping, disable }) {
   const {
-    tileScreen,
     setTileScreen,
     handleShow,
   } = useContext(UseContext);
@@ -30,6 +29,7 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
   const ref = useRef(null);
   const [imgIndex, setImgIndex] = useState(0);
   const [currentTime, setCurrentTime] = useState(null);
+  const [formatTime, setFormatTime] = useState(false);
 
   useEffect(() => {
     if (content !== 'Picture') return;
@@ -68,14 +68,18 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
         backgroundPosition: 'center',
         pointerEvents: disable ? 'none' : 'auto',
   }
+  
 
-  useEffect(() => { // time
+
+  useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentTime(dayjs().format('HH:mm:ss'));
+      const format = formatTime ? 'HH:mm:ss' : 'hh:mm:ss A';
+      setCurrentTime(dayjs().format(format));
     }, 1000); // update every second
 
     return () => clearInterval(timer); 
-  }, []);
+  }, [formatTime]);
+
 
   const tileClasses = `tile ${size} ${color || ''}`;
 
@@ -107,7 +111,11 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
         }}
       >
         {content === 'Time' && (
-          <div className="time_icon">
+          <div className="time_icon"
+            onClick={() => {
+              setFormatTime(!formatTime)
+            }}
+          >
             <p>{currentTime}</p>
           </div>
         )}

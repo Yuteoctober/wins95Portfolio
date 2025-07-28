@@ -96,6 +96,7 @@
   top: 50%;
   transform: translateY(-50%);
   gap: 0.5rem;
+  z-index: 2;
 }
 
 .time_icon p {
