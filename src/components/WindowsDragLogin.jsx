@@ -29,7 +29,7 @@ export default function WindowsDragLogin() {
    } = useContext(UseContext);
 
 
-const bannedIcon = ['Photo'];
+const bannedIcon = ['Photo', 'Internet'];
 
 const icons = ObjectState();
 

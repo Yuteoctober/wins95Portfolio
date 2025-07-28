@@ -87,13 +87,27 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
   }
 }
 
-function mappingIconImage(content) {
+function mappingIconImage(content) { //IMG
     switch (content) {
       case 'MSN':
       return;
 
+      case 'Picture':
+        return;
+
       default:
         return imageMapping(content);
+    }
+} 
+
+function mappingIconName(content) { // NAME
+    switch (content) {
+
+      case '':
+      return;
+
+      default:
+        return content;
     }
 } 
 
@@ -122,6 +136,7 @@ function mappingIconImage(content) {
         transition={{ ease: 'easeInOut', duration: 1 }}
         exit={{ opacity: 0 }}
         style={{
+          display: 'grid',
           position: 'relative',
           opacity: isDragging ? 0.5 : 1,
           background: color,
@@ -148,7 +163,10 @@ function mappingIconImage(content) {
             <p>{currentTime}</p>
           </div>
         )}
-        {content}
+        <span className='tile_name'>
+          {mappingIconName(content)}
+        </span>
+        
         <div className="tile_pic_container">
           <img className="tile_pic" src={mappingIconImage(content)} alt="" />
         </div>
