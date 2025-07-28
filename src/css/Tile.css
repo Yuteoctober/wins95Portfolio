@@ -39,7 +39,7 @@
 .tile {
     min-height: 100px;
     min-width: 100px;
-    padding: 10px;
+    padding: 8px;
     display: flex;
     font-weight: bold;
     cursor: pointer;
@@ -50,7 +50,9 @@
 }
 
  .tile_name {
-    font-size: 14px;
+    position: relative;
+    font-size: 13px;
+    bottom: 2px;
   }
 
 .tile:hover {

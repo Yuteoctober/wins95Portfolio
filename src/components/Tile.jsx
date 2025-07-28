@@ -17,6 +17,8 @@ import p9 from '../assets/009.jpg';
 import p10 from '../assets/010.jpg';
 import p11 from '../assets/011.jpg';
 import chat from '../assets/chat.gif';
+import settings from '../assets/settingsTile.png';
+import fortune from '../assets/fortune.gif';
 
 
 const imageList = [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11];
@@ -82,17 +84,39 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
         backgroundRepeat: 'no-repeat',
       };
 
+    case 'Settings':
+      return {
+        backgroundImage: `url(${settings})`,
+        backgroundPosition: 'center',
+        backgroundSize: '50px',
+        backgroundRepeat: 'no-repeat',
+      };
+
+      case 'Fortune':
+        return {
+          backgroundImage: `url(${fortune})`,
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+        };
+
     default:
       return {};
   }
 }
 
-function mappingIconImage(content) { //IMG
+function mappingIconImage(content) { //Icon img
     switch (content) {
       case 'MSN':
       return;
 
       case 'Picture':
+        return;
+
+      case 'Settings':
+        return;
+
+      case 'Fortune':
         return;
 
       default:
