@@ -114,7 +114,7 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
       case '3dObject':
         return {
           backgroundImage: `url(${cube})`,
-          backgroundPosition: 'center',
+          backgroundPosition: '50% 10%',
           backgroundSize: '110px',
           backgroundRepeat: 'no-repeat',
         };
@@ -122,7 +122,7 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
       case 'AiAgent':
         return {
           backgroundImage: `url(${agent})`,
-          backgroundPosition: 'center',
+          backgroundPosition: '50% 100%',
           backgroundSize: '85px',
           backgroundRepeat: 'no-repeat',
         };
