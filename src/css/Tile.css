@@ -7,9 +7,9 @@
 
 .bg_tile_container .date_time {
   position: absolute;
-  font-size: 34px;
+  font-size: 30px;
   color: rgb(222, 215, 215);
-  margin-top: -3.8rem;
+  margin-top: -3rem;
   left: 0.5rem;
 }
 
@@ -47,7 +47,11 @@
     font-size: 14px;
     color: #d1cfcf;
     transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
-}
+    -webkit-user-select: none; 
+    -moz-user-select: none;   
+    -ms-user-select: none;    
+    user-select: none;
+  }
 
  .tile_name {
     position: relative;

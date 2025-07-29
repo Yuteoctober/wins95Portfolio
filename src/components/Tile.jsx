@@ -19,6 +19,9 @@ import p11 from '../assets/011.jpg';
 import chat from '../assets/chat.gif';
 import settings from '../assets/settingsTile.png';
 import fortune from '../assets/fortune.gif';
+import pudgy from '../assets/pudgy.png';
+import cube from '../assets/cube.gif';
+import agent from '../assets/bot.gif';
 
 
 const imageList = [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11];
@@ -88,7 +91,7 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
       return {
         backgroundImage: `url(${settings})`,
         backgroundPosition: 'center',
-        backgroundSize: '50px',
+        backgroundSize: '40px',
         backgroundRepeat: 'no-repeat',
       };
 
@@ -100,29 +103,45 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundRepeat: 'no-repeat',
         };
 
+      case 'Nft':
+        return {
+          backgroundImage: `url(${pudgy})`,
+          backgroundPosition: 'center',
+          backgroundSize: '100px',
+          backgroundRepeat: 'no-repeat',
+        };
+
+      case '3dObject':
+        return {
+          backgroundImage: `url(${cube})`,
+          backgroundPosition: 'center',
+          backgroundSize: '110px',
+          backgroundRepeat: 'no-repeat',
+        };
+
+      case 'AiAgent':
+        return {
+          backgroundImage: `url(${agent})`,
+          backgroundPosition: 'center',
+          backgroundSize: '85px',
+          backgroundRepeat: 'no-repeat',
+        };
+
     default:
       return {};
   }
 }
 
-function mappingIconImage(content) { //Icon img
-    switch (content) {
-      case 'MSN':
-      return;
+function mappingIconImage(content) { // no icon
+  const banned = ['MSN', 'Picture', 'Settings', 'Fortune', 'Nft', '3dObject', 'AiAgent'];
 
-      case 'Picture':
-        return;
+  if (banned.includes(content)) {
+    return; 
+  }
 
-      case 'Settings':
-        return;
+  return imageMapping(content); 
+}
 
-      case 'Fortune':
-        return;
-
-      default:
-        return imageMapping(content);
-    }
-} 
 
 function mappingIconName(content) { // NAME
     switch (content) {
