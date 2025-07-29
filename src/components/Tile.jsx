@@ -4,7 +4,6 @@ import { useDrag, useDrop } from 'react-dnd';
 import UseContext from '../Context';
 import dayjs from 'dayjs';
 
-// Import slideshow images
 import p1 from '../assets/001.jpg';
 import p2 from '../assets/002.jpg';
 import p3 from '../assets/003.jpg';
@@ -23,30 +22,29 @@ import pudgy from '../assets/pudgy.png';
 import cube from '../assets/cube.gif';
 import agent from '../assets/bot.gif';
 
-
 const imageList = [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11];
 const ItemType = 'TILE';
 
 export default function Tile({ id, content, index, size, color, moveTile, imageMapping, disable }) {
-  const {
-    setTileScreen,
-    handleShow,
-  } = useContext(UseContext);
+  const { setTileScreen, handleShow } = useContext(UseContext);
 
   const ref = useRef(null);
+  const previewRef = useRef(null);
+
   const [imgIndex, setImgIndex] = useState(0);
   const [currentTime, setCurrentTime] = useState(null);
   const [formatTime, setFormatTime] = useState(false);
 
+  // Cycle images for "Picture"
   useEffect(() => {
     if (content !== 'Picture') return;
     const interval = setInterval(() => {
-      setImgIndex(prev => (prev + 1) % imageList.length);
+      setImgIndex((prev) => (prev + 1) % imageList.length);
     }, 8000);
-
     return () => clearInterval(interval);
   }, [content]);
 
+  // Drop zone
   const [, drop] = useDrop({
     accept: ItemType,
     hover(item) {
@@ -57,44 +55,50 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
     },
   });
 
-  const [{ isDragging }, drag] = useDrag({
+  // Drag config
+  const [{ isDragging }, drag, preview] = useDrag({
     type: ItemType,
     item: { id, index },
-    collect: monitor => ({
+    collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
   });
 
+  // Set custom preview to current element and center it
+  useEffect(() => {
+    if (previewRef.current) {
+      preview(previewRef.current, { anchorX: 0.5, anchorY: 0.5 });
+    }
+  }, [preview]);
+
+  // Attach drag/drop
   if (!disable && id !== 'exit') {
     drag(drop(ref));
   }
 
   function tileBG(content, disable) {
-  switch (content) {
-    case 'Picture':
-      return {
-        backgroundImage: `url(${imageList[imgIndex]})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        pointerEvents: disable ? 'none' : 'auto',
-      };
-
-    case 'MSN':
-      return {
-        backgroundImage: `url(${chat})`,
-        backgroundPosition: 'center',
-        backgroundSize: '160px',
-        backgroundRepeat: 'no-repeat',
-      };
-
-    case 'Settings':
-      return {
-        backgroundImage: `url(${settings})`,
-        backgroundPosition: 'center',
-        backgroundSize: '40px',
-        backgroundRepeat: 'no-repeat',
-      };
-
+    switch (content) {
+      case 'Picture':
+        return {
+          backgroundImage: `url(${imageList[imgIndex]})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          pointerEvents: disable ? 'none' : 'auto',
+        };
+      case 'MSN':
+        return {
+          backgroundImage: `url(${chat})`,
+          backgroundPosition: 'center',
+          backgroundSize: '160px',
+          backgroundRepeat: 'no-repeat',
+        };
+      case 'Settings':
+        return {
+          backgroundImage: `url(${settings})`,
+          backgroundPosition: 'center',
+          backgroundSize: '40px',
+          backgroundRepeat: 'no-repeat',
+        };
       case 'Fortune':
         return {
           backgroundImage: `url(${fortune})`,
@@ -102,7 +106,6 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
         };
-
       case 'Nft':
         return {
           backgroundImage: `url(${pudgy})`,
@@ -110,7 +113,6 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundSize: '100px',
           backgroundRepeat: 'no-repeat',
         };
-
       case '3dObject':
         return {
           backgroundImage: `url(${cube})`,
@@ -118,7 +120,6 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundSize: '110px',
           backgroundRepeat: 'no-repeat',
         };
-
       case 'AiAgent':
         return {
           backgroundImage: `url(${agent})`,
@@ -126,53 +127,44 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundSize: '85px',
           backgroundRepeat: 'no-repeat',
         };
-
-    default:
-      return {};
-  }
-}
-
-function mappingIconImage(content) { // no icon
-  const banned = ['MSN', 'Picture', 'Settings', 'Fortune', 'Nft', '3dObject', 'AiAgent'];
-
-  if (banned.includes(content)) {
-    return; 
+      default:
+        return {};
+    }
   }
 
-  return imageMapping(content); 
-}
+  function mappingIconImage(content) {
+    const banned = ['MSN', 'Picture', 'Settings', 'Fortune', 'Nft', '3dObject', 'AiAgent'];
+    if (banned.includes(content)) return;
+    return imageMapping(content);
+  }
 
-
-function mappingIconName(content) { // NAME
+  function mappingIconName(content) {
     switch (content) {
-
       case '':
-      return;
-
+        return;
       default:
         return content;
     }
-} 
+  }
 
-  
-
-
+  // Update clock
   useEffect(() => {
     const timer = setInterval(() => {
       const format = formatTime ? 'HH:mm:ss' : 'hh:mm:ss A';
       setCurrentTime(dayjs().format(format));
-    }, 1000); // update every second
-
-    return () => clearInterval(timer); 
+    }, 1000);
+    return () => clearInterval(timer);
   }, [formatTime]);
-
 
   const tileClasses = `tile ${size} ${color || ''}`;
 
   return (
     <AnimatePresence>
       <motion.div
-        ref={ref}
+        ref={(node) => {
+          ref.current = node;
+          previewRef.current = node;
+        }}
         className={tileClasses}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, x: 0 }}
@@ -183,12 +175,10 @@ function mappingIconName(content) { // NAME
           position: 'relative',
           opacity: isDragging ? 0.5 : 1,
           background: color,
-          ...tileBG(content, disable)
+          ...tileBG(content, disable),
         }}
         onClick={() => {
-          if (content === 'Time') {
-            return;
-          }
+          if (content === 'Time') return;
           if (content === 'Exit') {
             setTileScreen(false);
             return;
@@ -198,18 +188,11 @@ function mappingIconName(content) { // NAME
         }}
       >
         {content === 'Time' && (
-          <div className="time_icon"
-            onClick={() => {
-              setFormatTime(!formatTime)
-            }}
-          >
+          <div className="time_icon" onClick={() => setFormatTime(!formatTime)}>
             <p>{currentTime}</p>
           </div>
         )}
-        <span className='tile_name'>
-          {mappingIconName(content)}
-        </span>
-        
+        <span className="tile_name">{mappingIconName(content)}</span>
         <div className="tile_pic_container">
           <img className="tile_pic" src={mappingIconImage(content)} alt="" />
         </div>

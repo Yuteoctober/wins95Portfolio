@@ -9,22 +9,10 @@ import dayjs from 'dayjs';
 export default function WindowsDragLogin() {
 
   const { 
-    tileBG, setTileBG,
-    tileScreen, setTileScreen,
+    tileBG,
+    tileScreen,
     imageMapping,
     ObjectState,
-    themeDragBar,
-    projectname,
-    projectUrl,
-    openProjectExpand, setOpenProjectExpand,
-    lastTapTime, setLastTapTime,
-    StyleHide,
-    isTouchDevice,
-    handleSetFocusItemTrue,
-    inlineStyleExpand,
-    inlineStyle,
-    iconFocusIcon,
-    deleteTap,
 
    } = useContext(UseContext);
 
@@ -73,11 +61,13 @@ const finalIcons = iconsWithTime.filter(icon => !bannedIcon.includes(icon.conten
   }, [tiles]);
 
   const moveTile = useCallback((dragIndex, hoverIndex) => {
-    const updated = [...tiles];
+  setTiles(prevTiles => {
+    const updated = [...prevTiles];
     const [movedTile] = updated.splice(dragIndex, 1);
     updated.splice(hoverIndex, 0, movedTile);
-    setTiles(updated);
-  }, [tiles]);
+    return updated;
+  });
+}, []);
 
   const now = dayjs()
   const date_time = now.format('dddd, MMM D, YYYY')
