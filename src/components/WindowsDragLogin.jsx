@@ -38,14 +38,14 @@ const transformedIcons = icons.map((icon, index) => ({
 const timeIcon = {
   id: transformedIcons.length,
   content: 'Time',
-  color: 'rgba(43, 42, 38, 0.8)',
+  color: 'rgba(43, 42, 38, 0.85)',
   size: 'large',
 };
 
 const background = {
   id: transformedIcons.length + 1,
   content: 'Background',
-  color: 'rgba(127, 127, 127, 0.8)',
+  color: 'rgba(127, 127, 127, 0.85)',
   size: 'small',
 }
 
