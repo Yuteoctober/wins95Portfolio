@@ -249,7 +249,7 @@ function App() {
     
     const resetIcon = desktopIcon.find(icon => icon.name === 'Fortune')
     const saved = localStorage.getItem('isWallpaperOn')
-    if(!resetIcon || saved === !undefined) {
+    if(!resetIcon || saved === null) {
       localStorage.clear();
       location.reload();
     }
