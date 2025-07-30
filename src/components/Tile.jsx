@@ -23,7 +23,6 @@ import cube from '../assets/cube.gif';
 import agent from '../assets/bot.gif';
 import music from '../assets/music.gif';
 import catchat from '../assets/catchat.gif';
-import note from '../assets/note.gif';
 
 
 const imageList = [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11];
@@ -141,13 +140,6 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
       case 'MyComputer':
         return {
           backgroundImage: `url(${catchat})`,
-          backgroundPosition: '50% 10%',
-          backgroundSize: '130px',
-          backgroundRepeat: 'no-repeat',
-        };
-      case 'Note':
-        return {
-          backgroundImage: `url(${note})`,
           backgroundPosition: '50% 10%',
           backgroundSize: '130px',
           backgroundRepeat: 'no-repeat',
