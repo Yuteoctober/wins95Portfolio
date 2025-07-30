@@ -11,6 +11,7 @@ export default function WindowsDragLogin() {
   
 
   const { 
+    login,
     bgRotation,
     backgroundImageUrl, setBackgroundImageUrl,
     tileBG,
@@ -118,7 +119,7 @@ const finalIcons = iconsWithTime.filter(icon => !bannedIcon.includes(icon.conten
 
   return (
     <>
-      {tileScreen && (
+      {(tileScreen && !login) && (
         <DndProvider backend={HTML5Backend}>
         <div className="bg_tile_container"
           style={{
