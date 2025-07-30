@@ -40,6 +40,11 @@ import { StyleHide, imageMapping,
 
 
 function App() {
+  const [bgRotation, setBgRotation] = useState(() => {
+  const saved = localStorage.getItem('isWallpaperOn');
+  return saved ? JSON.parse(saved).bgRotation : true;
+});
+  const [backgroundImageUrl, setBackgroundImageUrl] = useState('');
   const [tileBG, setTileBG] = useState('#098684')
   const [tileScreen, setTileScreen] = useState(true)
   const [chatBotActive, setChatBotActive] = useState(false);
@@ -732,6 +737,8 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
 }
 
   const contextValue = {
+    bgRotation, setBgRotation,
+    backgroundImageUrl, setBackgroundImageUrl,
     tileBG, setTileBG,
     tileScreen, setTileScreen,
     chatBotActive, setChatBotActive,
@@ -1177,31 +1184,32 @@ async function getChat() {
 
 function ObjectState() {
   return [
-    { name: 'About',       setter: setMybioExpand,      usestate: MybioExpand,      color: '#2e6cb0', size: 'small' }, // Brighter blue
-    { name: 'Resume',      setter: setResumeExpand,     usestate: ResumeExpand,     color: '#418a44', size: 'small' }, // Brighter green
-    { name: 'Project',     setter: setProjectExpand,    usestate: ProjectExpand,    color: '#d37500', size: 'small' }, // Brighter orange
-    { name: 'Picture',     setter: setPictureExpand,    usestate: pictureExpand,    color: '#553294', size: 'large' }, // Brighter purple
-    { name: 'Mail',        setter: setMailExpand,       usestate: MailExpand,       color: '#b21a4d', size: 'small' }, // Brighter red
-    { name: 'Nft',         setter: setNftExpand,        usestate: NftExpand,        color: '#8e1d7e', size: 'small' }, // Brighter purple
-    { name: 'Note',        setter: setNoteExpand,       usestate: NoteExpand,       color: '#725136', size: 'small' }, // Brighter brown
-    { name: 'AiAgent',     setter: setOpenProjectExpand,usestate: openProjectExpand,color: '#527584', size: 'small' }, // Brighter blue-gray
-    { name: '3dObject',    setter: setOpenProjectExpand,usestate: openProjectExpand,color: '#009fba', size: 'small' }, // Brighter teal
-    { name: 'Fortune',     setter: setOpenProjectExpand,usestate: openProjectExpand,color: '#e0582b', size: 'small' }, // Brighter burnt orange
-    { name: 'Winamp',      setter: setWinampExpand,     usestate: WinampExpand,     color: '#c3a909', size: 'small' }, // Brighter yellow
-    { name: 'ResumeFile',  setter: setResumeFileExpand, usestate: ResumeFileExpand, color: '#85a543', size: 'small' }, // Brighter olive green
-    { name: 'MineSweeper', setter: setMineSweeperExpand,usestate: MineSweeperExpand,color: '#bb3330', size: 'small' }, // Brighter dark red
-    { name: 'MSN',         setter: setMSNExpand,        usestate: MSNExpand,        color: '#34468f', size: 'small' }, // Brighter dark blue
-    { name: 'Internet',    setter: setOpenProjectExpand,usestate: openProjectExpand,color: '#009fba', size: 'small' }, // Brighter teal
-    { name: 'Settings',    setter: setBgSettingExpand,  usestate: BgSettingExpand,  color: '#8c8c8c', size: 'small' }, // Brighter gray
-    { name: 'Run',         setter: setRunExpand,        usestate: RunExpand,        color: '#56727a', size: 'small' }, // Brighter blue-gray
-    { name: 'MyComputer',  setter: setMyComputerExpand, usestate: MyComputerExpand, color: '#1f7ace', size: 'small' }, // Brighter blue
-    { name: 'Patch',       setter: setPatchExpand,      usestate: PatchExpand,      color: '#56727a', size: 'small' }, // Brighter blue-gray
-    { name: 'Photo',       setter: setPhotoOpenExpand,  usestate: photoOpenExpand,  color: '#00785d', size: 'small' }, // Brighter teal
-    { name: 'RecycleBin',  setter: setBinExpand,        usestate: BinExpand,        color: '#408742', size: 'small' }, // Brighter green
-    { name: 'Paint',       setter: setPaintExpand,      usestate: PaintExpand,      color: '#c1b22e', size: 'small' }, // Brighter yellow
-    { name: 'Utility',     setter: setUtilityExpand,    usestate: UtilityExpand,    color: '#745536', size: 'small' }, // Brighter brown
+    { name: 'About',       setter: setMybioExpand,      usestate: MybioExpand,      color: 'rgba(46, 108, 176, 0.75)', size: 'small' },
+    { name: 'Resume',      setter: setResumeExpand,     usestate: ResumeExpand,     color: 'rgba(65, 138, 68, 0.75)', size: 'small' },
+    { name: 'Project',     setter: setProjectExpand,    usestate: ProjectExpand,    color: 'rgba(211, 117, 0, 0.75)', size: 'small' },
+    { name: 'Picture',     setter: setPictureExpand,    usestate: pictureExpand,    color: 'rgba(85, 50, 148, 0.75)', size: 'large' },
+    { name: 'Mail',        setter: setMailExpand,       usestate: MailExpand,       color: 'rgba(178, 26, 77, 0.75)', size: 'small' },
+    { name: 'Nft',         setter: setNftExpand,        usestate: NftExpand,        color: 'rgba(142, 29, 126, 0.75)', size: 'small' },
+    { name: 'Note',        setter: setNoteExpand,       usestate: NoteExpand,       color: 'rgba(114, 81, 54, 0.75)', size: 'small' },
+    { name: 'AiAgent',     setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(82, 117, 132, 0.75)', size: 'small' },
+    { name: '3dObject',    setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.75)', size: 'small' },
+    { name: 'Fortune',     setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(224, 88, 43, 0.75)', size: 'small' },
+    { name: 'Winamp',      setter: setWinampExpand,     usestate: WinampExpand,     color: 'rgba(86, 114, 122, 0.75)', size: 'small' },
+    { name: 'ResumeFile',  setter: setResumeFileExpand, usestate: ResumeFileExpand, color: 'rgba(133, 165, 67, 0.75)', size: 'small' },
+    { name: 'MineSweeper', setter: setMineSweeperExpand,usestate: MineSweeperExpand,color: 'rgba(187, 51, 48, 0.75)', size: 'small' },
+    { name: 'MSN',         setter: setMSNExpand,        usestate: MSNExpand,        color: 'rgba(52, 70, 143, 0.75)', size: 'small' },
+    { name: 'Internet',    setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.75)', size: 'small' },
+    { name: 'Settings',    setter: setBgSettingExpand,  usestate: BgSettingExpand,  color: 'rgba(140, 140, 140, 0.75)', size: 'small' },
+    { name: 'Run',         setter: setRunExpand,        usestate: RunExpand,        color: 'rgba(86, 114, 122, 0.75)', size: 'small' },
+    { name: 'MyComputer',  setter: setMyComputerExpand, usestate: MyComputerExpand, color: 'rgba(31, 122, 206, 0.75)', size: 'small' },
+    { name: 'Patch',       setter: setPatchExpand,      usestate: PatchExpand,      color: 'rgba(86, 114, 122, 0.75)', size: 'small' },
+    { name: 'Photo',       setter: setPhotoOpenExpand,  usestate: photoOpenExpand,  color: 'rgba(0, 120, 93, 0.75)', size: 'small' },
+    { name: 'RecycleBin',  setter: setBinExpand,        usestate: BinExpand,        color: 'rgba(64, 135, 66, 0.75)', size: 'small' },
+    { name: 'Paint',       setter: setPaintExpand,      usestate: PaintExpand,      color: 'rgba(193, 178, 46, 0.75)', size: 'small' },
+    { name: 'Utility',     setter: setUtilityExpand,    usestate: UtilityExpand,    color: 'rgba(116, 85, 54, 0.75)', size: 'small' },
   ];
 }
+
 
 
 

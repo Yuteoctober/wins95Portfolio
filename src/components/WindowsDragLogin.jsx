@@ -8,7 +8,11 @@ import dayjs from 'dayjs';
 
 export default function WindowsDragLogin() {
 
+  
+
   const { 
+    bgRotation,
+    backgroundImageUrl, setBackgroundImageUrl,
     tileBG,
     tileScreen,
     imageMapping,
@@ -33,15 +37,24 @@ const transformedIcons = icons.map((icon, index) => ({
 const timeIcon = {
   id: transformedIcons.length,
   content: 'Time',
-  color: '#2b2a26',
+  color: 'rgba(43, 42, 38, 0.75)',
   size: 'large',
 };
+
+const background = {
+  id: transformedIcons.length + 1,
+  content: 'Background',
+  color: 'rgba(127, 127, 127, 0.75)',
+  size: 'small',
+}
+
+const toAddItemArr= [timeIcon,  background]
 
 // Insert the time icon before the last 8 icons
 const insertIndex = Math.max(transformedIcons.length - 8, 0);
 const iconsWithTime = [
   ...transformedIcons.slice(0, insertIndex),
-  timeIcon,
+  ...toAddItemArr,
   ...transformedIcons.slice(insertIndex),
 ];
 
@@ -72,12 +85,51 @@ const finalIcons = iconsWithTime.filter(icon => !bannedIcon.includes(icon.conten
   const now = dayjs()
   const date_time = now.format('dddd, MMM D, YYYY')
 
+
+  // Fetch wallpaper on mount
+  useEffect(() => {
+    const today = new Date().toISOString().split('T')[0]; 
+    const savedData = JSON.parse(localStorage.getItem('dailyWallpaper'));
+
+    console.log(today, 'saved' + savedData)
+
+    if (savedData && savedData.date === today) {
+      // Use saved wallpaper for today
+      setBackgroundImageUrl(savedData.url);
+    } else {
+      // Fetch new wallpaper and store it
+      fetchNewWallpaper(today);
+  }
+
+  async function fetchNewWallpaper(date) {
+    try {
+      const res = await fetch('https://minimalistic-wallpaper.demolab.com/?random=1');
+      const url = res.redirected ? res.url : URL.createObjectURL(await res.blob());
+      
+      // Save in localStorage
+      localStorage.setItem('dailyWallpaper', JSON.stringify({ date, url }));
+      setBackgroundImageUrl(url);
+    } catch (e) {
+      console.error('Failed to fetch wallpaper:', e);
+    }
+  }
+}, []);
+
+
+
+
   return (
     <>
       {tileScreen && (
         <DndProvider backend={HTML5Backend}>
         <div className="bg_tile_container"
-          style={{background: tileBG}}
+          style={{
+            background: tileBG,
+            backgroundImage: `url(${bgRotation ? backgroundImageUrl : ''})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+
         >
           <div className="grid-container">
             <p className='date_time'>

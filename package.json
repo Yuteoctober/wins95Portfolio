@@ -26,6 +26,7 @@
     "react-dom": "^18.2.0",
     "react-draggable": "^4.4.6",
     "react-icons": "^5.0.1",
+    "react-switch": "^7.1.0",
     "webamp": "^1.5.0"
   },
   "devDependencies": {

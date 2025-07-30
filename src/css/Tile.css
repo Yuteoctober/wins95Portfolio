@@ -5,6 +5,7 @@
   z-index: 99999999999999999999;
 }
 
+
 .bg_tile_container .date_time {
   position: absolute;
   font-size: 30px;
@@ -50,9 +51,7 @@
     -webkit-user-select: none; 
     -moz-user-select: none;   
     -ms-user-select: none;    
-    user-select: none;
-    
-    
+    user-select: none;  
   }
 
  .tile_name {
@@ -119,6 +118,15 @@
   font-size: 40px;
 }
 
+.switch_bg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 10px;
+  z-index: 99999999999;
+}
+
 @media screen and (width <= 800px) {
   .time_icon p {
   font-size: 36px;
@@ -161,3 +169,5 @@
   font-size: 30px;
 }
 }
+
+

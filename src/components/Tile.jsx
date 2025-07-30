@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useDrag, useDrop } from 'react-dnd';
 import UseContext from '../Context';
 import dayjs from 'dayjs';
+import Switch from "react-switch";
 
 import p1 from '../assets/001.jpg';
 import p2 from '../assets/002.jpg';
@@ -29,7 +30,11 @@ const imageList = [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11];
 const ItemType = 'TILE';
 
 export default function Tile({ id, content, index, size, color, moveTile, imageMapping, disable }) {
-  const { setTileScreen, handleShow } = useContext(UseContext);
+  const { 
+    bgRotation, setBgRotation,
+    backgroundImageUrl, setBackgroundImageUrl,
+    setTileScreen, handleShow 
+  } = useContext(UseContext);
 
   const ref = useRef(null);
   const previewRef = useRef(null);
@@ -134,7 +139,7 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
         return {
           backgroundImage: `url(${music})`,
           backgroundPosition: 'center',
-          backgroundSize: '280px',
+          backgroundSize: '120px',
           backgroundRepeat: 'no-repeat',
         };
       case 'MyComputer':
@@ -175,6 +180,17 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
 
   const tileClasses = `tile ${size} ${color || ''}`;
 
+  function backgroundSwitchSave() {
+    setBgRotation(prev => {
+      const newState = !prev;
+      localStorage.setItem('isWallpaperOn', JSON.stringify({ bgRotation: newState }));
+      return newState;
+    });
+  }
+
+
+
+
   return (
     <AnimatePresence>
       <motion.div
@@ -195,7 +211,7 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           ...tileBG(content, disable),
         }}
         onClick={() => {
-          if (content === 'Time') return;
+          if (content === 'Time' || content === 'Background') return;
           if (content === 'Exit') {
             setTileScreen(false);
             return;
@@ -209,6 +225,21 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
             <p>{currentTime}</p>
           </div>
         )}
+        {content === 'Background' && (
+          <div className="switch_bg">
+            <Switch
+              onChange={backgroundSwitchSave}
+              checked={bgRotation}
+              offColor="#454040"
+              onColor="#4CAF50"
+              uncheckedIcon={false}
+              checkedIcon={false}
+              height={28}        
+              width={56}            
+            />
+          </div>
+        )}
+
         <span className="tile_name">{mappingIconName(content)}</span>
         <div className="tile_pic_container">
           <img className="tile_pic" src={mappingIconImage(content)} alt="" />
