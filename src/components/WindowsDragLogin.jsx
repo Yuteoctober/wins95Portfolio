@@ -122,10 +122,8 @@ const finalIcons = iconsWithTime.filter(icon => !bannedIcon.includes(icon.conten
         <DndProvider backend={HTML5Backend}>
         <div className="bg_tile_container"
           style={{
-            background: tileBG,
+            background: !bgRotation && tileBG,
             backgroundImage: `url(${bgRotation ? backgroundImageUrl : ''})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
           }}
 
         >
