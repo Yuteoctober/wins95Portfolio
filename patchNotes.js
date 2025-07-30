@@ -1,5 +1,12 @@
 const patchNotes = [
   {
+    head: "**Tile grid App**",
+    date: "2025-07-30",
+    notes: [
+      "Added fetching background from tile screen mode with toggle on/off"
+    ]
+  },
+  {
     head: "**Added Tile grid App**",
     date: "2025-07-27",
     notes: [

@@ -37,14 +37,14 @@ const transformedIcons = icons.map((icon, index) => ({
 const timeIcon = {
   id: transformedIcons.length,
   content: 'Time',
-  color: 'rgba(43, 42, 38, 0.75)',
+  color: 'rgba(43, 42, 38, 0.8)',
   size: 'large',
 };
 
 const background = {
   id: transformedIcons.length + 1,
   content: 'Background',
-  color: 'rgba(127, 127, 127, 0.75)',
+  color: 'rgba(127, 127, 127, 0.8)',
   size: 'small',
 }
 
@@ -90,8 +90,6 @@ const finalIcons = iconsWithTime.filter(icon => !bannedIcon.includes(icon.conten
   useEffect(() => {
     const today = new Date().toISOString().split('T')[0]; 
     const savedData = JSON.parse(localStorage.getItem('dailyWallpaper'));
-
-    console.log(today, 'saved' + savedData)
 
     if (savedData && savedData.date === today) {
       // Use saved wallpaper for today
