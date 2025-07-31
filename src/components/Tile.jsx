@@ -263,7 +263,10 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           background: color,
           ...tileBG(content, disable),
         }}
-        onClick={() => handleTileClick(content)}
+        onClick={(e) => {
+          e.stopPropagation()
+          handleTileClick(content)
+        }}
       >
         {content === 'Time' && (
           <div className="time_icon" onClick={() => setFormatTime(!formatTime)}>
