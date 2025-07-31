@@ -23,11 +23,10 @@ import pudgy from '../assets/pudgy.png';
 import cube from '../assets/cube.gif';
 import agent from '../assets/bot.gif';
 import music from '../assets/music.gif';
-import folder from '../assets/folder.gif';
+import Cattile from '../assets/Cattile.gif';
 import random from '../assets/random.png';
 import loading from '../assets/loading.gif';
 import email from '../assets/email.gif';
-import resume from '../assets/resumetile.png';
 
 
 
@@ -149,9 +148,9 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
         };
       case 'MyComputer':
         return {
-          backgroundImage: `url(${folder})`,
-          backgroundPosition: '50% 70%',
-          backgroundSize: '70px',
+          backgroundImage: `url(${Cattile})`,
+          backgroundPosition: '50% 28%',
+          backgroundSize: '140px',
           backgroundRepeat: 'no-repeat',
         };
       case 'Random BG':
@@ -166,13 +165,6 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundImage: `url(${email})`,
           backgroundPosition: '50% 50%',
           backgroundSize: '82px',
-          backgroundRepeat: 'no-repeat',
-        };
-      case 'ResumeFile':
-        return {
-          backgroundImage: `url(${resume})`,
-          backgroundPosition: '50% 65%',
-          backgroundSize: '105px',
           backgroundRepeat: 'no-repeat',
         };
       default:
