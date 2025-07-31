@@ -34,30 +34,35 @@ const transformedIcons = icons.map((icon, index) => ({
   size: icon.size || 'small',
 }));
 
-// Define a new Time icon
-const timeIcon = {
-  id: transformedIcons.length,
-  content: 'Time',
-  color: 'rgba(43, 42, 38, 0.85)',
-  size: 'large',
-};
-
-const background = {
-  id: transformedIcons.length + 1,
-  content: 'Background',
-  color: 'rgba(127, 127, 127, 0.85)',
-  size: 'small',
-}
-
-const toAddItemArr= [timeIcon,  background]
-
-// Insert the time icon before the last 8 icons
-const insertIndex = Math.max(transformedIcons.length - 8, 0);
-const iconsWithTime = [
-  ...transformedIcons.slice(0, insertIndex),
-  ...toAddItemArr,
-  ...transformedIcons.slice(insertIndex),
+const newIcon = [
+  {
+    id: transformedIcons.length,
+    content: 'Time',
+    color: 'rgba(43, 42, 38, 0.85)',
+    size: 'large',
+  },
+  {
+    id: transformedIcons.length + 1,
+    content: 'Background',
+    color: 'rgba(127, 127, 127, 0.85)',
+    size: 'small',
+  },
+  {
+    id: transformedIcons.length + 2,
+    content: 'Random BG',
+    color: 'rgba(156, 97, 110, 0.85)',
+    size: 'small',
+  }
 ];
+
+  // Insert the time icon before the last 8 icons
+  const insertIndex = Math.max(transformedIcons.length - 8, 0);
+  const iconsWithTime = [
+    ...transformedIcons.slice(0, insertIndex),
+    ...newIcon,
+    ...transformedIcons.slice(insertIndex),
+];
+
 
 // Remove banned icons
 const finalIcons = iconsWithTime.filter(icon => !bannedIcon.includes(icon.content));
@@ -89,18 +94,24 @@ const finalIcons = iconsWithTime.filter(icon => !bannedIcon.includes(icon.conten
 
   // Fetch wallpaper on mount
   useEffect(() => {
-    const today = new Date().toISOString().split('T')[0]; 
+    const lastestIcon = newIcon.find(t => t.content === 'Random BG')
     const savedData = JSON.parse(localStorage.getItem('dailyWallpaper'));
 
-    if (savedData && savedData.date === today) {
-      // Use saved wallpaper for today
+    if(!lastestIcon) { // reset the local storage if not on current version
+      localStorage.clear();
+      location.reload();
+    }
+
+    if (savedData) {
       setBackgroundImageUrl(savedData.url);
     } else {
-      // Fetch new wallpaper and store it
-      fetchNewWallpaper(today);
+      fetchNewWallpaper();
   }
+  
+}, []);
 
   async function fetchNewWallpaper(date) {
+
     try {
       const res = await fetch('https://minimalistic-wallpaper.demolab.com/?random=1');
       const url = res.redirected ? res.url : URL.createObjectURL(await res.blob());
@@ -112,9 +123,6 @@ const finalIcons = iconsWithTime.filter(icon => !bannedIcon.includes(icon.conten
       console.error('Failed to fetch wallpaper:', e);
     }
   }
-}, []);
-
-
 
 
   return (
@@ -152,6 +160,7 @@ const finalIcons = iconsWithTime.filter(icon => !bannedIcon.includes(icon.conten
                   color={tile.color}
                   moveTile={moveTile}
                   imageMapping={imageMapping}
+                  randomBGFunction={fetchNewWallpaper}
                 />
             ))}
 

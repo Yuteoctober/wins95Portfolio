@@ -24,20 +24,23 @@ import cube from '../assets/cube.gif';
 import agent from '../assets/bot.gif';
 import music from '../assets/music.gif';
 import catchat from '../assets/catchat.gif';
+import random from '../assets/random.png';
+import loading from '../assets/loading.gif';
+
 
 
 const imageList = [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11];
 const ItemType = 'TILE';
 
-export default function Tile({ id, content, index, size, color, moveTile, imageMapping, disable }) {
+export default function Tile({ id, content, index, size, color, moveTile, imageMapping, disable, randomBGFunction }) {
   const { 
     bgRotation, setBgRotation,
-    backgroundImageUrl, setBackgroundImageUrl,
     setTileScreen, handleShow 
   } = useContext(UseContext);
 
   const ref = useRef(null);
   const previewRef = useRef(null);
+  const tileCooldown = useRef(false); 
 
   const [imgIndex, setImgIndex] = useState(0);
   const [currentTime, setCurrentTime] = useState(null);
@@ -149,6 +152,13 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundSize: '130px',
           backgroundRepeat: 'no-repeat',
         };
+      case 'Random BG':
+        return {
+          backgroundImage: `url(${tileCooldown.current ? loading : random})`,
+          backgroundPosition: '50% 60%',
+          backgroundSize: tileCooldown.current ? '26px' : '48px',
+          backgroundRepeat: 'no-repeat',
+        };
       default:
         return {};
     }
@@ -166,6 +176,36 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
         return;
       default:
         return content;
+    }
+  }
+
+  function handleTileClick(content) {
+    switch (content) {
+      case 'Time':
+      case 'Background':
+        return;
+
+      case 'Random BG':
+        if (tileCooldown.current) {
+          console.log('Wait before clicking again.');
+          return;
+        }
+
+        randomBGFunction(); // run wallpaper change
+        tileCooldown.current = true;
+
+        setTimeout(() => {
+          tileCooldown.current = false;
+        }, 5000); // 5 sec cooldown
+        return;
+
+      case 'Exit':
+        setTileScreen(false);
+        return;
+
+      default:
+        handleShow(content);
+        setTileScreen(false);
     }
   }
 
@@ -210,15 +250,7 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           background: color,
           ...tileBG(content, disable),
         }}
-        onClick={() => {
-          if (content === 'Time' || content === 'Background') return;
-          if (content === 'Exit') {
-            setTileScreen(false);
-            return;
-          }
-          handleShow(content);
-          setTileScreen(false);
-        }}
+        onClick={() => handleTileClick(content)}
       >
         {content === 'Time' && (
           <div className="time_icon" onClick={() => setFormatTime(!formatTime)}>
