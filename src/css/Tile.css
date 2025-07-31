@@ -127,7 +127,7 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  margin-top: 10px;
+  margin-top: 8px;
   z-index: 99999999999;
 }
 

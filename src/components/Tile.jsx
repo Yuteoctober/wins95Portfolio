@@ -164,7 +164,7 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
         return {
           backgroundImage: `url(${email})`,
           backgroundPosition: '50% 50%',
-          backgroundSize: '82px',
+          backgroundSize: '76px',
           backgroundRepeat: 'no-repeat',
         };
       default:
