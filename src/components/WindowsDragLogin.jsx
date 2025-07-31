@@ -90,14 +90,12 @@ const finalIcons = iconsWithTime.filter(icon => !bannedIcon.includes(icon.conten
 
   const now = dayjs()
   const date_time = now.format('dddd, MMM D, YYYY')
-
-
+  
   // Fetch wallpaper on mount
   useEffect(() => {
-    const lastestIcon = newIcon.find(t => t.content === 'Random BG')
     const savedData = JSON.parse(localStorage.getItem('dailyWallpaper'));
 
-    if(!lastestIcon) { // reset the local storage if not on current version
+    if(tiles.length !== finalIcons.length) { // reset the local storage if not on current version
       localStorage.clear();
       location.reload();
     }
