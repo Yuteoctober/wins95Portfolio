@@ -107,7 +107,7 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
       case 'Settings':
         return {
           backgroundImage: `url(${settings})`,
-          backgroundPosition: 'center',
+          backgroundPosition: '50% 58%',
           backgroundSize: '40px',
           backgroundRepeat: 'no-repeat',
         };
