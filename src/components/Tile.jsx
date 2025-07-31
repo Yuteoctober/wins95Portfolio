@@ -23,9 +23,11 @@ import pudgy from '../assets/pudgy.png';
 import cube from '../assets/cube.gif';
 import agent from '../assets/bot.gif';
 import music from '../assets/music.gif';
-import catchat from '../assets/catchat.gif';
+import folder from '../assets/folder.gif';
 import random from '../assets/random.png';
 import loading from '../assets/loading.gif';
+import email from '../assets/email.gif';
+import resume from '../assets/resumetile.png';
 
 
 
@@ -142,14 +144,14 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
         return {
           backgroundImage: `url(${music})`,
           backgroundPosition: 'center',
-          backgroundSize: '120px',
+          backgroundSize: '180px',
           backgroundRepeat: 'no-repeat',
         };
       case 'MyComputer':
         return {
-          backgroundImage: `url(${catchat})`,
-          backgroundPosition: '50% 10%',
-          backgroundSize: '130px',
+          backgroundImage: `url(${folder})`,
+          backgroundPosition: '50% 70%',
+          backgroundSize: '70px',
           backgroundRepeat: 'no-repeat',
         };
       case 'Random BG':
@@ -159,13 +161,32 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundSize: tileCooldown.current ? '26px' : '48px',
           backgroundRepeat: 'no-repeat',
         };
+      case 'Mail':
+        return {
+          backgroundImage: `url(${email})`,
+          backgroundPosition: '50% 50%',
+          backgroundSize: '82px',
+          backgroundRepeat: 'no-repeat',
+        };
+      case 'ResumeFile':
+        return {
+          backgroundImage: `url(${resume})`,
+          backgroundPosition: '50% 65%',
+          backgroundSize: '105px',
+          backgroundRepeat: 'no-repeat',
+        };
       default:
         return {};
     }
   }
 
   function mappingIconImage(content) {
-    const banned = ['MSN', 'Picture', 'Settings', 'Fortune', 'Nft', '3dObject', 'AiAgent', 'Winamp', 'MyComputer'];
+    const banned = [
+      'MSN', 'Picture', 'Settings', 
+      'Fortune', 'Nft', '3dObject', 
+      'AiAgent', 'Winamp', 'MyComputer',
+      'Mail', 'ResumeFile'
+    ];
     if (banned.includes(content)) return;
     return imageMapping(content);
   }
