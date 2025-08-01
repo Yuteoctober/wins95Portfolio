@@ -63,7 +63,8 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
 
   const [animationCD, setAnimationCD] = useState(true)
   const [imgIndex, setImgIndex] = useState(0);
-  const [currentTime, setCurrentTime] = useState(null);
+  const [currentTime24, setCurrentTime24] = useState(null);
+  const [currentTime12, setCurrentTime12] = useState(null);
   const [formatTime, setFormatTime] = useState(false);
 
   // Cycle images for "Picture"
@@ -351,8 +352,10 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
   // Update clock
   useEffect(() => {
     const timer = setInterval(() => {
-      const format = formatTime ? 'HH:mm:ss' : 'hh:mm:ss A';
-      setCurrentTime(dayjs().format(format));
+      const format24 = 'HH:mm:ss';
+      const format12 = 'hh:mm:ss A';
+      setCurrentTime12(dayjs().format(format12));
+      setCurrentTime24(dayjs().format(format24));
     }, 1000);
     return () => clearInterval(timer);
   }, [formatTime]);
@@ -397,7 +400,7 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
       >
         {content === 'Time' && (
           <div className="time_icon" onClick={() => setFormatTime(!formatTime)}>
-            <p>{currentTime}</p>
+            <p>{formatTime ? currentTime12 : currentTime24}</p>
           </div>
         )}
         {(content === 'Weather' && weather && city) && (
