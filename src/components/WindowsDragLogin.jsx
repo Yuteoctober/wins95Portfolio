@@ -5,6 +5,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import Tile from './Tile';
 import '../css/Tile.css'
 import dayjs from 'dayjs';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function WindowsDragLogin() {
 
@@ -127,43 +128,49 @@ const finalIcons = iconsWithTime.filter(icon => !bannedIcon.includes(icon.conten
     <>
       {(tileScreen && !login) && (
         <DndProvider backend={HTML5Backend}>
-        <div className="bg_tile_container"
-          style={{
-            background: !bgRotation && tileBG,
-            backgroundImage: `url(${bgRotation ? backgroundImageUrl : ''})`,
-          }}
+        <AnimatePresence>
+          <motion.div className="bg_tile_container"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ ease: 'easeInOut', duration: 0.4 }}
+            exit={{ opacity: 0 }}
+            style={{
+              background: !bgRotation && tileBG,
+              backgroundImage: `url(${bgRotation ? backgroundImageUrl : ''})`,
+            }}
 
-        >
-          <div className="grid-container">
-            <p className='date_time'>
-            {date_time}
-            </p>
-            <Tile
-              key="exit-tile"
-              index={-1}
-              id="exit"
-              content="Exit"
-              size="small"   
-              color="#141111ea"
-              moveTile={moveTile}
-              imageMapping={imageMapping}
-            />
-            {tiles.map((tile, index) => (
-                <Tile
-                  key={tile.id}
-                  index={index}
-                  id={tile.id}
-                  content={tile.content}
-                  size={tile.size}
-                  color={tile.color}
-                  moveTile={moveTile}
-                  imageMapping={imageMapping}
-                  randomBGFunction={fetchNewWallpaper}
-                />
-            ))}
+          >
+            <div className="grid-container">
+              <p className='date_time'>
+              {date_time}
+              </p>
+              <Tile
+                key="exit-tile"
+                index={-1}
+                id="exit"
+                content="Exit"
+                size="small"   
+                color="#141111ea"
+                moveTile={moveTile}
+                imageMapping={imageMapping}
+              />
+              {tiles.map((tile, index) => (
+                  <Tile
+                    key={tile.id}
+                    index={index}
+                    id={tile.id}
+                    content={tile.content}
+                    size={tile.size}
+                    color={tile.color}
+                    moveTile={moveTile}
+                    imageMapping={imageMapping}
+                    randomBGFunction={fetchNewWallpaper}
+                  />
+              ))}
 
-            </div>
-          </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </DndProvider>
       )}
     </>

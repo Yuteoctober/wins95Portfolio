@@ -245,17 +245,12 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
 
 
   return (
-    <AnimatePresence>
       <motion.div
         ref={(node) => {
           ref.current = node;
           previewRef.current = node;
         }}
         className={tileClasses}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ ease: 'easeInOut', duration: 1 }}
-        exit={{ opacity: 0 }}
         style={{
           display: 'grid',
           position: 'relative',
@@ -293,6 +288,5 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           <img className="tile_pic" src={mappingIconImage(content)} alt="" />
         </div>
       </motion.div>
-    </AnimatePresence>
   );
 }
