@@ -1,6 +1,13 @@
 const patchNotes = [
   {
     head: "**Tile grid App**",
+    date: "2025-07-31",
+    notes: [
+      "Added Icons"
+    ]
+  },
+  {
+    head: "**Tile grid App**",
     date: "2025-07-30",
     notes: [
       "Added fetching background from tile screen mode with toggle on/off"
@@ -11,7 +18,8 @@ const patchNotes = [
     date: "2025-07-27",
     notes: [
       "Added Tile grid App",
-      "More feature will be added later.."
+      "More feature will be added later..",
+      "Inspred by Windows 10 and Windows phone",
     ]
   },
   {

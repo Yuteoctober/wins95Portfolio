@@ -150,8 +150,9 @@ All the functionalities
   - Added AI Chat Bot to MSN app. 18/07/2025
   - Chat Bot is able to be switched on/off
   - Added Weekly Fortune Teller in Project folder. 21/07/2025
-  - Added Tile grid App 10/27/2025
+  - Added Tile grid App **Inspired from Windows 10 and windows phone  10/27/2025
   - Added fetching background from tile screen mode with toggle on/off 30/07/2025
+  - Added Icons on Tile screen 31/07/2025
 
 
 Library used:
