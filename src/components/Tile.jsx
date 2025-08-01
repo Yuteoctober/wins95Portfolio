@@ -402,7 +402,10 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
         )}
         {(content === 'Weather' && weather && city) && (
           <div className="weather_tile_container">
-            <h2>{Cel? weather.temp : ((weather.temp - 32) * 5 / 9).toFixed(0)} {Cel? '°F':'°C'}</h2>
+            <h2>
+              {Cel? weather.temp : ((weather.temp - 32) * 5 / 9).toFixed(0)}
+              <span>{Cel? '°F':'°C'}</span>
+            </h2>
             <p>{city}</p>
           </div>
         )}
