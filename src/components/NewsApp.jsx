@@ -7,24 +7,16 @@ import { MdGpsFixed } from "react-icons/md";
 
 function NewsApp() {
     const newsContainerRef = useRef();
-    const [Cel, setCel] = useState(true); // Celsius or Fahrenheit
-    const [weather, setWeather] = useState(() => {
-        const storedTempF = localStorage.getItem('tempF');
-        const storedIconCode = localStorage.getItem('iconCode');
-        if (storedTempF && storedIconCode) {
-            return { temp: JSON.parse(storedTempF), code: parseInt(storedIconCode) };
-        }
-        return null;
-    });
-
-    const [city, setCity] = useState(() => {
-        const storedCity = localStorage.getItem('city');
-        return storedCity ? JSON.parse(storedCity) : null;
-    });
-
     const [error, setError] = useState('');
     const [allNews, setAllNews] = useState([]);
-    const { newsPopup, setNewsPopup } = useContext(UseContext);
+
+    const { 
+        tileScreen,
+        city, setCity,
+        Cel, setCel,
+        weather, setWeather,
+        newsPopup, setNewsPopup }
+         = useContext(UseContext);
 
     const hasSeen = new Set();
     const filteredNews = allNews
@@ -93,7 +85,7 @@ function NewsApp() {
         if(newsPopup){
             getUserLocation();   
         }
-    }, [newsPopup]);
+    }, [newsPopup, tileScreen]);
 
     function getUserLocation() {
         navigator.geolocation.getCurrentPosition(
@@ -138,6 +130,7 @@ function NewsApp() {
             })
             .catch(() => setCity('Unknown'));
     }
+
 
     return (
         <>

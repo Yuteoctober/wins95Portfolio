@@ -40,6 +40,20 @@ import { StyleHide, imageMapping,
 
 
 function App() {
+  const [Cel, setCel] = useState(true); // Celsius or Fahrenheit
+  const [weather, setWeather] = useState(() => {
+        const storedTempF = localStorage.getItem('tempF');
+        const storedIconCode = localStorage.getItem('iconCode');
+        if (storedTempF && storedIconCode) {
+            return { temp: JSON.parse(storedTempF), code: parseInt(storedIconCode) };
+        }
+        return null;
+    });
+
+  const [city, setCity] = useState(() => {
+        const storedCity = localStorage.getItem('city');
+        return storedCity ? JSON.parse(storedCity) : null;
+    });
   const [bgRotation, setBgRotation] = useState(() => {
   const saved = JSON.parse(localStorage.getItem('isWallpaperOn'));
     if (saved?.bgRotation !== undefined) return saved.bgRotation;
@@ -740,6 +754,9 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
 }
 
   const contextValue = {
+    city, setCity,
+    Cel, setCel,
+    weather, setWeather,
     bgRotation, setBgRotation,
     backgroundImageUrl, setBackgroundImageUrl,
     tileBG, setTileBG,
@@ -1197,7 +1214,7 @@ function ObjectState() {
     { name: 'AiAgent',     setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(82, 117, 132, 0.85)', size: 'small' },
     { name: '3dObject',    setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
     { name: 'Fortune',     setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(224, 88, 43, 0.85)', size: 'small' },
-    { name: 'Winamp',      setter: setWinampExpand,     usestate: WinampExpand,     color: 'rgba(86, 114, 122, 0.85)', size: 'small' },
+    { name: 'Winamp',      setter: setWinampExpand,     usestate: WinampExpand,     color: 'rgba(105, 136, 145, 0.85)', size: 'small' },
     { name: 'ResumeFile',  setter: setResumeFileExpand, usestate: ResumeFileExpand, color: 'rgba(133, 165, 67, 0.85)', size: 'small' },
     { name: 'MineSweeper', setter: setMineSweeperExpand,usestate: MineSweeperExpand,color: 'rgba(187, 51, 48, 0.85)', size: 'small' },
     { name: 'MSN',         setter: setMSNExpand,        usestate: MSNExpand,        color: 'rgba(52, 70, 143, 0.85)', size: 'small' },

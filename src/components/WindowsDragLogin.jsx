@@ -52,7 +52,13 @@ const newIcon = [
     content: 'Random BG',
     color: 'rgba(156, 97, 110, 0.85)',
     size: 'small',
-  }
+  },
+  {
+    id: transformedIcons.length + 3,
+    content: 'Weather',
+    color: 'rgba(85, 50, 148, 0.85)',
+    size: 'small',
+  },
 ];
 
   // Insert the time icon before the last 8 icons

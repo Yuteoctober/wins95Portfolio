@@ -39,6 +39,7 @@ import laptop from '../assets/laptop.png';
 import resumef from '../assets/resumef.png';
 import openfolder from '../assets/open-folder.png';
 import back from '../assets/back-arrow.png';
+import weatherImg from '../assets/weathertile.png';
 
 
 
@@ -48,6 +49,10 @@ const ItemType = 'TILE';
 
 export default function Tile({ id, content, index, size, color, moveTile, imageMapping, disable, randomBGFunction }) {
   const { 
+    city, 
+    Cel, setCel, 
+    weather,
+    setNewsPopup,
     bgRotation, setBgRotation,
     setTileScreen, handleShow 
   } = useContext(UseContext);
@@ -269,6 +274,16 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundSize: '42px',
           backgroundRepeat: 'no-repeat',
         };
+      case 'Weather':
+        if(weather && city) {
+          return;
+        }
+        return {
+          backgroundImage: `url(${weatherImg})`,
+          backgroundPosition: '50% 55%',
+          backgroundSize: '42px',
+          backgroundRepeat: 'no-repeat',
+        };
       default:
         return {};
     }
@@ -318,6 +333,15 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
         setTileScreen(false);
         return;
 
+      case 'Weather':
+        if(weather && city) {
+          setCel(!Cel)
+          return;
+        }
+        setNewsPopup(true)
+        setTileScreen(false);
+        return;
+
       default:
         handleShow(content);
         setTileScreen(false);
@@ -342,7 +366,6 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
       return newState;
     });
   }
-
 
 
 
@@ -375,6 +398,12 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
         {content === 'Time' && (
           <div className="time_icon" onClick={() => setFormatTime(!formatTime)}>
             <p>{currentTime}</p>
+          </div>
+        )}
+        {(content === 'Weather' && weather && city) && (
+          <div className="weather_tile_container">
+            <h2>{Cel? weather.temp : ((weather.temp - 32) * 5 / 9).toFixed(0)} {Cel? '°F':'°C'}</h2>
+            <p>{city}</p>
           </div>
         )}
         {content === 'Background' && (
