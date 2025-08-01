@@ -5,7 +5,6 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import Tile from './Tile';
 import '../css/Tile.css'
 import dayjs from 'dayjs';
-import { motion, AnimatePresence } from 'framer-motion';
 
 export default function WindowsDragLogin() {
 
@@ -128,12 +127,7 @@ const finalIcons = iconsWithTime.filter(icon => !bannedIcon.includes(icon.conten
     <>
       {(tileScreen && !login) && (
         <DndProvider backend={HTML5Backend}>
-        <AnimatePresence>
-          <motion.div className="bg_tile_container"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ ease: 'easeInOut', duration: 0.4 }}
-            exit={{ opacity: 0 }}
+          <div className="bg_tile_container"
             style={{
               background: !bgRotation && tileBG,
               backgroundImage: `url(${bgRotation ? backgroundImageUrl : ''})`,
@@ -169,8 +163,7 @@ const finalIcons = iconsWithTime.filter(icon => !bannedIcon.includes(icon.conten
               ))}
 
               </div>
-            </motion.div>
-          </AnimatePresence>
+            </div>
         </DndProvider>
       )}
     </>
