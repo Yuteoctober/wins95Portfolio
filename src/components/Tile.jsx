@@ -43,6 +43,7 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
   const previewRef = useRef(null);
   const tileCooldown = useRef(false); 
 
+  const [animationCD, setAnimationCD] = useState(true)
   const [imgIndex, setImgIndex] = useState(0);
   const [currentTime, setCurrentTime] = useState(null);
   const [formatTime, setFormatTime] = useState(false);
@@ -78,6 +79,10 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
 
   // Set custom preview to current element and center it
   useEffect(() => {
+    setTimeout(() => {
+      setAnimationCD(false) 
+    }, 1000);
+    
     if (previewRef.current) {
       preview(previewRef.current, { anchorX: 0.5, anchorY: 0.5 });
     }
@@ -245,13 +250,20 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
 
 
   return (
+    <AnimatePresence>
       <motion.div
         ref={(node) => {
           ref.current = node;
           previewRef.current = node;
         }}
         className={tileClasses}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ ease: 'easeInOut', duration: 1 }}
+        exit={{ opacity: 0 }}
         style={{
+          touchAction : animationCD ? 'none' : 'auto',
+          pointerEvents: animationCD ? 'none' : 'auto',
           display: 'grid',
           position: 'relative',
           opacity: isDragging ? 0.5 : 1,
@@ -288,5 +300,6 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           <img className="tile_pic" src={mappingIconImage(content)} alt="" />
         </div>
       </motion.div>
+    </AnimatePresence>
   );
 }
