@@ -17,16 +17,29 @@ import p9 from '../assets/009.jpg';
 import p10 from '../assets/010.jpg';
 import p11 from '../assets/011.jpg';
 import chat from '../assets/chat.gif';
-import settings from '../assets/settingsTile.png';
+import settings from '../assets/settings.png';
 import fortune from '../assets/fortune.gif';
 import pudgy from '../assets/pudgy.png';
 import cube from '../assets/cube.gif';
 import agent from '../assets/bot.gif';
 import music from '../assets/music.gif';
-import Cattile from '../assets/Cattile.gif';
 import random from '../assets/random.png';
 import loading from '../assets/loading.gif';
-import email from '../assets/email.gif';
+import envelope from '../assets/envelope.png';
+import painttile from '../assets/painttile.png';
+import projecttile from '../assets/projecttile.png';
+import resumefiletile from '../assets/resumefiletile.png';
+import runtile from '../assets/runtile.png';
+import game from '../assets/game.png';
+import bin from '../assets/delete.png';
+import uti from '../assets/uti.png';
+import pencil from '../assets/pencil.png';
+import check from '../assets/check.png';
+import laptop from '../assets/laptop.png';
+import resumef from '../assets/resumef.png';
+import openfolder from '../assets/open-folder.png';
+import back from '../assets/back-arrow.png';
+
 
 
 
@@ -105,7 +118,7 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
       case 'MSN':
         return {
           backgroundImage: `url(${chat})`,
-          backgroundPosition: '50% 10px',
+          backgroundPosition: '50% 13px',
           backgroundSize: '85px',
           backgroundRepeat: 'no-repeat',
         };
@@ -153,9 +166,9 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
         };
       case 'MyComputer':
         return {
-          backgroundImage: `url(${Cattile})`,
-          backgroundPosition: '50% 28%',
-          backgroundSize: '140px',
+          backgroundImage: `url(${laptop})`,
+          backgroundPosition: '50% 62%',
+          backgroundSize: '50px',
           backgroundRepeat: 'no-repeat',
         };
       case 'Random BG':
@@ -167,9 +180,93 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
         };
       case 'Mail':
         return {
-          backgroundImage: `url(${email})`,
+          backgroundImage: `url(${envelope})`,
           backgroundPosition: '50% 50%',
-          backgroundSize: '76px',
+          backgroundSize: '40px',
+          backgroundRepeat: 'no-repeat',
+        };
+      case 'About':
+        return {
+          backgroundImage: `url(${resumefiletile})`,
+          backgroundPosition: '50% 58%',
+          backgroundSize: '40px',
+          backgroundRepeat: 'no-repeat',
+        };
+      case 'Project':
+        return {
+          backgroundImage: `url(${projecttile})`,
+          backgroundPosition: '50% 58%',
+          backgroundSize: '37px',
+          backgroundRepeat: 'no-repeat',
+        };
+      case 'ResumeFile':
+        return {
+          backgroundImage: `url(${resumef})`,
+          backgroundPosition: '50% 58%',
+          backgroundSize: '36px',
+          backgroundRepeat: 'no-repeat',
+        };
+      case 'Run':
+        return {
+          backgroundImage: `url(${runtile})`,
+          backgroundPosition: '50% 56%',
+          backgroundSize: '42px',
+          backgroundRepeat: 'no-repeat',
+        };
+      case 'Paint':
+        return {
+          backgroundImage: `url(${painttile})`,
+          backgroundPosition: '50% 56%',
+          backgroundSize: '40px',
+          backgroundRepeat: 'no-repeat',
+        };
+      case 'Utility':
+        return {
+          backgroundImage: `url(${uti})`,
+          backgroundPosition: '50% 54%',
+          backgroundSize: '40px',
+          backgroundRepeat: 'no-repeat',
+        };
+      case 'Note':
+        return {
+          backgroundImage: `url(${pencil})`,
+          backgroundPosition: '50% 54%',
+          backgroundSize: '36px',
+          backgroundRepeat: 'no-repeat',
+        };
+      case 'MineSweeper':
+        return {
+          backgroundImage: `url(${game})`,
+          backgroundPosition: '50% 59%',
+          backgroundSize: '46px',
+          backgroundRepeat: 'no-repeat',
+        };
+      case 'Patch':
+        return {
+          backgroundImage: `url(${check})`,
+          backgroundPosition: '50% 58%',
+          backgroundSize: '38px',
+          backgroundRepeat: 'no-repeat',
+        };
+      case 'RecycleBin':
+        return {
+          backgroundImage: `url(${bin})`,
+          backgroundPosition: '50% 56%',
+          backgroundSize: '38px',
+          backgroundRepeat: 'no-repeat',
+        };
+      case 'Resume':
+        return {
+          backgroundImage: `url(${openfolder})`,
+          backgroundPosition: '50% 57%',
+          backgroundSize: '42px',
+          backgroundRepeat: 'no-repeat',
+        };
+      case 'Exit':
+        return {
+          backgroundImage: `url(${back})`,
+          backgroundPosition: '50% 57%',
+          backgroundSize: '42px',
           backgroundRepeat: 'no-repeat',
         };
       default:
@@ -177,16 +274,16 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
     }
   }
 
-  function mappingIconImage(content) {
-    const banned = [
-      'MSN', 'Picture', 'Settings', 
-      'Fortune', 'Nft', '3dObject', 
-      'AiAgent', 'Winamp', 'MyComputer',
-      'Mail', 'ResumeFile'
-    ];
-    if (banned.includes(content)) return;
-    return imageMapping(content);
-  }
+  // function mappingIconImage(content) {
+  //   const banned = [
+  //     'MSN', 'Picture', 'Settings', 
+  //     'Fortune', 'Nft', '3dObject', 
+  //     'AiAgent', 'Winamp', 'MyComputer',
+  //     'Mail', 'ResumeFile'
+  //   ];
+  //   if (banned.includes(content)) return;
+  //   return imageMapping(content);
+  // }
 
   function mappingIconName(content) {
     switch (content) {
@@ -297,7 +394,7 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
 
         <span className="tile_name">{mappingIconName(content)}</span>
         <div className="tile_pic_container">
-          <img className="tile_pic" src={mappingIconImage(content)} alt="" />
+          <img className="tile_pic" src={''} alt="" />
         </div>
       </motion.div>
     </AnimatePresence>
