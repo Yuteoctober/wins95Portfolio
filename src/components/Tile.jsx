@@ -181,7 +181,7 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
       case 'Mail':
         return {
           backgroundImage: `url(${envelope})`,
-          backgroundPosition: '50% 50%',
+          backgroundPosition: '50% 60%',
           backgroundSize: '40px',
           backgroundRepeat: 'no-repeat',
         };
@@ -195,8 +195,8 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
       case 'Project':
         return {
           backgroundImage: `url(${projecttile})`,
-          backgroundPosition: '50% 58%',
-          backgroundSize: '37px',
+          backgroundPosition: '50% 57%',
+          backgroundSize: '36px',
           backgroundRepeat: 'no-repeat',
         };
       case 'ResumeFile':
@@ -209,7 +209,7 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
       case 'Run':
         return {
           backgroundImage: `url(${runtile})`,
-          backgroundPosition: '50% 56%',
+          backgroundPosition: '50% 58%',
           backgroundSize: '42px',
           backgroundRepeat: 'no-repeat',
         };
