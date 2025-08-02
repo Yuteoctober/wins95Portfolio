@@ -62,7 +62,7 @@ const newIcon = [
   {
     id: transformedIcons.length + 4,
     content: 'Github',
-    color: 'rgba(58, 57, 51, 0.85)',
+    color: 'rgba(100, 100, 99, 0.85)',
     size: 'small',
   },
 ];
