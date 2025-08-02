@@ -85,7 +85,7 @@ function NewsApp() {
         if(newsPopup){
             getUserLocation();   
         }
-    }, [newsPopup, tileScreen]);
+    }, [newsPopup]);
 
     function getUserLocation() {
         navigator.geolocation.getCurrentPosition(
