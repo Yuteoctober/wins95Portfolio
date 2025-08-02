@@ -396,7 +396,7 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
       >
         {content === 'Time' && (
           <div className="time_icon" onClick={() => setFormatTime(!formatTime)}>
-            <p>{formatTime ? currentTime12 : currentTime24}</p>
+            <p>{formatTime ? currentTime24 : currentTime12}</p>
           </div>
         )}
         {(content === 'Weather' && weather && city) && (
