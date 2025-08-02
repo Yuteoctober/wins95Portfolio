@@ -145,8 +145,8 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
       case 'Nft':
         return {
           backgroundImage: `url(${pudgy})`,
-          backgroundPosition: '50% 0%',
-          backgroundSize: '120px',
+          backgroundPosition: '50% 0.5rem',
+          backgroundSize: '105px',
           backgroundRepeat: 'no-repeat',
         };
       case '3dObject':
