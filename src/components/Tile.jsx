@@ -335,6 +335,10 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
         return;
 
       case 'Weather':
+        if(city && weather) {
+          setCel(!Cel)
+          return;
+        }
         setNewsPopup(true)
         setTileScreen(false);
         return;
