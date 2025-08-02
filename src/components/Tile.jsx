@@ -40,6 +40,7 @@ import resumef from '../assets/resumef.png';
 import openfolder from '../assets/open-folder.png';
 import back from '../assets/back-arrow.png';
 import weatherImg from '../assets/weathertile.png';
+import githublogo from '../assets/github.gif';
 
 
 
@@ -283,6 +284,13 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundImage: `url(${weatherImg})`,
           backgroundPosition: '50% 55%',
           backgroundSize: '42px',
+          backgroundRepeat: 'no-repeat',
+        };
+        case 'Github':
+        return {
+          backgroundImage: `url(${githublogo})`,
+          backgroundPosition: '50% 57%',
+          backgroundSize: '48px',
           backgroundRepeat: 'no-repeat',
         };
       default:

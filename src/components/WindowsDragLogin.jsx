@@ -59,6 +59,12 @@ const newIcon = [
     color: 'rgba(85, 50, 148, 0.85)',
     size: 'small',
   },
+  {
+    id: transformedIcons.length + 4,
+    content: 'Github',
+    color: 'rgba(58, 57, 51, 0.85)',
+    size: 'small',
+  },
 ];
 
   // Insert the time icon before the last 8 icons
