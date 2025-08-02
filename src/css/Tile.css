@@ -6,7 +6,7 @@
   background: #098684;
   background-size: cover;
   background-position: center;
-  
+  overflow-y: auto;
 }
 
 
@@ -21,6 +21,7 @@
 .grid-container {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
+  max-height: 100svh;
   gap: 6px;
   padding: 4px;
   position: relative;
@@ -33,6 +34,7 @@
   -ms-user-select: none;    
   user-select: none;
   overscroll-behavior: contain;
+  overflow-y: auto;
   
 }
 
@@ -177,6 +179,7 @@
     overflow-y: auto;
     max-height: 100svh;
     gap: 4px;
+
 
   }  
 
