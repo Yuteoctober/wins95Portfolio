@@ -522,6 +522,27 @@
     border-bottom-color: white;
 }
 
+.reconnect_container {
+    position: fixed;
+    width: 95%;
+    height: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    z-index: 55555555555555555;
+}
+.reconnect_container p {
+    position: relative;
+    top: 1rem;
+    color: rgb(220, 219, 219);
+    cursor: pointer;
+    z-index: 55555555555555555;
+}
+
+.reconnect_container p:hover {
+    color: rgb(41, 41, 237);
+}
+
 @media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) and (min-width: 0px) {
     .folder_barbtn-MSN .x-MSN {      
         left: 1px;

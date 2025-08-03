@@ -40,6 +40,7 @@ import { StyleHide, imageMapping,
 
 
 function App() {
+  const [websocketConnection, setWebsocketConnection] = useState(false)
   const [Cel, setCel] = useState(true); // Celsius or Fahrenheit
   const [weather, setWeather] = useState(() => {
         const storedTempF = localStorage.getItem('tempF');
@@ -395,19 +396,39 @@ useEffect(() => {
 
 
 
-    useEffect(() => {
-    let retryCount = 0;
-    const maxRetries = 10;
-
     const connectWebSocket = async () => {
+      
       try {
-        // // Wake up Render backend
+
+        // Wake up the Render backend
         await fetch('https://notebackend-wrqt.onrender.com/ping');
 
+        // Close existing socket if still open or connecting
+        if (socket.current && socket.current.readyState !== WebSocket.CLOSED) {
+          // Remove old listeners
+          socket.current.onopen = null;
+          socket.current.onclose = null;
+          socket.current.onerror = null;
+          socket.current.onmessage = null;
+
+          // Close and wait for complete shutdown
+          socket.current.close();
+
+          await new Promise(resolve => {
+            socket.current.onclose = () => {
+              setWebsocketConnection(false);
+              resolve();
+            };
+          });
+        }
+
+        // Create new WebSocket instance
         socket.current = new WebSocket('wss://notebackend-wrqt.onrender.com');
 
         socket.current.onopen = () => {
-          retryCount = 0;
+          console.log('WebSocket connected');
+          getChat()
+          setWebsocketConnection(true);
           setLoading(false);
         };
 
@@ -415,7 +436,6 @@ useEffect(() => {
           const data = JSON.parse(event.data);
 
           if (data.count !== undefined) {
-            console.log(data)
             setOnlineUser(data.count);
           }
 
@@ -435,40 +455,39 @@ useEffect(() => {
         socket.current.onerror = (error) => {
           console.error('WebSocket error:', error);
           setLoading(false);
-          if (retryCount < maxRetries && (detectMouse || isTouchDevice)) {
-            retryCount++;
-            setTimeout(connectWebSocket, 1000);
-          }
+          setWebsocketConnection(false);
         };
 
         socket.current.onclose = () => {
-          if (retryCount < maxRetries && (detectMouse || isTouchDevice)) {
-            retryCount++;
-            setTimeout(connectWebSocket, 1000);
-          } else {
-            console.log('Max retries reached. WebSocket closed permanently.');
-          }
+          console.log('🔌 WebSocket closed');
+          setWebsocketConnection(false);
         };
+
       } catch (err) {
-        console.error("Connection setup error:", err);
-        if (retryCount < maxRetries) {
-          retryCount++;
-          setTimeout(connectWebSocket, 1000);
+        console.error('WebSocket connection error:', err);
+        setLoading(false);
+        setWebsocketConnection(false);
+      }
+    };
+
+    useEffect(() => {
+      setLoading(true);
+      connectWebSocket();
+
+      return () => {
+        if (socket.current) {
+          socket.current.onopen = null;
+          socket.current.onclose = null;
+          socket.current.onerror = null;
+          socket.current.onmessage = null;
+          socket.current.close();
+          setWebsocketConnection(false);
         }
-        setTimeout(() => {
-          setLoading(false);
-        }, 5000);
-      }
-    };
+      };
+    }, []);
 
-    connectWebSocket();
 
-    return () => {
-      if (socket.current) {
-        socket.current.close();
-      }
-    };
-  }, []);
+
 
   useEffect(() => { // noti
     if(allowNoti){
@@ -492,7 +511,6 @@ useEffect(() => {
 
 useEffect(() => { // touch support device === true
   iconFocusIcon('') // make icon focus goes false
-  getChat()
 
   const htmlElement = document.documentElement; //check if user is in frontend
   htmlElement.addEventListener('mouseenter', handleMouseSeen);
@@ -754,6 +772,8 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
 }
 
   const contextValue = {
+    connectWebSocket,
+    websocketConnection, setWebsocketConnection,
     city, setCity,
     Cel, setCel,
     weather, setWeather,
@@ -1181,6 +1201,7 @@ function handleDrop(e, name, target, oldFolderID) {
 
 // Function to fetch chat data
 async function getChat() {
+  setChatData('')
   try {
     const response = await axios.get(`https://notebackend4.onrender.com/chat/getchat/`, {
       headers: {

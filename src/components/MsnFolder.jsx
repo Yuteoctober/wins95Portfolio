@@ -7,7 +7,10 @@ import chat from '../assets/chat.png';
 import '../css/MSN.css';
 
 function MsnFolder() {
+
   const {
+    connectWebSocket,
+    websocketConnection,
     chatBotActive, setChatBotActive,
     onlineUser,
     loadedMessages, setLoadedMessages,
@@ -283,7 +286,22 @@ useEffect(() => {
             </span>
           </div>
           
-          <div className="folder_content-MSN">
+          <div className="folder_content-MSN"
+            style={{ 
+              background: !websocketConnection ? 'rgba(0, 0, 0, 0.426)' : '',
+            }}
+          >
+            {!websocketConnection && (
+              <div className="reconnect_container">
+                <p
+                  onClick={() => {
+                    connectWebSocket()
+                  }}
+                >
+                  Click here to reconnect
+                </p>
+              </div>
+            )}
             {chatData.length === 0 &&  (
               <span style={{ position: 'relative', fontSize: '13px' }}>
                 LOADING.......
@@ -300,9 +318,10 @@ useEffect(() => {
                 </div>
               )
             ))}
+            
             <div ref={endOfMessagesRef} />
           </div>
-
+            
           <div className="enter_text_div">
             <textarea
               maxLength={100}
