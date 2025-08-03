@@ -153,6 +153,7 @@ All the functionalities
   - Added Tile grid App **Inspired from Windows 10 and windows phone  10/27/2025
   - Added fetching background from tile screen mode with toggle on/off 30/07/2025
   - Added Icons on Tile screen 31/07/2025
+  - Added Added Reconnect to MSN chat 03/08/2025
 
 
 Library used:

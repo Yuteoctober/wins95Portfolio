@@ -1,5 +1,12 @@
 const patchNotes = [
   {
+    head: "**MSN App**",
+    date: "2025-08-03",
+    notes: [
+      "Added Reconnect to chat"
+    ]
+  },
+  {
     head: "**Tile grid App**",
     date: "2025-07-31",
     notes: [
