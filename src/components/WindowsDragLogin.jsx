@@ -65,6 +65,12 @@ const newIcon = [
     color: 'rgba(100, 100, 99, 0.85)',
     size: 'small',
   },
+  {
+    id: transformedIcons.length + 5,
+    content: 'News',
+    color: 'rgba(172, 62, 62, 0.85)',
+    size: 'small',
+  },
 ];
 
   // Insert the time icon before the last 8 icons
@@ -78,8 +84,6 @@ const newIcon = [
 
 // Remove banned icons
 const finalIcons = iconsWithTime.filter(icon => !bannedIcon.includes(icon.content));
-
-
   
 
   const [tiles, setTiles] = useState(() => {
@@ -133,6 +137,8 @@ const finalIcons = iconsWithTime.filter(icon => !bannedIcon.includes(icon.conten
       console.error('Failed to fetch wallpaper:', e);
     }
   }
+
+  
 
 
   return (

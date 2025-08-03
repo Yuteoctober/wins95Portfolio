@@ -41,6 +41,7 @@ import openfolder from '../assets/open-folder.png';
 import back from '../assets/back-arrow.png';
 import weatherImg from '../assets/weathertile.png';
 import githublogo from '../assets/github.gif';
+import newsicon from '../assets/newstile.png';
 
 
 
@@ -50,6 +51,7 @@ const ItemType = 'TILE';
 
 export default function Tile({ id, content, index, size, color, moveTile, imageMapping, disable, randomBGFunction }) {
   const { 
+    allNews,
     city, 
     Cel, setCel, 
     weather,
@@ -293,6 +295,16 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundSize: '48px',
           backgroundRepeat: 'no-repeat',
         };
+        case 'News':
+        // if(displayNewsTile.originalNews || filteredNews.length > 0) {
+        //   return;
+        // }
+        return {
+          backgroundImage: `url(${newsicon})`,
+          backgroundPosition: '50% 57%',
+          backgroundSize: '38px',
+          backgroundRepeat: 'no-repeat',
+        };
       default:
         return {};
     }
@@ -351,6 +363,11 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
         setTileScreen(false);
         return;
 
+      case 'News':
+        setNewsPopup(true)
+        setTileScreen(false);
+        return;
+
       default:
         handleShow(content);
         setTileScreen(false);
@@ -377,7 +394,6 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
       return newState;
     });
   }
-
 
 
   return (
