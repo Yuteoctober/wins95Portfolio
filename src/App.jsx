@@ -396,79 +396,135 @@ useEffect(() => {
 
 
     useEffect(() => {
-    let retryCount = 0;
-    const maxRetries = 10;
+  let retryCount = 0;
+  const maxRetries = 10;
+  let reconnectTimeout = null;
+  let isManualClose = false;
 
-    const connectWebSocket = async () => {
-      try {
-        // // Wake up Render backend
-        await fetch('https://notebackend-wrqt.onrender.com/ping');
+  const connectWebSocket = async () => {
+    try {
+      // Wake up Render backend
+      await fetch('https://notebackend-wrqt.onrender.com/ping');
 
-        socket.current = new WebSocket('wss://notebackend-wrqt.onrender.com');
+      socket.current = new WebSocket('wss://notebackend-wrqt.onrender.com');
 
-        socket.current.onopen = () => {
-          retryCount = 0;
-          setLoading(false);
-        };
+      socket.current.onopen = () => {
+        console.log('WebSocket connected');
+        retryCount = 0; // Reset retry count on successful connection
+        setLoading(false);
+      };
 
-        socket.current.onmessage = (event) => {
-          const data = JSON.parse(event.data);
+      socket.current.onmessage = (event) => {
+        const data = JSON.parse(event.data);
 
-          if (data.count !== undefined) {
-            console.log(data)
-            setOnlineUser(data.count);
-          }
-
-          if (data.key) {
-            setKeyChatSession(data.key);
-          } else if (data.name && data.chat) {
-            setChatData(prevData => [...prevData, data]);
-            setLoadedMessages(prev => [...prev, data]);
-            setAllowNoti(true);
-
-            setTimeout(() => {
-              endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
-            }, 100);
-          }
-        };
-
-        socket.current.onerror = (error) => {
-          console.error('WebSocket error:', error);
-          setLoading(false);
-          if (retryCount < maxRetries && (detectMouse || isTouchDevice)) {
-            retryCount++;
-            setTimeout(connectWebSocket, 1000);
-          }
-        };
-
-        socket.current.onclose = () => {
-          if (retryCount < maxRetries && (detectMouse || isTouchDevice)) {
-            retryCount++;
-            setTimeout(connectWebSocket, 1000);
-          } else {
-            console.log('Max retries reached. WebSocket closed permanently.');
-          }
-        };
-      } catch (err) {
-        console.error("Connection setup error:", err);
-        if (retryCount < maxRetries) {
-          retryCount++;
-          setTimeout(connectWebSocket, 1000);
+        if (data.count !== undefined) {
+          console.log(data);
+          setOnlineUser(data.count);
         }
-        setTimeout(() => {
-          setLoading(false);
-        }, 5000);
-      }
-    };
 
-    connectWebSocket();
+        if (data.key) {
+          setKeyChatSession(data.key);
+        } else if (data.name && data.chat) {
+          setChatData(prevData => [...prevData, data]);
+          setLoadedMessages(prev => [...prev, data]);
+          setAllowNoti(true);
 
-    return () => {
-      if (socket.current) {
-        socket.current.close();
+          setTimeout(() => {
+            endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
+          }, 100);
+        }
+      };
+
+      socket.current.onerror = (error) => {
+        console.error('WebSocket error:', error);
+        setLoading(false);
+      };
+
+      socket.current.onclose = (event) => {
+        console.log('WebSocket closed:', event.code, event.reason);
+        
+        // Don't reconnect if it was a manual close
+        if (isManualClose) return;
+
+        // Attempt reconnection with exponential backoff
+        if (retryCount < maxRetries && (detectMouse || isTouchDevice)) {
+          retryCount++;
+          const delay = Math.min(1000 * Math.pow(2, retryCount - 1), 30000); // Exponential backoff, max 30s
+          console.log(`Reconnecting in ${delay}ms (attempt ${retryCount}/${maxRetries})`);
+          
+          reconnectTimeout = setTimeout(connectWebSocket, delay);
+        } else {
+          console.log('Max retries reached or user inactive. WebSocket closed permanently.');
+        }
+      };
+    } catch (err) {
+      console.error("Connection setup error:", err);
+      setLoading(false);
+      
+      if (retryCount < maxRetries) {
+        retryCount++;
+        const delay = Math.min(1000 * Math.pow(2, retryCount - 1), 30000);
+        reconnectTimeout = setTimeout(connectWebSocket, delay);
       }
-    };
-  }, []);
+    }
+  };
+
+  // Handle page visibility changes (user comes back to tab)
+  const handleVisibilityChange = () => {
+    if (!document.hidden && (!socket.current || socket.current.readyState === WebSocket.CLOSED)) {
+      console.log('User returned, attempting to reconnect...');
+      retryCount = 0; // Reset retry count when user comes back
+      connectWebSocket();
+    }
+  };
+
+  // Handle network status changes
+  const handleOnline = () => {
+    console.log('Network reconnected, attempting to reconnect WebSocket...');
+    if (!socket.current || socket.current.readyState === WebSocket.CLOSED) {
+      retryCount = 0; // Reset retry count on network reconnection
+      connectWebSocket();
+    }
+  };
+
+  // Handle focus events (alternative to visibility API)
+  const handleFocus = () => {
+    if (!socket.current || socket.current.readyState === WebSocket.CLOSED) {
+      console.log('Window focused, attempting to reconnect...');
+      retryCount = 0;
+      connectWebSocket();
+    }
+  };
+
+  // Initial connection
+  connectWebSocket();
+
+  // Add event listeners
+  document.addEventListener('visibilitychange', handleVisibilityChange);
+  window.addEventListener('online', handleOnline);
+  window.addEventListener('focus', handleFocus);
+
+  // Cleanup function
+  return () => {
+    isManualClose = true;
+    
+    // Clear any pending reconnection attempts
+    if (reconnectTimeout) {
+      clearTimeout(reconnectTimeout);
+    }
+    
+    // Remove event listeners
+    document.removeEventListener('visibilitychange', handleVisibilityChange);
+    window.removeEventListener('online', handleOnline);
+    window.removeEventListener('focus', handleFocus);
+    
+    // Close WebSocket
+    if (socket.current) {
+      socket.current.close();
+    }
+  };
+}, []);
+
 
   useEffect(() => { // noti
     if(allowNoti){
