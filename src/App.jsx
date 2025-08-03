@@ -487,6 +487,38 @@ useEffect(() => {
     }, []);
 
 
+    useEffect(() => {
+      let invisibilityTimeout = null;
+
+      const handleVisibilityChange = () => {
+        if (document.visibilityState === 'hidden') {
+          // Start a 30s countdown to close socket
+          invisibilityTimeout = setTimeout(() => {
+            if (socket.current && socket.current.readyState === WebSocket.OPEN) {
+              console.log('User was invisible for 30s. Closing WebSocket.');
+              socket.current.close();
+              setWebsocketConnection(false);
+            }
+          }, 30000); // 30 seconds
+        } else {
+          // User returned before 30s — cancel disconnect
+          if (invisibilityTimeout) {
+            clearTimeout(invisibilityTimeout);
+            invisibilityTimeout = null;
+          }
+        }
+      };
+
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+
+      return () => {
+        document.removeEventListener('visibilitychange', handleVisibilityChange);
+        if (invisibilityTimeout) clearTimeout(invisibilityTimeout);
+      };
+    }, []);
+
+
+
 
 
   useEffect(() => { // noti
