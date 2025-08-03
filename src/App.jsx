@@ -499,9 +499,9 @@ useEffect(() => {
               socket.current.close();
               setWebsocketConnection(false);
             }
-          }, 30000); // 30 seconds
+          }, 10000); 
         } else {
-          // User returned before 30s — cancel disconnect
+          // 
           if (invisibilityTimeout) {
             clearTimeout(invisibilityTimeout);
             invisibilityTimeout = null;
