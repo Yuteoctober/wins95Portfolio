@@ -1386,7 +1386,7 @@ function handleShow(name) {
       
     }
     item.setter(prev => ({...prev,focusItem: false}));
-    setTileScreen(false)
+    PatchExpand ? null : setTileScreen(false)
   });
   if(tap.includes(name)) return;
   setStartActive(false)
@@ -1468,7 +1468,7 @@ function handleShowMobile(name) {
       }
       }
       item.setter(prev => ({...prev,focusItem: false}));
-      setTileScreen(false)
+      PatchExpand ? null : setTileScreen(false)
     });
     if(tap.includes(name)) return;
     setStartActive(false)
