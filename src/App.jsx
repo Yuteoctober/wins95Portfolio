@@ -1386,7 +1386,7 @@ function handleShow(name) {
       
     }
     item.setter(prev => ({...prev,focusItem: false}));
-    PatchExpand ? null : setTileScreen(false)
+    PatchExpand ? null : setTileScreen(false) // if patch in on, dont eter desktop on load
   });
   if(tap.includes(name)) return;
   setStartActive(false)
