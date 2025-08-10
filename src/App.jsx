@@ -495,7 +495,7 @@ useEffect(() => {
           // Start a 30s countdown to close socket
           invisibilityTimeout = setTimeout(() => {
             if (socket.current && socket.current.readyState === WebSocket.OPEN) {
-              console.log('User was invisible for 30s. Closing WebSocket.');
+              console.log('User was invisible for 10s. Closing WebSocket.');
               socket.current.close();
               setWebsocketConnection(false);
             }
@@ -1386,7 +1386,7 @@ function handleShow(name) {
       
     }
     item.setter(prev => ({...prev,focusItem: false}));
-
+    setTileScreen(false)
   });
   if(tap.includes(name)) return;
   setStartActive(false)
@@ -1468,7 +1468,7 @@ function handleShowMobile(name) {
       }
       }
       item.setter(prev => ({...prev,focusItem: false}));
-  
+      setTileScreen(false)
     });
     if(tap.includes(name)) return;
     setStartActive(false)
