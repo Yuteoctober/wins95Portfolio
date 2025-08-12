@@ -5,7 +5,6 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import Tile from './Tile';
 import '../css/Tile.css'
 import dayjs from 'dayjs';
-import glitchBG from '../assets/glitch2.jpg';
 
 export default function WindowsDragLogin() {
 
@@ -153,7 +152,6 @@ const finalIcons = iconsWithTime.filter(icon => !bannedIcon.includes(icon.conten
             }}
             
           >
-            <img src={glitchBG} alt="" />
             <div className="grid-container"> 
               <p className='date_time'>
               {date_time}
