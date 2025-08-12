@@ -17,9 +17,9 @@ import bg9 from '../assets/bg9.jpg'
 import bg10 from '../assets/live_grey.gif'
 import bg11 from '../assets/live_light_grey.gif'
 import eff1 from '../assets/noise.png'
-import eff2 from '../assets/oldtv.jpg'
+import eff2 from '../assets/glitch2.jpg'
 import eff3 from '../assets/brokenTV.jpg'
-import eff4 from '../assets/DarkTV.jpg'
+import eff4 from '../assets/bigger_noise.jpg'
 import eff5 from '../assets/glitch.gif'
 import eff6 from '../assets/glitch2.gif'
 import '../css/BgSetting.css'
@@ -54,7 +54,7 @@ function BgSetting() {
   const [ selectedBg2Effect, setSelectedBg2Effect ] = useState(null)
 
   const { 
-    tileBG, setTileBG,
+    setTileBG,
     themeDragBar, setThemeDragBar,
     BgSettingExpand ,setBgSettingExpand,
     StyleHide,
@@ -94,9 +94,9 @@ function BgSetting() {
       const effectOptions = [
         { value: 1, label: '(None)', image: 'none'},
         { value: 2, label: 'Noise', image: eff1},
-        { value: 3, label: 'Old TV', image: eff2},
+        { value: 3, label: 'Glitch noise', image: eff2},
         { value: 4, label: 'Broken TV', image: eff3},
-        { value: 5, label: 'Dark TV', image: eff4},
+        { value: 5, label: 'Noise 2', image: eff4},
         { value: 6, label: 'Glitch', image: eff5},
         { value: 7, label: 'Glitch Two', image: eff6},
       ];

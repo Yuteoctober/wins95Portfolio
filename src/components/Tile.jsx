@@ -42,6 +42,7 @@ import back from '../assets/back-arrow.png';
 import weatherImg from '../assets/weathertile.png';
 import githublogo from '../assets/github.gif';
 import newsicon from '../assets/newstile.png';
+import glitchBG from '../assets/glitch2.jpg'
 
 
 
@@ -398,64 +399,64 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
 
   return (
     <AnimatePresence>
-      <motion.div
-        ref={(node) => {
-          ref.current = node;
-          previewRef.current = node;
-        }}
-        className={tileClasses}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ ease: 'easeInOut', duration: 1 }}
-        exit={{ opacity: 0 }}
-        style={{
-          touchAction : animationCD ? 'none' : 'auto',
-          pointerEvents: animationCD ? 'none' : 'auto',
-          display: 'grid',
-          position: 'relative',
-          opacity: isDragging ? 0.5 : 1,
-          background: color,
-          ...tileBG(content, disable),
-        }}
-        onClick={(e) => {
-          e.stopPropagation()
-          handleTileClick(content)
-        }}
-      >
-        {content === 'Time' && (
-          <div className="time_icon" onClick={() => setFormatTime(!formatTime)}>
-            <p>{formatTime ? currentTime24 : currentTime12}</p>
-          </div>
-        )}
-        {(content === 'Weather' && weather && city) && (
-          <div className="weather_tile_container">
-            <h2>
-              {Cel? weather.temp : ((weather.temp - 32) * 5 / 9).toFixed(0)}
-              <span>{Cel? '°F':'°C'}</span>
-            </h2>
-            <p>{city}</p>
-          </div>
-        )}
-        {content === 'Background' && (
-          <div className="switch_bg">
-            <Switch
-              onChange={backgroundSwitchSave}
-              checked={bgRotation}
-              offColor="#454040"
-              onColor="#4CAF50"
-              uncheckedIcon={false}
-              checkedIcon={false}
-              height={28}        
-              width={56}            
-            />
-          </div>
-        )}
+        <motion.div
+          ref={(node) => {
+            ref.current = node;
+            previewRef.current = node;
+          }}
+          className={tileClasses}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ ease: 'easeInOut', duration: 1 }}
+          exit={{ opacity: 0 }}
+          style={{
+            touchAction : animationCD ? 'none' : 'auto',
+            pointerEvents: animationCD ? 'none' : 'auto',
+            display: 'grid',
+            position: 'relative',
+            opacity: isDragging ? 0.5 : 1,
+            background: color,
+            ...tileBG(content, disable),
+          }}
+          onClick={(e) => {
+            e.stopPropagation()
+            handleTileClick(content)
+          }}
+        >
+          {content === 'Time' && (
+            <div className="time_icon" onClick={() => setFormatTime(!formatTime)}>
+              <p>{formatTime ? currentTime24 : currentTime12}</p>
+            </div>
+          )}
+          {(content === 'Weather' && weather && city) && (
+            <div className="weather_tile_container">
+              <h2>
+                {Cel? weather.temp : ((weather.temp - 32) * 5 / 9).toFixed(0)}
+                <span>{Cel? '°F':'°C'}</span>
+              </h2>
+              <p>{city}</p>
+            </div>
+          )}
+          {content === 'Background' && (
+            <div className="switch_bg">
+              <Switch
+                onChange={backgroundSwitchSave}
+                checked={bgRotation}
+                offColor="#454040"
+                onColor="#4CAF50"
+                uncheckedIcon={false}
+                checkedIcon={false}
+                height={28}        
+                width={56}            
+              />
+            </div>
+          )}
 
-        <span className="tile_name">{mappingIconName(content)}</span>
-        <div className="tile_pic_container">
-          <img className="tile_pic" src={''} alt="" />
-        </div>
-      </motion.div>
+          <span className="tile_name">{mappingIconName(content)}</span>
+          <div className="tile_pic_container">
+            <img className="tile_pic" src={''} alt="" />
+          </div>
+        </motion.div>
     </AnimatePresence>
   );
 }
