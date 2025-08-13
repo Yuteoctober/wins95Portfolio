@@ -140,7 +140,6 @@ const finalIcons = iconsWithTime.filter(icon => !bannedIcon.includes(icon.conten
 
   
 
-
   return (
     <>
       {(tileScreen && !login) && (

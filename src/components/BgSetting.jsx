@@ -167,6 +167,7 @@ function BgSetting() {
 
         if (ImgBgPreviewEffect) { // for Effect
           rootEffect.style.setProperty('--before-bg-image', `url(${ImgBgPreviewEffect})`);
+          
         } 
 
         if (ImgBgPreview) { // for background

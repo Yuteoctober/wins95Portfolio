@@ -40,6 +40,14 @@ import { StyleHide, imageMapping,
 
 
 function App() {
+  const [localBg, setLocalBg] = useState(() => {
+    const prevBg = localStorage.getItem('background')
+    return prevBg? prevBg : null
+  })
+  const [localEffect, setLocalEffect] = useState(() => {
+    const prevEffect = localStorage.getItem('effect')
+    return prevEffect? prevEffect : null
+  })
   const [websocketConnection, setWebsocketConnection] = useState(false)
   const [Cel, setCel] = useState(true); // Celsius or Fahrenheit
   const [weather, setWeather] = useState(() => {
@@ -804,6 +812,8 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
 }
 
   const contextValue = {
+    localEffect, setLocalEffect,
+    localBg, setLocalBg,
     connectWebSocket,
     websocketConnection, setWebsocketConnection,
     city, setCity,
