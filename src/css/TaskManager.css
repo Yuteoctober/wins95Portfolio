@@ -3,7 +3,7 @@
     display: none;
     position: fixed;
     width: 370px;
-    height: 350px;
+    height: 340px;
     background: #c5c4c4;
     border: 2px solid white;
     border-right: 1px solid black;
@@ -45,7 +45,7 @@
 .taskmanager_content {
     position: relative;
     width: 92.5%;
-    height: 55%;
+    height: 180px;
     margin: 0 auto;
     background: white;
     top: 15px;
@@ -65,7 +65,7 @@
     width: 92%;
     position: relative;
     margin: 0 auto;
-    top: 22px;
+    top: 25px;
 }
 
 .taskmanager_text_btn p {
