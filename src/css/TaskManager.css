@@ -1,0 +1,109 @@
+
+.folder_folder-taskmanager {
+    display: none;
+    position: fixed;
+    width: 370px;
+    height: 350px;
+    background: #c5c4c4;
+    border: 2px solid white;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    outline: 1px solid white;
+    overflow: hidden;
+}
+   
+
+@media screen and (max-width: 450px) {
+    .folder_folder-taskmanager {
+        width: 95%;
+        min-width: 300px;
+    }
+}
+
+.folder_folder-taskmanager .folder_barbtn{
+    display: flex;
+    position: relative;
+    margin-right: 4px;
+    gap: 2px;
+}
+
+.folder_folder-taskmanager .folder_dragbar {
+   display: flex;
+   position: relative;
+   height: 24px;
+   width: 100%;
+   margin-bottom: 1px;
+   align-items: center;
+   justify-content: space-between;
+   -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.taskmanager_content {
+    position: relative;
+    width: 92.5%;
+    height: 55%;
+    margin: 0 auto;
+    background: white;
+    top: 15px;
+    border: 2px solid rgb(84, 75, 75);
+    border-bottom-color: rgb(255, 255, 255);
+    border-right-color: white;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.taskmanager_content p {
+    font-size: 13px;
+    padding-left: 4px;
+}
+
+.taskmanager_text_btn {
+    width: 92%;
+    position: relative;
+    margin: 0 auto;
+    top: 22px;
+}
+
+.taskmanager_text_btn p {
+    font-size: 13px;
+    color: black;
+    line-height: 1.2;
+}
+
+.taskmanager_btn_container {
+    display: flex;
+    position: absolute;
+    width: 92%;
+    height: fit-content;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0.8rem;
+    justify-content: space-between;
+}
+
+.taskmanager_btn_container button {
+    width: 32%;
+    height: 28px;
+    background: #c5c4c4;
+    border: 2px solid rgb(71, 66, 66);
+    border-top-color: white;
+    border-left-color: white;
+    color: black;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.taskmanager_btn_container button:active {
+    border: 2px solid rgb(71, 66, 66);
+    border-bottom-color: white;
+    border-right-color: white;
+}
+
+.taskmanager_btn_container .a::before {
+    content: '_';
+    position: absolute;
+
+}

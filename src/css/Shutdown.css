@@ -6,7 +6,7 @@
     height: 100svh;
     backdrop-filter: blur(.8px);
     -webkit-backdrop-filter: blur(.8px);
-    z-index: 99999;
+    z-index: 9999999999;
 }
 
 .shutdown_container {

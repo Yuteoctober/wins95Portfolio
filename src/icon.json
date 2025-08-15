@@ -340,5 +340,14 @@
         "type": ".exe",
         "x": 37,
         "y": 37
+    },
+    {
+        "name": "TaskManager",
+        "pic": "TaskManager",
+        "folderId": "Utility",
+        "size": 3500,
+        "type": ".exe",
+        "x": 38,
+        "y": 38
     }
 ]

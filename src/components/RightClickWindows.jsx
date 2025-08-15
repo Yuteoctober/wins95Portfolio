@@ -176,7 +176,12 @@ function RightClickWindows() {
                 </span>
             </p>
             
-            <p style={{paddingLeft: '25px'}}>Line up Icons</p>
+            <p style={{paddingLeft: '25px'}}
+              onClick={() => {
+                handleShow('TaskManager')
+                setRightClickDefault(false);
+              }}
+            >Task Manager</p>
             <h5></h5>
             <p style={{color: '#8a8989'}}>Paste</p>
             <p style={{color: '#8a8989'}}>Paste Shortcut</p>

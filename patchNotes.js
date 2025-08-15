@@ -1,5 +1,13 @@
 const patchNotes = [
   {
+    head: "**Added Task Manager**",
+    date: "2025-08-14",
+    notes: [
+      "Added Task Manager app.",
+      "Can view and manage running programs.",
+    ]
+  },
+  {
     head: "**MSN App**",
     date: "2025-08-03",
     notes: [

@@ -31,6 +31,7 @@ import NewsApp from './components/NewsApp'
 import SpinningCat from './components/SpinningCat';
 import Patch from './components/Patch';
 import WindowsDragLogin from './components/WindowsDragLogin';
+import TaskManager from './components/TaskManager';
 import { StyleHide, imageMapping,
   handleDoubleClickEnterLink,handleDoubleTapEnterMobile,
   handleDoubleClickiframe, handleDoubleTapiframeMobile,
@@ -243,6 +244,9 @@ function App() {
   const [PatchExpand, setPatchExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
   
+  const [TaskManagerExpand, setTaskManagerExpand] = useState(
+    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
+  
     const allPicture = desktopIcon.filter(picture => picture.type === '.jpeg'); // photo open
 
   const textError = ( // error message
@@ -270,8 +274,7 @@ function App() {
       handleShow('Patch');
     }, 2500);
     
-    const resetIcon = desktopIcon.find(icon => icon.name === 'Fortune')
-    if(!resetIcon) {
+    if(desktopIcon.length !== iconInfo.length) {
       localStorage.clear();
       location.reload();
     }
@@ -812,6 +815,7 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
 }
 
   const contextValue = {
+    TaskManagerExpand, setTaskManagerExpand,
     localEffect, setLocalEffect,
     localBg, setLocalBg,
     connectWebSocket,
@@ -1016,6 +1020,7 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
             runOpenFuction={() => null}
         />  
     )}
+
         <EmptyFolder
           state={PaintExpand} 
           setState={setPaintExpand}
@@ -1050,6 +1055,7 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
           folderName='Photo'
           photoMode={true}
         />
+        <TaskManager/>
         <Patch/>
         <SpinningCat/>
         <NewsApp/>
@@ -1290,6 +1296,7 @@ function ObjectState() {
     { name: 'RecycleBin',  setter: setBinExpand,        usestate: BinExpand,        color: 'rgba(64, 135, 66, 0.85)', size: 'small' },
     { name: 'Paint',       setter: setPaintExpand,      usestate: PaintExpand,      color: 'rgba(193, 178, 46, 0.85)', size: 'small' },
     { name: 'Utility',     setter: setUtilityExpand,    usestate: UtilityExpand,    color: 'rgba(116, 85, 54, 0.85)', size: 'small' },
+    { name: 'TaskManager', setter: setTaskManagerExpand,usestate: TaskManagerExpand,color: 'rgba(218, 160, 109, 0.85)', size: 'small' },
   ];
 }
 

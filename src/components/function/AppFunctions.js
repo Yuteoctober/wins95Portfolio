@@ -37,6 +37,7 @@ import Fortune from '../../assets/fortune.png'
 import run from '../../assets/run.png'
 import backarrow from '../../assets/backarrow.png'
 import tile from '../../assets/tile.png'
+import taskmanager from '../../assets/taskmanager.png'
 
 
 
@@ -175,6 +176,10 @@ export function imageMapping (name) {
     case "tile":
     case "Tile":
       return tile;
+
+    case "TaskManager":
+    case "taskmanager":
+      return taskmanager;
 
 
     default:
