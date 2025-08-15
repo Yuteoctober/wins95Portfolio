@@ -15,7 +15,8 @@
 
 @media screen and (max-width: 450px) {
     .folder_folder-taskmanager {
-        width: 95%;
+        width: 90%;
+        max-width: 350px;
         min-width: 300px;
     }
 }
