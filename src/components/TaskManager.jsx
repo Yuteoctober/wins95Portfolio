@@ -189,6 +189,8 @@ function TaskManager() {
             <button className='a'
               onClick={() => {
                 deleteTap(selectedItemToClose)
+                setSelectedItemToClose('')
+                setItemSelected(null);
               }}
             >End Task</button>
             <button className='a'
