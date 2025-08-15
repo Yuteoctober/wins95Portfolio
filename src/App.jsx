@@ -73,7 +73,7 @@ function App() {
 
   const [backgroundImageUrl, setBackgroundImageUrl] = useState('');
   const [tileBG, setTileBG] = useState('#098684')
-  const [tileScreen, setTileScreen] = useState(true)
+  const [tileScreen, setTileScreen] = useState(false)
   const [chatBotActive, setChatBotActive] = useState(false);
   const [runCatVideo, setRunCatVideo] = useState(false)
   const [newsPopup, setNewsPopup] = useState(false)
@@ -134,7 +134,7 @@ function App() {
   const [reMountRun, setReMountRun] = useState(0)
   const [ErrorPopup, setErrorPopup] = useState(false)
   const [themeDragBar, setThemeDragBar] = useState(() => localStorage.getItem('barcolor') || '#14045c')
-  const [login, setLogin] = useState(false) // disable login
+  const [login, setLogin] = useState(true) 
   const [windowsShutDownAnimation, setWindowsShutDownAnimation] = useState(false)
   const [detectMouse, setDetectMouse] = useState(false)
   const endOfMessagesRef = useRef(null);
