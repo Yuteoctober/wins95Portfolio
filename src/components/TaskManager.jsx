@@ -11,11 +11,11 @@ function TaskManager() {
   const [selectedItemToClose, setSelectedItemToClose] = useState('');
 
     const { 
+    btcShow,
     setShutdownWindow,
     TaskManagerExpand, setTaskManagerExpand,
     themeDragBar,
     ObjectState,
-    lastTapTime, setLastTapTime,
     StyleHide,
     isTouchDevice,
     handleSetFocusItemTrue,
@@ -39,36 +39,25 @@ function TaskManager() {
 
       }
 
-   function handleExpandStateToggle() {
-    setTaskManagerExpand(prevState => ({
-      ...prevState,
-      expand: !prevState.expand
-    }));
-  }
-
-  function handleExpandStateToggleMobile() {
-    const now = Date.now();
-    if (now - lastTapTime < 300) {
-        setTaskManagerExpand(prevState => ({
-            ...prevState,
-            expand: !prevState.expand
-        }));
-    }
-    setLastTapTime(now);
-}
-
   const allState = ObjectState()
 
   const bannedItems = ['Fortune', 'AiAgent', 'TaskManager', '3dObject']
 
-  const activeState = allState.filter(item => {
+  const activeStateAll = allState.filter(item => { // from objectState
     if(bannedItems.includes(item.name)) {
       return ;
     }
     return item.usestate.show === true
   });
 
-  console.log(activeState)
+  const additionalItems = [ // added items
+    { name: 'Bitcoin', state: btcShow },
+  ];
+
+  const activeState = [
+  ...activeStateAll,
+  ...additionalItems.filter(item => item.state)
+  ];
 
   return (
     <>

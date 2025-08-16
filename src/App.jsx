@@ -1609,6 +1609,12 @@ function handleShowMobile(name) {
 }
 
   function deleteTap(name) {
+
+    if(name === 'Bitcoin') {
+      setBtcShow(false)
+      return;
+    }
+
     const setState = ObjectState();
     const passedName = name.toLowerCase().split(' ').join('');
 
