@@ -215,7 +215,7 @@ function MyComputer() {
           style={{ background: MyComputerExpand.focusItem ? themeDragBar : '#757579' }}
         >
           <div className="folder_barname">
-            <img src={imageMapping(selectedFolder.label)} alt="selectedFolder.label" />
+            <img src={imageMapping(selectedFolder.label)} alt="" />
             <span>{selectedFolder.label}</span>
           </div>
           <div className="folder_barbtn">
@@ -271,7 +271,7 @@ function MyComputer() {
                           NevigateToFolder(icon.name)
                         }}
                       >
-                        <img src={imageMapping(icon.name)} alt={icon.name} 
+                        <img src={imageMapping(icon.name)} alt="" 
                           style={{marginLeft: MarginOnSelectedIcon(icon.name)}}
                         />
                         <span>{icon.name}</span>
@@ -284,7 +284,7 @@ function MyComputer() {
                               setPopUpFolder(false)
                               NevigateToFolder(subFolder.name)
                             }}>
-                            <img src={imageMapping(subFolder.name)} alt={subFolder.name} 
+                            <img src={imageMapping(subFolder.name)} alt="" 
                               style={{ marginLeft: MarginOnSelectedIcon(subFolder.name, 'sub1') }}
                             />
                             <span>{subFolder.name}</span>
@@ -296,7 +296,7 @@ function MyComputer() {
                                 setPopUpFolder(false)
                                 NevigateToFolder(subSubFolder.name)
                               }}>
-                              <img src={imageMapping(subSubFolder.name)} alt={subSubFolder.name} 
+                              <img src={imageMapping(subSubFolder.name)} alt=""
                                 style={{ marginLeft: MarginOnSelectedIcon(subSubFolder.name, 'sub2') }}
                               />
                               <span>{subSubFolder.name}</span>
@@ -314,7 +314,7 @@ function MyComputer() {
             )}
             <div className='folder_select_left_container'
             >
-              <img src={selectedFolder.img} alt={selectedFolder.label} />
+              <img src={selectedFolder.img} alt="" />
               <p>
                 {selectedFolder.label}
               </p>
@@ -334,7 +334,7 @@ function MyComputer() {
               setPopUpFolder(false)
               UndoFunction()}}
           >
-            <img src={undoIcon} alt="undoIcon" />
+            <img src={undoIcon} alt="" />
           </div>
         </div>
         <div className="folder_content-mypc"
@@ -388,21 +388,21 @@ function MyComputer() {
                       setInFolder(icon.name);
                       refBeingClicked.current = iconRefs.current[icon.name]
                     }}
-                    onDoubleClick={() => handleShowInfolder(icon.name)}                      
+                    onDoubleClick={() => handleShowInfolder(icon.name, icon.type)}                      
                     onClick={!isTouchDevice ? (e) => {
                       iconFocusIcon(icon.name);
                       e.stopPropagation();
                     }: undefined}           
                     onTouchStart={(e) => {
                       e.stopPropagation();
-                      handleShowInfolderMobile(icon.name);
+                      handleShowInfolderMobile(icon.name, icon.type);
                       iconFocusIcon(icon.name);
                       handleMobileLongPress(e, icon);
                       setInFolder(icon.name);
                       refBeingClicked.current = iconRefs.current[icon.name]
                     }}
                   >
-                    <img src={imageMapping(icon.pic)} alt='#' className={icon.focus ? 'img_focus' : ''}
+                    <img src={imageMapping(icon.pic)} alt='' className={icon.focus ? 'img_focus' : ''}
                       style={iconImgSize(iconScreenSize)}
                     />
                     <p className={icon.focus ? 'p_focus' : 'p_normal'}

@@ -730,7 +730,7 @@ const handleOnDrag = (name, ref) => () => {
 };
 
 
-function handleShowInfolder(name) { //important handleshow for in folder
+function handleShowInfolder(name, type) { //important handleshow for in folder
 
   setRightClickDefault(false);
 
@@ -775,6 +775,13 @@ function handleShowInfolder(name) { //important handleshow for in folder
       setCurrentFolder('Utility')
       setSelectedFolder({label: 'Utility', img: imageMapping(name)})
       setUndo(prev => [...prev, 'Utility'])
+      return;
+    }
+
+    if(type === 'folder') {
+      setCurrentFolder(name)
+      setSelectedFolder({label: name, img: imageMapping('Project')})
+      setUndo(prev => [...prev, name])
       return;
     }
 
