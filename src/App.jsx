@@ -857,7 +857,9 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     }
 
     if(type === 'folder') {
-      setCurrentFolder(name)
+      setTimeout(() => {
+        setCurrentFolder(name)
+      }, 100);
       setSelectedFolder({label: name, img: imageMapping('Project')})
       setUndo(prev => [...prev, name])
       return;
