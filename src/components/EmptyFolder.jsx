@@ -101,7 +101,7 @@ function EmptyFolder({state, setState, refState, folderName, photoMode, paintMod
   const recycleBin = desktopIcon.filter(icon => icon.folderId === 'RecycleBin');
   const recycleBinLength = recycleBin.length;
 
-  useEffect(() => {
+  useEffect(() => { // force re-render, ref can be tracked
     setKeyRef(prev => prev + 1)
   },[useState.show])
 
@@ -121,9 +121,9 @@ function EmptyFolder({state, setState, refState, folderName, photoMode, paintMod
       onStart={() => {
         handleSetFocusItemTrue(folderName)
       }}
+      key={keyRef}
     >
         <motion.div 
-          key={keyRef}
           ref={refState}
           className={`folder_folder ${photoMode? 'photo_mode' 
             : paintMode? 'paint_mode' 
