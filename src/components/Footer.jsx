@@ -315,7 +315,12 @@ export default function Footer() {
         allSetItems.forEach((item) => {
       
           const itemName = item.name.toLowerCase().trim();
-          
+          if(item.type === 'userCreatedFolder') { // for user created folder
+          item.setter({
+            focusItem: tap[index] === item.name,
+            hide: tap[index] === item.name ? false : item.usestate.hide,
+          });
+        }
           if(itemName === lowerCaseName) {
             item.setter(prev => ({...prev, focusItem: true}));
             if(item.usestate.hide) {
@@ -466,7 +471,7 @@ export default function Footer() {
                             <img src={
                                 item === 'RecycleBin' && recycleBinLength === 0 ? binEmp 
                                 : item === 'RecycleBin' && recycleBinLength > 0 ? bin 
-                                : imageMapping(item)} alt={item} />
+                                : imageMapping(item)} alt={''} />
                             }
                             <p>{item}</p>
                         </div>  
@@ -552,7 +557,7 @@ export default function Footer() {
                                 <div className="icon_sub_start" key={icon.name}
                                     onClick={() => handleShow(icon.name)}
                                 >
-                                    <img src={imageMapping(icon.pic)} alt={icon.name}/>
+                                    <img src={imageMapping(icon.pic)} alt={''}/>
                                     <p>{icon.name}</p>
                                 </div>
                             ))}

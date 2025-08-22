@@ -39,5 +39,62 @@
     font-size: 10px;
     right: 4px;
     top: 5px
+}
 
+.pop_up_create {
+    display: grid;
+    position: fixed;
+    background: #c5c4c4;
+    padding: 1rem 2rem;
+    border: 2px solid rgb(238, 237, 237);
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    outline: 1px solid rgb(255, 255, 255);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    place-items: center;
+    gap: 4px;
+    z-index: 9999999;
+}
+
+.pop_up_create p {
+    margin: auto;
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+
+
+.pop_up_create input {
+    font-size: 13px;
+    padding: 2px;
+    border-radius: 0px;
+    padding-left: 4px;
+}
+
+.ok_cancel_btn {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.ok_cancel_btn button {
+    margin-top: 2px;
+    width: 60px;
+    padding: 4px 8px;
+    font-size: 11px;
+    border-radius: 0px;
+    cursor: pointer;
+    background: #c5c4c4;
+    border: 2px solid rgb(238, 237, 237);
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+
+}
+
+.ok_cancel_btn button:active {
+    border: 2px solid rgb(27, 26, 26);
+    border-right: 1px solid white;
+    border-bottom: 1px solid white;
 }

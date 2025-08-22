@@ -71,7 +71,7 @@ export function StyleHide(index, tap, ObjectState) {
 
 
 // Mapping image function
-export function imageMapping (name) { 
+export function imageMapping (name, type) { 
   switch(name) {
 
     case 'About':
@@ -181,8 +181,14 @@ export function imageMapping (name) {
     case "taskmanager":
       return taskmanager;
 
+    case "NewFolder":
+    case "newfolder":
+      return Project;
 
     default:
+      if(type === 'folder') {
+        return Project;
+      }
       return null;
   }
 }

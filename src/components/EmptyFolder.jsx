@@ -8,16 +8,15 @@ import photoicon from '../assets/jpeg.png';
 import binEmp from '../assets/bin2.png'
 import bin from '../assets/bin.png'
 
-function EmptyFolder({state, setState, refState, folderName, photoMode, paintMode}) {
+function EmptyFolder({state, setState, refState, folderName, photoMode, paintMode, userCreatedFolderMode, type}) {
 
   const iconRefs = useRef([]);
 
   const { 
-    PaintExpand, setPaintExpand,
+    keyRef, setKeyRef,
     handleMobileLongPressBin,
     refBeingClicked,
-    binRestoreArr, setBinRestoreArr,
-    rightClickBin, setRightClickBin,
+    setRightClickBin,
     timerRef,
     handleMobileLongPress,
     setRightClickIcon,
@@ -48,6 +47,13 @@ function EmptyFolder({state, setState, refState, folderName, photoMode, paintMod
   function handleDragStop(event, data) {
     const positionX = data.x;
     const positionY = data.y;
+    if(userCreatedFolderMode) { // for user created folder
+      setState({
+        x: positionX,
+        y: positionY,
+      })
+    }
+
     setState(prev => ({
       ...prev,
       x: positionX,
@@ -56,6 +62,10 @@ function EmptyFolder({state, setState, refState, folderName, photoMode, paintMod
   }
 
   function handleExpandStateToggle() {
+
+    if(userCreatedFolderMode) { // for user created folder
+      setState({expand: !state.expand});
+    }
     setState(prevState => ({
       ...prevState,
       expand: !prevState.expand,
@@ -65,6 +75,11 @@ function EmptyFolder({state, setState, refState, folderName, photoMode, paintMod
   function handleExpandStateToggleMobile() {
     const now = Date.now();
     if (now - lastTapTime < 300) {
+
+      if(userCreatedFolderMode) { // for user created folder
+      setState({expand: !state.expand});
+    }
+
       setState(prevState => ({
         ...prevState,
         expand: !prevState.expand,
@@ -85,7 +100,10 @@ function EmptyFolder({state, setState, refState, folderName, photoMode, paintMod
 
   const recycleBin = desktopIcon.filter(icon => icon.folderId === 'RecycleBin');
   const recycleBinLength = recycleBin.length;
-  
+
+  useEffect(() => {
+    setKeyRef(prev => prev + 1)
+  },[useState.show])
 
   return (
     <Draggable
@@ -100,9 +118,12 @@ function EmptyFolder({state, setState, refState, folderName, photoMode, paintMod
         y: window.innerWidth <= 500 ? 30 : 80,
       }}
       onStop={(event, data) => {handleDragStop(event, data)}}
-      onStart={() => {handleSetFocusItemTrue(folderName)}}
+      onStart={() => {
+        handleSetFocusItemTrue(folderName)
+      }}
     >
         <motion.div 
+          key={keyRef}
           ref={refState}
           className={`folder_folder ${photoMode? 'photo_mode' 
             : paintMode? 'paint_mode' 
@@ -114,8 +135,8 @@ function EmptyFolder({state, setState, refState, folderName, photoMode, paintMod
           style={{
             ...(
                 state.expand
-                    ? inlineStyleExpand(folderName)
-                    : inlineStyle(folderName)
+                    ? inlineStyleExpand(folderName, userCreatedFolderMode)
+                    : inlineStyle(folderName, userCreatedFolderMode)
             ),
             overflow: dragging ? '' : 'hidden',
         }}
@@ -131,7 +152,7 @@ function EmptyFolder({state, setState, refState, folderName, photoMode, paintMod
             src={photoMode ? photoicon 
                   : folderName === 'RecycleBin' && recycleBinLength === 0 ? binEmp 
                   : folderName === 'RecycleBin' && recycleBinLength > 0 ? bin 
-                  : imageMapping(folderName)
+                  : imageMapping(folderName, type)
                 } 
             alt="" 
             style={photoMode ? { width: '18px', top: '4px' } : {}}
@@ -142,11 +163,13 @@ function EmptyFolder({state, setState, refState, folderName, photoMode, paintMod
             <div onClick={ !isTouchDevice ? (e) => {
               e.stopPropagation();
               setState(prev => ({ ...prev, hide: true, focusItem: false }));
+              userCreatedFolderMode && setState({hide: true, focusItem: false});
               StyleHide(folderName); 
             } : undefined}
             onTouchEnd={(e) => {
               e.stopPropagation()
               setState(prev => ({...prev, hide: true, focusItem: false}))
+              userCreatedFolderMode && setState({hide: true, focusItem: false});
               StyleHide(folderName)
             }}
             onTouchStart={(e) => e.stopPropagation()}
@@ -284,7 +307,7 @@ function EmptyFolder({state, setState, refState, folderName, photoMode, paintMod
                       handleShowMobile(icon.name)
                     }}
                   >
-                    <img src={imageMapping(icon.pic)} alt='#' className={icon.focus ? 'img_focus' : ''}
+                    <img src={imageMapping(icon.pic, type)} alt='#' className={icon.focus ? 'img_focus' : ''}
                       style={iconImgSize(iconScreenSize)}
                     />
                     <p className={icon.focus ? 'p_focus' : 'p_normal'}

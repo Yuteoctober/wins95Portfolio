@@ -1,5 +1,13 @@
 const patchNotes = [
   {
+    head: "**System**",
+    date: "2025-08-21",
+    notes: [
+      "User now can create Folders",
+      "Folders and items can be dropped into created folders"
+    ]
+  },
+  {
     head: "**Added Task Manager**",
     date: "2025-08-14",
     notes: [

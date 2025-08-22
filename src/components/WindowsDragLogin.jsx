@@ -111,10 +111,10 @@ const finalIcons = iconsWithTime.filter(icon => !bannedIcon.includes(icon.conten
   useEffect(() => {
     const savedData = JSON.parse(localStorage.getItem('dailyWallpaper'));
 
-    if(tiles.length !== finalIcons.length) { // reset the local storage if not on current version
-      localStorage.clear();
-      location.reload();
-    }
+    // if(tiles.length !== finalIcons.length) { // reset the local storage if not on current version
+    //   localStorage.clear();
+    //   location.reload();
+    // }
 
     if (savedData) {
       setBackgroundImageUrl(savedData.url);

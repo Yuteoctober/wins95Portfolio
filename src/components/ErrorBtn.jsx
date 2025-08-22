@@ -8,6 +8,7 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
     const [Content, setContent] = useState('')
 
     const { 
+        setUserCreatedFolder,
         handleSetFocusItemTrue, setRunCatVideo 
 
     } = useContext(UseContext);
@@ -72,6 +73,7 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
     }
     
     function removeLocalStorage() {
+        setUserCreatedFolder([])
         localStorage.clear();
         location.reload();
     }

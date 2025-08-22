@@ -7,10 +7,12 @@ function RightClickWindows() {
   const screenWidth = window.innerWidth;
   const screenHeight = window.innerHeight;
   const [restoreIcon, setRestoreIcon] = useState(0)
+  const [popUpCreateFolderName, setPopUpCreateFolderName] = useState(false);
+  const [newFolderNameVal, setNewFolderNameVal] = useState('');
 
-  const { 
-    sortedIcon, setSortedIcon,
-    sortIconTrigger, setSortIconTrigger,
+  const {
+    ObjectState,
+    setUserCreatedFolder,
     deleteIcon, setDeleteIcon,
     setKey,
     refBeingClicked,
@@ -18,7 +20,7 @@ function RightClickWindows() {
     rightClickBin, setRightClickBin,
     inFolder, setInFolder,
     handleShowInfolder, 
-    iconBeingRightClicked, setIconBeingRightClicked,
+    iconBeingRightClicked, 
     rightClickIcon, setRightClickIcon,
     setDesktopIcon, desktopIcon,
     iconFocusIcon,
@@ -157,12 +159,86 @@ function RightClickWindows() {
       setKey(prev => prev + 1); // Force re-render by changing an unrelated state
     }
   }, [restoreIcon]); 
-  
 
+
+function CreateFolder() {
+
+  if(newFolderNameVal.trim() === '') return;
+
+  const allState = ObjectState();
+
+  const checkIfFolderExist = allState.some(item => item.name === newFolderNameVal.trim());
+
+  if (checkIfFolderExist) return;
+
+  const checkedNameNoSpace = newFolderNameVal.trim().replace(/\s+/g, '');
+
+  const id = `folder-${Date.now()}`;
+
+  const newFolder = {
+    id,
+    pic: "Project",
+    name: checkedNameNoSpace,
+    type: "folder",
+    folderId: "Desktop",
+    size: "2000",
+    x: 1,
+    y: 1,
+  };
+
+  setDesktopIcon(prev => {
+    const updatedIcons = [...prev, newFolder];
+    localStorage.setItem("icons", JSON.stringify(updatedIcons));
+    return updatedIcons;
+  });
+
+  const newStateFolder = {
+    id,
+    name: checkedNameNoSpace,
+    expand: false,
+    show: false,
+    hide: false,
+    focusItem: false, 
+    x: 0,
+    y: 0,
+    zIndex: 1,
+  };
+
+  setUserCreatedFolder(prev => {
+    const safePrev = Array.isArray(prev) ? prev : [];
+    const updatedFolders = [...safePrev, newStateFolder];
+    localStorage.setItem("userFolders", JSON.stringify(updatedFolders));
+    return updatedFolders;
+  });
+  setPopUpCreateFolderName(false)
+  setNewFolderNameVal('')
+}
 
   return (
     <>
-      {(rightClickDefault && !rightClickIcon && !rightClickBin) && (
+      {popUpCreateFolderName && (
+        <div className="pop_up_create">
+          <p>Enter folder name: </p>
+          <input type="text" 
+          value={newFolderNameVal} 
+          onChange={(e) => setNewFolderNameVal(e.target.value)} 
+          maxLength={10} 
+          onKeyDown={(e) => e.key === 'Enter' ? CreateFolder() : null}
+          />
+          <div className="ok_cancel_btn">
+            <button
+              onClick={CreateFolder}
+            >OK</button>
+            <button
+              onClick={() => {
+                setPopUpCreateFolderName(false)
+                setNewFolderNameVal('')
+              }}
+            >Cancel</button>
+          </div>
+        </div>
+      )}
+        {(rightClickDefault && !rightClickIcon && !rightClickBin) && (
         <div className='window_rightclick_container'
           style={{ 
             top: screenHeight - rightClickPosition.y < 217 ? screenHeight - 217 : rightClickPosition.y,
@@ -194,11 +270,16 @@ function RightClickWindows() {
               Refresh
             </p>
             <h5></h5>
-            <p>
-                New
-                <span>
+            <p
+              onClick={() => {
+                setPopUpCreateFolderName(true);
+                setRightClickDefault(false);
+              }}
+            >
+                New Folder
+                {/* <span>
                     <BsFillCaretRightFill/>
-                </span>
+                </span> */}
             </p>
             <h5></h5>
             <p 

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, } from 'react'
 import UserContext from './Context'
 import { Filter } from 'bad-words';
 import badword from './badword'
@@ -41,6 +41,7 @@ import { StyleHide, imageMapping,
 
 
 function App() {
+  const [keyRef, setKeyRef] = useState(0)
   const [localBg, setLocalBg] = useState(() => {
     const prevBg = localStorage.getItem('background')
     return prevBg? prevBg : null
@@ -246,6 +247,33 @@ function App() {
   
   const [TaskManagerExpand, setTaskManagerExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
+
+  const [UserCreatedFolder, setUserCreatedFolder] = useState(() => {
+  const localFolders = localStorage.getItem('userFolders');
+  const parsed = localFolders ? JSON.parse(localFolders) : [];
+  return parsed.map(folder => ({
+    ...folder,
+    id: folder.id || null,
+    expand: false,
+    show: false,
+    hide: false,
+    focusItem: false,
+    x: 0,
+    y: 0,
+    zIndex: 1,
+  }));
+});
+
+  const UserCreatedFolderRef = useRef([]);
+
+    useEffect(() => { // REF for user created folder
+      // Ensure refs array matches folders
+      UserCreatedFolderRef.current = UserCreatedFolder.map(
+        (_, i) => UserCreatedFolderRef.current[i] || React.createRef()
+      );
+    }, [UserCreatedFolder]);
+  
+
   
     const allPicture = desktopIcon.filter(picture => picture.type === '.jpeg'); // photo open
 
@@ -274,10 +302,10 @@ function App() {
       handleShow('Patch');
     }, 2500);
     
-    if(desktopIcon.length !== iconInfo.length) {
-      localStorage.clear();
-      location.reload();
-    }
+    // if(desktopIcon.length !== iconInfo.length) {
+    //   localStorage.clear();
+    //   location.reload();
+    // }
   },[])
 
 
@@ -597,7 +625,24 @@ const handleOnDrag = (name, ref) => () => {
 
     if(name === 'MyComputer' || name === 'RecycleBin') return; // prevent MyComputer from being dragged into folder
 
-    
+    // Check for intersection with UserCreated folders
+    for (let i = 0; i < UserCreatedFolderRef.current.length; i++) {
+      const ref = UserCreatedFolderRef.current[i];
+      if (ref && ref.current) {
+        const folderRect = ref.current.getBoundingClientRect();
+
+        if (
+          iconRect.left < folderRect.right - offset &&
+          iconRect.right > folderRect.left + offset &&
+          iconRect.top < folderRect.bottom - offset &&
+          iconRect.bottom > folderRect.top + offset
+        ) {
+          if (name === UserCreatedFolder[i].name) continue; // avoid self-drop
+          setDropTargetFolder(UserCreatedFolder[i].name);
+          return; // stop once matched
+        }
+      }
+}
     // utility
     if (
       iconRect.left < UtilityRect.right - offset &&
@@ -664,7 +709,7 @@ const handleOnDrag = (name, ref) => () => {
 
       if (validFolders.includes(currentFolder)) {
         setDropTargetFolder(currentFolder);
-}
+      }
     }
     else if (
       iconRect.left < desktopRect.right &&
@@ -814,7 +859,10 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
   setLastTapTime(now)
 }
 
+
   const contextValue = {
+    keyRef, setKeyRef,
+    UserCreatedFolder, setUserCreatedFolder,
     TaskManagerExpand, setTaskManagerExpand,
     localEffect, setLocalEffect,
     localBg, setLocalBg,
@@ -1020,6 +1068,30 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
             runOpenFuction={() => null}
         />  
     )}
+
+        {UserCreatedFolder.length > 0 && UserCreatedFolder.map((folder, index) => (
+          <EmptyFolder
+            key={folder.id}
+            state={folder} 
+            setState={(newState) => {
+              setUserCreatedFolder(prev => {
+                const updated = prev.map(f => 
+                  f.id === folder.id 
+                    ? { ...f, ...newState }
+                    : f
+                );
+                localStorage.setItem("userFolders", JSON.stringify(updated));
+                return updated;
+              });
+            }}
+            folderName={folder.name}
+            userCreatedFolderMode={true}
+            type='folder'
+            refState={UserCreatedFolderRef.current[index]}
+          />
+        ))}
+
+
 
         <EmptyFolder
           state={PaintExpand} 
@@ -1273,6 +1345,7 @@ async function getChat() {
 
 function ObjectState() {
   return [
+   
     { name: 'About',       setter: setMybioExpand,      usestate: MybioExpand,      color: 'rgba(46, 108, 176, 0.85)', size: 'small' },
     { name: 'Resume',      setter: setResumeExpand,     usestate: ResumeExpand,     color: 'rgba(65, 138, 68, 0.85)', size: 'small' },
     { name: 'Project',     setter: setProjectExpand,    usestate: ProjectExpand,    color: 'rgba(211, 117, 0, 0.85)', size: 'small' },
@@ -1297,21 +1370,28 @@ function ObjectState() {
     { name: 'Paint',       setter: setPaintExpand,      usestate: PaintExpand,      color: 'rgba(193, 178, 46, 0.85)', size: 'small' },
     { name: 'Utility',     setter: setUtilityExpand,    usestate: UtilityExpand,    color: 'rgba(116, 85, 54, 0.85)', size: 'small' },
     { name: 'TaskManager', setter: setTaskManagerExpand,usestate: TaskManagerExpand,color: 'rgba(218, 160, 109, 0.85)', size: 'small' },
+    
+    // Add user folders dynamically with individual state management
+    ...UserCreatedFolder.map(folder => ({
+      name: folder.name,
+      setter: (newState) => {
+        setUserCreatedFolder(prev => {
+          const updated = prev.map(f => 
+            f.id === folder.id 
+              ? { ...f, ...newState }
+              : f
+          );
+          localStorage.setItem("userFolders", JSON.stringify(updated));
+          return updated;
+        });
+      },
+      usestate: folder, // Pass the individual folder object
+      color: folder.color || 'rgba(255, 206, 84, 0.85)',
+      size: 'small',
+      type: 'userCreatedFolder' // Add type identifier
+    }))
   ];
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1319,6 +1399,7 @@ function ObjectState() {
 function iconFocusIcon(name) { // if focus on one, the rest goes unfocus
 
   const allSetItems = ObjectState();
+
   const passedName = name.toLowerCase().split(' ').join('');
 
   const updateddesktopIcon = desktopIcon.map(icon => {
@@ -1338,7 +1419,6 @@ function iconFocusIcon(name) { // if focus on one, the rest goes unfocus
 }
 
 function handleShow(name) {
-
   setRightClickDefault(false);
 
   if(name === '' || !name) return;
@@ -1349,8 +1429,7 @@ function handleShow(name) {
   }
 
   const lowerCaseName = name.toLowerCase().split(' ').join('');
-
-  const allSetItems = ObjectState() // call all usestate object
+  const allSetItems = ObjectState();
 
   const itemExists = allSetItems.some(item => item.name.toLowerCase().split(' ').join('') === lowerCaseName);
 
@@ -1366,53 +1445,58 @@ function handleShow(name) {
     setRegErrorPopUp(true);
     setRegErrorPopUpVal(name);
     return;
-}
+  }
 
   allSetItems.forEach((item) => {
-
     const itemName = item.name.toLowerCase().trim();
 
     if(itemName === lowerCaseName) {
       setTimeout(() => {
-        item.setter(prev => ({...prev, show: true, focusItem: true, hide: false, zIndex: maxZindexRef.current + 1 }));
-            maxZindexRef.current = item.usestate.zIndex; // Update max zIndex reference
+        if(item.type === 'userCreatedFolder') {
+          // Handle user-created folders
+          item.setter({
+            show: true, 
+            focusItem: true, 
+            hide: false, 
+            zIndex: maxZindexRef.current + 1
+          });
+        } else {
+          // Handle static folders
+          item.setter(prev => ({
+            ...prev, 
+            show: true, 
+            focusItem: true, 
+            hide: false, 
+            zIndex: maxZindexRef.current + 1
+          }));
+        }
+        maxZindexRef.current += 1;
       }, 100);
+      
+      // Your existing special cases...
       if(lowerCaseName === 'mail') clippySendemailfunction();
       if(lowerCaseName === 'winamp') clippySongFunction();
       if(lowerCaseName === 'msn') clippyUsernameFunction();
-      if(lowerCaseName === 'nft') {
-        handleDoubleClickiframe('Nft', setOpenProjectExpand, setProjectUrl)
-        handleShow('Internet');
+      // ... etc
+    } else {
+      // Set other items to not focused
+      if(item.type === 'userCreatedFolder') {
+        item.setter({ focusItem: false });
+      } else {
+        item.setter(prev => ({ ...prev, focusItem: false }));
       }
-      if(lowerCaseName === 'note') {
-        handleDoubleClickiframe('Note', setOpenProjectExpand, setProjectUrl)
-        handleShow('Internet');
-      }
-      if(lowerCaseName === 'aiagent') {
-        handleDoubleClickiframe('AiAgent', setOpenProjectExpand, setProjectUrl)
-        handleShow('Internet');
-      }
-      if(lowerCaseName === '3dobject') {
-        handleDoubleClickiframe('3dObject', setOpenProjectExpand, setProjectUrl)
-        handleShow('Internet');
-      }
-      if(lowerCaseName === 'fortune') {
-        handleDoubleClickiframe('Fortune', setOpenProjectExpand, setProjectUrl)
-        handleShow('Internet');
-      }
-      
     }
-    item.setter(prev => ({...prev,focusItem: false}));
-    PatchExpand ? null : setTileScreen(false) // if patch in on, dont eter desktop on load
   });
-  if(tap.includes(name)) return;
-  setStartActive(false)
 
-  if(name === 'Run' || name === 'Nft' || name === 'Note' || name === 'AiAgent' || name === '3dObject' || name === 'Fortune')return; // not showing run on tap
+  PatchExpand ? null : setTileScreen(false);
+  
+  if(tap.includes(name)) return;
+  setStartActive(false);
+
+  if(name === 'Run' || name === 'Nft' || name === 'Note' || name === 'AiAgent' || name === '3dObject' || name === 'Fortune') return;
 
   setTap(prevTap => [...prevTap, name]);
   setDesktopIcon(prevIcons => prevIcons.map(icon => ({...icon, focus: false})));
-
 }
 
 function handleShowMobile(name) {
@@ -1457,9 +1541,26 @@ function handleShowMobile(name) {
   
       if(itemName === lowerCaseName) {
         setTimeout(() => {
-          item.setter(prev => ({...prev, show: true, focusItem: true, hide: false, zIndex: maxZindexRef.current + 1 }));
-            maxZindexRef.current = item.usestate.zIndex; // Update max zIndex reference
-        }, 100);
+        if(item.type === 'userCreatedFolder') {
+          // Handle user-created folders
+          item.setter({
+            show: true, 
+            focusItem: true, 
+            hide: false, 
+            zIndex: maxZindexRef.current + 1
+          });
+        } else {
+          // Handle static folders
+          item.setter(prev => ({
+            ...prev, 
+            show: true, 
+            focusItem: true, 
+            hide: false, 
+            zIndex: maxZindexRef.current + 1
+          }));
+        }
+        maxZindexRef.current += 1;
+      }, 100);
         if(lowerCaseName === 'mail') clippySendemailfunction();
         if(lowerCaseName === 'winamp') clippySongFunction();
         if(lowerCaseName === 'msn') clippyUsernameFunction();
@@ -1546,6 +1647,14 @@ function handleShowMobile(name) {
     
     setState.forEach((item) => {
         const itemName = item.name.toLowerCase();
+        if(item.type === 'userCreatedFolder') { // user created folders
+          const newZIndex = (maxZindexRef.current || 0) + 1;  // Calculate the new zIndex
+          item.setter({
+            focusItem: itemName === LowerCaseName, 
+            zIndex: newZIndex, 
+          });
+          maxZindexRef.current = newZIndex;  
+        }
         // For the clicked item, set the focus to true
         if (itemName === LowerCaseName) {
             const newZIndex = (maxZindexRef.current || 0) + 1;  // Calculate the new zIndex
@@ -1629,6 +1738,14 @@ function handleShowMobile(name) {
           hide: false
         }));
 
+      if(item.type === 'userCreatedFolder') { // delete from user created folder folders
+          item.setter({
+            show: false, 
+            focusItem: false, 
+            hide: true, 
+            zIndex: maxZindexRef.current + 1
+          });
+        }
         setTap(prevTap => prevTap.filter(tapItem => { // get prevTap to prevent error
           const tapItemName = tapItem.toLowerCase().split(' ').join('');
           return tapItemName !== passedName;
