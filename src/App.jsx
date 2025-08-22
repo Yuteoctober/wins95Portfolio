@@ -607,7 +607,7 @@ useEffect(() => { // touch support device === true
 }, []);
 
 
-const handleOnDrag = (name, ref) => () => {
+const handleOnDrag = (name, ref, type) => () => {
   setDragging(true)
   const iconRef = ref
   if (iconRef && ResumeFolderRef.current && ProjectFolderRef.current) {
@@ -705,8 +705,7 @@ const handleOnDrag = (name, ref) => () => {
       // check within MyComputer
       if (name === 'MyComputer') return;
       // add new folder in this array
-      const validFolders = ['DiskC', 'DiskD', 'Resume', 'Project', 'Picture', 'RecycleBin', 'Utility'];
-
+      const validFolders = ['DiskC', 'DiskD', 'Resume', 'Project', 'Picture', 'RecycleBin', 'Utility', ...UserCreatedFolder.map(item => item.name)];
       if (validFolders.includes(currentFolder)) {
         setDropTargetFolder(currentFolder);
       }
@@ -723,12 +722,8 @@ const handleOnDrag = (name, ref) => () => {
     else {
       setDropTargetFolder('Desktop');
     }
-  } else {
-    // Set to Desktop if refs are not set
-    setDropTargetFolder('Desktop');
   }
 };
-
 
 function handleShowInfolder(name, type) { //important handleshow for in folder
 
@@ -776,7 +771,8 @@ function handleShowInfolder(name, type) { //important handleshow for in folder
       setSelectedFolder({label: 'Utility', img: imageMapping(name)})
       setUndo(prev => [...prev, 'Utility'])
       return;
-    }
+    } 
+    
 
     if(type === 'folder') {
       setCurrentFolder(name)

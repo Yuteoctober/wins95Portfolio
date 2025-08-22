@@ -126,8 +126,10 @@ function MyComputer() {
     const folder = folderMap[name];
   
     // If the folder is valid, update the current folder and undo stack
- 
-      setCurrentFolder(folder);
+      if(folder) {
+        setCurrentFolder(folder);
+      }
+      setCurrentFolder(name);
       setUndo(prev => [...prev, folder]);
     
   }
@@ -371,7 +373,7 @@ function MyComputer() {
                     setDropTargetFolder('')
                     handleSetFocusItemTrue('MyComputer')
                   }}
-                  onDrag={handleOnDrag(icon.name, iconRefs.current[icon.name])}
+                  onDrag={handleOnDrag(icon.name, iconRefs.current[icon.name], icon.type)}
                   onStop={(e) => {
                     handleDrop(e, icon.name, dropTargetFolder, icon.folderId);
                     clearTimeout(timerRef.current)
