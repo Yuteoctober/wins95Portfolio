@@ -1480,7 +1480,29 @@ function handleShow(name) {
       if(lowerCaseName === 'mail') clippySendemailfunction();
       if(lowerCaseName === 'winamp') clippySongFunction();
       if(lowerCaseName === 'msn') clippyUsernameFunction();
-      // ... etc
+      if(lowerCaseName === 'mail') clippySendemailfunction();
+        if(lowerCaseName === 'winamp') clippySongFunction();
+        if(lowerCaseName === 'msn') clippyUsernameFunction();
+        if(lowerCaseName === 'nft') {
+          handleDoubleClickiframe('Nft', setOpenProjectExpand, setProjectUrl)
+          handleShow('Internet');
+        }
+        if(lowerCaseName === 'note') {
+          handleDoubleClickiframe('Note', setOpenProjectExpand, setProjectUrl)
+          handleShow('Internet');
+        }
+        if(lowerCaseName === 'aiagent') {
+          handleDoubleClickiframe('AiAgent', setOpenProjectExpand, setProjectUrl)
+          handleShow('Internet');
+        }
+        if(lowerCaseName === '3dobject') {
+        handleDoubleClickiframe('3dObject', setOpenProjectExpand, setProjectUrl)
+        handleShow('Internet');
+        }
+        if(lowerCaseName === 'fortune') {
+        handleDoubleClickiframe('Fortune', setOpenProjectExpand, setProjectUrl)
+        handleShow('Internet');
+      }
     } else {
       // Set other items to not focused
       if(item.type === 'userCreatedFolder') {
@@ -1588,9 +1610,14 @@ function handleShowMobile(name) {
         handleShow('Internet');
       }
       }
-      item.setter(prev => ({...prev,focusItem: false}));
-      PatchExpand ? null : setTileScreen(false)
+      if(item.type === 'userCreatedFolder') {
+        item.setter({ focusItem: false });
+      } else {
+        item.setter(prev => ({ ...prev, focusItem: false }));
+      }
     });
+    PatchExpand ? null : setTileScreen(false)
+
     if(tap.includes(name)) return;
     setStartActive(false)
   
@@ -1645,31 +1672,50 @@ function handleShowMobile(name) {
   }
 
   function handleSetFocusItemTrue(name) {
-    const LowerCaseName = name.toLowerCase().split(' ').join('');
-    const setState = ObjectState();
-    
-    setState.forEach((item) => {
-        const itemName = item.name.toLowerCase();
-        if(item.type === 'userCreatedFolder') { // user created folders
-          const newZIndex = (maxZindexRef.current || 0) + 1;  // Calculate the new zIndex
-          item.setter({
-            focusItem: itemName === LowerCaseName, 
-            zIndex: newZIndex, 
-          });
-          maxZindexRef.current = newZIndex;  
-        }
-        // For the clicked item, set the focus to true
-        if (itemName === LowerCaseName) {
-            const newZIndex = (maxZindexRef.current || 0) + 1;  // Calculate the new zIndex
-              item.setter(prev => ({ ...prev, focusItem: true, zIndex: newZIndex })); 
-            maxZindexRef.current = newZIndex;  // Update maxZindexRef
-        } else {
-            item.setter(prev => ({ ...prev, focusItem: false }));
-        }
-    });
+  const LowerCaseName = name.toLowerCase().split(' ').join('');
+  const setState = ObjectState();
 
-    setDesktopIcon(prevIcons => prevIcons.map(icon => ({ ...icon, focus: false })));
+  const newZIndex = (maxZindexRef.current || 0) + 1;
+
+  setState.forEach((item) => {
+    const itemName = item.name.toLowerCase();
+
+    if (itemName === LowerCaseName) {
+      if (item.type === 'userCreatedFolder') {
+        // mutate directly
+        item.setter({
+          ...item, // keep existing props
+          focusItem: true,
+          zIndex: newZIndex,
+        });
+      } else {
+        // safe spread for normal items
+        item.setter(prev => ({
+          ...prev,
+          focusItem: true,
+          zIndex: newZIndex,
+        }));
+      }
+      maxZindexRef.current = newZIndex;
+    } else {
+      if (item.type === 'userCreatedFolder') {
+        // direct mutation
+        item.setter({
+          ...item,
+          focusItem: false,
+        });
+      } else {
+        item.setter(prev => ({ ...prev, focusItem: false }));
+      }
+    }
+  });
+
+  // reset desktop icons focus
+  setDesktopIcon(prevIcons =>
+    prevIcons.map(icon => ({ ...icon, focus: false }))
+  );
 }
+
 
 
 
