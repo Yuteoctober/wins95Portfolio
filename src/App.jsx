@@ -784,7 +784,7 @@ function handleShowInfolder(name, type) { //important handleshow for in folder
     handleShow(name)
 }
 
-function handleShowInfolderMobile(name) { //important handleshow for in folder
+function handleShowInfolderMobile(name, type) { //important handleshow for in folder
 
   setRightClickDefault(false);
 
@@ -853,6 +853,13 @@ function handleShowInfolderMobile(name) { //important handleshow for in folder
       }, 100);
       setSelectedFolder({label: 'Utility', img: imageMapping(name)})
       setUndo(prev => [...prev, 'Utility'])
+      return;
+    }
+
+    if(type === 'folder') {
+      setCurrentFolder(name)
+      setSelectedFolder({label: name, img: imageMapping('Project')})
+      setUndo(prev => [...prev, name])
       return;
     }
 
@@ -1672,49 +1679,49 @@ function handleShowMobile(name) {
   }
 
   function handleSetFocusItemTrue(name) {
-  const LowerCaseName = name.toLowerCase().split(' ').join('');
-  const setState = ObjectState();
+    const LowerCaseName = name.toLowerCase().split(' ').join('');
+    const setState = ObjectState();
 
-  const newZIndex = (maxZindexRef.current || 0) + 1;
+    const newZIndex = (maxZindexRef.current || 0) + 1;
 
-  setState.forEach((item) => {
-    const itemName = item.name.toLowerCase();
+    setState.forEach((item) => {
+      const itemName = item.name.toLowerCase();
 
-    if (itemName === LowerCaseName) {
-      if (item.type === 'userCreatedFolder') {
-        // mutate directly
-        item.setter({
-          ...item, // keep existing props
-          focusItem: true,
-          zIndex: newZIndex,
-        });
+      if (itemName === LowerCaseName) {
+        if (item.type === 'userCreatedFolder') {
+          // mutate directly
+          item.setter({
+            ...item, // keep existing props
+            focusItem: true,
+            zIndex: newZIndex,
+          });
+        } else {
+          // safe spread for normal items
+          item.setter(prev => ({
+            ...prev,
+            focusItem: true,
+            zIndex: newZIndex,
+          }));
+        }
+        maxZindexRef.current = newZIndex;
       } else {
-        // safe spread for normal items
-        item.setter(prev => ({
-          ...prev,
-          focusItem: true,
-          zIndex: newZIndex,
-        }));
+        if (item.type === 'userCreatedFolder') {
+          // direct mutation
+          item.setter({
+            ...item,
+            focusItem: false,
+          });
+        } else {
+          item.setter(prev => ({ ...prev, focusItem: false }));
+        }
       }
-      maxZindexRef.current = newZIndex;
-    } else {
-      if (item.type === 'userCreatedFolder') {
-        // direct mutation
-        item.setter({
-          ...item,
-          focusItem: false,
-        });
-      } else {
-        item.setter(prev => ({ ...prev, focusItem: false }));
-      }
-    }
-  });
+    });
 
-  // reset desktop icons focus
-  setDesktopIcon(prevIcons =>
-    prevIcons.map(icon => ({ ...icon, focus: false }))
-  );
-}
+    // reset desktop icons focus
+    setDesktopIcon(prevIcons =>
+      prevIcons.map(icon => ({ ...icon, focus: false }))
+    );
+  }
 
 
 
