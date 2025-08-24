@@ -71,6 +71,8 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
                 return runOpenFuction();
         }
     }
+
+
     
     function removeLocalStorage() {
         setUserCreatedFolder([])

@@ -873,6 +873,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
 
 
   const contextValue = {
+    setRegErrorPopUp, setRegErrorPopUpVal,
     keyRef, setKeyRef,
     UserCreatedFolder, setUserCreatedFolder,
     TaskManagerExpand, setTaskManagerExpand,

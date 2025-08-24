@@ -214,6 +214,20 @@ function CreateFolder() {
   setNewFolderNameVal('')
 }
 
+
+  function deletepermanently() {
+    const droppedIcon = desktopIcon.find(icon => icon.name === iconBeingRightClicked.name);
+    if (droppedIcon) { 
+      setDesktopIcon(prevIcons => {
+        const updatedIcons = prevIcons.filter(icon => icon.name !== droppedIcon.name);
+        setKey(prev => prev + 1); // make folder icon by re-mount
+        localStorage.setItem('icons', JSON.stringify([...updatedIcons]));
+        return [...updatedIcons];
+      });
+    }
+    setDeleteIcon(prev => prev + 1) // important link to useEffect
+  }
+
   return (
     <>
       {popUpCreateFolderName && (
@@ -360,7 +374,15 @@ function CreateFolder() {
           <h5></h5>
           <p >Cut</p>
           <h5></h5>
-          <p style={{color: '#8a8989'}}>Delete</p>
+          <p
+            onClick={() => {
+              setRightClickBin(false);
+              setRightClickDefault(false)
+              iconFocusIcon('')
+              refBeingClicked.current = null;
+              deletepermanently()
+            }}
+          >Delete</p>
           <h5></h5>
           <p>Properties</p>
       </div> 

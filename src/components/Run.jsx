@@ -28,11 +28,24 @@ function Run() {
     inlineStyleExpand,
     inlineStyle,
     deleteTap,
+    setRegErrorPopUp, setRegErrorPopUpVal,
    } = useContext(UseContext);
 
    const cannotOpenFile = ['internet', 'type', 'run'] // file that should not be open by RUN command
 
    function handleRunOpenFile(ObjectState, name) {
+
+    // const existedItem = desktopIcon.some(i => i.name === name)
+
+    // if(!existedItem){
+    //     setRegErrorPopUp(true);
+    //     setRegErrorPopUpVal(name);
+    //     setRunExpand(false)
+    //   return;
+    // }
+
+
+
     const object = desktopIcon;
     const lowerCaseName = name.toLowerCase().trim();
 

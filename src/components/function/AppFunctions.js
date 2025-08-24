@@ -38,6 +38,7 @@ import run from '../../assets/run.png'
 import backarrow from '../../assets/backarrow.png'
 import tile from '../../assets/tile.png'
 import taskmanager from '../../assets/taskmanager.png'
+import notepad from '../../assets/notepad.png'
 
 
 
@@ -185,9 +186,16 @@ export function imageMapping (name, type) {
     case "newfolder":
       return Project;
 
+    case "NotePad":
+    case "notepad":
+      return notepad
+
     default:
       if(type === 'folder') {
         return Project;
+      }
+      if(type === 'notepad') {
+        return notepad;
       }
       return null;
   }

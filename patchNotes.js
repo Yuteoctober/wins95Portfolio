@@ -1,5 +1,12 @@
 const patchNotes = [
   {
+    head: "**Recycle Bin**",
+    date: "2025-08-24",
+    notes: [
+      "User now can now permanently delete files on recycle bin",
+    ]
+  },
+  {
     head: "**System**",
     date: "2025-08-21",
     notes: [
