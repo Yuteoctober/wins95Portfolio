@@ -226,6 +226,12 @@ function CreateFolder() {
       });
     }
     setDeleteIcon(prev => prev + 1) // important link to useEffect
+    setBinRestoreArr(prev => {
+          const newBinArr = prev.filter(icon => icon.name !== iconBeingRightClicked.name);
+          localStorage.setItem('restoreArray', JSON.stringify(newBinArr)); // Update localStorage
+          return newBinArr;
+        });
+    refBeingClicked.current = null;
   }
 
   return (
@@ -379,7 +385,6 @@ function CreateFolder() {
               setRightClickBin(false);
               setRightClickDefault(false)
               iconFocusIcon('')
-              refBeingClicked.current = null;
               deletepermanently()
             }}
           >Delete</p>
