@@ -11,8 +11,8 @@ function RightClickWindows() {
   const [newFolderNameVal, setNewFolderNameVal] = useState('');
 
   const {
+    UserCreatedFolder, setUserCreatedFolder,
     ObjectState,
-    setUserCreatedFolder,
     deleteIcon, setDeleteIcon,
     setKey,
     refBeingClicked,
@@ -231,7 +231,22 @@ function CreateFolder() {
           localStorage.setItem('restoreArray', JSON.stringify(newBinArr)); // Update localStorage
           return newBinArr;
         });
+    const findUserCreatedFolder = UserCreatedFolder.find(
+        icon => icon.name === iconBeingRightClicked.name
+      );
+
+      if (findUserCreatedFolder) {
+        const updatedFolders = UserCreatedFolder.filter(
+          folder => folder.name !== findUserCreatedFolder.name
+        );
+
+        setUserCreatedFolder(updatedFolders);
+        localStorage.setItem("userFolders", JSON.stringify(updatedFolders));
+    }
+
+    
     refBeingClicked.current = null;
+   
   }
 
   return (
