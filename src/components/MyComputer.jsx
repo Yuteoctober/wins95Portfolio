@@ -109,31 +109,27 @@ function MyComputer() {
   }
 
 
-  function NevigateToFolder(name) { /// important to nevigate
-    // Map folder names to internal folder identifiers
-    const folderMap = {
-      'Hard Disk (C:)': 'DiskC',
-      'Hard Disk (D:)': 'DiskD',
-      'MyComputer': 'MyComputer',
-      'CD-ROM': 'CD-ROM',
-      'Resume': 'Resume',
-      'Project': 'Project',
-      'Picture': 'Picture',
-      'Utility': 'Utility',
-    };
-  
-    // Get the folder identifier from the mapy
-    const folder = folderMap[name];
-  
-    // If the folder is valid, update the current folder and undo stack
-      if(folder) {
-        setCurrentFolder(folder);
-      }
-      setCurrentFolder(name);
-      setUndo(prev => [...prev, folder]);
+  function NevigateToFolder(name) {
+    let foldername = name;
     
+    switch (name) {
+      case 'Hard Disk (C:)':
+        foldername = 'DiskC';
+        break;
+
+      case 'Hard Disk (D:)':
+        foldername = 'DiskD';
+        break;
+
+      default:
+        foldername = name;
+        break;
+    }
+
+    setCurrentFolder(foldername);
+    setUndo(prev => [...prev, foldername]);
   }
-  
+
 
   useEffect(() => {
     // defaulting to Mycomputer

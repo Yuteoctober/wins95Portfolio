@@ -91,12 +91,13 @@
     display: flex;
     flex-direction: column;
     position: absolute;
-    height: fit-content;
     width: 100%;
+    max-height: 170px;
     background: white;
     border: 1px solid black;
     padding: 2px 0px;
     left: -2px;
+    min-height: fit-content;
     overflow-y: auto;
 }
 
@@ -105,7 +106,6 @@
     flex-direction: column;
     padding-left: 2px;
     flex-grow: 1;
-    overflow-y: auto;
 }
 
 .popup_select_folder .selected_icon li {
