@@ -173,7 +173,7 @@ function MyComputer() {
   }
 
   
-  
+  console.log(imageMapping('5555'))
 
 
   return (
@@ -213,7 +213,7 @@ function MyComputer() {
           style={{ background: MyComputerExpand.focusItem ? themeDragBar : '#757579' }}
         >
           <div className="folder_barname">
-            <img src={imageMapping(selectedFolder.label)} alt="" />
+            <img src={imageMapping(selectedFolder.label) === null ? imageMapping(selectedFolder.label, 'folder') : imageMapping(selectedFolder.label)} alt="" />
             <span>{selectedFolder.label}</span>
           </div>
           <div className="folder_barbtn">
@@ -282,19 +282,21 @@ function MyComputer() {
                               setPopUpFolder(false)
                               NevigateToFolder(subFolder.name)
                             }}>
-                            <img src={imageMapping(subFolder.name)} alt="" 
-                              style={{ marginLeft: MarginOnSelectedIcon(subFolder.name, 'sub1') }}
-                            />
+                            <img
+                                src={imageMapping(subFolder.name) === null ? imageMapping(subFolder.name, 'folder') : imageMapping(subFolder.name)}
+                                alt=""
+                                style={{ marginLeft: MarginOnSelectedIcon(subFolder.name, "sub1") }}
+                              />
                             <span>{subFolder.name}</span>
                             </li>
                             {subFolders.map((subSubFolder, index) => 
                               subSubFolder.folderId === subFolder.name ? 
                               <li key={index} onClick={() => {
-                                setSelectedFolder({label: subSubFolder.name, img: imageMapping(subSubFolder.name)})
+                                setSelectedFolder({label: subSubFolder.name, img: imageMapping(subSubFolder.name) === null ? imageMapping(subSubFolder.name, 'folder') : imageMapping(subSubFolder.name)})
                                 setPopUpFolder(false)
                                 NevigateToFolder(subSubFolder.name)
                               }}>
-                              <img src={imageMapping(subSubFolder.name)} alt=""
+                              <img src={imageMapping(subSubFolder.name) === null ? imageMapping(subSubFolder.name, 'folder') : imageMapping(subSubFolder.name)} alt=""
                                 style={{ marginLeft: MarginOnSelectedIcon(subSubFolder.name, 'sub2') }}
                               />
                               <span>{subSubFolder.name}</span>
@@ -312,7 +314,7 @@ function MyComputer() {
             )}
             <div className='folder_select_left_container'
             >
-              <img src={selectedFolder.img} alt="" />
+              <img src={selectedFolder.img === null ? imageMapping('folder', 'folder') : selectedFolder.img } alt="" />
               <p>
                 {selectedFolder.label}
               </p>
