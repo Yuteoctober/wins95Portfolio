@@ -97,9 +97,10 @@
     border: 1px solid black;
     padding: 2px 0px;
     left: -2px;
-    min-height: fit-content;
     overflow-y: auto;
+    min-height: 40px;
 }
+
 
 .popup_select_folder .selected_icon ul {
     display: flex;

@@ -172,8 +172,6 @@ function MyComputer() {
     }
   }
 
-  
-  console.log(imageMapping('5555'))
 
 
   return (
