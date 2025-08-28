@@ -85,7 +85,9 @@
     width: calc(99% + 6px);
     z-index: 5;
     margin-top: 2rem;
+    
 }
+
 
 .selected_icon {
     display: flex;
@@ -98,7 +100,12 @@
     padding: 2px 0px;
     left: -2px;
     overflow-y: auto;
-    min-height: 40px;
+}
+
+
+.selected_icon {
+  -ms-overflow-style: none; 
+  scrollbar-width: none;     
 }
 
 
