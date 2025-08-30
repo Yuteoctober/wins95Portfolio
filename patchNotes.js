@@ -1,5 +1,13 @@
 const patchNotes = [
   {
+    head: "**BTC Widget**",
+    date: "2025-08-30",
+    notes: [
+      "Add bitcoin chart",
+      "Re-design BTC widget",
+    ]
+  },
+  {
     head: "**Recycle Bin**",
     date: "2025-08-24",
     notes: [

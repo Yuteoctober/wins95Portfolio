@@ -1,106 +1,211 @@
-.btc_container {
-    display: flex;
-    position: absolute;
-    width: 275px;
-    height: 100px;
-    background: #ffffffd1;
-    right: 1rem;
-    top: 2rem;
-    padding: .5rem;
-    border-radius: 4px;
-    justify-content: space-around;
-    
+/* Updated Windows 95 BTC Widget Styles for compact design */
+.btc_widget_win95 {
+  position: absolute;
+  width: 236px;
+  height: auto;
+  background: #c0c0c0;
+  border: 2px solid #676363;
+  border-top-color: #e1e0e0;
+  border-left-color: #e1e0e0;
+  right: 1rem;
+  top: 2rem;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.btc_container img {
+.btc_content {
+  padding: 8px;
+  background: #c0c0c0;
+}
+
+
+.btc_price_section {
+  border: 2px solid #676363;
+  border-bottom-color: #e1e0e0;
+  border-right-color: #e1e0e0;
+  padding: 4px;
+  margin-bottom: 4px;
+  background: white;
+}
+
+.btc_price_header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 1px;
+}
+
+.btc_price_icon {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  top: 1px;
+}
+
+.btc_price_main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  top: 4px;
+}
+
+.btc_symbol {
+  position: relative;
+  font-size: 10px;
+  color: #000080;
+  font-weight: bold;
+  top: 2px;
+}
+
+.btc_price {
+  position: relative;
+  font-size: 14px;
+  font-weight: bold;
+  color: rgb(16, 15, 15);
+  left: 1px;
+}
+
+.btc_percentage {
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.btc_percentage.positive {
+  color: #008000;
+}
+
+.btc_percentage.negative {
+  color: #800000;
+}
+
+
+.btc_stats_section {
+  display: flex;
+  /* border: 2px solid #676363;
+  border-bottom-color: #e1e0e0;
+  border-right-color: #e1e0e0; */
+  justify-content: center;
+  margin-bottom: 4px;
+  justify-content: space-between;
+  
+}
+
+.btc_stat_row {
+  display: flex;
+  width: 32%;
+  border: 2px solid #676363;
+  border-bottom-color: #e1e0e0;
+  border-right-color: #e1e0e0;
+  justify-content: space-around;
+  padding: 4px;
+  background: white;
+}
+
+.btc_stat_row:last-child {
+  margin-bottom: 0;
+}
+
+.btc_stat_item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 9px;
+  align-items: center;
+}
+
+.btc_stat_label {
+  color: #000080;
+  font-weight: bold;
+  min-width: 20px;
+}
+
+.btc_stat_value {
+  color: black;
+}
+
+
+.btc_chart_section {
+  border: 2px solid #676363;
+  border-bottom-color: #e1e0e0;
+  border-right-color: #e1e0e0;
+  background: white;
+  padding: 2px;
+  margin-bottom: 4px;
+}
+
+.btc_chart_container {
+  width: 100%;
+  height: 60px;
+  background: white;
+}
+
+/* New bottom section with refresh button */
+.btc_bottom_section {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 1px;
+  gap: 4px;
+}
+
+.btc_refresh_button {
+  display: flex;
+  background: #c0c0c0;
+  border: 2px solid #585454;
+  border-top-color: #e1e0e0;
+  border-left-color: #e1e0e0;
+  padding: 2px 8px;
+  font-size: 11px;
+  cursor: pointer;
+  align-items: center;
+  gap: 4px;
+  color: black;
+  width: 100%;
+  height: 23px;
+  justify-content: center;
+}
+
+.btc_refresh_button:hover {
+  background: #d4d4d4;
+}
+
+.btc_refresh_button:active {
+  border: 2px inset black;
+}
+
+.btc_refresh_button.active .btc_refresh_icon {
+  animation: win95_spin 1s ease-in-out;
+}
+
+.btc_refresh_icon {
     position: relative;
-    width: 35px;
-    height: 35px;
-    top: 10px;
-    right: 2px;
+    width: 12px;
+    height: 12px;
+
 }
 
-.leftside_btc {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
+@keyframes win95_spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
-.leftside_btc p {
+
+@media (max-width: 320px) {
+  .btc_widget_win95 {
+    width: 220px;
+    right: 0.5rem;
+  }
+}
+
+.show_chart {
     position: relative;
-    font-size: 14px;
-    top: 14px;
-    right: 1px;
-}
-
-.leftside_btc_btm {
-    position: absolute;
-    width: 70%;
-    margin-top: 5px;
-    left: 4rem;
-    line-height: 17px;
-}
-
-.leftside_btc_btm .gain_loss_percentage {
-    position: relative;
-    bottom: 8px;
-}
-
-.leftside_btc_btm p {
-    font-size: 11px;
-    color: #4a4949;
-}
-.leftside_btc_btm span {
-    font-size: 11px;
-    color: #4a4949;
-    margin-right: .6rem;
-}
-
-.rightside_btc {
-    width: 130px;
-}
-
-.rightside_btc h2 {
-    position: relative;
-    top: 12px;
-    letter-spacing: .06rem;
-    font-size: 16px;
-    color: #db2222 #0ac20a;
-}
-
-
-.rightside_btc span {
-    position: relative;
-    font-size: 9px;
-    font-weight: bold;
-    letter-spacing: 0px;
-    left: 2px;
-}
-
-
-.refresher {
-    position: absolute;
-    font-size: 13px;
-    right: 7px;
-    top: 6px;
-    color: #0e0c0c;
-    cursor: pointer;
-}
-
-.refresher:hover {
-    color: #4f4e4e;
-}
-
-.refresher.active{
-    animation: refresh 1s ease-in-out;
-}
-
-@keyframes refresh {
-    0% {
-        color: #000000;
-        transform: rotate(0deg);
-    }
-    100%{
-        color: #000000;
-        transform: rotate(360deg);
-    }
+    width: 100%;
+    height: 20px;
+    border: 2px solid #585454;
+    border-top-color: #e1e0e0;
+    border-left-color: #e1e0e0;
+    margin-bottom: 1px;
 }

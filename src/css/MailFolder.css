@@ -154,13 +154,14 @@
     gap: 5px;
     font-size: 15px;
     padding-left: 10px;
-    margin-top: px;
     cursor: default;
 }
 
 .file_edit_container-mail span {
     position: relative;
 }
+
+
 
 .folder_folder-mail .folder_conten-mail {
     position: relative;

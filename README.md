@@ -155,7 +155,9 @@ All the functionalities
   - Added Icons on Tile screen 31/07/2025
   - Added Added Reconnect to MSN chat 03/08/2025
   - Added Task Manager APP 14/08/2025
-  - Added User can now create Folders 21/08/2025
+  - Add bitcoin chart 30/08/2025
+  - Re-design BTC widget 30/08/2025
+
 
 
 Library used:
