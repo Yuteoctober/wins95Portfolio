@@ -41,6 +41,7 @@ import { StyleHide, imageMapping,
 
 
 function App() {
+  const [showChart, setShowChart] = useState(false)
   const [keyRef, setKeyRef] = useState(0)
   const [localBg, setLocalBg] = useState(() => {
     const prevBg = localStorage.getItem('background')
@@ -873,6 +874,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
 
 
   const contextValue = {
+    showChart, setShowChart,
     setRegErrorPopUp, setRegErrorPopUpVal,
     keyRef, setKeyRef,
     UserCreatedFolder, setUserCreatedFolder,

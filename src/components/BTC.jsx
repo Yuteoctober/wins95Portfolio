@@ -1,16 +1,14 @@
 import { useState, useEffect, useContext, useRef } from "react"
 import UseContext from "../Context"
-import { LuRefreshCw } from "react-icons/lu"
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts"
 import "../css/BTC.css"
 import btc_coin from "../assets/btc_icon.webp";
 
 function BTC() {
-  const { btcShow } = useContext(UseContext)
+  const { btcShow, showChart, setShowChart } = useContext(UseContext)
   const [price, setPrice] = useState(null)
   const [detail, setDetail] = useState(null)
   const [refresh, setRefresh] = useState(false)
-  const [showChart, setShowChart] = useState(false)
   const [chartData, setChartData] = useState([])
   const socketRef = useRef(null)
 
@@ -186,7 +184,7 @@ function BTC() {
 
               <button
                 className={`btc_refresh_button ${refresh ? "active" : ""}`}
-                onClick={() => setRefresh(true)}
+                onClick={() => setRefresh(!refresh)}
                 onAnimationEnd={() => setRefresh(false)}
               >
                 <p>Refresh</p>
