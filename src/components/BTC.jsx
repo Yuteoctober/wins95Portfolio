@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext, useRef } from "react"
 import UseContext from "../Context"
-import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts"
+import { LineChart, AreaChart , Area, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts"
 import "../css/BTC.css"
 import btc_coin from "../assets/btc_icon.webp";
 
@@ -143,36 +143,36 @@ function BTC() {
             </div>
             {showChart && (
               <div className="btc_chart_section">
-              <div className="btc_chart_container">
-                {chartData.length > 0 && (
-                  <ResponsiveContainer width="100%" height={60}>
-                    <LineChart data={chartData} margin={{ top: 6, right: 2, left: 2, bottom: 6 }}>
-                      <XAxis dataKey="time" hide />
-                      <YAxis hide domain={["dataMin", "dataMax"]} />
-                      <Tooltip
-                        contentStyle={{
-                          backgroundColor: "#c0c0c0",
-                          border: "2px outset #c0c0c0",
-                          borderRadius: "0",
-                          fontSize: "10px",
-                          fontFamily: "MS Sans Serif, sans-serif",
-                          padding: '6px'
-                        }}
-                      />
-                      <Line
-                        type="monotone"
-                        dataKey="price"
-                        stroke="#000080"
-                        strokeWidth={1}
-                        dot={false}
-                        isAnimationActive={false}
-                      />
-                    </LineChart>
-                  </ResponsiveContainer>
-                )}
+                <div className="btc_chart_container">
+                  {chartData.length > 0 && (
+                    <ResponsiveContainer width="100%" height={60}>
+                      <AreaChart data={chartData} margin={{ top: 2, right: 0, left: 0, bottom: 0 }}>
+                        <XAxis dataKey="time" hide />
+                        <YAxis hide domain={["dataMin", "dataMax"]} />
+                        <Tooltip
+                          contentStyle={{
+                            backgroundColor: "white",
+                            fontSize: "10px",
+                            padding: '6px',
+                            opacity: '0.95'
+                          }}
+                        />
+                        <Area
+                          type="monotone"
+                          dataKey="price"
+                          stroke="#000080"
+                          fill="#00008033"
+                          strokeWidth={1}
+                          isAnimationActive={false}
+                          dot={false}
+                        />
+                      </AreaChart>
+                    </ResponsiveContainer>
+                  )}
+                </div>
               </div>
-            </div>
             )}
+
 
             
             <div className="btc_bottom_section">
