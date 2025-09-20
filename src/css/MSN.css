@@ -16,6 +16,7 @@
 
 .folder_folder-MSN.shake {
     animation: msnShake 0.6s ease-in-out;
+    animation-delay: 0.1s;
 }
 
 @media screen and (width <= 500px) {
