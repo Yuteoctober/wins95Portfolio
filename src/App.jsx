@@ -41,6 +41,7 @@ import { StyleHide, imageMapping,
 
 
 function App() {
+  const [ringMsn, setRingMsn] = useState(false)
   const [showChart, setShowChart] = useState(false)
   const [keyRef, setKeyRef] = useState(0)
   const [localBg, setLocalBg] = useState(() => {
@@ -481,7 +482,11 @@ useEffect(() => {
 
           if (data.key) {
             setKeyChatSession(data.key);
-          } else if (data.name && data.chat) {
+          } 
+          if (data.ring) {
+            setRingMsn(true)
+          }
+          else if (data.name && data.chat) {
             setChatData(prevData => [...prevData, data]);
             setLoadedMessages(prev => [...prev, data]);
             setAllowNoti(true);
@@ -874,6 +879,8 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
 
 
   const contextValue = {
+    ringMsnOff,
+    ringMsn, setRingMsn,
     showChart, setShowChart,
     setRegErrorPopUp, setRegErrorPopUpVal,
     keyRef, setKeyRef,
@@ -1284,6 +1291,16 @@ function handleDrop(e, name, target, oldFolderID) {
     }
 
 
+    function ringMsnOff() {
+
+      if(socket.current) {
+        socket.current.send(JSON.stringify({ ring: true }));
+      } else {
+          console.error('WebSocket is not initialized.');
+      }
+    }
+
+  
     async function createChat() { // create chat
       const filter = new Filter();
   
@@ -1292,6 +1309,7 @@ function handleDrop(e, name, target, oldFolderID) {
       }, 20000);
   
       setSendDisable(true);
+
   
       if (chatValue.trim().length === 0) {
           setSendDisable(false);

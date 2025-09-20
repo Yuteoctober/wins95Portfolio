@@ -4,11 +4,15 @@ import Draggable from 'react-draggable';
 import { motion } from 'framer-motion';
 import msnPic from '../assets/msn.png';
 import chat from '../assets/chat.png';
+import nudge from '../assets/nudge.png';
+import nudgeSound from '../assets/nudgeSound.mp3';
 import '../css/MSN.css';
 
 function MsnFolder() {
 
   const {
+    ringMsnOff,
+    ringMsn, setRingMsn,
     connectWebSocket,
     websocketConnection,
     chatBotActive, setChatBotActive,
@@ -31,6 +35,7 @@ function MsnFolder() {
     deleteTap,
   } = useContext(UseContext);
 
+
   const [userName, setUserName] = useState(false);
   const topOfMessagesRef = useRef(null); // Ref to track the top of the chat container
   const [initialLoading, setInitialLoading] = useState(false)
@@ -40,11 +45,18 @@ function MsnFolder() {
     ? chatData[chatData.length - 1].date.split('').slice(0, 10).join('')
     : 'No messages yet';
 
-
   useEffect(() => {
     endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [MSNExpand.show])
   
+
+  useEffect(() => {
+    if (ringMsn) {
+      const audio = new Audio(nudgeSound);
+      audio.play().catch((err) => console.error("Audio play failed:", err));
+    }
+  }, [ringMsn]);
+
 
 useEffect(() => {
   if (!hasScrolledRef.current && MSNExpand.show) {
@@ -145,11 +157,14 @@ useEffect(() => {
         onStop={(event, data) => handleDragStop(event, data)}
         onStart={() => handleSetFocusItemTrue('MSN')}
       >
-        <div className='folder_folder-MSN'
+        <div className={`folder_folder-MSN ${ringMsn ? 'shake' : ''}`}
           onClick={(e) => {
             e.stopPropagation();
             handleSetFocusItemTrue('MSN');
           }}
+          onAnimationEndCapture={() => {
+              setRingMsn(false)
+            }}
           style={
             MSNExpand.expand ? inlineStyleExpand('MSN') : inlineStyle('MSN')
           }
@@ -272,6 +287,13 @@ useEffect(() => {
             >
               <img src={chat} alt="chat" />
 
+            </div>
+            <div className="shake_message"
+              onClick={() => {
+                ringMsnOff()
+              }}
+            >
+              <img src={nudge} alt="" />
             </div>
             <span>Username: {userNameValue ? userNameValue : 'Anonymous'}</span>
             <div className={`activate_bot ${chatBotActive ? 'active' : ''}`}

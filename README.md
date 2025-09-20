@@ -157,6 +157,7 @@ All the functionalities
   - Added Task Manager APP 14/08/2025
   - Add bitcoin chart 30/08/2025
   - Re-design BTC widget 30/08/2025
+  - Add MSN nudge sound effect 20/09/2025
 
 
 

@@ -1,5 +1,12 @@
 const patchNotes = [
   {
+    head: "**MSN APP**",
+    date: "2025-09-20",
+    notes: [
+      "Add MSN nudge sound effect",
+    ]
+  },
+  {
     head: "**BTC Widget**",
     date: "2025-08-30",
     notes: [
