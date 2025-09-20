@@ -11,6 +11,7 @@ import '../css/MSN.css';
 function MsnFolder() {
 
   const {
+    handleShow,
     ringMsnOff,
     ringMsn, setRingMsn,
     connectWebSocket,
@@ -51,9 +52,11 @@ function MsnFolder() {
   
 
   useEffect(() => {
+    handleShow('MSN');
     if (ringMsn) {
       const audio = new Audio(nudgeSound);
       audio.play().catch((err) => console.error("Audio play failed:", err));
+      
     }
   }, [ringMsn]);
 
