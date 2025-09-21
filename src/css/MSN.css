@@ -570,7 +570,7 @@
 .shake_message img {
     position: relative;
     width: 85%;
-    bottom: 1px;
+    bottom: 1.5px;
 }
 
 .shake_message:active {
