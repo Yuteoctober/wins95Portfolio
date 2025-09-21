@@ -4,6 +4,8 @@ const patchNotes = [
     date: "2025-09-20",
     notes: [
       "Add MSN nudge sound effect",
+      "Send nudge to server and broadcast to all clients",
+      "Nudge shakes the chat window",
     ]
   },
   {

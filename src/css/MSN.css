@@ -257,7 +257,8 @@
 .groove_div .chat_name_msn_div {
     display: flex;
     position: relative;
-    height: calc(100% - 4px);
+    height: 30px;
+    width: 34px;
     border: 2px solid white;
     border-right-color: black;
     border-bottom-color: black;
@@ -301,7 +302,7 @@
 
 .groove_div .chat_name_msn_div img {
     position: relative;
-    width: 34px;
+    width: 100%;
 }
 
 .groove_div span {
@@ -559,7 +560,7 @@
     place-items: center;
     position: relative;
     width: 34px;
-    height: 31px;
+    height: 30px;
     border: 2px solid white;
     border-right-color: black;
     border-bottom-color: black;

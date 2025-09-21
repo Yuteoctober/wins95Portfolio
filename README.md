@@ -158,6 +158,8 @@ All the functionalities
   - Add bitcoin chart 30/08/2025
   - Re-design BTC widget 30/08/2025
   - Add MSN nudge sound effect 20/09/2025
+    - Send nudge to server and broadcast to all clients
+    - Nudge shakes the chat window
 
 
 
