@@ -52,8 +52,9 @@ function MsnFolder() {
   
 
   useEffect(() => {
-    handleShow('MSN');
+    
     if (ringMsn) {
+      handleShow('MSN');
       const audio = new Audio(nudgeSound);
       audio.play().catch((err) => console.error("Audio play failed:", err));
       
