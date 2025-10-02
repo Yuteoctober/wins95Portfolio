@@ -2,8 +2,10 @@ import { useEffect, useRef, useContext, useState } from 'react';
 import UseContext from '../Context';
 import '../css/RightClickWindows.css';
 import { BsFillCaretRightFill } from "react-icons/bs";
+import { motion } from 'framer-motion';
 
 function RightClickWindows() {
+  const [sortExpand, setSortExpand] = useState(false);
   const screenWidth = window.innerWidth;
   const screenHeight = window.innerHeight;
   const [restoreIcon, setRestoreIcon] = useState(0)
@@ -31,6 +33,10 @@ function RightClickWindows() {
     rightClickPosition,
   } = useContext(UseContext);
 
+
+  useEffect(() => {
+    setSortExpand(false);
+  }, [rightClickDefault]);
 
   function refreshed() {
     setRightClickDefault(false);
@@ -266,7 +272,23 @@ function CreateFolder() {
       refreshed()
     }
   }
+  
+  function arrangeIconsByType() {
+    if(currentRightClickFolder === 'MyComputer') return;
 
+    const iconsOnFolder = desktopIcon.filter(icon => icon.folderId === currentRightClickFolder);
+    const newArrangedIcons = [...iconsOnFolder].sort((a, b) => a.type.localeCompare(b.type));
+    const otherIcons = desktopIcon.filter(icon => icon.folderId !== currentRightClickFolder);
+    const updatedIcons = [...newArrangedIcons, ...otherIcons];
+    setDesktopIcon(updatedIcons);
+    localStorage.setItem('icons', JSON.stringify(updatedIcons));
+    setRightClickDefault(false);
+    
+    if(currentRightClickFolder === 'Desktop') {
+      refreshed()
+    }
+  }
+  
   return (
     <>
       {popUpCreateFolderName && (
@@ -298,11 +320,27 @@ function CreateFolder() {
             left: screenWidth - rightClickPosition.x < 138 ? screenWidth - 138 : rightClickPosition.x 
           }}
         >  
-            <p
-              onClick={arrangeIcons}
+          {sortExpand && (
+            <div className="sort_expand"
+              style={{
+                right: screenWidth - rightClickPosition.x < 416 ? '136px' : '-136px',
+              }}
             >
-                Sort by name
-            </p>
+              <p
+                onClick={arrangeIcons}
+              >Name</p>
+              <p
+                onClick={arrangeIconsByType}
+              >Type</p>
+            </div>
+          )}
+            <motion.p
+              onClick={() => setSortExpand(prev => !prev)}
+              onHoverStart={() => setSortExpand(true)}
+            >
+                Arrange by
+              <span><BsFillCaretRightFill/></span>
+            </motion.p>
             
             <p style={{paddingLeft: '25px'}}
               onClick={() => {
