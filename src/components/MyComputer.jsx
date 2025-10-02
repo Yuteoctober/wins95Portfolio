@@ -12,6 +12,7 @@ function MyComputer() {
   const [popUpFolder, setPopUpFolder] = useState(false)
 
   const { 
+    setCurrentRightClickFolder,
     refBeingClicked,
     inFolder, setInFolder,
     handleShowInfolderMobile, handleShowInfolder,
@@ -173,7 +174,6 @@ function MyComputer() {
   }
 
 
-
   return (
     <Draggable
       axis="both" 
@@ -190,6 +190,8 @@ function MyComputer() {
       onStart={() => {handleSetFocusItemTrue('MyComputer')}}
     >
         <motion.div 
+        onContextMenu={() => setCurrentRightClickFolder(currentFolder)}
+          onTouchStart={() => handleMobileLongPress(null, null, currentFolder)}
           ref={DiskRef}
           className='folder_folder'
           onClick={(e) => {

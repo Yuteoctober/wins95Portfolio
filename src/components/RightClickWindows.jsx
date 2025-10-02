@@ -11,6 +11,8 @@ function RightClickWindows() {
   const [newFolderNameVal, setNewFolderNameVal] = useState('');
 
   const {
+    currentRightClickFolder,
+    currentFolder,
     UserCreatedFolder, setUserCreatedFolder,
     ObjectState,
     deleteIcon, setDeleteIcon,
@@ -249,6 +251,20 @@ function CreateFolder() {
    
   }
 
+
+  function arrangeIcons() {
+    if(currentRightClickFolder === 'MyComputer') return;
+
+    const iconsOnFolder = desktopIcon.filter(icon => icon.folderId === currentRightClickFolder);
+    const newArrangedIcons = iconsOnFolder.sort((a, b) => a.name.localeCompare(b.name));
+    const otherIcons = desktopIcon.filter(icon => icon.folderId !== currentRightClickFolder);
+    const updatedIcons = [...newArrangedIcons, ...otherIcons];
+    setDesktopIcon(updatedIcons);
+    localStorage.setItem('icons', JSON.stringify(updatedIcons));
+    setRightClickDefault(false);
+    
+  }
+
   return (
     <>
       {popUpCreateFolderName && (
@@ -280,11 +296,10 @@ function CreateFolder() {
             left: screenWidth - rightClickPosition.x < 138 ? screenWidth - 138 : rightClickPosition.x 
           }}
         >  
-            <p>
-                Arrange Icons
-                <span>
-                    <BsFillCaretRightFill/>
-                </span>
+            <p
+              onClick={arrangeIcons}
+            >
+                Sort by name
             </p>
             
             <p style={{paddingLeft: '25px'}}

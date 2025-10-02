@@ -10,6 +10,7 @@ function ResumeFolder() {
   const iconRefs = useRef([]);
 
   const { 
+    setCurrentRightClickFolder,
     refBeingClicked,
     handleMobileLongPress,
     setRightClickIcon,
@@ -81,8 +82,11 @@ function ResumeFolder() {
       }}
       onStop={(event, data) => {handleDragStop(event, data)}}
       onStart={() => {handleSetFocusItemTrue('Resume')}}
+      
     >
         <motion.div 
+          onContextMenu={() => setCurrentRightClickFolder('Resume')}
+          onTouchStart={() => handleMobileLongPress(null, null, 'Resume')}
           ref={ResumeFolderRef}
           className='folder_folder'
           onClick={(e) => {
@@ -204,7 +208,7 @@ function ResumeFolder() {
                       e.stopPropagation();
                       handleShowMobile(icon.name);
                       iconFocusIcon(icon.name);
-                      handleMobileLongPress(e, icon);
+                      handleMobileLongPress(e, icon, 'Resume');
                       refBeingClicked.current = iconRefs.current[icon.name]
                     }}
                   >

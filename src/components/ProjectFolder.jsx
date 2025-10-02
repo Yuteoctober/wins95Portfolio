@@ -9,6 +9,7 @@ function ProjectFolder() {
   const iconRefs = useRef([]);
 
   const {
+    setCurrentRightClickFolder,
     refBeingClicked,
     handleMobileLongPress,
     setRightClickIcon,
@@ -86,6 +87,8 @@ function ProjectFolder() {
       onStart={() => handleSetFocusItemTrue('Project')}
     >
       <div
+        onContextMenu={() => setCurrentRightClickFolder('Project')}
+        onTouchStart={() => handleMobileLongPress(null, null, 'Project')}
         className="folder_folder-project"
         ref={ProjectFolderRef}
         onClick={(e) => {

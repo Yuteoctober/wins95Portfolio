@@ -6,6 +6,7 @@ import bin from '../assets/bin.png'
 
 function Dragdrop() {
   const {
+    setCurrentRightClickFolder,
     refBeingClicked,
     handleMobileLongPress,
     dragging,
@@ -81,6 +82,8 @@ function Dragdrop() {
 
   return (
     <section className='bound' 
+      onContextMenu={() => setCurrentRightClickFolder('Desktop')}
+      onTouchStart={() => handleMobileLongPress(null, null, 'Desktop')}
       ref={DesktopRef}
       onClick={(e) => {
         if (!isDragging) {

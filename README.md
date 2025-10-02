@@ -160,7 +160,8 @@ All the functionalities
   - Add MSN nudge sound effect 20/09/2025
     - Send nudge to server and broadcast to all clients
     - Nudge shakes the chat window
-
+  - Added sorting icon right click 10/02/2025
+    - Each folder's icons can be sorted by name
 
 
 Library used:

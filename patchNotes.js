@@ -1,5 +1,13 @@
 const patchNotes = [
   {
+    head: "**Right click pannel**",
+    date: "2025-10-02",
+    notes: [
+      "Added sorting icon right click",
+      "Each folder's icons can be sorted by name",
+    ]
+  },
+  {
     head: "**MSN APP**",
     date: "2025-09-20",
     notes: [
