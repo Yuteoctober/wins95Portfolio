@@ -83,7 +83,7 @@ function Dragdrop() {
   return (
     <section className='bound' 
       onContextMenu={() => setCurrentRightClickFolder('Desktop')}
-      onTouchStart={() => handleMobileLongPress(null, null, 'Desktop')}
+      onTouchStart={() => setCurrentRightClickFolder('Desktop')}
       ref={DesktopRef}
       onClick={(e) => {
         if (!isDragging) {

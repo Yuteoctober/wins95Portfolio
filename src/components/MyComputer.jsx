@@ -191,7 +191,7 @@ function MyComputer() {
     >
         <motion.div 
         onContextMenu={() => setCurrentRightClickFolder(currentFolder)}
-          onTouchStart={() => handleMobileLongPress(null, null, currentFolder)}
+          onTouchStart={() => setCurrentRightClickFolder(currentFolder)}
           ref={DiskRef}
           className='folder_folder'
           onClick={(e) => {

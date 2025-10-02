@@ -88,7 +88,7 @@ function ProjectFolder() {
     >
       <div
         onContextMenu={() => setCurrentRightClickFolder('Project')}
-        onTouchStart={() => handleMobileLongPress(null, null, 'Project')}
+        onTouchStart={() => setCurrentRightClickFolder('Project')}
         className="folder_folder-project"
         ref={ProjectFolderRef}
         onClick={(e) => {

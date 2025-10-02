@@ -12,7 +12,6 @@ function RightClickWindows() {
 
   const {
     currentRightClickFolder,
-    currentFolder,
     UserCreatedFolder, setUserCreatedFolder,
     ObjectState,
     deleteIcon, setDeleteIcon,
@@ -263,6 +262,9 @@ function CreateFolder() {
     localStorage.setItem('icons', JSON.stringify(updatedIcons));
     setRightClickDefault(false);
     
+    if(currentRightClickFolder === 'Desktop') {
+      refreshed()
+    }
   }
 
   return (

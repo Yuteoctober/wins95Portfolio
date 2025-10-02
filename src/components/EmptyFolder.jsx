@@ -126,7 +126,7 @@ function EmptyFolder({state, setState, refState, folderName, photoMode, paintMod
     >
         <motion.div 
           onContextMenu={() => setCurrentRightClickFolder(folderName)}
-          onTouchStart={() => handleMobileLongPress(null, null, folderName)}
+          onTouchStart={() => setCurrentRightClickFolder(folderName)}
           ref={refState}
           className={`folder_folder ${photoMode? 'photo_mode' 
             : paintMode? 'paint_mode' 

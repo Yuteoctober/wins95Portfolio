@@ -86,7 +86,7 @@ function ResumeFolder() {
     >
         <motion.div 
           onContextMenu={() => setCurrentRightClickFolder('Resume')}
-          onTouchStart={() => handleMobileLongPress(null, null, 'Resume')}
+          onTouchStart={() => setCurrentRightClickFolder('Resume')}
           ref={ResumeFolderRef}
           className='folder_folder'
           onClick={(e) => {

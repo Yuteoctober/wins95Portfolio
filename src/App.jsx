@@ -379,7 +379,7 @@ useEffect(() => {
   }, [tileScreen]);
 
 
-  function handleMobileLongPress(e, icon, currentFolder) { // long press icon on mobile
+  function handleMobileLongPress(e, icon) { // long press icon on mobile
     if(dragging) return;
     timerRef.current = setTimeout(() => {  
       setRightClickPosition({ x: e.touches[0].clientX, y: e.touches[0].clientY });
@@ -387,7 +387,6 @@ useEffect(() => {
       setRightClickIcon(true);
       setIconBeingRightClicked(icon);
       setRightClickDefault(true);
-      setCurrentRightClickFolder(currentFolder)
       
     }, 800)
   }
@@ -400,7 +399,6 @@ useEffect(() => {
       setRightClickBin(true)
       setIconBeingRightClicked(icon);
       setRightClickDefault(true);
-      setCurrentRightClickFolder('RecycleBin')
     }, 800)
   }
 
@@ -878,6 +876,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
   }
   setLastTapTime(now)
 }
+
 
   const contextValue = {
     currentRightClickFolder, setCurrentRightClickFolder,
