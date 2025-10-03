@@ -903,3 +903,102 @@ body {
     z-index: 5;
     left: 13.5rem;
 }
+
+@keyframes appearBubble {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+.search_icon {
+    display: grid;
+    place-items: center;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    right: 1.4rem;
+    top: 0.8rem;
+    font-size: 16px;
+    z-index: 2;
+    border: 1px solid rgb(46, 45, 45);
+    border-top-color: #dddada;
+    border-left-color: #dddada;
+    background: rgba(255, 255, 255, 0.642);
+    animation: appearBubble 0.5s ease-in-out forwards;
+    animation-delay: 0.2s;
+    opacity: 0;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.search_icon span {
+    position: relative;
+    top: 2.5px;
+    right: 0px;
+    color: rgb(65, 62, 62);
+    pointer-events: pointer;
+}
+
+.search_icon:hover {
+    background: rgb(235, 233, 233);
+}
+
+.search_icon:hover span {
+    color: black;
+}
+.search_bar {
+    display: flex;
+    position: absolute;
+    width: fit-content;
+    height: 40px;
+    z-index: 2;
+    right: 1.3rem;
+    border-radius: 2px;
+    gap: 10px;
+    align-items: center;
+    z-index: 1;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+    z-index: 9;
+}
+
+.search_bar input {
+    width: 200px;
+    height: 30px;
+    padding: 4px;
+    padding-left: 8px;
+    padding-right: 26px;
+    border-radius: 2px;
+    font-size: 11px;
+    border: 1px solid rgb(46, 45, 45);
+    border-top-color: #dddada;
+    border-left-color: #dddada;
+    color: rgb(20, 18, 18);
+    outline: none;
+    opacity: 0.8;
+    z-index: -1;
+}
+
+.search_bar input:focus {
+    border: 1px solid #f4f4f1;
+    opacity: 1;
+    background: rgba(241, 239, 239, 0.858);
+}
+
+.search_bar input::placeholder {
+    color: #3e3939;
+    font-size: 11px;
+}
+
+.search_bar span {
+    position: absolute;
+    top: 10px;
+    right: 9px;
+    font-size: 16px;
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.search_bar span:hover {
+    opacity: 1;
+}
+

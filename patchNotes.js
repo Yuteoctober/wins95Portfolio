@@ -1,5 +1,12 @@
 const patchNotes = [
   {
+    head: "**Google Toggable Search Bar**",
+    date: "2025-10-03",
+    notes: [
+      "Added togglable Google Search bar 10/03/2025",
+    ]
+  },
+  {
     head: "**Right click pannel**",
     date: "2025-10-02",
     notes: [

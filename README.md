@@ -162,7 +162,7 @@ All the functionalities
     - Nudge shakes the chat window
   - Added sorting icon right click 10/02/2025
     - Each folder's icons can be sorted by name
-
+  - Added togglable Google Search bar 10/03/2025
 
 Library used:
   - React Draggable => drag and drop functionality

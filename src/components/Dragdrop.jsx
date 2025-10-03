@@ -1,10 +1,15 @@
-import { useEffect, useContext, useRef } from 'react';
+import { useEffect, useContext, useRef, useState } from 'react';
 import UseContext from '../Context';
 import Draggable from 'react-draggable';
 import binEmp from '../assets/bin2.png'
 import bin from '../assets/bin.png'
+import { IoIosSearch } from "react-icons/io";
+import { motion } from 'framer-motion';
+
 
 function Dragdrop() {
+  const [searchPopup, setSearchPopup] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
   const {
     setCurrentRightClickFolder,
     refBeingClicked,
@@ -80,6 +85,18 @@ function Dragdrop() {
   const recycleBinLength = recycleBin.length;
   
 
+  function googleSearch() {
+    setTimeout(() => {
+      setSearchPopup(false);
+    }, 100);
+    if (searchValue.trim() !== '') {
+      const query = encodeURIComponent(searchValue);
+      const url = `https://www.google.com/search?q=${query}`;
+      window.open(url, '_blank');
+      setSearchValue('');
+    }
+  }
+
   return (
     <section className='bound' 
       onContextMenu={() => setCurrentRightClickFolder('Desktop')}
@@ -96,6 +113,43 @@ function Dragdrop() {
         e.stopPropagation();
     }}
     >
+      <div className="search_icon"
+        style={{
+          display: searchPopup ? 'none' : '',
+          touchAction: searchPopup ? 'auto' : 'none',
+          pointerEvents: searchPopup ? 'auto' : 'none',
+        }}
+      >
+        <span><IoIosSearch /></span>
+      </div>
+      <motion.div className="search_bar"
+        onClick={() => setSearchPopup(true)}
+        style={{
+          width: searchPopup ? '' : '22px',
+          opacity: searchPopup ? '1' : '0',
+        }}
+        initial={{ width: '22px', opacity: 0 }}
+        animate={{ width: searchPopup ? '200px' : '22px', opacity: searchPopup ? 1 : 0 }}
+        transition={{ duration: 0.01 }}
+      > 
+        <input type="text" placeholder='Type here to search...'
+          value={searchValue} 
+          onChange={(e) => setSearchValue(e.target.value)}
+          style={{
+            touchAction: searchPopup ? 'auto' : 'none',
+            pointerEvents: searchPopup ? 'auto' : 'none',
+          }}
+        />
+        <span
+          style={{
+            touchAction: searchPopup ? 'auto' : 'none',
+            pointerEvents: searchPopup ? 'auto' : 'none',
+          }}
+          onClick={googleSearch}
+        
+        ><IoIosSearch />
+        </span>
+      </motion.div>
       <div className='drag_drop'
         key={refresh}
       >
