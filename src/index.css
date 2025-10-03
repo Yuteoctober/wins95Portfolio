@@ -906,7 +906,7 @@ body {
 
 @keyframes appearBubble {
     0% {opacity: 0;}
-    100% {opacity: 1;}
+    100% {opacity: 0.8;}
 }
 
 .search_icon {
@@ -932,7 +932,7 @@ body {
 
 .search_icon span {
     position: relative;
-    top: 2.5px;
+    top: 2px;
     right: 0px;
     color: rgb(65, 62, 62);
     pointer-events: pointer;
