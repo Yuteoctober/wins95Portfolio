@@ -923,7 +923,6 @@ body {
     animation: appearBubble 0.5s ease-in-out forwards;
     animation-delay: 0.2s;
     opacity: 0;
-    cursor: pointer;
     border-radius: 2px;
 }
 
@@ -932,7 +931,6 @@ body {
     top: 2.5px;
     right: 0px;
     color: rgb(36, 35, 35);
-    pointer-events: pointer;
 }
 
 .search_icon:hover {
@@ -991,7 +989,6 @@ body {
     top: 10px;
     right: 9px;
     font-size: 16px;
-    cursor: pointer;
     opacity: 0.6;
 }
 
