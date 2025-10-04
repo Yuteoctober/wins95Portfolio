@@ -916,7 +916,7 @@ body {
     width: 30px;
     height: 30px;
     right: 1.4rem;
-    top: 0.8rem;
+    top: 2rem;
     font-size: 16px;
     z-index: 2;
     border: 1px solid rgb(46, 45, 45);
@@ -952,6 +952,7 @@ body {
     height: 40px;
     z-index: 2;
     right: 1.3rem;
+    top: 1.7rem;
     border-radius: 2px;
     gap: 10px;
     align-items: center;
