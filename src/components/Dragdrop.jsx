@@ -4,7 +4,7 @@ import Draggable from 'react-draggable';
 import binEmp from '../assets/bin2.png'
 import bin from '../assets/bin.png'
 import { IoIosSearch } from "react-icons/io";
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 
 function Dragdrop() {
@@ -122,34 +122,37 @@ function Dragdrop() {
       >
         <span><IoIosSearch /></span>
       </div>
-      <motion.div className="search_bar"
-        onClick={() => setSearchPopup(true)}
-        style={{
-          width: searchPopup ? '' : '22px',
-          opacity: searchPopup ? '1' : '0',
-        }}
-        initial={{ width: '22px', opacity: 0 }}
-        animate={{ width: searchPopup ? '200px' : '22px', opacity: searchPopup ? 1 : 0 }}
-        transition={{ duration: 0.01 }}
-      > 
-        <input type="text" placeholder='Type here to search...'
-          value={searchValue} 
-          onChange={(e) => setSearchValue(e.target.value)}
+      <AnimatePresence>
+        <motion.div className="search_bar"
+          onClick={() => setSearchPopup(true)}
           style={{
-            touchAction: searchPopup ? 'auto' : 'none',
-            pointerEvents: searchPopup ? 'auto' : 'none',
+            width: searchPopup ? '' : '22px',
+            opacity: searchPopup ? '1' : '0',
           }}
-        />
-        <span
-          style={{
-            touchAction: searchPopup ? 'auto' : 'none',
-            pointerEvents: searchPopup ? 'auto' : 'none',
-          }}
-          onClick={googleSearch}
-        
-        ><IoIosSearch />
-        </span>
-      </motion.div>
+          initial={{ width: '22px', opacity: 0 }}
+          animate={{ width: searchPopup ? '200px' : '22px', opacity: searchPopup ? 1 : 0 }}
+          exit={{ width: '22px', opacity: 0 }}
+          transition={{ duration: 0.01, ease: "easeInOut" }}
+        > 
+          <input type="text" placeholder='Type here to search...'
+            value={searchValue} 
+            onChange={(e) => setSearchValue(e.target.value)}
+            style={{
+              touchAction: searchPopup ? 'auto' : 'none',
+              pointerEvents: searchPopup ? 'auto' : 'none',
+            }}
+          />
+          <span
+            style={{
+              touchAction: searchPopup ? 'auto' : 'none',
+              pointerEvents: searchPopup ? 'auto' : 'none',
+            }}
+            onClick={googleSearch}
+          
+          ><IoIosSearch />
+          </span>
+        </motion.div>
+      </AnimatePresence>
       <div className='drag_drop'
         key={refresh}
       >

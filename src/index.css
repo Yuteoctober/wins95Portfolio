@@ -906,7 +906,7 @@ body {
 
 @keyframes appearBubble {
     0% {opacity: 0;}
-    100% {opacity: 0.8;}
+    100% {opacity: 0.75;}
 }
 
 .search_icon {
@@ -919,10 +919,7 @@ body {
     top: 2rem;
     font-size: 16px;
     z-index: 2;
-    border: 1px solid rgb(46, 45, 45);
-    border-top-color: #dddada;
-    border-left-color: #dddada;
-    background: rgba(255, 255, 255, 0.642);
+    background: rgba(255, 255, 255, 0.984);
     animation: appearBubble 0.5s ease-in-out forwards;
     animation-delay: 0.2s;
     opacity: 0;
@@ -932,9 +929,9 @@ body {
 
 .search_icon span {
     position: relative;
-    top: 2px;
+    top: 2.5px;
     right: 0px;
-    color: rgb(65, 62, 62);
+    color: rgb(36, 35, 35);
     pointer-events: pointer;
 }
 
@@ -948,7 +945,6 @@ body {
 .search_bar {
     display: flex;
     position: absolute;
-    width: fit-content;
     height: 40px;
     z-index: 2;
     right: 1.3rem;
