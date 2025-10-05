@@ -323,7 +323,7 @@ function CreateFolder() {
           {sortExpand && (
             <div className="sort_expand"
               style={{
-                right: screenWidth - rightClickPosition.x < 416 ? '136px' : '-136px',
+                right: screenWidth - rightClickPosition.x < 280 ? '136px' : '-136px',
               }}
             >
               <p
