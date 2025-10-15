@@ -5,6 +5,7 @@ import { BsFillCaretRightFill } from "react-icons/bs";
 import { motion } from 'framer-motion';
 
 function RightClickWindows() {
+  const timerRef = useRef(false);
   const [sortExpand, setSortExpand] = useState(false);
   const screenWidth = window.innerWidth;
   const screenHeight = window.innerHeight;
@@ -168,6 +169,7 @@ function RightClickWindows() {
   }, [restoreIcon]); 
 
 
+
 function CreateFolder() {
 
   if(newFolderNameVal.trim() === '') return;
@@ -288,6 +290,19 @@ function CreateFolder() {
       refreshed()
     }
   }
+
+
+  
+
+  function handleOpenExpandArrageBy() { // delay the expand window
+    timerRef.current = true;
+
+    setTimeout(() => {
+      if(timerRef.current) {
+      setSortExpand(true)
+      }
+    }, 350);
+}
   
   return (
     <>
@@ -336,7 +351,8 @@ function CreateFolder() {
           )}
             <motion.p
               onClick={() => setSortExpand(prev => !prev)}
-              onHoverStart={() => setSortExpand(true)}
+              onHoverStart={() => handleOpenExpandArrageBy()}
+              onHoverEnd={() => timerRef.current = false}
             >
                 Arrange by
               <span><BsFillCaretRightFill/></span>
