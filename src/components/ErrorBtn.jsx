@@ -6,8 +6,12 @@ import '../css/ErrorBtn.css'
 function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
     const [YesNo, setYesNo] = useState(false)
     const [Content, setContent] = useState('')
+    const [deleteMode, setDeleteMode] = useState(false)
+    const [deleteIconName, setDeleteIconName] = useState('')
 
     const { 
+        deletepermanently,
+        iconBeingRightClicked,
         setUserCreatedFolder,
         handleSetFocusItemTrue, setRunCatVideo 
 
@@ -15,14 +19,24 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
     const textResetStroage = "Warning: Resetting local storage will erase all your info. Are you sure you want to continue?"
     const textGithub = "Warning: You will be redirecting to another site, are you sure you want to continue?"
     const textCat = "Warning: Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai !"
-
+    const textDelete = `Are you sure you want to permanantly delete ${iconBeingRightClicked.name}?`
 
     useEffect(() => {
         handleBtn(stateVal)
     }, [stateVal]); 
 
     function handleBtn(name) {
+
+        if (iconBeingRightClicked.name === name) { // for delete confirmation
+            setYesNo(true);
+            setContent(textDelete);
+            setDeleteMode(true);
+            setDeleteIconName(name);
+            return;
+        }   
+                
         switch (name.toLowerCase()) {
+
             case "resetstorage":
                 setYesNo(true);
                 setContent(textResetStroage);
@@ -52,6 +66,14 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
     
 
     function handleFunction(name) {
+
+        if (deleteIconName && deleteMode) { // for delete confirmation
+            deletepermanently(deleteIconName);
+            setDeleteMode(false);
+            setDeleteIconName('');
+            return;
+        }   
+
         switch (name.toLowerCase()) {
             case "resetstorage":
                 return removeLocalStorage();
@@ -95,6 +117,8 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
                 onClick={() => {
                     setStateVal(false)
                     runOpenFuction()
+                    setDeleteMode(false);
+                    setDeleteIconName('');
                 }}
             >
                 <p>×</p>
@@ -118,6 +142,8 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
              <div className="error_ok_btn"
                 onClick={() => {
                     setStateVal(false)
+                    setDeleteMode(false);
+                    setDeleteIconName('');
                 }}
                 
             >

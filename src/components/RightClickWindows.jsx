@@ -14,6 +14,8 @@ function RightClickWindows() {
   const [newFolderNameVal, setNewFolderNameVal] = useState('');
 
   const {
+    regErrorPopUpVal,
+    setRegErrorPopUpVal, setRegErrorPopUp,
     currentRightClickFolder,
     UserCreatedFolder, setUserCreatedFolder,
     ObjectState,
@@ -222,40 +224,11 @@ function CreateFolder() {
   setPopUpCreateFolderName(false)
   setNewFolderNameVal('')
 }
+  console.log(iconBeingRightClicked.name, regErrorPopUpVal)
 
-
-  function deletepermanently() {
-    const droppedIcon = desktopIcon.find(icon => icon.name === iconBeingRightClicked.name);
-    if (droppedIcon) { 
-      setDesktopIcon(prevIcons => {
-        const updatedIcons = prevIcons.filter(icon => icon.name !== droppedIcon.name);
-        setKey(prev => prev + 1); // make folder icon by re-mount
-        localStorage.setItem('icons', JSON.stringify([...updatedIcons]));
-        return [...updatedIcons];
-      });
-    }
-    setDeleteIcon(prev => prev + 1) // important link to useEffect
-    setBinRestoreArr(prev => {
-          const newBinArr = prev.filter(icon => icon.name !== iconBeingRightClicked.name);
-          localStorage.setItem('restoreArray', JSON.stringify(newBinArr)); // Update localStorage
-          return newBinArr;
-        });
-    const findUserCreatedFolder = UserCreatedFolder.find(
-        icon => icon.name === iconBeingRightClicked.name
-      );
-
-      if (findUserCreatedFolder) {
-        const updatedFolders = UserCreatedFolder.filter(
-          folder => folder.name !== findUserCreatedFolder.name
-        );
-
-        setUserCreatedFolder(updatedFolders);
-        localStorage.setItem("userFolders", JSON.stringify(updatedFolders));
-    }
-
-    
-    refBeingClicked.current = null;
-   
+  function askBeforeDelete() {
+    setRegErrorPopUpVal(iconBeingRightClicked.name)
+    setRegErrorPopUp(true)
   }
 
 
@@ -471,7 +444,8 @@ function CreateFolder() {
               setRightClickBin(false);
               setRightClickDefault(false)
               iconFocusIcon('')
-              deletepermanently()
+              askBeforeDelete();
+              // deletepermanently()
             }}
           >Delete</p>
           <h5></h5>

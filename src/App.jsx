@@ -879,6 +879,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
 
 
   const contextValue = {
+    deletepermanently,
     currentRightClickFolder, setCurrentRightClickFolder,
     ringMsnOff,
     ringMsn, setRingMsn,
@@ -1175,6 +1176,41 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
       </UserContext.Provider>
     </>
   )
+
+  function deletepermanently(deleteName) {
+    
+    const droppedIcon = desktopIcon.find(icon => icon.name === deleteName);
+    if (droppedIcon) { 
+      setDesktopIcon(prevIcons => {
+        const updatedIcons = prevIcons.filter(icon => icon.name !== droppedIcon.name);
+        setKey(prev => prev + 1); // make folder icon by re-mount
+        localStorage.setItem('icons', JSON.stringify([...updatedIcons]));
+        return [...updatedIcons];
+      });
+    }
+    setDeleteIcon(prev => prev + 1) // important link to useEffect
+    setBinRestoreArr(prev => {
+          const newBinArr = prev.filter(icon => icon.name !== deleteName);
+          localStorage.setItem('restoreArray', JSON.stringify(newBinArr)); // Update localStorage
+          return newBinArr;
+        });
+    const findUserCreatedFolder = UserCreatedFolder.find(
+        icon => icon.name === deleteName
+      );
+
+      if (findUserCreatedFolder) {
+        const updatedFolders = UserCreatedFolder.filter(
+          folder => folder.name !== findUserCreatedFolder.name
+        );
+
+        setUserCreatedFolder(updatedFolders);
+        localStorage.setItem("userFolders", JSON.stringify(updatedFolders));
+    }
+
+    
+    refBeingClicked.current = null;
+   
+  }
 
 
   function sortDesktopIcons(iconArr) {
