@@ -3,14 +3,14 @@ const patchNotes = [
     head: "**Bin**",
     date: "2025-10-29",
     notes: [
-      "Added confirmation before permanently delete file 10/29/2025",
+      "Added confirmation before permanently delete file",
     ]
   },
   {
     head: "**Google Toggable Search Bar**",
     date: "2025-10-03",
     notes: [
-      "Added togglable Google Search bar 10/03/2025",
+      "Added togglable Google Search bar ",
     ]
   },
   {
