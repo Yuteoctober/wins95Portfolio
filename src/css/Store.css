@@ -1,4 +1,76 @@
 
+/* ------------ Folders ---------------- */
+
+.folder_folder-open-store {
+    display: none;
+    position: fixed;
+    width: 460px;
+    min-width: 340px;
+    min-height: 300px;
+    height: 65%;
+    background: #c5c4c4;
+    border: 2px solid white;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    outline: 1px solid white;
+    overflow: hidden;
+    resize: both;
+}
+   
+
+@media screen and (max-width: 450px) {
+    .folder_folder-open-store {
+        width: 95%;
+        min-width: 300px;
+        height: 55%;
+    }
+}
+
+.folder_folder-open-store .folder_barbtn{
+    display: flex;
+    position: relative;
+    margin-right: 4px;
+    gap: 2px;
+}
+
+.folder_folder-open-store .folder_dragbar {
+   display: flex;
+   position: relative;
+   height: 24px;
+   width: 100%;
+   margin-bottom: 1px;
+   align-items: center;
+   justify-content: space-between;
+   -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.folder_folder-open-store .file_edit_container {
+    display: flex;
+    gap: 5px;
+    font-size: 15px;
+    padding-left: 10px;
+    cursor: default;
+}
+
+.folder_folder-open-project .x {
+    position: relative;
+    bottom: 6px;
+}
+
+
+/* support only safari */
+@supports (-webkit-touch-callout: none) {
+    .folder_folder-open-store .x {
+        bottom: 7px; 
+        left: 1.5px;
+    }
+}
+
+
+
 .store_content {
     display: flex;
     position: relative;

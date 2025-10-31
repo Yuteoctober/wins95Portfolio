@@ -57,6 +57,7 @@ function Store() {
     setLastTapTime(now);
 }
 
+
   return (
     <>
       <Draggable
@@ -73,15 +74,13 @@ function Store() {
         onStop={(event, data) => handleDragStop(event, data)}
         onStart={() => handleSetFocusItemTrue('Store')}
       >
-        <div className='folder_folder-open-project' 
+        <div className='folder_folder-open-store' 
             onClick={(e) => {
               e.stopPropagation();
               handleSetFocusItemTrue('Store');
             }}
             style={{
               ...(StoreExpand.expand ? inlineStyleExpand('Store') : inlineStyle('Store')),
-              height: innerWidth <= 450 ? '420px' : '',
-              minHeight: '300px', minWidth: '340px'
             }}>
           <div className="folder_dragbar"
               onDoubleClick={handleExpandStateToggle}
