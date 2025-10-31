@@ -3,6 +3,7 @@ import UserContext from './Context'
 import { Filter } from 'bad-words';
 import badword from './badword'
 import Footer from './components/Footer';
+import Store from './components/Store';
 import Dragdrop from './components/Dragdrop';
 import MyBioFolder from './components/MyBioFolder';
 import MyComputer from './components/MyComputer';
@@ -249,6 +250,9 @@ function App() {
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
   
   const [TaskManagerExpand, setTaskManagerExpand] = useState(
+    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
+
+  const [StoreExpand, setStoreExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [UserCreatedFolder, setUserCreatedFolder] = useState(() => {
@@ -879,6 +883,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
 
 
   const contextValue = {
+    StoreExpand, setStoreExpand,
     deletepermanently,
     currentRightClickFolder, setCurrentRightClickFolder,
     ringMsnOff,
@@ -1151,6 +1156,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
           folderName='Photo'
           photoMode={true}
         />
+        <Store/>
         <TaskManager/>
         <Patch/>
         <SpinningCat/>
@@ -1440,6 +1446,7 @@ function ObjectState() {
     { name: 'Paint',       setter: setPaintExpand,      usestate: PaintExpand,      color: 'rgba(193, 178, 46, 0.85)', size: 'small' },
     { name: 'Utility',     setter: setUtilityExpand,    usestate: UtilityExpand,    color: 'rgba(116, 85, 54, 0.85)', size: 'small' },
     { name: 'TaskManager', setter: setTaskManagerExpand,usestate: TaskManagerExpand,color: 'rgba(218, 160, 109, 0.85)', size: 'small' },
+    { name: 'Store',       setter: setStoreExpand,      usestate: StoreExpand,      color: 'rgba(218, 160, 109, 0.85)', size: 'small' },
     
     // Add user folders dynamically with individual state management
     ...UserCreatedFolder.map(folder => ({
