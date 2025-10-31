@@ -305,10 +305,10 @@ function App() {
       handleShow('Patch');
     }, 2500);
     
-    // if(desktopIcon.length !== iconInfo.length) {
-    //   localStorage.clear();
-    //   location.reload();
-    // }
+    if(!desktopIcon.find(icon => icon.name === 'Store')) {
+      localStorage.clear();
+      location.reload();
+    }
   },[])
 
 
