@@ -43,6 +43,7 @@ import weatherImg from '../assets/weathertile.png';
 import githublogo from '../assets/github.gif';
 import newsicon from '../assets/newstile.png';
 import task from '../assets/task.png'
+import store from '../assets/store_tile.png'
 
 
 
@@ -299,6 +300,13 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
         case 'TaskManager':
         return {
           backgroundImage: `url(${task})`,
+          backgroundPosition: '50% 57%',
+          backgroundSize: '42px',
+          backgroundRepeat: 'no-repeat',
+        };
+        case 'Store':
+        return {
+          backgroundImage: `url(${store})`,
           backgroundPosition: '50% 57%',
           backgroundSize: '42px',
           backgroundRepeat: 'no-repeat',

@@ -80,6 +80,7 @@ function Store() {
             }}
             style={{
               ...(StoreExpand.expand ? inlineStyleExpand('Store') : inlineStyle('Store')),
+              height: innerWidth <= 450 ? '420px' : '',
               minHeight: '300px', minWidth: '340px'
             }}>
           <div className="folder_dragbar"
