@@ -39,6 +39,7 @@ import backarrow from '../../assets/backarrow.png'
 import tile from '../../assets/tile.png'
 import taskmanager from '../../assets/taskmanager.png'
 import notepad from '../../assets/notepad.png'
+import store from '../../assets/store.png'
 
 
 
@@ -189,6 +190,10 @@ export function imageMapping (name, type) {
     case "NotePad":
     case "notepad":
       return notepad
+
+    case "Store":
+    case "store":
+      return store
 
     default:
       if(type === 'folder') {

@@ -349,5 +349,14 @@
         "type": ".exe",
         "x": 38,
         "y": 38
+    },
+    {
+        "name": "Store",
+        "pic": "Store",
+        "folderId": "Desktop",
+        "size": 5500,
+        "type": ".exe",
+        "x": 39,
+        "y": 39
     }
 ]

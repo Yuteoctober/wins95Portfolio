@@ -7,6 +7,13 @@ const patchNotes = [
     ]
   },
   {
+    head: "**Store**",
+    date: "2025-10-30",
+    notes: [
+      "Added Store icon",
+    ]
+  },
+  {
     head: "**Google Toggable Search Bar**",
     date: "2025-10-03",
     notes: [
