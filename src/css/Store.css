@@ -242,7 +242,9 @@
         flex: 1 1 0;
     }
     .item_section_two .section_two_text_des {
-        display: none;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     .item_section_two .section_two_img img {
         width: 24px;
