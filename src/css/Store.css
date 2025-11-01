@@ -21,7 +21,7 @@
 @media screen and (max-width: 450px) {
     .folder_folder-open-store {
         width: 95%;
-        min-width: 340px;
+        min-width: 300px;
         height: 55%;
     }
 }
