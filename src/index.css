@@ -101,7 +101,9 @@ body {
 
 
 /* --------------- scroll bar ----------------- */
+
 /* WebKit (Chrome, Safari) */
+
 *::-webkit-scrollbar {
     width: 19px;
     height: 19px;

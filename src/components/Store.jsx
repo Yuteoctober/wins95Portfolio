@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import '../css/Store.css'
 import { imageMapping } from './function/AppFunctions';
 import { BsChevronUp, BsChevronDown  } from "react-icons/bs";
+import iconInfo from '../icon.json'
 
 
 
@@ -13,6 +14,8 @@ function Store() {
     const [storeSearchValue, setStoreSearchValue] = useState('')
     const [catagoryHide, setCatagoryHide] = useState(true)
     const [selectedCategory, setSelectedCategory] = useState('')
+
+
 
   const { 
     StoreExpand, setStoreExpand,
@@ -30,6 +33,24 @@ function Store() {
 
    } = useContext(UseContext);
 
+    
+    const itemsInStore = iconInfo.filter(item => {
+
+      switch (selectedCategory) {
+        case '': // No category selected
+          break;
+        case '1': // All
+          return item.category;
+        case '2': // Games
+          return item.category === 'Games';
+        case '3': // Utilities
+          return item.category === 'Utilities';
+        case '4': // Productivity
+          return item.category === 'Productivity';
+        default:
+          return true;
+      }
+    });
 
 
       function handleDragStop(event, data) {
@@ -202,7 +223,19 @@ function Store() {
                   
                 </div>
             </div>
-            <div className="store_sec_2"></div>
+            <div className="store_sec_2">
+              {itemsInStore.map((item, index) => (
+                <div className="item_section_two" key={index}>
+                  <div className='section_two_img'>
+                    <img src={imageMapping(item.name)} alt={item.name} />
+                  </div>
+                  <div className='section_two_text'>
+                    <p className='section_two_text_name'>{item.name}</p>
+                    <p className='section_two_text_des'>{item.description}</p> 
+                  </div>
+                </div>
+              ))}
+            </div>
             <div className="store_sec_3"></div>
         
           </div>
