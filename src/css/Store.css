@@ -5,9 +5,9 @@
     display: none;
     position: fixed;
     width: 520px;
-    min-width: 340px;
+    min-width: 500px;
     min-height: 300px;
-    height: 65%;
+    height: 55%;
     background: #c5c4c4;
     border: 2px solid white;
     border-right: 1px solid black;
@@ -21,7 +21,7 @@
 @media screen and (max-width: 450px) {
     .folder_folder-open-store {
         width: 95%;
-        min-width: 300px;
+        min-width: 340px;
         height: 55%;
     }
 }
@@ -84,14 +84,19 @@
 }
 
 .store_content > div {
-    width: 33%;
     border: 2px solid black;
     border-bottom-color: white;
     border-right-color: white;
     background: white;
 }
 
+.store_sec_2, .store_sec_3 {
+    flex: 1 1 0;
+}
+
+
 .store_sec_1 {
+    flex: 0 0 136px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -124,4 +129,53 @@
     font-size: 13px;
     padding-left: 6px;
     color: rgb(25, 22, 22);
+}
+
+.store_sec_1 .store_catagory div {
+    position: relative;
+    height: 28px;
+    padding-left: 1.2rem;
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    cursor: pointer;
+    border: none;
+}
+
+.store_sec_1 .store_catagory :first-child {
+    padding-left: 0.5rem;
+    font-weight: bold;
+}
+
+.store_sec_1 .store_catagory div:hover {
+    background: #040482;
+    color: white;
+}
+
+.store_sec_1 .store_catagory div .show_hide_cat {
+    position: absolute;
+    right: 10px;
+    top: 4px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.cat_dot {
+    position: absolute;
+    left: 1px;
+    bottom: 4px;
+    font-size: 24px;
+    color: black;
+}
+
+.store_sec_1 .store_catagory div:hover > .cat_dot {
+    color: white;
+}
+
+
+@media screen and (max-width: 450px) {
+    .store_content > div {
+        flex: 1 1 0;
+
+    }
 }

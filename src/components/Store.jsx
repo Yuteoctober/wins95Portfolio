@@ -4,11 +4,15 @@ import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
 import '../css/Store.css'
 import { imageMapping } from './function/AppFunctions';
+import { BsChevronUp, BsChevronDown  } from "react-icons/bs";
+
 
 
 function Store() {
 
     const [storeSearchValue, setStoreSearchValue] = useState('')
+    const [catagoryHide, setCatagoryHide] = useState(true)
+    const [selectedCategory, setSelectedCategory] = useState('')
 
   const { 
     StoreExpand, setStoreExpand,
@@ -158,7 +162,45 @@ function Store() {
                     value={storeSearchValue} 
                 />
                 </div>
-                <div className="store_catagory"></div>
+                <div className="store_catagory">
+                  <div 
+                  onClick={() => setCatagoryHide(!catagoryHide)}
+                  >
+                    Categories
+                    <span className='show_hide_cat'>
+                      {catagoryHide ? <BsChevronDown/> : <BsChevronUp/>}
+                    </span>
+                  </div>
+                  {catagoryHide && (
+                    <>
+                      <div onClick={() => setSelectedCategory('1')}>
+                        {selectedCategory === '1' && (
+                          <span className='cat_dot'>.</span>
+                        )}
+                        All
+                      </div>
+                      <div onClick={() => setSelectedCategory('2')}>
+                        {selectedCategory === '2' && (
+                          <span className='cat_dot'>.</span>
+                        )}
+                        Games
+                      </div>
+                      <div onClick={() => setSelectedCategory('3')}>
+                        {selectedCategory === '3' && (
+                          <span className='cat_dot'>.</span>
+                        )}
+                        Utilities
+                      </div>
+                      <div onClick={() => setSelectedCategory('4')}>
+                        {selectedCategory === '4' && (
+                          <span className='cat_dot'>.</span>
+                        )}
+                        Productivity
+                      </div>
+                    </>
+                  )}
+                  
+                </div>
             </div>
             <div className="store_sec_2"></div>
             <div className="store_sec_3"></div>
