@@ -11,12 +11,11 @@ function Store() {
   const [storeSearchValue, setStoreSearchValue] = useState('')
   const [catagoryHide, setCatagoryHide] = useState(true)
   const [selectedCategory, setSelectedCategory] = useState('')
-  const [itemBeingSelected, setItemBeingSelected] = useState(null)
-  const [installIcon, setInstallIcon] = useState(0)
+  
 
   const { 
-    
-    setRefresh,
+    itemBeingSelected, setItemBeingSelected,
+    installIcon, setInstallIcon,
     setKey,
     desktopIcon, setDesktopIcon,
     StoreExpand, 
@@ -34,39 +33,39 @@ function Store() {
   } = useContext(UseContext);
 
 
-// install app logic
-function installApp(item) {
-  if (!item) return;
-  setInstallIcon(prev => prev + 1); // call useEffect to force install app
-}
+    // install app logic
+    function installApp(item) {
+      if (!item) return;
+      setInstallIcon(prev => prev + 1); // call useEffect to force install app
+    }
 
-  useEffect(() => {
+
+  useEffect(() => { // force install app when installIcon changes
     if (installIcon > 0) {
+
+      const findApp = iconInfo.find(icon => icon.name === itemBeingSelected.name)
+      if (!findApp) return;
+
       setDesktopIcon(prevIcons => {
-     
-        const updatedIcons = prevIcons.map(icon =>
-          icon.name === itemBeingSelected.name
-            ? { ...icon, folderId: 'Desktop' }
-            : icon
-        );
-
-        const target = updatedIcons.find(icon => icon.name === itemBeingSelected.name);
-        const others = updatedIcons.filter(icon => icon.name !== itemBeingSelected.name);
-
+        
+        const updatedIcons = [...prevIcons, { ...findApp, folderId: 'Desktop' }];
+        const target = updatedIcons.find(icon => icon.name === findApp.name);
+        const others = updatedIcons.filter(icon => icon.name !== findApp.name);
         const newDesktopIcons = [...others, target];
-        localStorage.setItem('icons', JSON.stringify(newDesktopIcons));
-        return newDesktopIcons 
-      });
 
-      setKey(prev => prev + 1); // Force re-render if needed
+        localStorage.setItem('icons', JSON.stringify(newDesktopIcons));
+
+        return newDesktopIcons;
+      });
+      setKey(prev => prev + 1);
     }
   }, [installIcon]);
 
 
 
-  // Compute installed status
+  // Compute installed status - no state needed
   const installed = itemBeingSelected 
-    ? desktopIcon.some(icon => icon.name === itemBeingSelected.name && icon.folderId !== 'Void')
+    ? desktopIcon.some(icon => icon.name === itemBeingSelected.name)
     : false;
 
   // Filter items based on search and category
@@ -92,6 +91,9 @@ function installApp(item) {
           return item.category === 'Utilities';
         case '4':
           return item.category === 'Productivity';
+        case '5':
+          return (item.category && !desktopIcon.some(icon => icon.name === item.name)
+    );
         default:
           return true;
       }
@@ -259,6 +261,10 @@ function installApp(item) {
                   <div onClick={() => setSelectedCategory('4')}>
                     {selectedCategory === '4' && <span className='cat_dot'>.</span>}
                     Productivity
+                  </div>
+                  <div onClick={() => setSelectedCategory('5')}>
+                    {selectedCategory === '5' && <span className='cat_dot'>.</span>}
+                    To install
                   </div>
                 </>
               )}

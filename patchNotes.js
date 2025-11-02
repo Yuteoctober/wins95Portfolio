@@ -1,5 +1,12 @@
 const patchNotes = [
   {
+    head: "**Tile**",
+    date: "2025-11-02",
+    notes: [
+      "All the apps that being installed or uninstalled are now being add or remove on Tile as well",
+    ]
+  },
+  {
     head: "**Store**",
     date: "2025-11-02",
     notes: [
