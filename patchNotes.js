@@ -1,5 +1,13 @@
 const patchNotes = [
   {
+    head: "**Store**",
+    date: "2025-11-02",
+    notes: [
+      "All the apps in Store are now free to install",
+      "Animation will be added when installing apps from Store",
+    ]
+  },
+  {
     head: "**Bin**",
     date: "2025-10-29",
     notes: [

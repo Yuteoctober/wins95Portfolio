@@ -165,6 +165,7 @@ All the functionalities
   - Added togglable Google Search bar 10/03/2025
   - Added confirmation before permanently delete file 10/29/2025
   - Added Store icon 10/30/2025
+  - All the apps in Store are now free to install 11/02/2025
 
 Library used:
   - React Draggable => drag and drop functionality

@@ -71,7 +71,7 @@ function RightClickWindows() {
   
   function handleDeleteIcon() {
 
-    const IconCannotBeDeleted = ['MyComputer', 'RecycleBin', "Hard Disk (C:)", "Hard Disk (D:)", "CD-ROM" ]
+    const IconCannotBeDeleted = ['MyComputer', 'RecycleBin', "Hard Disk (C:)", "Hard Disk (D:)", "CD-ROM", 'Store' ]
 
     if(IconCannotBeDeleted.includes(iconBeingRightClicked.name)) return;
     // Add icon to binRestoreArr

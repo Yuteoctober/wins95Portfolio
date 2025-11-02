@@ -1183,41 +1183,78 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     </>
   )
   
-
-  function deletepermanently(deleteName) {
-    
-    const droppedIcon = desktopIcon.find(icon => icon.name === deleteName);
-    if (droppedIcon) { 
-      setDesktopIcon(prevIcons => {
-        const updatedIcons = prevIcons.filter(icon => icon.name !== droppedIcon.name);
-        setKey(prev => prev + 1); // make folder icon by re-mount
-        localStorage.setItem('icons', JSON.stringify([...updatedIcons]));
-        return [...updatedIcons];
-      });
-    }
-    setDeleteIcon(prev => prev + 1) // important link to useEffect
-    setBinRestoreArr(prev => {
-          const newBinArr = prev.filter(icon => icon.name !== deleteName);
-          localStorage.setItem('restoreArray', JSON.stringify(newBinArr)); // Update localStorage
-          return newBinArr;
-        });
-    const findUserCreatedFolder = UserCreatedFolder.find(
-        icon => icon.name === deleteName
+  function deletepermanently(deleteName) { // move to void folder
+  const droppedIcon = desktopIcon.find(icon => icon.name === deleteName);
+  if (droppedIcon) { 
+    setDesktopIcon(prevIcons => {
+      
+      const updatedIcons = prevIcons.map(icon => 
+        icon.name === droppedIcon.name 
+          ? {...icon, folderId: 'Void'} 
+          : icon
       );
+      
+      setKey(prev => prev + 1);
+      localStorage.setItem('icons', JSON.stringify([...updatedIcons]));
+      return [...updatedIcons];
+    });
+  }
+  setDeleteIcon(prev => prev + 1)
+  setBinRestoreArr(prev => {
+    const newBinArr = prev.filter(icon => icon.name !== deleteName);
+    localStorage.setItem('restoreArray', JSON.stringify(newBinArr));
+    return newBinArr;
+  });
+  const findUserCreatedFolder = UserCreatedFolder.find(
+    icon => icon.name === deleteName
+  );
 
-      if (findUserCreatedFolder) {
-        const updatedFolders = UserCreatedFolder.filter(
-          folder => folder.name !== findUserCreatedFolder.name
-        );
+  if (findUserCreatedFolder) {
+    const updatedFolders = UserCreatedFolder.filter(
+      folder => folder.name !== findUserCreatedFolder.name
+    );
 
-        setUserCreatedFolder(updatedFolders);
-        localStorage.setItem("userFolders", JSON.stringify(updatedFolders));
-    }
+    setUserCreatedFolder(updatedFolders);
+    localStorage.setItem("userFolders", JSON.stringify(updatedFolders));
+  }
+
+  refBeingClicked.current = null;
+}
+
+  // function deletepermanently(deleteName) { // delete from desktopIcon
+    
+  //   const droppedIcon = desktopIcon.find(icon => icon.name === deleteName);
+  //   if (droppedIcon) { 
+  //     setDesktopIcon(prevIcons => {
+  //       const updatedIcons = prevIcons.filter(icon => icon.name !== droppedIcon.name);
+  //       setKey(prev => prev + 1); // make folder icon by re-mount
+  //       localStorage.setItem('icons', JSON.stringify([...updatedIcons]));
+  //       return [...updatedIcons];
+  //     });
+  //   }
+  //   setDeleteIcon(prev => prev + 1) // important link to useEffect
+  //   setBinRestoreArr(prev => {
+  //         const newBinArr = prev.filter(icon => icon.name !== deleteName);
+  //         localStorage.setItem('restoreArray', JSON.stringify(newBinArr)); // Update localStorage
+  //         return newBinArr;
+  //       });
+  //   const findUserCreatedFolder = UserCreatedFolder.find(
+  //       icon => icon.name === deleteName
+  //     );
+
+  //     if (findUserCreatedFolder) {
+  //       const updatedFolders = UserCreatedFolder.filter(
+  //         folder => folder.name !== findUserCreatedFolder.name
+  //       );
+
+  //       setUserCreatedFolder(updatedFolders);
+  //       localStorage.setItem("userFolders", JSON.stringify(updatedFolders));
+  //   }
 
     
-    refBeingClicked.current = null;
+  //   refBeingClicked.current = null;
    
-  }
+  // }
 
 
   function sortDesktopIcons(iconArr) {

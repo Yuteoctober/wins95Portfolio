@@ -12,6 +12,7 @@ function Store() {
   const [catagoryHide, setCatagoryHide] = useState(true)
   const [selectedCategory, setSelectedCategory] = useState('')
   const [itemBeingSelected, setItemBeingSelected] = useState(null)
+  const [installIcon, setInstallIcon] = useState(0)
 
   const { 
     
@@ -36,30 +37,36 @@ function Store() {
 // install app logic
 function installApp(item) {
   if (!item) return;
-  
-  setDesktopIcon(prevIcons => {
-    const exists = prevIcons.some(icon => icon.name === item.name);
-    if (exists) return prevIcons;
-    
-    const findApp = iconInfo.find(icon => icon.name === item.name);
-    if (!findApp) return prevIcons;
-    
-    const updatedIcons = [...prevIcons, {...findApp, folderId: 'Desktop'}];
-    
-    localStorage.setItem('icons', JSON.stringify(updatedIcons));
-    
-    return updatedIcons;
-  });
-    setRefresh(prev => prev + 1);
-    setKey(prev => prev + 1);
+  setInstallIcon(prev => prev + 1); // call useEffect to force install app
 }
 
+  useEffect(() => {
+    if (installIcon > 0) {
+      setDesktopIcon(prevIcons => {
+     
+        const updatedIcons = prevIcons.map(icon =>
+          icon.name === itemBeingSelected.name
+            ? { ...icon, folderId: 'Desktop' }
+            : icon
+        );
+
+        const target = updatedIcons.find(icon => icon.name === itemBeingSelected.name);
+        const others = updatedIcons.filter(icon => icon.name !== itemBeingSelected.name);
+
+        const newDesktopIcons = [...others, target];
+        localStorage.setItem('icons', JSON.stringify(newDesktopIcons));
+        return newDesktopIcons 
+      });
+
+      setKey(prev => prev + 1); // Force re-render if needed
+    }
+  }, [installIcon]);
 
 
 
-  // Compute installed status - no state needed
+  // Compute installed status
   const installed = itemBeingSelected 
-    ? desktopIcon.some(icon => icon.name === itemBeingSelected.name)
+    ? desktopIcon.some(icon => icon.name === itemBeingSelected.name && icon.folderId !== 'Void')
     : false;
 
   // Filter items based on search and category
