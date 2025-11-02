@@ -584,7 +584,7 @@ useEffect(() => {
         setTimeout(() => {
             clearTimeout(clearNotiTimeOut)
             setNotiOn(true);
-            setNewMessage('msn');  // Notification message
+            setNewMessage({ type: 'msn'});  // Notification message
         }, 100);
       }
     }

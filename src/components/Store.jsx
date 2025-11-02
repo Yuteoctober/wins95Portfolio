@@ -14,6 +14,10 @@ function Store() {
   
 
   const { 
+    newMessage,
+    clearNotiTimeOut,
+    setNewMessage,
+    setNotiOn,
     itemBeingSelected, setItemBeingSelected,
     installIcon, setInstallIcon,
     setKey,
@@ -41,23 +45,44 @@ function Store() {
 
 
   useEffect(() => { // force install app when installIcon changes
+
     if (installIcon > 0) {
 
       const findApp = iconInfo.find(icon => icon.name === itemBeingSelected.name)
       if (!findApp) return;
 
-      setDesktopIcon(prevIcons => {
+        clearTimeout(clearNotiTimeOut); // clear any previous timeout
+          setNotiOn(false); // reset first
+          setTimeout(() => {
+            setNewMessage({ type: 'appInstalling', appName: findApp.name });
+            setNotiOn(true);
+          }, 100);
+
+        setTimeout(() => {
+          setDesktopIcon(prevIcons => {
+          
+          const updatedIcons = [...prevIcons, { ...findApp, folderId: 'Desktop' }];
+          const target = updatedIcons.find(icon => icon.name === findApp.name);
+          const others = updatedIcons.filter(icon => icon.name !== findApp.name);
         
-        const updatedIcons = [...prevIcons, { ...findApp, folderId: 'Desktop' }];
-        const target = updatedIcons.find(icon => icon.name === findApp.name);
-        const others = updatedIcons.filter(icon => icon.name !== findApp.name);
-        const newDesktopIcons = [...others, target];
+          const newDesktopIcons = [...others, target];
 
-        localStorage.setItem('icons', JSON.stringify(newDesktopIcons));
+          localStorage.setItem('icons', JSON.stringify(newDesktopIcons));
 
-        return newDesktopIcons;
-      });
-      setKey(prev => prev + 1);
+           // Show "installed" notification
+          clearTimeout(clearNotiTimeOut); // clear any previous timeout
+          setNotiOn(false); // reset first
+          setTimeout(() => {
+            setNewMessage({ type: 'appInstalled', appName: findApp.name });
+            setNotiOn(true);
+          }, 100);
+
+          
+          return newDesktopIcons;
+        });
+        }, 10000);
+        setKey(prev => prev + 1);
+      
     }
   }, [installIcon]);
 
