@@ -13,6 +13,7 @@ function Store() {
   const [catagoryHide, setCatagoryHide] = useState(true)
   const [selectedCategory, setSelectedCategory] = useState('1')
   const [disableInstall, setDisableInstall] = useState(false)
+  const [itemIsInstalling, setItemIsInstalling] = useState('')
   
 
   const { 
@@ -53,6 +54,7 @@ function Store() {
       if (!findApp) return;
 
         clearTimeout(clearNotiTimeOut); // clear any previous timeout
+          setItemIsInstalling(findApp.name)
           setDisableInstall(true)
           setNotiOn(false); // reset first
           setTimeout(() => {
@@ -78,6 +80,7 @@ function Store() {
             setNewMessage({ type: 'appInstalled', appName: findApp.name });
             setNotiOn(true);
             setDisableInstall(false)
+            setItemIsInstalling('')
           }, 100);
 
           
@@ -346,7 +349,11 @@ function Store() {
                     color: 'gray',
                   } : {}}
                 >
-                  {installed ? 'Installed' : 'Install'}
+                  { 
+                    installed ? 'Installed' 
+                  : !installed && (itemIsInstalling === itemBeingSelected.name) ? 'Installing...'
+                  : 'Install'
+                  }
                 </button>
               </>
             )}
