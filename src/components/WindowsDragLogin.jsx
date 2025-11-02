@@ -22,6 +22,7 @@ export default function WindowsDragLogin() {
     ObjectState,
   } = useContext(UseContext);
 
+  const notInstalled = ['Cat', 'AiAgent','Winamp','Paint','3dObject']
   const bannedIcon = ['Photo', 'Internet', 'Bitcoin'];
   const icons = ObjectState();
 
@@ -50,8 +51,12 @@ export default function WindowsDragLogin() {
     ...transformedIcons.slice(insertIndex),
   ];
 
-  // Remove banned icons
-  const finalIcons = iconsWithTime.filter(icon => !bannedIcon.includes(icon.content));
+
+  // Remove banned icons permanently
+  const BannedIcons = iconsWithTime.filter(icon => !bannedIcon.includes(icon.content));
+
+  // Separate installed icons (everything except notInstalled)
+  const initiatedIcon = BannedIcons.filter(icon => !notInstalled.includes(icon.content));
 
   // Stored desktop icons for comparison
   const [storedDesktopIcons, setStoredDesktopIcons] = useState(desktopIcon);
@@ -59,7 +64,7 @@ export default function WindowsDragLogin() {
   // Tile state
   const [tiles, setTiles] = useState(() => {
     const saved = localStorage.getItem('tiles');
-    return saved ? JSON.parse(saved) : finalIcons.map(icon => ({ ...icon, id: Date.now() + Math.random() }));
+    return saved ? JSON.parse(saved) : initiatedIcon.map(icon => ({ ...icon, id: Date.now() + Math.random() }));
   });
 
   // Counter for unique IDs
@@ -89,18 +94,22 @@ export default function WindowsDragLogin() {
     if (installIcon > 0) {
       const newTile = itemBeingSelected;
 
-      if (!finalIcons.find(icon => icon.content === newTile.name)) return;
+      if (!BannedIcons.find(icon => icon.content === newTile.name)) return;
 
-      const addTile = finalIcons.find(item => item.content === newTile.name);
+      const addTile = BannedIcons.find(item => item.content === newTile.name);
       if (!addTile) return;
 
       // Assign unique ID
       const tileWithId = { ...addTile, id: tileCounter };
       setTileCounter(prev => prev + 1);
 
-      setTiles(prev => [...prev, tileWithId]);
+      setTimeout(() => {
 
-      setStoredDesktopIcons(desktopIcon);
+      setTiles(prev => [...prev, tileWithId]);
+      setStoredDesktopIcons(desktopIcon);  
+      
+      }, 15000);
+      
     }
   }, [installIcon]);
 

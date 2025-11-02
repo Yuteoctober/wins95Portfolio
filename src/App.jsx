@@ -222,9 +222,16 @@ function App() {
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [desktopIcon, setDesktopIcon] = useState(() => {
-    const localItems = localStorage.getItem('icons');
-    const parsedItems = localItems ? JSON.parse(localItems) : iconInfo;
-    return parsedItems; // This ensures the parsed items or iconInfo is returned correctly
+  const localItems = localStorage.getItem('icons');
+
+  const deleteIcon = ['Cat', 'AiAgent','Winamp','Paint','3dObject'];
+
+  const filteredItems = iconInfo.filter(item => !deleteIcon.includes(item.name));
+
+  const parsedItems = localItems ? JSON.parse(localItems) : filteredItems;
+
+ 
+  return parsedItems;
 });
 
   const [MineSweeperExpand, setMineSweeperExpand] = useState(

@@ -11,6 +11,7 @@ function Store() {
   const [storeSearchValue, setStoreSearchValue] = useState('')
   const [catagoryHide, setCatagoryHide] = useState(true)
   const [selectedCategory, setSelectedCategory] = useState('')
+  const [disableInstall, setDisableInstall] = useState(false)
   
 
   const { 
@@ -52,6 +53,7 @@ function Store() {
       if (!findApp) return;
 
         clearTimeout(clearNotiTimeOut); // clear any previous timeout
+          setDisableInstall(true)
           setNotiOn(false); // reset first
           setTimeout(() => {
             setNewMessage({ type: 'appInstalling', appName: findApp.name });
@@ -75,12 +77,13 @@ function Store() {
           setTimeout(() => {
             setNewMessage({ type: 'appInstalled', appName: findApp.name });
             setNotiOn(true);
+            setDisableInstall(false)
           }, 100);
 
           
           return newDesktopIcons;
         });
-        }, 10000);
+        }, 15000);
         setKey(prev => prev + 1);
       
     }
@@ -329,8 +332,10 @@ function Store() {
                   Size: {itemBeingSelected.size}MB
                 </p>
                 <button
-                  onClick={() => installApp(itemBeingSelected)}
-                  disabled={installed}
+                  onClick={() => {
+                    installApp(itemBeingSelected)
+                  }}
+                  disabled={disableInstall}
                   style={installed ? {
                     border: '2px solid black',
                     borderBottomColor: 'white',
