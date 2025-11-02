@@ -1226,6 +1226,8 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
 // }
 
   function deletepermanently(deleteName) { // delete from desktopIcon
+
+    if(deleteName === 'Store') return;
     
     const droppedIcon = desktopIcon.find(icon => icon.name === deleteName);
     if (droppedIcon) { 
