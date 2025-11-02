@@ -108,11 +108,13 @@ function Store() {
       }
 
       // Category filter
-      if (!selectedCategory || selectedCategory === '1') {
-        return true; // Show all items
+      if (!selectedCategory) {
+        return; 
       }
       
       switch (selectedCategory) {
+        case '1':
+          return item.category
         case '2':
           return item.category === 'Games';
         case '3':
@@ -122,8 +124,6 @@ function Store() {
         case '5':
           return (item.category && !desktopIcon.some(icon => icon.name === item.name)
     );
-        default:
-          return true;
       }
     });
 
