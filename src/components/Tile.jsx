@@ -22,7 +22,7 @@ import fortune from '../assets/fortune.gif';
 import pudgy from '../assets/pudgy.gif';
 import cube from '../assets/cube.gif';
 import agent from '../assets/bot.gif';
-import music from '../assets/music.gif';
+import music from '../assets/win_tile.png';
 import random from '../assets/random.png';
 import loading from '../assets/loading.gif';
 import envelope from '../assets/envelope.png';
@@ -172,7 +172,7 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
         return {
           backgroundImage: `url(${music})`,
           backgroundPosition: 'center',
-          backgroundSize: '180px',
+          backgroundSize: '64px',
           backgroundRepeat: 'no-repeat',
         };
       case 'MyComputer':
@@ -308,7 +308,7 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
         return {
           backgroundImage: `url(${store})`,
           backgroundPosition: '50% 57%',
-          backgroundSize: '42px',
+          backgroundSize: '64px',
           backgroundRepeat: 'no-repeat',
         };
         case 'News':

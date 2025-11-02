@@ -11,7 +11,7 @@ import iconInfo from '../icon.json'
 function Store() {
   const [storeSearchValue, setStoreSearchValue] = useState('')
   const [catagoryHide, setCatagoryHide] = useState(true)
-  const [selectedCategory, setSelectedCategory] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('1')
   const [disableInstall, setDisableInstall] = useState(false)
   
 
