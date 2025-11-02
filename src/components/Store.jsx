@@ -1,28 +1,28 @@
 import UseContext from '../Context'
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
 import '../css/Store.css'
 import { imageMapping } from './function/AppFunctions';
-import { BsChevronUp, BsChevronDown  } from "react-icons/bs";
+import { BsChevronUp, BsChevronDown } from "react-icons/bs";
 import iconInfo from '../icon.json'
 
-
-
 function Store() {
-
-    const [storeSearchValue, setStoreSearchValue] = useState('')
-    const [catagoryHide, setCatagoryHide] = useState(true)
-    const [selectedCategory, setSelectedCategory] = useState('')
-
-
+  const [storeSearchValue, setStoreSearchValue] = useState('')
+  const [catagoryHide, setCatagoryHide] = useState(true)
+  const [selectedCategory, setSelectedCategory] = useState('')
+  const [itemBeingSelected, setItemBeingSelected] = useState(null)
 
   const { 
-    StoreExpand, setStoreExpand,
+    
+    setRefresh,
+    setKey,
+    desktopIcon, setDesktopIcon,
+    StoreExpand, 
+    setStoreExpand,
     themeDragBar,
-    projectname,
-    projectUrl,
-    lastTapTime, setLastTapTime,
+    lastTapTime, 
+    setLastTapTime,
     StyleHide,
     isTouchDevice,
     handleSetFocusItemTrue,
@@ -30,54 +30,77 @@ function Store() {
     inlineStyle,
     iconFocusIcon,
     deleteTap,
+  } = useContext(UseContext);
 
-   } = useContext(UseContext);
 
+// install app logic
+function installApp(item) {
+  if (!item) return;
+  
+  setDesktopIcon(prevIcons => {
+    const exists = prevIcons.some(icon => icon.name === item.name);
+    if (exists) return prevIcons;
     
-    const itemsInStore = iconInfo
-      
-      .filter(item => item.category)
-
-      
-      .filter(item => {
-        // Search filter
-        if (storeSearchValue.trim() !== '') {
-          const searchValueLower = storeSearchValue.toLowerCase();
-          const nameMatch = item.name.toLowerCase().includes(searchValueLower);
-          if (!nameMatch) return false; 
-        }
-
-        // Category filter
-        switch (selectedCategory) {
-          case '': // no category selected
-            break;
-          case '1': // All
-            return true;
-          case '2':
-            return item.category === 'Games';
-          case '3':
-            return item.category === 'Utilities';
-          case '4':
-            return item.category === 'Productivity';
-          default:
-            return true;
-        }
-      });
+    const findApp = iconInfo.find(icon => icon.name === item.name);
+    if (!findApp) return prevIcons;
+    
+    const updatedIcons = [...prevIcons, {...findApp, folderId: 'Desktop'}];
+    
+    localStorage.setItem('icons', JSON.stringify(updatedIcons));
+    
+    return updatedIcons;
+  });
+    setRefresh(prev => prev + 1);
+    setKey(prev => prev + 1);
+}
 
 
 
-      function handleDragStop(event, data) {
-        const positionX = data.x 
-        const positionY = data.y
-        setStoreExpand(prev => ({
-          ...prev,
-          x: positionX,
-          y: positionY
-        }))
 
+  // Compute installed status - no state needed
+  const installed = itemBeingSelected 
+    ? desktopIcon.some(icon => icon.name === itemBeingSelected.name)
+    : false;
+
+  // Filter items based on search and category
+  const itemsInStore = iconInfo
+    .filter(item => item.category)
+    .filter(item => {
+      // Search filter
+      if (storeSearchValue.trim() !== '') {
+        const searchValueLower = storeSearchValue.toLowerCase();
+        const nameMatch = item.name.toLowerCase().includes(searchValueLower);
+        if (!nameMatch) return false; 
       }
 
-   function handleExpandStateToggle() {
+      // Category filter
+      if (!selectedCategory || selectedCategory === '1') {
+        return true; // Show all items
+      }
+      
+      switch (selectedCategory) {
+        case '2':
+          return item.category === 'Games';
+        case '3':
+          return item.category === 'Utilities';
+        case '4':
+          return item.category === 'Productivity';
+        default:
+          return true;
+      }
+    });
+
+  function handleDragStop(event, data) {
+    const positionX = data.x 
+    const positionY = data.y
+    setStoreExpand(prev => ({
+      ...prev,
+      x: positionX,
+      y: positionY
+    }))
+  }
+
+  function handleExpandStateToggle() {
     setStoreExpand(prevState => ({
       ...prevState,
       expand: !prevState.expand
@@ -87,177 +110,207 @@ function Store() {
   function handleExpandStateToggleMobile() {
     const now = Date.now();
     if (now - lastTapTime < 300) {
-        setStoreExpand(prevState => ({
-            ...prevState,
-            expand: !prevState.expand
-        }));
+      setStoreExpand(prevState => ({
+        ...prevState,
+        expand: !prevState.expand
+      }));
     }
     setLastTapTime(now);
-}
+  }
 
+  function handleMinimize(e) {
+    e.stopPropagation()
+    setStoreExpand(prev => ({...prev, hide: true, focusItem: false}))
+    StyleHide('Store')
+  }
+
+  function handleClose() {
+    deleteTap('Store')
+  }
 
   return (
-    <>
-      <Draggable
-        axis="both" 
-        handle={'.folder_dragbar'}
-        grid={[1, 1]}
-        scale={1}
-        disabled={StoreExpand.expand}
-        bounds={{top: 0}}
-        defaultPosition={{ 
-          x: window.innerWidth <= 500 ? 5 : 80,
-          y: window.innerWidth <= 500 ? 100 : 90,
+    <Draggable
+      axis="both" 
+      handle={'.folder_dragbar'}
+      grid={[1, 1]}
+      scale={1}
+      disabled={StoreExpand.expand}
+      bounds={{top: 0}}
+      defaultPosition={{ 
+        x: window.innerWidth <= 500 ? 5 : 80,
+        y: window.innerWidth <= 500 ? 100 : 90,
+      }}
+      onStop={(event, data) => handleDragStop(event, data)}
+      onStart={() => handleSetFocusItemTrue('Store')}
+    >
+      <div 
+        className='folder_folder-open-store' 
+        onClick={(e) => {
+          e.stopPropagation();
+          handleSetFocusItemTrue('Store');
         }}
-        onStop={(event, data) => handleDragStop(event, data)}
-        onStart={() => handleSetFocusItemTrue('Store')}
+        style={{
+          ...(StoreExpand.expand ? inlineStyleExpand('Store') : inlineStyle('Store')),
+        }}
       >
-        <div className='folder_folder-open-store' 
-            onClick={(e) => {
-              e.stopPropagation();
-              handleSetFocusItemTrue('Store');
-            }}
-            style={{
-              ...(StoreExpand.expand ? inlineStyleExpand('Store') : inlineStyle('Store')),
-            }}>
-          <div className="folder_dragbar"
-              onDoubleClick={handleExpandStateToggle}
-              onTouchStart={handleExpandStateToggleMobile}
-             style={{ background: StoreExpand.focusItem? themeDragBar : '#757579'}}
+        {/* Drag Bar */}
+        <div 
+          className="folder_dragbar"
+          onDoubleClick={handleExpandStateToggle}
+          onTouchStart={handleExpandStateToggleMobile}
+          style={{ background: StoreExpand.focusItem ? themeDragBar : '#757579'}}
+        >
+          <div className="folder_barname">
+            <img src={imageMapping('Store')} alt="Store" style={{ width: '17px'}} />
+            <span style={{top: '1px'}}>Store</span>
+          </div>
+          
+          <div className="folder_barbtn">
+            {/* Minimize Button */}
+            <div 
+              onClick={!isTouchDevice ? handleMinimize : undefined}
+              onTouchEnd={handleMinimize}
+              onTouchStart={(e) => e.stopPropagation()}
+            >
+              <p className='dash'></p>
+            </div>
+            
+            {/* Expand Button */}
+            <div
+              onClick={!isTouchDevice ? handleExpandStateToggle : undefined}
+              onTouchEnd={handleExpandStateToggle}
+            >
+              <motion.div className={`expand ${StoreExpand.expand ? 'full' : ''}`}>
+              </motion.div>
+              {StoreExpand.expand && <div className="expand_2"></div>}
+            </div>
+            
+            {/* Close Button */}
+            <div>
+              <p 
+                className='x'
+                onClick={!isTouchDevice ? handleClose : undefined}
+                onTouchEnd={handleClose}
+              >
+                ×
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Menu Bar */}
+        <div className="file_edit_container">
+          <p>File<span style={{left: '-23px'}}>_</span></p>
+          <p>Edit<span style={{left: '-24px'}}>_</span></p>
+          <p>View<span style={{left: '-32px'}}>_</span></p>
+          <p>Help<span style={{left: '-30px'}}>_</span></p>
+        </div>
+
+        {/* Store Content */}
+        <div 
+          className="store_content"
+          onClick={() => iconFocusIcon('Store')}
+          style={StoreExpand.expand ? { height: 'calc(100svh - 102px)'} : {}}
+        >
+          {/* Section 1: Search and Categories */}
+          <div 
+            className="store_sec_1"
+            style={{background: '#c5c4c4', border: 'none'}}
           >
-            <div className="folder_barname">
-              <img src={imageMapping('Store')} alt="ie" style={{ width: '17px'}} />
-                <span style={{top: '1px'}}>Store</span>
+            <div className="store_search">
+              <input 
+                type="text" 
+                placeholder='Search....' 
+                maxLength={20}
+                onChange={e => setStoreSearchValue(e.target.value)} 
+                value={storeSearchValue} 
+              />
+            </div>
+            
+            <div className="store_catagory">
+              <div onClick={() => setCatagoryHide(!catagoryHide)}>
+                Categories
+                <span className='show_hide_cat'>
+                  {catagoryHide ? <BsChevronDown/> : <BsChevronUp/>}
+                </span>
               </div>
-            <div className="folder_barbtn">
-              <div onClick={ !isTouchDevice? (e) => {
-                e.stopPropagation()
-                setStoreExpand(prev => ({...prev, hide: true, focusItem: false}))
-                StyleHide('Store') 
-              } : undefined
-            }
-                   onTouchEnd={(e) => {
-                    e.stopPropagation()
-                    setStoreExpand(prev => ({...prev, hide: true, focusItem: false}))
-                    StyleHide('Store')
-                  }}
-                    onTouchStart={(e) => e.stopPropagation()}
-              >
-                <p className='dash'></p>
-              </div>
-              <div
-                onClick={ !isTouchDevice ? () => handleExpandStateToggle() : undefined}
-                onTouchEnd={handleExpandStateToggle}
-              >
-                <motion.div className={`expand ${StoreExpand.expand ? 'full' : ''}`}>
-                </motion.div>
-                {StoreExpand.expand ? 
-                (
-                <div className="expand_2"></div>
-                )
-                :
-                (null)}
-              </div>
-              <div>
-                <p className='x'
-                 onClick={!isTouchDevice ? () => {
-                  deleteTap('Store')
-                 }: undefined
-                }
-                onTouchEnd={() => {
-                  deleteTap('Store')
-              }}
-                >×</p>
-              </div>
+              
+              {catagoryHide && (
+                <>
+                  <div onClick={() => setSelectedCategory('1')}>
+                    {selectedCategory === '1' && <span className='cat_dot'>.</span>}
+                    All
+                  </div>
+                  <div onClick={() => setSelectedCategory('2')}>
+                    {selectedCategory === '2' && <span className='cat_dot'>.</span>}
+                    Games
+                  </div>
+                  <div onClick={() => setSelectedCategory('3')}>
+                    {selectedCategory === '3' && <span className='cat_dot'>.</span>}
+                    Utilities
+                  </div>
+                  <div onClick={() => setSelectedCategory('4')}>
+                    {selectedCategory === '4' && <span className='cat_dot'>.</span>}
+                    Productivity
+                  </div>
+                </>
+              )}
             </div>
           </div>
 
-          <div className="file_edit_container">
-              <p>File<span style={{left: '-23px'}}>_</span></p>
-              <p>Edit<span style={{left: '-24px'}}>_</span></p>
-              <p>View<span style={{left: '-32px'}}>_</span></p>
-              <p>Help<span style={{left: '-30px'}}>_</span></p>
+          {/* Section 2: Item List */}
+          <div className="store_sec_2">
+            {itemsInStore.map((item, index) => (
+              <div 
+                className="item_section_two" 
+                key={index}
+                onClick={() => setItemBeingSelected(item)}
+              >
+                <div className='section_two_img'>
+                  <img src={imageMapping(item.name)} alt={item.name} />
+                </div>
+                <div className='section_two_text'>
+                  <p className='section_two_text_name'>{item.name}</p>
+                  <p className='section_two_text_des'>{item.description}</p> 
+                </div>
+              </div>
+            ))}
           </div>
-          <div className="store_content"
-            onClick={() => iconFocusIcon('Store')}
-            style={StoreExpand.expand ? 
-              { height: 'calc(100svh - 102px)'} 
-              : 
-              {}
-            }
-          >
-            <div className="store_sec_1"
-                style={{background: '#c5c4c4', border: 'none'}}
-            >
-                <div className="store_search">
-                    <input type="text" placeholder='Search....' 
-                    maxLength={20}
-                    onChange={e => setStoreSearchValue(e.target.value)} 
-                    value={storeSearchValue} 
+
+          {/* Section 3: Item Details */}
+          <div className="store_sec_3">
+            {itemBeingSelected && (
+              <>
+                <img 
+                  src={imageMapping(itemBeingSelected.name)} 
+                  alt={itemBeingSelected.name} 
                 />
-                </div>
-                <div className="store_catagory">
-                  <div 
-                  onClick={() => setCatagoryHide(!catagoryHide)}
-                  >
-                    Categories
-                    <span className='show_hide_cat'>
-                      {catagoryHide ? <BsChevronDown/> : <BsChevronUp/>}
-                    </span>
-                  </div>
-                  {catagoryHide && (
-                    <>
-                      <div onClick={() => setSelectedCategory('1')}>
-                        {selectedCategory === '1' && (
-                          <span className='cat_dot'>.</span>
-                        )}
-                        All
-                      </div>
-                      <div onClick={() => setSelectedCategory('2')}>
-                        {selectedCategory === '2' && (
-                          <span className='cat_dot'>.</span>
-                        )}
-                        Games
-                      </div>
-                      <div onClick={() => setSelectedCategory('3')}>
-                        {selectedCategory === '3' && (
-                          <span className='cat_dot'>.</span>
-                        )}
-                        Utilities
-                      </div>
-                      <div onClick={() => setSelectedCategory('4')}>
-                        {selectedCategory === '4' && (
-                          <span className='cat_dot'>.</span>
-                        )}
-                        Productivity
-                      </div>
-                    </>
-                  )}
-                  
-                </div>
-            </div>
-            <div className="store_sec_2">
-              {itemsInStore.map((item, index) => (
-                <div className="item_section_two" key={index}>
-                  <div className='section_two_img'>
-                    <img src={imageMapping(item.name)} alt={item.name} />
-                  </div>
-                  <div className='section_two_text'>
-                    <p className='section_two_text_name'>{item.name}</p>
-                    <p className='section_two_text_des'>{item.description}</p> 
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="store_sec_3"></div>
-        
-          </div>
-          <div className='ifram_text_container'>
+                <h3>{itemBeingSelected.name}</h3>
+                <p>{itemBeingSelected.description}</p>
+                <p className='section_3_des'>
+                  Size: {itemBeingSelected.size}MB
+                </p>
+                <button
+                  onClick={() => installApp(itemBeingSelected)}
+                  disabled={installed}
+                  style={installed ? {
+                    border: '2px solid black',
+                    borderBottomColor: 'white',
+                    borderRightColor: 'white',
+                    color: 'gray',
+                  } : {}}
+                >
+                  {installed ? 'Installed' : 'Install'}
+                </button>
+              </>
+            )}
           </div>
         </div>
-      </Draggable>
-    </>
+
+        <div className='ifram_text_container'></div>
+      </div>
+    </Draggable>
   )
-}          
+}
 
 export default Store
