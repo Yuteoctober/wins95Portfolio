@@ -236,6 +236,8 @@
     text-overflow: ellipsis;
 }
 
+/*-------------- section 3 -------------- */
+
 
 @media screen and (max-width: 450px) {
     .store_content > div {

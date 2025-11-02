@@ -34,23 +34,36 @@ function Store() {
    } = useContext(UseContext);
 
     
-    const itemsInStore = iconInfo.filter(item => {
+    const itemsInStore = iconInfo
+      
+      .filter(item => item.category)
 
-      switch (selectedCategory) {
-        case '': // No category selected
-          break;
-        case '1': // All
-          return item.category;
-        case '2': // Games
-          return item.category === 'Games';
-        case '3': // Utilities
-          return item.category === 'Utilities';
-        case '4': // Productivity
-          return item.category === 'Productivity';
-        default:
-          return true;
-      }
-    });
+      
+      .filter(item => {
+        // Search filter
+        if (storeSearchValue.trim() !== '') {
+          const searchValueLower = storeSearchValue.toLowerCase();
+          const nameMatch = item.name.toLowerCase().includes(searchValueLower);
+          if (!nameMatch) return false; 
+        }
+
+        // Category filter
+        switch (selectedCategory) {
+          case '': // no category selected
+            break;
+          case '1': // All
+            return true;
+          case '2':
+            return item.category === 'Games';
+          case '3':
+            return item.category === 'Utilities';
+          case '4':
+            return item.category === 'Productivity';
+          default:
+            return true;
+        }
+      });
+
 
 
       function handleDragStop(event, data) {
