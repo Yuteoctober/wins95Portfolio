@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import '../css/Store.css'
 import { imageMapping } from './function/AppFunctions';
 import { BsChevronUp, BsChevronDown } from "react-icons/bs";
+import { IoIosSearch } from "react-icons/io";
 import iconInfo from '../icon.json'
 
 function Store() {
@@ -15,7 +16,6 @@ function Store() {
   
 
   const { 
-    newMessage,
     clearNotiTimeOut,
     setNewMessage,
     setNotiOn,
@@ -258,10 +258,13 @@ function Store() {
               <input 
                 type="text" 
                 placeholder='Search....' 
-                maxLength={20}
+                maxLength={15}
                 onChange={e => setStoreSearchValue(e.target.value)} 
                 value={storeSearchValue} 
               />
+              {storeSearchValue.length < 1 && (
+                <span><IoIosSearch/></span>
+              )}
             </div>
             
             <div className="store_catagory">

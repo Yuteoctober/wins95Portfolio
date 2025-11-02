@@ -123,12 +123,21 @@
     position: relative;
     border: none;
     outline: none;
-    width: 100%;
+    width: 95%;
     height: 100%;
     padding: 2px;
     font-size: 13px;
     padding-left: 6px;
     color: rgb(25, 22, 22);
+}
+
+.store_sec_1 .store_search span {
+    position: absolute;
+    font-size: 14px;
+    right: 10px;
+    top: 2px;
+    color: #6d6c6c;
+    rotate: 90deg;
 }
 
 .store_sec_1 .store_catagory div {
