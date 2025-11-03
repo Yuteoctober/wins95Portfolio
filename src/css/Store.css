@@ -276,6 +276,7 @@
 }
 
 .store_sec_3 button {
+    position: relative;
     width: 100px;
     height: 32px;
     border: 2px solid white;
@@ -293,7 +294,24 @@
     border-right-color: white;
 }
 
+.progress_bar_store {
+    position: absolute;
+    width: 0%;
+    height: 100%;
+    background: #4d5b4a6a;
+    top: 0;
+    left: 0;
+    animation: progressBar 14.5s ease forwards;
+}
 
+@keyframes progressBar {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+    }
+}
 
 
 @media screen and (max-width: 450px) {

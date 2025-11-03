@@ -354,6 +354,10 @@ function Store() {
                   : !installed && (itemIsInstalling === itemBeingSelected.name) ? 'Installing...'
                   : 'Install'
                   }
+                  {itemIsInstalling === itemBeingSelected.name &&
+                  (
+                    <div className="progress_bar_store"></div>
+                  )}
                 </button>
               </>
             )}
