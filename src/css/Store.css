@@ -301,7 +301,8 @@
     background: #4d5b4a47;
     top: 0;
     left: 0;
-    animation: progressBar 14.5s ease forwards;
+    opacity: 0;
+    animation: progressBar 15s linear forwards;
 }
 
 @keyframes progressBar {

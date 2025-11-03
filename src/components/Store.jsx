@@ -14,6 +14,7 @@ function Store() {
   const [selectedCategory, setSelectedCategory] = useState('1')
   const [disableInstall, setDisableInstall] = useState(false)
   const [itemIsInstalling, setItemIsInstalling] = useState('')
+  const [resetAnimation, setResetAnimation] = useState(0)
   
 
   const { 
@@ -54,6 +55,7 @@ function Store() {
       if (!findApp) return;
 
         clearTimeout(clearNotiTimeOut); // clear any previous timeout
+          setResetAnimation(prev => prev + 1)
           setItemIsInstalling(findApp.name)
           setDisableInstall(true)
           setNotiOn(false); // reset first
@@ -354,10 +356,11 @@ function Store() {
                   : !installed && (itemIsInstalling === itemBeingSelected.name) ? 'Installing...'
                   : 'Install'
                   }
-                  {itemIsInstalling === itemBeingSelected.name &&
-                  (
-                    <div className="progress_bar_store"></div>
-                  )}
+                    <div 
+                      key={resetAnimation}
+                      style={{opacity: itemIsInstalling === itemBeingSelected.name ? '1' : '0'}}
+                      className="progress_bar_store"
+                    />
                 </button>
               </>
             )}
