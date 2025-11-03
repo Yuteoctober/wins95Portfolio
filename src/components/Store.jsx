@@ -406,7 +406,7 @@ function Store() {
                   onClick={() => deleteAppInStore(itemBeingSelected)}
                   disabled={!installed || disableUninstall}
                 >
-                  {disableUninstall ? 'Uninstalling' : 'Uninstall'}
+                  {disableUninstall && (itemBeingUninstall === itemBeingSelected.name) ? 'Uninstalling' : 'Uninstall'}
                 </button>
               </>
             )}
