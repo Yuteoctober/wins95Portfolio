@@ -167,6 +167,7 @@ All the functionalities
   - Added Store icon 10/30/2025
   - All the apps in Store are now free to install 11/02/2025
   - All the apps that being installed or uninstalled are now being add or remove on Tile as well 11/02/2025
+  - All apps are now able to install and uninstall in the store 11/02/2025
 
 Library used:
   - React Draggable => drag and drop functionality

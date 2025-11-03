@@ -5,7 +5,7 @@
     position: fixed;
     width: 520px;
     min-width: 600px;
-    min-height: 300px;
+    min-height: 340px;
     height: 55%;
     background: #c5c4c4;
     border: 2px solid white;
@@ -286,6 +286,7 @@
     cursor: pointer;
     margin-top: 4px;
     border-radius: 0px;
+    font-size: 13px;
 }
 
 .store_sec_3 button:active {
@@ -304,6 +305,18 @@
     opacity: 0;
     animation: progressBar 15s linear forwards;
 }
+
+.progress_bar_store_uninstall {
+    position: absolute;
+    width: 0%;
+    height: 100%;
+    background: #4d5b4a47;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    animation: progressBar 5s linear forwards;
+}
+
 
 @keyframes progressBar {
     0% {

@@ -15,9 +15,13 @@ function Store() {
   const [disableInstall, setDisableInstall] = useState(false)
   const [itemIsInstalling, setItemIsInstalling] = useState('')
   const [resetAnimation, setResetAnimation] = useState(0)
+  const [deleteInStore, setDeleteInStore] = useState(0)
+  const [itemBeingUninstall, setItembeingUninstall] = useState('')
+  const [disableUninstall, setDisableUninstall] = useState(false)
   
 
   const { 
+    deletepermanently,
     clearNotiTimeOut,
     setNewMessage,
     setNotiOn,
@@ -169,6 +173,43 @@ function Store() {
   function handleClose() {
     deleteTap('Store')
   }
+
+  function deleteAppInStore(item) {
+    setItembeingUninstall(item.name)
+    setDeleteInStore(prev => prev + 1)
+  }
+
+    useEffect(() => {
+    if (deleteInStore > 0) {
+
+      clearTimeout(clearNotiTimeOut); // clear any previous timeout
+          setNotiOn(false); // reset first
+          setTimeout(() => {
+            setDisableUninstall(true)
+            setNewMessage({ type: 'unIntallingApp', appName: itemBeingUninstall });
+            setNotiOn(true);
+          }, 100);
+          
+      setTimeout(() => {    
+
+      setDesktopIcon(prevIcons => {
+         const updateDesktopIcon = prevIcons.filter(item => item.name !== itemBeingUninstall)
+         localStorage.setItem('icons', JSON.stringify(updateDesktopIcon));
+         return updateDesktopIcon;
+      });
+      clearTimeout(clearNotiTimeOut);
+      setNotiOn(false); // reset first
+          setTimeout(() => {
+            setNewMessage({ type: 'appUninstalled', appName: itemBeingUninstall });
+            setNotiOn(true);
+            setDisableUninstall(false)
+          }, 100);
+      setKey(prev => prev + 1); // Force re-render if needed
+      }, 5000);
+    }
+  }, [deleteInStore]);
+
+  
 
   return (
     <Draggable
@@ -343,11 +384,8 @@ function Store() {
                   onClick={() => {
                     installApp(itemBeingSelected)
                   }}
-                  disabled={disableInstall}
+                  disabled={disableInstall || installed}
                   style={installed ? {
-                    border: '2px solid black',
-                    borderBottomColor: 'white',
-                    borderRightColor: 'white',
                     color: 'gray',
                   } : {}}
                 >
@@ -362,12 +400,17 @@ function Store() {
                       className="progress_bar_store"
                     />
                 </button>
+                <button
+                  style={{bottom: '4px'}}
+                  onClick={() => deleteAppInStore(itemBeingSelected)}
+                  disabled={!installed || disableUninstall}
+                >
+                  {disableUninstall ? 'Uninstalling' : 'Uninstall'}
+                </button>
               </>
             )}
           </div>
         </div>
-
-        <div className='ifram_text_container'></div>
       </div>
     </Draggable>
   )
