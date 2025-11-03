@@ -21,7 +21,7 @@ function Store() {
   
 
   const { 
-    deletepermanently,
+    setDeleteIcon,
     clearNotiTimeOut,
     setNewMessage,
     setNotiOn,
@@ -203,6 +203,7 @@ function Store() {
             setNewMessage({ type: 'appUninstalled', appName: itemBeingUninstall });
             setNotiOn(true);
             setDisableUninstall(false)
+            setDeleteIcon(prev => prev + 1)
           }, 100);
       setKey(prev => prev + 1); // Force re-render if needed
       }, 5000);
