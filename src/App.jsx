@@ -1643,7 +1643,8 @@ function handleShow(name) {
   if(tap.includes(name)) return;
   setStartActive(false);
 
-  if(name === 'Run' || name === 'Nft' || name === 'Note' || name === 'AiAgent' || name === '3dObject' || name === 'Fortune') return;
+  const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune'];
+  if (notToOpenList.includes(name)) return;
 
   setTap(prevTap => [...prevTap, name]);
   setDesktopIcon(prevIcons => prevIcons.map(icon => ({...icon, focus: false})));
@@ -1746,7 +1747,8 @@ function handleShowMobile(name) {
     if(tap.includes(name)) return;
     setStartActive(false)
   
-    if(name === 'Run' || name === 'Nft' || name === 'Note' || name === 'AiAgent' || name === '3dObject' || name === 'Fortune')return; // not showing run on tap
+    const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune'];
+    if (notToOpenList.includes(name)) return;
   
     setTap(prevTap => [...prevTap, name]);
     setDesktopIcon(prevIcons => prevIcons.map(icon => ({...icon, focus: false})));

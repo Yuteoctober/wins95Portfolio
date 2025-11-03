@@ -5,6 +5,7 @@ import Draggable from 'react-draggable'
 import RunIcon from '../assets/run.png'
 import '../css/Run.css'
 import { BsCaretDownFill } from "react-icons/bs";
+import {imageMapping} from './function/AppFunctions' 
 
 
 
@@ -28,71 +29,73 @@ function Run() {
     inlineStyleExpand,
     inlineStyle,
     deleteTap,
-    setRegErrorPopUp, setRegErrorPopUpVal,
+    setRegErrorPopUp,
+    setRegErrorPopUpVal,
+    setCurrentFolder,
+    setSelectedFolder,
    } = useContext(UseContext);
 
-   const cannotOpenFile = ['internet', 'type', 'run'] // file that should not be open by RUN command
+  const cannotOpenFile = ['internet', 'type', 'run', 'hard disk (c:)', 'hard disk (d:)', 'cd-rom' ]; // files that should not be opened by RUN
 
-   function handleRunOpenFile(ObjectState, name) {
+    function handleRunOpenFile(ObjectState, name) {
+      const lowerCaseName = name.toLowerCase().trim();
+      const matchedItem = desktopIcon.find(
+        item => item.name.toLowerCase().trim() === lowerCaseName
+      );
 
-    // const existedItem = desktopIcon.some(i => i.name === name)
+      const closeRun = () => {
+        deleteTap('Run');
+        setRunInputVal('');
+        setRunItemBox(false);
+      };
 
-    // if(!existedItem){
-    //     setRegErrorPopUp(true);
-    //     setRegErrorPopUpVal(name);
-    //     setRunExpand(false)
-    //   return;
-    // }
-
-
-
-    const object = desktopIcon;
-    const lowerCaseName = name.toLowerCase().trim();
-
-    const matchedItem = object.find(item => item.name.toLowerCase().trim() === lowerCaseName);
-    
-    // if (!matchedItem) {
-    //     deleteTap('Run')
-    //     setErrorPopup(true)
-    //     return;
-    // }
-
-    // if (cannotOpenFile.includes(lowerCaseName)) return;
-
-    if(lowerCaseName === 'internet') {
-      deleteTap('Run')
-      setRunInputVal('')
-      setRunItemBox(false)
-      return;
-    }
-
-    if (lowerCaseName === 'resume') {
-        setTimeout(() => {
-          handleShow('ResumeFile'); 
-          deleteTap('Run')
-          setRunInputVal('')
-          setRunItemBox(false)
-        }, 100);
+      
+      if(!matchedItem) {
+        setRegErrorPopUp(true);
+        setRegErrorPopUpVal(name);
+        closeRun();
         return;
-        
-    }
-    setTimeout(() => {
-      const passedName = matchedItem ? matchedItem.name : name
-        handleShow(passedName);
-        deleteTap('Run')
-        setRunInputVal('')
-        setRunItemBox(false)
-    }, 100);
-    
-}
+      }
 
-    const listItems = desktopIcon.map((item) => {
-        const lowerCaseName = item.name.toLowerCase(); 
-        if (!cannotOpenFile.includes(lowerCaseName) && lowerCaseName !== 'resumefile' && lowerCaseName[0] !== '0') {
-        return item.name; 
-        }
-        return null;
-    }).filter(Boolean);
+      // Prevent opening restricted files
+      if (cannotOpenFile.includes(lowerCaseName)) {
+        closeRun();
+        return;
+      }
+
+      switch (lowerCaseName) {
+        
+
+        case 'resume': // Resume File
+          setTimeout(() => {
+            handleShow('ResumeFile');
+            closeRun();
+          }, 100);
+          break;
+
+
+        default:
+          setTimeout(() => {
+            const passedName = matchedItem ? matchedItem.name : name;
+            handleShow(passedName);
+            closeRun();
+          }, 100);
+          break;
+      }
+    }
+
+    // Generate allowed desktop items in run's list
+    const listItems = desktopIcon
+      .filter(item => {
+        const lowerCaseName = item.name.toLowerCase();
+        return (
+          !cannotOpenFile.includes(lowerCaseName) &&
+          lowerCaseName !== 'resumefile' &&
+          !lowerCaseName.startsWith('0')
+        );
+      })
+      .map(item => item.name);
+
 
 
       function handleDragStop(event, data) {
