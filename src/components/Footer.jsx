@@ -4,7 +4,6 @@ import { motion, AnimatePresence  } from 'framer-motion';
 import startIcon from '../assets/95icon.png';
 import run from '../assets/run.png';
 import github from '../assets/github.png';
-import linked from '../assets/linkedin.png';
 import tile from '../assets/tile.png';
 import sidebar from '../assets/sidebar95.png';
 import display from '../assets/display.png';
@@ -77,6 +76,7 @@ export default function Footer() {
         clippyUsername,
      } = useContext(UseContext);
 
+     const isBitcoinInstalled = desktopIcon.find(item => item.name === 'Bitcoin')
 
      const footerItems = [
         {
@@ -491,15 +491,17 @@ export default function Footer() {
                                 setNewsPopup(!newsPopup)
                             }}
                     />
-                    <img src={btc_icon} alt="btc_icon" 
-                        style={{
-                            position: 'relative',
-                            width: '18px',
-                            left: '5px',
-                            zIndex: '2'
-                        }} 
-                        onClick={() => setBtcShow(!btcShow)}
-                    />
+                    {isBitcoinInstalled && (
+                        <img src={btc_icon} alt="btc_icon" 
+                            style={{
+                                position: 'relative',
+                                width: '18px',
+                                left: '5px',
+                                zIndex: '2'
+                            }} 
+                            onClick={() => setBtcShow(!btcShow)}
+                        />
+                    )}
                     <img src={display} alt="display" 
                         onClick={(e) => {
                             e.stopPropagation()
