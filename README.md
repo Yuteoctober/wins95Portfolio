@@ -168,7 +168,7 @@ All the functionalities
   - All the apps in Store are now free to install 11/02/2025
   - All the apps that being installed or uninstalled are now being add or remove on Tile as well 11/02/2025
   - All apps are now able to install and uninstall in the store 11/02/2025
-  - Now icon will be added and delete dynamically, and width will be adjusted automatically,
+  - Now icon will be added and delete dynamically, and width will be adjusted automatically
   - New icon will be able to be added on the footer bottom right corner" 11/05/2025
 
 Library used:

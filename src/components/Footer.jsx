@@ -201,7 +201,7 @@ export default function Footer() {
         if (timeBarRef.current) {
         setWidth(timeBarRef.current.offsetWidth);
         }
-    }, [isBitcoinInstalled]);
+    }, [isBitcoinInstalled, timeBarRef, width]);
 
 
 
