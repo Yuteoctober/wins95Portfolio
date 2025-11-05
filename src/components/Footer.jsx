@@ -203,8 +203,6 @@ export default function Footer() {
         }
     }, [isBitcoinInstalled, timeBarRef, width]);
 
-
-
      const handleWheelScroll = (e) => { // wheel from x to Y on tap
         const container = wheelTapContainer.current;
         container.scrollLeft += e.deltaY;

@@ -136,6 +136,38 @@ function Store() {
       }
     });
 
+    function findCountOfCatagory(cat) {
+
+      if (!cat) return;
+
+    
+      const allStoreItems = iconInfo.filter(item => item.category);
+
+      switch (cat) {
+        case '1':
+          return allStoreItems.length;
+
+        case '2':
+          return allStoreItems.filter(item => item.category === 'Games').length;
+
+        case '3':
+          return allStoreItems.filter(item => item.category === 'Utilities').length;
+
+        case '4':
+          return allStoreItems.filter(item => item.category === 'Productivity').length;
+
+        case '5':
+          return allStoreItems.filter(item =>
+            !desktopIcon.some(desItem => desItem.name === item.name)
+          ).length;
+
+        default:
+          return 0;
+      }
+    }
+
+
+
   function handleDragStop(event, data) {
     const positionX = data.x 
     const positionY = data.y
@@ -326,23 +358,23 @@ function Store() {
                 <>
                   <div onClick={() => setSelectedCategory('1')}>
                     {selectedCategory === '1' && <span className='cat_dot'>.</span>}
-                    All
+                    All {`(${findCountOfCatagory('1')})`}
                   </div>
                   <div onClick={() => setSelectedCategory('2')}>
                     {selectedCategory === '2' && <span className='cat_dot'>.</span>}
-                    Games
+                    Games {`(${findCountOfCatagory('2')})`}
                   </div>
                   <div onClick={() => setSelectedCategory('3')}>
                     {selectedCategory === '3' && <span className='cat_dot'>.</span>}
-                    Utilities
+                    Utilities {`(${findCountOfCatagory('3')})`}
                   </div>
                   <div onClick={() => setSelectedCategory('4')}>
                     {selectedCategory === '4' && <span className='cat_dot'>.</span>}
-                    Productivity
+                    Productivity {`(${findCountOfCatagory('4')})`}
                   </div>
                   <div onClick={() => setSelectedCategory('5')}>
                     {selectedCategory === '5' && <span className='cat_dot'>.</span>}
-                    To install
+                    To install {`(${findCountOfCatagory('5')})`}
                   </div>
                 </>
               )}
