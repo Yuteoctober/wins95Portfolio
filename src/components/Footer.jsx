@@ -22,7 +22,8 @@ import news from '../assets/news.png'
 
 
 export default function Footer() {
-    
+
+    const timeBarRef = useRef(null);
     const wheelTapContainer = useRef(null)
     const startRef = useRef(null);
     const iconSizeRef = useRef(null);
@@ -31,9 +32,10 @@ export default function Footer() {
     const projectRef = useRef(null)
     const resumeRef = useRef(null)
     const [calValue, calOnChange] = useState(new Date());
-   
+    const [width, setWidth] = useState(0);
+    const [reRenderFooter, setRerenderFooter] = useState(0)
 
-    const { 
+    const {
         tileScreen, setTileScreen,
         onlineUser,
         newsPopup, setNewsPopup,
@@ -60,7 +62,7 @@ export default function Footer() {
         randomClippyPopup, setRandomClippyPopup,
         clippyTouched, setClippyTouched,
         clippyThanks,
-        clippySendemail, 
+        clippySendemail,
         firstTimoutShowclippy,
         RandomTimeoutShowClippy,
         SecondRandomTimeoutShowClippy,
@@ -76,8 +78,7 @@ export default function Footer() {
         clippyUsername,
      } = useContext(UseContext);
 
-     const isBitcoinInstalled = desktopIcon.find(item => item.name === 'Bitcoin')
-
+     
      const footerItems = [
         {
             className: "project",
@@ -174,7 +175,7 @@ export default function Footer() {
             },
         },
         {
-            className: "groove" 
+            className: "groove"
         },
         {
             className: "shutdownicon",
@@ -191,9 +192,19 @@ export default function Footer() {
             },
         }
     ];
-    
-    
-    
+
+    // need to put these in useeffect Array
+    const isBitcoinInstalled = desktopIcon.find(item => item.name === 'Bitcoin')
+
+
+    useEffect(() => { // put add or remove icon in dependency array
+        if (timeBarRef.current) {
+        setWidth(timeBarRef.current.offsetWidth);
+        }
+    }, [isBitcoinInstalled]);
+
+
+
      const handleWheelScroll = (e) => { // wheel from x to Y on tap
         const container = wheelTapContainer.current;
         container.scrollLeft += e.deltaY;
@@ -204,56 +215,56 @@ export default function Footer() {
           const startPopupContainer = startPopUpRef.current;
           const projectContainer = projectRef.current;
           const resumeContainer = resumeRef.current;
-      
+
           if (startPopupContainer) {
             const startRect = startPopupContainer.getBoundingClientRect();
-      
+
             let projectRect = null;
             let resumeRect = null;
-      
+
             if (projectContainer) {
               projectRect = projectContainer.getBoundingClientRect();
             }
             if (resumeContainer) {
               resumeRect = resumeContainer.getBoundingClientRect();
             }
-      
+
             const isMouseOutsideStart =
               event.clientX < startRect.left ||
               event.clientX > startRect.right ||
               event.clientY < startRect.top ||
               event.clientY > startRect.bottom;
-      
+
             const isMouseOutsideProject = projectRect
               ? event.clientX < projectRect.left ||
                 event.clientX > projectRect.right ||
                 event.clientY < projectRect.top ||
                 event.clientY > projectRect.bottom
               : true;
-      
+
             const isMouseOutsideResume = resumeRect
               ? event.clientX < resumeRect.left ||
                 event.clientX > resumeRect.right ||
                 event.clientY < resumeRect.top ||
                 event.clientY > resumeRect.bottom
               : true;
-      
+
             if (isMouseOutsideStart && isMouseOutsideProject && isMouseOutsideResume) {
               setProjectStartBar(false);
               setResumejectStartBar(false);
             }
           }
         };
-      
+
         document.addEventListener('mousemove', handleMouseMove);
-      
+
         return () => {
           document.removeEventListener('mousemove', handleMouseMove);
         };
       }, []);
-      
-      
-    
+
+
+
     useEffect(() => { // set local time
         getCurrentLocalTime12Hour();
         const intervalId = setInterval(getCurrentLocalTime12Hour, 1000); // update every 1 second
@@ -273,7 +284,7 @@ export default function Footer() {
             if (startRef.current && !startRef.current.contains(event.target)) {
                 setStartActive(false);
             }
-            
+
             // Check if the click is outside the icon size element
             if (iconSizeRef.current && !iconSizeRef.current.contains(event.target)) {
                 setIconSize(false);
@@ -283,14 +294,14 @@ export default function Footer() {
                 setCalenderToggle(false);
             }
         };
-    
+
         document.addEventListener('click', handleClickOutside);
-    
+
         return () => {
             document.removeEventListener('click', handleClickOutside);
         };
     }, []);
-    
+
 
     const getCurrentLocalTime12Hour = () => {
         const now = new Date();
@@ -308,12 +319,12 @@ export default function Footer() {
     function handleHideFolder(index) { // unhide icon from tap
 
         const lowerCaseName = tap[index].toLowerCase().split(' ').join('');
-      
+
         const allSetItems =  ObjectState() // all the usestate name to toggle
-        
-      
+
+
         allSetItems.forEach((item) => {
-      
+
           const itemName = item.name.toLowerCase().trim();
           if(item.type === 'userCreatedFolder') { // for user created folder
           item.setter({
@@ -324,7 +335,7 @@ export default function Footer() {
           if(itemName === lowerCaseName) {
             item.setter(prev => ({...prev, focusItem: true}));
             if(item.usestate.hide) {
-                item.setter(prev => ({...prev, hide: false}));  
+                item.setter(prev => ({...prev, hide: false}));
                 if(lowerCaseName === 'winamp') {
                     const webampElement = document.querySelector('#webamp');
                     if (webampElement) {
@@ -353,9 +364,9 @@ export default function Footer() {
 
         setShowClippy(true)
         firstTimoutShowclippy.current = setTimeout(() => {
-            setShowClippy(false) 
+            setShowClippy(false)
         }, 10000);
-        
+
         return () => {
             clearTimeout(firstTimoutShowclippy.current);
         };
@@ -369,7 +380,7 @@ export default function Footer() {
         clearTimeout(ClearTOclippySendemailfunction.current)
         clearTimeout(ClearTOclippyThanksYouFunction.curremt)
         clearTimeout(ClearTOSongfunction.current)
-        
+
         RandomTimeoutShowClippy.current = setTimeout(() => { // random clippy index from length
         const randomIndex = Math.floor(Math.random() * clippyPhrase.inspiration.length)
                 setClippyIndex(randomIndex);
@@ -377,9 +388,9 @@ export default function Footer() {
         SecondRandomTimeoutShowClippy.current = setTimeout(() => {
                 setShowClippy(false);
                 setRandomClippyPopup(prev => !prev);
-            }, 10000); 
-        }, randomTime); 
-    
+            }, 10000);
+        }, randomTime);
+
         return () => {
             clearTimeout(RandomTimeoutShowClippy.current);
             clearTimeout(SecondRandomTimeoutShowClippy.current);
@@ -391,7 +402,7 @@ export default function Footer() {
         clearTimeout(ClearTOdonttouch.current)
         ClearTOdonttouch.current = setClippyTouched(true)
         setTimeout(() => {
-            setClippyTouched(false)   
+            setClippyTouched(false)
         }, 3500);
 
         return () => {
@@ -405,21 +416,21 @@ export default function Footer() {
         if(clippySendemail) return clippySuggest[0]
         if(clippySong) return clippySuggest[2]
         if(clippyUsername) return chatDown? clippySuggest[4] : onlineUser < 2 ? clippySuggest[5] : clippySuggest[3]
-        
-        return clippyPhrase.inspiration[clippyIndex].phrase // return default from phrase 
+
+        return clippyPhrase.inspiration[clippyIndex].phrase // return default from phrase
     }
-    
+
     useEffect(() => { /// need useeffect to update state before it returns on handleClipperTalk()
         if (clippySendemail) {
             setClippyIndex(1);
             return;
         }
         if (clippySong) {
-            setClippyIndex(7); 
+            setClippyIndex(7);
             return;
         }
         if (clippyUsername) {
-            setClippyIndex(2); 
+            setClippyIndex(2);
             return;
         }
     }, [clippySendemail, clippySong, clippyUsername]);
@@ -453,9 +464,13 @@ export default function Footer() {
                 >
                     <img src={startIcon} alt="startIcon" />
                     <h4>Start</h4>
-                </div>        
+                </div>
                 {/* -------- CREATE TAP ON FOOTER -------- */}
                 <div className="tap_container" ref={wheelTapContainer}
+                    style={{
+                        maxWidth: `calc(100% - ${80 + width}px)`
+                        }}
+
                     onWheel={handleWheelScroll}
                 >
                     {tap.map((item, index) => (
@@ -469,47 +484,41 @@ export default function Footer() {
                             >
                             {
                             <img src={
-                                item === 'RecycleBin' && recycleBinLength === 0 ? binEmp 
-                                : item === 'RecycleBin' && recycleBinLength > 0 ? bin 
+                                item === 'RecycleBin' && recycleBinLength === 0 ? binEmp
+                                : item === 'RecycleBin' && recycleBinLength > 0 ? bin
                                 : imageMapping(item)} alt={''} />
                             }
                             <p>{item}</p>
-                        </div>  
+                        </div>
                     ))}
                 </div>
 
-                <div className="time">
-                    <img src={news} alt="news" 
-                            style={{
-                                position: 'relative',
-                                width: '18px',
-                                left: '3px',
-                                zIndex: '2'
-                            }} 
+                <div className="time"
+                    ref={timeBarRef}
+                >
+                    <div className="icon_time_container">
+                        <img src={news} alt="news"
+                                onClick={(e) => {
+                                    e.stopPropagation()
+                                    setNewsPopup(!newsPopup)
+                                }}
+                        />
+                        {isBitcoinInstalled && (
+                            <img src={btc_icon} alt="btc_icon"
+    
+                                onClick={() => setBtcShow(!btcShow)}
+                            />
+                        )}
+                        <img src={display} alt="display"
+                            style={{width: '20px'}}
                             onClick={(e) => {
                                 e.stopPropagation()
-                                setNewsPopup(!newsPopup)
+                                setIconSize(!iconSize)
+                                setStartActive(false)
+                                setCalenderToggle(false)
                             }}
-                    />
-                    {isBitcoinInstalled && (
-                        <img src={btc_icon} alt="btc_icon" 
-                            style={{
-                                position: 'relative',
-                                width: '18px',
-                                left: '5px',
-                                zIndex: '2'
-                            }} 
-                            onClick={() => setBtcShow(!btcShow)}
                         />
-                    )}
-                    <img src={display} alt="display" 
-                        onClick={(e) => {
-                            e.stopPropagation()
-                            setIconSize(!iconSize)
-                            setStartActive(false)
-                            setCalenderToggle(false)
-                        }}
-                    />
+                    </div>
                     <div className='p_time_div'
                         style={{background: calenderToggle? '#8c8888c2':''}}>
                         <p
@@ -530,9 +539,9 @@ export default function Footer() {
                         style={{display: startActive? '' : 'none'}}
                     >
                         {footerItems.map((item, index) => (
-                            <motion.div 
-                            key={index} 
-                            className={item.className} 
+                            <motion.div
+                            key={index}
+                            className={item.className}
                             onClick={(e) => {
                                 e.stopPropagation()
                                 item.onClick()
@@ -540,10 +549,10 @@ export default function Footer() {
                             onHoverStart={!isTouchDevice && item.onmouseenter}
                         >
                             {item.imgSrc && (
-                                <img 
-                                    src={item.imgSrc} 
-                                    alt={item.imgAlt} 
-                                    style={item.style || {}} 
+                                <img
+                                    src={item.imgSrc}
+                                    alt={item.imgAlt}
+                                    style={item.style || {}}
                                 />
                             )}
                             {item.spanText && <span>{item.spanText}</span>}
@@ -566,7 +575,7 @@ export default function Footer() {
                         </motion.div>
                         )}
                         {resumeStartBar && (
-                            <motion.div className="sub_start_container" 
+                            <motion.div className="sub_start_container"
                                 ref={resumeRef}
                                 style={{
                                     display: resumeFolderItem === 0 ? 'none' : '',
@@ -583,10 +592,10 @@ export default function Footer() {
                             ))}
                         </motion.div>
                         )}
-                        
+
                     </div>
                     )}
-                    
+
                 <AnimatePresence>
                 {showClippy && (
                     <motion.div
@@ -624,31 +633,31 @@ export default function Footer() {
                     }}
                 >
                 {item.value === iconTextSize(iconScreenSize).number && (
-                 <BsCheck  
+                 <BsCheck
                     style={{
                         position: 'absolute',
                         fontSize: '15px',
                     }}
-                 />   
+                 />
                 ) }
-                
+
                     <p>
                         {item.label}
                     </p>
                 </div>
             ))}
-            </div>  
+            </div>
             )}
             {calenderToggle && (
-                <div className="calender_container" 
+                <div className="calender_container"
                     ref={calenderRef}
                 >
-                    <Calendar onChange={calOnChange} value={calValue} 
-                        
+                    <Calendar onChange={calOnChange} value={calValue}
+
                     />
                 </div>
             )}
-            
+
         </>
     );
 }

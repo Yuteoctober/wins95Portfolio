@@ -290,25 +290,33 @@ body {
     display: flex;
     position: absolute;
     height: 28px;
-    width: fit-content;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     right: 4px;
     gap: 0px;
     box-shadow: inset 1px 1px #000, 1px 1px #ffffffdd;
 }
 
-.footer .time img {
+.footer .icon_time_container {
+    display: flex;
+    width: fit-content;
+    height: 100%;
+    align-items: center;
+    padding: 0px 2px;
+
+}
+
+.icon_time_container img {
+    width: 18px;
     position: relative;
-    width: 35px;
-    right: 1px;
     cursor: pointer;
+    z-index: 2;
 }
 
 .footer .time .p_time_div {
     position: relative;
     top: 1px;
-    right: 7px;
+    padding: 0px 3px;
     cursor: default;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -323,7 +331,6 @@ body {
     letter-spacing: .7px;
     white-space: nowrap;
     top: 0.5px;
-    padding: 0px 3px;
 }
 
 .footer .start_popup {
@@ -494,7 +501,6 @@ body {
 .tap_container {
     display: flex;
     position: relative;
-    max-width: calc(100svw - 205px);
     padding-right: 2px;
     justify-content: flex-start;
     align-items: center;
@@ -505,6 +511,7 @@ body {
     overflow-y: hidden;
     scrollbar-width: none; 
     -ms-overflow-style: none;
+
 }
 
 .tap_container::-webkit-scrollbar {

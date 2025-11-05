@@ -1,5 +1,13 @@
 const patchNotes = [
   {
+    head: "**Fotter**",
+    date: "2025-11-05",
+    notes: [
+      "Now icon will be added and delete dynamically, and width will be adjusted automatically",
+      "New icon will be able to be added on the footer bottom right corner"
+    ]
+  },
+  {
     head: "**Store**",
     date: "2025-11-02",
     notes: [
