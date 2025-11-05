@@ -42,6 +42,7 @@ import { StyleHide, imageMapping,
 
 
 function App() {
+  const [itemIsBeingDeleted, setItemIsBeingDeleted] = useState('')
   const [itemBeingSelected, setItemBeingSelected] = useState(null)
   const [installIcon, setInstallIcon] = useState(0)
   const [currentRightClickFolder, setCurrentRightClickFolder] = useState('Desktop')
@@ -892,6 +893,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
 
 
   const contextValue = {
+    itemIsBeingDeleted, setItemIsBeingDeleted,
     itemBeingSelected, setItemBeingSelected,
     installIcon, setInstallIcon,
     StoreExpand, setStoreExpand,
@@ -1233,9 +1235,10 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
 // }
 
   function deletepermanently(deleteName) { // delete from desktopIcon
-
     if(deleteName === 'Store') return;
     
+    setItemIsBeingDeleted(deleteName)
+    console.log(deleteName)
     const droppedIcon = desktopIcon.find(icon => icon.name === deleteName);
     if (droppedIcon) { 
       setDesktopIcon(prevIcons => {

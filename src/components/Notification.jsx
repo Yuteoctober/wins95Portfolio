@@ -68,28 +68,28 @@ function Notification() {
       case 'appInstalling':
         return {
           img,
-          text1: `Installing ${safeName} app...`,
+          text1: `Installing ${safeName}...`,
           text2: '',
           function: '',
         };
       case 'appInstalled':
         return {
           img,
-          text1: `${safeName} app is now installed`,
+          text1: `${safeName} is now installed`,
           text2: '',
           function: safeName,
         };
       case 'unIntallingApp':
         return {
           img,
-          text1: `uninstalling ${safeName} app`,
+          text1: `Uninstalling ${safeName}`,
           text2: '',
           function: '',
         };
       case 'appUninstalled':
         return {
           img,
-          text1: `${safeName} app is now uninstalled`,
+          text1: `${safeName} is now uninstalled`,
           text2: '',
           function: '',
         };
@@ -97,7 +97,7 @@ function Notification() {
         return {
           img: icon_wins95,
           text1: 'Welcome to My Windows 95 Portfolio! 🎉',
-          text2: 'It’s a fun, retro-styled space where I showcase my projects. Hope you enjoy exploring!',
+          text2: 'Hope you enjoy exploring......',
           function: '',
         };
     }

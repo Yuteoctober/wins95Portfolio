@@ -21,6 +21,7 @@ function Store() {
   
 
   const { 
+    itemIsBeingDeleted, setItemIsBeingDeleted,
     setDeleteIcon,
     clearNotiTimeOut,
     setNewMessage,
@@ -207,6 +208,7 @@ function Store() {
   }
 
   function deleteAppInStore(item) {
+    setItemIsBeingDeleted(item.name)
     setItembeingUninstall(item.name)
     setDeleteInStore(prev => prev + 1)
   }

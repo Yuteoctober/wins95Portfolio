@@ -8,7 +8,8 @@ import dayjs from 'dayjs';
 
 export default function WindowsDragLogin() {
 
-  const { 
+  const {
+    itemIsBeingDeleted, setItemIsBeingDeleted,
     itemBeingSelected,
     desktopIcon,
     deleteIcon, setDeleteIcon,
@@ -58,9 +59,6 @@ export default function WindowsDragLogin() {
   // Separate installed icons (everything except notInstalled)
   const initiatedIcon = BannedIcons.filter(icon => !notInstalled.includes(icon.content));
 
-  // Stored desktop icons for comparison
-  const [storedDesktopIcons, setStoredDesktopIcons] = useState(desktopIcon);
-
   // Tile state
   const [tiles, setTiles] = useState(() => {
     const saved = localStorage.getItem('tiles');
@@ -73,19 +71,18 @@ export default function WindowsDragLogin() {
   // Delete icon effect
   useEffect(() => {
     if (deleteIcon > 0) {
-      const findDeletedIcon = storedDesktopIcons.find(
-        storedIcon => !desktopIcon.some(icon => icon.name === storedIcon.name)
-      );
+      console.log(itemIsBeingDeleted)
+      if(!itemIsBeingDeleted) return;
 
-      if (!findDeletedIcon) return;
+      console.log(itemIsBeingDeleted.trim())
 
-      const updatedTiles = tiles.filter(tile => tile.content !== findDeletedIcon.name);
-      setTiles(updatedTiles);
+      // remove matching tile
+      setTiles(prev => {
+        const newTiles = prev.filter(tile => tile.content !== itemIsBeingDeleted);
+        setItemIsBeingDeleted('')
+        return newTiles;
+      });
 
-
-
-      // Update stored desktop icons
-      setStoredDesktopIcons(desktopIcon);
     }
   }, [deleteIcon]);
 
@@ -105,8 +102,8 @@ export default function WindowsDragLogin() {
 
       setTimeout(() => {
 
-      setTiles(prev => [...prev, tileWithId]);
-      setStoredDesktopIcons(desktopIcon);  
+      const updateTiles = [...tiles, tileWithId]
+      setTiles(updateTiles);
       
       }, 15000);
       

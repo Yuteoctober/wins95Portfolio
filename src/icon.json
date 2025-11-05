@@ -48,7 +48,7 @@
 
     },
     {
-        "name": "Mine Sweeper",
+        "name": "MineSweeper",
         "pic": "MineSweeper",
         "folderId": "Project",
         "size": 250,
