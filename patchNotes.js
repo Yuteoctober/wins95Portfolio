@@ -1,6 +1,6 @@
 const patchNotes = [
   {
-    head: "**Fotter**",
+    head: "**Footer**",
     date: "2025-11-05",
     notes: [
       "Now icon will be added and delete dynamically, and width will be adjusted automatically",
