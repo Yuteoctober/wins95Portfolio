@@ -71,10 +71,8 @@ export default function WindowsDragLogin() {
   // Delete icon effect
   useEffect(() => {
     if (deleteIcon > 0) {
-      console.log(itemIsBeingDeleted)
-      if(!itemIsBeingDeleted) return;
 
-      console.log(itemIsBeingDeleted.trim())
+      if(!itemIsBeingDeleted) return;
 
       // remove matching tile
       setTiles(prev => {
