@@ -113,7 +113,6 @@ function App() {
   const [selectedFolder, setSelectedFolder] = useState({label: 'MyComputer', img: imageMapping('MyComputer')})
   const [currentFolder, setCurrentFolder] = useState('MyComputer')
   const [loading, setLoading] = useState(true)
-  const [btcShow, setBtcShow] = useState(false)
   const [resumeStartBar, setResumejectStartBar] = useState(false)
   const [projectStartBar, setProjectStartBar] = useState(false)
   const [calenderToggle, setCalenderToggle] = useState(false)
@@ -263,6 +262,9 @@ function App() {
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [StoreExpand, setStoreExpand] = useState(
+    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
+  
+  const [btcShow, setBtcShow] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [UserCreatedFolder, setUserCreatedFolder] = useState(() => {
@@ -1189,7 +1191,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
         <OpenProject/>
         <BgSetting/>
         <Run/>
-        {btcShow && <BTC/>}
+        <BTC/>
         <Dragdrop/>
         <Footer/>
       </UserContext.Provider>
@@ -1501,6 +1503,7 @@ function ObjectState() {
     { name: 'Utility',     setter: setUtilityExpand,    usestate: UtilityExpand,    color: 'rgba(116, 85, 54, 0.85)', size: 'small' },
     { name: 'TaskManager', setter: setTaskManagerExpand,usestate: TaskManagerExpand,color: 'rgba(218, 160, 109, 0.85)', size: 'small' },
     { name: 'Store',       setter: setStoreExpand,      usestate: StoreExpand,      color: 'rgba(132, 140, 207, 0.85)', size: 'small' },
+    { name: 'Bitcoin',         setter: setBtcShow,          usestate: btcShow,          color: 'rgba(132, 140, 207, 0.85)', size: 'small' },
     
     // Add user folders dynamically with individual state management
     ...UserCreatedFolder.map(folder => ({
@@ -1553,11 +1556,6 @@ function handleShow(name) {
   setRightClickDefault(false);
 
   if(name === '' || !name) return;
-
-  if(name === 'Bitcoin') {
-    setBtcShow(true)
-    return;
-  }
 
   const lowerCaseName = name.toLowerCase().split(' ').join('');
   const allSetItems = ObjectState();
@@ -1646,7 +1644,7 @@ function handleShow(name) {
   if(tap.includes(name)) return;
   setStartActive(false);
 
-  const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune'];
+  const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin'];
   if (notToOpenList.includes(name)) return;
 
   setTap(prevTap => [...prevTap, name]);
@@ -1662,12 +1660,6 @@ function handleShowMobile(name) {
   if (now - lastTapTime < 300) {
 
     if(name === '' || !name) return;
-
-  
-    if(name === 'Bitcoin') {
-      setBtcShow(true)
-      return;
-    }
   
     const lowerCaseName = name.toLowerCase().split(' ').join('');
   
@@ -1750,7 +1742,7 @@ function handleShowMobile(name) {
     if(tap.includes(name)) return;
     setStartActive(false)
   
-    const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune'];
+    const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin'];
     if (notToOpenList.includes(name)) return;
   
     setTap(prevTap => [...prevTap, name]);
@@ -1897,11 +1889,6 @@ function handleShowMobile(name) {
 }
 
   function deleteTap(name) {
-
-    if(name === 'Bitcoin') {
-      setBtcShow(false)
-      return;
-    }
 
     const setState = ObjectState();
     const passedName = name.toLowerCase().split(' ').join('');

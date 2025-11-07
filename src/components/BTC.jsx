@@ -103,7 +103,7 @@ function BTC() {
 
   return (
     <>
-      {btcShow && (
+      {btcShow.show && (
         <div className="btc_widget_win95">
           {/* Main content - made more compact */}
           <div className="btc_content">

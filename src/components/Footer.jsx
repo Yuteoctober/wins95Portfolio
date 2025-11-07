@@ -36,6 +36,7 @@ export default function Footer() {
     const [reRenderFooter, setRerenderFooter] = useState(0)
 
     const {
+        deleteTap,
         tileScreen, setTileScreen,
         onlineUser,
         newsPopup, setNewsPopup,
@@ -504,7 +505,7 @@ export default function Footer() {
                         {isBitcoinInstalled && (
                             <img src={btc_icon} alt="btc_icon"
     
-                                onClick={() => setBtcShow(!btcShow)}
+                                onClick={() => btcShow.show ? deleteTap('Bitcoin') : handleShow('Bitcoin')}
                             />
                         )}
                         <img src={display} alt="display"
