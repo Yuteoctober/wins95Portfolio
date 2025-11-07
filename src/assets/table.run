@@ -1,0 +1,15 @@
+{
+  "id": "table",
+  "title": "Sheets",
+  "icon": "📏",
+  "startMenu": {
+    "list": "Desktop Apps"
+  },
+  "desktop": {
+    "display": true
+  },
+  "data": {
+    "lazyLoad": "./lazy/table.js",
+    "sandboxed": true
+  }
+}
