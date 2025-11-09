@@ -332,6 +332,20 @@
     cursor: pointer;
 }
 
+.folder_folder-mail textarea {
+    width: calc(100% - 7px);
+    height: 100svh;
+    margin-left: 4px;
+    padding: 6px;
+    font-size: 14px;
+}
+
+.folder_folder-mail textarea::placeholder {
+    position: relative;
+    color: #888;
+    font-style: italic;
+}
+
 @supports (-webkit-touch-callout: none) {
     .sendmail_icon .sendmail_img_container {
      padding-top: 3px;
