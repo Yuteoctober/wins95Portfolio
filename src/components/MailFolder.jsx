@@ -194,28 +194,7 @@ const form = useRef();
                   <input className="myemail_container" type="email" name="from_email" ref={focusEmail} style={{background: 'white'}}  />
                 </div>
               </div>
-              <textarea name="message" required placeholder='Enter your message here...'
-                style=
-                {{
-                  position: 'absolute',
-                  width: 'calc(100% - 9px)',
-                  height: MailExpand.expand ? 'calc(100%)' : 'calc(100%)',
-                  left: '50%',
-                  transform: 'translate(-50%)',
-                  padding: '.5rem .5rem',
-                  fontSize: '14px',
-                  border: '1px solid black',
-                  borderBottomColor:'white',
-                  borderTopColor: 'black',
-                  borderLeftColor: 'black',
-                  borderRightColor: 'white',
-                  resize: 'none',
-                  borderRadius: '0px',
-                  letterSpacing: '.5px',
-                  background: 'white'
-                  
-                }}
-              />
+              <textarea name="message" required placeholder='Enter your message here...'/>
             </form>
           </div>
         </div>
