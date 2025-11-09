@@ -338,6 +338,9 @@
     margin-left: 4px;
     padding: 6px;
     font-size: 14px;
+    border: 2px solid black;
+    border-right-color: white;
+    border-left-color: white;
 }
 
 .folder_folder-mail textarea::placeholder {
