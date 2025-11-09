@@ -108,7 +108,7 @@ function Dragdrop() {
         e.stopPropagation();
     }}
     >
-      <div className="search_icon"
+      {/* <div className="search_icon"
         style={{
           display: searchPopup ? 'none' : '',
           touchAction: searchPopup ? 'auto' : 'none',
@@ -147,7 +147,8 @@ function Dragdrop() {
           ><IoIosSearch />
           </span>
         </motion.div>
-      </AnimatePresence>
+      </AnimatePresence> */}
+
       <div className='drag_drop'
         key={refresh}
       >

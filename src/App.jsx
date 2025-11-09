@@ -1241,6 +1241,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     
     setItemIsBeingDeleted(deleteName)
     console.log(deleteName)
+    deleteTap(deleteName)
     const droppedIcon = desktopIcon.find(icon => icon.name === deleteName);
     if (droppedIcon) { 
       setDesktopIcon(prevIcons => {
@@ -1265,8 +1266,12 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
           folder => folder.name !== findUserCreatedFolder.name
         );
 
+        
+
         setUserCreatedFolder(updatedFolders);
         localStorage.setItem("userFolders", JSON.stringify(updatedFolders));
+
+        
     }
 
     

@@ -238,6 +238,7 @@ function Store() {
             setNotiOn(true);
             setDisableUninstall(false)
             setDeleteIcon(prev => prev + 1)
+            deleteTap(itemBeingUninstall)
           }, 100);
       setKey(prev => prev + 1); // Force re-render if needed
       }, 5000);
