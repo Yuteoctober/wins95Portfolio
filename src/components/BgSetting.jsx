@@ -89,7 +89,7 @@ function BgSetting() {
         { value: 10, label: 'Purple Blue', color: '#354092', image: bg9, barColor: '#354092'},
         { value: 11, label: 'Live Wavy Grey', color: '#3C3C3C', image: bg10, barColor: '#3C3C3C'},
         { value: 12, label: 'Live Wavy Light Grey', color: '#828890', image: bg11, barColor: '#4a4a4a'},
-        { value: 14, label: 'Computer Disk', color: '#828890', image: bg12, barColor: '#14045c'},
+        { value: 14, label: 'Computer Disk', color: '#098684', image: bg12, barColor: '#14045c'},
       ];
       
       
