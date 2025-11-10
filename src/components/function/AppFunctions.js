@@ -207,108 +207,41 @@ export function imageMapping (name, type) {
 }
 
 // set photo to the current photo
+const photoMap = {
+  '1': firstPic,
+  '2': secondPic,
+  '3': thirdPic,
+  '4': fourthPic,
+  '5': fifthPic,
+  '6': sixthPic,
+  '7': seventhPic,
+  '8': eighthPic,
+  '9': ninthPic,
+  '10': tenthPic,
+  '11': eleventhPic,
+};
+
 export function handleDoubleClickPhotoOpen(name, setCurrentPhoto) {
-
-    switch(name) {
-      case '001': 
-        setCurrentPhoto({name: name, pic: firstPic}); 
-        break;
   
-      case '002': 
-        setCurrentPhoto({name: name, pic: secondPic}); 
-        break;
-      
-      case '003':
-        setCurrentPhoto({name: name, pic: thirdPic});
-        break;
-      
-      case '004':
-        setCurrentPhoto({name: name, pic: fourthPic});
-        break;
+  const normalized = String(parseInt(name, 10));
 
-      case '005':
-        setCurrentPhoto({name: name, pic: fifthPic});
-        break;
+  const pic = photoMap[normalized];
+  if (!pic) return;
 
-      case '006':
-        setCurrentPhoto({name: name, pic: sixthPic});
-        break;
-
-      case '007':
-        setCurrentPhoto({name: name, pic: seventhPic});
-        break;
-
-      case '008':
-        setCurrentPhoto({name: name, pic: eighthPic});
-        break; 
-      
-      case '009':
-        setCurrentPhoto({name: name, pic: ninthPic});
-        break;
-
-      case '010':
-        setCurrentPhoto({name: name, pic: tenthPic});
-        break;
-
-      case '011':
-        setCurrentPhoto({name: name, pic: eleventhPic});
-        break;
-
-    default: break; 
-  }
+  setCurrentPhoto({ name: normalized, pic });
 }
+
 
 export function handleDoubleClickPhotoOpenMobile(name, setCurrentPhoto, lastTapTime, setLastTapTime) {
   const now = Date.now();
   if (now - lastTapTime < 300) {
     
-    switch(name) {
-      case '001': 
-        setCurrentPhoto({name: name, pic: firstPic}); 
-        break;
-  
-      case '002': 
-        setCurrentPhoto({name: name, pic: secondPic}); 
-        break;
+    const normalized = String(parseInt(name, 10));
 
-      case '003':
-         setCurrentPhoto({name: name, pic: thirdPic});
-        break;
-        
-      case '004':
-        setCurrentPhoto({name: name, pic: fourthPic});
-        break;
-  
-      case '005':
-        setCurrentPhoto({name: name, pic: fifthPic});
-        break;
-  
-      case '006':
-        setCurrentPhoto({name: name, pic: sixthPic});
-        break;
+  const pic = photoMap[normalized];
+  if (!pic) return;
 
-      case '007':
-        setCurrentPhoto({name: name, pic: seventhPic});
-       break;
-  
-      case '008':
-       setCurrentPhoto({name: name, pic: eighthPic});
-      break; 
-        
-      case '009':
-       setCurrentPhoto({name: name, pic: ninthPic});
-      break;
-  
-      case '010':
-       setCurrentPhoto({name: name, pic: tenthPic});
-      break;
-  
-      case '011':
-       setCurrentPhoto({name: name, pic: eleventhPic});
-      break;
-  
-      default: break;
-    }
+  setCurrentPhoto({ name: normalized, pic });
   }
   setLastTapTime(now);
   }

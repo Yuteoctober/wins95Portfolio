@@ -4,6 +4,7 @@ import { useDrag, useDrop } from 'react-dnd';
 import UseContext from '../Context';
 import dayjs from 'dayjs';
 import Switch from "react-switch";
+import { handleDoubleClickPhotoOpen } from '../components/function/AppFunctions'
 
 import p1 from '../assets/001.jpg';
 import p2 from '../assets/002.jpg';
@@ -53,6 +54,7 @@ const ItemType = 'TILE';
 
 export default function Tile({ id, content, index, size, color, moveTile, imageMapping, disable, randomBGFunction }) {
   const { 
+    setCurrentPhoto,
     allNews,
     city, 
     Cel, setCel, 
@@ -381,6 +383,12 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
 
       case 'News':
         setNewsPopup(true)
+        setTileScreen(false);
+        return;
+
+      case 'Picture':
+        handleDoubleClickPhotoOpen(imgIndex + 1,  setCurrentPhoto)
+        handleShow('Photo');
         setTileScreen(false);
         return;
 
