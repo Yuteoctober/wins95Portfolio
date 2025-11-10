@@ -50,14 +50,8 @@ function TaskManager() {
     return item.usestate.show === true
   });
 
-  const additionalItems = [ // added items
-    { name: 'Bitcoin', state: btcShow },
-  ];
 
-  const activeState = [
-  ...activeStateAll,
-  ...additionalItems.filter(item => item.state)
-  ];
+  const activeState = [...activeStateAll];
 
   return (
     <>
