@@ -1,5 +1,12 @@
 const patchNotes = [
   {
+    head: "**Pixel Pic**",
+    date: "2026-01-04",
+    notes: [
+      "Added new project, pixel pic, a pixel art converting app",
+    ]
+  },
+  {
     head: "**Footer**",
     date: "2025-11-05",
     notes: [

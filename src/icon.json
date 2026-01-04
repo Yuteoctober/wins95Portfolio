@@ -395,5 +395,17 @@
         "type": ".exe",
         "x": 39,
         "y": 39
+    },
+    {
+        "name": "PixelPic",
+        "pic": "PixelPic",
+        "folderId": "Project",
+        "size": 3000,
+        "type": ".exe",
+        "x": 40,
+        "y": 40,
+        "category": "Productivity",
+        "description": "Pixel art creation and editing tool for designing pixel-based images."
     }
+
 ]

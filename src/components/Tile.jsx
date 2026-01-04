@@ -45,6 +45,7 @@ import githublogo from '../assets/github.gif';
 import newsicon from '../assets/newstile.png';
 import task from '../assets/task.png'
 import store from '../assets/store_tile.png'
+import layer from '../assets/layer_tile.png'
 
 
 
@@ -311,6 +312,13 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundImage: `url(${store})`,
           backgroundPosition: '50% 57%',
           backgroundSize: '64px',
+          backgroundRepeat: 'no-repeat',
+        };
+        case 'PixelPic':
+        return {
+          backgroundImage: `url(${layer})`,
+          backgroundPosition: '50% 57%',
+          backgroundSize: '50px',
           backgroundRepeat: 'no-repeat',
         };
         case 'News':

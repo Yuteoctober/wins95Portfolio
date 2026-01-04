@@ -1492,6 +1492,7 @@ function ObjectState() {
     { name: 'Note',        setter: setNoteExpand,       usestate: NoteExpand,       color: 'rgba(114, 81, 54, 0.85)', size: 'small' },
     { name: 'AiAgent',     setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(82, 117, 132, 0.85)', size: 'small' },
     { name: '3dObject',    setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
+    { name: 'PixelPic',    setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
     { name: 'Fortune',     setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(224, 88, 43, 0.85)', size: 'small' },
     { name: 'Winamp',      setter: setWinampExpand,     usestate: WinampExpand,     color: 'rgba(105, 136, 145, 0.85)', size: 'small' },
     { name: 'ResumeFile',  setter: setResumeFileExpand, usestate: ResumeFileExpand, color: 'rgba(133, 165, 67, 0.85)', size: 'small' },
@@ -1508,7 +1509,7 @@ function ObjectState() {
     { name: 'Utility',     setter: setUtilityExpand,    usestate: UtilityExpand,    color: 'rgba(116, 85, 54, 0.85)', size: 'small' },
     { name: 'TaskManager', setter: setTaskManagerExpand,usestate: TaskManagerExpand,color: 'rgba(218, 160, 109, 0.85)', size: 'small' },
     { name: 'Store',       setter: setStoreExpand,      usestate: StoreExpand,      color: 'rgba(132, 140, 207, 0.85)', size: 'small' },
-    { name: 'Bitcoin',         setter: setBtcShow,          usestate: btcShow,          color: 'rgba(132, 140, 207, 0.85)', size: 'small' },
+    { name: 'Bitcoin',     setter: setBtcShow,          usestate: btcShow,          color: 'rgba(132, 140, 207, 0.85)', size: 'small' },
     
     // Add user folders dynamically with individual state management
     ...UserCreatedFolder.map(folder => ({
@@ -1632,6 +1633,10 @@ function handleShow(name) {
         }
         if(lowerCaseName === 'fortune') {
         handleDoubleClickiframe('Fortune', setOpenProjectExpand, setProjectUrl)
+        handleShow('PixelPic');
+        }
+        if(lowerCaseName === 'pixelpic') {
+        handleDoubleClickiframe('PixelPic', setOpenProjectExpand, setProjectUrl)
         handleShow('Internet');
       }
     } else {
@@ -1649,7 +1654,7 @@ function handleShow(name) {
   if(tap.includes(name)) return;
   setStartActive(false);
 
-  const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin'];
+  const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin', 'PixelPic'];
   if (notToOpenList.includes(name)) return;
 
   setTap(prevTap => [...prevTap, name]);
@@ -1734,6 +1739,10 @@ function handleShowMobile(name) {
         if(lowerCaseName === 'fortune') {
         handleDoubleClickiframe('Fortune', setOpenProjectExpand, setProjectUrl)
         handleShow('Internet');
+        }
+        if(lowerCaseName === 'pixelpic') {
+        handleDoubleClickiframe('PixelPic', setOpenProjectExpand, setProjectUrl)
+        handleShow('Internet');
       }
       }
       if(item.type === 'userCreatedFolder') {
@@ -1747,7 +1756,7 @@ function handleShowMobile(name) {
     if(tap.includes(name)) return;
     setStartActive(false)
   
-    const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin'];
+    const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin', 'PixelPic'];
     if (notToOpenList.includes(name)) return;
   
     setTap(prevTap => [...prevTap, name]);

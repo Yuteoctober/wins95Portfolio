@@ -40,6 +40,7 @@ import tile from '../../assets/tile.png'
 import taskmanager from '../../assets/taskmanager.png'
 import notepad from '../../assets/notepad.png'
 import store from '../../assets/store.png'
+import layer from '../../assets/layer.png'
 
 
 
@@ -195,6 +196,10 @@ export function imageMapping (name, type) {
     case "store":
       return store
 
+    case "PixelPic":
+    case "pixelpic":
+      return layer
+
     default:
       if(type === 'folder') {
         return Project;
@@ -270,6 +275,10 @@ export function handleDoubleClickiframe(name, setOpenProjectExpand, setProjectUr
         setProjectUrl('https://yuteoctober.github.io/week_fortune/'); 
     break;
 
+    case 'PixelPic': 
+        setProjectUrl('https://yuteoctober.github.io/Pixel_pic/'); 
+    break;
+
     default: break; 
   }
 }
@@ -296,6 +305,10 @@ export function handleDoubleTapiframeMobile(name, lastTapTime, setLastTapTime, s
 
         case 'Fortune': 
         setProjectUrl('https://yuteoctober.github.io/week_fortune/'); 
+        break;
+
+        case 'PixelPic': 
+        setProjectUrl('https://yuteoctober.github.io/Pixel_pic/'); 
         break;
   
       default: break; 
