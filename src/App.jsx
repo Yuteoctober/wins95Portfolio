@@ -321,7 +321,7 @@ function App() {
       handleShow('Patch');
     }, 2500);
     
-    if(!desktopIcon.find(icon => icon.name === 'Store')) {
+    if(!desktopIcon.find(icon => icon.name === 'PixelPic')) {
       localStorage.clear();
       location.reload();
     }
