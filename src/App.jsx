@@ -1633,7 +1633,7 @@ function handleShow(name) {
         }
         if(lowerCaseName === 'fortune') {
         handleDoubleClickiframe('Fortune', setOpenProjectExpand, setProjectUrl)
-        handleShow('PixelPic');
+        handleShow('Internet');
         }
         if(lowerCaseName === 'pixelpic') {
         handleDoubleClickiframe('PixelPic', setOpenProjectExpand, setProjectUrl)
