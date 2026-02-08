@@ -200,6 +200,10 @@ export function imageMapping (name, type) {
     case "pixelpic":
       return layer
 
+    case "IE":
+    case "ie":
+      return ie;
+
     default:
       if(type === 'folder') {
         return Project;
@@ -252,63 +256,86 @@ export function handleDoubleClickPhotoOpenMobile(name, setCurrentPhoto, lastTapT
   }
 
 // click to open links
-export function handleDoubleClickiframe(name, setOpenProjectExpand, setProjectUrl) {
+export function handleDoubleClickiframe(name, setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe) {
+
 
   switch(name) {
     case 'Nft': 
-      setProjectUrl('https://opennft.netlify.app/'); 
+      setProjectUrl('https://opennft.netlify.app/');
+      setBackTrackIe(prev => [...prev, 'https://opennft.netlify.app/']);
     break;
 
     case 'Note': 
       setProjectUrl('https://fullstack-stickynotes.netlify.app/'); 
+        setBackTrackIe(prev => [...prev, 'https://fullstack-stickynotes.netlify.app/']);
     break;
 
     case 'AiAgent': 
         setProjectUrl('https://yuteoctober.github.io/AI_chatbot/'); 
+        setBackTrackIe(prev => [...prev, 'https://yuteoctober.github.io/AI_chatbot/']);
     break;
 
     case '3dObject': 
         setProjectUrl('https://yuteoctober.github.io/3d_book/'); 
+        setBackTrackIe(prev => [...prev, 'https://yuteoctober.github.io/3d_book/']);
     break;
 
     case 'Fortune': 
         setProjectUrl('https://yuteoctober.github.io/week_fortune/'); 
+        setBackTrackIe(prev => [...prev, 'https://yuteoctober.github.io/week_fortune/']);
     break;
 
     case 'PixelPic': 
         setProjectUrl('https://yuteoctober.github.io/Pixel_pic/'); 
+        setBackTrackIe(prev => [...prev, 'https://yuteoctober.github.io/Pixel_pic/']);
+    break;
+
+    case 'IE': 
+        setProjectUrl('https://www.google.com/search?igu=1'); 
+        setBackTrackIe(prev => [...prev, 'https://www.google.com/search?igu=1']);
     break;
 
     default: break; 
   }
 }
 
-export function handleDoubleTapiframeMobile(name, lastTapTime, setLastTapTime, setOpenProjectExpand, setProjectUrl) {
+export function handleDoubleTapiframeMobile(name, lastTapTime, setLastTapTime, setOpenProjectExpand, setProjectUrl, setBackTrackIe) {
   const now = Date.now();
   if (now - lastTapTime < 300) {
     switch(name) {
       case 'Nft': 
         setProjectUrl('https://opennft.netlify.app/'); 
+        setBackTrackIe(prev => [...prev, 'https://opennft.netlify.app/']);
         break;
   
         case 'Note': 
         setProjectUrl('https://fullstack-stickynotes.netlify.app/'); 
+        setBackTrackIe(prev => [...prev, 'https://fullstack-stickynotes.netlify.app/']);
         break;
   
         case 'AiAgent': 
         setProjectUrl('https://yuteoctober.github.io/AI_chatbot/'); 
+        setBackTrackIe(prev => [...prev, 'https://yuteoctober.github.io/AI_chatbot/']);
         break;
 
         case '3dObject': 
         setProjectUrl('https://yuteoctober.github.io/3d_book/'); 
+        setBackTrackIe(prev => [...prev, 'https://yuteoctober.github.io/3d_book/']);
         break;
 
         case 'Fortune': 
         setProjectUrl('https://yuteoctober.github.io/week_fortune/'); 
+        setBackTrackIe(prev => [...prev, 'https://yuteoctober.github.io/week_fortune/']);
         break;
 
         case 'PixelPic': 
         setProjectUrl('https://yuteoctober.github.io/Pixel_pic/'); 
+        setBackTrackIe(prev => [...prev, 'https://yuteoctober.github.io/Pixel_pic/']);
+        break;
+
+        case 'IE': 
+        setProjectUrl('https://www.google.com/search?igu=1'); 
+        setBackTrackIe(prev => [...prev, 'https://www.google.com/search?igu=1']);
         break;
   
       default: break; 

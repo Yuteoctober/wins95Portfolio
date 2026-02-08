@@ -46,6 +46,7 @@ import newsicon from '../assets/newstile.png';
 import task from '../assets/task.png'
 import store from '../assets/store_tile.png'
 import layer from '../assets/layer_tile.png'
+import ie_tilt from '../assets/ie_tilt.png'
 
 
 
@@ -319,6 +320,13 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundImage: `url(${layer})`,
           backgroundPosition: '50% 57%',
           backgroundSize: '50px',
+          backgroundRepeat: 'no-repeat',
+        };
+        case 'IE':
+        return {
+          backgroundImage: `url(${ie_tilt})`,
+          backgroundPosition: '50% 57%',
+          backgroundSize: '54px',
           backgroundRepeat: 'no-repeat',
         };
         case 'News':

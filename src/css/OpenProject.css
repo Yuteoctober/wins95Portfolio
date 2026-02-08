@@ -48,8 +48,11 @@
 
 .folder_folder-open-project .file_edit_container {
     display: flex;
+    position: relative;
+    left: 2px;
+    top: 2px;
     gap: 5px;
-    font-size: 15px;
+    font-size: 14px;
     padding-left: 10px;
     cursor: default;
 }
@@ -87,24 +90,25 @@
     display: flex;
     position: relative;
     width: calc(100% - 19px);
-    height: 34px;
+    height: 35px;
     align-items: center;
-    gap: 6px;
+    gap: 3px;
     font-size: 12px;
     top: 4px;
     margin: 0 auto;
-    border: 3px groove rgb(223, 219, 219);
+    border: 3px groove rgb(215, 212, 212);
     border-left: none;
     border-right: none;
     cursor: default;
 }
 .address_container .address {
     position: relative;
-    top: 1px;
 }
 .address_box {
     width: 100%;
+    position: relative;
     padding-left: 4px;
+    bottom: 0.5px;
     border: 2px solid black;
     border-bottom-color: #c6c5c5;
     border-right-color: #c6c5c5;
@@ -115,9 +119,62 @@
 
 .address_box p {
     position: relative;
-    top: 1px;
+    top: 0px;
     white-space: nowrap;
     cursor: auto;
+}
+
+.address_container_btn {
+    display: flex;
+    position: relative;
+    width: calc(100% - 18px);
+    height: 40px;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    top: 4px;
+    margin: 0 auto;
+    border: 3px groove rgb(215, 212, 212);
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    cursor: default;
+}
+
+.btn_addy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 36px;
+    height: 34px;
+    filter: grayscale(100%);
+    border: 1px solid rgba(255, 255, 255, 0);
+}
+
+.btn_addy:hover {
+    background: rgb(212, 211, 211);
+    border-right-color: #565555;
+    border-bottom-color: #565555;
+    border-top-color: white;
+    border-left-color: white;
+    filter: grayscale(20%);
+}
+
+.btn_addy img {
+    position: absolute;
+    width: 22px;
+    height: 20px;
+    top: -1px;
+}
+
+.btn_addy p {
+    position: absolute;
+    font-size: 9.5px;
+    text-align: center;
+    bottom: -2px;
+    margin-left: 3px;
+
 }
 
 .ifram_text_container {

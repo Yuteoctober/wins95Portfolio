@@ -1,17 +1,28 @@
 import UseContext from '../Context'
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
 import ie from '../assets/ie.png'
 import '../css/OpenProject.css'
+import left from '../assets/ie_left.png'
+import right from '../assets/ie_right.png'
+import home from '../assets/ie_home.png'
+import refresh from '../assets/ie_refresh.png'
+import stop from '../assets/ie_stop.png'
 
 
 function OpenProject() {
 
+  
+
   const { 
+    handleShow,
+    forwardTrackIe, setForwardTrackIe,
+    backTrackIe, setBackTrackIe,
     themeDragBar,
     projectname,
     projectUrl,
+    setProjectUrl,
     openProjectExpand, setOpenProjectExpand,
     lastTapTime, setLastTapTime,
     StyleHide,
@@ -55,6 +66,26 @@ function OpenProject() {
     setLastTapTime(now);
 }
 
+  function handleBackTrack() {
+    if (backTrackIe.length > 0) {
+      const lastUrl = backTrackIe[backTrackIe.length - 1];
+      setProjectUrl(lastUrl);
+      setBackTrackIe(prev => prev.slice(0, -1));
+      setForwardTrackIe(prev => [...prev, lastUrl]);
+    }
+  }
+
+  function handleForwardTrack() {
+    if (forwardTrackIe.length > 0) {
+      const lastUrl = forwardTrackIe[forwardTrackIe.length - 1]; 
+      setProjectUrl(lastUrl);
+      setForwardTrackIe(prev => prev.slice(0, -1)); 
+      setBackTrackIe(prev => [...prev, lastUrl]);
+    }
+  }
+
+  console.log(backTrackIe.length)
+
   return (
     <>
       <Draggable
@@ -85,7 +116,7 @@ function OpenProject() {
             <div className="folder_barname">
               <img src={ie} alt="ie" style={{ width: '20px'}} />
                 <span>
-                    {projectname()}
+                    {projectname() === 'Www' ? 'Google' : projectname()}
                 </span>
               </div>
             <div className="folder_barbtn">
@@ -136,6 +167,35 @@ function OpenProject() {
               <p>Edit<span style={{left: '-24px'}}>_</span></p>
               <p>View<span style={{left: '-32px'}}>_</span></p>
               <p>Help<span style={{left: '-30px'}}>_</span></p>
+          </div>
+          <div className="address_container_btn">
+            <div className="btn_addy"
+              onClick={handleBackTrack}
+            >
+              <img src={left} alt="" />
+              <p>Back</p>
+            </div>
+            <div className="btn_addy"
+              onClick={handleForwardTrack}
+            >
+              <img src={right} alt="" />
+              <p>Right</p>
+            </div>
+            <div className="btn_addy">
+              <img src={stop} alt="" style={{top: '-1px'}} />
+              <p>Stop</p>
+            </div>
+            <div className="btn_addy">
+              <img src={refresh} alt="" style={{top: '-1px', width: '18px'}} />
+              <p>Refresh</p>
+            </div>
+            <div className="btn_addy"
+              onClick={() => handleShow('IE')}
+            >
+              <img src={home} alt="" style={{top: '-1px'}} />
+              <p>Home</p>
+            </div>
+            
           </div>
           <div className="address_container">
             <p className='address'>Address:</p>

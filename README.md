@@ -171,6 +171,10 @@ All the functionalities
   - Now icon will be added and delete dynamically, and width will be adjusted automatically
   - New icon will be able to be added on the footer bottom right corner 11/05/2025
   - Added new project, pixel pic 1/04/2026
+  - Added IE project, a web browser that can browse the internet 02/08/2026
+    - Intregated Back and Forward button to IE project
+    - Added Stop and Refresh button to IE project
+    - Added Home button to IE project
 
 Library used:
   - React Draggable => drag and drop functionality

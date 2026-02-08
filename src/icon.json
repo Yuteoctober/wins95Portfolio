@@ -406,6 +406,14 @@
         "y": 40,
         "category": "Productivity",
         "description": "Pixel art creation and editing tool for designing pixel-based images."
+    },{
+        "name": "IE",
+        "pic": "IE",
+        "folderId": "Desktop",
+        "size": 3000,
+        "type": ".exe",
+        "x": 41,
+        "y": 41
     }
 
 ]

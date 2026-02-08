@@ -1,5 +1,15 @@
 const patchNotes = [
   {
+    head: "**IE**",
+    date: "2026-02-08",
+    notes: [
+      "Added IE project, a web browser that can browse the internet",
+      "Intregated Back and Forward button to IE project",
+      "Added Stop and Refresh button to IE project",
+      "Added Home button to IE project",
+    ]
+  },
+  {
     head: "**Pixel Pic**",
     date: "2026-01-04",
     notes: [

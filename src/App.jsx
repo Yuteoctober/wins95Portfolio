@@ -42,6 +42,8 @@ import { StyleHide, imageMapping,
 
 
 function App() {
+  const [backTrackIe, setBackTrackIe] = useState([]);
+  const [forwardTrackIe, setForwardTrackIe] = useState([]);
   const [itemIsBeingDeleted, setItemIsBeingDeleted] = useState('')
   const [itemBeingSelected, setItemBeingSelected] = useState(null)
   const [installIcon, setInstallIcon] = useState(0)
@@ -893,8 +895,9 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
   setLastTapTime(now)
 }
 
-
   const contextValue = {
+    forwardTrackIe, setForwardTrackIe,
+    backTrackIe, setBackTrackIe,
     itemIsBeingDeleted, setItemIsBeingDeleted,
     itemBeingSelected, setItemBeingSelected,
     installIcon, setInstallIcon,
@@ -1493,6 +1496,7 @@ function ObjectState() {
     { name: 'AiAgent',     setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(82, 117, 132, 0.85)', size: 'small' },
     { name: '3dObject',    setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
     { name: 'PixelPic',    setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
+    { name: 'IE',          setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
     { name: 'Fortune',     setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(224, 88, 43, 0.85)', size: 'small' },
     { name: 'Winamp',      setter: setWinampExpand,     usestate: WinampExpand,     color: 'rgba(105, 136, 145, 0.85)', size: 'small' },
     { name: 'ResumeFile',  setter: setResumeFileExpand, usestate: ResumeFileExpand, color: 'rgba(133, 165, 67, 0.85)', size: 'small' },
@@ -1616,27 +1620,31 @@ function handleShow(name) {
         if(lowerCaseName === 'winamp') clippySongFunction();
         if(lowerCaseName === 'msn') clippyUsernameFunction();
         if(lowerCaseName === 'nft') {
-          handleDoubleClickiframe('Nft', setOpenProjectExpand, setProjectUrl)
+          handleDoubleClickiframe('Nft', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
           handleShow('Internet');
         }
         if(lowerCaseName === 'note') {
-          handleDoubleClickiframe('Note', setOpenProjectExpand, setProjectUrl)
+          handleDoubleClickiframe('Note', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
           handleShow('Internet');
         }
         if(lowerCaseName === 'aiagent') {
-          handleDoubleClickiframe('AiAgent', setOpenProjectExpand, setProjectUrl)
+          handleDoubleClickiframe('AiAgent', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe   )
           handleShow('Internet');
         }
         if(lowerCaseName === '3dobject') {
-        handleDoubleClickiframe('3dObject', setOpenProjectExpand, setProjectUrl)
+        handleDoubleClickiframe('3dObject', setOpenProjectExpand, setProjectUrl , setBackTrackIe, setForwardTrackIe)
         handleShow('Internet');
         }
         if(lowerCaseName === 'fortune') {
-        handleDoubleClickiframe('Fortune', setOpenProjectExpand, setProjectUrl)
+        handleDoubleClickiframe('Fortune', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
         handleShow('Internet');
         }
         if(lowerCaseName === 'pixelpic') {
-        handleDoubleClickiframe('PixelPic', setOpenProjectExpand, setProjectUrl)
+        handleDoubleClickiframe('PixelPic', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
+        handleShow('Internet');
+        }
+        if(lowerCaseName === 'ie') {
+        handleDoubleClickiframe('IE', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
         handleShow('Internet');
       }
     } else {
@@ -1721,15 +1729,15 @@ function handleShowMobile(name) {
         if(lowerCaseName === 'winamp') clippySongFunction();
         if(lowerCaseName === 'msn') clippyUsernameFunction();
         if(lowerCaseName === 'nft') {
-          handleDoubleClickiframe('Nft', setOpenProjectExpand, setProjectUrl)
+          handleDoubleClickiframe('Nft', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
           handleShow('Internet');
         }
         if(lowerCaseName === 'note') {
-          handleDoubleClickiframe('Note', setOpenProjectExpand, setProjectUrl)
+          handleDoubleClickiframe('Note', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
           handleShow('Internet');
         }
         if(lowerCaseName === 'aiagent') {
-          handleDoubleClickiframe('AiAgent', setOpenProjectExpand, setProjectUrl)
+          handleDoubleClickiframe('AiAgent', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
           handleShow('Internet');
         }
         if(lowerCaseName === '3dobject') {
@@ -1737,13 +1745,17 @@ function handleShowMobile(name) {
         handleShow('Internet');
         }
         if(lowerCaseName === 'fortune') {
-        handleDoubleClickiframe('Fortune', setOpenProjectExpand, setProjectUrl)
+        handleDoubleClickiframe('Fortune', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
         handleShow('Internet');
         }
         if(lowerCaseName === 'pixelpic') {
-        handleDoubleClickiframe('PixelPic', setOpenProjectExpand, setProjectUrl)
+        handleDoubleClickiframe('PixelPic', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
         handleShow('Internet');
-      }
+        }
+        if(lowerCaseName === 'ie') {
+          handleDoubleClickiframe('IE', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
+          handleShow('Internet');
+        }
       }
       if(item.type === 'userCreatedFolder') {
         item.setter({ focusItem: false });
