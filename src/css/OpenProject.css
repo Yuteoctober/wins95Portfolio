@@ -77,7 +77,7 @@
 .openproject_content {
     position: relative;
     width: calc(100% - 18px);
-    height: calc(100% - 110px);
+    height: calc(100% - 150px);
     margin: 0 auto;
     top: 10px;
     border: 1px solid black;

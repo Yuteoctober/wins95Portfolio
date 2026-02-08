@@ -1662,7 +1662,7 @@ function handleShow(name) {
   if(tap.includes(name)) return;
   setStartActive(false);
 
-  const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin', 'PixelPic'];
+  const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin', 'PixelPic','IE'];
   if (notToOpenList.includes(name)) return;
 
   setTap(prevTap => [...prevTap, name]);
@@ -1768,7 +1768,7 @@ function handleShowMobile(name) {
     if(tap.includes(name)) return;
     setStartActive(false)
   
-    const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin', 'PixelPic'];
+    const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin', 'PixelPic','IE'];
     if (notToOpenList.includes(name)) return;
   
     setTap(prevTap => [...prevTap, name]);

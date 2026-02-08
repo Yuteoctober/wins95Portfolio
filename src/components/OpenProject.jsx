@@ -206,7 +206,7 @@ function OpenProject() {
           <div className="openproject_content"
             onClick={() => iconFocusIcon('Internet')}
             style={openProjectExpand.expand ? 
-              { height: 'calc(100svh - 122px)'} 
+              { height: 'calc(100svh - 175px)'} 
               : 
               {}
             }
