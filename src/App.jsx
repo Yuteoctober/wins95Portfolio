@@ -323,7 +323,7 @@ function App() {
       handleShow('Patch');
     }, 2500);
     
-    if(!desktopIcon.find(icon => icon.name === 'PixelPic')) {
+    if(!desktopIcon.find(icon => icon.name === 'IE')) {
       localStorage.clear();
       location.reload();
     }
