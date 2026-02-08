@@ -13,7 +13,7 @@ import stop from '../assets/ie_stop.png'
 
 function OpenProject() {
 
-  
+  const [iframeKey, setIframeKey] = useState(0);
 
   const { 
     handleShow,
@@ -84,7 +84,9 @@ function OpenProject() {
     }
   }
 
-  console.log(backTrackIe.length)
+  function handleRefresh() {
+    setIframeKey(prevKey => prevKey + 1);
+  }
 
   return (
     <>
@@ -185,12 +187,17 @@ function OpenProject() {
               <img src={stop} alt="" style={{top: '-1px'}} />
               <p>Stop</p>
             </div>
-            <div className="btn_addy">
+            <div className="btn_addy"
+              onClick={handleRefresh}
+            >
               <img src={refresh} alt="" style={{top: '-1px', width: '18px'}} />
               <p>Refresh</p>
             </div>
             <div className="btn_addy"
-              onClick={() => handleShow('IE')}
+              onClick={() => {
+                setIframeKey(prevKey => prevKey + 1);
+                handleShow('IE')
+              }}
             >
               <img src={home} alt="" style={{top: '-1px'}} />
               <p>Home</p>
@@ -200,7 +207,7 @@ function OpenProject() {
           <div className="address_container">
             <p className='address'>Address:</p>
             <div className="address_box">
-                <p>{projectUrl}</p>
+                <p>{projectUrl.length > 1 ? projectUrl : 'Type your URL here'}</p>
             </div>
           </div>
           <div className="openproject_content"
@@ -213,6 +220,7 @@ function OpenProject() {
           >
         {openProjectExpand.show && (
           <iframe
+          key={iframeKey}
           src={projectUrl}
           width="100%"
           height="100%"
@@ -226,7 +234,7 @@ function OpenProject() {
           </div>
           <div className='ifram_text_container'>
             <p>
-                If page does not load, please click <a href={projectUrl} target="_blank" rel="noopener noreferrer">here</a> to view directly.
+                If page does not load, please click <a href={projectUrl.length < 1 ? '#' : projectUrl} target="_blank" rel="noopener noreferrer">here</a> to view directly.
             </p>
           </div>
         </div>
