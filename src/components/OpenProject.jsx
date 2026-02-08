@@ -9,11 +9,14 @@ import right from '../assets/ie_right.png'
 import home from '../assets/ie_home.png'
 import refresh from '../assets/ie_refresh.png'
 import stop from '../assets/ie_stop.png'
+import downArrow from '../assets/arrow-down.png'
 
 
 function OpenProject() {
 
   const [iframeKey, setIframeKey] = useState(0);
+  const [expandAddy, setExpandAddy] = useState(false);
+  const allIEPRojects = ['Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'PixelPic']
 
   const { 
     handleShow,
@@ -88,6 +91,35 @@ function OpenProject() {
     setIframeKey(prevKey => prevKey + 1);
   }
 
+  function handleFetchLinkDes(projectName) {
+    switch(projectName) {
+    case 'Nft': 
+      return 'https://opennft.netlify.app/'
+      
+    case 'Note': 
+      return'https://fullstack-stickynotes.netlify.app/'
+        
+
+    case 'AiAgent': 
+        return 'https://yuteoctober.github.io/AI_chatbot/';
+
+    case '3dObject': 
+        return 'https://yuteoctober.github.io/3d_book/'; 
+        
+
+    case 'Fortune': 
+        return 'https://yuteoctober.github.io/week_fortune/';
+
+
+    case 'PixelPic': 
+        return 'https://yuteoctober.github.io/Pixel_pic/'; 
+
+    case 'IE': 
+        return'https://www.google.com/search?igu=1';
+       
+    default: return;
+    }
+  }
   return (
     <>
       <Draggable
@@ -208,7 +240,31 @@ function OpenProject() {
             <p className='address'>Address:</p>
             <div className="address_box">
                 <p>{projectUrl.length > 1 ? projectUrl : 'Type your URL here'}</p>
+                <div 
+                  onClick={() => setExpandAddy(prev => !prev)}
+                >
+                  <img src={downArrow} alt="" />
+                </div>
             </div>
+            {expandAddy && (
+              <div className="addy_expand_container">
+                {allIEPRojects.map((project) => (
+                  <div key={project}
+                    onClick={() => {
+                      handleShow(project)
+                      setExpandAddy(false)
+                    }}
+                  >
+                    <p>
+                      {project}
+                    </p>
+                    <span>
+                      {handleFetchLinkDes(project)}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
           <div className="openproject_content"
             onClick={() => iconFocusIcon('Internet')}

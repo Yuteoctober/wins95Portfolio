@@ -124,6 +124,33 @@
     cursor: auto;
 }
 
+.address_box div {
+    display: grid;
+    position: absolute;
+    place-items: center;
+    width: 16px;
+    height: 17px;
+    right: 1px;
+    top: 0px;
+    background: #c5c4c4;
+    border: 2px solid rgb(64, 62, 62);
+    border-top-color: rgb(241, 241, 241);
+    border-left-color: rgb(241, 241, 241);
+}
+
+.address_box div:active {
+    border-right-color: rgb(241, 241, 241);
+    border-bottom-color: rgb(241, 241, 241);
+    border-top-color: rgb(64, 62, 62);
+    border-left-color: rgb(64, 62, 62);
+}
+
+.address_box div > img {
+    position: relative;
+    width: 8px;
+    height: 8px;
+}
+
 .address_container_btn {
     display: flex;
     position: relative;
@@ -174,7 +201,41 @@
     text-align: center;
     bottom: -2px;
     margin-left: 3px;
+}
 
+
+
+.addy_expand_container {
+    display: grid;
+    position: absolute;
+    width: calc(100% - 49px);
+    height: fit-content;
+    background: white;
+    border: 1px solid black;
+    padding: 2px 0px;
+    top: 1.55rem;
+    right: 1px;
+    z-index: 999999;
+}
+
+.addy_expand_container div {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.addy_expand_container p {
+    padding-left: 4px;
+}
+
+.addy_expand_container div > span {
+    color: #767373;
+    font-size: 11px;
+}
+
+.addy_expand_container div:hover {
+    background: #040482;
+    color: white;
 }
 
 .ifram_text_container {
