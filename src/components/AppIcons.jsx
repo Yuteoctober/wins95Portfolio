@@ -103,7 +103,7 @@ function DragGhost({ icon }) {
 // ── Main ──────────────────────────────────────────────────────────────────────
 export default function AppIcons() {
   const { handleShow, desktopIcon, appIconToggle, 
-    setAppIconToggle, setDragging,
+    setAppIconToggle, setDragging,key, setKey,
     } = useContext(UseContext);
 
   // initialise from localStorage, fall back to desktopIcon order
@@ -120,10 +120,14 @@ export default function AppIcons() {
   const edgeTimer   = useRef(null);
   const edgeDir     = useRef(null);
 
+  const bannedApp = ['Hard Disk (C:)', 'Hard Disk (D:)']
+
 
   // __ CHANGE BG __________________________________________________________________
 
     useEffect(() => { // set app icons background on mount
+
+        setCurrentPage(0); // reset to first page when toggling app icons
 
         const appContainer = document.getElementsByClassName('appicon_container')[0];
         if(appContainer) {
@@ -131,7 +135,12 @@ export default function AppIcons() {
            appContainer.style.background = storedBg ? storedBg : '#008080'; 
         }
 
-    },[])
+    },[appIconToggle])
+
+    useEffect(() => { // set app icons background on mount
+      setItems(desktopIcon.filter(app => app.name[0] !== '0' && !bannedApp.includes(app.name))); // filter out hidden and banned apps
+    },[desktopIcon, appIconToggle])
+
 
 
   // ── persist whenever order changes ────────────────────────────────────
@@ -264,6 +273,8 @@ export default function AppIcons() {
     return () => window.removeEventListener("keydown", h);
   }, [totalPages]);
 
+  console.log(key)
+
   return (
     <>
     {appIconToggle && (
@@ -275,7 +286,9 @@ export default function AppIcons() {
         >
 
       {/* ── Toolbar ── */}
-      <div className="toolbar">
+      <div className="toolbar"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="search_wrap">
           <input
             className="search_input"

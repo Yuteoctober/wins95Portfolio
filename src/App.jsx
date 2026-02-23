@@ -45,7 +45,7 @@ import { StyleHide, imageMapping,
 function App() {
   const [ classicTileMode, setClassicTileMode ] = useState(() => {
       const mode = localStorage.getItem('mode')
-      return mode ? JSON.parse(mode) : false
+      return mode ? JSON.parse(mode) : true
     })
   const [appIconToggle, setAppIconToggle] = useState(false)
   const [backTrackIe, setBackTrackIe] = useState([]);
@@ -149,7 +149,7 @@ function App() {
   const [reMountRun, setReMountRun] = useState(0)
   const [ErrorPopup, setErrorPopup] = useState(false)
   const [themeDragBar, setThemeDragBar] = useState(() => localStorage.getItem('barcolor') || '#14045c')
-  const [login, setLogin] = useState(true) 
+  const [login, setLogin] = useState(false) 
   const [windowsShutDownAnimation, setWindowsShutDownAnimation] = useState(false)
   const [detectMouse, setDetectMouse] = useState(false)
   const endOfMessagesRef = useRef(null);
@@ -1359,7 +1359,6 @@ function handleDrop(e, name, target, oldFolderID) {
 
     return; // make sure its not in the same folder
   }
-
 
   if (target === 'RecycleBin') {
     setBinRestoreArr(prevArr => {

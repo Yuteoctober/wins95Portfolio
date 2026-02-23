@@ -175,6 +175,7 @@ All the functionalities
     - Intregated Back and Forward button to IE project
     - Added Stop and Refresh button to IE project
     - Added Home button to IE project
+  - Added Tile windows 95 version 02/23/2026
 
 Library used:
   - React Draggable => drag and drop functionality

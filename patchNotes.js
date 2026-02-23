@@ -1,5 +1,12 @@
 const patchNotes = [
   {
+    head: "**Tile**",
+    date: "2026-02-23",
+    notes: [
+      "Added Windows 95 version",
+    ]
+  },
+  {
     head: "**IE**",
     date: "2026-02-08",
     notes: [
