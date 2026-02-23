@@ -365,7 +365,7 @@
   .statusbar { border-bottom: none; }
 
   .appicon_grid {
-    grid-template-columns: repeat(auto-fill, 84px);
+    grid-template-columns: repeat(auto-fill, 92px);
     grid-auto-rows: 88px;
     gap: 4px;
     padding: 12px 16px;
