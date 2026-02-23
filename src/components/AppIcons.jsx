@@ -384,7 +384,7 @@ export default function AppIcons() {
       {/* ── Status bar ── */}
       <div className="statusbar">
         <span className="statusbar_text">
-          {activeId ? `Moving: ${activeId}` : `${visible.length} object${visible.length !== 1 ? "s" : ""}`}
+          {activeId ? `Moving: ${activeId}` : `${visible.length} Item${visible.length !== 1 ? "s" : ""}`}
         </span>
         {totalPages > 1 && (
           <div className="page_dots">

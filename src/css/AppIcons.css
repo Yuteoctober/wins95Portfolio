@@ -2,18 +2,18 @@
 
 /* ── Tokens ───────────────────────────────────────────────────────────── */
 :root {
-  --icon-bg-fade: #dad8d856;
+  --icon-bg-fade: #1b17171f;
   --bg:           #008080;   
   --surface:      rgba(255,255,255,0.07);
   --surface-2:    rgba(255,255,255,0.11);
   --surface-3:    rgba(255,255,255,0.16);
   --border-light: rgba(255,255,255,0.14);
   --border-dark:  rgba(0,0,0,0.5);
-  --accent:       rgba(255,255,255,0.75);
+  --accent:       rgba(255, 255, 255, 0.393);
   --accent-soft:  rgba(255,255,255,0.08);
-  --text:         rgba(255,255,255,0.90);
-  --text-muted:   rgba(255, 255, 255, 0.687);
-  --dash-color:   white;
+  --text:         rgba(21, 18, 18, 0.785);
+  --text-muted:   rgba(26, 22, 22, 0.687);
+  --dash-color:   rgb(36, 38, 37);
   --white:        rgba(255,255,255,0.95);
   --raise:        inset -2px -2px 0 rgba(0,0,0,0.35),
                   inset  1px  1px 0 rgba(255,255,255,0.18),
@@ -32,14 +32,13 @@
   width: 100svw;
   height: 100svh;
   background: var(--bg);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(100px);
+  -webkit-backdrop-filter: blur(100px);
   z-index: 999999999999;
   display: flex;
   flex-direction: column;
   font-size: 12px;
-  overflow: hidden;
-  /* fullscreen — no centering constraint, no max-width wrapper */
+  background: #cfcccc5f !important;
 }
 
 /* ── Shared panel surface ─────────────────────────────────────────────── */
@@ -113,7 +112,7 @@
   min-width: 0;
 }
 
-.search_input::placeholder { color: rgba(255, 255, 255, 0.626); }
+.search_input::placeholder { color: rgba(238, 234, 234, 0.626); }
 
 .search_clear {
   border: none;
@@ -148,21 +147,20 @@
   transform: translateY(-50%);
   z-index: 50;
   width: 28px;
-  height: 46px;
-  background: var(--surface-2);
+  height: 50px;
+  background: transparent;
   border: none;
-  box-shadow: var(--raise);
   cursor: pointer;
   color: var(--text-muted);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
+  opacity: 1;
   transition: background 0.1s, color 0.1s;
 }
 
-.page_arrow:hover  { background: var(--surface-3); color: var(--text); }
-.page_arrow:active { box-shadow: var(--sink); transform: translateY(calc(-50% + 1px)); }
+.page_arrow:hover { background: rgba(40, 38, 38, 0.215); color: white; }
 .page_arrow_left   { left: 6px; }
 .page_arrow_right  { right: 6px; }
 
@@ -330,6 +328,7 @@
   color: var(--text-muted);
   box-shadow: var(--sink);
   padding: 2px 8px;
+  text-align: left;
   background: var(--surface);
   min-width: 90px;
   white-space: nowrap;
