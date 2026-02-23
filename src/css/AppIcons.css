@@ -2,7 +2,7 @@
 
 /* ── Tokens ───────────────────────────────────────────────────────────── */
 :root {
-  --icon-bg-fade: #dad8d832;
+  --icon-bg-fade: #dad8d856;
   --bg:           #008080;   
   --surface:      rgba(255,255,255,0.07);
   --surface-2:    rgba(255,255,255,0.11);
@@ -246,6 +246,7 @@
 
 
 .appicon_icon img {
+  position: relative;
   width: 52px;
   height: 52px;
   object-fit: contain;

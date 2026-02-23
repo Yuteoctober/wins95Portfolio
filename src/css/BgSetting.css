@@ -357,6 +357,13 @@
     border: 3px groove rgb(234, 231, 231);
 }
 
+.tile_mode_container input {
+    position: relative;
+    width: 12px;
+    margin-right: 4px;
+    top: 1px;
+}
+
 
 
 @media screen and (width <= 500px) {
