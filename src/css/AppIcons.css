@@ -2,7 +2,7 @@
 
 /* ── Tokens ───────────────────────────────────────────────────────────── */
 :root {
-  --icon-bg-fade: #1b17171f;
+  --icon-bg-fade: #f9f1f12c;
   --bg:           #008080;   
   --surface:      rgba(255,255,255,0.07);
   --surface-2:    rgba(255,255,255,0.11);
@@ -11,7 +11,7 @@
   --border-dark:  rgba(0,0,0,0.5);
   --accent:       rgba(255, 255, 255, 0.393);
   --accent-soft:  rgba(255,255,255,0.08);
-  --text:         rgba(21, 18, 18, 0.785);
+  --text:         rgba(255, 255, 255, 0.973);
   --text-muted:   rgba(26, 22, 22, 0.687);
   --dash-color:   rgb(36, 38, 37);
   --white:        rgba(255,255,255,0.95);
@@ -32,13 +32,13 @@
   width: 100svw;
   height: 100svh;
   background: var(--bg);
-  backdrop-filter: blur(100px);
-  -webkit-backdrop-filter: blur(100px);
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
   z-index: 999999999999;
   display: flex;
   flex-direction: column;
   font-size: 12px;
-  background: #cfcccc5f !important;
+  background: #2e251830 !important;
 }
 
 /* ── Shared panel surface ─────────────────────────────────────────────── */
@@ -151,7 +151,7 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  color: var(--text-muted);
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -160,7 +160,7 @@
   transition: background 0.1s, color 0.1s;
 }
 
-.page_arrow:hover { background: rgba(40, 38, 38, 0.215); color: white; }
+.page_arrow:hover { background: rgba(161, 159, 159, 0.454); color: rgb(29, 27, 27); }
 .page_arrow_left   { left: 6px; }
 .page_arrow_right  { right: 6px; }
 
