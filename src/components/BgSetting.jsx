@@ -33,9 +33,11 @@ function BgSetting() {
   const [userPickedColor, setUserPickedColor] = useState('')
   const [bgTap, setBgTap] = useState(true)
   const [effectTap, setEffectTap] = useState(false)
+  const [tileTap, setTileTap] = useState(false)
   const [ barcolor, setBarcolor ] = useState(null)
   const [ ImgBgPreview, setImgBgPreview ] = useState(null)
   const [ ImgBgPreviewEffect, setImgBgPreviewEffect ] = useState(null)
+  
   
   const [ localBg, setLocalBg ] = useState(() => {
     const prevBg = localStorage.getItem('background')
@@ -55,6 +57,7 @@ function BgSetting() {
   const [ selectedBg2Effect, setSelectedBg2Effect ] = useState(null)
 
   const { 
+    classicTileMode, setClassicTileMode,
     setTileBG,
     themeDragBar, setThemeDragBar,
     BgSettingExpand ,setBgSettingExpand,
@@ -75,6 +78,7 @@ function BgSetting() {
           y: positionY
         }))
       }
+
 
       const colorOptions = [
         { value: 1, label: '(None)', color: '#098684', image: bg0, barColor: '#14045c'},
@@ -141,6 +145,7 @@ function BgSetting() {
           setSelectedBg2(null)
           setSelectedBg2Effect(null)
           setEffectTap(false)
+          setTileTap(false)
           setBgTap(true)
         }
 
@@ -306,6 +311,7 @@ function BgSetting() {
             onClick={() => {
               setBgTap(true)
               setEffectTap(false)
+              setTileTap(false)
             }}
           >
             <span style={{
@@ -323,12 +329,31 @@ function BgSetting() {
             onClick={() => {
               setBgTap(false)
               setEffectTap(true)
+              setTileTap(false)
             }}
           >
             <span style={{
                     border: effectTap? '1px dotted black' :''
                   }}>
             Effect
+            </span>
+          </p>
+
+          <p
+            style={{ 
+              borderBottomColor: tileTap ? '' : '#f0efef',
+              bottom: tileTap? '2px' : '',
+            }}
+            onClick={() => {
+              setBgTap(false)
+              setTileTap(true)
+              setEffectTap(false)
+            }}
+          >
+            <span style={{
+                    border: tileTap? '1px dotted black' :''
+                  }}>
+            Tile
             </span>
           </p>
           
@@ -435,7 +460,35 @@ function BgSetting() {
             </div>
           </div>
           )}
-{/* ------------------------ EFFECT END ----------------------------- */}
+{/* ------------------------ Tile END ----------------------------- */}
+          {/* Effect Section */}
+          {tileTap && (
+            <div className="folder_content-bgsetting"
+              style={{fontSize: '12px'}}
+            >
+            <div className="tile_mode_container">
+              <p>Seclect your Tile Mode</p>
+              <input type="radio" id="wins95" name="tileMode" value="wins95" 
+                checked={classicTileMode === true ? true : false} 
+                onClick={() => {
+                  localStorage.setItem('mode', true); 
+                  setClassicTileMode(true); 
+                }}
+              />
+              <label htmlFor="wins95">Windows 95</label>
+              <br />
+              <input type="radio" id="wins10" name="tileMode" value="wins10" 
+                checked={classicTileMode === false ? true : false} 
+                onClick={() => {
+                  localStorage.setItem('mode', false); 
+                  setClassicTileMode(false); 
+                }}
+              />
+              <label htmlFor="wins10">Windows 10</label>
+            </div>
+          </div>
+          )}
+{/* ------------------------ Tile END ----------------------------- */}
           <div className="bgsetting_btn_container">
             <div className="bgsetting_btn_ok"
               onClick={!isTouchDevice ? () => {

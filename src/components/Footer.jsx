@@ -36,6 +36,8 @@ export default function Footer() {
     const [reRenderFooter, setRerenderFooter] = useState(0)
 
     const {
+        classicTileMode, setClassicTileMode,
+        appIconToggle, setAppIconToggle,
         deleteTap,
         tileScreen, setTileScreen,
         onlineUser,
@@ -142,7 +144,7 @@ export default function Footer() {
             style: { borderRadius: '5px' },
             spanText: "Tile Screen",
             onClick: () => {
-                setTileScreen(true),
+                classicTileMode ? setAppIconToggle(true) : setTileScreen(true),
                 setStartActive(false)
             },
             onmouseenter: () => {

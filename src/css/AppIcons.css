@@ -1,0 +1,374 @@
+
+
+/* ── Tokens ───────────────────────────────────────────────────────────── */
+:root {
+  --bg:           #008080;   
+  --surface:      rgba(255,255,255,0.07);
+  --surface-2:    rgba(255,255,255,0.11);
+  --surface-3:    rgba(255,255,255,0.16);
+  --border-light: rgba(255,255,255,0.14);
+  --border-dark:  rgba(0,0,0,0.5);
+  --accent:       rgba(255,255,255,0.75);
+  --accent-soft:  rgba(255,255,255,0.08);
+  --text:         rgba(255,255,255,0.90);
+  --text-muted:   rgba(255, 255, 255, 0.687);
+  --dash-color:   white;
+  --white:        rgba(255,255,255,0.95);
+  --raise:        inset -2px -2px 0 rgba(0,0,0,0.35),
+                  inset  1px  1px 0 rgba(255,255,255,0.18),
+                  inset -1px -1px 0 rgba(0,0,0,0.2),
+                  inset  2px  2px 0 rgba(255,255,255,0.08);
+  --sink:         inset  2px  2px 0 rgba(0,0,0,0.35),
+                  inset -1px -1px 0 rgba(255,255,255,0.18),
+                  inset  1px  1px 0 rgba(0,0,0,0.2),
+                  inset -2px -2px 0 rgba(255,255,255,0.08);
+}
+
+/* ── Container — fullscreen, black glass ──────────────────────────────── */
+.appicon_container {
+  position: fixed;
+  inset: 0;
+  width: 100svw;
+  height: 100svh;
+  background: var(--bg);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 999999999999;
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  overflow: hidden;
+  /* fullscreen — no centering constraint, no max-width wrapper */
+}
+
+/* ── Shared panel surface ─────────────────────────────────────────────── */
+.toolbar,
+.body_area,
+.statusbar {
+  background: var(--surface);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ── Toolbar ──────────────────────────────────────────────────────────── */
+.toolbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px 20px 10px;
+  gap: 8px;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.toolbar_info {
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+}
+
+/* ── Search ───────────────────────────────────────────────────────────── */
+.search_wrap {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid var(--border-light);
+  height: 28px;
+  padding: 0 8px;
+  gap: 6px;
+  width: 260px;
+  box-sizing: border-box;
+  border-radius: 1px;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.search_wrap:focus-within {
+  background: rgba(255,255,255,0.11);
+  border-color: rgba(255,255,255,0.28);
+}
+
+.search_icon {
+  width: 14px;
+  height: 14px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.search_input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 12px;
+  color: var(--text);
+  padding: 0;
+  min-width: 0;
+}
+
+.search_input::placeholder { color: rgba(255,255,255,0.28); }
+
+.search_clear {
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1px;
+  transition: color 0.1s, background 0.1s;
+}
+
+.search_clear:hover { color: var(--text); background: var(--surface-2); }
+
+/* ── Body ─────────────────────────────────────────────────────────────── */
+.body_area {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  /* dot-grid watermark */
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-color: var(--surface);
+}
+
+/* ── Page arrows ──────────────────────────────────────────────────────── */
+.page_arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
+  width: 28px;
+  height: 52px;
+  background: var(--surface-2);
+  border: none;
+  box-shadow: var(--raise);
+  cursor: pointer;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background 0.1s, color 0.1s;
+}
+
+.page_arrow:hover  { background: var(--surface-3); color: var(--text); }
+.page_arrow:active { box-shadow: var(--sink); transform: translateY(calc(-50% + 1px)); }
+.page_arrow_left   { left: 6px; }
+.page_arrow_right  { right: 6px; }
+
+/* ── Grid wrapper ─────────────────────────────────────────────────────── */
+.grid_wrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.12) transparent;
+}
+
+/* ── Icon grid — fixed px cols, no mismatch ──────────────────────────── */
+.appicon_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 88px);
+  grid-auto-rows: 96px;
+  gap: 4px 8px;
+  padding: 20px 48px;
+  align-content: start;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.appicon_grid.searching { padding-top: 16px; }
+
+/* ── Icon — no border, no bg ─────────────────────────────────────────── */
+.appicon_icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 8px;
+  width: 88px;
+  height: 96px;
+  cursor: pointer;
+  text-align: center;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  box-sizing: border-box;
+  gap: 6px;
+  border-radius: 2px;
+  outline: none;
+  background: transparent;
+  transition: background 0.12s;
+}
+
+/* dashed only on hover */
+.appicon_icon:hover {
+  background: var(--accent-soft);
+  outline: 1.5px dashed var(--dash-color);
+  outline-offset: -2px;
+}
+
+.appicon_icon:focus-visible {
+  outline: 1.5px dashed var(--dash-color);
+  outline-offset: -2px;
+}
+
+.appicon_icon:active { cursor: grabbing; }
+
+/* ── Image tile ───────────────────────────────────────────────────────── */
+.appicon_img_wrap {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--surface-2);
+  box-shadow: var(--raise);
+  padding: 5px;
+  box-sizing: border-box;
+  transition: background 0.12s, box-shadow 0.12s;
+}
+
+.appicon_icon:hover .appicon_img_wrap {
+  background: var(--surface-3);
+  box-shadow: var(--raise), 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.appicon_icon img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  pointer-events: none;
+  display: block;
+}
+
+/* ── Label ────────────────────────────────────────────────────────────── */
+.appicon_icon p {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--text);
+  pointer-events: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 84px;
+  text-align: center;
+  margin: 0;
+}
+
+/* ── Dragging source ──────────────────────────────────────────────────── */
+.appicon_icon.is-dragging {
+  outline: 1.5px dashed var(--dash-color);
+  outline-offset: -2px;
+  background: var(--accent-soft);
+}
+
+/* ── Ghost — exact same fixed size as cell ───────────────────────────── */
+.appicon_icon.is-ghost {
+  cursor: grabbing;
+  width: 88px;
+  height: 96px;
+  background: rgba(255,255,255,0.07);
+  outline: 1.5px dashed var(--dash-color);
+  outline-offset: -2px;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.6));
+}
+
+.appicon_icon.is-ghost .appicon_img_wrap {
+  background: var(--surface-3);
+  box-shadow: var(--raise), 0 6px 20px rgba(0,0,0,0.4);
+}
+
+.appicon_icon.is-ghost p { color: var(--text); font-weight: 600; }
+
+/* ── No results ───────────────────────────────────────────────────────── */
+.no_results {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 52px 24px;
+  color: var(--text-muted);
+}
+
+.no_results p {
+  font-size: 13px;
+  font-weight: 500;
+  margin: 0;
+  color: var(--text);
+}
+
+/* ── Status bar ───────────────────────────────────────────────────────── */
+.statusbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 12px;
+  flex-shrink: 0;
+  gap: 10px;
+  border-top: 1px solid var(--border-light);
+}
+
+.statusbar_text {
+  font-size: 11px;
+  color: var(--text-muted);
+  box-shadow: var(--sink);
+  padding: 2px 8px;
+  background: var(--surface);
+  min-width: 90px;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+
+.statusbar_right { text-align: right; }
+
+/* ── Page dots ────────────────────────────────────────────────────────── */
+.page_dots {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.page_dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 1px;
+  border: none;
+  background: var(--surface-2);
+  box-shadow: var(--raise);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.15s, box-shadow 0.1s;
+}
+
+.page_dot:hover  { background: var(--surface-3); }
+.page_dot.active { background: rgba(255,255,255,0.75); box-shadow: var(--sink); }
+
+/* ── Responsive ───────────────────────────────────────────────────────── */
+@media screen and (max-width: 640px) {
+  .toolbar   { border-top: none; }
+  .statusbar { border-bottom: none; }
+
+  .appicon_grid {
+    grid-template-columns: repeat(auto-fill, 76px);
+    grid-auto-rows: 88px;
+    gap: 4px;
+    padding: 12px 16px;
+  }
+
+  .appicon_icon     { width: 76px; height: 88px; }
+  .appicon_icon.is-ghost { width: 76px; height: 88px; }
+  .appicon_img_wrap { width: 44px; height: 44px; }
+  .appicon_icon img { width: 30px; height: 30px; }
+  .page_arrow       { display: none; }
+  .search_wrap      { width: 200px; }
+}

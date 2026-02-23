@@ -348,6 +348,15 @@
     z-index: 9;
 }
 
+.tile_mode_container {
+    position: relative;
+    left: -10px;
+    width: calc(100% + 20px);
+    height: fit-content;
+    padding: 0.5rem;
+    border: 3px groove rgb(234, 231, 231);
+}
+
 
 
 @media screen and (width <= 500px) {

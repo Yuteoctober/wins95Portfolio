@@ -33,6 +33,7 @@ import SpinningCat from './components/SpinningCat';
 import Patch from './components/Patch';
 import WindowsDragLogin from './components/WindowsDragLogin';
 import TaskManager from './components/TaskManager';
+import AppIcons from './components/AppIcons';
 import { StyleHide, imageMapping,
   handleDoubleClickEnterLink,handleDoubleTapEnterMobile,
   handleDoubleClickiframe, handleDoubleTapiframeMobile,
@@ -42,6 +43,11 @@ import { StyleHide, imageMapping,
 
 
 function App() {
+  const [ classicTileMode, setClassicTileMode ] = useState(() => {
+      const mode = localStorage.getItem('mode')
+      return mode ? JSON.parse(mode) : false
+    })
+  const [appIconToggle, setAppIconToggle] = useState(false)
   const [backTrackIe, setBackTrackIe] = useState([]);
   const [forwardTrackIe, setForwardTrackIe] = useState([]);
   const [itemIsBeingDeleted, setItemIsBeingDeleted] = useState('')
@@ -896,6 +902,8 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
 }
 
   const contextValue = {
+    classicTileMode, setClassicTileMode,
+    appIconToggle, setAppIconToggle,
     forwardTrackIe, setForwardTrackIe,
     backTrackIe, setBackTrackIe,
     itemIsBeingDeleted, setItemIsBeingDeleted,
@@ -1174,6 +1182,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
           folderName='Photo'
           photoMode={true}
         />
+        <AppIcons/>
         <Store/>
         <TaskManager/>
         <Patch/>
