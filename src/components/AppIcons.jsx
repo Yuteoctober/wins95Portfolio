@@ -27,26 +27,31 @@ const EDGE_ZONE        = 80;
 const EDGE_DELAY       = 650;
 const STORAGE_KEY      = "appicons_order";
 
-
+const bannedApp = ['Hard Disk (C:)', 'Hard Disk (D:)'];
 
 // ── persist helpers ────────────────────────────────────────────────────────────
 function loadOrder(defaultIcons) {
+  // Filter out hidden and banned apps first
+  const filtered = defaultIcons.filter(
+    app => app.name[0] !== '0' && !bannedApp.includes(app.name)
+  );
+
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return defaultIcons;
+    if (!raw) return filtered;
 
     const saved = JSON.parse(raw); // array of icon names in saved order
-    if (!Array.isArray(saved)) return defaultIcons;
+    if (!Array.isArray(saved)) return filtered;
 
     // merge: keep saved order, append any new icons not yet saved
     const savedSet  = new Set(saved);
     const merged    = saved
-      .map(name => defaultIcons.find(i => i.name === name))
+      .map(name => filtered.find(i => i.name === name))
       .filter(Boolean); // drop names that no longer exist
-    const newIcons  = defaultIcons.filter(i => !savedSet.has(i.name));
+    const newIcons  = filtered.filter(i => !savedSet.has(i.name));
     return [...merged, ...newIcons];
   } catch {
-    return defaultIcons;
+    return filtered;
   }
 }
 
@@ -103,7 +108,7 @@ function DragGhost({ icon }) {
 // ── Main ──────────────────────────────────────────────────────────────────────
 export default function AppIcons() {
   const { handleShow, desktopIcon, appIconToggle, 
-    setAppIconToggle, setDragging,key, setKey,
+    setAppIconToggle, setDragging, key, setKey,
     } = useContext(UseContext);
 
   // initialise from localStorage, fall back to desktopIcon order
@@ -120,28 +125,42 @@ export default function AppIcons() {
   const edgeTimer   = useRef(null);
   const edgeDir     = useRef(null);
 
-  const bannedApp = ['Hard Disk (C:)', 'Hard Disk (D:)']
-
-
   // __ CHANGE BG __________________________________________________________________
 
-    useEffect(() => { // set app icons background on mount
+  useEffect(() => { // set app icons background on mount
+    setCurrentPage(0); // reset to first page when toggling app icons
 
-        setCurrentPage(0); // reset to first page when toggling app icons
+    const appContainer = document.getElementsByClassName('appicon_container')[0];
+    if(appContainer) {
+      const storedBg = localStorage.getItem('theme');
+      appContainer.style.background = storedBg ? storedBg : '#008080'; 
+    }
+  },[appIconToggle])
 
-        const appContainer = document.getElementsByClassName('appicon_container')[0];
-        if(appContainer) {
-            const storedBg = localStorage.getItem('theme');
-           appContainer.style.background = storedBg ? storedBg : '#008080'; 
-        }
-
-    },[appIconToggle])
-
-    useEffect(() => { // set app icons background on mount
-      setItems(desktopIcon.filter(app => app.name[0] !== '0' && !bannedApp.includes(app.name))); // filter out hidden and banned apps
-    },[desktopIcon, appIconToggle])
-
-
+  // Update items when desktopIcon changes (new apps added/removed)
+  useEffect(() => {
+    setItems(prevItems => {
+      const filtered = desktopIcon.filter(
+        app => app.name[0] !== '0' && !bannedApp.includes(app.name)
+      );
+      
+      // If filtered is the same length and contains all previous items, keep the order
+      const prevNames = new Set(prevItems.map(i => i.name));
+      const newNames = new Set(filtered.map(i => i.name));
+      
+      // Check if there are any changes
+      const hasChanges = filtered.length !== prevItems.length || 
+        filtered.some(i => !prevNames.has(i.name)) ||
+        prevItems.some(i => !newNames.has(i.name));
+      
+      if (!hasChanges) return prevItems;
+      
+      // Merge: keep existing order, add new items at the end
+      const merged = prevItems.filter(i => newNames.has(i.name));
+      const newIcons = filtered.filter(i => !prevNames.has(i.name));
+      return [...merged, ...newIcons];
+    });
+  }, [desktopIcon]);
 
   // ── persist whenever order changes ────────────────────────────────────
   useEffect(() => {
@@ -163,7 +182,7 @@ export default function AppIcons() {
 
   useEffect(() => {
     if (currentPage >= totalPages) setCurrentPage(Math.max(0, totalPages - 1));
-  }, [totalPages]);
+  }, [totalPages, currentPage]);
 
   // ── sensors ────────────────────────────────────────────────────────────
   const sensors = useSensors(
@@ -273,8 +292,6 @@ export default function AppIcons() {
     return () => window.removeEventListener("keydown", h);
   }, [totalPages]);
 
-  console.log(key)
-
   return (
     <>
     {appIconToggle && (
@@ -342,7 +359,6 @@ export default function AppIcons() {
           onDragMove={handleDragMove}
           onDragEnd={handleDragEnd}
           onDragCancel={handleDragCancel}
-          onClick={() => setDragging(true)}
         >
           <SortableContext
             items={visible.map(i => i.name)}
