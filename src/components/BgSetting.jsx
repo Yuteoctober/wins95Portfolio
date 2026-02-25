@@ -467,6 +467,7 @@ function BgSetting() {
               style={{fontSize: '12px'}}
             >
             <div className="tile_mode_container">
+              <span>Tile</span>
               <p>Seclect your Tile Mode</p>
               <input type="radio" id="wins95" name="tileMode" value="wins95" 
                 checked={classicTileMode === true ? true : false} 

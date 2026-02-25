@@ -351,17 +351,46 @@
 .tile_mode_container {
     position: relative;
     left: -10px;
+    top: 5px;
     width: calc(100% + 20px);
     height: fit-content;
-    padding: 0.5rem;
+    padding: 0.8rem;
     border: 3px groove rgb(234, 231, 231);
+}
+
+.tile_mode_container span {
+    position: absolute;
+    top: -10px;
+    left: 8px;
+    background: #c5c4c4;
+    padding: 0px 2px;
+    font-size: 13px;
+}
+
+.tile_mode_container p {
+    position: relative;
+    right: 2px;
+    margin-bottom: 3px;
+}
+
+.tile_mode_container p::before {
+    content: '_';
+    position: absolute;
+    left: 0px;
+}
+
+.tile_mode_container span::before {
+    content: '_';
+    position: absolute;
+    left: 2px;
 }
 
 .tile_mode_container input {
     position: relative;
     width: 12px;
-    margin-right: 4px;
+    margin-right: 3px;
     top: 1px;
+    right: 1px;
 }
 
 
