@@ -36,6 +36,8 @@ function MsnFolder() {
     deleteTap,
   } = useContext(UseContext);
 
+  const [activeIndex, setActiveIndex] = useState(null);
+  const timeoutRef = useRef(null);
   const [userName, setUserName] = useState(false);
   const topOfMessagesRef = useRef(null); // Ref to track the top of the chat container
   const [initialLoading, setInitialLoading] = useState(false)
@@ -339,20 +341,28 @@ useEffect(() => {
                   <p>
                     <motion.span
                       className="chat_date"
-                      onClick={(e) => e.stopPropagation()}
-                      whileTap={{opacity: 1,}}
-                      whileHover={{
-                        opacity: 1,
+                      onClick={(e) => {
+                        e.stopPropagation();
+
+                        setActiveIndex(index);
+
+                        if (timeoutRef.current) {
+                          clearTimeout(timeoutRef.current);
+                        }
+
+                        timeoutRef.current = setTimeout(() => {
+                          setActiveIndex(null);
+                        }, 3000);
                       }}
-                      while
+                      animate={{ opacity: activeIndex === index ? 1 : 0 }}
+                      whileHover={{ opacity: 1 }}
                       transition={{ duration: 0.3 }}
                     >
                       <span className='mobile_chat_date'>
                         {chat.date && new Date(chat.date).toLocaleString()}
                       </span>
-                      
                     </motion.span>
-                    <span style={{ color: chat?.dev ? 'red' : chat.bot ? 'purple' : 'blue' }}>&lt;{chat?.dev ? 'Dev' : chat.name}&gt;: </span>
+                                        <span style={{ color: chat?.dev ? 'red' : chat.bot ? 'purple' : 'blue' }}>&lt;{chat?.dev ? 'Dev' : chat.name}&gt;: </span>
                     <span style={{ color: chat?.dev ? 'red' : chat.bot ? 'purple' : '#171616' }}>{chat.chat}</span>
                   </p>
                 </div>
