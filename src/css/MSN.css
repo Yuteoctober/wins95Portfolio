@@ -587,7 +587,7 @@
     border-radius: 2px;
     color: rgb(212, 205, 205);
     font-size: 11px;
-    z-index: 9999999999999;
+    z-index: 1;
 }
 
 
