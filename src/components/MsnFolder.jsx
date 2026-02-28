@@ -36,7 +36,6 @@ function MsnFolder() {
     deleteTap,
   } = useContext(UseContext);
 
-
   const [userName, setUserName] = useState(false);
   const topOfMessagesRef = useRef(null); // Ref to track the top of the chat container
   const [initialLoading, setInitialLoading] = useState(false)
@@ -126,6 +125,8 @@ useEffect(() => {
       y: positionY
     }));
   }
+
+  console.log(loadedMessages)
 
   function handleExpandStateToggle() {
     setMSNExpand(prevState => ({
@@ -338,6 +339,18 @@ useEffect(() => {
               chat.chat.length > 0 && (
                 <div className='text_container' key={index}>
                   <p>
+                    <motion.span
+                      className="chat_date"
+                      onClick={(e) => e.stopPropagation()}
+                      whileTap={{opacity: 1,}}
+                      whileHover={{
+                        opacity: 1,
+                      }}
+                      while
+                      transition={{ duration: 0.3 }}
+                    >
+                      {chat.date && new Date(chat.date).toLocaleString()}
+                    </motion.span>
                     <span style={{ color: chat?.dev ? 'red' : chat.bot ? 'purple' : 'blue' }}>&lt;{chat?.dev ? 'Dev' : chat.name}&gt;: </span>
                     <span style={{ color: chat?.dev ? 'red' : chat.bot ? 'purple' : '#171616' }}>{chat.chat}</span>
                   </p>

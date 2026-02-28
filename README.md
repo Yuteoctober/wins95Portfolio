@@ -176,6 +176,7 @@ All the functionalities
     - Added Stop and Refresh button to IE project
     - Added Home button to IE project
   - Added Tile windows 95 version 02/23/2026
+  - Added Time stamp for each chat messages in MSN 02/28/2026
 
 Library used:
   - React Draggable => drag and drop functionality

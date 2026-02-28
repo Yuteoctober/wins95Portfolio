@@ -579,6 +579,17 @@
     border-bottom-color: white;
 }
 
+.chat_date {
+    opacity: 0;
+    position: absolute;
+    padding: 2px 4px;
+    background: #1b1818f7;
+    border-radius: 2px;
+    color: rgb(212, 205, 205);
+    font-size: 11px;
+    z-index: 9999999999999;
+}
+
 @keyframes msnShake {
   0%   { margin-left: 0; }
   5%   { margin-left: -10px; }

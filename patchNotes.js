@@ -1,5 +1,12 @@
 const patchNotes = [
   {
+    head: "**MSN**",
+    date: "2026-02-28",
+    notes: [
+      "Added time stamp to each message in MSN chat",
+    ]
+  },
+  {
     head: "**Tile**",
     date: "2026-02-23",
     notes: [
