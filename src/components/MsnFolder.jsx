@@ -126,8 +126,6 @@ useEffect(() => {
     }));
   }
 
-  console.log(loadedMessages)
-
   function handleExpandStateToggle() {
     setMSNExpand(prevState => ({
       ...prevState,
@@ -349,7 +347,10 @@ useEffect(() => {
                       while
                       transition={{ duration: 0.3 }}
                     >
-                      {chat.date && new Date(chat.date).toLocaleString()}
+                      <span className='mobile_chat_date'>
+                        {chat.date && new Date(chat.date).toLocaleString()}
+                      </span>
+                      
                     </motion.span>
                     <span style={{ color: chat?.dev ? 'red' : chat.bot ? 'purple' : 'blue' }}>&lt;{chat?.dev ? 'Dev' : chat.name}&gt;: </span>
                     <span style={{ color: chat?.dev ? 'red' : chat.bot ? 'purple' : '#171616' }}>{chat.chat}</span>

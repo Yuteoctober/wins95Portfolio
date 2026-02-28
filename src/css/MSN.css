@@ -590,6 +590,25 @@
     z-index: 9999999999999;
 }
 
+
+
+@media screen and (width <= 500px) {
+    .chat_date {
+        width: 100%;
+        background: transparent;
+        color: black;
+        text-align: end;
+    }
+
+    .mobile_chat_date {
+        padding: 4px 4px;
+        background: #1b1818f7;
+        border-radius: 2px;
+        font-size: 11px;
+        color: rgb(212, 205, 205);
+    }
+}
+
 @keyframes msnShake {
   0%   { margin-left: 0; }
   5%   { margin-left: -10px; }
