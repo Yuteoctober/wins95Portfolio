@@ -36,8 +36,9 @@ function MsnFolder() {
     deleteTap,
   } = useContext(UseContext);
 
-  const [activeIndex, setActiveIndex] = useState(null);
+  
   const timeoutRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(null);
   const [userName, setUserName] = useState(false);
   const topOfMessagesRef = useRef(null); // Ref to track the top of the chat container
   const [initialLoading, setInitialLoading] = useState(false)
@@ -355,7 +356,6 @@ useEffect(() => {
                         }, 3000);
                       }}
                       animate={{ opacity: activeIndex === index ? 1 : 0 }}
-                      whileHover={{ opacity: 1 }}
                       transition={{ duration: 0.3 }}
                     >
                       <span className='mobile_chat_date'>
