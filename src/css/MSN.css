@@ -586,6 +586,7 @@
     background: transparent;
     color: black;
     text-align: end;
+    padding-right: 6px;
     border-radius: 2px;
     color: rgb(212, 205, 205);
     font-size: 11px;
