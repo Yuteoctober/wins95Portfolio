@@ -1,5 +1,7 @@
 Windows 95 Portfolio
 
+OPEN SOURCE (IF YOU FORK MY REPO, PLEASE GIVE CREDIT, I NEED THAT TO LAND A JOB LOL)
+
 Live Demo: https://yuteoctober.github.io/wins95Portfolio/
 
 ![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/markdown.png?raw=true)
