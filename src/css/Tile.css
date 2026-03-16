@@ -34,31 +34,60 @@
 .grid-container {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  margin-bottom: 1rem;
+  grid-auto-flow: column;
   max-height: 100svh;
   gap: 6px;
-  padding: 4px;
+  padding: 10px;
+  padding-bottom: 1rem;
   position: relative;
   margin: 0 auto;
-  max-width: 1200px;
   top: 50%;
   transform: translateY(-50%);
-  -webkit-user-select: none; 
-  -moz-user-select: none;   
-  -ms-user-select: none;    
-  user-select: none;
-  overscroll-behavior: contain;
-  overflow-y: auto;
-  
+  overflow-x: auto;  
+  overflow-y: hidden; 
+  scrollbar-width: thin;
+  scrollbar-color: #bfc3c7 rgba(255,255,255,0.08);
+  scroll-behavior: smooth;
 }
 
+@media screen and (min-width: 1400px) {
+  .grid-container {
+    max-width: fit-content;
+    margin: 0 auto;
+    justify-content: center; 
+  }
+}
+
+
+/* scrollbar track */
 .grid-container::-webkit-scrollbar {
-    width: 0px;
+  height: 8px; /* horizontal scrollbar */
+  width: 8px;  /* vertical if used */
+}
+
+/* track background */
+.grid-container::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.08);
+  border-radius: 10px;
+}
+
+/* draggable bar */
+.grid-container::-webkit-scrollbar-thumb {
+  background: #bfc3c7;
+  border-radius: 10px;
+}
+
+/* hover effect */
+.grid-container::-webkit-scrollbar-thumb:hover {
+  background: #e0e0e0;
 }
 
 
 .tile {
     min-height: 100px;
-    min-width: 100px;
+    min-width: 160px;
     padding: 8px;
     display: flex;
     font-weight: bold;
@@ -71,6 +100,7 @@
     -moz-user-select: none;   
     -ms-user-select: none;    
     user-select: none;  
+    scroll-snap-align: start;
   }
 
  .tile_name {
@@ -184,28 +214,34 @@
 }
 
 
-@media screen and (width <= 630px) {
+@media (width <= 630px), (height <= 500px) {
+
   .grid-container {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-auto-flow: row;
+    grid-template-rows: auto;
     top: 0;
     transform: translateY(0);
     overflow-y: auto;
+    overflow-x: hidden;
     max-height: 100svh;
     gap: 4px;
+    padding: 0;
+    scrollbar-width: none;
+  }
 
-
-  }  
-
+  .grid-container::-webkit-scrollbar {
+    scrollbar-width: none;
+  }
 
   .tile_pic {
     width: 17px;
     right: 6px;
-}
+  }
 
   .tile {
     min-width: 0;
     width: 100%;
-    
   }
 
   .tile_name {
@@ -217,8 +253,8 @@
   }
 
   .time_icon p {
-  font-size: 30px;
-}
-}
+    font-size: 30px;
+  }
 
+}
 

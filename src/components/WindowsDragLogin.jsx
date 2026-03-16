@@ -1,5 +1,5 @@
 import UseContext from '../Context';
-import { useState, useCallback, useContext, useEffect } from 'react';
+import { useState, useCallback, useContext, useEffect, useRef } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import Tile from './Tile';
@@ -7,6 +7,8 @@ import '../css/Tile.css'
 import dayjs from 'dayjs';
 
 export default function WindowsDragLogin() {
+
+  const scrollRef = useRef(null);
 
   const {
     itemIsBeingDeleted, setItemIsBeingDeleted,
@@ -22,6 +24,32 @@ export default function WindowsDragLogin() {
     imageMapping,
     ObjectState,
   } = useContext(UseContext);
+
+    useEffect(() => {
+      const el = scrollRef.current;
+      if (!el) return;
+
+      const onWheel = (e) => {
+        // Check dimensions INSIDE the function so it reacts to real-time resizing
+        if (window.innerHeight < 500 || window.innerWidth < 630) {
+          return; // Do nothing, let default vertical scroll happen
+        }
+
+        // Check if horizontal scroll is actually possible
+        if (el.scrollWidth <= el.clientWidth) return;
+
+        e.preventDefault();
+        el.scrollTo({
+          left: el.scrollLeft + e.deltaY,
+          behavior: 'auto' 
+        });
+      };
+
+      // { passive: false } is MANDATORY to allow preventDefault()
+      el.addEventListener('wheel', onWheel, { passive: false });
+
+      return () => el.removeEventListener('wheel', onWheel);
+    }, [tileScreen]);
 
   const notInstalled = ['Cat', 'AiAgent','Winamp','Paint','3dObject']
   const bannedIcon = ['Photo', 'Internet', 'Bitcoin'];
@@ -159,7 +187,7 @@ export default function WindowsDragLogin() {
               backgroundImage: `url(${bgRotation ? backgroundImageUrl : ''})`,
             }}
           >
-            <div className="grid-container">
+            <div className="grid-container" ref={scrollRef}>
               <p className='date_time'>{date_time}</p>
               <Tile
                 key="exit-tile"
