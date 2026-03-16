@@ -225,9 +225,9 @@
     overflow-y: auto;
     overflow-x: hidden;
     max-height: 100svh;
-    gap: 4px;
+    gap: 3px;
     scrollbar-width: none;
-    padding: 4px 1px;
+    padding: 3px 1px;
   }
 
   .grid-container::-webkit-scrollbar {
