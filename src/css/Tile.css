@@ -35,12 +35,11 @@
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  margin-bottom: 1rem;
   grid-auto-flow: column;
   max-height: 100svh;
   gap: 6px;
   padding: 10px;
-  padding-bottom: 1rem;
+  padding-bottom: 0.5rem;
   position: relative;
   margin: 0 auto;
   top: 50%;
@@ -63,20 +62,20 @@
 
 /* scrollbar track */
 .grid-container::-webkit-scrollbar {
-  height: 8px; /* horizontal scrollbar */
-  width: 8px;  /* vertical if used */
+  height: 4px; 
+  width: 4px;  
 }
 
 /* track background */
 .grid-container::-webkit-scrollbar-track {
   background: rgba(255,255,255,0.08);
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 /* draggable bar */
 .grid-container::-webkit-scrollbar-thumb {
   background: #bfc3c7;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 /* hover effect */
