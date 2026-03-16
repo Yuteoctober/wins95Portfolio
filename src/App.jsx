@@ -45,7 +45,7 @@ import { StyleHide, imageMapping,
 function App() {
   const [ classicTileMode, setClassicTileMode ] = useState(() => {
       const mode = localStorage.getItem('mode')
-      return mode ? JSON.parse(mode) : true
+      return mode ? JSON.parse(mode) : false
     })
   const [appIconToggle, setAppIconToggle] = useState(false)
   const [backTrackIe, setBackTrackIe] = useState([]);
