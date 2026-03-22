@@ -37,7 +37,7 @@
   grid-template-rows: repeat(5, 1fr);
   grid-auto-flow: column;
   max-height: 100svh;
-  gap: 6px;
+  gap: 4px;
   padding: 10px;
   padding-bottom: 0.5rem;
   position: relative;
@@ -51,7 +51,7 @@
   scroll-behavior: smooth;
 }
 
-@media screen and (min-width: 1400px) {
+@media (width >= 1400px) and (height >= 500px) {
   .grid-container {
     max-width: fit-content;
     margin: 0 auto;

@@ -212,8 +212,12 @@ function OpenProject() {
             <div className="btn_addy"
               onClick={handleForwardTrack}
             >
-              <img src={right} alt="" />
-              <p>Right</p>
+              <img src={right} alt=""
+                style={{marginRight: '1px'}}
+              />
+              <p
+                style={{right: '1px'}}
+              >Forward</p>
             </div>
             <div className="btn_addy">
               <img src={stop} alt="" style={{top: '-1px'}} />
